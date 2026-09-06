@@ -21,7 +21,12 @@ function Get-Notes {
   param([string]$RootPath)
   if(-not (Test-Path -LiteralPath $RootPath)){ return @() }
   Get-ChildItem -LiteralPath $RootPath -Recurse -File -Filter '*.md' |
-    Where-Object { $_.FullName -notmatch '[\\/]\.obsidian[\\/]' -and $_.FullName -notmatch '[\\/]\.trash[\\/]' -and $_.FullName -notmatch '[\\/]quality-guardian[\\/]'}
+    Where-Object {
+      $_.FullName -notmatch '[\\/]\.obsidian[\\/]' -and
+      $_.FullName -notmatch '[\\/]\.trash[\\/]' -and
+      $_.FullName -notmatch '[\\/]quality-guardian[\\/]' -and
+      $_.FullName -notmatch '[\\/]Skills[\\/]'
+    }
 }
 
 function Parse-Frontmatter {
