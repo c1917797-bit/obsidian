@@ -1,0 +1,40 @@
+name: inference-audit-ci
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 2 * * *'
+  push:
+    branches: [ main ]
+
+jobs:
+  audit:
+    runs-on: windows-latest
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Run scan
+        id: scan
+        shell: pwsh
+        run: |
+          $out = & pwsh .\0_Codex工作台\tools\inference-audit.ps1 scan
+          $out | Out-File -FilePath scan-output.txt -Encoding UTF8
+          $out | Write-Output
+          $badLine = ($out | Select-String '^BAD=')
+          if (-not $badLine) { throw 'scan failed to output BAD' }
+          $bad = [int]($badLine.ToString() -replace '^BAD=', '')
+          if ($bad -gt 0) { Write-Output "BAD=$bad detected"; exit 1 }
+
+      - name: Generate report (without commit)
+        shell: pwsh
+        run: |
+          pwsh .\0_Codex工作台\tools\inference-audit.ps1 report
+
+      - name: Upload report
+        uses: actions/upload-artifact@v4
+        with:
+          name: inference-audit-report
+          path: 3_AI情报日历/Inbox/InferenceRadar/问题清单.md

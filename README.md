@@ -24,4 +24,33 @@ pwsh .\0_Codex工作台\tools\inference-audit.ps1 report
 
 ## 推送更新
 1. 本地修改后直接在 `obsidian-repo` 提交
-2. `git add . && git commit -m "chore: update inference radar`n3. `git push origin main`
+2. `git add . && git commit -m "chore: update inference radar"`
+3. `git push origin main`
+
+## 推荐同步范围（精简）
+
+为了减少噪音，建议日常主要维护同步这两部分：
+
+- `0_Codex工作台/tools/`
+- `3_AI情报日历/Inbox/InferenceRadar/`
+
+示例：
+
+```powershell
+robocopy "C:\Users\Huawei\Documents\code\Obsidian\0_Codex工作台\tools" \
+  "C:\Users\Huawei\Documents\code\obsidian-repo\0_Codex工作台\tools" /MIR
+
+robocopy "C:\Users\Huawei\Documents\code\Obsidian\3_AI情报日历\Inbox\InferenceRadar" \
+  "C:\Users\Huawei\Documents\code\obsidian-repo\3_AI情报日历\Inbox\InferenceRadar" /MIR
+```
+
+## GitHub Action（当前状态）
+
+- 已添加工作流：`.github/workflows/inference-audit-ci.yml`
+- 行为：
+  - 每日 02:00 UTC 自动运行（及 `workflow_dispatch` 手动运行）
+  - 执行 `scan`，若 BAD>0 则 fail
+  - 生成 `问题清单.md` 到本仓库目录，并上传为 Artifact
+- 说明：当前版本**不自动提交**，仅做检查和归档，避免误改仓库。
+
+如果你确认接受“自动提交”风险，可再给我一个明确确认，我再给你加一版“带写权限自动提交”的 CI（已单独隔离配置）。
