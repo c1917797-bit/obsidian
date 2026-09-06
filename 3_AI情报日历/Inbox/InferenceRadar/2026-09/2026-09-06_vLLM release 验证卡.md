@@ -21,21 +21,22 @@ tags: [AI推理, radar]
 # vLLM release 验证卡
 
 ## 事件
-target is to monitor vLLM new release (currently v0.28.0), build a traceable release-to-verification path by recording version and publish date first, then completing reproducible changes from release notes.
+目标：跟踪 vLLM v0.28.0 发布（GitHub Release），建立“发布说明 → 复现实验 → 是否形成可操作结论”的一手可追溯闭环。当前以官方 release 说明优先验证是否有可核验的性能对比。
 
 ## 一手证据
 - 原始来源：https://github.com/vllm-project/vllm/releases
 - 原文定位：`https://github.com/vllm-project/vllm/releases/tag/v0.28.0`
 - 版本 / commit / arXiv ID：vLLM v0.28.0（Release）
+- 一手来源结论：该 release 页面主要给出新特性与变更概述，未给出完整可比的 TTFT/TPOT/吞吐/显存曲线表。
 
 ## 定量结果
 |指标|新方法|基线|model / hardware / batch / context|
 |---|---:|---:|---|
-|TTFT|待核验|待核验||
-|TPOT|待核验|待核验||
-|Throughput|待核验|待核验||
-|Peak memory|待核验|待核验||
-|Quality delta|待核验|待核验||
+|TTFT|未在官方 release 中给出可比数值|未公开|官方未公布|
+|TPOT|未在官方 release 中给出可比数值|未公开|官方未公布|
+|Throughput|未在官方 release 中给出可比数值|未公开|官方未公布|
+|Peak memory|未在官方 release 中给出可比数值|未公开|官方未公布|
+|Quality delta|未在官方 release 中给出可比数值|未公开|官方未公布|
 
 ## 适用边界
 - 模型与精度：
@@ -44,17 +45,20 @@ target is to monitor vLLM new release (currently v0.28.0), build a traceable rel
 - 并发或 batch：
 - 框架版本：
 - 已知限制：
+- 当前默认未公开：模型规模、硬件规模、并发设置、测试输入分布，无法完成严格可比量化核验。
 
 ## Codex 判断
-- 价值：确认主版本/依赖更新引入的推理链路变更是否具备一手指标支持，优先评估对 TTFT、吞吐、显存的可量化影响。
-- 与现有方法的关系：先于现有候选，补齐同版本发布说明中的新增特性和性能承诺后，决定是否继续深读或回溯实验重现。
-- 当前不能确认：release note 尚未确认是否给出可比的吞吐/延迟/显存曲线；基线、模型与硬件条件是否完全匹配未在一手源内统一披露。
+- 价值：确认该主版本更新是否触及推理关键链路（调度、KV cache、并发）并判断对落地评估优先级。该项当前暂不形成可落地结论。
+- 与现有方法的关系：先补齐一手可复现实验（同硬件、同模型 family、同负载）后，才可判断是否会改变你的推理基线策略。
+- 当前不能确认：release note 中未披露可比的吞吐/延迟/显存曲线，且未统一披露测试条件，需复现实验后再定级。
 
 ## 关联笔记
-- [[待补充]]
+- [[复现索引待定]]
 
 ## 下一步
-- [ ] 核对原文
-- [ ] 核对代码或版本
-- [ ] 补充可比较 benchmark
-- [ ] 决定：忽略 / 观察 / 深读 / 复现 / 形成洞察
+- [x] 核对原文：release 页面已核对到“无可比指标”
+- [ ] 对应代码/commit 级别核验（release tag 与变更 PR 链接）
+- [ ] 补充可比较 benchmark（vLLM v0.27.x vs v0.28.0，固定模型+硬件+batch+上下文）
+- [ ] 形成一条可执行决策：观察 / 深读 / 复现 / 暂不跟进
+
+
