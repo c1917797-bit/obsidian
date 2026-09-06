@@ -61,3 +61,12 @@ robocopy "C:\Users\Huawei\Documents\code\Obsidian\3_AI情报日历\Inbox\Inferen
   - `pwsh .\0_Codex工作台\tools\inference-radar.ps1 digest`
 - 生成本周简报（按 `status` 与分数过滤）
   - `pwsh .\0_Codex工作台\tools\inference-radar.ps1 digest -Window week -Status verify -MinOverall 2`
+
+## 自动提交工作流（主干）
+
+新增 `inference-audit-autocommit-ci.yml`（与默认只检查流程并行）：
+
+- 触发：`workflow_dispatch`、`push` 到 `main`、每天 UTC 03:00 的定时任务
+- 行为：先执行 `scan`，当 `BAD=0` 时生成/更新 `问题清单.md`，有变更则由 `github-actions[bot]` 提交并推送
+- 约束：`BAD>0` 时直接 fail，不提交，避免把未达标内容写入主干
+- 适合场景：你希望仓库里的 `问题清单.md` 始终保持自动同步最新状态
