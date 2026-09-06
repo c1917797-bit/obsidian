@@ -54,3 +54,10 @@ robocopy "C:\Users\Huawei\Documents\code\Obsidian\3_AI情报日历\Inbox\Inferen
 - 说明：当前版本**不自动提交**，仅做检查和归档，避免误改仓库。
 
 如果你确认接受“自动提交”风险，可再给我一个明确确认，我再给你加一版“带写权限自动提交”的 CI（已单独隔离配置）。
+
+## 每日/每周简报
+
+- 生成今日简报（按 `discovered` 日期）
+  - `pwsh .\0_Codex工作台\tools\inference-radar.ps1 digest`
+- 生成本周简报（按 `status` 与分数过滤）
+  - `pwsh .\0_Codex工作台\tools\inference-radar.ps1 digest -Window week -Status verify -MinOverall 2`
