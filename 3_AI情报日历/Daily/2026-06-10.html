@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Report</title>
+    
+<style>
+:root {
+    --bg-primary: #0d1117;
+    --bg-secondary: #161b22;
+    --bg-tertiary: #21262d;
+    --border: #30363d;
+    --text-primary: #e6edf3;
+    --text-secondary: #8b949e;
+    --text-muted: #6e7681;
+    --accent-blue: #58a6ff;
+    --accent-green: #3fb950;
+    --accent-orange: #d29922;
+    --accent-red: #f85149;
+    --accent-purple: #a371f7;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    line-height: 1.6;
+    padding: 2rem;
+}
+
+.container { max-width: 1200px; margin: 0 auto; }
+
+/* Header */
+.report-header {
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.report-title {
+    font-size: 2rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+}
+
+.report-meta {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+}
+
+.report-meta span { margin-right: 1.5rem; }
+
+/* Headings */
+h1 { font-size: 1.75rem; font-weight: 600; margin: 2rem 0 1rem; color: var(--text-primary); border-bottom: 1px solid var(--border); padding-bottom: 0.5rem; }
+h2 { font-size: 1.4rem; font-weight: 600; margin: 1.5rem 0 0.75rem; color: var(--accent-blue); }
+h3 { font-size: 1.15rem; font-weight: 600; margin: 1.25rem 0 0.5rem; color: var(--text-primary); }
+h4 { font-size: 1rem; font-weight: 600; margin: 1rem 0 0.5rem; color: var(--text-secondary); }
+
+/* Tables */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1rem 0;
+    font-size: 0.9rem;
+}
+
+th {
+    background: var(--bg-secondary);
+    color: var(--text-primary);
+    padding: 0.75rem;
+    text-align: left;
+    font-weight: 600;
+    border-bottom: 2px solid var(--border);
+}
+
+td {
+    padding: 0.75rem;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+}
+
+tr:hover { background: var(--bg-secondary); }
+
+/* Tags */
+.tag {
+    display: inline-block;
+    padding: 0.2rem 0.5rem;
+    background: var(--bg-tertiary);
+    border-radius: 4px;
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    margin: 0.2rem;
+}
+
+.tag-red { background: rgba(248, 81, 73, 0.15); color: var(--accent-red); }
+.tag-orange { background: rgba(210, 153, 34, 0.15); color: var(--accent-orange); }
+.tag-green { background: rgba(63, 185, 80, 0.15); color: var(--accent-green); }
+.tag-blue { background: rgba(88, 166, 255, 0.15); color: var(--accent-blue); }
+.tag-purple { background: rgba(163, 113, 247, 0.15); color: var(--accent-purple); }
+
+/* Cards */
+.card {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 1rem;
+    margin: 1rem 0;
+}
+
+.card-header {
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: var(--text-primary);
+}
+
+/* Lists */
+ul, ol { padding-left: 1.5rem; margin: 0.5rem 0; }
+li { margin: 0.3rem 0; }
+
+/* Code */
+code {
+    font-family: 'SF Mono', Consolas, monospace;
+    background: var(--bg-tertiary);
+    padding: 0.15rem 0.4rem;
+    border-radius: 3px;
+    font-size: 0.875rem;
+}
+
+pre {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 1rem;
+    overflow-x: auto;
+    margin: 1rem 0;
+}
+
+/* Blockquote */
+blockquote {
+    border-left: 3px solid var(--accent-blue);
+    padding-left: 1rem;
+    margin: 1rem 0;
+    color: var(--text-secondary);
+    font-style: italic;
+}
+
+/* Horizontal rule */
+hr {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 1.5rem 0;
+}
+
+/* Highlight */
+.highlight {
+    background: rgba(88, 166, 255, 0.1);
+    border-left: 3px solid var(--accent-blue);
+    padding: 0.75rem 1rem;
+    margin: 1rem 0;
+}
+
+/* Badges */
+.badge {
+    display: inline-block;
+    padding: 0.25rem 0.5rem;
+    border-radius: 50px;
+    font-size: 0.7rem;
+    font-weight: 600;
+}
+
+.badge-green { background: var(--accent-green); color: #000; }
+.badge-orange { background: var(--accent-orange); color: #000; }
+.badge-red { background: var(--accent-red); color: #fff; }
+
+/* Grid */
+.grid { display: grid; gap: 1rem; }
+.grid-2 { grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
+
+/* Print */
+@media print {
+    body { background: #fff; color: #000; }
+    .tag, .badge { border: 1px solid currentColor; }
+}
+</style>
+
+</head>
+<body>
+    <div class="container">
+        <div class="report-header">
+            <h1 class="report-title">Report</h1>
+            <div class="report-meta">
+                <span>生成时间: 2026-06-10</span>
+                <span class="tag">AI-Intelligence</span><span class="tag">Daily</span>
+            </div>
+        </div>
+        <div class="report-body">
+            
+<h1>AI Infra Daily - 2026-06-10</h1>
+
+<h2>今日概要</h2>
+
+<p>📡 前沿科技简报 · 2026-06-10</p>
+
+<h2>🔥 热点事件</h2>
+<p>【热点事件】生殖学博士入局脑机接口，想做一款缓解女性经期情绪问题的脑机"发箍"｜早期项目</p>
+
+<li><strong></strong>: https://36kr.com/p/3843971153267208?f=rss</li>
+<li><strong></strong>: 中</li>
+
+<p>【热点事件】36氪首发 | AI芯片处理器IP公司完成近亿元融资，核心团队来自Synopsys、ARM等顶尖半导体公司</p>
+
+<li><strong></strong>: https://36kr.com/p/3845293120621057?f=rss</li>
+<li><strong></strong>: 中</li>
+
+<p>【热点事件】光纤巨头再签亿级大单，中国光纤光缆厂商开始系统性出海</p>
+
+<li><strong></strong>: https://36kr.com/newsflashes/3846605334546697?f=rss</li>
+<li><strong></strong>: 中</li>
+
+<p>【热点事件】中信证券：预计市场主线将进一步向高业绩确定性靠拢</p>
+
+<li><strong></strong>: https://36kr.com/newsflashes/3846621156133384?f=rss</li>
+<li><strong></strong>: 中</li>
+
+<h2>💡 热点技术</h2>
+<p>【热点技术】SpectrumKV: Per-Token Mixed-Precision KV Cache Transfer for Prefill-Decode Disaggregated LLM Serving</p>
+
+<li><strong></strong>: https://arxiv.org/abs/2606.08635v1</li>
+<li><strong></strong>: 中</li>
+
+<p>【热点技术】Coupling Complementary Simulations for Combined Performance and Energy Optimization</p>
+
+<li><strong></strong>: https://arxiv.org/abs/2606.09356v1</li>
+<li><strong></strong>: 中</li>
+
+<p>【热点技术】Civil Court Simulation with Large Language Models</p>
+
+<li><strong></strong>: https://arxiv.org/abs/2606.09632v1</li>
+<li><strong></strong>: 中</li>
+
+<p>【热点技术】FMplex: Model Virtualization for Serving Extensible Foundation Models</p>
+
+<li><strong></strong>: https://arxiv.org/abs/2606.09643v1</li>
+<li><strong></strong>: 中</li>
+
+<h2>📊 行业趋势</h2>
+<p>【行业趋势】马来西亚芯片出口今年有望突破1970亿美元</p>
+
+<li><strong></strong>: https://36kr.com/newsflashes/3846603963140611?f=rss</li>
+<li><strong></strong>: 中</li>
+
+<p>【行业趋势】国信证券：目前基本面改善扩散中，增量资金逐渐入场，这轮牛市有望出现轮涨</p>
+
+<li><strong></strong>: https://36kr.com/newsflashes/3846613211335176?f=rss</li>
+<li><strong></strong>: 中</li>
+
+<p>【行业趋势】在价值洼地“翻石头”，主动投资选手逆势出击</p>
+
+<li><strong></strong>: https://36kr.com/newsflashes/3846614498609415?f=rss</li>
+<li><strong></strong>: 中</li>
+
+<h2>🤖 AI-Agent</h2>
+<p>【AI-Agent】🎉 DeepSeek-V4 预览版本发布，具备世界顶级推理性能，Agent 能力大幅提高，已在网页端、APP 和 API 上线，点击查看详情。</p>
+
+<li><strong></strong>: https://mp.weixin.qq.com/s/8bxXqS2R8Fx5-1TLDBiEDg</li>
+<li><strong></strong>: 中</li>
+
+<p>【AI-Agent】SearchSwarm: Towards Delegation Intelligence in Agentic LLMs for Long-Horizon Deep Research</p>
+
+<li><strong></strong>: https://huggingface.co/papers/2606.09730</li>
+<li><strong></strong>: 中</li>
+
+<h2>⚡ LLM推理</h2>
+<p>【LLM推理】End-to-End Context Compression at Scale</p>
+
+<li><strong></strong>: https://huggingface.co/papers/2606.09659</li>
+<li><strong></strong>: 中</li>
+
+<hr>
+<p>📌 文末汇总</p>
+<li>今日最值得深读: SpectrumKV: Per-Token Mixed-Precision KV Cache Tra; Coupling Complementary Simulations for Combined Pe</li>
+<li>今日可跳过: 无</li>
+<li>待观察趋势(跨条目): 推理优化技术持续迭代，Agent框架正在整合</li>
+
+<h2>反向链接</h2>
+
+<blockquote>[!info] 相关笔记</blockquote>
+<blockquote>- [[Weekly_2026-W24|本周周报]]</blockquote>
+<blockquote>- [[技术收敛_2026-06|本月技术收敛]]</blockquote>
+<blockquote>- [[4_AI情报洞察/技术洞察/多卡协同/多卡极致推理系统技术规划报告---以终为始版|多卡协同技术洞察]]</blockquote>
+
+
+
+<h2>分类统计</h2>
+
+<li>热点技术: 10 条</li>
+<li>热点事件: 4 条</li>
+<li>行业趋势: 11 条</li>
+<li>AI-Agent: 2 条</li>
+<li>多模态推理: 1 条</li>
+<li>LLM推理: 1 条</li>
+
+
+<h2>关联事件</h2>
+
+<li>b28a017edc626664</li>
+<li>36621fc387444b1a</li>
+<li>45ed00b432abc14b</li>
+<li>5492e709fbc4371d</li>
+<li>163d64e4249d2a43</li>
+<li>f92235ddfbc01d1d</li>
+<li>b82e6346bafc8cac</li>
+<li>611f02b99dce9525</li>
+<li>41cedd27b3daf1ff</li>
+<li>63fba93a0d7bb9d9</li>
+
+
+<h2>反向链接</h2>
+
+<blockquote>[!info] 相关笔记</blockquote>
+<blockquote>- [[Weekly_2026-W24|本周周报]]</blockquote>
+<blockquote>- [[技术收敛_2026-06|本月技术收敛]]</blockquote>
+<blockquote>- [[4_AI情报洞察/技术洞察/多卡协同/多卡极致推理系统技术规划报告---以终为始版|多卡协同技术洞察]]</blockquote>
+
+<hr>
+
+<strong></strong>: 2026-06-10T04:12:36.523057
+<strong></strong>: 1be803b70681c29d
+
+        </div>
+    </div>
+</body>
+</html>

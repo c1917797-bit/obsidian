@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Report</title>
+    
+<style>
+:root {
+    --bg-primary: #0d1117;
+    --bg-secondary: #161b22;
+    --bg-tertiary: #21262d;
+    --border: #30363d;
+    --text-primary: #e6edf3;
+    --text-secondary: #8b949e;
+    --text-muted: #6e7681;
+    --accent-blue: #58a6ff;
+    --accent-green: #3fb950;
+    --accent-orange: #d29922;
+    --accent-red: #f85149;
+    --accent-purple: #a371f7;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    line-height: 1.6;
+    padding: 2rem;
+}
+
+.container { max-width: 1200px; margin: 0 auto; }
+
+/* Header */
+.report-header {
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.report-title {
+    font-size: 2rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+}
+
+.report-meta {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+}
+
+.report-meta span { margin-right: 1.5rem; }
+
+/* Headings */
+h1 { font-size: 1.75rem; font-weight: 600; margin: 2rem 0 1rem; color: var(--text-primary); border-bottom: 1px solid var(--border); padding-bottom: 0.5rem; }
+h2 { font-size: 1.4rem; font-weight: 600; margin: 1.5rem 0 0.75rem; color: var(--accent-blue); }
+h3 { font-size: 1.15rem; font-weight: 600; margin: 1.25rem 0 0.5rem; color: var(--text-primary); }
+h4 { font-size: 1rem; font-weight: 600; margin: 1rem 0 0.5rem; color: var(--text-secondary); }
+
+/* Tables */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1rem 0;
+    font-size: 0.9rem;
+}
+
+th {
+    background: var(--bg-secondary);
+    color: var(--text-primary);
+    padding: 0.75rem;
+    text-align: left;
+    font-weight: 600;
+    border-bottom: 2px solid var(--border);
+}
+
+td {
+    padding: 0.75rem;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+}
+
+tr:hover { background: var(--bg-secondary); }
+
+/* Tags */
+.tag {
+    display: inline-block;
+    padding: 0.2rem 0.5rem;
+    background: var(--bg-tertiary);
+    border-radius: 4px;
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    margin: 0.2rem;
+}
+
+.tag-red { background: rgba(248, 81, 73, 0.15); color: var(--accent-red); }
+.tag-orange { background: rgba(210, 153, 34, 0.15); color: var(--accent-orange); }
+.tag-green { background: rgba(63, 185, 80, 0.15); color: var(--accent-green); }
+.tag-blue { background: rgba(88, 166, 255, 0.15); color: var(--accent-blue); }
+.tag-purple { background: rgba(163, 113, 247, 0.15); color: var(--accent-purple); }
+
+/* Cards */
+.card {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 1rem;
+    margin: 1rem 0;
+}
+
+.card-header {
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: var(--text-primary);
+}
+
+/* Lists */
+ul, ol { padding-left: 1.5rem; margin: 0.5rem 0; }
+li { margin: 0.3rem 0; }
+
+/* Code */
+code {
+    font-family: 'SF Mono', Consolas, monospace;
+    background: var(--bg-tertiary);
+    padding: 0.15rem 0.4rem;
+    border-radius: 3px;
+    font-size: 0.875rem;
+}
+
+pre {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 1rem;
+    overflow-x: auto;
+    margin: 1rem 0;
+}
+
+/* Blockquote */
+blockquote {
+    border-left: 3px solid var(--accent-blue);
+    padding-left: 1rem;
+    margin: 1rem 0;
+    color: var(--text-secondary);
+    font-style: italic;
+}
+
+/* Horizontal rule */
+hr {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 1.5rem 0;
+}
+
+/* Highlight */
+.highlight {
+    background: rgba(88, 166, 255, 0.1);
+    border-left: 3px solid var(--accent-blue);
+    padding: 0.75rem 1rem;
+    margin: 1rem 0;
+}
+
+/* Badges */
+.badge {
+    display: inline-block;
+    padding: 0.25rem 0.5rem;
+    border-radius: 50px;
+    font-size: 0.7rem;
+    font-weight: 600;
+}
+
+.badge-green { background: var(--accent-green); color: #000; }
+.badge-orange { background: var(--accent-orange); color: #000; }
+.badge-red { background: var(--accent-red); color: #fff; }
+
+/* Grid */
+.grid { display: grid; gap: 1rem; }
+.grid-2 { grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
+
+/* Print */
+@media print {
+    body { background: #fff; color: #000; }
+    .tag, .badge { border: 1px solid currentColor; }
+}
+</style>
+
+</head>
+<body>
+    <div class="container">
+        <div class="report-header">
+            <h1 class="report-title">Report</h1>
+            <div class="report-meta">
+                <span>生成时间: 2026-06-26</span>
+                <span class="tag">AI-Intelligence</span><span class="tag">Daily</span>
+            </div>
+        </div>
+        <div class="report-body">
+            
+<h1>AI Infra Daily - 2026-06-26</h1>
+
+<h2>今日概要</h2>
+
+<p>📡 前沿科技简报 · 2026-06-26</p>
+
+<h2>🔥 热点事件</h2>
+<h2>💡 热点技术</h2>
+<p>[热点技术]：Do Encoders Suffice? A Systematic Comparison of Encoder and Decoder Safety Judges for LLM Adversaria@arXiv cs.CL</p>
+
+<p>[一句话总结]：研究比较了编码器和解码器在大型语言模型（LLM）安全评估中的表现，发现编码器作为安全判官在低延迟和低成本需求下表现出色，为企业提供了更高效的LLM安全防护方案。</p>
+
+<p>[关键词]：大型语言模型、安全评估、编码器、解码器、低延迟、低成本</p>
+
+<p>[业务启示]：</p>
+<p>【模型设计】：研究指出编码器在安全评估中具有低延迟和低成本的优点，企业在设计LLM时可以考虑优先采用编码器作为安全判官。</p>
+<p>【部署优化】：在部署LLM时，企业可以通过采用编码器作为安全判官来降低系统复杂度和计算成本，同时保证安全评估的效率。</p>
+<p>【安全隐私】：研究强调了安全评估在LLM应用中的重要性，企业应重视安全判官的选型，以确保LLM输出的安全性和可靠性。</p>
+
+<p>[背景介绍]：</p>
+<p>大型语言模型（LLM）是近年来人工智能领域的重要成果，广泛应用于聊天机器人和各种日常应用中。LLM的安全性问题一直是业界关注的焦点，此前主要依赖基于LLM的判官进行安全评估，但这种方法存在高成本和高延迟的问题。现在，研究者们开始探索更高效的替代方案。</p>
+
+<p>[技术和创新点]：</p>
+<p>编码器作为安全判官：研究发现编码器在安全评估中表现出低延迟和低成本的优点。</p>
+<p>解码器作为安全判官：相比之下，解码器虽然也能进行安全评估，但成本和延迟较高。</p>
+<p>系统性比较：研究对编码器和解码器进行了系统性的比较，提供了详尽的数据支持。</p>
+<p>低延迟和低成本：编码器在满足安全评估需求的同时，显著降低了延迟和成本。</p>
+<p>高效安全防护：为企业在LLM应用中提供了更高效的安全防护方案。</p>
+
+<p>[效果总结]：</p>
+<p>研究结果表明，编码器在LLM安全评估中的表现优于解码器，特别是在低延迟和低成本方面具有显著优势。这为企业在设计和部署LLM时提供了新的思路，有助于提升系统的安全性和效率。</p>
+
+<hr>
+<li><strong></strong>: https://arxiv.org/abs/2606.25782v1</li>
+<li><strong></strong>: 中</li>
+<li><strong></strong>: 🟡关注</li>
+<li><strong></strong>: 深读</li>
+
+<p>[热点技术]：InvestPhilBench: A Multi-Layer Dynamic Benchmark for Evaluating Large Language Model Procedural Reas@arXiv cs.LG</p>
+
+<p>[一句话总结]：InvestPhilBench对大型语言模型在重建和应用专业投资者特定程序化决策框架方面的能力进行评估，填补了投资研究助手领域缺乏针对性基准测试的空白。</p>
+
+<p>[关键词]：大型语言模型、投资研究助手、程序化决策框架、基准测试、InvestPhilBench</p>
+
+<p>[业务启示]：</p>
+<p>【模型评估】：InvestPhilBench为评估大型语言模型在投资研究领域的程序化决策能力提供了多层次动态基准，填补了现有评估体系的空白。</p>
+<p>【应用场景】：该基准测试有助于识别和优化模型在投资研究中的应用场景，确保其能够准确模拟和执行专家投资者的决策过程。</p>
+<p>【性能优化】：通过该基准测试，开发者可以针对性地改进模型性能，提升其在实际投资研究中的可靠性和实用性。</p>
+
+<p>[背景介绍]：</p>
+<p>InvestPhilBench是arXiv cs.LG推出的多层次动态基准测试，用于评估大型语言模型在投资研究中的程序化决策能力。此前，大型语言模型在投资研究领域的应用缺乏专门的基准测试，难以全面衡量其实际能力。现在，InvestPhilBench通过模拟专业投资者的决策框架，为评估模型在投资研究中的应用提供了新的标准。</p>
+
+<p>[技术和创新点]：</p>
+<p>多层次动态结构: InvestPhilBench采用多层次动态结构，模拟不同复杂度的投资决策场景。</p>
+<p>程序化决策框架重建: 重点测试模型在重建和应用专业投资者程序化决策框架方面的能力。</p>
+<p>多维度评估指标: 包含多个评估维度，全面衡量模型在投资研究中的表现。</p>
+<p>动态调整机制: 根据测试结果动态调整评估标准，确保测试的有效性和适应性。</p>
+<p>跨领域应用潜力: 不仅限于投资领域，还可扩展至其他需要程序化决策的领域。</p>
+
+<p>[效果总结]：</p>
+<p>InvestPhilBench在评估大型语言模型程序化决策能力方面有显著提升。通过多层次动态结构和多维度评估指标，该基准测试能够更准确地反映模型在实际投资研究中的应用效果，为模型优化和应用场景拓展提供可靠依据。</p>
+
+<p>[热点技术]：InvestPhilBench: A Multi-Layer Dynamic Benchmark for Evaluating Large Language Model Procedural Reas@arXiv cs.AI</p>
+
+<p>[一句话总结]：InvestPhilBench构建了一个多层动态基准，用于评估大型语言模型在重构和应用专业投资者决策框架方面的能力，填补了投资研究领域评估大型语言模型决策能力的空白。</p>
+
+<p>[关键词]：大型语言模型、投资研究、决策框架、多层基准、动态评估</p>
+
+<p>[业务启示]：</p>
+<p>【模型能力评估】：InvestPhilBench提供了一个专门用于评估大型语言模型在投资研究领域决策能力的基准，填补了现有基准的空白。</p>
+<p>【应用场景拓展】：该基准的提出将促进大型语言模型在投资研究领域的应用，帮助投资者更准确地重构和应用复杂的决策框架。</p>
+<p>【动态适应性】：多层动态设计使得基准能够适应不同类型的投资决策过程，提高了评估的全面性和准确性。</p>
+
+<p>[背景介绍]：</p>
+<p>InvestPhilBench是arXiv cs.AI推出的一个多层动态基准，用于评估大型语言模型在投资研究领域的决策能力。此前，尽管大型语言模型在多个领域取得了显著进展，但在投资研究领域，尤其是重构和应用专业投资者决策框架方面，缺乏专门的评估基准。现在，InvestPhilBench的提出填补了这一空白，为评估大型语言模型在投资研究中的应用提供了新的工具。</p>
+
+<p>[技术和创新点]：</p>
+<p>多层动态设计: InvestPhilBench采用多层动态设计，能够全面评估大型语言模型在不同投资决策场景中的表现。</p>
+<p>专业投资者决策框架: 该基准专注于重构和应用专业投资者的决策框架，提供了更贴近实际应用的评估标准。</p>
+<p>多维度评估指标: 包含多个维度的评估指标，确保评估结果的全面性和准确性。</p>
+<p>动态适应性调整: 根据不同类型的投资决策过程，基准能够进行适应性调整，提高评估的灵活性和有效性。</p>
+<p>开放性平台: 提供开放的评估平台，方便研究人员和开发者进行测试和验证。</p>
+
+<p>[效果总结]：</p>
+<p>InvestPhilBench在评估大型语言模型在投资研究领域的决策能力方面有显著提升。通过多层动态设计和专业投资者决策框架的引入，该基准能够更准确地反映模型在实际应用中的表现，为投资研究领域提供了新的评估工具和方法。</p>
+
+<p>[热点技术]：Autodata: An agentic data scientist to create high quality synthetic data@arXiv cs.LG</p>
+
+<p>[一句话总结]：Autodata通过训练AI代理成为数据科学家，构建高质量的训练和评估数据，有效提升了数据生成效率和模型性能。</p>
+
+<p>[关键词]：AI代理、数据科学家、合成数据、训练优化、评估数据</p>
+
+<p>[业务启示]：</p>
+<p>【模型设计】：Autodata通过元优化方法训练AI代理，使其能够生成更高质量的数据，为模型设计提供新的思路。</p>
+<p>【训练策略】：该方法展示了如何通过AI代理自动优化数据生成过程，显著提升训练效率和模型性能。</p>
+<p>【数据质量】：Autodata强调高质量合成数据的生成，这对于数据驱动的应用场景具有重要意义。</p>
+<p>【自动化流程】：该技术推动了数据科学流程的自动化，减少了对人工数据标注的依赖。</p>
+
+<p>[背景介绍]：</p>
+<p>Autodata是由arXiv cs.LG推出的AI代理技术，用于自动构建高质量的训练和评估数据。此前，数据科学家通常依赖人工或半自动化的方法生成数据，现在Autodata通过元优化技术，使AI代理能够学习并生成更强大的数据，从而提升整体数据质量。</p>
+
+<p>[技术和创新点]：</p>
+<p>元优化方法: 通过元优化训练AI代理，使其能够生成更高质量的数据。</p>
+<p>数据科学家代理: 将AI代理训练成数据科学家，自动执行数据生成任务。</p>
+<p>高质量合成数据: 强调生成高质量的合成数据，以提升模型训练效果。</p>
+<p>自动化数据生成: 实现数据生成过程的完全自动化，减少人工干预。</p>
+<p>提升训练效率: 通过优化数据生成过程，显著提升模型训练效率。</p>
+
+<p>[效果总结]：</p>
+<p>Autodata在数据生成质量和模型训练效率方面有显著提升。它通过自动化和元优化技术，使AI代理能够生成高质量的合成数据，从而有效提升数据驱动应用的性能和效果。</p>
+
+<h2>📊 行业趋势</h2>
+<p>【行业趋势】智元旗下灵巧手估值10亿美元，成立仅5个月首季实现盈利</p>
+
+<li><strong></strong>: https://36kr.com/newsflashes/3869245561541636?f=rss</li>
+<li><strong></strong>: 中</li>
+
+<p>【行业趋势】Nemotron-TwoTower: Diffusion Language Modeling with Pretrained Autoregressive Context</p>
+
+<li><strong></strong>: https://huggingface.co/papers/2606.26493</li>
+<li><strong></strong>: 中</li>
+
+<h2>🤖 AI-Agent</h2>
+<p>【AI-Agent】🎉 DeepSeek-V4 预览版本发布，具备世界顶级推理性能，Agent 能力大幅提高，已在网页端、APP 和 API 上线，点击查看详情。</p>
+
+<li><strong></strong>: https://mp.weixin.qq.com/s/8bxXqS2R8Fx5-1TLDBiEDg</li>
+<li><strong></strong>: 中</li>
+
+<p>【AI-Agent】Autodata: An agentic data scientist to create high quality synthetic data</p>
+
+<li><strong></strong>: https://huggingface.co/papers/2606.25996</li>
+<li><strong></strong>: 中</li>
+
+<p>【AI-Agent】Constraint Tax in Open-Weight LLMs: An Empirical Study of Tool Calling Suppression Under Structured</p>
+
+<li><strong></strong>: https://huggingface.co/papers/2606.25605</li>
+<li><strong></strong>: 中</li>
+
+<h2>⚡ LLM推理</h2>
+<p>【LLM推理】Autoregressive Boltzmann Generators</p>
+
+<li><strong></strong>: https://huggingface.co/papers/2606.27361</li>
+<li><strong></strong>: 中</li>
+
+<p>【LLM推理】One Model, Many Latencies: Universal Speech Enhancement for Diverse Real-Time Applications</p>
+
+<li><strong></strong>: https://huggingface.co/papers/2606.25621</li>
+<li><strong></strong>: 中</li>
+
+<p>【LLM推理】Autoregressive Boltzmann Generators</p>
+
+<li><strong></strong>: https://huggingface.co/papers/2606.27361</li>
+<li><strong></strong>: 中</li>
+
+<hr>
+<p>📌 文末汇总</p>
+<li>今日最值得深读: Do Encoders Suffice? A Systematic Comparison of En; InvestPhilBench: A Multi-Layer Dynamic Benchmark f</li>
+<li>今日可跳过: 无</li>
+<li>待观察趋势(跨条目): 推理优化技术持续迭代，Agent框架正在整合</li>
+
+<h2>反向链接</h2>
+
+<blockquote>[!info] 相关笔记</blockquote>
+<blockquote>- [[Weekly_2026-W26|本周周报]]</blockquote>
+<blockquote>- [[技术收敛_2026-06|本月技术收敛]]</blockquote>
+<blockquote>- [[4_AI情报洞察/技术洞察/多卡协同/多卡极致推理系统技术规划报告---以终为始版|多卡协同技术洞察]]</blockquote>
+
+
+
+<h2>分类统计</h2>
+
+<li>热点技术: 21 条</li>
+<li>行业趋势: 2 条</li>
+<li>AI-Agent: 4 条</li>
+<li>LLM推理: 3 条</li>
+
+
+<h2>关联事件</h2>
+
+<li>b8dfefd35930e3e8</li>
+<li>c376ad5d331c1c43</li>
+<li>22c114c0966a140f</li>
+<li>3a580b5114771cf2</li>
+<li>d8ce808d3542b0ea</li>
+<li>3b3909493f9b3096</li>
+<li>32ed19ed19991bae</li>
+<li>e6cd219e1bfe6204</li>
+<li>3fb895a9ae9bce00</li>
+<li>e55e485dbef904a3</li>
+
+
+<h2>反向链接</h2>
+
+<blockquote>[!info] 相关笔记</blockquote>
+<blockquote>- [[Weekly_2026-W26|本周周报]]</blockquote>
+<blockquote>- [[技术收敛_2026-06|本月技术收敛]]</blockquote>
+<blockquote>- [[4_AI情报洞察/技术洞察/多卡协同/多卡极致推理系统技术规划报告---以终为始版|多卡协同技术洞察]]</blockquote>
+
+<hr>
+
+<strong></strong>: 2026-06-26T04:15:05.777218
+<strong></strong>: 3f47109c36fe22c3
+
+        </div>
+    </div>
+</body>
+</html>

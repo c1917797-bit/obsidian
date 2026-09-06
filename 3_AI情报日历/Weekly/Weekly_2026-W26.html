@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Report</title>
+    
+<style>
+:root {
+    --bg-primary: #0d1117;
+    --bg-secondary: #161b22;
+    --bg-tertiary: #21262d;
+    --border: #30363d;
+    --text-primary: #e6edf3;
+    --text-secondary: #8b949e;
+    --text-muted: #6e7681;
+    --accent-blue: #58a6ff;
+    --accent-green: #3fb950;
+    --accent-orange: #d29922;
+    --accent-red: #f85149;
+    --accent-purple: #a371f7;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    line-height: 1.6;
+    padding: 2rem;
+}
+
+.container { max-width: 1200px; margin: 0 auto; }
+
+/* Header */
+.report-header {
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.report-title {
+    font-size: 2rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+}
+
+.report-meta {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+}
+
+.report-meta span { margin-right: 1.5rem; }
+
+/* Headings */
+h1 { font-size: 1.75rem; font-weight: 600; margin: 2rem 0 1rem; color: var(--text-primary); border-bottom: 1px solid var(--border); padding-bottom: 0.5rem; }
+h2 { font-size: 1.4rem; font-weight: 600; margin: 1.5rem 0 0.75rem; color: var(--accent-blue); }
+h3 { font-size: 1.15rem; font-weight: 600; margin: 1.25rem 0 0.5rem; color: var(--text-primary); }
+h4 { font-size: 1rem; font-weight: 600; margin: 1rem 0 0.5rem; color: var(--text-secondary); }
+
+/* Tables */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1rem 0;
+    font-size: 0.9rem;
+}
+
+th {
+    background: var(--bg-secondary);
+    color: var(--text-primary);
+    padding: 0.75rem;
+    text-align: left;
+    font-weight: 600;
+    border-bottom: 2px solid var(--border);
+}
+
+td {
+    padding: 0.75rem;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+}
+
+tr:hover { background: var(--bg-secondary); }
+
+/* Tags */
+.tag {
+    display: inline-block;
+    padding: 0.2rem 0.5rem;
+    background: var(--bg-tertiary);
+    border-radius: 4px;
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    margin: 0.2rem;
+}
+
+.tag-red { background: rgba(248, 81, 73, 0.15); color: var(--accent-red); }
+.tag-orange { background: rgba(210, 153, 34, 0.15); color: var(--accent-orange); }
+.tag-green { background: rgba(63, 185, 80, 0.15); color: var(--accent-green); }
+.tag-blue { background: rgba(88, 166, 255, 0.15); color: var(--accent-blue); }
+.tag-purple { background: rgba(163, 113, 247, 0.15); color: var(--accent-purple); }
+
+/* Cards */
+.card {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 1rem;
+    margin: 1rem 0;
+}
+
+.card-header {
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: var(--text-primary);
+}
+
+/* Lists */
+ul, ol { padding-left: 1.5rem; margin: 0.5rem 0; }
+li { margin: 0.3rem 0; }
+
+/* Code */
+code {
+    font-family: 'SF Mono', Consolas, monospace;
+    background: var(--bg-tertiary);
+    padding: 0.15rem 0.4rem;
+    border-radius: 3px;
+    font-size: 0.875rem;
+}
+
+pre {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 1rem;
+    overflow-x: auto;
+    margin: 1rem 0;
+}
+
+/* Blockquote */
+blockquote {
+    border-left: 3px solid var(--accent-blue);
+    padding-left: 1rem;
+    margin: 1rem 0;
+    color: var(--text-secondary);
+    font-style: italic;
+}
+
+/* Horizontal rule */
+hr {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 1.5rem 0;
+}
+
+/* Highlight */
+.highlight {
+    background: rgba(88, 166, 255, 0.1);
+    border-left: 3px solid var(--accent-blue);
+    padding: 0.75rem 1rem;
+    margin: 1rem 0;
+}
+
+/* Badges */
+.badge {
+    display: inline-block;
+    padding: 0.25rem 0.5rem;
+    border-radius: 50px;
+    font-size: 0.7rem;
+    font-weight: 600;
+}
+
+.badge-green { background: var(--accent-green); color: #000; }
+.badge-orange { background: var(--accent-orange); color: #000; }
+.badge-red { background: var(--accent-red); color: #fff; }
+
+/* Grid */
+.grid { display: grid; gap: 1rem; }
+.grid-2 { grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
+
+/* Print */
+@media print {
+    body { background: #fff; color: #000; }
+    .tag, .badge { border: 1px solid currentColor; }
+}
+</style>
+
+</head>
+<body>
+    <div class="container">
+        <div class="report-header">
+            <h1 class="report-title">Report</h1>
+            <div class="report-meta">
+                <span>生成时间: 2026-06-26</span>
+                <span class="tag">AI-Intelligence</span><span class="tag">Weekly</span>
+            </div>
+        </div>
+        <div class="report-body">
+            
+<h1>Weekly Report - 2026-W26</h1>
+
+<h2>本周技术演化</h2>
+
+<p>📡 前沿科技简报 · 2026-W26 周报</p>
+
+<h2>本周技术主线</h2>
+
+<p>本周共记录 30 条技术事件，分类分布：</p>
+<li>热点技术: 21 条</li>
+<li>AI-Agent: 4 条</li>
+<li>LLM推理: 3 条</li>
+<li>行业趋势: 2 条</li>
+
+<h2>🔥 热点事件</h2>
+<p>【行业趋势】智元旗下灵巧手估值10亿美元，成立仅5个月首季实现盈利</p>
+
+<li><strong></strong>: https://36kr.com/newsflashes/3869245561541636?f=rss</li>
+<li><strong></strong>: 中</li>
+
+<p>【行业趋势】Nemotron-TwoTower: Diffusion Language Modeling with Pretrained Autoregressive Context</p>
+
+<li><strong></strong>: https://huggingface.co/papers/2606.26493</li>
+<li><strong></strong>: 中</li>
+
+<h2>💡 热点技术</h2>
+<p>【行业趋势】Nemotron-TwoTower: Diffusion Language Modeling with Pretrained Autoregressive Context</p>
+
+<li><strong></strong>: https://huggingface.co/papers/2606.26493</li>
+<li><strong></strong>: 中</li>
+
+<h2>📊 热点方向</h2>
+<h3>热点技术</h3>
+<p>[热点技术]：Do Encoders Suffice? A Systematic Comparison of Encoder and Decoder Safety Judges for LLM Adversaria@arXiv cs.CL</p>
+
+<p>[一句话总结]：研究比较了编码器和解码器作为大语言模型（LLM）安全评估器的效果，发现编码器在低延迟和低成本下也能有效保障模型安全，为企业提供了更经济实用的安全解决方案。</p>
+
+<p>[关键词]：大语言模型、安全评估、编码器、解码器、低延迟、低成本</p>
+
+<p>[业务启示]：</p>
+<p>【模型设计】：研究表明编码器可以作为有效的安全评估器，为LLM的设计提供了一种更高效的选择。</p>
+<p>【部署优化】：编码器在低延迟和低成本方面的优势，使其在资源受限的环境下更具部署可行性。</p>
+<p>【安全隐私】：通过编码器进行安全评估，可以帮助企业更好地保障用户隐私和数据安全。</p>
+
+<p>[背景介绍]：</p>
+<p>大语言模型（LLM）在聊天机器人和日常应用中得到了广泛应用，但如何有效且低成本地保障其输出安全性成为企业面临的重要挑战。此前，LLM的安全评估主要依赖于基于LLM的评估器，但这些评估器往往存在高延迟和高成本的问题。现在，研究人员开始探索使用编码器作为替代方案，以期在保证评估效果的同时，降低延迟和成本。</p>
+
+<p>[技术和创新点]：</p>
+<p>模型架构比较：详细比较了编码器和解码器在LLM安全评估中的表现。</p>
+<p>低延迟优势：编码器在处理速度上具有显著优势，能够实现更低延迟的评估。</p>
+<p>低成本实现：编码器在计算资源消耗上更少，从而降低了整体成本。</p>
+<p>评估效果：编码器在多个安全评估指标上表现出与解码器相近甚至更好的效果。</p>
+<p>应用场景：探讨了编码器在不同应用场景下的适用性和局限性。</p>
+
+<p>[效果总结]：</p>
+<p>研究表明，使用编码器进行LLM安全评估在低延迟和低成本方面具有显著优势，同时在多个安全评估指标上表现出色。这为企业在资源受限的环境下提供了一种高效且经济的解决方案，有助于更好地保障LLM的输出安全性。</p>
+
+<p>[热点技术]：InvestPhilBench: A Multi-Layer Dynamic Benchmark for Evaluating Large Language Model Procedural Reas@arXiv cs.LG</p>
+
+<p>[一句话总结]：InvestPhilBench旨在评估大语言模型在重建和应用专家投资者特定程序决策框架方面的能力，推动大语言模型在投资研究领域的应用和发展。</p>
+
+<p>[关键词]：大语言模型、投资研究、程序决策框架、多层动态基准、评估</p>
+
+<p>[业务启示]：</p>
+<p>【模型设计】：InvestPhilBench通过多层动态基准设计，提供了对大语言模型在投资研究领域能力的全面评估，有助于改进模型设计以更好地模拟专家决策过程。</p>
+<p>【训练策略】：该基准强调了模型在处理复杂投资决策时的程序性推理能力，为训练策略的优化提供了新的方向，确保模型能够准确应用专家知识。</p>
+<p>【部署优化】：InvestPhilBench的引入可以帮助企业在部署大语言模型作为投资研究助手时，进行更有效的性能测试和优化，提升实际应用效果。</p>
+<p>【安全隐私】：通过评估模型在模拟专家决策时的准确性，InvestPhilBench间接提升了模型在处理敏感投资数据时的可靠性和安全性。</p>
+
+<p>[背景介绍]：</p>
+<p>InvestPhilBench是由arXiv cs.LG推出的多层动态基准，用于评估大语言模型在投资研究中的应用能力。此前，大语言模型在投资研究领域的应用缺乏专门的基准测试来验证其程序性决策能力。现在，InvestPhilBench的推出填补了这一空白，为大语言模型在投资研究中的应用提供了新的评估标准。</p>
+
+<p>[技术和创新点]：</p>
+<p>多层动态基准设计: InvestPhilBench采用多层动态基准设计，全面评估大语言模型在不同投资决策场景下的表现。</p>
+<p>程序性决策框架重建: 该基准重点测试模型在重建专家投资者程序性决策框架方面的能力。</p>
+<p>多维度评估指标: InvestPhilBench引入了多维度评估指标，确保评估结果的全面性和准确性。</p>
+<p>动态调整机制: 基准具备动态调整机制，能够根据不同投资环境进行适应性变化。</p>
+<p>专家知识应用: 强调模型在应用专家投资知识进行决策时的表现，提升实际应用价值。</p>
+
+<p>[效果总结]：</p>
+<p>InvestPhilBench在大语言模型程序性推理能力的评估方面有显著提升。通过多层动态基准设计，该技术能够全面测试模型在投资研究领域的应用能力，为模型优化和应用提供了可靠依据。</p>
+
+<h3>行业趋势</h3>
+<p>【行业趋势】智元旗下灵巧手估值10亿美元，成立仅5个月首季实现盈利</p>
+
+<li><strong></strong>: https://36kr.com/newsflashes/3869245561541636?f=rss</li>
+<li><strong></strong>: 中</li>
+
+<p>【行业趋势】Nemotron-TwoTower: Diffusion Language Modeling with Pretrained Autoregressive Context</p>
+
+<li><strong></strong>: https://huggingface.co/papers/2606.26493</li>
+<li><strong></strong>: 中</li>
+
+<h3>AI-Agent</h3>
+<p>【AI-Agent】🎉 DeepSeek-V4 预览版本发布，具备世界顶级推理性能，Agent 能力大幅提高，已在网页端、APP 和 API 上线，点击查看详情。</p>
+
+<li><strong></strong>: https://mp.weixin.qq.com/s/8bxXqS2R8Fx5-1TLDBiEDg</li>
+<li><strong></strong>: 中</li>
+
+<p>【AI-Agent】Autodata: An agentic data scientist to create high quality synthetic data</p>
+
+<li><strong></strong>: https://huggingface.co/papers/2606.25996</li>
+<li><strong></strong>: 中</li>
+
+<h2>深读推荐</h2>
+
+<p>本周深读论文：</p>
+<li>智元旗下灵巧手估值10亿美元，成立仅5个月首季实现盈利</li>
+<p>来源: https://36kr.com/newsflashes/3869245561541636?f=rss</p>
+<li>Nemotron-TwoTower: Diffusion Language Modeling with Pretrained Autoregressive Co</li>
+<p>来源: https://huggingface.co/papers/2606.26493</p>
+
+<hr>
+<p>📌 文末汇总</p>
+<li>本周最值得深读: 智元旗下灵巧手估值10亿美元，成立仅5个月首季实现盈利; Nemotron-TwoTower: Diffusion Language Modeling wit</li>
+<li>本周可跳过: 无</li>
+<li>下周重点关注: 推理框架新版本、Agent架构演进、成本优化技术</li>
+
+
+
+
+<h2>事件统计</h2>
+
+<p>共记录 2 条事件</p>
+
+
+<h2>反向链接</h2>
+
+<blockquote>[!info] 相关笔记</blockquote>
+<blockquote>- [[Daily/2026-06-26|今日日报]]</blockquote>
+<blockquote>- [[Monthly/Monthly_2026-06|本月月报]]</blockquote>
+<blockquote>- [[技术收敛_2026-06|技术收敛报告]]</blockquote>
+
+<hr>
+
+<strong></strong>: 2026-06-26T04:15:32.839315
+<strong></strong>: fcc3040f7de68da7
+
+        </div>
+    </div>
+</body>
+</html>
