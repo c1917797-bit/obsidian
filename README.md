@@ -70,3 +70,9 @@ robocopy "C:\Users\Huawei\Documents\code\Obsidian\3_AI情报日历\Inbox\Inferen
 - 行为：先执行 `scan`，当 `BAD=0` 时生成/更新 `问题清单.md`，有变更则由 `github-actions[bot]` 提交并推送
 - 约束：`BAD>0` 时直接 fail，不提交，避免把未达标内容写入主干
 - 适合场景：你希望仓库里的 `问题清单.md` 始终保持自动同步最新状态
+
+### 每周归档（周末）
+
+自动提交工作流会在周末（UTC 时间的周六/周日）额外执行归档：
+- 复制 `问题清单.md` 到 `3_AI情报日历/Inbox/InferenceRadar/问题清单_归档/问题清单_周报_YYYY-MM-DD.md`
+- 与日报同步一起提交，便于周报回溯和比对历史节奏。

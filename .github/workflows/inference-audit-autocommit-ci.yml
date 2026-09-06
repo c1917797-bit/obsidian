@@ -29,23 +29,43 @@ jobs:
           $badLine = ($out | Select-String '^BAD=')
           if (-not $badLine) { throw 'scan failed to output BAD' }
           $bad = [int]($badLine.ToString() -replace '^BAD=', '')
-          if ($bad -gt 0) { Write-Output \"BAD=$bad detected\"; exit 1 }
+          if ($bad -gt 0) { Write-Output "BAD=$bad detected"; exit 1 }
 
       - name: Generate report
         shell: pwsh
         run: |
           pwsh .\0_Codex工作台\tools\inference-audit.ps1 report
 
-      - name: Commit updated report
+      - name: Archive weekly report on weekends and commit updates
         shell: pwsh
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
-          git add 3_AI情报日历/Inbox/InferenceRadar/问题清单.md
+          $reportPath = "3_AI情报日历/Inbox/InferenceRadar/问题清单.md"
+          git add $reportPath
+
+          $today = Get-Date
+          $isWeekend = @("Saturday", "Sunday") -contains $today.DayOfWeek.ToString()
+          if ($isWeekend) {
+            $archiveDir = "3_AI情报日历/Inbox/InferenceRadar/问题清单_归档"
+            New-Item -ItemType Directory -Force -Path $archiveDir | Out-Null
+            $weekTag = $today.ToString("yyyy-MM-dd")
+            $archivePath = Join-Path $archiveDir ("问题清单_周报_" + $weekTag + ".md")
+            Copy-Item -Path $reportPath -Destination $archivePath -Force
+            git add $archivePath
+            Write-Output ("Weekend archive synced: " + $archivePath)
+          } else {
+            Write-Output "Not weekend. Keep only live report sync in commit."
+          }
+
           $status = git status --short
           if (-not [string]::IsNullOrWhiteSpace($status)) {
-            git commit -m "chore: sync inference audit report"
+            if($isWeekend){
+              git commit -m "chore: sync and archive inference audit report"
+            } else {
+              git commit -m "chore: sync inference audit report"
+            }
             git push
           } else {
             Write-Output "No report changes detected. Skip commit."
