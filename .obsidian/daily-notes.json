@@ -1,0 +1,5 @@
+{
+  "format": "YYYY-MM-DD",
+  "folder": "0_Research/agent-multi-gpu-inference/signals/daily",
+  "template": "3_Resources/templates/agent-daily-signal"
+}

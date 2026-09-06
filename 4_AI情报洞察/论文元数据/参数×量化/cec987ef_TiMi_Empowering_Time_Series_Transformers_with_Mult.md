@@ -1,0 +1,95 @@
+---
+type: literature-corpus-entry
+citekey: lin2026timi
+title: "TiMi: Empowering Time Series Transformers with Multimodal Mixture of Experts"
+authors:
+  - "Jiafeng Lin"
+  - "Yuxuan Wang"
+  - "Huakun Luo"
+  - "Zhongyi Pei"
+  - "Jianmin Wang"
+year: 2026
+venue: ICLR 2026
+venue_type: conference
+arxiv_id: ""
+doi: ""
+url: "https://openreview.net/forum?id=nLVmi5OKql"
+pdf_url: ""
+object: 参数
+method: 量化
+cell: "参数×量化"
+all_objects: []
+all_methods: []
+abstract: |
+  Multimodal time series forecasting has garnered significant attention for its potential to provide more robust and accurate predictions than traditional single-modality models by leveraging rich information inherent in other modalities. However, due to fundamental challenges in modality alignment, existing methods often struggle to effectively incorporate multimodal data into predictions, particularly textual information that has a causal influence on time series fluctuations, such as emergency reports and policy announcements.
+  In this paper, we reflect on the role of textual information in nu
+key_innovation: "待精读后填写"
+performance: "待精读后填写"
+code_url: ""
+hf_model: ""
+status: unread
+priority: P2
+date_added: 2026-07-06
+obtained_via: "openreview"
+obtained_at: 2026-07-06
+tags:
+  - inference-compression
+  - 参数
+  - 量化
+  - lin26
+---
+
+# TiMi: Empowering Time Series Transformers with Multimodal Mixture of Experts
+
+## 基本信息
+
+| 字段 | 值 |
+|------|------|
+| **Citekey** | `lin2026timi` |
+| **年份** | 2026 |
+| **会议/期刊** | ICLR 2026 |
+| **arXiv** | N/A |
+| **4×5分类** | 参数×量化 |
+| **来源** | openreview |
+| **作者** | Jiafeng Lin, Yuxuan Wang, Huakun Luo |
+
+## 摘要
+
+Multimodal time series forecasting has garnered significant attention for its potential to provide more robust and accurate predictions than traditional single-modality models by leveraging rich information inherent in other modalities. However, due to fundamental challenges in modality alignment, existing methods often struggle to effectively incorporate multimodal data into predictions, particularly textual information that has a causal influence on time series fluctuations, such as emergency reports and policy announcements.
+In this paper, we reflect on the role of textual information in nu
+
+## 关键创新
+
+*待精读后在此填写 1-3 个方法核心创新点*
+
+> 提示：
+> - 这个方法解决什么问题？
+> - 相比已有方法的本质区别？
+> - 实验中验证了什么关键指标？
+
+## 性能数据
+
+| 模型/场景 | 压缩率 | 精度 | 加速比 | 显存 |
+|-----------|--------|------|--------|------|
+| 待填 | | | | |
+
+> 精读时把论文表格中的关键数字搬过来
+
+## 代码与资源
+
+
+- **代码**: （精读时查找GitHub链接）
+- **HuggingFace模型**: （如适用）
+
+## 我的笔记
+
+*精读笔记在此写，或链接到 [[专题笔记名]]*
+
+## 相关论文
+
+*精读时用Obsidian双链 `[[arxiv_id]]` 连接相关工作*
+
+---
+
+*基于 ARS v3.6.4 literature_corpus_entry schema*  
+*生成日期: 2026-07-06 | 来源: openreview*

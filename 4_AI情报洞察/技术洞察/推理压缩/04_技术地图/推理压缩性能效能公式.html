@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>推理压缩性能效能公式 — 以时延和吞吐为目标</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#080c14;--s1:#0f1623;--s2:#182234;--s3:#1e2d44;--bd:#243044;--t:#dce6f0;--td:#7a8699;--blue:#3b82f6;--green:#22c55e;--yellow:#eab308;--orange:#f97316;--red:#ef4444;--purple:#a78bfa;--cyan:#06b6d4;--pink:#ec4899}
+body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--t);font-size:13px;line-height:1.5}
+.wrap{max-width:1600px;margin:0 auto;padding:16px 20px 60px}
+
+.hdr{background:linear-gradient(135deg,#0a1a0a,#102020 50%,#0a1a28);border-radius:14px;padding:24px 28px;margin-bottom:16px;text-align:center}
+.hdr h1{font-size:22px;color:#fff;margin-bottom:6px}
+.hdr .sub{font-size:13px;color:var(--td)}
+
+/* 公式 */
+.formula-box{background:linear-gradient(135deg,var(--s1),var(--s2));border:2px solid var(--green);border-radius:14px;padding:24px;margin-bottom:20px;text-align:center}
+.formula-box .title{font-size:12px;color:var(--green);font-weight:700;text-transform:uppercase;letter-spacing:2px;margin-bottom:12px}
+.formula{font-size:24px;font-weight:800;font-family:"Courier New",monospace;color:#fff;letter-spacing:1px;line-height:1.8}
+.formula .be{color:var(--blue)}.formula .ce{color:var(--green)}.formula .ve{color:var(--yellow)}.formula .xe{color:var(--orange)}.formula .ae{color:var(--purple)}.formula .co{color:var(--red)}
+.formula .op{color:var(--td);margin:0 4px}
+.formula-box .note{font-size:12px;color:var(--td);margin-top:12px;line-height:1.7;text-align:left;padding:0 20px}
+.formula-box .note strong{color:var(--t)}
+
+/* 因子列 */
+.factor-grid{display:grid;grid-template-columns:1fr 1fr 1fr 1fr 1fr;gap:8px;margin-bottom:16px}
+.factor-col{border-radius:12px;overflow:hidden;border:2px solid var(--bd)}
+.factor-hdr{text-align:center;padding:12px 8px;color:#fff}
+.factor-hdr .fname{font-size:14px;font-weight:800}
+.factor-hdr .ftarget{font-size:10px;opacity:0.8;margin-top:3px}
+.factor-hdr .fdef{font-size:9px;opacity:0.7;margin-top:3px;font-family:monospace}
+.f-latency{background:linear-gradient(135deg,#1e3a5f,#1a4a6a);border-color:var(--blue)}
+.f-throughput{background:linear-gradient(135deg,#1a3a1a,#2a5a2a);border-color:var(--green)}
+.f-cost{background:linear-gradient(135deg,#3a3a1a,#5a5a2a);border-color:var(--yellow)}
+.f-comm{background:linear-gradient(135deg,#3a2a1a,#5a3a2a);border-color:var(--orange)}
+.f-quality{background:linear-gradient(135deg,#3a1a3a,#5a2a5a);border-color:var(--purple)}
+
+.obj-cell{border-top:1px solid var(--bd);padding:6px 8px}
+.obj-cell .oh{display:flex;align-items:center;justify-content:space-between;margin-bottom:4px}
+.obj-cell .oh .on{font-size:10px;font-weight:700}
+.obj-cell .oh .oval{font-size:9px;font-weight:700;padding:1px 5px;border-radius:3px;font-family:monospace}
+.tech-mini{background:var(--s1);border:1px solid var(--bd);border-radius:5px;padding:4px 6px;margin-bottom:2px}
+.tech-mini .tn{font-size:9px;font-weight:600;display:flex;justify-content:space-between}
+.tech-mini .td{font-size:8px;color:var(--td);margin-top:1px;line-height:1.3}
+.tech-mini .gain{font-size:8px;font-weight:700}
+.gain-up{color:var(--green)}.gain-flat{color:var(--td)}.gain-down{color:var(--red)}
+
+/* 分析卡片 */
+.analysis{background:var(--s1);border:1px solid var(--bd);border-radius:14px;padding:20px;margin-bottom:16px}
+.analysis h3{font-size:15px;color:var(--cyan);margin-bottom:12px}
+.scenario-table{width:100%;border-collapse:collapse;margin:10px 0;font-size:12px}
+.scenario-table th{background:var(--s2);padding:9px;text-align:left;border-bottom:2px solid var(--bd);font-size:11px}
+.scenario-table td{padding:8px;border-bottom:1px solid var(--bd);vertical-align:top}
+.scenario-table .num{font-family:monospace;font-weight:700}
+
+.note{background:rgba(59,130,246,0.05);border:1px solid rgba(59,130,246,0.15);border-radius:10px;padding:14px;margin:12px 0;font-size:12px;color:var(--td);line-height:1.8}
+.note strong{color:var(--blue)}
+.warn{background:rgba(239,68,68,0.06);border:1px solid rgba(239,68,68,0.2);border-radius:10px;padding:14px;margin:12px 0;font-size:12px;color:var(--td);line-height:1.8}
+.warn strong{color:var(--red)}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<!-- Header -->
+<div class="hdr">
+  <h1>🚀 推理压缩性能效能公式</h1>
+  <div class="sub">目标：时延↓ + 吞吐↑（不是压缩比↑）· 5个效能因子 · 以推理性能为锚 · v1.0</div>
+</div>
+
+<!-- 核心公式 -->
+<div class="formula-box">
+  <div class="title">📐 推理性能提升 = 各效能因子收益之和 − 压缩开销</div>
+  <div class="formula">
+    性能提升 ≈ [<span class="be">Latency↓</span><span class="op">·</span>带宽占比 + <span class="ce">Throughput↑</span><span class="op">·</span>计算占比 + <span class="ve">Cost↓</span><span class="op">·</span>并发增益 + <span class="xe">Comm↓</span><span class="op">·</span>通信占比] <span class="op">×</span> <span class="ae">Quality</span> <span class="op">−</span> <span class="co">Overhead</span>
+  </div>
+  <div class="note">
+    <strong>Latency↓</strong>(带宽节省因子) · <strong>Throughput↑</strong>(计算节省因子) · <strong>Cost↓</strong>(并发扩展因子) · <strong>Comm↓</strong>(通信节省因子) · <strong>Quality</strong>(精度保持因子) · <strong>Overhead</strong>(压缩计算开销)<br><br>
+    <strong>核心原则：</strong>压缩不是为了"数据量更少"，而是为了"推理更快/并发更多"。每个因子的收益取决于<strong>推理场景的瓶颈在哪</strong>——decode瓶颈看Latency↓，prefill瓶颈看Throughput↑，多卡瓶颈看Comm↓，并发瓶颈看Cost↓。<br><br>
+    <strong>⚠️ 压缩反例：</strong>32K以下上下文做KV压缩，Overhead(选择开销) > Latency↓收益(带宽节省)，性能反而下降5-10%。(MagicDec, ICLR'25)
+  </div>
+</div>
+
+<!-- ===== 5个效能因子 ===== -->
+<div class="factor-grid">
+
+<!-- ① 带宽节省 BE -->
+<div class="factor-col">
+  <div class="factor-hdr f-be">
+    <div class="fname">① 带宽节省 BE</div>
+    <div class="ftarget">→ 降低Decode TPOT</div>
+    <div class="fdef">BE = 原始带宽/压缩后带宽<br>= PF×SF（精度×选择）</div>
+  </div>
+  <div class="obj-cell">
+    <div class="oh"><div class="on">💾KV(decode瓶颈)</div><div class="oval" style="background:rgba(59,130,246,0.15);color:var(--blue)">Latency↓=4~80</div></div>
+    <div class="tech-mini"><div class="tn"><span>KIVI 2bit量化</span><span class="gain gain-up">TPOT↓10-15%</span></div><div class="td">Latency↓=8 · KV带宽↓87% · 但反量化有开销</div></div>
+    <div class="tech-mini"><div class="tn"><span>SnapKV 稀疏</span><span class="gain gain-up">TPOT↓30-50%</span></div><div class="td">Latency↓≈8 · KV访问量↓87% · >32K时收益显著</div></div>
+    <div class="tech-mini"><div class="tn"><span>KIVI+SnapKV叠加</span><span class="gain gain-up">TPOT↓40-60%</span></div><div class="td">Latency↓=64 · 两因子乘法 · 但TTFT可能↑</div></div>
+    <div class="tech-mini"><div class="tn"><span><32K时压缩</span><span class="gain gain-down">TPOT↑5-10%❌</span></div><div class="td">Latency↓收益<CO开销 · 压缩反而变慢</div></div>
+  </div>
+  <div class="obj-cell">
+    <div class="oh"><div class="on">📦参数</div><div class="oval" style="background:rgba(59,130,246,0.15);color:var(--blue)">Latency↓=2~4</div></div>
+    <div class="tech-mini"><div class="tn"><span>AWQ INT4</span><span class="gain gain-up">TPOT↓20-30%</span></div><div class="td">Latency↓=4 · 权重带宽↓75% · Tensor Core加速</div></div>
+  </div>
+</div>
+
+<!-- ② 计算节省 CE -->
+<div class="factor-col">
+  <div class="factor-hdr f-ce">
+    <div class="fname">② 计算节省 CE</div>
+    <div class="ftarget">→ 降低Prefill TTFT + 提升吞吐</div>
+    <div class="fdef">CE = 原始FLOPS/压缩后FLOPS<br>主要来自稀疏(跳过计算)</div>
+  </div>
+  <div class="obj-cell">
+    <div class="oh"><div class="on">💾KV(注意力)</div><div class="oval" style="background:rgba(34,197,94,0.15);color:var(--green)">Throughput↑=2~10</div></div>
+    <div class="tech-mini"><div class="tn"><span>SnapKV跳过注意力</span><span class="gain gain-up">Prefill↓3.6x</span></div><div class="td">Throughput↑≈8 · 不计算的KV=不做的注意力</div></div>
+    <div class="tech-mini"><div class="tn"><span>DuoAttention头跳过</span><span class="gain gain-up">计算↓80%</span></div><div class="td">CE≈5 · 80-90%头是流式头不需全算</div></div>
+    <div class="tech-mini"><div class="tn"><span>RocketKV两阶段</span><span class="gain gain-up">注意力↓</span></div><div class="td">Throughput↑≈100 · 粗筛+细筛 · 400x压缩</div></div>
+  </div>
+  <div class="obj-cell">
+    <div class="oh"><div class="on">⚡激活</div><div class="oval" style="background:rgba(34,197,94,0.15);color:var(--green)">Throughput↑=2~5</div></div>
+    <div class="tech-mini"><div class="tn"><span>LLaVA-PruMerge</span><span class="gain gain-up">FLOPs↓90%</span></div><div class="td">CE≈10 · 视觉Token跳过 · 117引用</div></div>
+    <div class="tech-mini"><div class="tn"><span>MoE Top-K稀疏</span><span class="gain gain-up">FLOPs↓85%</span></div><div class="td">Throughput↑≈8 · DeepSeek 8/671专家激活</div></div>
+  </div>
+  <div class="obj-cell">
+    <div class="oh"><div class="on">📦参数</div><div class="oval" style="background:rgba(34,197,94,0.15);color:var(--green)">Throughput↑=1.5~2</div></div>
+    <div class="tech-mini"><div class="tn"><span>SparseGPT 50%</span><span class="gain gain-up">FLOPs↓50%</span></div><div class="td">Throughput↑=2 · 2:4硬件原生加速</div></div>
+  </div>
+</div>
+
+<!-- ③ 并发扩展 VE -->
+<div class="factor-col">
+  <div class="factor-hdr f-ve">
+    <div class="fname">③ 并发扩展 VE</div>
+    <div class="ftarget">→ 提升吞吐(更多batch)</div>
+    <div class="fdef">VE = 压缩后batch上限/原始<br>省的内存→更多并发</div>
+  </div>
+  <div class="obj-cell">
+    <div class="oh"><div class="on">💾KV</div><div class="oval" style="background:rgba(234,179,8,0.15);color:var(--yellow)">Cost↓=2~6</div></div>
+    <div class="tech-mini"><div class="tn"><span>SnapKV 8x</span><span class="gain gain-up">并发↑2-3x</span></div><div class="td">VE≈3 · KV内存↓87% → batch↑2-3x</div></div>
+    <div class="tech-mini"><div class="tn"><span>KIVI 2bit</span><span class="gain gain-up">并发↑4x</span></div><div class="td">VE≈4 · KV内存↓75% → batch↑4x</div></div>
+    <div class="tech-mini"><div class="tn"><span>ShadowKV分层</span><span class="gain gain-up">并发↑6x</span></div><div class="td">VE≈6 · GPU存Key+CPU存Value</div></div>
+  </div>
+  <div class="obj-cell">
+    <div class="oh"><div class="on">📦参数</div><div class="oval" style="background:rgba(234,179,8,0.15);color:var(--yellow)">Cost↓=2~4</div></div>
+    <div class="tech-mini"><div class="tn"><span>AWQ INT4</span><span class="gain gain-up">并发↑2-4x</span></div><div class="td">VE≈4 · 144GB→36GB → 4卡→2卡</div></div>
+  </div>
+  <div class="obj-cell">
+    <div class="oh"><div class="on">⚡激活(多模态)</div><div class="oval" style="background:rgba(234,179,8,0.15);color:var(--yellow)">Cost↓=2~5</div></div>
+    <div class="tech-mini"><div class="tn"><span>视觉Token减少</span><span class="gain gain-up">并发↑2-5x</span></div><div class="td">VE≈5 · 2570→500 token → KV大幅减少</div></div>
+  </div>
+</div>
+
+<!-- ④ 通信节省 XE -->
+<div class="factor-col">
+  <div class="factor-hdr f-xe">
+    <div class="fname">④ 通信节省 XE</div>
+    <div class="ftarget">→ 降低多卡TPOT</div>
+    <div class="fdef">XE = 原始通信量/压缩后<br>多卡推理通信占40-60%</div>
+  </div>
+  <div class="obj-cell">
+    <div class="oh"><div class="on">🌐MoE通信</div><div class="oval" style="background:rgba(249,115,22,0.15);color:var(--orange)">Comm↓=2~45</div></div>
+    <div class="tech-mini"><div class="tn"><span>FP8通信</span><span class="gain gain-up">通信↓50%</span></div><div class="td">Comm↓=2 · DeepSeek-V3生产级</div></div>
+    <div class="tech-mini"><div class="tn"><span>ExpertQuant INT4</span><span class="gain gain-up">通信↓75%</span></div><div class="td">Comm↓=4 · 💎首个MoE通信量化</div></div>
+    <div class="tech-mini"><div class="tn"><span>FoMoE</span><span class="gain gain-up">通信↓98%</span></div><div class="td">Comm↓=45 · 打破全复制 · ICLR'26</div></div>
+    <div class="tech-mini"><div class="tn"><span>专家稀疏跳过</span><span class="gain gain-up">通信↓50%</span></div><div class="td">Comm↓=2 · 跳过冷专家不通信</div></div>
+  </div>
+</div>
+
+<!-- ⑤ 精度保持 AE -->
+<div class="factor-col">
+  <div class="factor-hdr f-ae">
+    <div class="fname">⑤ 精度保持 AE</div>
+    <div class="ftarget">→ 避免重算/拒绝(有效吞吐)</div>
+    <div class="fdef">AE = 压缩后精度/原始精度<br>Quality<1=精度损失→有效吞吐↓</div>
+  </div>
+  <div class="obj-cell">
+    <div class="oh"><div class="on">所有对象</div><div class="oval" style="background:rgba(167,139,250,0.15);color:var(--purple)">Quality=0.9~1.0</div></div>
+    <div class="tech-mini"><div class="tn"><span>AWQ INT4</span><span class="gain gain-up">Quality=0.98</span></div><div class="td">GSM8K损失<2% · 对齐保持</div></div>
+    <div class="tech-mini"><div class="tn"><span>SnapKV 8x</span><span class="gain gain-up">Quality=0.98</span></div><div class="td">NIAH~98% · <2%损失</div></div>
+    <div class="tech-mini"><div class="tn"><span>KIVI 2bit</span><span class="gain gain-flat">Quality=0.95</span></div><div class="td">GSM8K 96% · 数学敏感</div></div>
+    <div class="tech-mini"><div class="tn"><span>INT2极端</span><span class="gain gain-down">Quality=0.75❌</span></div><div class="td">GSM8K 75% · 对齐崩塌15-30%</div></div>
+    <div class="tech-mini"><div class="tn"><span>蒸馏恢复</span><span class="gain gain-up">Quality↑</span></div><div class="td">BitDistiller恢复量化后精度</div></div>
+  </div>
+</div>
+
+</div><!-- end factor-grid -->
+
+<!-- ===== 场景×瓶颈×因子矩阵 ===== -->
+<div class="analysis">
+  <h3>🎯 场景 × 瓶颈 × 主导因子</h3>
+  <div class="note">不同场景的推理瓶颈不同，<strong>压缩技术的收益取决于瓶颈在哪</strong>。对错瓶颈做压缩=无效。</div>
+  <table class="scenario-table">
+    <tr><th>场景</th><th>推理瓶颈</th><th>主导因子</th><th>推荐技术</th><th>预期性能提升</th><th>避免</th></tr>
+    <tr><td><strong>短对话(&lt;32K)</strong></td><td>计算瓶颈</td><td><strong style="color:var(--green)">Throughput↑</strong></td><td>INT4量化(Tensor Core加速)</td><td>TPOT↓20-30%</td><td class="gain-down">KV压缩(Overhead>Latency↓,反而变慢)</td></tr>
+    <tr><td><strong>长上下文(&gt;128K)</strong></td><td>带宽瓶颈</td><td><strong style="color:var(--blue)">Latency↓</strong></td><td>SnapKV+KIVI</td><td>TPOT↓40-60%</td><td class="gain-down">不做压缩(KV占70%+必须压)</td></tr>
+    <tr><td><strong>高并发服务</strong></td><td>内存容量</td><td><strong style="color:var(--yellow)">Cost↓</strong></td><td>AWQ+SnapKV(省内存→更多batch)</td><td>吞吐↑2-4x</td><td class="gain-down">单请求优化(应优化并发)</td></tr>
+    <tr><td><strong>Agent多轮(>20轮)</strong></td><td>KV累积爆炸</td><td><strong style="color:var(--blue)">BE+VE</strong></td><td>SnapKV(淘汰)+KIVI(量化)</td><td>并发↑2-3x · TPOT↓40%</td><td class="gain-down">PagedAttention alone(不够)</td></tr>
+    <tr><td><strong>MoE多卡</strong></td><td>通信瓶颈</td><td><strong style="color:var(--orange)">Comm↓</strong></td><td>FP8+ExpertQuant+DeepEP</td><td>TPOT↓25-40%</td><td class="gain-down">单卡优化(瓶颈在通信)</td></tr>
+    <tr><td><strong>多模态VLM</strong></td><td>视觉Token计算</td><td><strong style="color:var(--green)">CE+VE</strong></td><td>视觉Token稀疏(LLaVA-PruMerge)</td><td>FLOPs↓90% · 并发↑5x</td><td class="gain-down">文本KV压缩(瓶颈在视觉)</td></tr>
+    <tr><td><strong>推理模型(R1/o1)</strong></td><td>CoT冗余KV</td><td><strong style="color:var(--blue)">BE+CE</strong></td><td>R-KV/ThinKV(Thought感知)</td><td>TPOT↓ · 吞吐↑5x</td><td class="gain-down">T思维压缩(导致死循环!)</td></tr>
+    <tr><td><strong>数学/代码任务</strong></td><td>精度敏感</td><td><strong style="color:var(--purple)">Quality</strong></td><td>FP8或INT8(不用INT4以下)</td><td>避免精度崩塌</td><td class="gain-down">INT2(GSM8K掉25%)</td></tr>
+  </table>
+</div>
+
+<!-- ===== 开销分析 ===== -->
+<div class="analysis">
+  <h3>⚠️ 压缩开销CO（不能忽略）</h3>
+  <div class="warn"><strong>核心矛盾：</strong>压缩节省了带宽/计算，但<strong>引入了新的开销</strong>。净性能=节省−开销。<strong>当节省<开销时，压缩有害。</strong></div>
+  <table class="scenario-table">
+    <tr><th>技术</th><th>节省</th><th>开销CO</th><th>净收益条件</th><th>反例条件</th></tr>
+    <tr><td><strong>KV量化(KIVI)</strong></td><td>Latency↓=8(带宽↓87%)</td><td>反量化计算↑15-25%</td><td>上下文>32K(带宽是瓶颈)</td><td class="gain-down"><32K(计算是瓶颈，反量化拖累)</td></tr>
+    <tr><td><strong>KV稀疏(SnapKV)</strong></td><td>Latency↓=8, Throughput↑=8</td><td>选择逻辑↑5-10%</td><td>几乎所有场景净正</td><td class="gain-down">短序列+小batch(选择开销占比高)</td></tr>
+    <tr><td><strong>投机解码</strong></td><td>吞吐↑2-3x</td><td>草稿模型额外计算↑50-80%</td><td>accept_rate>0.5</td><td class="gain-down">代码任务(accept=30%，反而变慢)</td></tr>
+    <tr><td><strong>通信量化</strong></td><td>Comm↓=4</td><td>量化-传输-反量化流水</td><td>多卡(通信占>40%)</td><td class="gain-down">单卡(无通信可压)</td></tr>
+  </table>
+</div>
+
+<!-- ===== 性能提升实例 ===== -->
+<div class="analysis">
+  <h3>📊 实际性能提升数据（基于论文+工程实践）</h3>
+  <table class="scenario-table">
+    <tr><th>技术组合</th><th>场景</th><th class="num">TTFT变化</th><th class="num">TPOT变化</th><th class="num">吞吐变化</th><th>主导因子</th></tr>
+    <tr><td>AWQ INT4 单独</td><td>7B LLM</td><td class="num gain-down">+0ms</td><td class="num gain-up">↓20-30%</td><td class="num gain-up">↑10-20%</td><td>Latency↓=4</td></tr>
+    <tr><td>AWQ + PagedAttn</td><td>高并发</td><td class="num">不变</td><td class="num gain-up">↓25%</td><td class="num gain-up">↑2-4x(并发)</td><td>Cost↓=4</td></tr>
+    <tr><td>SnapKV 8x 单独</td><td>128K上下文</td><td class="num gain-up">↓10%</td><td class="num gain-up">↓30-50%</td><td class="num gain-up">↑30-50%</td><td>BE+Throughput↑=8</td></tr>
+    <tr><td>KIVI 2bit 单独</td><td>128K上下文</td><td class="num gain-down">+10-20ms</td><td class="num gain-up">↓10-15%</td><td class="num gain-up">↑5-15%</td><td>Latency↓=8(但CO高)</td></tr>
+    <tr><td>SnapKV + KIVI</td><td>128K上下文</td><td class="num gain-down">+15-30ms</td><td class="num gain-up">↓40-60%</td><td class="num gain-up">↑20-40%</td><td>Latency↓=64</td></tr>
+    <tr><td>投机解码</td><td>对话</td><td class="num">不变</td><td class="num gain-up">↓50%(accept=0.7)</td><td class="num gain-up">↑2-3x</td><td>CE(跳过验证)</td></tr>
+    <tr><td>FP8 MoE通信</td><td>DeepSeek-V3</td><td class="num gain-up">↓</td><td class="num gain-up">↓25%</td><td class="num gain-up">↑</td><td>Comm↓=2</td></tr>
+    <tr><td>视觉Token稀疏</td><td>VLM多图</td><td class="num gain-up">↓40%</td><td class="num gain-up">↓40%</td><td class="num gain-up">↑5x(并发)</td><td>CE+VE=10</td></tr>
+    <tr><td>ThinKV Thought感知</td><td>推理模型</td><td class="num">不变</td><td class="num gain-up">↓</td><td class="num gain-up">↑5.8x</td><td>BE+CE(Thought差异化)</td></tr>
+  </table>
+  <div class="note"><strong>💡 关键洞察：</strong>Latency↓(时延)对长上下文最关键，Cost↓(成本)对高并发服务最关键，Comm↓(通信)对MoE最关键。<strong>不能盲目追求压缩比——要对准瓶颈做压缩。</strong></div>
+</div>
+
+<!-- 因子→技术映射 -->
+<div class="analysis">
+  <h3>🔗 效能因子 → 压缩技术 → 根技术的完整映射</h3>
+  <table class="scenario-table">
+    <tr><th>效能因子</th><th>目标</th><th>根技术贡献</th><th>关键公式</th></tr>
+    <tr><td><strong style="color:var(--blue)">Latency↓ 时延优化</strong></td><td>Decode TPOT↓</td><td>精度压缩(PF) + 维度压缩(SF)</td><td>BE = PF × SF · 收益 = BE × KV带宽占比</td></tr>
+    <tr><td><strong style="color:var(--green)">Throughput↑ 吞吐优化</strong></td><td>Prefill TTFT↓ + 吞吐↑</td><td>维度压缩(SF, 跳过计算)</td><td>CE ≈ SF · 收益 = CE × 注意力计算占比</td></tr>
+    <tr><td><strong style="color:var(--yellow)">Cost↓ 成本优化</strong></td><td>吞吐↑(更多batch)</td><td>全部3个根技术(减内存→增batch)</td><td>VE ≈ PF × SF × RF · 收益 = VE × 并发增益系数</td></tr>
+    <tr><td><strong style="color:var(--orange)">Comm↓ 通信优化</strong></td><td>多卡TPOT↓</td><td>精度压缩(PF) + 维度压缩(SF)</td><td>XE = PF × SF · 收益 = XE × 通信时间占比</td></tr>
+    <tr><td><strong style="color:var(--purple)">Quality 质量保持</strong></td><td>有效吞吐(避免重算)</td><td>知识压缩(DF, 蒸馏恢复)</td><td>AE = 压缩后精度/原始 · 影响=AE × (1-重算率)</td></tr>
+  </table>
+  <div class="note">
+    <strong>根技术到效能因子的映射：</strong><br>
+    • <strong>精度压缩(量化)</strong> → 主要贡献Latency↓(时延)和Comm↓(通信)，因为减少比特=减少带宽<br>
+    • <strong>维度压缩(稀疏/剪枝)</strong> → 同时贡献BE(少访问)、CE(少计算)、VE(少内存)<br>
+    • <strong>知识压缩(蒸馏)</strong> → 主要贡献AE(精度恢复)，间接提升有效吞吐<br><br>
+    <strong>所以维度压缩(稀疏)是"性价比最高"的根技术</strong>——它同时改善3个效能因子(BE+CE+VE)，而量化主要改善1个(BE)。
+  </div>
+</div>
+
+<!-- ===== 效能因子→竞争力指标的数学关系（吸收目标.md核心） ===== -->
+<div class="analysis">
+  <h3>📐 效能因子 → 推理性能的精确数学关系</h3>
+  <div class="note"><strong>吸收来源：</strong>竞争力指标体系v2.3 · 效能因子不是抽象概念，每个因子都有精确的数学定义。</div>
+
+  <h4 style="color:var(--blue);margin:14px 0 8px">TPOT公式 × 效能因子代入</h4>
+  <div style="background:var(--s2);border-radius:8px;padding:14px;font-family:monospace;font-size:12px;line-height:1.8;margin-bottom:12px">
+    <strong>原始：</strong>TPOT = (T_calc_decode + S×T_mem) + T_comm×(1-θ)<br>
+    <strong>压缩后：</strong>TPOT' = (T_calc/SF + S/SF×T_mem/PF) + T_comm/XE×(1-θ)<br><br>
+    <strong style="color:var(--green)">TPOT改善 = [T_calc×(1-1/SF) + S×T_mem×(1-1/(PF×SF)) + T_comm×(1-1/XE)×(1-θ)] / TPOT</strong><br><br>
+    → <strong>Latency↓贡献</strong> = S×T_mem×(1-1/(PF×SF)) / TPOT × 100%（decode带宽项）<br>
+    → <strong>Throughput↑贡献</strong> = T_calc×(1-1/SF) / TPOT × 100%（decode计算项）<br>
+    → <strong>Comm↓贡献</strong> = T_comm×(1-1/XE)×(1-θ) / TPOT × 100%（通信项）
+  </div>
+
+  <h4 style="color:var(--yellow);margin:14px 0 8px">并发公式 × 效能因子代入</h4>
+  <div style="background:var(--s2);border-radius:8px;padding:14px;font-family:monospace;font-size:12px;line-height:1.8;margin-bottom:12px">
+    <strong>原始：</strong>C_max = min(C_V, C_gpu, C_comm)<br>
+    &nbsp;&nbsp;C_V = (V_total - V_backbone) / (2×L×H×D×S×P)<br><br>
+    <strong>压缩后：</strong>C_V' = (V_total - V_backbone/PF) / (2×L×H×D×S/PF/PF_kv×SF)<br>
+    <strong style="color:var(--green)">VE收益 = C_V'/C_V = 并发提升比 → 直接转化为吞吐提升</strong><br><br>
+    <strong>TPS = B/TPOT</strong>，其中 B = (M_total - M_weights) / M_KV<br>
+    → M_KV↓（通过PF×SF×RF）→ B↑ → TPS↑
+  </div>
+
+  <h4 style="color:var(--purple);margin:14px 0 8px">精度约束 × 有效吞吐</h4>
+  <div style="background:var(--s2);border-radius:8px;padding:14px;font-family:monospace;font-size:12px;line-height:1.8">
+    <strong>C_accuracy = C_max × AE</strong>（精度保持率）<br>
+    → Quality=0.95时，5%的请求因精度不足需重算 → 有效吞吐↓5%<br>
+    → <strong style="color:var(--red)">Quality<0.9（如INT2数学任务）→ 有效吞吐↓>10% → 压缩得不偿失</strong>
+  </div>
+</div>
+
+<!-- ===== 场景自适应权重 ===== -->
+<div class="analysis">
+  <h3>🎯 场景自适应权重（吸收目标.md §0.6）</h3>
+  <div class="note"><strong>核心原则：</strong>不同场景的推理瓶颈不同，<strong>压缩技术的收益权重也不同</strong>。对错瓶颈做压缩=无效。</div>
+  <table class="scenario-table">
+    <tr><th>场景</th><th>时延权重</th><th>吞吐权重</th><th>成本权重</th><th>精度权重</th><th>主导因子</th><th>推荐压缩策略</th></tr>
+    <tr><td><strong>实时对话</strong></td><td><strong>40%</strong></td><td>20%</td><td>20%</td><td>20%</td><td style="color:var(--blue)"><strong>Latency↓(时延)</strong></td><td>AWQ INT4(TPOT↓30%)</td></tr>
+    <tr><td><strong>Agent任务</strong></td><td>25%</td><td>25%</td><td>25%</td><td>25%</td><td style="color:var(--blue)"><strong>BE+VE</strong></td><td>SnapKV+KIVI(多轮KV压缩)</td></tr>
+    <tr><td><strong>离线批处理</strong></td><td>10%</td><td>30%</td><td><strong>50%</strong></td><td>10%</td><td style="color:var(--yellow)"><strong>Cost↓(成本)</strong></td><td>AWQ+SnapKV(省内存→更多batch→更低$/token)</td></tr>
+    <tr><td><strong>代码生成</strong></td><td>20%</td><td>20%</td><td>20%</td><td><strong>40%</strong></td><td style="color:var(--purple)"><strong>Quality(质量)</strong></td><td>FP8不用INT4(HumanEval敏感)</td></tr>
+    <tr><td><strong>MoE分布式</strong></td><td>30%</td><td>30%</td><td>20%</td><td>20%</td><td style="color:var(--orange)"><strong>Comm↓(通信)</strong></td><td>FP8+ExpertQuant(通信↓50%+)</td></tr>
+  </table>
+  <div class="note"><strong>使用方法：</strong>① 诊断推理瓶颈(C_V vs C_gpu vs C_comm谁最小) → ② 选择场景权重 → ③ 选择主导因子 → ④ 选择该因子的最优技术 → ⑤ 验证AE和CO</div>
+</div>
+
+<!-- ===== 移动靶 ===== -->
+<div class="analysis">
+  <h3>🎯 移动靶：性能目标随业界移动（吸收目标.md §0.2）</h3>
+  <div class="warn"><strong>核心：</strong>我们的目标不是固定值，是<strong>"当季业界P50的70%"</strong>。业界在进步，我们的目标也在移动。</div>
+  <table class="scenario-table">
+    <tr><th>维度</th><th>业界基准(2026Q3)</th><th>我们的目标(×0.7或×1.3)</th><th>压缩技术贡献</th></tr>
+    <tr><td><strong>TPOT (Qwen-72B)</strong></td><td>30ms</td><td><strong>≤21ms</strong></td><td>BE: AWQ+SnapKV→TPOT↓30-50%</td></tr>
+    <tr><td><strong>TPS (Qwen-72B)</strong></td><td>100</td><td><strong>≥130</strong></td><td>VE: AWQ+SnapKV→并发↑2-4x→TPS↑</td></tr>
+    <tr><td><strong>$/1M tokens</strong></td><td>$1.0</td><td><strong>≤$0.7</strong></td><td>VE: 省GPU→降成本 · 2卡替4卡</td></tr>
+    <tr><td><strong>MMLU</strong></td><td>78%</td><td><strong>≥77%</strong></td><td>AE: 精度损失≤1%</td></tr>
+  </table>
+  <div class="note"><strong>月级监控：</strong>DeepSeek/NVIDIA每月迭代。竞品单月提升>10%→触发"基准更新警报"→重新评估压缩策略是否仍达标的70%。</div>
+</div>
+
+<!-- ===== 瓶颈诊断 ===== -->
+<div class="analysis">
+  <h3>🔍 瓶颈诊断公式（吸收目标.md §3.3.2）</h3>
+  <div class="note"><strong>做压缩之前必须先诊断瓶颈在哪</strong>——用C_max三约束公式判断。</div>
+  <div style="background:var(--s2);border-radius:8px;padding:14px;font-family:monospace;font-size:12px;line-height:1.8;margin-bottom:12px">
+    C_max = min(C_V, C_gpu, C_comm)<br><br>
+    if C_comm < min(C_V, C_gpu) → <strong style="color:var(--orange)">通信受限</strong> → 用XE(通信量化/稀疏)<br>
+    if C_V < min(C_gpu, C_comm) → <strong style="color:var(--blue)">显存受限</strong> → 用VE(KV量化/稀疏)<br>
+    if C_gpu < min(C_V, C_comm) → <strong style="color:var(--td)">GPU数受限</strong> → 压缩无用，扩硬件
+  </div>
+  <table class="scenario-table">
+    <tr><th>场景</th><th>C_V(显存)</th><th>C_gpu</th><th>C_comm</th><th>C_max</th><th>瓶颈</th><th>压缩方向</th></tr>
+    <tr><td>DeepSeek-V3 32卡</td><td>4</td><td>1</td><td><strong>2</strong></td><td>1</td><td style="color:var(--orange)">通信</td><td>XE: ExpertQuant+DeepEP</td></tr>
+    <tr><td>Llama-70B 8卡</td><td>8</td><td>1</td><td>16</td><td>1</td><td style="color:var(--td)">GPU数</td><td>压缩无用(应减TP度)</td></tr>
+    <tr><td>长上下文1M 8卡</td><td><strong>2</strong></td><td>1</td><td>4</td><td>1</td><td style="color:var(--blue)">显存</td><td>VE+BE: SnapKV+KIVI</td></tr>
+    <tr><td>高并发72B 8卡</td><td><strong>8</strong></td><td>1</td><td>16</td><td>1</td><td style="color:var(--blue)">显存</td><td>VE: AWQ+SnapKV→batch↑</td></tr>
+  </table>
+</div>
+
+<!-- ===== 最终说明（更新） ===== -->
+<div class="note">
+  <strong>📌 本图定位：</strong>以<strong>推理性能(时延+吞吐+成本)</strong>为目标的效能公式。不是"压缩多少"而是"快多少/省多少"。<br>
+  <strong>📌 核心公式：</strong>TPOT改善 = [Latency↓贡献 + Throughput↑贡献 + Comm↓贡献] × AE − CO<br>
+  <strong>📌 竞争力锚点：</strong>每年优于业界30% · 移动靶(当季P50×0.7) · 月级竞品监控<br>
+  <strong>📌 使用流程：</strong>① 诊断瓶颈(C_V vs C_gpu vs C_comm) → ② 选择场景权重 → ③ 选择主导因子 → ④ 选择技术 → ⑤ 验证AE/CO → ⑥ 对标业界P50<br>
+  <strong>📌 效能因子与竞争力指标的数学关系：</strong>BE→TPOT↓ · CE→TTFT↓ · VE→TPS↑+$/token↓ · XE→多卡TPOT↓ · AE→有效吞吐<br>
+  <strong>📌 配套文件：</strong><a href="推理压缩技术全景图.html">技术全景图</a> · <a href="验证报告_基准与安全.html">验证报告</a> · <a href="落地手册_集成与成本.html">落地手册</a><br>
+  <strong>📌 数据截止：2026-06-28</strong> · 吸收竞争力指标体系v2.3核心公式
+</div>
+
+</div>
+</body>
+</html>

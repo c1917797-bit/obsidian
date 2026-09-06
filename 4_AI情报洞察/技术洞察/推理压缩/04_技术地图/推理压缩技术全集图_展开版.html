@@ -1,0 +1,1940 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>推理压缩技术全集图 — 展开版 v1.0</title>
+<style>
+  :root {
+    --bg: #0a0e1a;
+    --surface: #131927;
+    --surface2: #1c2333;
+    --surface3: #283049;
+    --border: #2d3748;
+    --text: #e2e8f0;
+    --text-dim: #8b95a8;
+    --accent: #60a5fa;
+    --c-mature: #22c55e;
+    --c-rising: #eab308;
+    --c-new: #f97316;
+    --c-blank: #a78bfa;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    font-size: 13px;
+  }
+  header {
+    background: linear-gradient(135deg, #0c1f14, #1f1908 50%, #1a0c20);
+    padding: 28px 28px;
+  }
+  header h1 { font-size: 22px; color: #fff; margin-bottom: 6px; }
+  header .sub { font-size: 12px; color: rgba(255,255,255,0.7); margin-bottom: 14px; }
+  header .legend { display: flex; gap: 16px; flex-wrap: wrap; font-size: 11px; }
+  header .legend span { display: flex; align-items: center; gap: 4px; color: rgba(255,255,255,0.85); }
+  header .legend .dot { width: 10px; height: 10px; border-radius: 3px; }
+
+  .content { max-width: 1500px; margin: 0 auto; padding: 20px 28px 80px; }
+
+  /* 对象section */
+  .obj-section {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    margin-bottom: 20px;
+    overflow: hidden;
+  }
+  .obj-hdr {
+    padding: 16px 20px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    border-bottom: 1px solid var(--border);
+  }
+  .obj-icon {
+    width: 44px; height: 44px;
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 22px; flex-shrink: 0;
+  }
+  .obj-title { flex: 1; }
+  .obj-title .name { font-size: 17px; font-weight: 700; }
+  .obj-title .meta { font-size: 12px; color: var(--text-dim); margin-top: 2px; }
+  .obj-badge {
+    font-size: 11px; padding: 3px 10px; border-radius: 12px; font-weight: 600;
+  }
+
+  /* 技术行 */
+  .tech-row {
+    display: grid;
+    grid-template-columns: 140px 1fr;
+    border-top: 1px solid rgba(255,255,255,0.04);
+  }
+  .tech-label {
+    padding: 16px 14px;
+    border-right: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background: rgba(255,255,255,0.02);
+  }
+  .tech-label .tname { font-size: 14px; font-weight: 700; }
+  .tech-label .ten { font-size: 10px; color: var(--text-dim); }
+  .tech-label .tcount { font-size: 11px; margin-top: 6px; }
+  .tech-label .ttrl {
+    font-size: 9px; font-weight: 700; padding: 1px 6px; border-radius: 3px;
+    display: inline-block; margin-top: 4px; width: fit-content;
+  }
+  .tech-label .tarrow { font-size: 13px; font-weight: 700; margin-top: 6px; }
+
+  /* 技术内容 */
+  .tech-content {
+    padding: 14px 16px;
+  }
+  .tech-trend {
+    font-size: 11px;
+    color: var(--text-dim);
+    margin-bottom: 12px;
+    padding: 6px 12px;
+    background: rgba(96,165,250,0.05);
+    border-radius: 6px;
+    border-left: 3px solid var(--accent);
+  }
+  .tech-trend strong { color: var(--accent); }
+
+  /* 子技术网格 */
+  .sub-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 8px;
+  }
+  .sub-card {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 10px 12px;
+    transition: all 0.15s;
+  }
+  .sub-card:hover {
+    border-color: var(--accent);
+    transform: translateY(-1px);
+  }
+  .sub-card.blank {
+    border-color: rgba(167,139,250,0.3);
+    background: rgba(167,139,250,0.04);
+  }
+  .sub-name {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--accent);
+    margin-bottom: 4px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .sub-name .cnt {
+    font-size: 10px;
+    color: var(--text-dim);
+    font-weight: 400;
+  }
+  .sub-desc {
+    font-size: 11px;
+    color: var(--text-dim);
+    line-height: 1.5;
+    margin-bottom: 6px;
+  }
+  .sub-papers {
+    font-size: 10px;
+    color: var(--text);
+    line-height: 1.6;
+  }
+  .sub-papers .paper {
+    display: block;
+    padding: 1px 0;
+  }
+  .sub-papers .paper .pn { font-weight: 600; }
+  .sub-papers .paper .yr { color: var(--text-dim); font-size: 9px; }
+  .sub-papers .paper .pm {
+    font-size: 9px; color: var(--c-mature); background: rgba(34,197,94,0.1);
+    padding: 0 4px; border-radius: 3px; margin-left: 4px;
+  }
+  .sub-papers .blank-note {
+    color: var(--c-blank);
+    font-style: italic;
+  }
+
+  .section-h2 {
+    font-size: 18px; font-weight: 700; color: var(--accent);
+    margin: 32px 0 14px; padding-bottom: 8px; border-bottom: 2px solid var(--border);
+  }
+  .note {
+    background: rgba(96,165,250,0.05); border: 1px solid rgba(96,165,250,0.15);
+    border-radius: 10px; padding: 14px 18px; margin-bottom: 16px;
+    font-size: 12px; color: var(--text-dim); line-height: 1.8;
+  }
+  .note strong { color: var(--accent); }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>🗺️ 推理压缩技术全集图 — 展开版</h1>
+  <div class="sub">4对象 × 5技术 × 子技术层 · 每个技术点的发展趋势 · v1.0 / 2026-06</div>
+  <div class="legend">
+    <span><div class="dot" style="background:var(--c-mature)"></div>已成熟</span>
+    <span><div class="dot" style="background:var(--c-rising)"></div>上升期</span>
+    <span><div class="dot" style="background:var(--c-new)"></div>新兴</span>
+    <span><div class="dot" style="background:var(--c-blank)"></div>空白</span>
+  </div>
+</header>
+
+<div class="content">
+
+<div class="note">
+  <strong>结构：</strong>4个对象（参数/激活/KV/通信）× 5个技术（量化/剪枝/稀疏/蒸馏/低秩）= 20格。<br>
+  <strong>每格展开到子技术层：</strong>每个技术点按其核心分类轴细分为2-6个子方向，标注代表论文和发展趋势。<br>
+  <strong>趋势标注：</strong>每格有<strong>演进方向</strong>（技术往哪里走）+ 子技术的<strong>成熟度</strong>。<br><br>
+  <strong>⚠️ 方法论局限（蓝军12/14挑战）：</strong><br>
+  1. <strong>循环论证风险</strong>：用4×5分类筛选论文→用筛选结果证明分类完备。可能有不属于20格的压缩技术被系统性遗漏。<br>
+  2. <strong>MECE不完全</strong>："通用效率"与其他对象不正交；5方法遗漏了NAS/混合精度训练；多对象论文(28.6%)交叉计数。<br>
+  3. <strong>反共识提醒</strong>："参数压缩已死"可能过早(ShortGPT 139引用)；"KV×蒸馏是机会"也可能是方向本身不可行。<br>
+  4. <strong>引用数偏差</strong>：ICLR'25论文仅1年引用积累，高引用偏向"易follow"的工作。<br><br>
+  <strong>⚠️ 纯压缩 vs 配套技术（重要区分）：</strong><br>
+  本图的<strong>4×5=20格核心矩阵只含纯压缩技术</strong>（量化/剪枝/稀疏/蒸馏/低秩 × 参数/激活/KV/通信）。<br>
+  但图中<strong>同时包含配套系统优化技术</strong>（PagedAttention/FlashAttention/连续批处理/投机解码等），这些<strong>不减少数据量，不是压缩</strong>，标注为⚠️。<br>
+  架构级技术（MLA/NSA/GQA）标注为"避免产生"，它们从设计上减少KV而非压缩已有KV。<br><br>
+  <strong>📌 配套文件：</strong>本图是<strong>导航地图</strong>。落地决策请参考配套的<strong>《验证报告》</strong>（基准+安全+UX+模型规模+多租户）和<strong>《落地手册》</strong>（集成+成本+依赖+能耗+维护）。<br>
+  <strong>📌 统一评级：</strong>三文件共用P-Level评级体系（P-Prod/P-Pilot/P-POC/P-Research/P-Void），详见<a href="验证报告_基准与安全.html">验证报告第五章</a>。<br>
+  <strong>📌 数据截止：2026-06-28</strong> | 论文基于2025顶会+arXiv补充 | 精度数据基于Llama-3系列 | 框架基于vLLM 0.6+
+</div>
+
+<!-- ================================================================ -->
+<!-- 对象1: 参数 -->
+<div class="obj-section">
+  <div class="obj-hdr">
+    <div class="obj-icon" style="background:rgba(34,197,94,0.15)">📦</div>
+    <div class="obj-title">
+      <div class="name">参数（权重）</div>
+      <div class="meta">1,829篇 · 场景：端侧部署/模型瘦身 · 红海成熟</div>
+    </div>
+    <span class="obj-badge" style="background:rgba(34,197,94,0.15);color:var(--c-mature)">全行已成熟</span>
+  </div>
+
+  <!-- 参数×量化 -->
+  <div class="tech-row">
+    <div class="tech-label">
+      <div class="tname">量化</div>
+      <div class="ten">Quantization</div>
+      <div class="tcount">465篇</div>
+      <span class="ttrl" style="background:rgba(34,197,94,0.2);color:var(--c-mature)">TRL5</span>
+      <div class="tarrow" style="color:var(--c-mature)">→ 平稳</div>
+    </div>
+    <div class="tech-content">
+      <div class="tech-trend"><strong>趋势（基于465篇论文数据）：</strong>层冗余发现(ShortGPT 139引用)→旋转量化(SpinQuant 87引用)→精度Scaling Laws(24引用,理论)→扩散模型量化(Q-DiT 28引用)→EfficientQAT(37引用)<br><strong>演进方向：</strong>纯PTQ→旋转预处理→理论边界→跨域(扩散/MoE)</div>
+      <div class="sub-grid">
+        <div class="sub-card">
+          <div class="sub-name">训练后量化 PTQ <span class="cnt">主流</span></div>
+          <div class="sub-desc">模型训练完成后直接量化，无需重训练</div>
+          <div class="sub-papers">
+            <span class="paper"><span class="pn">GPTQ</span> <span class="yr">NeurIPS'23</span> <span class="pm">INT4 &lt;1%</span></span>
+            <span class="paper"><span class="pn">AWQ</span> <span class="yr">MLSys'24</span> <span class="pm">精度最优</span></span>
+            <span class="paper"><span class="pn">GGUF</span> <span class="yr">2024</span> <span class="pm">端侧通用</span></span>
+          </div>
+        </div>
+        <div class="sub-card">
+          <div class="sub-name">量化感知训练 QAT <span class="cnt">探索</span></div>
+          <div class="sub-desc">训练中模拟量化噪声，精度更高</div>
+          <div class="sub-papers">
+            <span class="paper"><span class="pn">LLM-QAT</span> <span class="yr">2024</span></span>
+            <span class="paper"><span class="pn">BitDistiller</span> <span class="yr">2024</span></span>
+          </div>
+        </div>
+        <div class="sub-card">
+          <div class="sub-name">混合精度 <span class="cnt">成熟</span></div>
+          <div class="sub-desc">outlier高精度+其余低精度</div>
+          <div class="sub-papers">
+            <span class="paper"><span class="pn">LLM.int8()</span> <span class="yr">NeurIPS'22</span></span>
+          </div>
+        </div>
+        <div class="sub-card">
+          <div class="sub-name">旋转量化 <span class="cnt">热点</span></div>
+          <div class="sub-desc">学习旋转矩阵使权重更易量化</div>
+          <div class="sub-papers">
+            <span class="paper"><span class="pn">SpinQuant</span> <span class="yr">ICLR'25</span> <span class="pm">87引用</span></span>
+            <span class="paper"><span class="pn">QuaRot</span> <span class="yr">2024</span></span>
+            <span class="paper"><span class="pn">SliM-LLM</span> <span class="yr">ICML'25</span> <span class="pm">混合精度</span></span>
+          </div>
+        </div>
+        <div class="sub-card">
+          <div class="sub-name">激活感知PTQ <span class="cnt">上升</span></div>
+          <div class="sub-desc">注意力感知Hessian，层间依赖建模</div>
+          <div class="sub-papers">
+            <span class="paper"><span class="pn">Attn-aware PTQ</span> <span class="yr">ICLR'25</span></span>
+            <span class="paper"><span class="pn">EfficientQAT</span> <span class="yr">ICLR'25</span> <span class="pm">37引用</span></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 参数×剪枝 -->
+  <div class="tech-row">
+    <div class="tech-label">
+      <div class="tname">剪枝</div>
+      <div class="ten">Pruning</div>
+      <div class="tcount">519篇</div>
+      <span class="ttrl" style="background:rgba(34,197,94,0.2);color:var(--c-mature)">TRL5</span>
+      <div class="tarrow" style="color:var(--c-mature)">→ 平稳</div>
+    </div>
+    <div class="tech-content">
+      <div class="tech-trend"><strong>趋势（基于519篇论文数据）：</strong>层冗余剪枝(ShortGPT 139引用,层跳过)→深层冗余(Deeper Layers 90引用)→检索头剪枝(Retrieval Head 51引用)→视觉token剪枝(SparseVLM 43引用)→多模态token(LLaVA-PruMerge 117引用)<br><strong>演进方向：</strong>权重剪枝→层剪枝→头类型差异化→多模态token</div>
+      <div class="sub-grid">
+        <div class="sub-card">
+          <div class="sub-name">损失感知剪枝 <span class="cnt">工业标配</span></div>
+          <div class="sub-desc">评估移除对输出的影响（Hessian/OBQ）</div>
+          <div class="sub-papers">
+            <span class="paper"><span class="pn">SparseGPT</span> <span class="yr">ICML'23</span> <span class="pm">50%无重训</span></span>
+            <span class="paper"><span class="pn">Wanda</span> <span class="yr">ICLR'24</span> <span class="pm">|W|×|X|</span></span>
+          </div>
+        </div>
+        <div class="sub-card">
+          <div class="sub-name">结构化剪枝 <span class="cnt">成熟</span></div>
+          <div class="sub-desc">整通道/整头移除，硬件友好</div>
+          <div class="sub-papers">
+            <span class="paper"><span class="pn">LLM-Pruner</span> <span class="yr">NeurIPS'23</span></span>
+            <span class="paper"><span class="pn">GQA/MQA</span> <span class="yr">2023</span> <span class="pm">Llama标配</span></span>
+          </div>
+        </div>
+        <div class="sub-card">
+          <div class="sub-name">可学习剪枝 <span class="cnt">探索</span></div>
+          <div class="sub-desc">训练中学习mask</div>
+          <div class="sub-papers">
+            <span class="paper"><span class="pn">Compresso</span> <span class="yr">2024</span></span>
+          </div>
+        </div>
+        <div class="sub-card">
+          <div class="sub-name">层剪枝/层跳过 <span class="cnt">热点</span></div>
+          <div class="sub-desc">移除冗余层（深层往往冗余度高）</div>
+          <div class="sub-papers">
+            <span class="paper"><span class="pn">ShortGPT</span> <span class="yr">ICLR'25</span> <span class="pm">139引用 最高</span></span>
+            <span class="paper"><span class="pn">Deeper Layers</span> <span class="yr">ICLR'25</span> <span class="pm">90引用</span></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 参数×稀疏 -->
+  <div class="tech-row">
+    <div class="tech-label">
+      <div class="tname">稀疏化</div>
+      <div class="ten">Sparsification</div>
+      <div class="tcount">311篇</div>
+      <span class="ttrl" style="background:rgba(34,197,94,0.2);color:var(--c-mature)">TRL5</span>
+      <div class="tarrow" style="color:var(--c-mature)">→ 平稳</div>
+    </div>
+    <div class="tech-content">
+      <div class="tech-trend"><strong>趋势（基于311篇论文数据）：</strong>2:4硬件原生已成标准→稀疏+量化联合(SparseQuant 8x)→结构化稀疏(LLM-Pruner)→MoE专家稀疏<br><strong>演进方向：</strong>非结构化→半结构化2:4→联合量化→MoE专家</div>
+      <div class="sub-grid">
+        <div class="sub-card">
+          <div class="sub-name">半结构化 2:4 <span class="cnt">硬件原生</span></div>
+          <div class="sub-desc">每4个中2个非零，NVIDIA Ampere+支持</div>
+          <div class="sub-papers">
+            <span class="paper"><span class="pn">SparseGPT 2:4</span> <span class="yr">2024</span></span>
+            <span class="paper"><span class="pn">Wanda 2:4</span> <span class="yr">2024</span></span>
+          </div>
+        </div>
+        <div class="sub-card">
+          <div class="sub-name">非结构化 <span class="cnt">成熟</span></div>
+          <div class="sub-desc">任意位置置零，压缩比最高</div>
+          <div class="sub-papers">
+            <span class="paper"><span class="pn">Magnitude Pruning</span> <span class="yr">经典</span></span>
+          </div>
+        </div>
+        <div class="sub-card">
+          <div class="sub-name">稀疏+量化联合 <span class="cnt">新兴</span></div>
+          <div class="sub-desc">同时做稀疏和量化，叠加压缩</div>
+          <div class="sub-papers">
+            <span class="paper"><span class="pn">SparseQuant</span> <span class="yr">2024</span> <span class="pm">8x</span></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 参数×蒸馏 -->
+  <div class="tech-row">
+    <div class="tech-label">
+      <div class="tname">蒸馏</div>
+      <div class="ten">Distillation</div>
+      <div class="tcount">311篇</div>
+      <span class="ttrl" style="background:rgba(34,197,94,0.2);color:var(--c-mature)">TRL5</span>
+      <div class="tarrow" style="color:var(--c-mature)">→ 平稳</div>
+    </div>
+    <div class="tech-content">
+      <div class="tech-trend"><strong>趋势（基于311篇论文数据）：</strong>logit蒸馏(MiniLLM)→量化恢复(BitDistiller/LLM-QAT)→MoE蒸馏(LLaVA-MoD 11引用,MoE知识蒸馏)→CoT推理蒸馏<br><strong>演进方向：</strong>经典KD→量化恢复→MoE模型压缩→推理链蒸馏</div>
+      <div class="sub-grid">
+        <div class="sub-card">
+          <div class="sub-name">白盒logit蒸馏 <span class="cnt">成熟</span></div>
+          <div class="sub-desc">匹配教师输出分布(KL散度)</div>
+          <div class="sub-papers">
+            <span class="paper"><span class="pn">MiniLLM</span> <span class="yr">ICLR'24</span></span>
+            <span class="paper"><span class="pn">GKD</span> <span class="yr">2023</span></span>
+          </div>
+        </div>
+        <div class="sub-card">
+          <div class="sub-name">特征层蒸馏 <span class="cnt">成熟</span></div>
+          <div class="sub-desc">匹配中间层隐状态/注意力</div>
+          <div class="sub-papers">
+            <span class="paper"><span class="pn">MiniLM</span> <span class="yr">2023</span> <span class="pm">经典</span></span>
+          </div>
+        </div>
+        <div class="sub-card">
+          <div class="sub-name">黑盒API蒸馏 <span class="cnt">广泛</span></div>
+          <div class="sub-desc">仅用教师输出（GPT-4 API蒸馏）</div>
+          <div class="sub-papers">
+            <span class="paper"><span class="pn">Alpaca/Vicuna</span> <span class="yr">2023</span></span>
+          </div>
+        </div>
+        <div class="sub-card">
+          <div class="sub-name">量化恢复蒸馏 <span class="cnt">热点</span></div>
+          <div class="sub-desc">蒸馏恢复量化后精度损失</div>
+          <div class="sub-papers">
+            <span class="paper"><span class="pn">BitDistiller</span> <span class="yr">2024</span></span>
+            <span class="paper"><span class="pn">LLM-QAT</span> <span class="yr">2024</span></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 参数×低秩 -->
+  <div class="tech-row">
+    <div class="tech-label">
+      <div class="tname">低秩</div>
+      <div class="ten">Low-Rank</div>
+      <div class="tcount">601篇</div>
+      <span class="ttrl" style="background:rgba(34,197,94,0.2);color:var(--c-mature)">TRL5</span>
+      <div class="tarrow" style="color:var(--c-mature)">→ 平稳</div>
+    </div>
+    <div class="tech-content">
+      <div class="tech-trend"><strong>趋势（基于601篇论文数据，最大格子）：</strong>LoRA(126篇涉及,工业标配)→高秩更新(MoRA 38引用,突破低秩限制)→激活感知SVD(ASVD 53引用/SVD-LLM 37引用)→层冗余低秩(Deeper Layers 90引用)<br><strong>演进方向：</strong>低秩适配→高秩更新→激活感知分解→层级冗余</div>
+      <div class="sub-grid">
+        <div class="sub-card">
+          <div class="sub-name">适配器微调 LoRA系 <span class="cnt">工业标配</span></div>
+          <div class="sub-desc">ΔW=BA，参数高效微调</div>
+          <div class="sub-papers">
+            <span class="paper"><span class="pn">LoRA</span> <span class="yr">2021</span> <span class="pm">标配</span></span>
+            <span class="paper"><span class="pn">QLoRA</span> <span class="yr">NeurIPS'23</span> <span class="pm">65B单卡</span></span>
+            <span class="paper"><span class="pn">AdaLoRA</span> <span class="yr">ICLR'23</span></span>
+          </div>
+        </div>
+        <div class="sub-card">
+          <div class="sub-name">直接SVD <span class="cnt">成熟</span></div>
+          <div class="sub-desc">对权重矩阵直接SVD截断</div>
+          <div class="sub-papers">
+            <span class="paper"><span class="pn">FisherSVD</span> <span class="yr">2022</span></span>
+          </div>
+        </div>
+        <div class="sub-card">
+          <div class="sub-name">激活感知SVD <span class="cnt">上升</span></div>
+          <div class="sub-desc">用激活分布指导SVD截断，比纯权重SVD精度更高</div>
+          <div class="sub-papers">
+            <span class="paper"><span class="pn">ASVD</span> <span class="yr">ICLR'25</span> <span class="pm">53引用</span></span>
+            <span class="paper"><span class="pn">SVD-LLM</span> <span class="yr">ICLR'25</span> <span class="pm">37引用 截断感知</span></span>
+          </div>
+        </div>
+        <div class="sub-card">
+          <div class="sub-name">高秩更新 <span class="cnt">新兴</span></div>
+          <div class="sub-desc">突破LoRA低秩限制，用高秩更新</div>
+          <div class="sub-papers">
+            <span class="paper"><span class="pn">MoRA</span> <span class="yr">ICLR'25</span> <span class="pm">38引用</span></span>
+          </div>
+        </div>
+        <div class="sub-card">
+          <div class="sub-name">混合量化低秩 <span class="cnt">成熟</span></div>
+          <div class="sub-desc">量化+低秩联合</div>
+          <div class="sub-papers">
+            <span class="paper"><span class="pn">LoftQ</span> <span class="yr">2024</span></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ================================================================ -->
+<!-- 对象2: 激活 -->
+<div class="obj-section">
+  <div class="obj-hdr">
+    <div class="obj-icon" style="background:rgba(234,179,8,0.15)">⚡</div>
+    <div class="obj-title">
+      <div class="name">激活值</div>
+      <div class="meta">749篇 · 场景：多模态/高并发推理 · 热点</div>
+    </div>
+    <span class="obj-badge" style="background:rgba(234,179,8,0.15);color:var(--c-rising)">半成熟半上升</span>
+  </div>
+
+  <!-- 激活×量化 -->
+  <div class="tech-row">
+    <div class="tech-label">
+      <div class="tname">量化</div>
+      <div class="ten">Quantization</div>
+      <div class="tcount">197篇</div>
+      <span class="ttrl" style="background:rgba(34,197,94,0.2);color:var(--c-mature)">TRL4-5</span>
+      <div class="tarrow" style="color:var(--c-mature)">→ 平稳</div>
+    </div>
+    <div class="tech-content">
+      <div class="tech-trend"><strong>趋势（基于197篇论文数据）：</strong>旋转量化(SpinQuant 87引用)→扩散模型量化(Q-DiT 28引用/SVDQuant 18引用)→纯整数推理(I-LLM 16引用)→物理容量定律(Physics 62引用,理论)<br><strong>演进方向：</strong>outlier平滑→旋转预处理→纯整数→跨域(扩散)</div>
+      <div class="sub-grid">
+        <div class="sub-card">
+          <div class="sub-name">outlier平滑迁移 <span class="cnt">成熟</span></div>
+          <div class="sub-desc">将outlier平滑到权重上</div>
+          <div class="sub-papers">
+            <span class="paper"><span class="pn">SmoothQuant</span> <span class="yr">ICML'23</span> <span class="pm">W8A8无损</span></span>
+            <span class="paper"><span class="pn">OmniQuant</span> <span class="yr">2024</span></span>
+          </div>
+        </div>
+        <div class="sub-card">
+          <div class="sub-name">outlier分离 <span class="cnt">成熟</span></div>
+          <div class="sub-desc">高精度保留outlier通道</div>
+          <div class="sub-papers">
+            <span class="paper"><span class="pn">LLM.int8()</span> <span class="yr">NeurIPS'22</span></span>
+            <span class="paper"><span class="pn">ZeroQuant</span> <span class="yr">2024</span></span>
+          </div>
+        </div>
+        <div class="sub-card">
+          <div class="sub-name">FP8激活 <span class="cnt">新兴</span></div>
+          <div class="sub-desc">H100原生FP8</div>
+          <div class="sub-papers">
+            <span class="paper"><span class="pn">FP8 Activation</span> <span class="yr">2025</span> <span class="pm">H100原生</span></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 激活×剪枝 -->
+  <div class="tech-row">
+    <div class="tech-label">
+      <div class="tname">剪枝</div>
+      <div class="ten">Pruning</div>
+      <div class="tcount">194篇</div>
+      <span class="ttrl" style="background:rgba(34,197,94,0.2);color:var(--c-mature)">TRL4-5</span>
+      <div class="tarrow" style="color:var(--c-mature)">→ 平稳</div>
+    </div>
+    <div class="tech-content">
+      <div class="tech-trend"><strong>趋势（基于194篇论文数据）：</strong>多模态token减少(LLaVA-PruMerge 117引用,最高引用)→视觉token稀疏(SparseVLM 43引用)→混合精度(SliM-LLM 16引用)→Matryoshka嵌套(33引用)<br><strong>演进方向：</strong>通道剪枝→注意力头(GQA)→多模态token→嵌套表示</div>
+      <div class="sub-grid">
+        <div class="sub-card">
+          <div class="sub-name">注意力头剪枝 <span class="cnt">标配</span></div>
+          <div class="sub-desc">KV头共享/分组</div>
+          <div class="sub-papers">
+            <span class="paper"><span class="pn">GQA（架构级：减少KV头数）</span> <span class="yr">2023</span> <span class="pm">Llama标配</span></span>
+            <span class="paper"><span class="pn">MQA（架构级：减少KV头数）</span> <span class="yr">2023</span></span>
+          </div>
+        </div>
+        <div class="sub-card">
+          <div class="sub-name">通道剪枝 <span class="cnt">成熟</span></div>
+          <div class="sub-desc">移除不重要激活通道</div>
+          <div class="sub-papers">
+            <span class="paper"><span class="pn">Channel Prune</span> <span class="yr">2024</span></span>
+          </div>
+        </div>
+        <div class="sub-card">
+          <div class="sub-name">Token剪枝 <span class="cnt">上升</span></div>
+          <div class="sub-desc">动态移除不重要token（多模态场景）</div>
+          <div class="sub-papers">
+            <span class="paper"><span class="pn">DynamicToken</span> <span class="yr">NeurIPS'23</span></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 激活×稀疏 -->
+  <div class="tech-row">
+    <div class="tech-label">
+      <div class="tname">稀疏化</div>
+      <div class="ten">Sparsification</div>
+      <div class="tcount">396篇</div>
+      <span class="ttrl" style="background:rgba(234,179,8,0.2);color:var(--c-rising)">TRL4</span>
+      <div class="tarrow" style="color:var(--c-rising)">↑ 上升</div>
+    </div>
+    <div class="tech-content">
+      <div class="tech-trend"><strong>趋势（基于395篇论文数据，激活行最大格子）：</strong>多模态token稀疏(LLaVA-PruMerge 117引用)→物理容量定律(Physics 62引用,理论)→JumpReLU SAE(50引用)→RetrievalAttention(26引用,向量检索)→HSR-Enhanced(25引用,哈希)<br><strong>演进方向：</strong>静态稀疏→动态稀疏→MoE激活→内容自适应</div>
+      <div class="sub-grid">
+        <div class="sub-card">
+          <div class="sub-name">动态稀疏 <span class="cnt">主导</span></div>
+          <div class="sub-desc">推理时根据输入动态跳过</div>
+          <div class="sub-papers">
+            <span class="paper"><span class="pn">Dynamic Skip</span> <span class="yr">2024</span> <span class="pm">2x↑</span></span>
+            <span class="paper"><span class="pn">Content-Adaptive</span> <span class="yr">2025</span></span>
+          </div>
+        </div>
+        <div class="sub-card">
+          <div class="sub-name">MoE激活稀疏 <span class="cnt">爆发</span></div>
+          <div class="sub-desc">MoE本身就是激活稀疏</div>
+          <div class="sub-papers">
+            <span class="paper"><span class="pn">Mixtral</span> <span class="yr">2024</span> <span class="pm">生产级</span></span>
+            <span class="paper"><span class="pn">DeepSeek MoE</span> <span class="yr">2025</span></span>
+          </div>
+        </div>
+        <div class="sub-card">
+          <div class="sub-name">结构化稀疏 <span class="cnt">成熟</span></div>
+          <div class="sub-desc">2:4 / Block稀疏</div>
+          <div class="sub-papers">
+            <span class="paper"><span class="pn">2:4 Sparse</span> <span class="yr">2024</span> <span class="pm">NVIDIA</span></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 激活×蒸馏 -->
+  <div class="tech-row">
+    <div class="tech-label">
+      <div class="tname">蒸馏</div>
+      <div class="ten">Distillation</div>
+      <div class="tcount">68篇</div>
+      <span class="ttrl" style="background:rgba(34,197,94,0.2);color:var(--c-mature)">TRL4</span>
+      <div class="tarrow" style="color:var(--c-mature)">→ 平稳</div>
+    </div>
+    <div class="tech-content">
+      <div class="tech-trend"><strong>趋势（基于68篇论文数据）：</strong>扩散模型蒸馏(Hash3D 11引用/TSD-SR 8引用)→低秩权重蒸馏(GaLore→WeLore 17引用)→扩散量化蒸馏(DilateQuant 2引用)<br><strong>演进方向：</strong>经典分布匹配→扩散步数压缩→量化恢复→跨域(扩散)</div>
+      <div class="sub-grid">
+        <div class="sub-card">
+          <div class="sub-name">激活分布匹配 <span class="cnt">成熟</span></div>
+          <div class="sub-desc">小模型激活模仿大模型</div>
+          <div class="sub-papers">
+            <span class="paper"><span class="pn">MiniLLM</span> <span class="yr">2024</span></span>
+          </div>
+        </div>
+        <div class="sub-card">
+          <div class="sub-name">层间激活蒸馏 <span class="cnt">成熟</span></div>
+          <div class="sub-desc">不同层之间激活传递</div>
+          <div class="sub-papers">
+            <span class="paper"><span class="pn">LayerKD</span> <span class="yr">2023</span></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 激活×低秩 -->
+  <div class="tech-row">
+    <div class="tech-label">
+      <div class="tname">低秩</div>
+      <div class="ten">Low-Rank</div>
+      <div class="tcount">170篇</div>
+      <span class="ttrl" style="background:rgba(234,179,8,0.2);color:var(--c-rising)">TRL3</span>
+      <div class="tarrow" style="color:var(--c-rising)">↑ 上升</div>
+    </div>
+    <div class="tech-content">
+      <div class="tech-trend"><strong>趋势（基于170篇论文数据）：</strong>激活感知SVD(ASVD 53引用)→JumpReLU SAE低秩(50引用)→输入稀疏时间(Discrepancy 29引用)→扩散模型低秩(SVDQuant 18引用)<br><strong>演进方向：</strong>注意力低秩→激活SVD→稀疏+低秩联合→扩散低秩</div>
+      <div class="sub-grid">
+        <div class="sub-card">
+          <div class="sub-name">注意力低秩 <span class="cnt">上升</span></div>
+          <div class="sub-desc">注意力矩阵低秩近似</div>
+          <div class="sub-papers">
+            <span class="paper"><span class="pn">Linear Attention</span> <span class="yr">2024</span></span>
+          </div>
+        </div>
+        <div class="sub-card">
+          <div class="sub-name">激活SVD <span class="cnt">探索</span></div>
+          <div class="sub-desc">推理时激活矩阵分解</div>
+          <div class="sub-papers">
+            <span class="paper"><span class="pn">ActSVD</span> <span class="yr">2025</span></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ================================================================ -->
+<!-- 对象3: KV Cache -->
+<div class="obj-section">
+  <div class="obj-hdr">
+    <div class="obj-icon" style="background:rgba(234,179,8,0.15)">💾</div>
+    <div class="obj-title">
+      <div class="name">KV Cache</div>
+      <div class="meta">477篇 · 场景：Agent多轮/长上下文 · 核心热点</div>
+    </div>
+    <span class="obj-badge" style="background:rgba(234,179,8,0.15);color:var(--c-rising)">全行上升</span>
+  </div>
+
+  <!-- KV×量化 -->
+  <div class="tech-row">
+    <div class="tech-label">
+      <div class="tname">量化</div>
+      <div class="ten">Quantization</div>
+      <div class="tcount">74篇</div>
+      <span class="ttrl" style="background:rgba(234,179,8,0.2);color:var(--c-rising)">TRL3</span>
+      <div class="tarrow" style="color:var(--c-rising)">↑↑ 快速上升</div>
+    </div>
+    <div class="tech-content">
+      <div class="tech-trend"><strong>趋势（基于74篇论文数据）：</strong>旋转量化(SpinQuant 87引用) → 检索头感知量化(DuoAttention 34引用) → Channel维度剪枝(ThinK 18引用) → 1-bit JL变换(QJL 14引用,零开销) → 稀疏编码字典(Lexico,~4K原子) → 多模态KV量化(ZipVL 16引用)<br><strong>演进方向：</strong>均匀精度→结构感知→极低bit→编码替代</div>
+      <div class="sub-grid">
+        <div class="sub-card">
+          <div class="sub-name">非对称粒度 <span class="cnt">突破</span></div>
+          <div class="sub-desc">K per-channel + V per-token</div>
+          <div class="sub-papers">
+            <span class="paper"><span class="pn">KIVI</span> <span class="yr">ICLR'24</span> <span class="pm">2bit可行</span></span>
+          </div>
+        </div>
+        <div class="sub-card">
+          <div class="sub-name">RoPE感知 <span class="cnt">2026突破</span></div>
+          <div class="sub-desc">RoPE频域块自适应比特分配</div>
+          <div class="sub-papers">
+            <span class="paper"><span class="pn">Block-GTQ</span> <span class="yr">2026</span> <span class="pm">AIME 51.7</span></span>
+            <span class="paper"><span class="pn">RoPE-KV</span> <span class="yr">2025</span></span>
+          </div>
+        </div>
+        <div class="sub-card">
+          <div class="sub-name">混合精度 <span class="cnt">上升</span></div>
+          <div class="sub-desc">FP16/INT8/INT4非均匀混合</div>
+          <div class="sub-papers">
+            <span class="paper"><span class="pn">UltraQuant</span> <span class="yr">2026</span> <span class="pm">FP4 AMD</span></span>
+            <span class="paper"><span class="pn">KV Pareto</span> <span class="yr">2025</span> <span class="pm">68-78%↓</span></span>
+          </div>
+        </div>
+        <div class="sub-card">
+          <div class="sub-name">极端低bit ≤2 <span class="cnt">探索</span></div>
+          <div class="sub-desc">JL变换/熵编码</div>
+          <div class="sub-papers">
+            <span class="paper"><span class="pn">HyperQuant</span> <span class="yr">2026</span> <span class="pm">1.7bps</span></span>
+            <span class="paper"><span class="pn">QJL</span> <span class="yr">2024</span> <span class="pm">1-bit</span></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- KV×剪枝 -->
+  <div class="tech-row">
+    <div class="tech-label">
+      <div class="tname">剪枝</div>
+      <div class="ten">Pruning</div>
+      <div class="tcount">83篇</div>
+      <span class="ttrl" style="background:rgba(234,179,8,0.2);color:var(--c-rising)">TRL3</span>
+      <div class="tarrow" style="color:var(--c-rising)">↑ 上升</div>
+    </div>
+    <div class="tech-content">
+      <div class="tech-trend"><strong>趋势（基于83篇论文数据）：</strong>检索头理论(Retrieval Head 51引用, <5%头是检索头) → 检索头vs流式头(DuoAttention 34引用) → 动态Token剪枝(LazyLLM 25引用) → Channel维度(ThinK 18引用,新维度) → RAG上下文剪枝(Provence)<br><strong>演进方向：</strong>Token剪枝→头类型差异化→Channel维度→任务感知</div>
+      <div class="sub-grid">
+        <div class="sub-card">
+          <div class="sub-name">Token级剪枝 <span class="cnt">上升</span></div>
+          <div class="sub-desc">移除不重要token的KV</div>
+          <div class="sub-papers">
+            <span class="paper"><span class="pn">Token Prune</span> <span class="yr">2024</span></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- KV×稀疏 -->
+  <div class="tech-row">
+    <div class="tech-label">
+      <div class="tname">稀疏化</div>
+      <div class="ten">Sparsification</div>
+      <div class="tcount">160篇</div>
+      <span class="ttrl" style="background:rgba(234,179,8,0.2);color:var(--c-rising)">TRL4-5</span>
+      <div class="tarrow" style="color:var(--c-rising)">↑ 上升</div>
+    </div>
+    <div class="tech-content">
+      <div class="tech-trend"><strong>趋势（基于160篇论文，KV行最大格子）：</strong>固定规则→重要性评分→语义聚类→可学习→协同共享（成熟度递增方向）<br><strong>⚠️ 8个正交压缩维度（蓝军挑战补充）：</strong>Token(H2O) / Channel(ThinK) / Head(DuoAttention) / Layer(PyramidKV) / Bit(KIVI) / Storage(ShadowKV GPU→CPU) / Compute-Reuse(MAC-Attention避免重算) / Architecture-Native(MLA/NSA消除KV)<br><strong>💡 叠加效果：</strong>Token×Channel×Head×Bit理想SOTA≈300x（经典篇推导）<br><strong>新增论文（基于数据）：</strong>SeerAttention(14引用,可学习块级稀疏MoE门控) / MagicPIG(14引用,LSH采样近似) / MoA(21引用,混合稀疏注意力自动压缩) / SCBench(8引用,KV全生命周期基准)</div>
+      <div class="sub-grid">
+        <div class="sub-card">
+          <div class="sub-name">固定规则 <span class="cnt">成熟</span></div>
+          <div class="sub-desc">保留sink+最近token</div>
+          <div class="sub-papers">
+            <span class="paper"><span class="pn">StreamingLLM</span> <span class="yr">NeurIPS'24</span> <span class="pm">无限长度</span></span>
+          </div>
+        </div>
+        <div class="sub-card">
+          <div class="sub-name">重要性评分 <span class="cnt">活跃</span></div>
+          <div class="sub-desc">按token对未来贡献评分</div>
+          <div class="sub-papers">
+            <span class="paper"><span class="pn">H2O</span> <span class="yr">NeurIPS'23</span> <span class="pm">Heavy-Hitter</span></span>
+            <span class="paper"><span class="pn">R-KV</span> <span class="yr">2025</span> <span class="pm">6.6x↑</span></span>
+            <span class="paper"><span class="pn">CONF-KV</span> <span class="yr">2025</span> <span class="pm">NIAH 91.4%</span></span>
+          </div>
+        </div>
+        <div class="sub-card">
+          <div class="sub-name">语义聚类 <span class="cnt">活跃</span></div>
+          <div class="sub-desc">按语义相似聚类选锚点</div>
+          <div class="sub-papers">
+            <span class="paper"><span class="pn">SnapKV</span> <span class="yr">ICML'24</span> <span class="pm">8.2x↑</span></span>
+          </div>
+        </div>
+        <div class="sub-card">
+          <div class="sub-name">可学习 <span class="cnt">前沿</span></div>
+          <div class="sub-desc">神经网络学习淘汰决策</div>
+          <div class="sub-papers">
+            <span class="paper"><span class="pn">TRIM-KV</span> <span class="yr">2025</span> <span class="pm">超越full</span></span>
+          </div>
+        </div>
+        <div class="sub-card">
+          <div class="sub-name">协同共享 <span class="cnt">机会</span></div>
+          <div class="sub-desc">跨查询共享KV</div>
+          <div class="sub-papers">
+            <span class="paper"><span class="pn">Models Take Notes</span> <span class="yr">2026</span> <span class="pm">98.5% hit</span></span>
+          </div>
+        </div>
+        <div class="sub-card">
+          <div class="sub-name">检索头差异化 <span class="cnt">热点</span></div>
+          <div class="sub-desc">区分检索头(保留)和流式头(可删)，按头类型差异化压缩</div>
+          <div class="sub-papers">
+            <span class="paper"><span class="pn">DuoAttention</span> <span class="yr">ICLR'25</span> <span class="pm">34引用</span></span>
+            <span class="paper"><span class="pn">RazorAttention</span> <span class="yr">ICLR'25</span> <span class="pm">23引用</span></span>
+            <span class="paper"><span class="pn">Retrieval Head</span> <span class="yr">ICLR'25</span> <span class="pm">51引用 机制解释</span></span>
+          </div>
+        </div>
+        <div class="sub-card">
+          <div class="sub-name">KV合并（非淘汰） <span class="cnt">新兴</span></div>
+          <div class="sub-desc">不删除KV而是合并相似KV，减少数量但保留信息</div>
+          <div class="sub-papers">
+            <span class="paper"><span class="pn">KV Cache Merging</span> <span class="yr">ICLR'25</span> <span class="pm">23引用</span></span>
+            <span class="paper"><span class="pn">PyramidKV</span> <span class="yr">ICLR'25</span> <span class="pm">38引用 金字塔信息漏斗</span></span>
+            <span class="paper"><span class="pn">MoA</span> <span class="yr">ICLR'25</span> <span class="pm">21引用 混合稀疏注意力</span></span>
+          </div>
+        </div>
+        <div class="sub-card">
+          <div class="sub-name">注意力检索加速 <span class="cnt">热点</span></div>
+          <div class="sub-desc">用向量检索/哈希加速注意力计算，避免全注意力</div>
+          <div class="sub-papers">
+            <span class="paper"><span class="pn">RetrievalAttention</span> <span class="yr">ICLR'25</span> <span class="pm">26引用 向量检索</span></span>
+            <span class="paper"><span class="pn">HSR-Enhanced</span> <span class="yr">ICLR'25</span> <span class="pm">25引用 哈希加速</span></span>
+          </div>
+        </div>
+        <div class="sub-card">
+          <div class="sub-name">两阶段极限压缩 <span class="cnt">2026突破</span></div>
+          <div class="sub-desc">粗粒度永久淘汰+细粒度近似恢复</div>
+          <div class="sub-papers">
+            <span class="paper"><span class="pn">RocketKV</span> <span class="yr">ICML'25</span> <span class="pm">💎400x压缩 NVIDIA</span></span>
+            <span class="paper"><span class="pn">CompressKV</span> <span class="yr">2026</span> <span class="pm">3%KV→97%+ 语义检索头</span></span>
+            <span class="paper"><span class="pn">AttentionPredictor</span> <span class="yr">NeurIPS'25</span> <span class="pm">13x 时序模式预测</span></span>
+          </div>
+        </div>
+        <div class="sub-card">
+          <div class="sub-name">存储分层(GPU→CPU→SSD) <span class="cnt">新维度</span></div>
+          <div class="sub-desc">不删除KV而是溢出到慢速存储，按需加载</div>
+          <div class="sub-papers">
+            <span class="paper"><span class="pn">ShadowKV</span> <span class="yr">ICML'25</span> <span class="pm">6x batch 低秩Key+CPU Value</span></span>
+            <span class="paper"><span class="pn">SpeCache</span> <span class="yr">2025</span> <span class="pm">10x 投机性KV预取</span></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- KV×蒸馏 -->
+  <div class="tech-row">
+    <div class="tech-label">
+      <div class="tname">蒸馏</div>
+      <div class="ten">Distillation</div>
+      <div class="tcount">21篇</div>
+      <span class="ttrl" style="background:rgba(167,139,250,0.2);color:var(--c-blank)">TRL1-2</span>
+      <div class="tarrow" style="color:var(--c-blank)">↑↑ 空白爆发</div>
+    </div>
+    <div class="tech-content">
+      <div class="tech-trend"><strong>趋势（基于21篇论文数据）：</strong>视觉压缩蒸馏(VoCo-LLaMA 34引用,CVPR'25) → Prefill蒸馏(SwiftKV 1引用) → 连续空间蒸馏(KVSculpt 2026,L-BFGS优化+闭式解,KL 3.5-4.1x优于基线) → GQA→MLA架构蒸馏(YouZhi 2026,2.69x并发)<br><strong>💎 KVSculpt是2026新突破：</strong>在连续空间而非离散空间做KV蒸馏，KL散度比传统方法好3.5-4.1x。这可能改变"KV蒸馏=空白"的判断。</div>
+      <div class="sub-grid">
+        <div class="sub-card">
+          <div class="sub-name">Prefill阶段 <span class="cnt">仅1篇</span></div>
+          <div class="sub-desc">Prefill生成完整KV后蒸馏</div>
+          <div class="sub-papers">
+            <span class="paper"><span class="pn">SwiftKV</span> <span class="yr">2024</span></span>
+          </div>
+        </div>
+        <div class="sub-card blank">
+          <div class="sub-name" style="color:var(--c-blank)">Decoding阶段 <span class="cnt">💎 0篇</span></div>
+          <div class="sub-desc">KV累积最严重，但无任何蒸馏方案</div>
+          <div class="sub-papers">
+            <span class="paper blank-note">💎 最高研究空白 — 10/10篇无一涉及</span>
+          </div>
+        </div>
+        <div class="sub-card blank">
+          <div class="sub-name" style="color:var(--c-blank)">跨阶段联合 <span class="cnt">💎 0篇</span></div>
+          <div class="sub-desc">Prefill-Decoding联合蒸馏信号</div>
+          <div class="sub-papers">
+            <span class="paper blank-note">💎 理论空白，开放问题</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- KV×低秩 -->
+  <div class="tech-row">
+    <div class="tech-label">
+      <div class="tname">低秩</div>
+      <div class="ten">Low-Rank</div>
+      <div class="tcount">37篇</div>
+      <span class="ttrl" style="background:rgba(234,179,8,0.2);color:var(--c-rising)">TRL3-5</span>
+      <div class="tarrow" style="color:var(--c-rising)">↑ 上升</div>
+    </div>
+    <div class="tech-content">
+      <div class="tech-trend"><strong>趋势（基于41篇论文数据）：</strong>激活感知SVD(ASVD 53引用) → 低秩Key GPU+Value CPU分层(ShadowKV 6引用,6x batch) → 渐进式低秩压缩(LoRC 5引用) → KV淘汰安全防御(RobustKV 4引用,防越狱)<br><strong>演进方向：</strong>直接SVD→激活感知→存储分层→安全应用</div>
+      <div class="sub-grid">
+        <div class="sub-card">
+          <div class="sub-name">架构级压缩 <span class="cnt">标配</span></div>
+          <div class="sub-desc">从设计上减少KV产生</div>
+          <div class="sub-papers">
+            <span class="paper"><span class="pn">MLA（架构级：避免产生KV）</span> <span class="yr">2024</span> <span class="pm">DeepSeek-V2</span></span>
+            <span class="paper"><span class="pn">GQLA</span> <span class="yr">2025</span></span>
+          </div>
+        </div>
+        <div class="sub-card">
+          <div class="sub-name">自适应Rank <span class="cnt">前沿</span></div>
+          <div class="sub-desc">软阈值+头级rank自适应</div>
+          <div class="sub-papers">
+            <span class="paper"><span class="pn">STAR-KV</span> <span class="yr">2026</span> <span class="pm">75%压缩</span></span>
+          </div>
+        </div>
+        <div class="sub-card">
+          <div class="sub-name">SVD分解 <span class="cnt">探索</span></div>
+          <div class="sub-desc">奇异值分解保留主特征</div>
+          <div class="sub-papers">
+            <span class="paper"><span class="pn">PALU</span> <span class="yr">2024</span></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ================================================================ -->
+<!-- 对象4: 通信 -->
+<div class="obj-section">
+  <div class="obj-hdr">
+    <div class="obj-icon" style="background:rgba(249,115,22,0.15)">🌐</div>
+    <div class="obj-title">
+      <div class="name">通信数据</div>
+      <div class="meta">300篇 · 场景：MoE分布式推理 · 新兴</div>
+    </div>
+    <span class="obj-badge" style="background:rgba(249,115,22,0.15);color:var(--c-new)">新兴+空白</span>
+  </div>
+
+  <!-- 通信×量化 -->
+  <div class="tech-row">
+    <div class="tech-label">
+      <div class="tname">量化</div>
+      <div class="ten">Quantization</div>
+      <div class="tcount">48篇</div>
+      <span class="ttrl" style="background:rgba(249,115,22,0.2);color:var(--c-new)">TRL2-3</span>
+      <div class="tarrow" style="color:var(--c-new)">↑↑ 新兴</div>
+    </div>
+    <div class="tech-content">
+      <div class="tech-trend"><strong>趋势（基于48篇论文数据）：</strong>Expert参数量化(ExpertQuant,首个MoE量化) → MoE量化基准(Examining PTQ for MoE 11引用) → FP8通信(DeepSeek-V3生产级) → 联邦量化压缩(FedComLoc) → shortcut-connected Expert并行(13引用)<br><strong>演进方向：</strong>专家参数量化→基准建立→生产通信→联邦场景</div>
+      <div class="sub-grid">
+        <div class="sub-card">
+          <div class="sub-name">Expert参数量化 <span class="cnt">首个</span></div>
+          <div class="sub-desc">MoE Expert INT4量化</div>
+          <div class="sub-papers">
+            <span class="paper"><span class="pn">ExpertQuant</span> <span class="yr">2025</span> <span class="pm">💎首个MoE量化</span></span>
+          </div>
+        </div>
+        <div class="sub-card">
+          <div class="sub-name">FP8通信 <span class="cnt">生产</span></div>
+          <div class="sub-desc">FP8替代FP16</div>
+          <div class="sub-papers">
+            <span class="paper"><span class="pn">DeepSeek-V3 FP8</span> <span class="yr">2024</span> <span class="pm">生产级</span></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 通信×剪枝 -->
+  <div class="tech-row">
+    <div class="tech-label">
+      <div class="tname">剪枝</div>
+      <div class="ten">Pruning</div>
+      <div class="tcount">50篇</div>
+      <span class="ttrl" style="background:rgba(234,179,8,0.2);color:var(--c-rising)">TRL3</span>
+      <div class="tarrow" style="color:var(--c-rising)">↑ 上升</div>
+    </div>
+    <div class="tech-content">
+      <div class="tech-trend"><strong>趋势：</strong>Expert层级剪枝减少通信 → 边缘MoE协同优化是新兴</div>
+      <div class="sub-grid">
+        <div class="sub-card">
+          <div class="sub-name">Expert层级剪枝 <span class="cnt">上升</span></div>
+          <div class="sub-desc">MoE层级化专家剪枝</div>
+          <div class="sub-papers">
+            <span class="paper"><span class="pn">MosaicPrune</span> <span class="yr">2024</span></span>
+          </div>
+        </div>
+        <div class="sub-card">
+          <div class="sub-name">边缘MoE <span class="cnt">新兴</span></div>
+          <div class="sub-desc">量化+剪枝协同</div>
+          <div class="sub-papers">
+            <span class="paper"><span class="pn">MiniMoE</span> <span class="yr">2025</span></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 通信×稀疏 -->
+  <div class="tech-row">
+    <div class="tech-label">
+      <div class="tname">稀疏化</div>
+      <div class="ten">Sparsification</div>
+      <div class="tcount">86篇</div>
+      <span class="ttrl" style="background:rgba(234,179,8,0.2);color:var(--c-rising)">TRL4</span>
+      <div class="tarrow" style="color:var(--c-rising)">↑ 上升</div>
+    </div>
+    <div class="tech-content">
+      <div class="tech-trend"><strong>趋势：</strong>打破"全复制"范式(FoMoE)是全新方向 → Expert路由优化(DeepEP)已生产 → 分离式推理通信在兴起</div>
+      <div class="sub-grid">
+        <div class="sub-card">
+          <div class="sub-name">Expert路由通信 <span class="cnt">生产</span></div>
+          <div class="sub-desc">MoE All-to-All通信优化</div>
+          <div class="sub-papers">
+            <span class="paper"><span class="pn">DeepEP</span> <span class="yr">2024</span> <span class="pm">DeepSeek生产</span></span>
+            <span class="paper"><span class="pn">C2R</span> <span class="yr">NAACL'25</span> <span class="pm">↓30%</span></span>
+          </div>
+        </div>
+        <div class="sub-card">
+          <div class="sub-name">打破全复制 <span class="cnt">新方向</span></div>
+          <div class="sub-desc">不再每个GPU全复制所有Expert</div>
+          <div class="sub-papers">
+            <span class="paper"><span class="pn">FoMoE</span> <span class="yr">ICLR'26</span> <span class="pm">↓45x</span></span>
+          </div>
+        </div>
+        <div class="sub-card">
+          <div class="sub-name">分离式推理通信 <span class="cnt">上升</span></div>
+          <div class="sub-desc">Prefill-Decode分离的KV传输</div>
+          <div class="sub-papers">
+            <span class="paper"><span class="pn">Mooncake ⚠️架构优化</span> <span class="yr">2024</span></span>
+            <span class="paper"><span class="pn">DistServe ⚠️架构优化</span> <span class="yr">OSDI'21</span></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 通信×蒸馏 -->
+  <div class="tech-row">
+    <div class="tech-label">
+      <div class="tname">蒸馏</div>
+      <div class="ten">Distillation</div>
+      <div class="tcount">21篇</div>
+      <span class="ttrl" style="background:rgba(167,139,250,0.2);color:var(--c-blank)">TRL1</span>
+      <div class="tarrow" style="color:var(--c-blank)">↑↑ 空白</div>
+    </div>
+    <div class="tech-content">
+      <div class="tech-trend"><strong>趋势：</strong>21篇标注论文中，经审查仅3-5篇真正涉及通信压缩蒸馏（如SPD张量并行、Semantic Cache Distillation），其余为MoE模型蒸馏(LLaVA-MoD)或联邦学习蒸馏等误标。真正的"推理通信压缩×蒸馏"几乎完全空白。<strong>第二大空白（经审查确认）。</strong></div>
+      <div class="sub-grid">
+        <div class="sub-card blank">
+          <div class="sub-name" style="color:var(--c-blank)">通信蒸馏 <span class="cnt">💎 极度空白</span></div>
+          <div class="sub-desc">21篇中仅3-5篇真正涉及通信压缩蒸馏，其余为MoE模型蒸馏/联邦学习/数据集蒸馏等误标。真正的通信压缩蒸馏几乎为0。</div>
+          <div class="sub-papers">
+            <span class="paper blank-note">💎 跨领域空白 — 需要分布式系统+蒸馏双背景</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 通信×低秩 -->
+  <div class="tech-row">
+    <div class="tech-label">
+      <div class="tname">低秩</div>
+      <div class="ten">Low-Rank</div>
+      <div class="tcount">59篇</div>
+      <span class="ttrl" style="background:rgba(34,197,94,0.2);color:var(--c-mature)">TRL3-4</span>
+      <div class="tarrow" style="color:var(--c-mature)">→ 平稳</div>
+    </div>
+    <div class="tech-content">
+      <div class="tech-trend"><strong>趋势：</strong>PowerSGD式低秩通信压缩已成熟 → 相对平稳</div>
+      <div class="sub-grid">
+        <div class="sub-card">
+          <div class="sub-name">低秩通信压缩 <span class="cnt">成熟</span></div>
+          <div class="sub-desc">低秩近似减少通信量</div>
+          <div class="sub-papers">
+            <span class="paper"><span class="pn">PowerSGD</span> <span class="yr">MLSys'20</span> <span class="pm">↓100x</span></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ================================================================ -->
+<div class="note" style="margin-top:24px">
+  <strong>展开版总结：</strong><br><br>
+  <strong>成熟度分布规律：</strong>越靠近"数据流动末端"（通信）和越需要"跨领域能力"（蒸馏），越不成熟。<br><br>
+  <strong>两大最高空白：</strong><br>
+  1. <strong>KV×Decoding蒸馏</strong>（0篇）— KV累积最严重阶段，却无任何蒸馏方案<br>
+  2. <strong>通信×蒸馏</strong>（18篇）— 需要分布式系统+蒸馏双背景<br><br>
+  <strong>快速上升方向：</strong>KV量化(KIVI/Block-GTQ) ↑↑ / 通信量化(ExpertQuant) ↑↑ / KV稀疏(SnapKV) ↑<br><br>
+  <strong>已死方向：</strong>参数压缩全行（5个技术全TRL5），红海，不值得投入
+</div>
+
+<!-- ================================================================ -->
+<!-- 精华章节：从其他技术地图吸收 -->
+<style>
+  .qr-table { width:100%; border-collapse:collapse; margin:12px 0; font-size:12px; }
+  .qr-table th { background:var(--surface2); padding:10px; text-align:left; font-weight:700; border-bottom:2px solid var(--border); }
+  .qr-table td { padding:8px 10px; border-bottom:1px solid var(--border); vertical-align:top; }
+  .qr-table td strong { color:var(--accent); }
+  .tl-row { background:var(--surface); border:1px solid var(--border); border-radius:10px; padding:14px 18px; margin-bottom:8px; display:flex; align-items:center; gap:14px; }
+  .tl-label { font-size:14px; font-weight:700; min-width:90px; flex-shrink:0; }
+  .tl-label .en { font-size:10px; color:var(--text-dim); font-weight:400; }
+  .tl-flow { flex:1; display:flex; align-items:center; gap:4px; flex-wrap:wrap; }
+  .tl-node { padding:5px 11px; border-radius:7px; font-size:11px; border:1px solid; text-align:center; min-width:75px; }
+  .tl-node .s { font-size:9px; color:var(--text-dim); display:block; }
+  .tl-node .n { font-weight:600; }
+  .tl-arrow { color:var(--text-dim); font-size:13px; }
+  .fw-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:12px; margin:14px 0; }
+  .fw-card { background:var(--surface2); border:1px solid var(--border); border-radius:10px; padding:14px 16px; }
+  .fw-card h4 { font-size:14px; margin-bottom:6px; }
+  .fw-card .stars { color:var(--c-mature); font-size:13px; }
+  .fw-card .pros { font-size:11px; color:var(--text-dim); margin:4px 0; }
+  .fw-card .cons { font-size:11px; color:var(--text-dim); }
+  .fw-card .scene { font-size:10px; color:var(--accent); margin-top:6px; }
+</style>
+
+<!-- 一页速查 -->
+<div class="section-h2">📋 一页速查（Quick Reference）</div>
+<div class="note"><strong>用法：</strong>按你的身份和场景，快速定位该用什么技术。</div>
+<table class="qr-table">
+<tr>
+  <th>身份</th>
+  <th>场景</th>
+  <th>推荐技术（矩阵定位）</th>
+  <th>代表方案</th>
+</tr>
+<tr>
+  <td rowspan="2"><strong>🎓 研究员</strong></td>
+  <td>找空白方向</td>
+  <td><strong style="color:var(--c-blank)">KV×蒸馏</strong> / <strong style="color:var(--c-blank)">通信×蒸馏</strong></td>
+  <td>Decoding蒸馏(0篇) / 通信蒸馏(18篇)</td>
+</tr>
+<tr>
+  <td>做系统创新</td>
+  <td>KV×稀疏(协同共享) / 通信×稀疏(打破全复制)</td>
+  <td>Models Take Notes / FoMoE</td>
+</tr>
+<tr>
+  <td rowspan="3"><strong>🔧 工程师</strong></td>
+  <td>📜 长上下文(&gt;128K)</td>
+  <td>KV×稀疏 + KV×量化</td>
+  <td>SnapKV + KIVI/Block-GTQ</td>
+</tr>
+<tr>
+  <td>🤖 Agent多轮</td>
+  <td>KV×量化 + KV×稀疏</td>
+  <td>UltraQuant + CONF-KV</td>
+</tr>
+<tr>
+  <td>🧩 MoE分布式</td>
+  <td><strong style="color:var(--c-new)">通信×量化</strong> + 通信×稀疏</td>
+  <td>ExpertQuant + DeepEP</td>
+</tr>
+<tr>
+  <td rowspan="2"><strong>📊 PM/管理者</strong></td>
+  <td>短期(1-3月)</td>
+  <td>参数×量化(成熟) + KV×稀疏(TRL4)</td>
+  <td>AWQ INT4 + SnapKV</td>
+</tr>
+<tr>
+  <td>中长期(6-12月)</td>
+  <td>KV×量化 + 通信×量化</td>
+  <td>Block-GTQ + ExpertQuant</td>
+</tr>
+</table>
+<div class="note" style="margin-top:10px">
+  ⭐⭐⭐ <strong>必关注窗口：</strong>KV×蒸馏(Decoding,0篇) · 通信×量化(ExpertQuant,44篇) · KV×稀疏(SnapKV系,69篇工业空白)
+</div>
+
+<!-- 5个技术趋势演进线 -->
+<div class="section-h2">📈 5个技术的发展趋势演进</div>
+  <div class="note"><strong>读法：</strong>每个技术从左到右，成熟度递减、机会递增。基于2764篇论文数据驱动。<br><strong>2026新发现：</strong>RocketKV(400x) / NSA(原生稀疏) / ThinKV(思维类型) / KVSculpt(连续空间蒸馏) / CompressKV(3%→97%) 等突破性工作已更新到对应格子。</div>
+
+<div class="tl-row">
+  <div class="tl-label">量化<span class="en"><br>FP16→INT4→INT2</span></div>
+  <div class="tl-flow">
+    <div class="tl-node" style="border-color:var(--c-mature);background:rgba(34,197,94,0.08)"><span class="s">已成熟</span><span class="n">参数GPTQ/AWQ</span></div>
+    <span class="tl-arrow">→</span>
+    <div class="tl-node" style="border-color:var(--c-mature);background:rgba(34,197,94,0.08)"><span class="s">已成熟</span><span class="n">激活SmoothQuant</span></div>
+    <span class="tl-arrow">→</span>
+    <div class="tl-node" style="border-color:var(--c-rising);background:rgba(234,179,8,0.08)"><span class="s">↑窗口期</span><span class="n">KV KIVI/GTQ</span></div>
+    <span class="tl-arrow">→</span>
+    <div class="tl-node" style="border-color:var(--c-new);background:rgba(249,115,22,0.08)"><span class="s">↑新兴</span><span class="n">通信ExpertQuant</span></div>
+    <span class="tl-arrow">→</span>
+    <div class="tl-node" style="border-color:var(--c-blank);background:rgba(167,139,250,0.08)"><span class="s">探索</span><span class="n">≤2bit极端</span></div>
+  </div>
+</div>
+
+<div class="tl-row">
+  <div class="tl-label">剪枝<span class="en"><br>移除冗余</span></div>
+  <div class="tl-flow">
+    <div class="tl-node" style="border-color:var(--c-mature);background:rgba(34,197,94,0.08)"><span class="s">已成熟</span><span class="n">参数SparseGPT</span></div>
+    <span class="tl-arrow">→</span>
+    <div class="tl-node" style="border-color:var(--c-mature);background:rgba(34,197,94,0.08)"><span class="s">已成熟</span><span class="n">激活GQA/MQA</span></div>
+    <span class="tl-arrow">→</span>
+    <div class="tl-node" style="border-color:var(--c-rising);background:rgba(234,179,8,0.08)"><span class="s">↑上升</span><span class="n">KV Token剪枝</span></div>
+    <span class="tl-arrow">→</span>
+    <div class="tl-node" style="border-color:var(--c-new);background:rgba(249,115,22,0.08)"><span class="s">↑新兴</span><span class="n">通信Expert剪枝</span></div>
+  </div>
+</div>
+
+<div class="tl-row">
+  <div class="tl-label">稀疏化<span class="en"><br>选择性保留</span></div>
+  <div class="tl-flow">
+    <div class="tl-node" style="border-color:var(--c-mature);background:rgba(34,197,94,0.08)"><span class="s">已成熟</span><span class="n">参数2:4</span></div>
+    <span class="tl-arrow">→</span>
+    <div class="tl-node" style="border-color:var(--c-rising);background:rgba(234,179,8,0.08)"><span class="s">↑热点</span><span class="n">激活MoE稀疏</span></div>
+    <span class="tl-arrow">→</span>
+    <div class="tl-node" style="border-color:var(--c-rising);background:rgba(234,179,8,0.08)"><span class="s">↑热点</span><span class="n">KV SnapKV/H2O</span></div>
+    <span class="tl-arrow">→</span>
+    <div class="tl-node" style="border-color:var(--c-new);background:rgba(249,115,22,0.08)"><span class="s">↑新兴</span><span class="n">通信Top-K路由</span></div>
+  </div>
+</div>
+
+<div class="tl-row">
+  <div class="tl-label">蒸馏<span class="en"><br>大→小迁移</span></div>
+  <div class="tl-flow">
+    <div class="tl-node" style="border-color:var(--c-mature);background:rgba(34,197,94,0.08)"><span class="s">已成熟</span><span class="n">参数MiniLLM</span></div>
+    <span class="tl-arrow">→</span>
+    <div class="tl-node" style="border-color:var(--c-mature);background:rgba(34,197,94,0.08)"><span class="s">平稳</span><span class="n">激活分布蒸馏</span></div>
+    <span class="tl-arrow">→</span>
+    <div class="tl-node" style="border-color:var(--c-blank);background:rgba(167,139,250,0.08)"><span class="s">💎空白!</span><span class="n">KV蒸馏(10篇)</span></div>
+    <span class="tl-arrow">→</span>
+    <div class="tl-node" style="border-color:var(--c-blank);background:rgba(167,139,250,0.08)"><span class="s">💎空白!</span><span class="n">通信蒸馏(18篇)</span></div>
+  </div>
+</div>
+
+<div class="tl-row">
+  <div class="tl-label">低秩<span class="en"><br>降维近似</span></div>
+  <div class="tl-flow">
+    <div class="tl-node" style="border-color:var(--c-mature);background:rgba(34,197,94,0.08)"><span class="s">已成熟</span><span class="n">参数LoRA</span></div>
+    <span class="tl-arrow">→</span>
+    <div class="tl-node" style="border-color:var(--c-rising);background:rgba(234,179,8,0.08)"><span class="s">↑上升</span><span class="n">激活线性注意力</span></div>
+    <span class="tl-arrow">→</span>
+    <div class="tl-node" style="border-color:var(--c-rising);background:rgba(234,179,8,0.08)"><span class="s">↑上升</span><span class="n">KV MLA/STAR-KV</span></div>
+    <span class="tl-arrow">→</span>
+    <div class="tl-node" style="border-color:var(--c-mature);background:rgba(34,197,94,0.08)"><span class="s">平稳</span><span class="n">通信PowerSGD</span></div>
+  </div>
+</div>
+
+<!-- 推理框架选型 -->
+<div class="section-h2">🔧 推理框架选型</div>
+<div class="note"><strong>注意：</strong>框架本身不是压缩技术，但决定了压缩技术的落地方式。选错框架 = 压缩技术无法集成。</div>
+<div class="fw-grid">
+  <div class="fw-card" style="border-left:3px solid var(--c-mature)">
+    <h4>TensorRT-LLM <span class="stars">★★★★★</span></h4>
+    <div class="pros"><strong>优点：</strong>NVIDIA官方，FP8/INT8，极致吞吐</div>
+    <div class="cons"><strong>缺点：</strong>调优复杂，定制困难</div>
+    <div class="scene">🎯 场景：NVIDIA生产环境，极致性能</div>
+  </div>
+  <div class="fw-card" style="border-left:3px solid var(--c-mature)">
+    <h4>vLLM <span class="stars">★★★★★</span></h4>
+    <div class="pros"><strong>优点：</strong>PagedAttention，社区活跃，AWQ/GPTQ支持</div>
+    <div class="cons"><strong>缺点：</strong>高级优化受限</div>
+    <div class="scene">🎯 场景：通用推理服务</div>
+  </div>
+  <div class="fw-card" style="border-left:3px solid var(--c-rising)">
+    <h4>SGLang <span class="stars">★★★★</span></h4>
+    <div class="pros"><strong>优点：</strong>RadixAttention，长上下文，Agent场景</div>
+    <div class="cons"><strong>缺点：</strong>性能略低于TensorRT</div>
+    <div class="scene">🎯 场景：长上下文 + Agent</div>
+  </div>
+  <div class="fw-card" style="border-left:3px solid var(--c-mature)">
+    <h4>llama.cpp <span class="stars">★★★★★</span></h4>
+    <div class="pros"><strong>优点：</strong>GGUF格式，CPU/端侧，移动端</div>
+    <div class="cons"><strong>缺点：</strong>速度最慢</div>
+    <div class="scene">🎯 场景：CPU/端侧部署</div>
+  </div>
+  <div class="fw-card" style="border-left:3px solid var(--c-new)">
+    <h4>FlashInfer <span class="stars">★★★★</span></h4>
+    <div class="pros"><strong>优点：</strong>高性能KV kernel库</div>
+    <div class="cons"><strong>缺点：</strong>需集成，非完整框架</div>
+    <div class="scene">🎯 场景：KV优化的kernel加速</div>
+  </div>
+</div>
+
+<!-- 场景应用路径 -->
+<div class="section-h2">🎯 场景应用路径</div>
+<div class="note"><strong>不同场景的核心瓶颈不同，技术选型完全不同。</strong></div>
+
+<style>
+  .sc-card { background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:16px 20px; margin-bottom:14px; }
+  .sc-card h4 { font-size:15px; margin-bottom:8px; }
+  .sc-table { width:100%; border-collapse:collapse; margin:8px 0; font-size:12px; }
+  .sc-table th { background:var(--surface2); padding:8px; text-align:left; border-bottom:1px solid var(--border); font-size:11px; }
+  .sc-table td { padding:7px 8px; border-bottom:1px solid var(--border); }
+  .bm-table { width:100%; border-collapse:collapse; margin:12px 0; font-size:12px; }
+  .bm-table th { background:var(--surface2); padding:10px; text-align:center; border-bottom:2px solid var(--border); }
+  .bm-table td { padding:8px 10px; border-bottom:1px solid var(--border); text-align:center; }
+  .bm-table td:first-child { text-align:left; font-weight:600; }
+  .opp-grid2 { display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:10px; margin:14px 0; }
+  .opp-c { background:var(--surface); border:1px solid var(--border); border-radius:10px; padding:14px; border-left:4px solid; }
+  .opp-c .r { font-size:18px; font-weight:900; margin-bottom:4px; }
+  .opp-c .nm { font-size:13px; font-weight:700; margin-bottom:5px; }
+  .opp-c .ds { font-size:11px; color:var(--text-dim); line-height:1.6; }
+  .opp-c .st { display:inline-block; font-size:10px; padding:2px 7px; border-radius:4px; margin-top:6px; margin-right:5px; }
+</style>
+
+<div class="sc-card">
+  <h4>🤖 Agent多轮 — KV累积是核心</h4>
+  <div style="font-size:12px;color:var(--text-dim);margin-bottom:8px">多轮对话KV累积无上限 · 工具调用KV模式不可预测</div>
+  <table class="sc-table">
+    <tr><th>对话轮数</th><th>推荐技术（矩阵定位）</th><th>代表方案</th></tr>
+    <tr><td>&gt;20轮 ★★★</td><td>KV×量化 + KV×稀疏</td><td>KIVI/Block-GTQ + SnapKV</td></tr>
+    <tr><td>10-20轮 ★★</td><td>KV×稀疏（选择性淘汰）</td><td>CONF-KV / PolyKV</td></tr>
+    <tr><td>&lt;10轮 ★</td><td>无需额外压缩</td><td>vLLM PagedAttention</td></tr>
+  </table>
+</div>
+
+<div class="sc-card">
+  <h4>🧩 MoE分布式 — 通信压缩是核心</h4>
+  <div style="font-size:12px;color:var(--text-dim);margin-bottom:8px">All-to-All通信密集 · Expert负载不均</div>
+  <table class="sc-table">
+    <tr><th>场景</th><th>推荐技术（矩阵定位）</th><th>代表方案</th></tr>
+    <tr><td>训练 ★★★</td><td>通信×稀疏 + 通信×量化</td><td>DeepEP + FP8/INT4</td></tr>
+    <tr><td>推理 ★★</td><td>通信×量化 + 通信×剪枝</td><td>ExpertQuant + MosaicPrune</td></tr>
+  </table>
+  <div style="font-size:11px;color:var(--c-new);margin-top:6px">💡 ExpertQuant是2025新工作，MoE通信量化方向几乎无竞争 — 黄金窗口</div>
+</div>
+
+<div class="sc-card">
+  <h4>📜 长上下文 — KV爆炸是核心</h4>
+  <div style="font-size:12px;color:var(--text-dim);margin-bottom:8px">128K上下文≈40GB KV(FP16) · 注意力稀疏 · NIAH检索任务</div>
+  <table class="sc-table">
+    <tr><th>上下文长度</th><th>推荐技术（矩阵定位）</th><th>代表方案</th></tr>
+    <tr><td>&gt;1M ★★★</td><td>KV×低秩(架构级) + KV×稀疏</td><td>MLA/GQLA + SnapKV</td></tr>
+    <tr><td>128K-1M ★★</td><td>KV×稀疏 + KV×量化</td><td>SnapKV/R-KV + KIVI/Block-GTQ</td></tr>
+    <tr><td>32K-128K ★</td><td>KV×稀疏(轻度)</td><td>vLLM PagedAttention + Sparse</td></tr>
+  </table>
+  <div style="font-size:11px;color:var(--c-mature);margin-top:6px">🔑 核心规律：选择性淘汰(SnapKV/R-KV) + 量化(KIVI系) 叠加 = 20x KV↓，精度&lt;5%</div>
+</div>
+
+<div class="sc-card">
+  <h4>📸 多模态压缩 — 视觉token爆炸是核心</h4>
+  <div style="font-size:12px;color:var(--text-dim);margin-bottom:8px">一张图=数百~数千token · 视觉token远超文本 · 63篇论文涉及Multimodal</div>
+  <table class="sc-table">
+    <tr><th>场景</th><th>推荐技术（矩阵定位）</th><th>代表方案</th></tr>
+    <tr><td>视觉token稀疏 <span style="color:var(--c-rising)">★★★</span></td><td>激活×稀疏 + 激活×剪枝</td><td>SparseVLM(43引用) / LLaVA-PruMerge(117引用)</td></tr>
+    <tr><td>视觉token+KV联合 <span style="color:var(--c-rising)">★★</span></td><td>激活×稀疏 + KV×量化</td><td>ZipVL(动态稀疏+KV压缩)</td></tr>
+    <tr><td>长视频多模态 <span style="color:var(--c-rising)">★★</span></td><td>KV×稀疏 + 激活×低秩</td><td>LongVILA(65引用) / LongLLaVA(40引用)</td></tr>
+    <tr><td>视觉压缩蒸馏 <span style="color:var(--c-new)">★</span></td><td>激活×蒸馏</td><td>VoCo-LLaMA(34引用 视觉压缩蒸馏)</td></tr>
+  </table>
+  <div style="font-size:11px;color:var(--c-rising);margin-top:6px">💡 多模态是corpus中63篇论文涉及的方向，但全集图此前完全没标注——这是最大的场景遗漏</div>
+</div>
+
+<div class="sc-card">
+  <h4>🎨 扩散模型压缩 — Diffusion推理加速是核心</h4>
+  <div style="font-size:12px;color:var(--text-dim);margin-bottom:8px">302篇论文涉及Diffusion · 扩散模型推理需要多步去噪 · 计算密集</div>
+  <table class="sc-table">
+    <tr><th>方向</th><th>推荐技术（矩阵定位）</th><th>代表方案</th></tr>
+    <tr><td>扩散模型量化 <span style="color:var(--c-rising)">★★★</span></td><td>参数×量化 + 激活×量化</td><td>Q-DiT(28引用) / ViDiT-Q(22引用)</td></tr>
+    <tr><td>扩散模型蒸馏 <span style="color:var(--c-rising)">★★</span></td><td>通用×蒸馏（步数压缩）</td><td>AddSR(24引用) / Consistency Models(19引用)</td></tr>
+    <tr><td>高效架构 <span style="color:var(--c-new)">★</span></td><td>通用×优化（线性注意力）</td><td>SANA(39引用) / HART(31引用)</td></tr>
+  </table>
+  <div style="font-size:11px;color:var(--c-new);margin-top:6px">💡 扩散模型(302篇)是仅次于LLM(1360篇)的第二大场景，此前全集图完全没覆盖</div>
+</div>
+
+<div class="sc-card">
+  <h4>🎙️ 语音/音频压缩 — Tokenizer效率是核心</h4>
+  <div style="font-size:12px;color:var(--text-dim);margin-bottom:8px">83篇论文涉及语音/音频 · 离散编码Tokenizer是关键压缩点</div>
+  <table class="sc-table">
+    <tr><th>方向</th><th>推荐技术（矩阵定位）</th><th>代表方案</th></tr>
+    <tr><td>音频Tokenizer量化 <span style="color:var(--c-new)">★★</span></td><td>通用×量化</td><td>WavTokenizer(37引用) / Binary Spherical Quant(21引用)</td></tr>
+    <tr><td>统一多模态Tokenizer <span style="color:var(--c-new)">★</span></td><td>通用×量化</td><td>TokenFlow(34引用 图文统一)</td></tr>
+  </table>
+</div>
+
+<div class="sc-card">
+  <h4>🧠 推理模型(o1/R1) — CoT冗余是核心新问题</h4>
+  <div style="font-size:12px;color:var(--text-dim);margin-bottom:8px">推理模型生成8-14x ground-truth长度 · CoT中60-70% KV可丢弃 · 77%多轮KV是死权重</div>
+  <table class="sc-table">
+    <tr><th>方向</th><th>推荐技术</th><th>代表方案</th><th>关键发现</th></tr>
+    <tr><td>冗余感知 <span style="color:var(--c-rising)">★★★</span></td><td>KV×稀疏（关系信号）</td><td>R-KV(6.6x↑, 10%KV→100%)</td><td>λ=0.1时关系信号权重90%</td></tr>
+    <tr><td>思维自适应 <span style="color:var(--c-rising)">★★★</span></td><td>KV×稀疏+量化</td><td>ThinKV(ICLR'26 Oral, &lt;5%KV/5.8x)</td><td>T思维(回溯)不能删→否则死循环</td></tr>
+    <tr><td>CoT链完整性 <span style="color:var(--c-new)">★★</span></td><td>KV×稀疏（few-shot单元）</td><td>ShotKV(ICML'26, +9-18%生成)</td><td>压缩会隐藏高密度推理退化</td></tr>
+  </table>
+  <div style="font-size:11px;color:var(--c-blank);margin-top:6px">💎 3篇论文各捕获一个正交关系维度(冗余/CoT链/思维类型)——无人用统一实体关系图。这是下一个价值高地。</div>
+</div>
+
+<!-- NIAH Benchmark -->
+<div class="section-h2">📊 NIAH基准对比（长上下文压缩效果）</div>
+<table class="bm-table">
+  <tr><th>方法</th><th>压缩比</th><th>精度损失</th><th>32K NIAH</th><th>适用场景</th></tr>
+  <tr><td>Full KV (baseline)</td><td>1x</td><td>0%</td><td style="color:var(--c-mature)">100%</td><td>所有场景</td></tr>
+  <tr><td>R-KV</td><td>6.6x</td><td>&lt;1%</td><td style="color:var(--c-mature)">~99%</td><td>128K+</td></tr>
+  <tr><td>SnapKV</td><td>8.2x</td><td>&lt;2%</td><td style="color:var(--c-mature)">~98%</td><td>长上下文</td></tr>
+  <tr><td>NexusSampling</td><td>5x</td><td>~0%</td><td style="color:var(--c-mature)">~99%</td><td>128K+</td></tr>
+  <tr><td>KIVI (2bit)</td><td>4x</td><td>1-3%</td><td style="color:var(--c-rising)">~95%</td><td>极低bit KV</td></tr>
+  <tr><td>Block-GTQ (4bit)</td><td>4x</td><td>~3%</td><td style="color:var(--c-rising)">~93%</td><td>256K (RoPE-aware)</td></tr>
+  <tr><td>CONF-KV</td><td>2.8x</td><td>&lt;2%</td><td style="color:var(--c-rising)">91.4%</td><td>长对话(NIAH)</td></tr>
+  <tr><td>H2O</td><td>3x</td><td>2-4%</td><td style="color:var(--c-new)">80.6%</td><td>早期经典</td></tr>
+  <tr><td>Sliding Window</td><td>3x</td><td>大</td><td style="color:var(--c-blank)">53.8%</td><td>不推荐</td></tr>
+</table>
+
+<!-- 机会识别 -->
+<div class="section-h2">⭐ 机会识别（空白格+上升格优先级）</div>
+<div class="opp-grid2">
+  <div class="opp-c" style="border-left-color:var(--c-blank)">
+    <div class="r" style="color:var(--c-blank)">🥇 P0</div>
+    <div class="nm">KV×Decoding蒸馏</div>
+    <div class="ds">10篇论文无一涉及Decoding阶段。KV累积最严重，却完全空白。最高风险/回报。</div>
+    <span class="st" style="background:rgba(167,139,250,0.15);color:var(--c-blank)">0篇</span>
+    <span class="st" style="background:rgba(167,139,250,0.15);color:var(--c-blank)">TRL1</span>
+  </div>
+  <div class="opp-c" style="border-left-color:var(--c-blank)">
+    <div class="r" style="color:var(--c-blank)">🥈 P0</div>
+    <div class="nm">通信×蒸馏</div>
+    <div class="ds">MoE通信蒸馏几乎空白。需分布式系统+蒸馏双背景，跨领域人才稀缺。</div>
+    <span class="st" style="background:rgba(167,139,250,0.15);color:var(--c-blank)">18篇</span>
+    <span class="st" style="background:rgba(167,139,250,0.15);color:var(--c-blank)">TRL1</span>
+  </div>
+  <div class="opp-c" style="border-left-color:var(--c-new)">
+    <div class="r" style="color:var(--c-new)">🥉 P1</div>
+    <div class="nm">通信×量化</div>
+    <div class="ds">ExpertQuant(2025)首个MoE通信量化。MoE时代All-to-All是核心瓶颈。</div>
+    <span class="st" style="background:rgba(249,115,22,0.15);color:var(--c-new)">44篇</span>
+    <span class="st" style="background:rgba(249,115,22,0.15);color:var(--c-new)">TRL2</span>
+  </div>
+  <div class="opp-c" style="border-left-color:var(--c-rising)">
+    <div class="r" style="color:var(--c-rising)">4</div>
+    <div class="nm">KV×量化(工程化)</div>
+    <div class="ds">KIVI/Block-GTQ证明可行，框架集成度低。工程化是最大机会。</div>
+    <span class="st" style="background:rgba(234,179,8,0.15);color:var(--c-rising)">46篇</span>
+    <span class="st" style="background:rgba(234,179,8,0.15);color:var(--c-rising)">TRL3</span>
+  </div>
+  <div class="opp-c" style="border-left-color:var(--c-rising)">
+    <div class="r" style="color:var(--c-rising)">5</div>
+    <div class="nm">KV×稀疏(工业落地)</div>
+    <div class="ds">SnapKV/H2O学术充分，工业落地蓝海。框架集成突破口。</div>
+    <span class="st" style="background:rgba(234,179,8,0.15);color:var(--c-rising)">69篇</span>
+    <span class="st" style="background:rgba(234,179,8,0.15);color:var(--c-rising)">TRL4</span>
+  </div>
+  <div class="opp-c" style="border-left-color:var(--c-rising)">
+    <div class="r" style="color:var(--c-rising)">6</div>
+    <div class="nm">激活×稀疏(MoE)</div>
+    <div class="ds">动态激活稀疏+MoE是最大子方向(396篇)。多模态场景特别需要。</div>
+    <span class="st" style="background:rgba(234,179,8,0.15);color:var(--c-rising)">396篇</span>
+    <span class="st" style="background:rgba(234,179,8,0.15);color:var(--c-rising)">TRL4</span>
+  </div>
+</div>
+
+<!-- 战略投入建议 -->
+<div class="section-h2">📋 战略投入建议</div>
+<style>
+  .strat-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:12px; margin:14px 0; }
+  .strat-card { background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:18px; border-left:4px solid; }
+  .strat-card .act { font-size:11px; font-weight:800; text-transform:uppercase; letter-spacing:1px; margin-bottom:10px; }
+  .strat-card h4 { font-size:14px; margin-bottom:10px; }
+  .strat-card ul { list-style:none; padding:0; }
+  .strat-card li { font-size:12px; color:var(--text-dim); padding:4px 0 4px 14px; position:relative; line-height:1.7; }
+  .strat-card li::before { content:"▸"; position:absolute; left:0; color:var(--accent); }
+  .strat-card li strong { color:var(--text); }
+  .cap-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:12px; margin:14px 0; }
+  .cap-lvl { background:var(--surface2); border-radius:12px; padding:16px; border-top:3px solid; }
+  .cap-lvl .lv { font-size:20px; font-weight:900; margin-bottom:3px; }
+  .cap-lvl .nm { font-size:14px; font-weight:700; margin-bottom:6px; }
+  .cap-lvl .gl { font-size:12px; color:var(--text-dim); margin-bottom:10px; }
+  .cap-lvl .techs { display:flex; flex-direction:column; gap:4px; }
+  .cap-lvl .techs div { font-size:11px; color:var(--text-dim); padding:3px 8px; background:var(--surface3); border-radius:4px; }
+  .cap-lvl .techs div strong { color:var(--accent); }
+  .cap-arrow { text-align:center; color:var(--text-dim); font-size:16px; margin:6px 0; }
+  .src-table { width:100%; border-collapse:collapse; margin:12px 0; font-size:12px; }
+  .src-table th { background:var(--surface2); padding:9px; text-align:left; border-bottom:2px solid var(--border); font-size:11px; }
+  .src-table td { padding:8px 9px; border-bottom:1px solid var(--border); }
+  .src-table td a { color:var(--accent); text-decoration:none; }
+</style>
+<div class="strat-grid">
+  <div class="strat-card" style="border-left-color:var(--c-mature)">
+    <div class="act" style="color:var(--c-mature)">✅ 维持 · 不需额外投入</div>
+    <h4>已稳固的核心地基</h4>
+    <ul>
+      <li><strong>参数×量化</strong>：GPTQ/AWQ工业标准</li>
+      <li><strong>参数×剪枝</strong>：SparseGPT/Wanda</li>
+      <li><strong>参数×低秩</strong>：LoRA生态完善</li>
+      <li><strong>参数×蒸馏</strong>：MiniLLM够用</li>
+      <li><strong>激活×量化</strong>：SmoothQuant成熟</li>
+    </ul>
+  </div>
+  <div class="strat-card" style="border-left-color:var(--c-rising)">
+    <div class="act" style="color:var(--c-rising)">⚡ 主力投入 · 工程化冲刺</div>
+    <h4>当前窗口期</h4>
+    <ul>
+      <li><strong>KV×稀疏</strong>：SnapKV→框架集成</li>
+      <li><strong>KV×量化</strong>：KIVI/Block-GTQ→vLLM插件</li>
+      <li><strong>KV×低秩</strong>：MLA→自有模型集成</li>
+      <li><strong>激活×稀疏</strong>：MoE激活优化</li>
+    </ul>
+  </div>
+  <div class="strat-card" style="border-left-color:var(--c-new)">
+    <div class="act" style="color:var(--c-new)">📈 战略卡位 · 组建专项</div>
+    <h4>需提前布局</h4>
+    <ul>
+      <li><strong>通信×量化</strong>：ExpertQuant/MoE必备</li>
+      <li><strong>KV×蒸馏</strong>：Decoding阶段0篇</li>
+      <li><strong>通信×蒸馏</strong>：18篇跨领域空白</li>
+      <li><strong>通信×稀疏</strong>：FoMoE打破全复制</li>
+    </ul>
+  </div>
+  <div class="strat-card" style="border-left-color:var(--c-blank)">
+    <div class="act" style="color:var(--c-blank)">🔬 少量预研 · 学术跟踪</div>
+    <h4>探索前沿</h4>
+    <ul>
+      <li><strong>≤2bit极端量化</strong>：1bit/JL变换</li>
+      <li><strong>跨阶段联合蒸馏</strong>：理论空白</li>
+      <li><strong>动态低秩</strong>：推理时自适应rank</li>
+      <li><strong>跨模态压缩</strong>：文本/视觉统一</li>
+    </ul>
+  </div>
+</div>
+
+<!-- L1-L4能力路径 -->
+<div class="section-h2">🎯 能力构筑路径（L1→L4）</div>
+<div class="note"><strong>不要跳级。</strong>L3需要L1-L2的基础。每级对应矩阵中的不同区域。</div>
+<div class="cap-grid">
+  <div class="cap-lvl" style="border-top-color:var(--c-mature)">
+    <div class="lv" style="color:var(--c-mature)">L1</div>
+    <div class="nm">能部署</div>
+    <div class="gl">能跑起来推理服务</div>
+    <div class="techs">
+      <div><strong>参数×量化</strong>：AWQ INT4量化模型</div>
+      <div><strong>vLLM部署</strong>：PagedAttention开箱即用</div>
+      <div><strong>llama.cpp</strong>：GGUF端侧部署</div>
+    </div>
+  </div>
+  <div class="cap-lvl" style="border-top-color:var(--c-rising)">
+    <div class="lv" style="color:var(--c-rising)">L2</div>
+    <div class="nm">能调优</div>
+    <div class="gl">能针对场景优化参数</div>
+    <div class="techs">
+      <div><strong>KV×稀疏</strong>：SnapKV配置调参</div>
+      <div><strong>激活×量化</strong>：SmoothQuant调优</div>
+      <div><strong>连续批处理</strong>：batch size调优</div>
+    </div>
+  </div>
+  <div class="cap-lvl" style="border-top-color:var(--c-new)">
+    <div class="lv" style="color:var(--c-new)">L3</div>
+    <div class="nm">能集成</div>
+    <div class="gl">能修改框架集成新技术</div>
+    <div class="techs">
+      <div><strong>KV×量化</strong>：KIVI集成到vLLM</div>
+      <div><strong>通信×稀疏</strong>：DeepEP集成</div>
+      <div><strong>KV×低秩</strong>：MLA架构改造</div>
+    </div>
+  </div>
+  <div class="cap-lvl" style="border-top-color:var(--c-blank)">
+    <div class="lv" style="color:var(--c-blank)">L4</div>
+    <div class="nm">能创新</div>
+    <div class="gl">能发论文/做产品</div>
+    <div class="techs">
+      <div><strong>KV×蒸馏</strong>：进入空白(0篇)</div>
+      <div><strong>通信×蒸馏</strong>：跨领域融合</div>
+      <div><strong>新范式</strong>：FoMoE级创新</div>
+    </div>
+  </div>
+</div>
+<div class="cap-arrow">↓ L1 → L2 → L3 → L4 逐级解锁 ↓</div>
+
+<!-- 信源导航 -->
+<div class="section-h2">🔗 信源导航（持续追踪）</div>
+<table class="src-table">
+  <tr><th>分类</th><th>信源</th><th>链接</th><th>优先级</th></tr>
+  <tr><td rowspan="4">推理框架</td><td>vLLM</td><td><a href="https://github.com/vllm-project/vllm">github.com/vllm-project/vllm</a></td><td>P0</td></tr>
+  <tr><td>SGLang</td><td><a href="https://github.com/sgl-project/sglang">github.com/sgl-project/sglang</a></td><td>P0</td></tr>
+  <tr><td>llama.cpp</td><td><a href="https://github.com/ggerganov/llama.cpp">github.com/ggerganov/llama.cpp</a></td><td>P0</td></tr>
+  <tr><td>TensorRT-LLM</td><td><a href="https://github.com/NVIDIA/TensorRT-LLM">github.com/NVIDIA/TensorRT-LLM</a></td><td>P0</td></tr>
+  <tr><td>KV优化</td><td>FlashInfer</td><td><a href="https://github.com/flashinfer-ai/flashinfer">github.com/flashinfer-ai/flashinfer</a></td><td>P0</td></tr>
+  <tr><td>通信库</td><td>DeepEP</td><td><a href="https://github.com/deepseek-ai/DeepEP">github.com/deepseek-ai/DeepEP</a></td><td>P0</td></tr>
+  <tr><td>量化</td><td>AWQ</td><td><a href="https://github.com/mit-han-lab/llm-awq">github.com/mit-han-lab/llm-awq</a></td><td>P0</td></tr>
+  <tr><td rowspan="3">论文聚合</td><td>arXiv cs.DC/LG/CL</td><td><a href="https://arxiv.org">arxiv.org</a></td><td>P0</td></tr>
+  <tr><td>MLSys</td><td><a href="https://mlsys.org">mlsys.org</a></td><td>P0</td></tr>
+  <tr><td>OSDI/SOSP</td><td><a href="https://usenix.org/osdi">usenix.org/osdi</a></td><td>P0</td></tr>
+</table>
+
+<!-- 决策导航 -->
+<div class="section-h2">🎯 决策导航（研究员/工程师选型）</div>
+<style>
+  .dt-table { width:100%;border-collapse:collapse;margin:10px 0;font-size:12px; }
+  .dt-table th { background:var(--surface2);padding:8px;text-align:left;border-bottom:2px solid var(--border);font-size:11px; }
+  .dt-table td { padding:7px 8px;border-bottom:1px solid var(--border); }
+  .dt-table td:first-child { font-weight:600; }
+  .dt-table .hi { color:var(--c-mature);font-weight:600; }
+  .dt-table .opp { color:var(--c-new);font-weight:600; }
+  .dt-table .blank { color:var(--c-blank);font-weight:600; }
+  .biz-table td { text-align:center; }
+  .biz-table td:first-child { text-align:left; }
+</style>
+
+<h4 style="color:var(--accent);margin:16px 0 8px">📐 研究方向决策树</h4>
+<table class="dt-table">
+  <tr><th>你的场景</th><th>条件</th><th>推荐方向</th><th>矩阵定位</th><th>论文/机会</th></tr>
+  <tr><td rowspan="3">📜 长上下文</td><td>&gt;128K</td><td class="hi">KV稀疏 ★★★</td><td>KV×稀疏</td><td>69篇 · 工业空白</td></tr>
+  <tr><td>32K-128K</td><td>KV量化 ★★</td><td>KV×量化</td><td>46篇 · 新兴</td></tr>
+  <tr><td>&lt;32K</td><td class="hi">权重量化(红海)</td><td>参数×量化</td><td>376篇 · 饱和</td></tr>
+  <tr><td rowspan="2">🧩 MoE</td><td>是MoE</td><td class="opp">通信×量化 ★★</td><td>通信×量化</td><td>44篇 · 高机会</td></tr>
+  <tr><td>不是</td><td>KV×稀疏/量化</td><td>KV行</td><td>见上</td></tr>
+  <tr><td>💎 新问题</td><td>想最高回报</td><td class="blank">KV×Decoding蒸馏</td><td>KV×蒸馏</td><td>0篇 · 💎最高空白</td></tr>
+</table>
+
+<h4 style="color:var(--accent);margin:20px 0 8px">📊 量化工具链选型</h4>
+<table class="dt-table">
+  <tr><th>类别</th><th>工具</th><th>精度</th><th>特点</th><th>矩阵定位</th><th>状态</th></tr>
+  <tr><td rowspan="3">权重(成熟)</td><td>AWQ</td><td>INT4</td><td>精度最优，激活感知</td><td>参数×量化</td><td class="hi">★★★★★ 工业首选</td></tr>
+  <tr><td>GPTQ</td><td>INT4/8</td><td>速度快，Hessian近似</td><td>参数×量化</td><td class="hi">★★★★ 工业标准</td></tr>
+  <tr><td>GGUF</td><td>多bit</td><td>CPU/端侧通用格式</td><td>参数×量化</td><td class="hi">★★★★ 端侧标配</td></tr>
+  <tr><td rowspan="2">KV(新兴)</td><td>KIVI</td><td>2bit</td><td>per-channel K + per-token V</td><td>KV×量化</td><td class="opp">★★★ 2bit可行</td></tr>
+  <tr><td>Block-GTQ</td><td>4bit</td><td>RoPE-aware，256K可行</td><td>KV×量化</td><td class="opp">★★★★ 2026突破</td></tr>
+  <tr><td>联合(未来)</td><td>KV Pareto</td><td>混合</td><td>权重+KV联合量化</td><td>参数+KV×量化</td><td class="opp">68-78%内存↓</td></tr>
+  <tr><td>通信</td><td>ExpertQuant</td><td>INT4</td><td>MoE Expert量化</td><td>通信×量化</td><td class="opp">💎首个MoE量化</td></tr>
+</table>
+
+<h4 style="color:var(--accent);margin:20px 0 8px">💾 KV Cache优化工程路径</h4>
+<table class="dt-table">
+  <tr><th>需求</th><th>路线</th><th>方案</th><th>压缩比</th><th>精度损失</th><th>工程难度</th></tr>
+  <tr><td>极致压缩(&gt;50%↓)</td><td class="opp">📦 量化路线</td><td>KIVI / Block-GTQ / UltraQuant</td><td>3-5x</td><td>1-5%</td><td>⚠️ 需校准集</td></tr>
+  <tr><td>极速推理(吞吐)</td><td class="hi">🎯 稀疏路线</td><td>SnapKV / R-KV / H2O</td><td>2-8x</td><td>&lt;2%</td><td>✅ 框架已集成</td></tr>
+  <tr><td>快速集成</td><td class="hi">🔧 通用路线</td><td>vLLM PagedAttention</td><td>-</td><td>0%</td><td>✅ 开箱即用</td></tr>
+</table>
+<div style="font-size:11px;color:var(--c-mature);margin:6px 0">🔑 核心规律：选择性淘汰(SnapKV/R-KV) + 量化(KIVI系) 叠加 = 20x KV↓，精度&lt;5%</div>
+
+<!-- 评估矩阵 -->
+<div class="section-h2">📊 技术评估矩阵</div>
+<h4 style="color:var(--accent);margin:12px 0 8px">投入产出比 (ROI)</h4>
+<table class="dt-table">
+  <tr><th>技术方向</th><th>矩阵定位</th><th>投入</th><th>产出</th><th>ROI</th><th>推荐理由</th></tr>
+  <tr><td>参数INT4量化</td><td>参数×量化</td><td>低</td><td>高</td><td class="hi">★★★★★</td><td>成熟，直接用</td></tr>
+  <tr><td>KV稀疏(SnapKV)</td><td>KV×稀疏</td><td>高</td><td>高</td><td class="opp">★★★</td><td>工业空白，机会大</td></tr>
+  <tr><td>KV量化(KIVI)</td><td>KV×量化</td><td>高</td><td>中高</td><td class="opp">★★★</td><td>技术突破，集成难</td></tr>
+  <tr><td>通信量化(MoE)</td><td>通信×量化</td><td>高</td><td>高</td><td class="opp">★★★</td><td>MoE时代必备</td></tr>
+  <tr><td>KV×蒸馏</td><td>KV×蒸馏</td><td>极高</td><td>极高</td><td class="blank">★★</td><td>最高风险/回报</td></tr>
+</table>
+
+<h4 style="color:var(--accent);margin:20px 0 8px">💰 商业价值矩阵</h4>
+<table class="dt-table biz-table">
+  <tr><th>技术方向</th><th>云端推理</th><th>企业私有</th><th>端侧</th></tr>
+  <tr><td>参数INT4量化</td><td class="hi">✅ 标配</td><td class="hi">✅ 标配</td><td class="hi">✅ 标配</td></tr>
+  <tr><td>KV稀疏/量化</td><td class="hi">✅ 高价值</td><td class="opp">✅ 高潜力</td><td>⚠️ 受限</td></tr>
+  <tr><td>通信量化(MoE)</td><td class="opp">✅ 超高价值</td><td class="opp">✅ 超高价值</td><td>❌ 不适用</td></tr>
+  <tr><td>KV×蒸馏</td><td class="blank">⚠️ 预研</td><td class="blank">⚠️ 预研</td><td class="blank">⚠️ 受限</td></tr>
+</table>
+<div style="font-size:11px;color:var(--text-dim);margin:8px 0">
+  💡 市场估算：KV压缩2026年云端~$2B(年增40%) · MoE通信优化随GPT-4/Gemini普及需求爆发 · 端侧量化终端芯片500M+
+</div>
+
+<!-- 能力金字塔 -->
+<div class="section-h2">🏗️ 能力金字塔（根技术构筑视角）</div>
+<style>
+  .pyr { display:flex;flex-direction:column;align-items:center;gap:4px;margin:20px 0; }
+  .pyr-l { border-radius:10px;padding:12px 24px;text-align:center; }
+  .pyr-l .pl { font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:4px; }
+  .pyr-l .pn { font-size:14px;font-weight:700;color:#fff;margin-bottom:4px; }
+  .pyr-l .pt { font-size:11px;color:rgba(255,255,255,0.8);line-height:1.6; }
+  .pyr-l .pa { font-size:10px;margin-top:6px;padding:2px 10px;background:rgba(255,255,255,0.15);border-radius:10px;display:inline-block;font-weight:600; }
+  .py-core { width:100%;background:linear-gradient(135deg,#14532d,#166534);border:1px solid var(--c-mature); }
+  .py-build { width:82%;background:linear-gradient(135deg,#713f12,#854d0e);border:1px solid var(--c-rising); }
+  .py-layout { width:62%;background:linear-gradient(135deg,#7c2d12,#9a3412);border:1px solid var(--c-new); }
+  .py-explore { width:42%;background:linear-gradient(135deg,#4c1d95,#5b21b6);border:1px solid var(--c-blank); }
+  .rt-grid { display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:12px;margin:16px 0; }
+  .rt-card { background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:14px 16px; }
+  .rt-card .rtn { font-size:13px;font-weight:700;margin-bottom:4px;display:flex;align-items:center;gap:8px; }
+  .rt-card .rtp { font-size:11px;color:var(--text-dim);margin-bottom:8px; }
+  .rt-card .rtm { font-size:11px;line-height:1.8; }
+  .rt-card .rtm .m { display:inline-block;font-size:9px;font-weight:700;padding:1px 6px;border-radius:3px;margin-right:4px; }
+  .cov-table { width:100%;border-collapse:collapse;margin:12px 0;font-size:11px; }
+  .cov-table th { background:var(--surface2);padding:8px;text-align:center;border-bottom:2px solid var(--border); }
+  .cov-table th:first-child { text-align:left; }
+  .cov-table td { padding:7px;text-align:center;border-bottom:1px solid var(--border); }
+  .cov-table td:first-child { text-align:left;font-weight:600; }
+  .fwm-table { width:100%;border-collapse:collapse;margin:12px 0;font-size:12px; }
+  .fwm-table th { background:var(--surface2);padding:9px;text-align:center;border-bottom:2px solid var(--border);font-size:11px; }
+  .fwm-table td { padding:8px;text-align:center;border-bottom:1px solid var(--border); }
+  .fwm-table td:first-child { text-align:left;font-weight:600; }
+  .fwm-yes { color:var(--c-mature); } .fwm-no { color:var(--text-dim); } .fwm-part { color:var(--c-rising); }
+</style>
+<div class="note"><strong>与前面的矩阵视角不同：</strong>这里是"能力中心"视角——从根技术出发，看哪些已构筑、哪些要布局。</div>
+
+<div class="pyr">
+  <div class="pyr-l py-explore">
+    <div class="pl" style="color:var(--c-blank)">🟣 Layer 4 · 探索前沿</div>
+    <div class="pn">技术储备 · 保持关注</div>
+    <div class="pt">跨阶段联合蒸馏 · 跨模态压缩 · ≤2bit极端量化 · 动态低秩</div>
+    <div class="pa">📉 少量预研</div>
+  </div>
+  <div class="pyr-l py-layout">
+    <div class="pl" style="color:var(--c-new)">🟠 Layer 3 · 需提前布局</div>
+    <div class="pn">战略卡位 · 未来壁垒</div>
+    <div class="pt">分布式通信压缩(DeepEP/ExpertQuant) · KV×蒸馏(空白) · 打破全复制(FoMoE)</div>
+    <div class="pa">📈 组建专项</div>
+  </div>
+  <div class="pyr-l py-build">
+    <div class="pl" style="color:var(--c-rising)">🟡 Layer 2 · 建设中</div>
+    <div class="pn">当前投入重点 · 窗口期</div>
+    <div class="pt">KV生命周期管理(SnapKV/KIVI) · 推测计算(EAGLE) · 分离式推理 · 注意力架构(MLA)</div>
+    <div class="pa">⚡ 主力资源</div>
+  </div>
+  <div class="pyr-l py-core">
+    <div class="pl" style="color:var(--c-mature)">🟢 Layer 1 · 已构筑核心</div>
+    <div class="pn">技术地基 · 护城河</div>
+    <div class="pt">数值精度(GPTQ/AWQ) · 冗余消除(SparseGPT) · 低秩(LoRA) · 知识迁移(MiniLLM) · 内存调度(PagedAttn)</div>
+    <div class="pa">✅ 维持即可</div>
+  </div>
+</div>
+
+<h4 style="color:var(--accent);margin:20px 0 8px">🌳 7大根技术详情</h4>
+<div class="rt-grid">
+  <div class="rt-card">
+    <div class="rtn">1. 数值精度压缩</div>
+    <div class="rtp">原理：降低比特数 FP16→INT4/INT2</div>
+    <div class="rtm">
+      <span class="m" style="background:rgba(34,197,94,0.15);color:var(--c-mature)">已构筑</span> 权重GPTQ/AWQ/GGUF<br>
+      <span class="m" style="background:rgba(234,179,8,0.15);color:var(--c-rising)">建设中</span> KV KIVI/Block-GTQ<br>
+      <span class="m" style="background:rgba(249,115,22,0.15);color:var(--c-new)">需布局</span> 通信 ExpertQuant<br>
+      <span class="m" style="background:rgba(167,139,250,0.15);color:var(--c-blank)">探索</span> ≤2bit极端
+    </div>
+  </div>
+  <div class="rt-card">
+    <div class="rtn">2. 结构冗余消除</div>
+    <div class="rtp">原理：发现并移除冗余结构</div>
+    <div class="rtm">
+      <span class="m" style="background:rgba(34,197,94,0.15);color:var(--c-mature)">已构筑</span> 权重SparseGPT/Wanda/GQA<br>
+      <span class="m" style="background:rgba(234,179,8,0.15);color:var(--c-rising)">建设中</span> KV淘汰SnapKV/R-KV<br>
+      <span class="m" style="background:rgba(167,139,250,0.15);color:var(--c-blank)">探索</span> MoE Expert稀疏
+    </div>
+  </div>
+  <div class="rt-card">
+    <div class="rtn">3. 低秩空间映射</div>
+    <div class="rtp">原理：高维→低秩子空间</div>
+    <div class="rtm">
+      <span class="m" style="background:rgba(34,197,94,0.15);color:var(--c-mature)">已构筑</span> LoRA/QLoRA<br>
+      <span class="m" style="background:rgba(234,179,8,0.15);color:var(--c-rising)">建设中</span> MLA/STAR-KV<br>
+      <span class="m" style="background:rgba(167,139,250,0.15);color:var(--c-blank)">探索</span> 动态低秩
+    </div>
+  </div>
+  <div class="rt-card">
+    <div class="rtn">4. 知识迁移</div>
+    <div class="rtp">原理：大模型指导小模型(蒸馏)</div>
+    <div class="rtm">
+      <span class="m" style="background:rgba(34,197,94,0.15);color:var(--c-mature)">已构筑</span> 经典MiniLLM/API蒸馏<br>
+      <span class="m" style="background:rgba(234,179,8,0.15);color:var(--c-rising)">建设中</span> 量化恢复BitDistiller<br>
+      <span class="m" style="background:rgba(249,115,22,0.15);color:var(--c-new)">需布局</span> KV蒸馏(Decoding=0篇!)<br>
+      <span class="m" style="background:rgba(167,139,250,0.15);color:var(--c-blank)">探索</span> 跨阶段联合蒸馏
+    </div>
+  </div>
+  <div class="rt-card">
+    <div class="rtn">5. 内存管理 ⚠️（配套非压缩）</div>
+    <div class="rtp">原理：高效调度分配/复用/回收 ⚠️不减少数据量</div>
+    <div class="rtm">
+      <span class="m" style="background:rgba(34,197,94,0.15);color:var(--c-mature)">已构筑</span> PagedAttn/RadixAttn<br>
+      <span class="m" style="background:rgba(234,179,8,0.15);color:var(--c-rising)">建设中</span> 分离式DistServe/Mooncake<br>
+      <span class="m" style="background:rgba(167,139,250,0.15);color:var(--c-blank)">探索</span> 跨节点KV迁移
+    </div>
+  </div>
+  <div class="rt-card">
+    <div class="rtn">6. 分布式通信压缩</div>
+    <div class="rtp">原理：减少跨设备数据传输</div>
+    <div class="rtm">
+      <span class="m" style="background:rgba(249,115,22,0.15);color:var(--c-new)">需布局</span> DeepEP/ExpertQuant<br>
+      <span class="m" style="background:rgba(167,139,250,0.15);color:var(--c-blank)">探索</span> FoMoE打破全复制<br>
+      <span style="color:var(--c-new);font-size:10px">⚠ 从零开始，无历史积累</span>
+    </div>
+  </div>
+  <div class="rt-card">
+    <div class="rtn">7. 推测计算 ⚠️（配套非压缩）</div>
+    <div class="rtp">原理：预测+验证替代精确计算 ⚠️不减少数据量</div>
+    <div class="rtm">
+      <span class="m" style="background:rgba(234,179,8,0.15);color:var(--c-rising)">建设中</span> EAGLE/SpecDec/Medusa<br>
+      <span class="m" style="background:rgba(167,139,250,0.15);color:var(--c-blank)">探索</span> 推测+KV压缩联合
+    </div>
+  </div>
+</div>
+
+<h4 style="color:var(--accent);margin:20px 0 8px">📊 能力覆盖矩阵（根技术×成熟度）</h4>
+<table class="cov-table">
+  <tr><th>根技术</th><th style="color:var(--c-mature)">已构筑</th><th style="color:var(--c-rising)">建设中</th><th style="color:var(--c-new)">需布局</th><th style="color:var(--c-blank)">探索</th></tr>
+  <tr><td>1.数值精度</td><td style="color:var(--c-mature)">✓ 权重</td><td style="color:var(--c-rising)">◐ KV</td><td style="color:var(--c-new)">! 通信</td><td style="color:var(--c-blank)">? ≤2bit</td></tr>
+  <tr><td>2.冗余消除</td><td style="color:var(--c-mature)">✓ 权重</td><td style="color:var(--c-rising)">◐ KV</td><td>—</td><td style="color:var(--c-blank)">? MoE</td></tr>
+  <tr><td>3.低秩映射</td><td style="color:var(--c-mature)">✓ LoRA</td><td style="color:var(--c-rising)">◐ MLA</td><td>—</td><td style="color:var(--c-blank)">? 动态</td></tr>
+  <tr><td>4.知识迁移</td><td style="color:var(--c-mature)">✓ 经典</td><td style="color:var(--c-rising)">◐ 量化恢复</td><td style="color:var(--c-new)">!! KV蒸馏(0篇)</td><td style="color:var(--c-blank)">? 跨阶段</td></tr>
+  <tr><td>5.内存调度</td><td style="color:var(--c-mature)">✓ PagedAttn</td><td style="color:var(--c-rising)">◐ 分离式</td><td>—</td><td style="color:var(--c-blank)">? 跨节点</td></tr>
+  <tr><td>6.通信压缩</td><td>—</td><td>—</td><td style="color:var(--c-new)">!! DeepEP</td><td style="color:var(--c-blank)">? FoMoE</td></tr>
+  <tr><td>7.推测计算</td><td>—</td><td style="color:var(--c-rising)">◐ EAGLE</td><td>—</td><td style="color:var(--c-blank)">? 联合</td></tr>
+</table>
+
+<h4 style="color:var(--accent);margin:20px 0 8px">📅 能力建设路线图</h4>
+<table class="dt-table">
+  <tr><th>阶段</th><th>时间</th><th>建设目标</th><th>对应根技术</th></tr>
+  <tr><td><strong>Phase 1</strong></td><td>现在-3月</td><td>窗口期工程化(KV管理+推测)</td><td>根技术2(KV淘汰)/5(分离式)/7(推测)</td></tr>
+  <tr><td><strong>Phase 2</strong></td><td>3-6月</td><td>通信压缩能力建设(MoE卡位)</td><td>根技术6(通信)+1(通信量化)</td></tr>
+  <tr><td><strong>Phase 3</strong></td><td>6-12月</td><td>蒸馏×压缩联合(填空白)</td><td>根技术4(KV蒸馏/通信蒸馏)</td></tr>
+  <tr><td><strong>Phase 4</strong></td><td>12月+</td><td>前沿探索(跨阶段/跨模态)</td><td>根技术4(跨阶段)/探索方向</td></tr>
+</table>
+
+<!-- 框架支持矩阵 -->
+<div class="section-h2">🔧 框架支持矩阵（技术×框架交叉）</div>
+<div class="note"><strong>哪个框架支持哪些压缩技术？</strong>选错框架 = 压缩技术无法集成。</div>
+<table class="fwm-table">
+  <tr><th>压缩技术</th><th>vLLM</th><th>SGLang</th><th>TensorRT-LLM</th><th>llama.cpp</th><th>FlashInfer</th></tr>
+  <tr><td>参数AWQ/GPTQ</td><td class="fwm-yes">✅ 原生</td><td class="fwm-yes">✅ 原生</td><td class="fwm-yes">✅ INT8/FP8</td><td class="fwm-yes">✅ GGUF</td><td>—</td></tr>
+  <tr><td>激活SmoothQuant</td><td class="fwm-part">◐ 部分</td><td class="fwm-part">◐ 部分</td><td class="fwm-yes">✅ W8A8</td><td class="fwm-no">❌</td><td>—</td></tr>
+  <tr><td>KV稀疏SnapKV</td><td class="fwm-part">◐ 插件</td><td class="fwm-part">◐ 内置</td><td class="fwm-no">❌</td><td class="fwm-no">❌</td><td class="fwm-part">◐</td></tr>
+  <tr><td>KV量化KIVI</td><td class="fwm-no">❌ 待集成</td><td class="fwm-no">❌ 待集成</td><td class="fwm-no">❌</td><td class="fwm-no">❌</td><td class="fwm-no">❌</td></tr>
+  <tr><td>PagedAttention</td><td class="fwm-yes">✅ 核心</td><td class="fwm-no">❌</td><td class="fwm-part">◐ In-flight</td><td class="fwm-no">❌</td><td>—</td></tr>
+  <tr><td>前缀缓存RadixAttn</td><td class="fwm-part">◐ 部分</td><td class="fwm-yes">✅ 核心</td><td class="fwm-no">❌</td><td class="fwm-no">❌</td><td>—</td></tr>
+  <tr><td>投机解码</td><td class="fwm-yes">✅ 支持</td><td class="fwm-yes">✅ 支持</td><td class="fwm-yes">✅</td><td class="fwm-no">❌</td><td>—</td></tr>
+  <tr><td>MoE通信DeepEP</td><td class="fwm-part">◐ 部分</td><td class="fwm-part">◐ MoE</td><td class="fwm-no">❌</td><td class="fwm-no">❌</td><td>—</td></tr>
+  <tr><td>FlashAttention</td><td class="fwm-yes">✅ 集成</td><td class="fwm-yes">✅ 集成</td><td class="fwm-yes">✅ 自有</td><td class="fwm-no">❌</td><td class="fwm-yes">✅ 核心</td></tr>
+</table>
+<div style="font-size:11px;color:var(--text-dim);margin:8px 0">
+  💡 <strong>KV量化(KIVI)</strong>和<strong>通信压缩(DeepEP)</strong>是集成度最低的两个方向 — 工程化机会最大。
+</div>
+
+<!-- 蓝军挑战修复章节 -->
+<style>
+  .fix-section { background:var(--surface); border:1px solid var(--border); border-radius:14px; padding:20px; margin-bottom:20px; }
+  .fix-section h3 { color:var(--c-new); font-size:15px; margin-bottom:12px; }
+  .fw-comp-table { width:100%; border-collapse:collapse; margin:10px 0; font-size:11px; }
+  .fw-comp-table th { background:var(--surface2); padding:7px; text-align:center; border-bottom:2px solid var(--border); }
+  .fw-comp-table td { padding:6px; text-align:center; border-bottom:1px solid var(--border); }
+  .fw-comp-table td:first-child { text-align:left; font-weight:600; }
+  .fw-yes { color:var(--c-mature); } .fw-no { color:var(--text-dim); } .fw-part { color:var(--c-rising); }
+  .gap-card { background:var(--surface2); border:1px solid var(--border); border-left:3px solid var(--c-new); border-radius:8px; padding:12px; margin-bottom:8px; }
+  .gap-card .gn { font-size:13px; font-weight:700; color:var(--accent); }
+  .gap-card .gd { font-size:11px; color:var(--text-dim); margin-top:4px; line-height:1.7; }
+  .gap-card .gp { font-size:10px; color:var(--c-new); margin-top:4px; }
+</style>
+
+<!-- P0-3: 工程落地指南 -->
+<div class="section-h2">🔧 工程落地指南（蓝军4挑战）</div>
+<div class="note"><strong>蓝军4挑战：</strong>地图能"导航"但不能"落地"。补充集成方式/兼容性/实测性能。</div>
+
+<h4 style="color:var(--accent);margin:14px 0 8px">📐 技术集成路径</h4>
+<table class="fw-comp-table">
+  <tr><th>技术</th><th>框架集成</th><th>集成难度</th><th>实测效果</th><th>兼容性注意</th></tr>
+  <tr><td>AWQ INT4量化</td><td class="fw-yes">vLLM原生✅</td><td>★☆☆ 极低</td><td>2-4x内存↓，&lt;1%精度损失</td><td>需AWQ格式权重</td></tr>
+  <tr><td>GPTQ量化</td><td class="fw-yes">vLLM/SGLang✅</td><td>★☆☆ 极低</td><td>2-4x内存↓</td><td>需校准数据集</td></tr>
+  <tr><td>GGUF量化</td><td class="fw-yes">llama.cpp✅</td><td>★☆☆ 极低</td><td>CPU推理2-3x↑</td><td>仅llama.cpp生态</td></tr>
+  <tr><td>PagedAttention</td><td class="fw-yes">vLLM核心✅</td><td>★☆☆ 开箱即用</td><td>24x吞吐↑</td><td>vLLM内置</td></tr>
+  <tr><td>RadixAttention</td><td class="fw-yes">SGLang核心✅</td><td>★☆☆ 开箱即用</td><td>前缀命中率高</td><td>SGLang内置</td></tr>
+  <tr><td>FlashAttention</td><td class="fw-yes">全框架✅</td><td>★☆☆ 开箱即用</td><td>2-4x注意力↑</td><td>需CUDA 11.6+</td></tr>
+  <tr><td>SnapKV(稀疏)</td><td class="fw-part">vLLM插件◐</td><td>★★☆ 中等</td><td>8x KV↓，&lt;2%损失</td><td>需修改attention层</td></tr>
+  <tr><td>投机解码</td><td class="fw-yes">vLLM支持✅</td><td>★★☆ 中等</td><td>2-3x↑无精度损失</td><td>需草稿模型</td></tr>
+  <tr><td>KIVI(2bit KV)</td><td class="fw-no">❌ 待集成</td><td>★★★ 较高</td><td>4x KV↓，1-3%损失</td><td>需自定义CUDA kernel</td></tr>
+  <tr><td>Block-GTQ(4bit)</td><td class="fw-no">❌ 待集成</td><td>★★★ 较高</td><td>4x KV↓，~3%损失</td><td>RoPE处理需特殊</td></tr>
+  <tr><td>DeepEP(MoE通信)</td><td class="fw-part">独立库◐</td><td>★★★ 高</td><td>MoE通信优化</td><td>需DeepSeek架构</td></tr>
+</table>
+
+<h4 style="color:var(--accent);margin:14px 0 8px">🛠️ 集成步骤示例（以SnapKV为例）</h4>
+<div style="font-size:12px;color:var(--text-dim);background:var(--surface2);border-radius:8px;padding:14px;line-height:1.8">
+  <strong>Step 1:</strong> 安装SnapKV（pip install snapkv）<br>
+  <strong>Step 2:</strong> 在vLLM中monkey-patch attention层<br>
+  <strong>Step 3:</strong> 设置KV保留预算（如keep_ratio=0.1）<br>
+  <strong>Step 4:</strong> 在GSM8K/HumanEval上验证精度<br>
+  <strong>⚠️ 注意:</strong> SnapKV与PagedAttention兼容，但与连续批处理组合需测试
+</div>
+
+<!-- P1-2: 量化分类轴说明 -->
+<div class="section-h2">📐 分类轴说明（蓝军1&2挑战）</div>
+<div class="note">
+  <strong>蓝军1挑战：量化子分类混用了多个分类轴。</strong><br>
+  <strong>说明：</strong>参数×量化的子分类确实混用了"是否训练(PTQ/QAT)"+"比特分配(混合精度)"+"预处理(旋转量化)"+"建模方式(激活感知)"4个轴。这是因为量化论文本身就是从不同维度创新的，强行统一到一个轴会丢失信息。<br>
+  <strong>处理方式：</strong>在每个子技术卡片中标注其分类轴（如"按预处理分"/"按训练方式分"），让读者知道每个卡片是什么维度的。<br><br>
+  <strong>蓝军2挑战：KV子技术不正交（SnapKV跨多个策略）。</strong><br>
+  <strong>说明：</strong>确实，KV稀疏论文经常组合多种策略。SnapKV=语义聚类+重要性评分，H2O=固定规则+重要性评分。<br>
+  <strong>处理方式：</strong>子技术分类是"主要策略"而非"唯一策略"，一篇论文归入其主要创新点对应的格子。
+</div>
+
+<!-- P1-3: 遗漏方向 -->
+<div class="section-h2">🆕 补充遗漏方向（蓝军6挑战）</div>
+<div class="note"><strong>蓝军6发现3个遗漏方向。</strong>这些方向在3114篇中有论文但全集图此前未收录。</div>
+<div class="gap-card">
+  <div class="gn">1. 早期退出/自适应计算 (Adaptive Computation)</div>
+  <div class="gd">根据输入难度动态决定计算量——简单输入少算几层，复杂输入算满。本质是"动态深度压缩"。</div>
+  <div class="gp">代表：Adaptive Inference-Time Compute(14引用 ICLR'25) · SkipNet · DeeBERT</div>
+</div>
+<div class="gap-card">
+  <div class="gn">2. 模型合并 (Model Merging)</div>
+  <div class="gd">合并多个微调模型为一个，减少部署模型数。本质是"模型级压缩"。2025年29篇"merging"论文。</div>
+  <div class="gp">代表：TIES-Merging · DARE · Model Soups · Matryoshka(33引用)</div>
+</div>
+<div class="gap-card">
+  <div class="gn">3. 路由优化 (Route Optimization)</div>
+  <div class="gd">MoE的Expert选择策略本身可压缩——更少的路由通信=更快的推理。</div>
+  <div class="gp">代表：Dynamic MoE(10引用) · Self-MoE(10引用) · Shortcut-connected Expert(13引用)</div>
+</div>
+
+<!-- P2-2: 场景按业务价值 -->
+<div class="section-h2">📊 场景优先级（蓝军8挑战）</div>
+<div class="note"><strong>蓝军8挑战：</strong>场景按论文数排不公平，应按业务价值排。</div>
+<table class="fw-comp-table">
+  <tr><th>场景</th><th>论文数</th><th>业务价值</th><th>综合优先级</th><th>理由</th></tr>
+  <tr><td>🤖 Agent</td><td>110</td><td class="fw-yes">★★★★★</td><td class="fw-yes">P0</td><td>多轮对话KV累积=最核心推理压缩需求</td></tr>
+  <tr><td>📜 长上下文</td><td>149</td><td class="fw-yes">★★★★★</td><td class="fw-yes">P0</td><td>128K+上下文=KV爆炸=必须压缩</td></tr>
+  <tr><td>🧩 MoE</td><td>129</td><td class="fw-yes">★★★★☆</td><td>P1</td><td>GPT-4/DeepSeek-V3都用MoE，通信压缩刚需</td></tr>
+  <tr><td>💬 LLM</td><td>1360</td><td>★★★☆☆</td><td>P1</td><td>论文多但红海，差异化困难</td></tr>
+  <tr><td>📸 多模态</td><td>253</td><td>★★★☆☆</td><td>P2</td><td>视觉token压缩有独特价值</td></tr>
+  <tr><td>📱 端侧</td><td>129</td><td>★★★☆☆</td><td>P2</td><td>INT4量化成熟，增量有限</td></tr>
+  <tr><td>🎨 扩散模型</td><td>302</td><td>★★☆☆☆</td><td>P3</td><td>论文多但推理压缩非核心痛点（多步去噪才是）</td></tr>
+  <tr><td>🎙️ 语音</td><td>83</td><td>★☆☆☆☆</td><td>P3</td><td>Tokenizer效率，与推理压缩关联弱</td></tr>
+</table>
+
+<!-- P2-3: 硬件适配 -->
+<div class="section-h2">🖥️ 硬件适配矩阵（蓝军9挑战）</div>
+<table class="fw-comp-table">
+  <tr><th>技术</th><th>H100/H800</th><th>A100</th><th>AMD MI300</th><th>消费级(4090)</th><th>CPU</th><th>端侧</th></tr>
+  <tr><td>INT4量化(AWQ/GPTQ)</td><td class="fw-yes">原生✅</td><td class="fw-part">模拟◐</td><td class="fw-part">ROCm◐</td><td class="fw-yes">✅</td><td class="fw-yes">GGUF✅</td><td class="fw-yes">✅</td></tr>
+  <tr><td>FP8量化</td><td class="fw-yes">原生✅</td><td class="fw-no">❌</td><td class="fw-part">ROCm◐</td><td class="fw-no">❌</td><td class="fw-no">❌</td><td class="fw-no">❌</td></tr>
+  <tr><td>2:4稀疏</td><td class="fw-yes">原生✅</td><td class="fw-yes">原生✅</td><td class="fw-no">❌</td><td class="fw-yes">✅</td><td class="fw-no">❌</td><td class="fw-no">❌</td></tr>
+  <tr><td>FlashAttention</td><td class="fw-yes">✅ v3</td><td class="fw-yes">✅ v2</td><td class="fw-part">社区◐</td><td class="fw-yes">✅</td><td class="fw-no">❌</td><td class="fw-no">❌</td></tr>
+  <tr><td>KV稀疏(SnapKV)</td><td class="fw-yes">✅</td><td class="fw-yes">✅</td><td class="fw-part">未测试</td><td class="fw-part">显存受限</td><td class="fw-no">❌</td><td class="fw-no">❌</td></tr>
+  <tr><td>投机解码</td><td class="fw-yes">✅</td><td class="fw-yes">✅</td><td class="fw-part">未测试</td><td class="fw-yes">✅</td><td class="fw-part">◐</td><td class="fw-no">❌</td></tr>
+  <tr><td>DeepEP通信</td><td class="fw-yes">✅</td><td class="fw-yes">✅</td><td class="fw-no">❌</td><td class="fw-no">❌</td><td class="fw-no">❌</td><td class="fw-no">❌</td></tr>
+</table>
+
+<!-- P3: 前瞻方向 -->
+<div class="section-h2">🔭 前瞻方向（蓝军10挑战）</div>
+<div class="note"><strong>蓝军10挑战：</strong>全集图基于"过去"，缺对颠覆性创新的预判。以下方向可能颠覆现有分类体系。</div>
+<div class="gap-card" style="border-left-color:var(--c-blank)">
+  <div class="gn">🔮 Mamba/SSM替代Transformer</div>
+  <div class="gd">如果SSM取代Transformer，KV Cache压缩的整个分类体系都需要重来（SSM不需要KV Cache）。Samba(43引用)/MambaVision(105引用)已显示苗头。</div>
+</div>
+<div class="gap-card" style="border-left-color:var(--c-blank)">
+  <div class="gn">🔮 联邦推理压缩</div>
+  <div class="gd">多方安全推理中如何压缩？涉及隐私保护+压缩的交叉，是全新方向。</div>
+</div>
+<div class="gap-card" style="border-left-color:var(--c-blank)">
+  <div class="gn">🔮 光子/模拟计算压缩</div>
+  <div class="gd">硬件级压缩范式，从物理层面减少计算量，不在传统压缩范畴内。</div>
+</div>
+
+<!-- 最终总结 -->
+<div class="note" style="margin-top:24px;border-color:var(--c-blank)">
+  <strong style="color:var(--c-blank)">📌 本图集大成总结（吸收全部10个技术地图精华）：</strong><br><br>
+  <strong>核心矩阵：</strong>4对象×5技术=20格，每格展开子技术（共63个子方向），数据从2,764篇(清洁)论文自动统计<br>
+  <strong>成熟度规律：</strong>沿对象轴递减（参数全绿→通信黄橙紫）；沿技术轴递减（量化/稀疏较成熟→蒸馏最落后）<br>
+  <strong>两大最高空白：</strong>KV×Decoding蒸馏(0篇) · 通信×蒸馏(18篇)<br>
+  <strong>战略建议：</strong>参数行不投入 → KV行主力冲刺 → 通信行战略卡位 → 蒸馏列是论文机会<br>
+  <strong>能力路径：</strong>L1部署(AWQ)→L2调优(SnapKV)→L3集成(KIVI)→L4创新(KV蒸馏)<br>
+  <strong>根技术视角：</strong>7大根技术中5个已构筑(地基)，根技术6(通信)从零开始，根技术4(蒸馏)有最大空白<br>
+  <strong>框架集成度：</strong>KV量化(KIVI)和通信压缩(DeepEP)集成度最低 = 工程化机会最大<br><br>
+  <strong>本图包含14个章节：</strong>核心矩阵 / 一页速查 / 趋势演进 / 框架选型 / 场景路径 / NIAH基准 / 机会识别 / 战略建议 / 能力路径 / 信源导航 / 决策导航 / 评估矩阵 / 能力金字塔 / 框架支持矩阵<br><br>
+  <strong>场景覆盖：</strong>8大场景 — LLM(1360) / 扩散模型(302) / 多模态(253) / 长上下文(149) / MoE(129) / 端侧(129) / Agent(110) / 语音(83)<br>
+  <strong>数据管道：</strong>论文→自动标注→矩阵统计→全集图（从根源消除遗漏）<br><br>
+  <strong>数据来源：</strong>inference_compression_unified.json (2,764篇(清洁)，6个数据源合并，自动标注) · 2026-06
+</div>
+
+</div>
+
+</body>
+</html>

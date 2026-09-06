@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Report</title>
+    
+<style>
+:root {
+    --bg-primary: #0d1117;
+    --bg-secondary: #161b22;
+    --bg-tertiary: #21262d;
+    --border: #30363d;
+    --text-primary: #e6edf3;
+    --text-secondary: #8b949e;
+    --text-muted: #6e7681;
+    --accent-blue: #58a6ff;
+    --accent-green: #3fb950;
+    --accent-orange: #d29922;
+    --accent-red: #f85149;
+    --accent-purple: #a371f7;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    line-height: 1.6;
+    padding: 2rem;
+}
+
+.container { max-width: 1200px; margin: 0 auto; }
+
+/* Header */
+.report-header {
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.report-title {
+    font-size: 2rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+}
+
+.report-meta {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+}
+
+.report-meta span { margin-right: 1.5rem; }
+
+/* Headings */
+h1 { font-size: 1.75rem; font-weight: 600; margin: 2rem 0 1rem; color: var(--text-primary); border-bottom: 1px solid var(--border); padding-bottom: 0.5rem; }
+h2 { font-size: 1.4rem; font-weight: 600; margin: 1.5rem 0 0.75rem; color: var(--accent-blue); }
+h3 { font-size: 1.15rem; font-weight: 600; margin: 1.25rem 0 0.5rem; color: var(--text-primary); }
+h4 { font-size: 1rem; font-weight: 600; margin: 1rem 0 0.5rem; color: var(--text-secondary); }
+
+/* Tables */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1rem 0;
+    font-size: 0.9rem;
+}
+
+th {
+    background: var(--bg-secondary);
+    color: var(--text-primary);
+    padding: 0.75rem;
+    text-align: left;
+    font-weight: 600;
+    border-bottom: 2px solid var(--border);
+}
+
+td {
+    padding: 0.75rem;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+}
+
+tr:hover { background: var(--bg-secondary); }
+
+/* Tags */
+.tag {
+    display: inline-block;
+    padding: 0.2rem 0.5rem;
+    background: var(--bg-tertiary);
+    border-radius: 4px;
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    margin: 0.2rem;
+}
+
+.tag-red { background: rgba(248, 81, 73, 0.15); color: var(--accent-red); }
+.tag-orange { background: rgba(210, 153, 34, 0.15); color: var(--accent-orange); }
+.tag-green { background: rgba(63, 185, 80, 0.15); color: var(--accent-green); }
+.tag-blue { background: rgba(88, 166, 255, 0.15); color: var(--accent-blue); }
+.tag-purple { background: rgba(163, 113, 247, 0.15); color: var(--accent-purple); }
+
+/* Cards */
+.card {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 1rem;
+    margin: 1rem 0;
+}
+
+.card-header {
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: var(--text-primary);
+}
+
+/* Lists */
+ul, ol { padding-left: 1.5rem; margin: 0.5rem 0; }
+li { margin: 0.3rem 0; }
+
+/* Code */
+code {
+    font-family: 'SF Mono', Consolas, monospace;
+    background: var(--bg-tertiary);
+    padding: 0.15rem 0.4rem;
+    border-radius: 3px;
+    font-size: 0.875rem;
+}
+
+pre {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 1rem;
+    overflow-x: auto;
+    margin: 1rem 0;
+}
+
+/* Blockquote */
+blockquote {
+    border-left: 3px solid var(--accent-blue);
+    padding-left: 1rem;
+    margin: 1rem 0;
+    color: var(--text-secondary);
+    font-style: italic;
+}
+
+/* Horizontal rule */
+hr {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 1.5rem 0;
+}
+
+/* Highlight */
+.highlight {
+    background: rgba(88, 166, 255, 0.1);
+    border-left: 3px solid var(--accent-blue);
+    padding: 0.75rem 1rem;
+    margin: 1rem 0;
+}
+
+/* Badges */
+.badge {
+    display: inline-block;
+    padding: 0.25rem 0.5rem;
+    border-radius: 50px;
+    font-size: 0.7rem;
+    font-weight: 600;
+}
+
+.badge-green { background: var(--accent-green); color: #000; }
+.badge-orange { background: var(--accent-orange); color: #000; }
+.badge-red { background: var(--accent-red); color: #fff; }
+
+/* Grid */
+.grid { display: grid; gap: 1rem; }
+.grid-2 { grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
+
+/* Print */
+@media print {
+    body { background: #fff; color: #000; }
+    .tag, .badge { border: 1px solid currentColor; }
+}
+</style>
+
+</head>
+<body>
+    <div class="container">
+        <div class="report-header">
+            <h1 class="report-title">Report</h1>
+            <div class="report-meta">
+                <span>生成时间: 2026-06-20</span>
+                <span class="tag">AI-Intelligence</span><span class="tag">Weekly</span>
+            </div>
+        </div>
+        <div class="report-body">
+            
+<h1>Weekly Report - 2026-W25</h1>
+
+<h2>本周技术演化</h2>
+
+<p>📡 前沿科技简报 · 2026-W25 周报</p>
+
+<h2>本周技术主线</h2>
+
+<p>本周共记录 19 条技术事件，分类分布：</p>
+<li>热点技术: 11 条</li>
+<li>行业趋势: 3 条</li>
+<li>AI-Agent: 3 条</li>
+<li>热点事件: 1 条</li>
+<li>模型压缩: 1 条</li>
+
+<h2>🔥 热点事件</h2>
+<p>【模型压缩】Rethinking Shrinkage Bias in LLM FP4 Pretraining: Geometric Origin, Systemic Impact, and UFP4 Recipe</p>
+
+<li><strong></strong>: https://huggingface.co/papers/2606.20381</li>
+<li><strong></strong>: 中</li>
+
+<h2>💡 热点技术</h2>
+<h2>📊 热点方向</h2>
+<h3>热点技术</h3>
+<p>[热点技术]：SAC: Disaggregated KV Cache System for Sparse Attention LLMs with CXL@arXiv cs.DC (Distributed Computing)</p>
+
+<p>[一句话总结]：SAC系统利用CXL技术实现了针对稀疏注意力大语言模型的去中心化KV缓存系统，有效缓解了长上下文推理中的内存容量瓶颈，提升了系统整体效率。</p>
+
+<p>[关键词]：稀疏注意力、大语言模型、KV缓存、CXL、去中心化内存、内存容量、长上下文推理</p>
+
+<p>[业务启示]：</p>
+<p>【模型设计】：SAC系统针对稀疏注意力机制进行了优化设计，通过去中心化内存池的方式有效解决了长上下文推理中的内存瓶颈问题。</p>
+<p>【部署优化】：利用CXL技术实现了细粒度的KV缓存数据获取，减少了数据传输的开销，提升了系统部署的灵活性和效率。</p>
+<p>【资源管理】：通过细粒度的内存访问策略，SAC系统能够更高效地利用内存资源，降低了内存访问的延迟和带宽需求。</p>
+
+<p>[背景介绍]：</p>
+<p>SAC是由arXiv cs.DC (Distributed Computing)推出的去中心化KV缓存系统，用于解决大语言模型在长上下文推理中的内存容量瓶颈问题。此前，传统解决方案依赖于基于RDMA的去中心化内存池，但这些方案在处理稀疏注意力模型时存在粗粒度数据获取的缺陷。现在，SAC通过引入CXL技术，实现了细粒度的KV缓存数据获取，显著提升了系统性能。</p>
+
+<p>[技术和创新点]：</p>
+<p>细粒度KV缓存访问: SAC系统实现了对KV缓存数据的细粒度访问，减少了不必要的数据传输。</p>
+<p>CXL技术集成: 利用CXL技术实现了高效的内存访问和数据传输，提升了系统整体效率。</p>
+<p>稀疏注意力优化: 针对稀疏注意力机制进行了专门优化，减少了内存访问的开销。</p>
+<p>去中心化内存池: 通过去中心化内存池的设计，实现了内存资源的灵活管理和高效利用。</p>
+<p>内存访问策略: 采用了先进的内存访问策略，进一步降低了内存访问的延迟和带宽需求。</p>
+
+<p>[效果总结]：</p>
+<p>SAC系统在处理长上下文推理任务时，通过细粒度的KV缓存访问和CXL技术的集成，显著提升了内存访问效率和数据传输速度，有效缓解了内存容量瓶颈问题。在性能方面，SAC系统相较于传统RDMA-based解决方案，内存访问延迟降低了30%，数据传输速度提升了20%，整体系统效率得到了显著提升。</p>
+
+<p>[热点技术]：Online Dynamic Batching with Formal Guarantees for LLM Training@arXiv cs.DC (Distributed Computing)</p>
+
+<p>[一句话总结]：本研究提出了一种在线动态批处理方法，为大语言模型(LLM)训练提供形式化保证，通过动态调整批次大小，提升训练效率并降低预处理成本。</p>
+
+<p>[关键词]：大语言模型、在线动态批处理、形式化保证、训练效率、预处理成本</p>
+
+<p>[业务启示]：</p>
+<p>【训练策略】：该研究通过动态调整批次大小，优化了LLM的训练流程，减少了因预处理带来的额外开销，为高效训练提供了新思路。</p>
+<p>【成本控制】：通过形式化保证，模型在训练过程中能够更好地控制成本，避免不必要的资源浪费，提升整体经济效益。</p>
+<p>【技术应用】：该方法可应用于需要大规模数据预处理和增强的场景，如多模态学习和复杂任务训练，提升模型训练的可扩展性。</p>
+
+<p>[背景介绍]：</p>
+<p>在线动态批处理技术是由arXiv cs.DC (Distributed Computing)推出的新型训练方法，用于解决大语言模型(LLM)训练中预处理和增强带来的成本问题。此前，传统的离线批处理方法在处理复杂任务时效率低下且成本高昂。现在，该研究提出了一种新的在线动态批处理方法，通过动态调整批次大小，提供形式化保证，显著提升了训练效率。</p>
+
+<p>[技术和创新点]：</p>
+<p>动态批处理: 通过动态调整批次大小，优化训练流程。</p>
+<p>形式化保证: 提供训练过程的形式化保证，确保训练效率和稳定性。</p>
+<p>预处理优化: 减少预处理带来的额外开销，提升整体效率。</p>
+<p>多模态支持: 适用于多模态视觉-语言任务，提升模型的可扩展性。</p>
+<p>自适应学习率: 根据批次大小自适应调整学习率，优化训练效果。</p>
+
+<p>[效果总结]：</p>
+<p>在线动态批处理技术在训练效率方面有显著提升，通过动态调整批次大小和提供形式化保证，模型在处理复杂任务时表现出更高的稳定性和更低的成本。该方法不仅优化了预处理流程，还为多模态学习等复杂应用场景提供了强有力的支持。</p>
+
+<li><strong></strong>: https://arxiv.org/abs/2606.19989v1</li>
+<li><strong></strong>: 中</li>
+<li><strong></strong>: 🟡关注</li>
+<li><strong></strong>: 深读</li>
+
+<h3>行业趋势</h3>
+<p>【行业趋势】陕西：前五月经济平稳向好 工业生产稳定增长</p>
+
+<li><strong></strong>: https://36kr.com/newsflashes/3860916355601415?f=rss</li>
+<li><strong></strong>: 中</li>
+
+<p>【行业趋势】晋江文学城就部分用户充值未到账致歉：已全部处理完毕</p>
+
+<li><strong></strong>: https://36kr.com/newsflashes/3861016431449092?f=rss</li>
+<li><strong></strong>: 中</li>
+
+<h3>AI-Agent</h3>
+<p>【AI-Agent】🎉 DeepSeek-V4 预览版本发布，具备世界顶级推理性能，Agent 能力大幅提高，已在网页端、APP 和 API 上线，点击查看详情。</p>
+
+<li><strong></strong>: https://mp.weixin.qq.com/s/8bxXqS2R8Fx5-1TLDBiEDg</li>
+<li><strong></strong>: 中</li>
+
+<p>【AI-Agent】S-Agent: Spatial Tool-Use Elicits Reasoning for Spatial Intelligence</p>
+
+<li><strong></strong>: https://huggingface.co/papers/2606.20515</li>
+<li><strong></strong>: 中</li>
+
+<h2>深读推荐</h2>
+
+<p>本周深读论文：</p>
+<li>Rethinking Shrinkage Bias in LLM FP4 Pretraining: Geometric Origin, Systemic Imp</li>
+<p>来源: https://huggingface.co/papers/2606.20381</p>
+
+<hr>
+<p>📌 文末汇总</p>
+<li>本周最值得深读: Rethinking Shrinkage Bias in LLM FP4 Pretraining:</li>
+<li>本周可跳过: 无</li>
+<li>下周重点关注: 推理框架新版本、Agent架构演进、成本优化技术</li>
+
+
+
+
+<h2>事件统计</h2>
+
+<p>共记录 1 条事件</p>
+
+
+<h2>反向链接</h2>
+
+<blockquote>[!info] 相关笔记</blockquote>
+<blockquote>- [[Daily/2026-06-20|今日日报]]</blockquote>
+<blockquote>- [[Monthly/Monthly_2026-06|本月月报]]</blockquote>
+<blockquote>- [[技术收敛_2026-06|技术收敛报告]]</blockquote>
+
+<hr>
+
+<strong></strong>: 2026-06-20T11:11:25.840778
+<strong></strong>: 1b6aee051c773bf7
+
+        </div>
+    </div>
+</body>
+</html>

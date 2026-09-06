@@ -1,0 +1,1384 @@
+{
+  "collected_at": "2026-07-05T10:46:20.851634",
+  "date_range": "2026-06-05 to 2026-07-05",
+  "source": "ai-intelligence-os (scholar_alerts.json + deep_collect.py pattern)",
+  "total_unique_in_range": 42,
+  "already_in_db": 7,
+  "total_new": 35,
+  "query_stats": {
+    "Scholar Alert: KV Cache Compression": 0,
+    "Scholar Alert: Memory Bandwidth": 1,
+    "Scholar Alert: Ascend NPU": 0,
+    "Scholar Alert: LLM Pruning": 0,
+    "Scholar Alert: Activation Quantization": 0,
+    "Scholar Alert: Early Exit": 0,
+    "Scholar Alert: Weight Quantization": 0,
+    "Scholar Alert: Low-Rank Decomposition": 0,
+    "Scholar Alert: Knowledge Distillation": 0,
+    "Scholar Alert: Context Compression": 0,
+    "Scholar Alert: Sparse Attention": 0,
+    "Scholar Alert: Cross-Layer KV Sharing": 0,
+    "Scholar Alert: Linear Attention SSM": 0,
+    "Scholar Alert: Position Encoding": 0,
+    "Scholar Alert: Attention Architecture": 0,
+    "Scholar Alert: Token Merging VLM": 0,
+    "Scholar Alert: Prefix Caching": 1,
+    "Scholar Alert: Batching Scheduling": 0,
+    "deep_collect: KV量化": 14,
+    "deep_collect: 投机解码": 13,
+    "deep_collect: 内存效率": 15
+  },
+  "stats_objects": {
+    "参数": 11,
+    "KV": 9,
+    "激活": 4,
+    "通信": 1
+  },
+  "stats_methods": {
+    "量化": 10,
+    "投机解码": 8,
+    "剪枝/稀疏": 6,
+    "注意力优化": 3,
+    "蒸馏": 2,
+    "低秩": 1
+  },
+  "papers_all": [
+    {
+      "id": "2607.01831",
+      "date": "2026-07-02",
+      "title": "Lynx: Progressive Speculative Quantization for accelerating KV Transfer in Long-Context Inference",
+      "summary": "Long-context inference is increasingly common in large language model (LLM) serving, driven by retrieval-augmented generation and agentic systems. In disaggregated inference, these workloads require transferring large Key-Value (KV) caches across the network, where decoding cannot begin until the transfer completes. Recent KV quantization techniques reduce data volume and alleviate this bottleneck, but existing schemes fail to achieve both low network-exposed latency and high inference accuracy.   We challenge the assumption that the KV cache is an indivisible unit that must be fully received ",
+      "authors": [
+        "Wenchen Han",
+        "Gingfung Matthew Yeung",
+        "Marco Barletta",
+        "William Toner",
+        "Amory Hoste"
+      ],
+      "query_source": "deep_collect: KV量化",
+      "query_sources": [
+        "deep_collect: 投机解码"
+      ]
+    },
+    {
+      "id": "2607.01065",
+      "date": "2026-07-01",
+      "title": "GSRQ: Gain-Shape Residual Quantization for Sub-1-bit KV Cache",
+      "summary": "The deployment of Large Language Models (LLMs) with extended context windows is increasingly constrained by the linear growth of Key-Value (KV) cache memory. Vector Quantization (VQ), particularly Residual Quantization (RQ), is a promising approach for pushing KV cache storage toward the sub-1-bit regime by progressively encoding residuals with small codebooks. However, most VQ methods still rely on standard $\\ell_2$ $K$-means as the core codebook-learning primitive. We identify a subtle high-dimensional issue of this primitive: Euclidean centroid averaging can induce centroid shrinkage, which",
+      "authors": [
+        "Soosung Kim",
+        "Minjae Park",
+        "Eui-Young Chung",
+        "Jaeyong Chung"
+      ],
+      "query_source": "deep_collect: KV量化",
+      "objects": [
+        "KV"
+      ],
+      "methods": [
+        "量化"
+      ]
+    },
+    {
+      "id": "2606.31519",
+      "date": "2026-06-30",
+      "title": "RaBitQCache: Rotated Binary Quantization for KVCache in Long Context LLM Inference",
+      "summary": "Long-context Large Language Model inference is severely bottlenecked by the massive Key-Value (KV) cache, yet existing sparse attention methods often suffer from static fixed-budget (Top-k) retrieval or rely on proxy scores that are computationally expensive and biased. To address these limitations, we propose RaBitQCache, a novel sparse attention framework that utilizes randomized rotated binary quantization and high-throughput binary-INT4 arithmetic to efficiently estimate attention weights. Our proxy score serves as an unbiased estimator with a proven error bound, enabling adaptive Top-p re",
+      "authors": [
+        "Wenhao Li",
+        "Jinhao Dong",
+        "Hailin Zhang",
+        "Wenhang Shi",
+        "Wei Lu"
+      ],
+      "query_source": "deep_collect: KV量化",
+      "objects": [
+        "参数"
+      ],
+      "methods": [
+        "量化",
+        "剪枝/稀疏",
+        "注意力优化"
+      ]
+    },
+    {
+      "id": "2606.31163",
+      "date": "2026-06-30",
+      "title": "ComplianceGate: Classifier-Gated Multi-Tier LLM Routing for Inference in Regulated Industries",
+      "summary": "Large language models deployed in regulated industries operate under two constraints: compliance enforcement and cost efficiency. Personally identifiable information (PII) in user queries can reach model endpoints before the system determines whether that data should leave its jurisdictional boundary. Serving all queries through a single large model consumes full GPU capacity regardless of query complexity while offering no mechanism for geographic routing. Mixture-of-Experts architectures do not address this routing occurs between expert layers within the model after data has already arrived ",
+      "authors": [
+        "Abhishek Dey"
+      ],
+      "query_source": "deep_collect: 内存效率",
+      "objects": [],
+      "methods": []
+    },
+    {
+      "id": "2606.30389",
+      "date": "2026-06-29",
+      "title": "Predict, Reuse, and Repair: Accelerating Dynamic Sparse Attention for Long-Context LLM Decoding",
+      "summary": "Dynamic sparse attention (DSA) accelerates long-context LLM decoding by attending to only the top-K KV blocks relevant to each query, but it introduces a serialized selection-to-attention dependency that emerges as a new latency bottleneck. We present PRR, a speculate-reuse-repair runtime that exploits temporal locality in DSA selections to predict likely blocks, speculate the attention over them while selection is in flight, and incrementally repair missed blocks once the true selected set is known. PRR uses a lightweight EMA-based predictor, a profiling-guided speculation budget that keeps s",
+      "authors": [
+        "Tianyu Wang",
+        "Gourav Rattihalli",
+        "Aditya Dhakal",
+        "Junbo Li",
+        "Zhiwei Ren"
+      ],
+      "query_source": "deep_collect: 投机解码",
+      "objects": [
+        "参数"
+      ],
+      "methods": [
+        "剪枝/稀疏",
+        "注意力优化"
+      ]
+    },
+    {
+      "id": "2606.29565",
+      "date": "2026-06-28",
+      "title": "Speculative Pre-Positioning: Decoding Stateful Sessions to the Next Decision Point Off the Critical Path",
+      "summary": "A stateless inference server (vLLM, SGLang, TensorRT-LLM) idles between requests while the accelerator waits; a stateful session reclaims that idle time. Speculative pre-positioning decodes the session forward to its next decision point with the target model's own forward pass and no draft model, moving the cross-request prefill and entry-decode off the critical path: the next request resumes from a pre-paid entry on its delta, or, when a confidence gate fires, is answered from a cached distribution in one near-constant vocabulary scan with no decode, at a cost only of energy and a rare, bound",
+      "authors": [
+        "Victor Norgren"
+      ],
+      "query_source": "deep_collect: 投机解码",
+      "objects": [
+        "KV"
+      ],
+      "methods": [
+        "投机解码"
+      ]
+    },
+    {
+      "id": "2606.29223",
+      "date": "2026-06-28",
+      "title": "Depth Exploration for LLM Decoding",
+      "summary": "Autoregressive LLM decoding evaluates every generated token through the full layer stack, even though many tokens become predictable at intermediate depths. Existing lossless depth-adaptive methods exploit this redundancy by choosing a single non-final exit depth and verifying its prediction with the final-depth model. However, our measurements show that this selection-based strategy leaves substantial headroom: choosing an exit too late wastes computation, while choosing one too early triggers fallback and discards dependent drafts. We propose Depth Exploration Decoding (DEX), a lossless deco",
+      "authors": [
+        "Weisi Yang",
+        "Zipeng Sun",
+        "Stephen Xia"
+      ],
+      "query_source": "deep_collect: 投机解码",
+      "objects": [],
+      "methods": [
+        "低秩"
+      ]
+    },
+    {
+      "id": "2606.28831",
+      "date": "2026-06-27",
+      "title": "HARD-KV: Head-Adaptive Regularization for Decoding-time KV Compression",
+      "summary": "Long-context LLM inference faces a fundamental conflict: head-adaptive compression algorithms (e.g., Top-$p$ nucleus sampling) offer superior accuracy by dynamically fluctuating memory budgets, yet modern inference engines (e.g., vLLM) demand rigid, static memory patterns to leverage CUDA Graphs and PagedAttention. We resolve this ``Static-Dynamic'' mismatch with HARD-KV, a unified framework that that bridges dynamic selection with rigid system constraints. HARD-KV introduces a Cascade Cache hierarchy, managing the token lifecycle across dense, sparse, and condensed tiers. Crucially, we propos",
+      "authors": [
+        "Yuxuan Yang",
+        "Feiyang Ren",
+        "Bowen Zeng",
+        "Dalin Zhang",
+        "Jinpeng Chen"
+      ],
+      "query_source": "deep_collect: 内存效率",
+      "objects": [],
+      "methods": [
+        "剪枝/稀疏"
+      ]
+    },
+    {
+      "id": "2606.25987",
+      "date": "2026-06-24",
+      "title": "Weave of Formal Thought",
+      "summary": "Large language models (LLMs) attain remarkable surface fluency on code, yet they neither formally guarantee the syntactic validity of their output nor leverage the hierarchical structure defining the target language. While existing constrained-decoding frameworks address the former, they operate under rigid assumptions that preclude critical lexical mechanisms -- including context-sensitive lexing, maximal-munch tokenization, and keyword extraction -- and only approximate vocabulary masking, sacrificing completeness. For the latter, code LLMs typically inject grammatical structure via predeter",
+      "authors": [
+        "Alexandre Bouayad"
+      ],
+      "query_source": "deep_collect: 投机解码",
+      "objects": [],
+      "methods": []
+    },
+    {
+      "id": "2606.24033",
+      "date": "2026-06-23",
+      "title": "RoPE-Aware Bit Allocation for KV-Cache Quantization",
+      "summary": "Existing low-bit KV-cache quantizers often treat each cached key as a flat vector. Under RoPE, however, a key's contribution to a future attention logit decomposes into a position-dependent sum over two-dimensional frequency blocks. This makes key-cache quantization a block-wise bit-allocation problem: high-energy RoPE blocks are more sensitive to quantization error and should receive more bits. We introduce Block-GTQ, a RoPE-aware bit allocator for key-cache quantization built on TurboQuant-MSE(TQ-MSE). For each layer and KV head, Block-GTQ computes a label-free energy score for each RoPE blo",
+      "authors": [
+        "Fengfeng Liang",
+        "Yuechen Zhang",
+        "Jiaya Jia"
+      ],
+      "query_source": "deep_collect: KV量化",
+      "objects": [
+        "KV"
+      ],
+      "methods": [
+        "量化"
+      ]
+    },
+    {
+      "id": "2606.24957",
+      "date": "2026-06-23",
+      "title": "Dustin: Draft-Augmented Sparse Verification for Efficient Long-Context Generation with Speculative Decoding",
+      "summary": "While speculative decoding improves inference throughput for multi-batch long-context Large Language Models (LLMs), its efficiency is often limited by a verification bottleneck where Key-Value (KV) cache loading dominates latency. Existing compression methods fail in this regime: static eviction incurs accuracy loss due to saliency shift, while dynamic selection introduces prohibitive computational overhead during the verification path. We propose Dustin, a sparse verification framework designed for long-context speculative decoding. Dustin integrates lookahead signals from the draft model wit",
+      "authors": [
+        "WenHung Lee",
+        "Jian-Jia Chen",
+        "Xiaolin Lin",
+        "Pei-Shuo Wang",
+        "Chi-Chih Chang"
+      ],
+      "query_source": "deep_collect: 投机解码"
+    },
+    {
+      "id": "2606.24970",
+      "date": "2026-06-23",
+      "title": "Don't Go Breaking My LLM: The Impact of Pruning Attention Layers on Explanation Faithfulness and Confidence Calibration",
+      "summary": "Pruning Large Language Models (LLMs) reduces memory and inference costs by removing parts of the network, producing smaller models that retain most of their accuracy. As attention layers are the most resource-intensive parts of LLMs, pruning them is a promising compression strategy. Prior work shows that up to 33% of attention layers can be pruned with minimal accuracy loss. Nevertheless, the impact of attention pruning on model interpretability, specifically faithfulness and confidence calibration, remains unstudied. To address this gap, we study how pruning attention layers affects explanati",
+      "authors": [
+        "Pietro Tropeano",
+        "Maria Maistro",
+        "Tuukka Ruotsalo",
+        "Christina Lioma"
+      ],
+      "query_source": "deep_collect: 内存效率",
+      "objects": [],
+      "methods": [
+        "剪枝/稀疏"
+      ]
+    },
+    {
+      "id": "2606.23419",
+      "date": "2026-06-22",
+      "title": "GRINQH: Graded Input-based Quantization Hierarchy for Efficient LLM Generation",
+      "summary": "Autoregressive decoding with LLMs is primarily bottlenecked by GPU memory bandwidth, especially in edge-computing settings. While quantization is essential for mitigating this bottleneck, most existing methods treat inference as a uniform process and fail to account for the asymmetry between the compute-bound prefill stage and the memory-bound decoding stage. We propose GRINQH (GRaded INput-based Quantization Hierarchy), a weight-only post-training quantization framework that accelerates decoding by unifying quantization and sparsification. GRINQH leverages activation magnitudes as a proxy for",
+      "authors": [
+        "Jette Oberländer",
+        "Jan Finkbeiner",
+        "Catherine M. Schöfmann",
+        "Emre Neftci"
+      ],
+      "query_source": "Scholar Alert: Memory Bandwidth",
+      "objects": [
+        "KV",
+        "参数",
+        "激活"
+      ],
+      "methods": [
+        "量化"
+      ]
+    },
+    {
+      "id": "2606.23406",
+      "date": "2026-06-22",
+      "title": "HyperQuant: A Rate-Distortion-Optimal Quantization Pipeline for Large Language and Diffusion Models",
+      "summary": "We present HyperQuant (Hadamard, optimallY Packing, Entropy Rice-coding), a unified post-training quantization pipeline for the weights and the KV cache of large language and diffusion transformers. Across a suite of self-contained experiments (Table 1), HyperQuant outperforms the recent HIGGS scheme at every operating point from 3 to 5 bits per scalar (bps) on weights, and beats both TurboQuant and OCTOPUS on KV quantization down to 1.7 bps. Beyond the LLM setting, HyperQuant quantizes the 19B-parameter LTX-2 DiT video model with no observable per-frame artifacts. End-to-end on an H100 at 4 b",
+      "authors": [
+        "Yuval Domb",
+        "Hadar Sackstein",
+        "Tomer Solberg"
+      ],
+      "query_source": "deep_collect: KV量化"
+    },
+    {
+      "id": "2606.22840",
+      "date": "2026-06-22",
+      "title": "RLM-Cascade: Response-Level Speculative Decoding for Cost-Efficient LLM API Serving",
+      "summary": "We present RLM-Cascade, a proxy-layer system that applies speculative decoding at the response level to reduce LLM API costs without requiring model architecture access or a shared vocabulary. A fast, inexpensive draft model generates a candidate response; a capable verify model accepts, enhances, or is bypassed entirely depending on a lightweight complexity router. On a real-world agentic coding workload (Claude Code), RLM-Cascade achieves a draft-use rate of 88.8% across 125 production requests, reducing API cost by 45.8% relative to a direct Opus baseline. Counter-intuitively, the proxy als",
+      "authors": [
+        "Haifeng Wu",
+        "Srinivasan Manoharan",
+        "Fangbo Tu",
+        "Junhua Zhao",
+        "Jian Wan"
+      ],
+      "query_source": "deep_collect: 投机解码",
+      "objects": [
+        "参数"
+      ],
+      "methods": [
+        "投机解码"
+      ]
+    },
+    {
+      "id": "2606.23370",
+      "date": "2026-06-22",
+      "title": "FlexServe: A Fast and Secure LLM Serving System for Mobile Devices with Flexible Resource Isolation",
+      "summary": "Device-side Large Language Models (LLMs) have grown explosively, offering stronger privacy and higher availability than their cloud-side counterparts. During LLM inference, both the model weights and the user data are valuable, and attackers may compromise the OS kernel to steal them. ARM TrustZone is the de facto hardware-based isolation technology on mobile devices, used to protect sensitive applications from a compromised OS. However, protecting LLM inference with TrustZone incurs significant overhead to both the secure inference and the normal aplications, due to two challenges: the inflex",
+      "authors": [
+        "Yinpeng Wu",
+        "Yitong Chen",
+        "Lixiang Wang",
+        "Jinyu Gu",
+        "Zhichao Hua"
+      ],
+      "query_source": "deep_collect: 内存效率",
+      "objects": [
+        "参数"
+      ],
+      "methods": []
+    },
+    {
+      "id": "2606.23001",
+      "date": "2026-06-22",
+      "title": "EnerInfer: Energy-Aware On-Device LLM Inference",
+      "summary": "On-device LLM inference is increasingly attractive for privacy-preserving, reliable, and cost-effective deployment, yet its energy and thermal costs remain a critical bottleneck. Existing systems primarily optimize for decoding speed, implicitly assuming that faster execution is always preferable. We show instead that on-device LLM inference often has exploitable configuration slack: modestly lowering NPU and memory frequencies preserves quality of experience (QoE) while substantially improving energy efficiency and reducing heat.   Realizing this opportunity in production is challenging. The ",
+      "authors": [
+        "Bohua Zou",
+        "Nian Liu",
+        "Binqi Sun",
+        "Matteo Mascherin",
+        "Debayan Roy"
+      ],
+      "query_source": "deep_collect: 内存效率",
+      "objects": [],
+      "methods": []
+    },
+    {
+      "id": "2606.21023",
+      "date": "2026-06-19",
+      "title": "Demystifying Numerical Instability in LLM Inference: Achieving Reproducible Inference for Mission-Critical Tasks with HEAL",
+      "summary": "As Large Language Models (LLMs) deploy into mission-critical domains (e.g., finance, medicine, and law), output reproducibility has become a strict system requirement. While practitioners use greedy decoding to eliminate algorithmic stochasticity, empirical deployments with 16-bit precisions still exhibit catastrophic output divergence across heterogeneous GPUs. Through SASS-level profiling, we reveal that this inconsistency is fundamentally driven by truncation errors introduced during downcasting at kernel boundaries. However, achieving reproducibility via a global FP32 pipeline incurs prohi",
+      "authors": [
+        "Zhenting Zhu",
+        "Lucas Thai",
+        "Shan Yu",
+        "Yicheng Liu",
+        "Yifan Qiao"
+      ],
+      "query_source": "deep_collect: KV量化",
+      "objects": [],
+      "methods": []
+    },
+    {
+      "id": "2606.20537",
+      "date": "2026-06-18",
+      "title": "Execution-State Capsules: Graph-Bound Execution-State Checkpoint and Restore for Low-Latency, Small-Batch, On-Device Physical-AI Serving",
+      "summary": "Mainstream LLM serving systems reuse prefix work mainly through paged or radix key-value (KV) caches. This is highly effective for high-throughput, high-concurrency serving, but it manages only one positional fragment of execution state: the KV cache. We study the opposite regime: low-latency, small-batch, on-device physical-AI serving, where interactive LLM agents, speech systems, and robot policies repeatedly branch, reset, interrupt, and re-enter under tight responsiveness budgets. We introduce execution-state capsules, a graph-bound checkpoint and restore mechanism for the complete restora",
+      "authors": [
+        "Liang Su"
+      ],
+      "query_source": "Scholar Alert: Prefix Caching",
+      "objects": [
+        "KV"
+      ],
+      "methods": []
+    },
+    {
+      "id": "2606.20474",
+      "date": "2026-06-18",
+      "title": "UltraQuant: 4-bit KV Caching for Context-Heavy Agents",
+      "summary": "Context-heavy agents place unusual pressure on the key-value (KV) cache: long prefixes are reused across many short turns, while concurrency determines whether the serving system can keep GPUs utilized. We study 4-bit KV-cache compression for this setting, using TurboQuant-style rotation and codebook quantization as a quality anchor and vLLM FP8 KV caching as the deployment anchor. We report three contributions. First, we frame 4-bit KV caching around multi-round agent workloads where task quality, cache residency, and serving throughput must be measured jointly. Second, we describe the practi",
+      "authors": [
+        "Inesh Chakrabarti",
+        "David Limpus",
+        "Aditi Ghai Rana",
+        "Bowen Bao",
+        "Spandan Tiwari"
+      ],
+      "query_source": "deep_collect: KV量化",
+      "objects": [
+        "KV"
+      ],
+      "methods": [
+        "量化"
+      ]
+    },
+    {
+      "id": "2606.18967",
+      "date": "2026-06-17",
+      "title": "EfficientRollout: System-Aware Self-Speculative Decoding for RL Rollouts",
+      "summary": "Reinforcement learning (RL) has become a representative post-training paradigm for LLMs, enabling strong reasoning and agentic capabilities. However, rollout generation remains a dominant latency bottleneck because autoregressive sampling decodes responses sequentially and a small number of long-tailed generations often determine completion time. Speculative decoding (SD) offers a natural way to address this bottleneck, as it is a well-established technique for serving fixed LLMs that reduces latency by rapidly drafting tokens and accepting them through parallel verification while preserving t",
+      "authors": [
+        "Minseo Kim",
+        "Minjae Lee",
+        "Seunghyuk Oh",
+        "Kevin Galim",
+        "Donghoon Kim"
+      ],
+      "query_source": "deep_collect: 投机解码",
+      "objects": [],
+      "methods": [
+        "投机解码"
+      ]
+    },
+    {
+      "id": "2606.16825",
+      "date": "2026-06-15",
+      "title": "Tying the Loop -- Tied Expert Layers in Mixture-of-Experts Language Models",
+      "summary": "Mixture-of-Experts (MoE) architectures efficiently scale Large Language Models (LLMs) by activating only a small fraction of their experts per token, yet the full parameter count - dominated by the expert parameters - must be held in training and inference memory. To address this, we introduce Expert Tying, an architectural modification that shares expert parameters across consecutive transformer layers while preserving independent, layer-wise routing and attention.   We evaluate this approach across common, state-of-the-art architectures, including OLMoE, Qwen3, and DeepSeek-style MoEs. Our p",
+      "authors": [
+        "Martin Jaggi"
+      ],
+      "query_source": "deep_collect: 内存效率",
+      "objects": [
+        "参数"
+      ],
+      "methods": []
+    },
+    {
+      "id": "2606.16352",
+      "date": "2026-06-15",
+      "title": "Communication-Efficient Verifiable Attention for LLM Inference",
+      "summary": "Computation integrity of remote large language model (LLM) serving can be questionable. For conventional deep neural networks (DNNs), the existing TEE-shielded DNN partitioning (TSDP) approach uses Trusted Execution Environment (TEE) to compute non-linear components and verify the integrity of linear components offloaded to an untrusted GPU. However, directly applying TSDP to Transformer-based LLMs incurs significant TEE computation and TEE-GPU communication overhead. This paper presents Communication-efficient TEE-GPU Attention (\\textsc{VeriAttn}) for accelerating verifiable LLM inference. \\t",
+      "authors": [
+        "Ziqun Chen",
+        "Ming Wu",
+        "Michael Heinrich",
+        "Jason Zeng",
+        "Huiying Lan"
+      ],
+      "query_source": "deep_collect: 内存效率",
+      "objects": [
+        "通信"
+      ],
+      "methods": []
+    },
+    {
+      "id": "2606.17107",
+      "date": "2026-06-14",
+      "title": "Models Take Notes at Prefill: KV Cache Can Be Editable and Composable",
+      "summary": "Prefix caching reuses prefill only across an exactly shared prefix, so one changed field invalidates the entire downstream cache. Yet overwriting the field's own key/value vectors and reusing the rest leaves the model acting on the old value. The reason, established causally across four model families: at prefill the model has already written the field-conditioned conclusion onto downstream notes; the field's own key/value drives under 1% of the decision. Read as a notebook of memoized conclusions, two capabilities follow. (1) It is editable. A salient erratum amends the notes; and with chain-",
+      "authors": [
+        "Bojie Li"
+      ],
+      "query_source": "deep_collect: KV量化",
+      "objects": [
+        "KV"
+      ],
+      "methods": []
+    },
+    {
+      "id": "2606.15682",
+      "date": "2026-06-14",
+      "title": "ReQAT: Achieving Full-Precision Reasoning Accuracy with 4-bit Floating-Point Quantization-Aware Training",
+      "summary": "Large Reasoning Models (LRMs) achieve strong problem-solving through long chain-of-thought, but their deployment is constrained by the high cost of full-precision inference and growing KV cache footprints. Microscaled FP4 formats enable efficient FP4 deployment; however, fully quantizing weights, activations, and KV caches (W4A4KV4) causes severe reasoning degradation that existing PTQ and QAT fail to recover. We identify that FP4 failures concentrate on low-entropy tokens--precise symbolic commitments such as digits and operators--where quantization noise inflates sampling errors that cascade",
+      "authors": [
+        "Janghwan Lee",
+        "Sihwa Lee",
+        "Jinseok Kim",
+        "Yongjik Kim",
+        "Jieun Lim"
+      ],
+      "query_source": "deep_collect: KV量化",
+      "objects": [
+        "KV",
+        "参数",
+        "激活"
+      ],
+      "methods": [
+        "量化"
+      ]
+    },
+    {
+      "id": "2606.15621",
+      "date": "2026-06-14",
+      "title": "Re-feeding Is Not Replaying: Measuring Replay Noise in Counterfactual Token-Credit Estimation",
+      "summary": "Per-token counterfactual credit estimation asks which token in a language-model rollout caused the final answer to be right or wrong: cut the transcript at a pivot, substitute an alternative token, replay continuations, and compare outcomes. Published methods re-feed the transcript prefix as a fresh prompt, assuming this reproduces the state the model passed through during generation. We measure what that assumption costs on a stock inference engine, with a three-pass design: continuations resumed from the verified decode-time KV state, an identical second exact pass (a replica noise floor), a",
+      "authors": [
+        "Nils Matteson"
+      ],
+      "query_source": "deep_collect: KV量化",
+      "objects": [],
+      "methods": []
+    },
+    {
+      "id": "2606.13426",
+      "date": "2026-06-11",
+      "title": "Accelerating Speculative Diffusions via Block Verification",
+      "summary": "Speculative decoding speeds up LLM inference by using a draft model to generate tokens, with an acceptance-rejection scheme that ensures that the output matches the target distribution. Adapting this to continuous diffusions is difficult because speculative sampling requires drawing from a residual distribution. While straightforward in discrete spaces, efficiently sampling this residual in continuous space is non-trivial. Consequently, existing diffusion adaptations either use computationally inefficient sampling techniques or rely on an alternative scheme. In this work, we introduce a novel ",
+      "authors": [
+        "Alexander Soen",
+        "Hisham Husain",
+        "Valentin De Bortoli",
+        "Arnaud Doucet"
+      ],
+      "query_source": "deep_collect: 投机解码",
+      "objects": [],
+      "methods": [
+        "投机解码"
+      ]
+    },
+    {
+      "id": "2606.12876",
+      "date": "2026-06-11",
+      "title": "Multi-Bitwidth Quantization for LLMs Using Additive Codebooks",
+      "summary": "As large language models (LLMs) are increasingly deployed across heterogeneous hardware with varying resource constraints, the ability to adaptively manage the trade-off between performance and efficiency without retraining is critical. We propose Drop-by-Drop, a novel multi-bitwidth post-training quantization framework that enables inference-time precision control over LLM weights from a single trained model. Our method is theoretically grounded in information theory and successive refinement. We establish that LLM weights, which commonly follow a Gaussian distribution, can be optimally recon",
+      "authors": [
+        "Liza Babaoglu",
+        "Shuangyi Chen",
+        "Ashish Khisti"
+      ],
+      "query_source": "deep_collect: 内存效率",
+      "objects": [
+        "参数"
+      ],
+      "methods": [
+        "量化"
+      ]
+    },
+    {
+      "id": "2606.12487",
+      "date": "2026-06-10",
+      "title": "DynamicPTQ: Mitigating Activation Quantization Collapse via Residual-Stream Dynamics",
+      "summary": "Post-training quantization (PTQ) is essential for efficient large language model inference, but reliably quantizing activations remains challenging when weights, activations, and KV caches are all quantized to 4-bit precision. A key difficulty lies in massive activations, whose extreme values dominate the activation range and amplify quantization errors. State-of-the-art methods mainly mitigate massive activations through transformation-based smoothing, such as orthogonal rotations and affine scaling, but overlook the cross-layer dynamics of the residual stream. In this paper, we show that mas",
+      "authors": [
+        "Zimo Zhao",
+        "Maolin Wang",
+        "Bowen Yu",
+        "Bowen Liu",
+        "Xiao Han"
+      ],
+      "query_source": "deep_collect: KV量化",
+      "query_sources": [
+        "deep_collect: 内存效率"
+      ],
+      "objects": [
+        "KV",
+        "参数",
+        "激活"
+      ],
+      "methods": [
+        "量化",
+        "注意力优化"
+      ]
+    },
+    {
+      "id": "2606.12370",
+      "date": "2026-06-10",
+      "title": "Breaking Entropy Bounds: Accelerating RL Training via MTP with Rejection Sampling",
+      "summary": "Reinforcement learning (RL) has become a key component in modern large language models, yet the rollout stage remains the key bottleneck in RL training pipelines. Although Multi-Token Prediction (MTP) offers a natural solution to accelerate rollouts through speculative decoding, many studies have observed that MTP acceptance rates degrade significantly during RL training, leading to limited speedup performance. To address this bottleneck, we present Bebop, a systematic study of MTP in LLM post-training, and offer practical recipes to integrate MTP into large-scale RL pipelines. First, we revea",
+      "authors": [
+        "Yucheng Li",
+        "Huiqiang Jiang",
+        "Yang Xu",
+        "Jianxin Yang",
+        "Yi Zhang"
+      ],
+      "query_source": "deep_collect: 投机解码",
+      "objects": [],
+      "methods": [
+        "投机解码"
+      ]
+    },
+    {
+      "id": "2606.11552",
+      "date": "2026-06-10",
+      "title": "Teaching Diffusion to Speculate Left-to-Right",
+      "summary": "Large language models (LLMs) achieve remarkable performance across a wide range of tasks, but their autoregressive decoding process incurs substantial inference costs due to inherently sequential token generation. Speculative decoding addresses this bottleneck by employing a lightweight draft model to propose multiple future tokens that are subsequently verified in parallel by a larger target model. Recent work has demonstrated that diffusion language models are well suited for this setting, as they can generate entire blocks of draft tokens in parallel and thereby alleviate the sequential con",
+      "authors": [
+        "Lexington Whalen",
+        "Yuki Ito",
+        "Ryo Sakamoto"
+      ],
+      "query_source": "deep_collect: 投机解码",
+      "objects": [
+        "参数"
+      ],
+      "methods": [
+        "投机解码"
+      ]
+    },
+    {
+      "id": "2606.11680",
+      "date": "2026-06-10",
+      "title": "Organize then Retrieve: Hierarchical Memory Navigation for Efficient Agents",
+      "summary": "Large language model (LLM) agents struggle with long-horizon tasks due to their inherent statelessness, requiring all task-relevant information to be encoded in growing input contexts. The resulting degraded reasoning quality, increased inference cost, and higher latency necessitate efficient working memory mechanisms. However, existing approaches either rely on lossy compression or similarity-based retrieval, which often fail to capture temporal structure and causal dependencies required for multi-step agentic tasks. In this work, we present HORMA, a Hierarchical Organize-and-Retrieve Memory ",
+      "authors": [
+        "Hao-Lun Hsu",
+        "Nikki Lijing Kuang",
+        "Boyi Liu",
+        "Zhewei Yao",
+        "Yuxiong He"
+      ],
+      "query_source": "deep_collect: 内存效率",
+      "objects": [],
+      "methods": []
+    },
+    {
+      "id": "2606.10820",
+      "date": "2026-06-09",
+      "title": "K-Forcing: Joint Next-K-Token Decoding via Push-Forward Language Modeling",
+      "summary": "Autoregressive (AR) language modeling is the dominant paradigm for text generation, yet its sequential token-by-token decoding makes inference memory-bound and inefficient. Existing acceleration approaches, such as speculative decoding and diffusion language models, can yield speedups under certain conditions but do not directly address high-load batch serving--the scenario most critical for industrial-scale deployment. We introduce K-Forcing, a push-forward language modeling paradigm for joint next-k-token decoding. K-Forcing distills an existing AR model into a conditional push-forward mappi",
+      "authors": [
+        "Zhiwei Tang",
+        "Yuanyu He",
+        "Yizheng Han",
+        "Wangbo Zhao",
+        "Jiasheng Tang"
+      ],
+      "query_source": "deep_collect: 投机解码",
+      "objects": [],
+      "methods": [
+        "蒸馏",
+        "投机解码"
+      ]
+    },
+    {
+      "id": "2606.10706",
+      "date": "2026-06-09",
+      "title": "Unifying Data, Memory, and Compute Efficiency in LLM training: A Survey",
+      "summary": "Resource constraints increasingly determine what can be trained, fine-tuned, and deployed in large language models (LLMs), yet efficiency is often studied through isolated techniques rather than as an interacting system of limits. This survey adopts a constraint-centric perspective and organizes recent progress around three coupled bottlenecks: data efficiency (what to train on), memory efficiency (how to fit training), and compute budget awareness (when and where to spend FLOPs). On the data axis, we review selection and pruning methods that maximize learning per token, ranging from scalable ",
+      "authors": [
+        "Vanessa Schmidt",
+        "Huy Hoang Nguyen",
+        "Cédric Jung",
+        "Shirin Salehi",
+        "Anke Schmeink"
+      ],
+      "query_source": "deep_collect: 内存效率",
+      "objects": [],
+      "methods": [
+        "剪枝/稀疏"
+      ]
+    },
+    {
+      "id": "2606.09388",
+      "date": "2026-06-08",
+      "title": "Distilling Safe LLM Systems via Soft Prompts for On Device Settings",
+      "summary": "Deploying safe large language models (LLMs) on resource-constrained edge devices presents a critical challenge: while dual-model systems combining LLMs with guard models provide effective safety guarantees, their substantial memory and computational demands make them prohibitively expensive for on-device deployment. This paper presents a comprehensive study of parameter-efficient safety alignment methods for resource-constrained settings. Through systematic evaluation across multiple LLM architectures, training objectives, and parameter-efficient fine-tuning approaches, we identify that soft p",
+      "authors": [
+        "Motasem Alfarra",
+        "Cristina Pinneri",
+        "Dana Kianfar",
+        "Mohammed Almousa",
+        "Christos Louizos"
+      ],
+      "query_source": "deep_collect: 内存效率",
+      "objects": [
+        "参数"
+      ],
+      "methods": [
+        "蒸馏"
+      ]
+    },
+    {
+      "id": "2606.09079",
+      "date": "2026-06-08",
+      "title": "FlashMemory-DeepSeek-V4: Lightning Index Ultra-Long Context via Lookahead Sparse Attention",
+      "summary": "Conventional LLMs keep the full KV cache loaded during decoding, causing a severe GPU memory bottleneck for ultra-long context serving. In this report, we propose Lookahead Sparse Attention (LSA), a novel inference paradigm powered by a Neural Memory Indexer built upon the DeepSeek-V4 architecture. Rather than passively attending to all historical tokens, LSA proactively predicts future context demands and preserves only the query-critical KV chunks in the GPU memory. Crucially, we instantiate this architecture via a backbone-free decoupled training strategy. By formulating the indexer as a st",
+      "authors": [
+        "Yan Wang",
+        "Qifan Zhang",
+        "Jiachen Yu",
+        "Tian Liang",
+        "Dongyang Ma"
+      ],
+      "query_source": "deep_collect: 内存效率"
+    },
+    {
+      "id": "2606.08635",
+      "date": "2026-06-07",
+      "title": "SpectrumKV: Per-Token Mixed-Precision KV Cache Transfer for Prefill-Decode Disaggregated LLM Serving",
+      "summary": "Prefill-decode (PD) disaggregation decouples prompt processing from token generation, but it also turns the key-value (KV) cache into a network payload. Existing PD-side KV reduction methods are mostly binary: selected tokens are transmitted at full precision and the rest are not transmitted. This paper argues that binary selection leaves a useful design space unused. SpectrumKV assigns a precision level to each token instead: attention sinks and other high-importance tokens are protected at FP16, medium-importance tokens are sent at INT8, and low-importance tokens are sent at INT4 when the mo",
+      "authors": [
+        "Yang Pengju"
+      ],
+      "query_source": "deep_collect: KV量化"
+    },
+    {
+      "id": "2606.08382",
+      "date": "2026-06-07",
+      "title": "STAR-KV: Low-Rank KV Cache Compression via Soft Thresholding for Adaptive Rank Control",
+      "summary": "Low-rank projection has emerged as a promising approach for compressing the KV cache by exploiting hidden-dimension redundancy. However, prior methods rely on fixed or heuristic rank selection and struggle to achieve aggressive compression with minimal accuracy degradation. We propose STAR-KV, an adaptive low-rank KV cache compression framework with fine-grained rank control. STAR-KV encompasses 1) a differentiable thresholding mechanism that enables optimal rank selection at both attention-head and block levels, 2) a hybrid decomposition strategy that applies different low-rank factorizations",
+      "authors": [
+        "Priyansh Bhatnagar",
+        "Ashkan Moradifirouzabadi",
+        "Se-Hyun Yang",
+        "SeungJae Lee",
+        "Jungwook Choi"
+      ],
+      "query_source": "deep_collect: KV量化"
+    },
+    {
+      "id": "2606.07684",
+      "date": "2026-06-05",
+      "title": "Semantic Cache Distillation: Efficient State Transfer via Reuse and Selective Patching",
+      "summary": "Disaggregated serving alleviates memory bottlenecks in Large Language Model (LLM) inference but creates a severe communication bottleneck: transmitting high-dimensional Key-Value (KV) caches often dominates time-to-first-token (TTFT). Moreover, reusing caches across heterogeneous models (e.g., base and fine-tuned variants) causes semantic misalignment that accumulates over layers, degrading generation quality. We propose Semantic Cache Distillation (SCD), a loss-constrained framework that replaces raw KV transmission with compact semantic codes. SCD addresses these challenges via two mechanism",
+      "authors": [
+        "Qianli Ma",
+        "Zhiqing Tang",
+        "Hanshuai Cui",
+        "Zhi Yao",
+        "Weijia Jia"
+      ],
+      "query_source": "deep_collect: KV量化"
+    },
+    {
+      "id": "2606.07710",
+      "date": "2026-06-05",
+      "title": "WhiFlash: Accelerating Speculative Decoding with Token-Level Cross-Paradigm Routing",
+      "summary": "The autoregressive nature of large language models (LLMs) remains a significant bottleneck for inference, particularly in complex agentic workloads. While speculative decoding (SD) accelerates inference, current approaches rely on static drafting paradigms, utilising either autoregressive drafting models for reasoning or diffusion-based parallel drafting models for structured outputs. We empirically find that drafting accuracy fluctuates dramatically within a single sequence, leaving significant performance unrealised by static paradigms and coarse-grained routing. To address this volatility, ",
+      "authors": [
+        "Young D. Kwon",
+        "Miles Williams",
+        "Rui Li",
+        "Alexandros Kouris",
+        "Stylianos I. Venieris"
+      ],
+      "query_source": "deep_collect: 投机解码",
+      "objects": [],
+      "methods": [
+        "投机解码"
+      ]
+    },
+    {
+      "id": "2606.07819",
+      "date": "2026-06-05",
+      "title": "Joint Structural Pruning and Mixed-Precision Quantization for LLM Compression",
+      "summary": "Recently, the efficiency of Large Language Models (LLMs) deployment has become a critical concern in practical applications. While post-training quantization (PTQ) and structural pruning are established techniques for reducing memory footprint and inference latency, most existing PTQ approaches optimize quantization errors on a per-layer basis, overlooking how errors accumulate and propagate through the network, often resulting in suboptimal solutions. Traditional pipelines also tend to apply pruning and quantization in isolation or sequentially, further compounding sub-optimality. We introduc",
+      "authors": [
+        "Hoang-Loc La",
+        "Truong-Thanh Le",
+        "Amir Taherkordi",
+        "Phuong Hoai Ha"
+      ],
+      "query_source": "deep_collect: 内存效率",
+      "objects": [],
+      "methods": [
+        "量化",
+        "剪枝/稀疏"
+      ]
+    },
+    {
+      "id": "2606.07116",
+      "date": "2026-06-05",
+      "title": "OffQ: Taming Structured Outliers in LLM Quantization by Offsetting",
+      "summary": "Low-bit quantization has been widely adopted to accelerate the inference of large language models (LLMs) by significantly reducing computational cost and memory usage. However, activation outliers pose a major challenge to effective quantization, often leading to notable performance degradation. In this paper, we introduce OffQ, a method designed to mitigate activation outliers in low-bit quantization through a novel offsetting mechanism. Specifically, OffQ first identifies a low-dimensional outlier subspace in the activations using a proposed top-1 PCA, and then concentrates high-magnitude ac",
+      "authors": [
+        "Haoqi Wang",
+        "Lorenz K. Mueller",
+        "Jiawei Zhuang",
+        "Mathieu Salzmann",
+        "Lukas Cavigelli"
+      ],
+      "query_source": "deep_collect: 内存效率",
+      "objects": [
+        "激活"
+      ],
+      "methods": [
+        "量化"
+      ]
+    }
+  ],
+  "papers_new": [
+    {
+      "id": "2607.01065",
+      "date": "2026-07-01",
+      "title": "GSRQ: Gain-Shape Residual Quantization for Sub-1-bit KV Cache",
+      "summary": "The deployment of Large Language Models (LLMs) with extended context windows is increasingly constrained by the linear growth of Key-Value (KV) cache memory. Vector Quantization (VQ), particularly Residual Quantization (RQ), is a promising approach for pushing KV cache storage toward the sub-1-bit regime by progressively encoding residuals with small codebooks. However, most VQ methods still rely on standard $\\ell_2$ $K$-means as the core codebook-learning primitive. We identify a subtle high-dimensional issue of this primitive: Euclidean centroid averaging can induce centroid shrinkage, which",
+      "authors": [
+        "Soosung Kim",
+        "Minjae Park",
+        "Eui-Young Chung",
+        "Jaeyong Chung"
+      ],
+      "query_source": "deep_collect: KV量化",
+      "objects": [
+        "KV"
+      ],
+      "methods": [
+        "量化"
+      ]
+    },
+    {
+      "id": "2606.31519",
+      "date": "2026-06-30",
+      "title": "RaBitQCache: Rotated Binary Quantization for KVCache in Long Context LLM Inference",
+      "summary": "Long-context Large Language Model inference is severely bottlenecked by the massive Key-Value (KV) cache, yet existing sparse attention methods often suffer from static fixed-budget (Top-k) retrieval or rely on proxy scores that are computationally expensive and biased. To address these limitations, we propose RaBitQCache, a novel sparse attention framework that utilizes randomized rotated binary quantization and high-throughput binary-INT4 arithmetic to efficiently estimate attention weights. Our proxy score serves as an unbiased estimator with a proven error bound, enabling adaptive Top-p re",
+      "authors": [
+        "Wenhao Li",
+        "Jinhao Dong",
+        "Hailin Zhang",
+        "Wenhang Shi",
+        "Wei Lu"
+      ],
+      "query_source": "deep_collect: KV量化",
+      "objects": [
+        "参数"
+      ],
+      "methods": [
+        "量化",
+        "剪枝/稀疏",
+        "注意力优化"
+      ]
+    },
+    {
+      "id": "2606.31163",
+      "date": "2026-06-30",
+      "title": "ComplianceGate: Classifier-Gated Multi-Tier LLM Routing for Inference in Regulated Industries",
+      "summary": "Large language models deployed in regulated industries operate under two constraints: compliance enforcement and cost efficiency. Personally identifiable information (PII) in user queries can reach model endpoints before the system determines whether that data should leave its jurisdictional boundary. Serving all queries through a single large model consumes full GPU capacity regardless of query complexity while offering no mechanism for geographic routing. Mixture-of-Experts architectures do not address this routing occurs between expert layers within the model after data has already arrived ",
+      "authors": [
+        "Abhishek Dey"
+      ],
+      "query_source": "deep_collect: 内存效率",
+      "objects": [],
+      "methods": []
+    },
+    {
+      "id": "2606.30389",
+      "date": "2026-06-29",
+      "title": "Predict, Reuse, and Repair: Accelerating Dynamic Sparse Attention for Long-Context LLM Decoding",
+      "summary": "Dynamic sparse attention (DSA) accelerates long-context LLM decoding by attending to only the top-K KV blocks relevant to each query, but it introduces a serialized selection-to-attention dependency that emerges as a new latency bottleneck. We present PRR, a speculate-reuse-repair runtime that exploits temporal locality in DSA selections to predict likely blocks, speculate the attention over them while selection is in flight, and incrementally repair missed blocks once the true selected set is known. PRR uses a lightweight EMA-based predictor, a profiling-guided speculation budget that keeps s",
+      "authors": [
+        "Tianyu Wang",
+        "Gourav Rattihalli",
+        "Aditya Dhakal",
+        "Junbo Li",
+        "Zhiwei Ren"
+      ],
+      "query_source": "deep_collect: 投机解码",
+      "objects": [
+        "参数"
+      ],
+      "methods": [
+        "剪枝/稀疏",
+        "注意力优化"
+      ]
+    },
+    {
+      "id": "2606.29565",
+      "date": "2026-06-28",
+      "title": "Speculative Pre-Positioning: Decoding Stateful Sessions to the Next Decision Point Off the Critical Path",
+      "summary": "A stateless inference server (vLLM, SGLang, TensorRT-LLM) idles between requests while the accelerator waits; a stateful session reclaims that idle time. Speculative pre-positioning decodes the session forward to its next decision point with the target model's own forward pass and no draft model, moving the cross-request prefill and entry-decode off the critical path: the next request resumes from a pre-paid entry on its delta, or, when a confidence gate fires, is answered from a cached distribution in one near-constant vocabulary scan with no decode, at a cost only of energy and a rare, bound",
+      "authors": [
+        "Victor Norgren"
+      ],
+      "query_source": "deep_collect: 投机解码",
+      "objects": [
+        "KV"
+      ],
+      "methods": [
+        "投机解码"
+      ]
+    },
+    {
+      "id": "2606.29223",
+      "date": "2026-06-28",
+      "title": "Depth Exploration for LLM Decoding",
+      "summary": "Autoregressive LLM decoding evaluates every generated token through the full layer stack, even though many tokens become predictable at intermediate depths. Existing lossless depth-adaptive methods exploit this redundancy by choosing a single non-final exit depth and verifying its prediction with the final-depth model. However, our measurements show that this selection-based strategy leaves substantial headroom: choosing an exit too late wastes computation, while choosing one too early triggers fallback and discards dependent drafts. We propose Depth Exploration Decoding (DEX), a lossless deco",
+      "authors": [
+        "Weisi Yang",
+        "Zipeng Sun",
+        "Stephen Xia"
+      ],
+      "query_source": "deep_collect: 投机解码",
+      "objects": [],
+      "methods": [
+        "低秩"
+      ]
+    },
+    {
+      "id": "2606.28831",
+      "date": "2026-06-27",
+      "title": "HARD-KV: Head-Adaptive Regularization for Decoding-time KV Compression",
+      "summary": "Long-context LLM inference faces a fundamental conflict: head-adaptive compression algorithms (e.g., Top-$p$ nucleus sampling) offer superior accuracy by dynamically fluctuating memory budgets, yet modern inference engines (e.g., vLLM) demand rigid, static memory patterns to leverage CUDA Graphs and PagedAttention. We resolve this ``Static-Dynamic'' mismatch with HARD-KV, a unified framework that that bridges dynamic selection with rigid system constraints. HARD-KV introduces a Cascade Cache hierarchy, managing the token lifecycle across dense, sparse, and condensed tiers. Crucially, we propos",
+      "authors": [
+        "Yuxuan Yang",
+        "Feiyang Ren",
+        "Bowen Zeng",
+        "Dalin Zhang",
+        "Jinpeng Chen"
+      ],
+      "query_source": "deep_collect: 内存效率",
+      "objects": [],
+      "methods": [
+        "剪枝/稀疏"
+      ]
+    },
+    {
+      "id": "2606.25987",
+      "date": "2026-06-24",
+      "title": "Weave of Formal Thought",
+      "summary": "Large language models (LLMs) attain remarkable surface fluency on code, yet they neither formally guarantee the syntactic validity of their output nor leverage the hierarchical structure defining the target language. While existing constrained-decoding frameworks address the former, they operate under rigid assumptions that preclude critical lexical mechanisms -- including context-sensitive lexing, maximal-munch tokenization, and keyword extraction -- and only approximate vocabulary masking, sacrificing completeness. For the latter, code LLMs typically inject grammatical structure via predeter",
+      "authors": [
+        "Alexandre Bouayad"
+      ],
+      "query_source": "deep_collect: 投机解码",
+      "objects": [],
+      "methods": []
+    },
+    {
+      "id": "2606.24033",
+      "date": "2026-06-23",
+      "title": "RoPE-Aware Bit Allocation for KV-Cache Quantization",
+      "summary": "Existing low-bit KV-cache quantizers often treat each cached key as a flat vector. Under RoPE, however, a key's contribution to a future attention logit decomposes into a position-dependent sum over two-dimensional frequency blocks. This makes key-cache quantization a block-wise bit-allocation problem: high-energy RoPE blocks are more sensitive to quantization error and should receive more bits. We introduce Block-GTQ, a RoPE-aware bit allocator for key-cache quantization built on TurboQuant-MSE(TQ-MSE). For each layer and KV head, Block-GTQ computes a label-free energy score for each RoPE blo",
+      "authors": [
+        "Fengfeng Liang",
+        "Yuechen Zhang",
+        "Jiaya Jia"
+      ],
+      "query_source": "deep_collect: KV量化",
+      "objects": [
+        "KV"
+      ],
+      "methods": [
+        "量化"
+      ]
+    },
+    {
+      "id": "2606.24970",
+      "date": "2026-06-23",
+      "title": "Don't Go Breaking My LLM: The Impact of Pruning Attention Layers on Explanation Faithfulness and Confidence Calibration",
+      "summary": "Pruning Large Language Models (LLMs) reduces memory and inference costs by removing parts of the network, producing smaller models that retain most of their accuracy. As attention layers are the most resource-intensive parts of LLMs, pruning them is a promising compression strategy. Prior work shows that up to 33% of attention layers can be pruned with minimal accuracy loss. Nevertheless, the impact of attention pruning on model interpretability, specifically faithfulness and confidence calibration, remains unstudied. To address this gap, we study how pruning attention layers affects explanati",
+      "authors": [
+        "Pietro Tropeano",
+        "Maria Maistro",
+        "Tuukka Ruotsalo",
+        "Christina Lioma"
+      ],
+      "query_source": "deep_collect: 内存效率",
+      "objects": [],
+      "methods": [
+        "剪枝/稀疏"
+      ]
+    },
+    {
+      "id": "2606.23419",
+      "date": "2026-06-22",
+      "title": "GRINQH: Graded Input-based Quantization Hierarchy for Efficient LLM Generation",
+      "summary": "Autoregressive decoding with LLMs is primarily bottlenecked by GPU memory bandwidth, especially in edge-computing settings. While quantization is essential for mitigating this bottleneck, most existing methods treat inference as a uniform process and fail to account for the asymmetry between the compute-bound prefill stage and the memory-bound decoding stage. We propose GRINQH (GRaded INput-based Quantization Hierarchy), a weight-only post-training quantization framework that accelerates decoding by unifying quantization and sparsification. GRINQH leverages activation magnitudes as a proxy for",
+      "authors": [
+        "Jette Oberländer",
+        "Jan Finkbeiner",
+        "Catherine M. Schöfmann",
+        "Emre Neftci"
+      ],
+      "query_source": "Scholar Alert: Memory Bandwidth",
+      "objects": [
+        "KV",
+        "参数",
+        "激活"
+      ],
+      "methods": [
+        "量化"
+      ]
+    },
+    {
+      "id": "2606.22840",
+      "date": "2026-06-22",
+      "title": "RLM-Cascade: Response-Level Speculative Decoding for Cost-Efficient LLM API Serving",
+      "summary": "We present RLM-Cascade, a proxy-layer system that applies speculative decoding at the response level to reduce LLM API costs without requiring model architecture access or a shared vocabulary. A fast, inexpensive draft model generates a candidate response; a capable verify model accepts, enhances, or is bypassed entirely depending on a lightweight complexity router. On a real-world agentic coding workload (Claude Code), RLM-Cascade achieves a draft-use rate of 88.8% across 125 production requests, reducing API cost by 45.8% relative to a direct Opus baseline. Counter-intuitively, the proxy als",
+      "authors": [
+        "Haifeng Wu",
+        "Srinivasan Manoharan",
+        "Fangbo Tu",
+        "Junhua Zhao",
+        "Jian Wan"
+      ],
+      "query_source": "deep_collect: 投机解码",
+      "objects": [
+        "参数"
+      ],
+      "methods": [
+        "投机解码"
+      ]
+    },
+    {
+      "id": "2606.23370",
+      "date": "2026-06-22",
+      "title": "FlexServe: A Fast and Secure LLM Serving System for Mobile Devices with Flexible Resource Isolation",
+      "summary": "Device-side Large Language Models (LLMs) have grown explosively, offering stronger privacy and higher availability than their cloud-side counterparts. During LLM inference, both the model weights and the user data are valuable, and attackers may compromise the OS kernel to steal them. ARM TrustZone is the de facto hardware-based isolation technology on mobile devices, used to protect sensitive applications from a compromised OS. However, protecting LLM inference with TrustZone incurs significant overhead to both the secure inference and the normal aplications, due to two challenges: the inflex",
+      "authors": [
+        "Yinpeng Wu",
+        "Yitong Chen",
+        "Lixiang Wang",
+        "Jinyu Gu",
+        "Zhichao Hua"
+      ],
+      "query_source": "deep_collect: 内存效率",
+      "objects": [
+        "参数"
+      ],
+      "methods": []
+    },
+    {
+      "id": "2606.23001",
+      "date": "2026-06-22",
+      "title": "EnerInfer: Energy-Aware On-Device LLM Inference",
+      "summary": "On-device LLM inference is increasingly attractive for privacy-preserving, reliable, and cost-effective deployment, yet its energy and thermal costs remain a critical bottleneck. Existing systems primarily optimize for decoding speed, implicitly assuming that faster execution is always preferable. We show instead that on-device LLM inference often has exploitable configuration slack: modestly lowering NPU and memory frequencies preserves quality of experience (QoE) while substantially improving energy efficiency and reducing heat.   Realizing this opportunity in production is challenging. The ",
+      "authors": [
+        "Bohua Zou",
+        "Nian Liu",
+        "Binqi Sun",
+        "Matteo Mascherin",
+        "Debayan Roy"
+      ],
+      "query_source": "deep_collect: 内存效率",
+      "objects": [],
+      "methods": []
+    },
+    {
+      "id": "2606.21023",
+      "date": "2026-06-19",
+      "title": "Demystifying Numerical Instability in LLM Inference: Achieving Reproducible Inference for Mission-Critical Tasks with HEAL",
+      "summary": "As Large Language Models (LLMs) deploy into mission-critical domains (e.g., finance, medicine, and law), output reproducibility has become a strict system requirement. While practitioners use greedy decoding to eliminate algorithmic stochasticity, empirical deployments with 16-bit precisions still exhibit catastrophic output divergence across heterogeneous GPUs. Through SASS-level profiling, we reveal that this inconsistency is fundamentally driven by truncation errors introduced during downcasting at kernel boundaries. However, achieving reproducibility via a global FP32 pipeline incurs prohi",
+      "authors": [
+        "Zhenting Zhu",
+        "Lucas Thai",
+        "Shan Yu",
+        "Yicheng Liu",
+        "Yifan Qiao"
+      ],
+      "query_source": "deep_collect: KV量化",
+      "objects": [],
+      "methods": []
+    },
+    {
+      "id": "2606.20537",
+      "date": "2026-06-18",
+      "title": "Execution-State Capsules: Graph-Bound Execution-State Checkpoint and Restore for Low-Latency, Small-Batch, On-Device Physical-AI Serving",
+      "summary": "Mainstream LLM serving systems reuse prefix work mainly through paged or radix key-value (KV) caches. This is highly effective for high-throughput, high-concurrency serving, but it manages only one positional fragment of execution state: the KV cache. We study the opposite regime: low-latency, small-batch, on-device physical-AI serving, where interactive LLM agents, speech systems, and robot policies repeatedly branch, reset, interrupt, and re-enter under tight responsiveness budgets. We introduce execution-state capsules, a graph-bound checkpoint and restore mechanism for the complete restora",
+      "authors": [
+        "Liang Su"
+      ],
+      "query_source": "Scholar Alert: Prefix Caching",
+      "objects": [
+        "KV"
+      ],
+      "methods": []
+    },
+    {
+      "id": "2606.20474",
+      "date": "2026-06-18",
+      "title": "UltraQuant: 4-bit KV Caching for Context-Heavy Agents",
+      "summary": "Context-heavy agents place unusual pressure on the key-value (KV) cache: long prefixes are reused across many short turns, while concurrency determines whether the serving system can keep GPUs utilized. We study 4-bit KV-cache compression for this setting, using TurboQuant-style rotation and codebook quantization as a quality anchor and vLLM FP8 KV caching as the deployment anchor. We report three contributions. First, we frame 4-bit KV caching around multi-round agent workloads where task quality, cache residency, and serving throughput must be measured jointly. Second, we describe the practi",
+      "authors": [
+        "Inesh Chakrabarti",
+        "David Limpus",
+        "Aditi Ghai Rana",
+        "Bowen Bao",
+        "Spandan Tiwari"
+      ],
+      "query_source": "deep_collect: KV量化",
+      "objects": [
+        "KV"
+      ],
+      "methods": [
+        "量化"
+      ]
+    },
+    {
+      "id": "2606.18967",
+      "date": "2026-06-17",
+      "title": "EfficientRollout: System-Aware Self-Speculative Decoding for RL Rollouts",
+      "summary": "Reinforcement learning (RL) has become a representative post-training paradigm for LLMs, enabling strong reasoning and agentic capabilities. However, rollout generation remains a dominant latency bottleneck because autoregressive sampling decodes responses sequentially and a small number of long-tailed generations often determine completion time. Speculative decoding (SD) offers a natural way to address this bottleneck, as it is a well-established technique for serving fixed LLMs that reduces latency by rapidly drafting tokens and accepting them through parallel verification while preserving t",
+      "authors": [
+        "Minseo Kim",
+        "Minjae Lee",
+        "Seunghyuk Oh",
+        "Kevin Galim",
+        "Donghoon Kim"
+      ],
+      "query_source": "deep_collect: 投机解码",
+      "objects": [],
+      "methods": [
+        "投机解码"
+      ]
+    },
+    {
+      "id": "2606.16825",
+      "date": "2026-06-15",
+      "title": "Tying the Loop -- Tied Expert Layers in Mixture-of-Experts Language Models",
+      "summary": "Mixture-of-Experts (MoE) architectures efficiently scale Large Language Models (LLMs) by activating only a small fraction of their experts per token, yet the full parameter count - dominated by the expert parameters - must be held in training and inference memory. To address this, we introduce Expert Tying, an architectural modification that shares expert parameters across consecutive transformer layers while preserving independent, layer-wise routing and attention.   We evaluate this approach across common, state-of-the-art architectures, including OLMoE, Qwen3, and DeepSeek-style MoEs. Our p",
+      "authors": [
+        "Martin Jaggi"
+      ],
+      "query_source": "deep_collect: 内存效率",
+      "objects": [
+        "参数"
+      ],
+      "methods": []
+    },
+    {
+      "id": "2606.16352",
+      "date": "2026-06-15",
+      "title": "Communication-Efficient Verifiable Attention for LLM Inference",
+      "summary": "Computation integrity of remote large language model (LLM) serving can be questionable. For conventional deep neural networks (DNNs), the existing TEE-shielded DNN partitioning (TSDP) approach uses Trusted Execution Environment (TEE) to compute non-linear components and verify the integrity of linear components offloaded to an untrusted GPU. However, directly applying TSDP to Transformer-based LLMs incurs significant TEE computation and TEE-GPU communication overhead. This paper presents Communication-efficient TEE-GPU Attention (\\textsc{VeriAttn}) for accelerating verifiable LLM inference. \\t",
+      "authors": [
+        "Ziqun Chen",
+        "Ming Wu",
+        "Michael Heinrich",
+        "Jason Zeng",
+        "Huiying Lan"
+      ],
+      "query_source": "deep_collect: 内存效率",
+      "objects": [
+        "通信"
+      ],
+      "methods": []
+    },
+    {
+      "id": "2606.17107",
+      "date": "2026-06-14",
+      "title": "Models Take Notes at Prefill: KV Cache Can Be Editable and Composable",
+      "summary": "Prefix caching reuses prefill only across an exactly shared prefix, so one changed field invalidates the entire downstream cache. Yet overwriting the field's own key/value vectors and reusing the rest leaves the model acting on the old value. The reason, established causally across four model families: at prefill the model has already written the field-conditioned conclusion onto downstream notes; the field's own key/value drives under 1% of the decision. Read as a notebook of memoized conclusions, two capabilities follow. (1) It is editable. A salient erratum amends the notes; and with chain-",
+      "authors": [
+        "Bojie Li"
+      ],
+      "query_source": "deep_collect: KV量化",
+      "objects": [
+        "KV"
+      ],
+      "methods": []
+    },
+    {
+      "id": "2606.15682",
+      "date": "2026-06-14",
+      "title": "ReQAT: Achieving Full-Precision Reasoning Accuracy with 4-bit Floating-Point Quantization-Aware Training",
+      "summary": "Large Reasoning Models (LRMs) achieve strong problem-solving through long chain-of-thought, but their deployment is constrained by the high cost of full-precision inference and growing KV cache footprints. Microscaled FP4 formats enable efficient FP4 deployment; however, fully quantizing weights, activations, and KV caches (W4A4KV4) causes severe reasoning degradation that existing PTQ and QAT fail to recover. We identify that FP4 failures concentrate on low-entropy tokens--precise symbolic commitments such as digits and operators--where quantization noise inflates sampling errors that cascade",
+      "authors": [
+        "Janghwan Lee",
+        "Sihwa Lee",
+        "Jinseok Kim",
+        "Yongjik Kim",
+        "Jieun Lim"
+      ],
+      "query_source": "deep_collect: KV量化",
+      "objects": [
+        "KV",
+        "参数",
+        "激活"
+      ],
+      "methods": [
+        "量化"
+      ]
+    },
+    {
+      "id": "2606.15621",
+      "date": "2026-06-14",
+      "title": "Re-feeding Is Not Replaying: Measuring Replay Noise in Counterfactual Token-Credit Estimation",
+      "summary": "Per-token counterfactual credit estimation asks which token in a language-model rollout caused the final answer to be right or wrong: cut the transcript at a pivot, substitute an alternative token, replay continuations, and compare outcomes. Published methods re-feed the transcript prefix as a fresh prompt, assuming this reproduces the state the model passed through during generation. We measure what that assumption costs on a stock inference engine, with a three-pass design: continuations resumed from the verified decode-time KV state, an identical second exact pass (a replica noise floor), a",
+      "authors": [
+        "Nils Matteson"
+      ],
+      "query_source": "deep_collect: KV量化",
+      "objects": [],
+      "methods": []
+    },
+    {
+      "id": "2606.13426",
+      "date": "2026-06-11",
+      "title": "Accelerating Speculative Diffusions via Block Verification",
+      "summary": "Speculative decoding speeds up LLM inference by using a draft model to generate tokens, with an acceptance-rejection scheme that ensures that the output matches the target distribution. Adapting this to continuous diffusions is difficult because speculative sampling requires drawing from a residual distribution. While straightforward in discrete spaces, efficiently sampling this residual in continuous space is non-trivial. Consequently, existing diffusion adaptations either use computationally inefficient sampling techniques or rely on an alternative scheme. In this work, we introduce a novel ",
+      "authors": [
+        "Alexander Soen",
+        "Hisham Husain",
+        "Valentin De Bortoli",
+        "Arnaud Doucet"
+      ],
+      "query_source": "deep_collect: 投机解码",
+      "objects": [],
+      "methods": [
+        "投机解码"
+      ]
+    },
+    {
+      "id": "2606.12876",
+      "date": "2026-06-11",
+      "title": "Multi-Bitwidth Quantization for LLMs Using Additive Codebooks",
+      "summary": "As large language models (LLMs) are increasingly deployed across heterogeneous hardware with varying resource constraints, the ability to adaptively manage the trade-off between performance and efficiency without retraining is critical. We propose Drop-by-Drop, a novel multi-bitwidth post-training quantization framework that enables inference-time precision control over LLM weights from a single trained model. Our method is theoretically grounded in information theory and successive refinement. We establish that LLM weights, which commonly follow a Gaussian distribution, can be optimally recon",
+      "authors": [
+        "Liza Babaoglu",
+        "Shuangyi Chen",
+        "Ashish Khisti"
+      ],
+      "query_source": "deep_collect: 内存效率",
+      "objects": [
+        "参数"
+      ],
+      "methods": [
+        "量化"
+      ]
+    },
+    {
+      "id": "2606.12487",
+      "date": "2026-06-10",
+      "title": "DynamicPTQ: Mitigating Activation Quantization Collapse via Residual-Stream Dynamics",
+      "summary": "Post-training quantization (PTQ) is essential for efficient large language model inference, but reliably quantizing activations remains challenging when weights, activations, and KV caches are all quantized to 4-bit precision. A key difficulty lies in massive activations, whose extreme values dominate the activation range and amplify quantization errors. State-of-the-art methods mainly mitigate massive activations through transformation-based smoothing, such as orthogonal rotations and affine scaling, but overlook the cross-layer dynamics of the residual stream. In this paper, we show that mas",
+      "authors": [
+        "Zimo Zhao",
+        "Maolin Wang",
+        "Bowen Yu",
+        "Bowen Liu",
+        "Xiao Han"
+      ],
+      "query_source": "deep_collect: KV量化",
+      "query_sources": [
+        "deep_collect: 内存效率"
+      ],
+      "objects": [
+        "KV",
+        "参数",
+        "激活"
+      ],
+      "methods": [
+        "量化",
+        "注意力优化"
+      ]
+    },
+    {
+      "id": "2606.12370",
+      "date": "2026-06-10",
+      "title": "Breaking Entropy Bounds: Accelerating RL Training via MTP with Rejection Sampling",
+      "summary": "Reinforcement learning (RL) has become a key component in modern large language models, yet the rollout stage remains the key bottleneck in RL training pipelines. Although Multi-Token Prediction (MTP) offers a natural solution to accelerate rollouts through speculative decoding, many studies have observed that MTP acceptance rates degrade significantly during RL training, leading to limited speedup performance. To address this bottleneck, we present Bebop, a systematic study of MTP in LLM post-training, and offer practical recipes to integrate MTP into large-scale RL pipelines. First, we revea",
+      "authors": [
+        "Yucheng Li",
+        "Huiqiang Jiang",
+        "Yang Xu",
+        "Jianxin Yang",
+        "Yi Zhang"
+      ],
+      "query_source": "deep_collect: 投机解码",
+      "objects": [],
+      "methods": [
+        "投机解码"
+      ]
+    },
+    {
+      "id": "2606.11552",
+      "date": "2026-06-10",
+      "title": "Teaching Diffusion to Speculate Left-to-Right",
+      "summary": "Large language models (LLMs) achieve remarkable performance across a wide range of tasks, but their autoregressive decoding process incurs substantial inference costs due to inherently sequential token generation. Speculative decoding addresses this bottleneck by employing a lightweight draft model to propose multiple future tokens that are subsequently verified in parallel by a larger target model. Recent work has demonstrated that diffusion language models are well suited for this setting, as they can generate entire blocks of draft tokens in parallel and thereby alleviate the sequential con",
+      "authors": [
+        "Lexington Whalen",
+        "Yuki Ito",
+        "Ryo Sakamoto"
+      ],
+      "query_source": "deep_collect: 投机解码",
+      "objects": [
+        "参数"
+      ],
+      "methods": [
+        "投机解码"
+      ]
+    },
+    {
+      "id": "2606.11680",
+      "date": "2026-06-10",
+      "title": "Organize then Retrieve: Hierarchical Memory Navigation for Efficient Agents",
+      "summary": "Large language model (LLM) agents struggle with long-horizon tasks due to their inherent statelessness, requiring all task-relevant information to be encoded in growing input contexts. The resulting degraded reasoning quality, increased inference cost, and higher latency necessitate efficient working memory mechanisms. However, existing approaches either rely on lossy compression or similarity-based retrieval, which often fail to capture temporal structure and causal dependencies required for multi-step agentic tasks. In this work, we present HORMA, a Hierarchical Organize-and-Retrieve Memory ",
+      "authors": [
+        "Hao-Lun Hsu",
+        "Nikki Lijing Kuang",
+        "Boyi Liu",
+        "Zhewei Yao",
+        "Yuxiong He"
+      ],
+      "query_source": "deep_collect: 内存效率",
+      "objects": [],
+      "methods": []
+    },
+    {
+      "id": "2606.10820",
+      "date": "2026-06-09",
+      "title": "K-Forcing: Joint Next-K-Token Decoding via Push-Forward Language Modeling",
+      "summary": "Autoregressive (AR) language modeling is the dominant paradigm for text generation, yet its sequential token-by-token decoding makes inference memory-bound and inefficient. Existing acceleration approaches, such as speculative decoding and diffusion language models, can yield speedups under certain conditions but do not directly address high-load batch serving--the scenario most critical for industrial-scale deployment. We introduce K-Forcing, a push-forward language modeling paradigm for joint next-k-token decoding. K-Forcing distills an existing AR model into a conditional push-forward mappi",
+      "authors": [
+        "Zhiwei Tang",
+        "Yuanyu He",
+        "Yizheng Han",
+        "Wangbo Zhao",
+        "Jiasheng Tang"
+      ],
+      "query_source": "deep_collect: 投机解码",
+      "objects": [],
+      "methods": [
+        "蒸馏",
+        "投机解码"
+      ]
+    },
+    {
+      "id": "2606.10706",
+      "date": "2026-06-09",
+      "title": "Unifying Data, Memory, and Compute Efficiency in LLM training: A Survey",
+      "summary": "Resource constraints increasingly determine what can be trained, fine-tuned, and deployed in large language models (LLMs), yet efficiency is often studied through isolated techniques rather than as an interacting system of limits. This survey adopts a constraint-centric perspective and organizes recent progress around three coupled bottlenecks: data efficiency (what to train on), memory efficiency (how to fit training), and compute budget awareness (when and where to spend FLOPs). On the data axis, we review selection and pruning methods that maximize learning per token, ranging from scalable ",
+      "authors": [
+        "Vanessa Schmidt",
+        "Huy Hoang Nguyen",
+        "Cédric Jung",
+        "Shirin Salehi",
+        "Anke Schmeink"
+      ],
+      "query_source": "deep_collect: 内存效率",
+      "objects": [],
+      "methods": [
+        "剪枝/稀疏"
+      ]
+    },
+    {
+      "id": "2606.09388",
+      "date": "2026-06-08",
+      "title": "Distilling Safe LLM Systems via Soft Prompts for On Device Settings",
+      "summary": "Deploying safe large language models (LLMs) on resource-constrained edge devices presents a critical challenge: while dual-model systems combining LLMs with guard models provide effective safety guarantees, their substantial memory and computational demands make them prohibitively expensive for on-device deployment. This paper presents a comprehensive study of parameter-efficient safety alignment methods for resource-constrained settings. Through systematic evaluation across multiple LLM architectures, training objectives, and parameter-efficient fine-tuning approaches, we identify that soft p",
+      "authors": [
+        "Motasem Alfarra",
+        "Cristina Pinneri",
+        "Dana Kianfar",
+        "Mohammed Almousa",
+        "Christos Louizos"
+      ],
+      "query_source": "deep_collect: 内存效率",
+      "objects": [
+        "参数"
+      ],
+      "methods": [
+        "蒸馏"
+      ]
+    },
+    {
+      "id": "2606.07710",
+      "date": "2026-06-05",
+      "title": "WhiFlash: Accelerating Speculative Decoding with Token-Level Cross-Paradigm Routing",
+      "summary": "The autoregressive nature of large language models (LLMs) remains a significant bottleneck for inference, particularly in complex agentic workloads. While speculative decoding (SD) accelerates inference, current approaches rely on static drafting paradigms, utilising either autoregressive drafting models for reasoning or diffusion-based parallel drafting models for structured outputs. We empirically find that drafting accuracy fluctuates dramatically within a single sequence, leaving significant performance unrealised by static paradigms and coarse-grained routing. To address this volatility, ",
+      "authors": [
+        "Young D. Kwon",
+        "Miles Williams",
+        "Rui Li",
+        "Alexandros Kouris",
+        "Stylianos I. Venieris"
+      ],
+      "query_source": "deep_collect: 投机解码",
+      "objects": [],
+      "methods": [
+        "投机解码"
+      ]
+    },
+    {
+      "id": "2606.07819",
+      "date": "2026-06-05",
+      "title": "Joint Structural Pruning and Mixed-Precision Quantization for LLM Compression",
+      "summary": "Recently, the efficiency of Large Language Models (LLMs) deployment has become a critical concern in practical applications. While post-training quantization (PTQ) and structural pruning are established techniques for reducing memory footprint and inference latency, most existing PTQ approaches optimize quantization errors on a per-layer basis, overlooking how errors accumulate and propagate through the network, often resulting in suboptimal solutions. Traditional pipelines also tend to apply pruning and quantization in isolation or sequentially, further compounding sub-optimality. We introduc",
+      "authors": [
+        "Hoang-Loc La",
+        "Truong-Thanh Le",
+        "Amir Taherkordi",
+        "Phuong Hoai Ha"
+      ],
+      "query_source": "deep_collect: 内存效率",
+      "objects": [],
+      "methods": [
+        "量化",
+        "剪枝/稀疏"
+      ]
+    },
+    {
+      "id": "2606.07116",
+      "date": "2026-06-05",
+      "title": "OffQ: Taming Structured Outliers in LLM Quantization by Offsetting",
+      "summary": "Low-bit quantization has been widely adopted to accelerate the inference of large language models (LLMs) by significantly reducing computational cost and memory usage. However, activation outliers pose a major challenge to effective quantization, often leading to notable performance degradation. In this paper, we introduce OffQ, a method designed to mitigate activation outliers in low-bit quantization through a novel offsetting mechanism. Specifically, OffQ first identifies a low-dimensional outlier subspace in the activations using a proposed top-1 PCA, and then concentrates high-magnitude ac",
+      "authors": [
+        "Haoqi Wang",
+        "Lorenz K. Mueller",
+        "Jiawei Zhuang",
+        "Mathieu Salzmann",
+        "Lukas Cavigelli"
+      ],
+      "query_source": "deep_collect: 内存效率",
+      "objects": [
+        "激活"
+      ],
+      "methods": [
+        "量化"
+      ]
+    }
+  ]
+}

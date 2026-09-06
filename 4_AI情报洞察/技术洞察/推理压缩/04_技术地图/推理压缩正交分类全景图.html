@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>推理压缩正交分类全景图 — 3维正交×场景标签</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#080c14;--s1:#0f1623;--s2:#182234;--s3:#1e2d44;--bd:#243044;--t:#dce6f0;--td:#7a8699;--blue:#3b82f6;--green:#22c55e;--yellow:#eab308;--orange:#f97316;--red:#ef4444;--purple:#a78bfa;--cyan:#06b6d4;--pink:#ec4899}
+body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--t);font-size:13px;line-height:1.5}
+.wrap{max-width:1600px;margin:0 auto;padding:16px 20px 60px}
+.hdr{background:linear-gradient(135deg,#0a0a28,#101030 50%,#0a1a28);border-radius:14px;padding:24px 28px;margin-bottom:16px;text-align:center}
+.hdr h1{font-size:22px;color:#fff;margin-bottom:6px}
+.hdr .sub{font-size:13px;color:var(--td)}
+.note{background:rgba(59,130,246,0.05);border:1px solid rgba(59,130,246,0.15);border-radius:10px;padding:14px;margin:12px 0;font-size:13px;color:var(--td);line-height:1.8}
+.note strong{color:var(--blue)}
+
+/* 正交维度说明 */
+.dim-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:20px}
+.dim-card{background:var(--s1);border:2px solid;border-radius:14px;padding:16px}
+.dim-card h3{font-size:14px;margin-bottom:8px}
+.dim-card .ddesc{font-size:11px;color:var(--td);margin-bottom:8px}
+.dim-card .ditem{font-size:12px;padding:4px 8px;background:var(--s2);border-radius:5px;margin-bottom:3px;display:flex;justify-content:space-between;align-items:center}
+.dim-card .ditem .dv{font-weight:700;font-family:monospace}
+
+/* 矩阵 */
+.matrix-box{background:var(--s1);border:1px solid var(--bd);border-radius:14px;padding:20px;margin-bottom:16px;overflow-x:auto}
+.matrix-box h3{font-size:15px;color:var(--cyan);margin-bottom:14px}
+.mtx{display:grid;grid-template-columns:140px repeat(3,minmax(260px,1fr));gap:4px;min-width:900px}
+.mtx-hdr{background:var(--s2);border-radius:8px;padding:10px 12px;text-align:center;font-weight:700;font-size:13px}
+.mtx-hdr .en{font-size:10px;color:var(--td);margin-top:2px}
+.mtx-hdr .eff{font-size:10px;margin-top:4px;font-weight:600}
+.mtx-corner{background:var(--s2);border-radius:8px;padding:10px;display:flex;align-items:center;justify-content:center;font-size:11px;color:var(--td);text-align:center}
+.mtx-row-hdr{background:var(--s2);border-radius:8px;padding:10px 12px;display:flex;flex-direction:column;justify-content:center}
+.mtx-row-hdr .rn{font-size:14px;font-weight:700}
+.mtx-row-hdr .rd{font-size:10px;color:var(--td);margin-top:2px}
+.mtx-cell{background:var(--s2);border:1px solid var(--bd);border-radius:8px;padding:10px;min-height:100px}
+.mtx-cell .cn{font-size:11px;font-weight:700;margin-bottom:4px}
+.mtx-cell .cp{font-size:10px;color:var(--blue);margin-bottom:4px;line-height:1.5}
+.mtx-cell .cp .pn{font-weight:600}
+.mtx-cell .ce{font-size:9px;margin-top:4px;padding:2px 6px;border-radius:4px;background:rgba(59,130,246,0.06);line-height:1.5}
+.mtx-cell .ct{display:flex;gap:3px;flex-wrap:wrap;margin-top:4px}
+.tag{font-size:8px;padding:1px 5px;border-radius:3px;font-weight:600}
+.t-agent{background:rgba(34,197,94,0.15);color:var(--green)}
+.t-long{background:rgba(234,179,8,0.15);color:var(--yellow)}
+.t-moe{background:rgba(249,115,22,0.15);color:var(--orange)}
+.t-mm{background:rgba(167,139,250,0.15);color:var(--purple)}
+.t-diffusion{background:rgba(236,72,153,0.15);color:var(--pink)}
+.t-speech{background:rgba(6,182,212,0.15);color:var(--cyan)}
+.t-reason{background:rgba(239,68,68,0.15);color:var(--red)}
+.t-edge{background:rgba(100,116,139,0.15);color:var(--td)}
+.t-llm{background:rgba(59,130,246,0.15);color:var(--blue)}
+
+/* 时机维度 */
+.timing-box{background:var(--s1);border:1px solid var(--bd);border-radius:14px;padding:20px;margin-bottom:16px}
+.timing-box h3{font-size:15px;color:var(--cyan);margin-bottom:14px}
+.timing-flow{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:12px}
+.timing-col{background:var(--s2);border-radius:10px;padding:12px;border-top:3px solid}
+.timing-col .tn{font-size:13px;font-weight:700;margin-bottom:4px}
+.timing-col .td{font-size:10px;color:var(--td);margin-bottom:8px}
+.timing-col .tt{font-size:10px;padding:3px 6px;background:var(--s1);border-radius:4px;margin-bottom:3px}
+.timing-col .tt .te{font-size:9px;font-weight:700;font-family:monospace;float:right}
+
+/* 效能因子说明 */
+.eff-box{background:var(--s1);border:1px solid var(--bd);border-radius:14px;padding:20px;margin-bottom:16px}
+.eff-box h3{font-size:15px;color:var(--cyan);margin-bottom:14px}
+.eff-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:8px}
+.eff-card{background:var(--s2);border-radius:8px;padding:10px;border-left:3px solid}
+.eff-card .en{font-size:12px;font-weight:700}
+.eff-card .ed{font-size:10px;color:var(--td);margin-top:3px;line-height:1.5}
+
+/* 决策流程 */
+.decision-box{background:var(--s1);border:2px solid var(--cyan);border-radius:14px;padding:20px;margin-bottom:16px}
+.decision-box h3{font-size:15px;color:var(--cyan);margin-bottom:14px}
+.dec-step{display:flex;align-items:flex-start;gap:10px;margin-bottom:10px;padding:10px;background:var(--s2);border-radius:8px}
+.dec-num{width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;flex-shrink:0;color:#fff}
+.dec-content{flex:1}
+.dec-content .dt{font-size:12px;font-weight:700;margin-bottom:3px}
+.dec-content .dd{font-size:11px;color:var(--td);line-height:1.6}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<div class="hdr">
+  <h1>📐 推理压缩正交分类全景图</h1>
+  <div class="sub">3个正交维度（对象×根技术×时机）+ 场景标签 · 2,764篇论文 · v1.0 / 2026-06-28</div>
+</div>
+
+<div class="note">
+  <strong>设计原则：</strong>场景天然重叠（多轮对话=上下文增长=长文本），不可能正交。<br>
+  <strong>解决方案：</strong>用3个数学上正交的维度构建矩阵，场景作为格子的<strong>可叠加筛选标签</strong>（类似电商网站的分类×品牌矩阵 + 使用场景筛选器）。<br><br>
+  <strong>3个正交维度：</strong><br>
+  维度1：<strong>压缩对象</strong>（互斥：数据要么是参数要么是KV要么是通信）<br>
+  维度2：<strong>根技术</strong>（互斥：方法要么减比特要么减元素要么减载体）<br>
+  维度3：<strong>压缩时机</strong>（互斥：操作要么在离线要么在Prefill要么在Decode）
+</div>
+
+<!-- 3个正交维度 -->
+<div class="dim-grid">
+  <div class="dim-card" style="border-color:var(--blue)">
+    <h3 style="color:var(--blue)">维度1：压缩对象（What）</h3>
+    <div class="ddesc">压缩什么数据。互斥——一个数据属于且仅属于一个对象。</div>
+    <div class="ditem"><span>📦 参数（权重）</span><span class="dv">静态·一次压缩</span></div>
+    <div class="ditem"><span>💾 KV Cache</span><span class="dv">动态·累积增长</span></div>
+    <div class="ditem"><span>⚡ 激活</span><span class="dv">动态·瞬时</span></div>
+    <div class="ditem"><span>🌐 通信</span><span class="dv">跨设备·传输</span></div>
+  </div>
+
+  <div class="dim-card" style="border-color:var(--green)">
+    <h3 style="color:var(--green)">维度2：根技术（How）</h3>
+    <div class="ddesc">用什么原理压缩。互斥——一种方法要么减比特要么减元素要么减载体。</div>
+    <div class="ditem"><span>🔵 精度压缩（量化）</span><span class="dv">减比特 FP16→INT4</span></div>
+    <div class="ditem"><span>🟢 维度压缩（稀疏/剪枝/低秩）</span><span class="dv">减元素 N↓</span></div>
+    <div class="ditem"><span>🟣 知识压缩（蒸馏）</span><span class="dv">减载体 大→小</span></div>
+  </div>
+
+  <div class="dim-card" style="border-color:var(--cyan)">
+    <h3 style="color:var(--cyan)">维度3：压缩时机（When）</h3>
+    <div class="ddesc">什么时候执行压缩。互斥——操作在且仅在一个时间点执行。</div>
+    <div class="ditem"><span>⏰ 离线</span><span class="dv">部署前·一次</span></div>
+    <div class="ditem"><span>📝 Prefill</span><span class="dv">输入处理·每请求</span></div>
+    <div class="ditem"><span>⚡ Decode</span><span class="dv">每步生成·每token</span></div>
+    <div class="ditem"><span>🌐 跨节点</span><span class="dv">多卡通信·每传输</span></div>
+  </div>
+</div>
+
+<!-- 核心矩阵：对象×根技术 -->
+<div class="matrix-box">
+  <h3>🎯 核心矩阵：4对象 × 3根技术 = 12格（正交MECE）</h3>
+  <div class="note" style="margin-bottom:12px">每个格子内的技术标注：<strong>效能因子值</strong>（BE/CE/VE/XE/AE）+ <strong>场景标签</strong>（可多选，不正交）</div>
+
+  <div class="mtx">
+    <!-- 表头 -->
+    <div class="mtx-corner">对象↓ / 技术→</div>
+    <div class="mtx-hdr" style="border-bottom:3px solid var(--blue)">
+      🔵 精度压缩（量化）
+      <div class="en">FP16→INT4→INT2</div>
+      <div class="eff" style="color:var(--blue)">→Latency↓(时延) + Comm↓(通信)</div>
+    </div>
+    <div class="mtx-hdr" style="border-bottom:3px solid var(--green)">
+      🟢 维度压缩（稀疏/剪枝/低秩）
+      <div class="en">减元素/减维度</div>
+      <div class="eff" style="color:var(--green)">→BE+CE+VE（全能）</div>
+    </div>
+    <div class="mtx-hdr" style="border-bottom:3px solid var(--purple)">
+      🟣 知识压缩（蒸馏）
+      <div class="en">大→小迁移</div>
+      <div class="eff" style="color:var(--purple)">→AE（精度恢复）</div>
+    </div>
+
+    <!-- 参数行 -->
+    <div class="mtx-row-hdr">
+      <div class="rn">📦 参数</div>
+      <div class="rd">静态·一次压缩<br>场景：端侧/通用</div>
+    </div>
+    <div class="mtx-cell">
+      <div class="cn">465篇 TRL5 →平稳</div>
+      <div class="cp"><span class="pn">AWQ</span> <span class="pn">GPTQ</span> <span class="pn">SpinQuant</span>(87引用) <span class="pn">GGUF</span></div>
+      <div class="ce"><strong>Latency↓=4</strong>(TPOT↓30%) <strong>Cost↓=4</strong>(并发↑4x) <strong>Quality=0.98</strong> CO=低</div>
+      <div class="ct"><span class="tag t-llm">LLM</span><span class="tag t-edge">端侧</span><span class="tag t-diffusion">扩散</span><span class="tag t-speech">语音</span></div>
+    </div>
+    <div class="mtx-cell">
+      <div class="cn">1431篇 TRL5 →平稳</div>
+      <div class="cp"><span class="pn">LoRA</span>(126篇) <span class="pn">ShortGPT</span>(139引用) <span class="pn">SparseGPT</span> <span class="pn">ASVD</span>(53引用)</div>
+      <div class="ce"><strong>Throughput↑=2</strong>(FLOPs↓50%) <strong>Cost↓=8</strong>(LoRA省参) <strong>Quality=0.99</strong> CO=低</div>
+      <div class="ct"><span class="tag t-llm">LLM</span><span class="tag t-edge">端侧</span></div>
+    </div>
+    <div class="mtx-cell">
+      <div class="cn">311篇 TRL5 →平稳</div>
+      <div class="cp"><span class="pn">MiniLLM</span> <span class="pn">BitDistiller</span>(量化恢复) <span class="pn">LLaVA-MoD</span>(MoE蒸馏)</div>
+      <div class="ce"><strong>Quality↑</strong>(恢复量化精度) CO=0(推理时无开销)</div>
+      <div class="ct"><span class="tag t-llm">LLM</span><span class="tag t-moe">MoE</span></div>
+    </div>
+
+    <!-- KV行 -->
+    <div class="mtx-row-hdr">
+      <div class="rn">💾 KV Cache</div>
+      <div class="rd">动态·累积增长<br>场景：Agent/长文本/推理</div>
+    </div>
+    <div class="mtx-cell" style="border-color:rgba(234,179,8,0.3)">
+      <div class="cn">74篇 TRL3 ↑↑快速上升</div>
+      <div class="cp"><span class="pn">KIVI</span>(2bit) <span class="pn">Block-GTQ</span>(RoPE) <span class="pn">QJL</span>(1-bit) <span class="pn">Lexico</span>(字典)</div>
+      <div class="ce"><strong>Latency↓=4~8</strong>(TPOT↓10-50%) <strong>Cost↓=4~8</strong> <strong style="color:var(--red)">CO=高 <32K有害!</strong></div>
+      <div class="ct"><span class="tag t-agent">Agent</span><span class="tag t-long">长文本</span><span class="tag t-reason">推理</span></div>
+    </div>
+    <div class="mtx-cell" style="border-color:rgba(234,179,8,0.3)">
+      <div class="cn">284篇 TRL4 ↑上升 · 核心战场</div>
+      <div class="cp"><span class="pn">SnapKV</span>(8.2x) <span class="pn">RocketKV</span>(💎400x!) <span class="pn">DuoAttention</span> <span class="pn">ThinK</span> <span class="pn">R-KV</span></div>
+      <div class="ce"><strong>Latency↓=8</strong>(TPOT↓30-50%) <strong>Throughput↑=8</strong>(Prefill↓3.6x) <strong>Cost↓=8</strong>(并发↑2-3x) <strong>Quality=0.98</strong> <strong>性价比最高</strong></div>
+      <div class="ct"><span class="tag t-agent">Agent</span><span class="tag t-long">长文本</span><span class="tag t-reason">推理</span><span class="tag t-mm">多模态</span></div>
+    </div>
+    <div class="mtx-cell" style="border-color:rgba(167,139,250,0.3)">
+      <div class="cn">21篇 TRL1 💎空白爆发</div>
+      <div class="cp"><span class="pn">KVSculpt</span>(💎2026) <span class="pn">SwiftKV</span> <span class="pn">VoCo-LLaMA</span></div>
+      <div class="ce"><strong>Quality↑</strong>(蒸馏恢复KV精度) 💎Decoding阶段=0篇 <strong>最大机会</strong></div>
+      <div class="ct"><span class="tag t-agent">Agent</span><span class="tag t-mm">多模态</span></div>
+    </div>
+
+    <!-- 激活行 -->
+    <div class="mtx-row-hdr">
+      <div class="rn">⚡ 激活</div>
+      <div class="rd">动态·瞬时<br>场景：多模态/扩散</div>
+    </div>
+    <div class="mtx-cell">
+      <div class="cn">197篇 TRL4 →平稳</div>
+      <div class="cp"><span class="pn">SmoothQuant</span> <span class="pn">Q-DiT</span>(28引用) <span class="pn">I-LLM</span></div>
+      <div class="ce"><strong>Latency↓=2~4</strong> <strong>Quality=0.97</strong></div>
+      <div class="ct"><span class="tag t-diffusion">扩散</span><span class="tag t-llm">LLM</span></div>
+    </div>
+    <div class="mtx-cell">
+      <div class="cn">759篇 TRL4 ↑上升</div>
+      <div class="cp"><span class="pn">LLaVA-PruMerge</span>(117引用!) <span class="pn">SparseVLM</span>(43引用) MoE激活</div>
+      <div class="ce"><strong>Throughput↑=10</strong>(FLOPs↓90%) <strong>Cost↓=5</strong> <strong>Quality=0.97</strong></div>
+      <div class="ct"><span class="tag t-mm">多模态</span><span class="tag t-diffusion">扩散</span><span class="tag t-moe">MoE</span></div>
+    </div>
+    <div class="mtx-cell">
+      <div class="cn">68篇 TRL4 →平稳</div>
+      <div class="cp">扩散步数蒸馏 <span class="pn">Hash3D</span> <span class="pn">Consistency</span></div>
+      <div class="ce"><strong>CE↑</strong>(步数↓) CO=0(推理时无开销)</div>
+      <div class="ct"><span class="tag t-diffusion">扩散</span></div>
+    </div>
+
+    <!-- 通信行 -->
+    <div class="mtx-row-hdr">
+      <div class="rn">🌐 通信</div>
+      <div class="rd">跨设备·传输<br>场景：MoE分布式</div>
+    </div>
+    <div class="mtx-cell">
+      <div class="cn">48篇 TRL2 ↑↑新兴</div>
+      <div class="cp"><span class="pn">FP8</span>(生产) <span class="pn">ExpertQuant</span>(💎首个MoE量化)</div>
+      <div class="ce"><strong>Comm↓=2~4</strong>(通信↓50-75%) <strong>Quality=0.99</strong> CO=中</div>
+      <div class="ct"><span class="tag t-moe">MoE</span></div>
+    </div>
+    <div class="mtx-cell">
+      <div class="cn">195篇 TRL3 ↑上升</div>
+      <div class="cp"><span class="pn">DeepEP</span>(生产) <span class="pn">FoMoE</span>(↓45x!) <span class="pn">MosaicPrune</span></div>
+      <div class="ce"><strong>Comm↓=2~45</strong> <strong>Throughput↑=2</strong>(跳过冷专家) <strong>VE=2</strong></div>
+      <div class="ct"><span class="tag t-moe">MoE</span></div>
+    </div>
+    <div class="mtx-cell" style="border-color:rgba(167,139,250,0.3)">
+      <div class="cn">21篇 TRL1 💎几乎空白</div>
+      <div class="cp"><span class="pn">SCD</span>(华为 ICML'26)</div>
+      <div class="ce"><strong>💎XE↑?</strong> 21篇仅3-5篇真相关 · 最大空白之一</div>
+      <div class="ct"><span class="tag t-moe">MoE</span></div>
+    </div>
+
+  </div>
+</div>
+
+<!-- 场景标签说明 -->
+<div class="eff-box">
+  <h3>🏷️ 场景标签（不正交·可多选·用于筛选）</h3>
+  <div class="note" style="margin-bottom:12px">场景不是正交维度，是矩阵格子的<strong>筛选标签</strong>。一个格子可以有多个标签。用户按场景筛选→找到对应格子→看效能因子→选技术。</div>
+  <div class="eff-grid">
+    <div class="eff-card" style="border-left-color:var(--green)"><div class="en"><span class="tag t-agent">Agent</span> 多轮工具调用</div><div class="dd">KV累积是核心痛点 → KV×维度压缩(SnapKV) · 主导因子Latency↓+Cost↓</div></div>
+    <div class="eff-card" style="border-left-color:var(--yellow)"><div class="en"><span class="tag t-long">长文本</span> 128K+文档/代码</div><div class="dd">KV爆炸必须压缩 → KV×精度+维度(KIVI+SnapKV) · 主导因子Latency↓+Cost↓</div></div>
+    <div class="eff-card" style="border-left-color:var(--red)"><div class="en"><span class="tag t-reason">推理模型</span> o1/R1 CoT</div><div class="dd">CoT 8-14x冗余 → KV×维度(R-KV/ThinKV) · 主导因子Latency↓+CE</div></div>
+    <div class="eff-card" style="border-left-color:var(--orange)"><div class="en"><span class="tag t-moe">MoE</span> 多卡专家模型</div><div class="dd">通信占40-60% → 通信×精度+维度(ExpertQuant+DeepEP) · 主导因子Comm↓</div></div>
+    <div class="eff-card" style="border-left-color:var(--purple)"><div class="en"><span class="tag t-mm">多模态</span> 图文/视频理解</div><div class="dd">视觉token=2570/图 → 激活×维度(LLaVA-PruMerge) · 主导因子Throughput↑+Cost↓</div></div>
+    <div class="eff-card" style="border-left-color:var(--pink)"><div class="en"><span class="tag t-diffusion">扩散</span> 图像/视频生成</div><div class="dd">多步去噪计算密集 → 激活×精度(Q-DiT)+蒸馏(步数) · 主导因子Throughput↑</div></div>
+    <div class="eff-card" style="border-left-color:var(--cyan)"><div class="en"><span class="tag t-speech">语音</span> ASR/TTS</div><div class="dd">编码器/声码器效率 → 参数×精度(INT4) · 主导因子Latency↓+AE</div></div>
+    <div class="eff-card" style="border-left-color:var(--td)"><div class="en"><span class="tag t-edge">端侧</span> 手机/IoT</div><div class="dd">内存极度受限 → 参数×精度(AWQ/GGUF) · 主导因子VE</div></div>
+  </div>
+</div>
+
+<!-- 压缩时机维度 -->
+<div class="timing-box">
+  <h3>⏰ 维度3：压缩时机（正交·操作执行的时间点）</h3>
+  <div class="timing-flow">
+    <div class="timing-col" style="border-top-color:var(--td)">
+      <div class="tn">⏰ 离线（部署前）</div>
+      <div class="td">一次性完成，推理时零开销</div>
+      <div class="tt">AWQ/GPTQ INT4 <span class="te">Latency↓=4 Cost↓=4</span></div>
+      <div class="tt">SparseGPT剪枝 <span class="te">Throughput↑=2</span></div>
+      <div class="tt">LoRA低秩 <span class="te">Cost↓=8</span></div>
+      <div class="tt">MiniLLM蒸馏 <span class="te">Quality↑</span></div>
+      <div class="tt">MLA/GQA架构 <span class="te">⚠️需重训</span></div>
+    </div>
+    <div class="timing-col" style="border-top-color:var(--blue)">
+      <div class="tn">📝 Prefill（输入处理）</div>
+      <div class="td">每请求执行一次，影响TTFT</div>
+      <div class="tt">SnapKV观测窗口 <span class="te">Throughput↑=8</span></div>
+      <div class="tt">LazyLLM动态剪枝 <span class="te">Throughput↑=2</span></div>
+      <div class="tt">LLaVA-PruMerge <span class="te">Throughput↑=10</span></div>
+      <div class="tt">SwiftKV Prefill蒸馏 <span class="te">Quality↑</span></div>
+    </div>
+    <div class="timing-col" style="border-top-color:var(--green)">
+      <div class="tn">⚡ Decode（每步生成）</div>
+      <div class="td">每token执行，影响TPOT</div>
+      <div class="tt">SnapKV淘汰执行 <span class="te">Latency↓=8</span></div>
+      <div class="tt">KIVI 2bit量化 <span class="te">Latency↓=8</span></div>
+      <div class="tt">Block-GTQ 4bit <span class="te">Latency↓=4</span></div>
+      <div class="tt">DuoAttention头跳过 <span class="te">Throughput↑=5</span></div>
+    </div>
+    <div class="timing-col" style="border-top-color:var(--orange)">
+      <div class="tn">🌐 跨节点（多卡通信）</div>
+      <div class="td">每传输执行，影响多卡TPOT</div>
+      <div class="tt">FP8通信 <span class="te">Comm↓=2</span></div>
+      <div class="tt">ExpertQuant INT4 <span class="te">Comm↓=4</span></div>
+      <div class="tt">FoMoE打破全复制 <span class="te">Comm↓=45</span></div>
+      <div class="tt">专家稀疏跳过 <span class="te">Comm↓=2</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- 效能因子 -->
+<div class="eff-box">
+  <h3>📊 5个效能因子（性能锚点）</h3>
+  <div class="eff-grid">
+    <div class="eff-card" style="border-left-color:var(--blue)"><div class="en">Latency↓ 时延优化</div><div class="dd">→ Decode TPOT↓<br>BE = PF×SF · KV带宽↓</div></div>
+    <div class="eff-card" style="border-left-color:var(--green)"><div class="en">Throughput↑ 吞吐优化</div><div class="dd">→ Prefill TTFT↓ + 吞吐↑<br>CE ≈ SF · 跳过注意力</div></div>
+    <div class="eff-card" style="border-left-color:var(--yellow)"><div class="en">Cost↓ 成本优化</div><div class="dd">→ 吞吐↑(更多batch)<br>VE ≈ PF×SF×RF · 省内存</div></div>
+    <div class="eff-card" style="border-left-color:var(--orange)"><div class="en">Comm↓ 通信优化</div><div class="dd">→ 多卡TPOT↓<br>XE = PF×SF · 通信↓</div></div>
+    <div class="eff-card" style="border-left-color:var(--purple)"><div class="en">Quality 质量保持</div><div class="dd">→ 有效吞吐(避免重算)<br>AE = 压缩后精度/原始</div></div>
+  </div>
+</div>
+
+<!-- 决策流程 -->
+<div class="decision-box">
+  <h3>🧭 决策流程：从场景到技术的完整路径</h3>
+  <div class="dec-step">
+    <div class="dec-num" style="background:var(--orange)">1</div>
+    <div class="dec-content">
+      <div class="dt">选场景标签 → 定位到矩阵格子</div>
+      <div class="dd">"我做Agent" → 筛选标签<span class="tag t-agent">Agent</span> → 命中KV×维度+KV×精度+KV×蒸馏三格</div>
+    </div>
+  </div>
+  <div class="dec-step">
+    <div class="dec-num" style="background:var(--blue)">2</div>
+    <div class="dec-content">
+      <div class="dt">诊断瓶颈 → 确定主导效能因子</div>
+      <div class="dd">Agent多轮→KV累积→C_V最小→显存+带宽受限→主导因子<strong style="color:var(--blue)">Latency_down</strong>+<strong style="color:var(--yellow)">Cost_down</strong></div>
+    </div>
+  </div>
+  <div class="dec-step">
+    <div class="dec-num" style="background:var(--green)">3</div>
+    <div class="dec-content">
+      <div class="dt">在格子中找BE/VE值最高的技术</div>
+      <div class="dd">KV×维度压缩 → SnapKV(<strong>Latency↓=8</strong> <strong>Cost↓=8</strong> <strong>Quality=0.98</strong> CO=低) → 性价比最高</div>
+    </div>
+  </div>
+  <div class="dec-step">
+    <div class="dec-num" style="background:var(--purple)">4</div>
+    <div class="dec-content">
+      <div class="dt">验证AE和CO → 确认净收益为正</div>
+      <div class="dd">Quality=0.98(精度损失<2% ✓) · CO=低(观测窗口投票 ✓) · 上下文>32K(Latency↓收益>CO ✓)</div>
+    </div>
+  </div>
+  <div class="dec-step">
+    <div class="dec-num" style="background:var(--cyan)">5</div>
+    <div class="dec-content">
+      <div class="dt">对标业界P50×0.7 → 确认竞争力</div>
+      <div class="dd">SnapKV+AWQ → TPOT↓40-60% → 是否达到当季业界P50的70%？（移动靶，月级监控）</div>
+    </div>
+  </div>
+</div>
+
+<!-- 最终说明 -->
+<div class="note">
+  <strong>📌 本图定位：</strong>推理压缩技术的<strong>正交分类全景</strong>。3个正交维度（对象×根技术×时机）构成MECE矩阵，场景作为可叠加筛选标签。<br>
+  <strong>📌 与其他文件的关系：</strong><br>
+  本图（正交分类+效能因子）= <strong>索引层</strong>（找技术）<br>
+  <a href="推理压缩技术全集图_展开版.html">全集图展开版</a> = <strong>详情层</strong>（每格子技术深度展开）<br>
+  <a href="验证报告_基准与安全.html">验证报告</a> = <strong>验证层</strong>（精度/安全/规模/多租户）<br>
+  <a href="落地手册_集成与成本.html">落地手册</a> = <strong>落地层</strong>（集成/成本/依赖/能耗）<br>
+  <a href="推理压缩性能效能公式.html">效能公式</a> = <strong>公式层</strong>（TPOT/TPS数学推导）<br><br>
+  <strong>📌 正交性保证：</strong>对象互斥(数据类型)×根技术互斥(压缩原理)×时机互斥(执行时间) = 3维完全正交。场景不正交但作为标签可叠加筛选。<br>
+  <strong>📌 数据截止：2026-06-28</strong> · 基于inference_compression_unified.json (2,764篇)
+</div>
+
+</div>
+</body>
+</html>

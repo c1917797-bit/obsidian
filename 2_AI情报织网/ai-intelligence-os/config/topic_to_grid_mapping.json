@@ -1,0 +1,129 @@
+{
+  "metadata": {
+    "version": "v1.0",
+    "updated": "2026-06-28",
+    "description": "Topic注册表(P0扫描方向) 到 42格矩阵的映射关系",
+    "methodology_ref": "4_AI情报洞察/方法论/输入/推理压缩.md (v2.0)"
+  },
+
+  "mapping": {
+    "KV Runtime": {
+      "primary_grids": ["K×Q", "K×P", "K×D", "K×S", "K×G"],
+      "description": "KV Cache 相关的压缩与优化",
+      "keywords": ["kv cache", "KV cache", "key-value cache", "paged attention", "vllm", "sglang"],
+      "priority": "P0"
+    },
+    "Communication Runtime": {
+      "primary_grids": ["C×Q", "C×G", "C×S"],
+      "secondary_grids": ["C×L", "C×P"],
+      "description": "多卡通信压缩与优化",
+      "keywords": ["nccl", "通信优化", "communication", "allreduce", "tensor parallel", "expert parallel"],
+      "priority": "P0"
+    },
+    "模型压缩": {
+      "primary_grids": ["W×Q", "W×P", "W×D", "W×L", "W×S"],
+      "description": "模型权重的各种压缩方法",
+      "keywords": ["quantization", "pruning", "sparsity", "int4", "int8", "gptq", "awq", "smoothquant"],
+      "priority": "P0"
+    },
+    "迭代算法加速": {
+      "primary_grids": ["S×G"],
+      "secondary_grids": ["K×G", "A×G"],
+      "description": "投机解码等迭代加速算法",
+      "keywords": ["speculative decoding", "投机解码", "推测解码", "medusa", "eagle", "draft model"],
+      "priority": "P0"
+    },
+    "算子定制加速": {
+      "primary_grids": ["A×G", "W×G"],
+      "description": "自定义算子与底层加速",
+      "keywords": ["kernel", "flash attention", "cuda kernel", "triton", "cutlass", "tensorrt"],
+      "priority": "P0"
+    },
+    "Agent调度": {
+      "primary_grids": ["S×G", "K×Q"],
+      "secondary_grids": ["S×L", "S×D"],
+      "description": "Agent 运行时的状态压缩与调度",
+      "keywords": ["agent", "multi-agent", "mcp", "a2a", "agent scheduling", "agent memory"],
+      "priority": "P0"
+    },
+    "Runtime调度": {
+      "primary_grids": ["A×G", "S×G"],
+      "secondary_grids": ["K×G"],
+      "description": "推理引擎的运行时调度",
+      "keywords": ["调度", "scheduling", "continuous batching", "prefix caching", "request scheduling"],
+      "priority": "P0"
+    }
+  },
+
+  "grid_definitions": {
+    "W×Q": {"object": "权重", "method": "量化", "object_en": "weight", "method_en": "quantization"},
+    "W×L": {"object": "权重", "method": "低秩", "object_en": "weight", "method_en": "low_rank"},
+    "W×S": {"object": "权重", "method": "稀疏化", "object_en": "weight", "method_en": "sparsification"},
+    "W×P": {"object": "权重", "method": "剪枝", "object_en": "weight", "method_en": "pruning"},
+    "W×D": {"object": "权重", "method": "蒸馏", "object_en": "weight", "method_en": "distillation"},
+    "W×G": {"object": "权重", "method": "通用优化", "object_en": "weight", "method_en": "general"},
+    "A×Q": {"object": "激活值", "method": "量化", "object_en": "activation", "method_en": "quantization"},
+    "A×L": {"object": "激活值", "method": "低秩", "object_en": "activation", "method_en": "low_rank"},
+    "A×S": {"object": "激活值", "method": "稀疏化", "object_en": "activation", "method_en": "sparsification"},
+    "A×P": {"object": "激活值", "method": "剪枝", "object_en": "activation", "method_en": "pruning"},
+    "A×D": {"object": "激活值", "method": "蒸馏", "object_en": "activation", "method_en": "distillation"},
+    "A×G": {"object": "激活值", "method": "通用优化", "object_en": "activation", "method_en": "general"},
+    "K×Q": {"object": "KV Cache", "method": "量化", "object_en": "kv_cache", "method_en": "quantization"},
+    "K×L": {"object": "KV Cache", "method": "低秩", "object_en": "kv_cache", "method_en": "low_rank"},
+    "K×S": {"object": "KV Cache", "method": "稀疏化", "object_en": "kv_cache", "method_en": "sparsification"},
+    "K×P": {"object": "KV Cache", "method": "剪枝", "object_en": "kv_cache", "method_en": "pruning"},
+    "K×D": {"object": "KV Cache", "method": "蒸馏", "object_en": "kv_cache", "method_en": "distillation"},
+    "K×G": {"object": "KV Cache", "method": "通用优化", "object_en": "kv_cache", "method_en": "general"},
+    "C×Q": {"object": "通信", "method": "量化", "object_en": "communication", "method_en": "quantization"},
+    "C×L": {"object": "通信", "method": "低秩", "object_en": "communication", "method_en": "low_rank"},
+    "C×S": {"object": "通信", "method": "稀疏化", "object_en": "communication", "method_en": "sparsification"},
+    "C×P": {"object": "通信", "方法": "剪枝", "object_en": "communication", "method_en": "pruning"},
+    "C×D": {"object": "通信", "method": "蒸馏", "object_en": "communication", "method_en": "distillation"},
+    "C×G": {"object": "通信", "method": "通用优化", "object_en": "communication", "method_en": "general"},
+    "M×Q": {"object": "模态编码器", "method": "量化", "object_en": "modality_encoder", "method_en": "quantization"},
+    "M×L": {"object": "模态编码器", "method": "低秩", "object_en": "modality_encoder", "method_en": "low_rank"},
+    "M×S": {"object": "模态编码器", "method": "稀疏化", "object_en": "modality_encoder", "method_en": "sparsification"},
+    "M×P": {"object": "模态编码器", "method": "剪枝", "object_en": "modality_encoder", "method_en": "pruning"},
+    "M×D": {"object": "模态编码器", "method": "蒸馏", "object_en": "modality_encoder", "method_en": "distillation"},
+    "M×G": {"object": "模态编码器", "method": "通用优化", "object_en": "modality_encoder", "method_en": "general"},
+    "V×Q": {"object": "声码器", "method": "量化", "object_en": "vocoder", "method_en": "quantization"},
+    "V×L": {"object": "声码器", "method": "低秩", "object_en": "vocoder", "method_en": "low_rank"},
+    "V×S": {"object": "声码器", "method": "稀疏化", "object_en": "vocoder", "method_en": "sparsification"},
+    "V×P": {"object": "声码器", "method": "剪枝", "object_en": "vocoder", "method_en": "pruning"},
+    "V×D": {"object": "声码器", "method": "蒸馏", "object_en": "vocoder", "method_en": "distillation"},
+    "V×G": {"object": "声码器", "method": "通用优化", "object_en": "vocoder", "method_en": "general"},
+    "S×Q": {"object": "推理状态", "method": "量化", "object_en": "state", "method_en": "quantization"},
+    "S×L": {"object": "推理状态", "method": "低秩", "object_en": "state", "method_en": "low_rank"},
+    "S×S": {"object": "推理状态", "method": "稀疏化", "object_en": "state", "method_en": "sparsification"},
+    "S×P": {"object": "推理状态", "method": "剪枝", "object_en": "state", "method_en": "pruning"},
+    "S×D": {"object": "推理状态", "method": "蒸馏", "object_en": "state", "method_en": "distillation"},
+    "S×G": {"object": "推理状态", "method": "通用优化", "object_en": "state", "method_en": "general"}
+  },
+
+  "reverse_mapping": {
+    "K×Q": ["KV Runtime", "Agent调度"],
+    "K×P": ["KV Runtime"],
+    "K×D": ["KV Runtime"],
+    "K×S": ["KV Runtime"],
+    "K×G": ["KV Runtime", "迭代算法加速", "Runtime调度"],
+    "C×Q": ["Communication Runtime"],
+    "C×G": ["Communication Runtime"],
+    "C×S": ["Communication Runtime"],
+    "C×L": ["Communication Runtime"],
+    "C×P": ["Communication Runtime"],
+    "W×Q": ["模型压缩"],
+    "W×P": ["模型压缩"],
+    "W×D": ["模型压缩"],
+    "W×L": ["模型压缩"],
+    "W×S": ["模型压缩"],
+    "S×G": ["迭代算法加速", "Agent调度", "Runtime调度"],
+    "A×G": ["算子定制加速", "Runtime调度"],
+    "W×G": ["算子定制加速"]
+  },
+
+  "scoring_rules": {
+    "primary_match_score": 1.0,
+    "secondary_match_score": 0.5,
+    "description": "扫描论文时，如果关键词匹配 primary_grids，得分1.0；匹配 secondary_grids，得分0.5。用于统计各格子的信号强度。"
+  }
+}

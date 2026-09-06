@@ -1,0 +1,227 @@
+[
+  {
+    "v2": {
+      "title": "Training-Free Activation Sparsity in Large Language Models",
+      "abstract": "Activation sparsity can enable practical inference speedups in large language models (LLMs) by reducing the compute and memory-movement required for  matrix multiplications during the forward pass. \nHowever, existing methods face limitations that inhibit widespread adoption. Some approaches are tail",
+      "venue": "ICLR 2025",
+      "venue_key": "iclr2025",
+      "status": "Spotlight",
+      "matched_keyword": "quantization",
+      "quality_score": 3,
+      "citation_score": 2,
+      "relevance_score": 3,
+      "composite_score": 18,
+      "gs_citation": 11,
+      "rating": "6;8;8;8",
+      "site": "https://iclr.cc/virtual/2025/poster/28994",
+      "authors": "James Liu;Pragaash Ponnusamy;Tianle Cai;Han Guo;Yoon Kim;Ben Athiwaratkun",
+      "already_read": false
+    },
+    "arxiv": {
+      "title": "Training-Free Activation Sparsity in Large Language Models",
+      "url": "http://arxiv.org/abs/2408.14690v3",
+      "abstract": "Activation sparsity can enable practical inference speedups in large language models (LLMs) by reducing the compute and memory-movement required for matrix multiplications during the forward pass. However, existing methods face limitations that inhibit widespread adoption. Some approaches are tailored towards older models with ReLU-based sparsity, while others require extensive continued pre-training on up to hundreds of billions of tokens. This paper describes TEAL, a simple training-free metho",
+      "published": "2024-08-26T23:30:15Z"
+    }
+  },
+  {
+    "v2": {
+      "title": "Smaller, Weaker, Yet Better: Training LLM Reasoners via Compute-Optimal Sampling",
+      "abstract": "Training on high-quality synthetic data from strong language models (LMs) is a common strategy to improve the reasoning performance of LMs. In this work, we revisit whether this strategy is compute-optimal under a fixed inference budget (e.g., FLOPs). To do so, we investigate the trade-offs between ",
+      "venue": "ICLR 2025",
+      "venue_key": "iclr2025",
+      "status": "Poster",
+      "matched_keyword": "distillation",
+      "quality_score": 2,
+      "citation_score": 3,
+      "relevance_score": 2,
+      "composite_score": 12,
+      "gs_citation": 33,
+      "rating": "6;6;8;8",
+      "site": "https://iclr.cc/virtual/2025/poster/31080",
+      "authors": "Hritik Bansal;Arian Hosseini;Rishabh Agarwal;Vinh Q. Tran;Mehran Kazemi",
+      "already_read": false
+    },
+    "arxiv": {
+      "title": "Smaller, Weaker, Yet Better: Training LLM Reasoners via Compute-Optimal Sampling",
+      "url": "http://arxiv.org/abs/2408.16737v2",
+      "abstract": "Training on high-quality synthetic data from strong language models (LMs) is a common strategy to improve the reasoning performance of LMs. In this work, we revisit whether this strategy is compute-optimal under a fixed inference budget (e.g., FLOPs). To do so, we investigate the trade-offs between generating synthetic data using a stronger but more expensive (SE) model versus a weaker but cheaper (WC) model. We evaluate the generated data across three key metrics: coverage, diversity, and false",
+      "published": "2024-08-29T17:32:35Z"
+    }
+  },
+  {
+    "v2": {
+      "title": "Perplexed by Perplexity: Perplexity-Based Data Pruning With Small Reference Models",
+      "abstract": "In this work, we investigate whether small language models can determine high-quality subsets of large-scale text datasets that improve the performance of larger language models. While existing work has shown that pruning based on the perplexity of a larger model can yield high-quality data, we inve",
+      "venue": "ICLR 2025",
+      "venue_key": "iclr2025",
+      "status": "Poster",
+      "matched_keyword": "pruning",
+      "quality_score": 2,
+      "citation_score": 3,
+      "relevance_score": 2,
+      "composite_score": 12,
+      "gs_citation": 25,
+      "rating": "6;6;6;8",
+      "site": "https://iclr.cc/virtual/2025/poster/31214",
+      "authors": "Zachary Ankner;Cody Blakeney;Kartik Sreenivasan;Max Marion;Matthew L Leavitt;Mansheej Paul",
+      "already_read": false
+    },
+    "arxiv": {
+      "title": "Perplexed by Perplexity: Perplexity-Based Data Pruning With Small Reference Models",
+      "url": "http://arxiv.org/abs/2405.20541v1",
+      "abstract": "In this work, we investigate whether small language models can determine high-quality subsets of large-scale text datasets that improve the performance of larger language models. While existing work has shown that pruning based on the perplexity of a larger model can yield high-quality data, we investigate whether smaller models can be used for perplexity-based pruning and how pruning is affected by the domain composition of the data being pruned. We demonstrate that for multiple dataset composi",
+      "published": "2024-05-30T23:50:20Z"
+    }
+  },
+  {
+    "v2": {
+      "title": "Learning to Use Tools via Cooperative and Interactive Agents",
+      "abstract": "Tool learning empowers large language models (LLMs) as agents to use external tools and extend their utility. Existing methods employ one single LLM-based agent to iteratively select and execute tools, thereafter incorporating execution results into the next action prediction. Despite their progress",
+      "venue": "EMNLP 2024",
+      "venue_key": "emnlp2024",
+      "status": "finding",
+      "matched_keyword": "distillation",
+      "quality_score": 2,
+      "citation_score": 3,
+      "relevance_score": 2,
+      "composite_score": 12,
+      "gs_citation": 24,
+      "rating": "",
+      "site": "https://aclanthology.org/2024.findings-emnlp.624/",
+      "authors": "Zhengliang Shi; Shen Gao; Xiuyi Chen; Yue Feng; Lingyong Yan; Haibo Shi; Dawei Yin; Pengjie Ren; Suzan Verberne; Zhaochun Ren",
+      "already_read": false
+    },
+    "arxiv": {
+      "title": "Learning to Use Tools via Cooperative and Interactive Agents",
+      "url": "http://arxiv.org/abs/2403.03031v4",
+      "abstract": "Tool learning empowers large language models (LLMs) as agents to use external tools and extend their utility. Existing methods employ one single LLM-based agent to iteratively select and execute tools, thereafter incorporating execution results into the next action prediction. Despite their progress, these methods suffer from performance degradation when addressing practical tasks due to: (1) the pre-defined pipeline with restricted flexibility to calibrate incorrect actions, and (2) the struggl",
+      "published": "2024-03-05T15:08:16Z"
+    }
+  },
+  {
+    "v2": {
+      "title": "ImageFolder: Autoregressive Image Generation with Folded Tokens",
+      "abstract": "Image tokenizers are crucial for visual generative models, \\eg, diffusion models (DMs) and autoregressive (AR) models, as they construct the latent representation for modeling. Increasing token length is a common approach to improve image reconstruction quality. However, tokenizers with longer token",
+      "venue": "ICLR 2025",
+      "venue_key": "iclr2025",
+      "status": "Poster",
+      "matched_keyword": "quantization",
+      "quality_score": 2,
+      "citation_score": 2,
+      "relevance_score": 3,
+      "composite_score": 12,
+      "gs_citation": 20,
+      "rating": "5;6;6;8",
+      "site": "https://iclr.cc/virtual/2025/poster/29703",
+      "authors": "Xiang Li;Kai Qiu;Hao Chen;Jason Kuen;Jiuxiang Gu;Bhiksha Raj;Zhe Lin",
+      "already_read": false
+    },
+    "arxiv": {
+      "title": "ImageFolder: Autoregressive Image Generation with Folded Tokens",
+      "url": "http://arxiv.org/abs/2410.01756v3",
+      "abstract": "Image tokenizers are crucial for visual generative models, e.g., diffusion models (DMs) and autoregressive (AR) models, as they construct the latent representation for modeling. Increasing token length is a common approach to improve the image reconstruction quality. However, tokenizers with longer token lengths are not guaranteed to achieve better generation quality. There exists a trade-off between reconstruction and generation quality regarding token length. In this paper, we investigate the ",
+      "published": "2024-10-02T17:06:39Z"
+    }
+  },
+  {
+    "v2": {
+      "title": "Optimize Weight Rounding via Signed Gradient Descent for the Quantization of LLMs",
+      "abstract": "Large Language Models (LLMs) have demonstrated exceptional proficiency in language-related tasks, but their deployment poses significant challenges due to substantial memory and storage requirements. Weight-only quantization has emerged as a promising solution to address these challenges. Previous r",
+      "venue": "EMNLP 2024",
+      "venue_key": "emnlp2024",
+      "status": "finding",
+      "matched_keyword": "quantization",
+      "quality_score": 2,
+      "citation_score": 2,
+      "relevance_score": 3,
+      "composite_score": 12,
+      "gs_citation": 20,
+      "rating": "",
+      "site": "https://aclanthology.org/2024.findings-emnlp.662/",
+      "authors": "Wenhua Cheng; Weiwei Zhang; Haihao Shen; Yiyang Cai; Xin He; Lv Kaokao; Yi Liu",
+      "already_read": false
+    },
+    "arxiv": {
+      "title": "Optimize Weight Rounding via Signed Gradient Descent for the Quantization of LLMs",
+      "url": "http://arxiv.org/abs/2309.05516v5",
+      "abstract": "Large Language Models (LLMs) have demonstrated exceptional proficiency in language-related tasks, but their deployment poses significant challenges due to substantial memory and storage requirements. Weight-only quantization has emerged as a promising solution, significantly reducing memory and storage needs without sacrificing too much performance. In this study, we introduce SignRound, a method that leverages signed gradient descent (SignSGD) to optimize rounding values and weight clipping in ",
+      "published": "2023-09-11T14:58:23Z"
+    }
+  },
+  {
+    "v2": {
+      "title": "Fiddler: CPU-GPU Orchestration for Fast Inference of Mixture-of-Experts Models",
+      "abstract": "Large Language Models (LLMs) with the Mixture-of-Experts (MoE) architectures have shown promising performance on various tasks. However, due to the huge model sizes, running them in resource-constrained environments where the GPU memory is not abundant is challenging. Some existing systems propose t",
+      "venue": "ICLR 2025",
+      "venue_key": "iclr2025",
+      "status": "Poster",
+      "matched_keyword": "moe ",
+      "quality_score": 2,
+      "citation_score": 2,
+      "relevance_score": 3,
+      "composite_score": 12,
+      "gs_citation": 19,
+      "rating": "5;6;8",
+      "site": "https://iclr.cc/virtual/2025/poster/29900",
+      "authors": "Keisuke Kamahori;Tian Tang;Yile Gu;Kan Zhu;Baris Kasikci",
+      "already_read": false
+    },
+    "arxiv": {
+      "title": "Fiddler: CPU-GPU Orchestration for Fast Inference of Mixture-of-Experts Models",
+      "url": "http://arxiv.org/abs/2402.07033v3",
+      "abstract": "Large Language Models (LLMs) with the Mixture-of-Experts (MoE) architectures have shown promising performance on various tasks. However, due to the huge model sizes, running them in resource-constrained environments where the GPU memory is not abundant is challenging. Some existing systems propose to use CPU resources to solve that, but they either suffer from the significant overhead of frequently moving data between CPU and GPU, or fail to consider distinct characteristics of CPUs and GPUs. Th",
+      "published": "2024-02-10T19:54:08Z"
+    }
+  },
+  {
+    "v2": {
+      "title": "Open-RAG: Enhanced Retrieval Augmented Reasoning with Open-Source Large Language Models",
+      "abstract": "Retrieval Augmented Generation (RAG) has been shown to enhance the factual accuracy of Large Language Models (LLMs) by providing external evidence, but existing methods often suffer from limited reasoning capabilities (e.g., multi-hop complexities) in effectively using such evidence, particularly wh",
+      "venue": "EMNLP 2024",
+      "venue_key": "emnlp2024",
+      "status": "finding",
+      "matched_keyword": "mixture of experts",
+      "quality_score": 2,
+      "citation_score": 2,
+      "relevance_score": 3,
+      "composite_score": 12,
+      "gs_citation": 17,
+      "rating": "",
+      "site": "https://aclanthology.org/2024.findings-emnlp.831/",
+      "authors": "Shayekh Bin Islam; Md Asib Rahman; K S M Tozammel Hossain; Enamul Hoque; Shafiq Joty; Md Rizwan Parvez",
+      "already_read": false
+    },
+    "arxiv": {
+      "title": "Open-RAG: Enhanced Retrieval-Augmented Reasoning with Open-Source Large Language Models",
+      "url": "http://arxiv.org/abs/2410.01782v1",
+      "abstract": "Retrieval-Augmented Generation (RAG) has been shown to enhance the factual accuracy of Large Language Models (LLMs), but existing methods often suffer from limited reasoning capabilities in effectively using the retrieved evidence, particularly when using open-source LLMs. To mitigate this gap, we introduce a novel framework, Open-RAG, designed to enhance reasoning capabilities in RAG with open-source LLMs. Our framework transforms an arbitrary dense LLM into a parameter-efficient sparse mixture",
+      "published": "2024-10-02T17:37:18Z"
+    }
+  },
+  {
+    "v2": {
+      "title": "SageAttention: Accurate 8-Bit Attention for Plug-and-play Inference Acceleration",
+      "abstract": "The transformer architecture predominates across various models. As the heart of the transformer, attention has a computational complexity of $O(N^2)$, compared to $O(N)$ for linear transformations. When handling large sequence lengths, attention becomes the primary time-consuming component. Althoug",
+      "venue": "ICLR 2025",
+      "venue_key": "iclr2025",
+      "status": "Poster",
+      "matched_keyword": "quantization",
+      "quality_score": 2,
+      "citation_score": 2,
+      "relevance_score": 3,
+      "composite_score": 12,
+      "gs_citation": 16,
+      "rating": "6;6;8;8",
+      "site": "https://iclr.cc/virtual/2025/poster/29829",
+      "authors": "Jintao Zhang;Jia wei;Pengle Zhang;Jun Zhu;Jianfei Chen",
+      "already_read": false
+    },
+    "arxiv": {
+      "title": "SageAttention: Accurate 8-Bit Attention for Plug-and-play Inference Acceleration",
+      "url": "http://arxiv.org/abs/2410.02367v9",
+      "abstract": "The transformer architecture predominates across various models. As the heart of the transformer, attention has a computational complexity of $O(N^2)$, compared to $O(N)$ for linear transformations. When handling large sequence lengths, attention becomes the primary time-consuming component. Although quantization has proven to be an effective method for accelerating model inference, existing quantization methods primarily focus on optimizing the linear layer. In response, we first analyze the fe",
+      "published": "2024-10-03T10:25:23Z"
+    }
+  }
+]

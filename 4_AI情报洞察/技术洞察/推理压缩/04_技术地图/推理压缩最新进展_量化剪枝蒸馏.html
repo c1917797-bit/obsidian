@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>推理压缩最新进展 — 量化·剪枝稀疏·蒸馏</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#080c14;--s1:#0f1623;--s2:#182234;--bd:#243044;--t:#dce6f0;--td:#7a8699;--blue:#3b82f6;--green:#22c55e;--yellow:#eab308;--orange:#f97316;--red:#ef4444;--purple:#a78bfa;--cyan:#06b6d4;--pink:#ec4899}
+body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--t);font-size:13px;line-height:1.5}
+.wrap{max-width:1500px;margin:0 auto;padding:16px 20px 60px}
+.hdr{background:linear-gradient(135deg,#0a1428,#102030);border-radius:14px;padding:24px;text-align:center;margin-bottom:16px}
+.hdr h1{font-size:22px;color:#fff;margin-bottom:6px}
+.hdr .sub{font-size:12px;color:var(--td)}
+
+.dim-tab{display:flex;gap:8px;margin-bottom:16px;justify-content:center}
+.tab-btn{padding:8px 20px;border-radius:8px;border:2px solid;font-weight:700;cursor:pointer;font-size:14px;transition:all 0.15s}
+.tab-quant{border-color:var(--blue);color:var(--blue)}.tab-quant.active{background:var(--blue);color:#fff}
+.tab-prune{border-color:var(--green);color:var(--green)}.tab-prune.active{background:var(--green);color:#fff}
+.tab-distill{border-color:var(--purple);color:var(--purple)}.tab-distill.active{background:var(--purple);color:#fff}
+
+.dim-section{display:none}
+.dim-section.active{display:block}
+
+.tp-box{background:var(--s1);border:1px solid var(--bd);border-radius:12px;padding:16px;margin-bottom:14px}
+.tp-box h3{font-size:14px;margin-bottom:8px}
+.tp-item{font-size:12px;padding:4px 0;color:var(--td);line-height:1.7}
+.tp-item strong{color:var(--t)}
+
+.adv-table{width:100%;border-collapse:collapse;margin:10px 0;font-size:11px}
+.adv-table th{background:var(--s2);padding:8px;text-align:left;border-bottom:2px solid var(--bd);font-size:10px}
+.adv-table td{padding:7px;border-bottom:1px solid var(--bd);vertical-align:top}
+.tag-ind{background:rgba(34,197,94,0.15);color:var(--green);padding:1px 6px;border-radius:3px;font-size:9px;font-weight:700}
+.tag-aca{background:rgba(59,130,246,0.15);color:var(--blue);padding:1px 6px;border-radius:3px;font-size:9px;font-weight:700}
+.tag-break{background:rgba(249,115,22,0.15);color:var(--orange);padding:1px 6px;border-radius:3px;font-size:9px;font-weight:700}
+.tag-risk{background:rgba(239,68,68,0.15);color:var(--red);padding:1px 6px;border-radius:3px;font-size:9px;font-weight:700}
+.metric{font-family:monospace;font-weight:700;color:var(--green)}
+.note{background:rgba(59,130,246,0.05);border:1px solid rgba(59,130,246,0.15);border-radius:10px;padding:12px;margin:10px 0;font-size:12px;color:var(--td);line-height:1.7}
+.note strong{color:var(--blue)}
+.cmp-table{width:100%;border-collapse:collapse;margin:12px 0;font-size:12px}
+.cmp-table th{background:var(--s2);padding:10px;text-align:center;border-bottom:2px solid var(--bd)}
+.cmp-table td{padding:8px;text-align:center;border-bottom:1px solid var(--bd)}
+.cmp-table td:first-child{text-align:left;font-weight:700}
+</style>
+</head>
+<body>
+<div class="wrap">
+<div class="hdr">
+  <h1>📊 推理压缩最新进展（2025-2026）</h1>
+  <div class="sub">按量化 / 剪枝稀疏 / 蒸馏三维 · 业界vs学术 · 转折点标注 · v1.0</div>
+</div>
+
+<div class="dim-tab">
+  <div class="tab-btn tab-quant active" onclick="showTab('quant')">🔵 量化</div>
+  <div class="tab-btn tab-prune" onclick="showTab('prune')">🟢 剪枝/稀疏</div>
+  <div class="tab-btn tab-distill" onclick="showTab('distill')">🟣 蒸馏</div>
+</div>
+
+<!-- ============ 量化 ============ -->
+<div class="dim-section active" id="quant">
+<div class="tp-box" style="border-color:var(--blue)">
+  <h3 style="color:var(--blue)">🔄 量化转折点</h3>
+  <div class="tp-item"><strong>TP1 均匀→结构感知：</strong>KIVI把KV当普通向量→Block-GTQ引入RoPE频域感知→AIME数学从0分→51.7分。重新定义了"KV量化=保持logit保真度"</div>
+  <div class="tp-item"><strong>TP2 单目标→联合Pareto：</strong>KV Pareto+HyperQuant证明权重+KV联合优化比孤立优化多省12.6%内存</div>
+  <div class="tp-item"><strong>TP3 驱逐=0bit量化：</strong>RDKV(ETH)用率失真理论统一了淘汰和量化——淘汰就是0bit的量化</div>
+  <div class="tp-item" style="color:var(--red)"><strong>TP4⚠️量化破坏对齐：</strong>AlignCollapse/VeriCache(3篇2个月内)发现INT4导致15-30%有害提示词绕过安全过滤</div>
+</div>
+
+<h3 style="color:var(--green);margin:16px 0 8px">🏢 业界进展</h3>
+<table class="adv-table">
+<tr><th></th><th>名称</th><th>来源</th><th>时间</th><th>关键指标</th><th>一句话</th></tr>
+<tr><td><span class="tag-ind">业界</span></td><td><strong>DeepSeek-V3 FP8</strong></td><td>DeepSeek</td><td>2025.12</td><td class="metric">成本-90% API$0.27/1M</td><td>原生FP8训练+推理 · MLA KV压缩93%</td></tr>
+<tr><td><span class="tag-ind">业界</span></td><td><strong>DeepSeek MLA</strong></td><td>DeepSeek</td><td>2025.12</td><td class="metric">KV压缩93%(512/7168)</td><td>架构级潜变量KV压缩 · 需重训 · 并发+5x</td></tr>
+<tr><td><span class="tag-ind">业界</span></td><td><strong>TensorRT-LLM</strong></td><td>NVIDIA</td><td>2025→</td><td class="metric">FP8/INT8原生</td><td>H100 FP8 Tensor Core · "FP8够快不需要INT4"</td></tr>
+<tr><td><span class="tag-ind">业界</span></td><td><strong>Mistral AWQ INT4</strong></td><td>Mistral</td><td>2024-25</td><td class="metric">MMLU -0.5~1%</td><td>官方AWQ量化发布 · 最成熟生产INT4</td></tr>
+<tr><td><span class="tag-ind">业界</span></td><td>~~Qwen3内置混合精度KV~~</td><td>-</td><td>-</td><td>-</td><td>❌已纠正：Qwen3使用标准GQA(64Q/4KV)，无内置混合精度KV。详见HuggingFace官方model card。</td></tr>
+<tr><td><span class="tag-ind">业界</span></td><td><strong>SmoothQuant INT8</strong></td><td>NVIDIA TRT-LLM</td><td>2024-25</td><td class="metric">INT8无损</td><td>生产级INT8 · outlier平滑 · 广泛部署</td></tr>
+</table>
+
+<h3 style="color:var(--blue);margin:16px 0 8px">🎓 学术进展</h3>
+<table class="adv-table">
+<tr><th></th><th>名称</th><th>来源</th><th>时间</th><th>关键指标</th><th>一句话</th></tr>
+<tr><td><span class="tag-break">突破</span></td><td><strong>Block-GTQ</strong></td><td>arXiv:2606.24033</td><td>2026.06</td><td class="metric">AIME 0→51.7 NIAH 70→97</td><td>RoPE频域块自适应比特分配 · H800 256K可行 · H1 2026最高工程价值</td></tr>
+<tr><td><span class="tag-break">突破</span></td><td><strong>OSCAR</strong></td><td>UW-Madison+Together</td><td>2026.05</td><td class="metric">INT2 ~8x Qwen3仅差3.78分</td><td>注意力感知谱旋转 · 首个reasoning-safe INT2 · vLLM/SGLang已集成</td></tr>
+<tr><td><span class="tag-break">突破</span></td><td><strong>HyperQuant</strong></td><td>HKUST</td><td>2026.06</td><td class="metric">KV低至1.7bps H100 3.79x</td><td>首个统一权重+KV流水线 · Hadamard+格点+Rice编码</td></tr>
+<tr><td><span class="tag-break">突破</span></td><td><strong>RDKV</strong></td><td>ETH Zürich</td><td>2026.05</td><td class="metric">+9.1%优于最优 4.5x decode</td><td>率失真理论统一淘汰+量化 · 注水算法全局最优</td></tr>
+<tr><td><span class="tag-break">突破</span></td><td><strong>STAR-KV</strong></td><td>ASU+KAIST</td><td>2026.06</td><td class="metric">75%压缩 6.9x注意力 3.1x吞吐</td><td>可学习软阈值+K/V非对称分解+混合精度 · Triton kernel</td></tr>
+<tr><td><span class="tag-aca">学术</span></td><td><strong>KIVI</strong></td><td>ICML 2024</td><td>2024</td><td class="metric">4x <1%PPL</td><td>K per-channel/V per-token非对称INT2 · KV量化基准</td></tr>
+<tr><td><span class="tag-aca">学术</span></td><td><strong>KVQuant</strong></td><td>NeurIPS 2024</td><td>2024</td><td class="metric">3-bit <0.1PPL 1M上下文</td><td>揭示RoPE是Key outlier元凶 · Pre-RoPE量化</td></tr>
+<tr><td><span class="tag-aca">学术</span></td><td><strong>QJL</strong></td><td>arXiv 2024</td><td>2024</td><td class="metric">3-bit >5x 零开销</td><td>1-bit JL变换+符号量化 · 无需存储量化常数</td></tr>
+<tr><td><span class="tag-aca">学术</span></td><td><strong>PolarQuant</strong></td><td>arXiv 2025.02</td><td>2025</td><td class="metric">>4.2x</td><td>极坐标变换量化角度 · 无scale/zero-point</td></tr>
+<tr><td><span class="tag-aca">学术</span></td><td><strong>KV Pareto</strong></td><td>arXiv 2025.12</td><td>2025</td><td class="metric">68-78%内存↓ 1-3%损失</td><td>权重+KV+chunked prefill联合Pareto搜索</td></tr>
+<tr><td><span class="tag-risk">⚠️风险</span></td><td><strong>AlignCollapse</strong></td><td>arXiv 2026.05-06</td><td>2026</td><td class="metric" style="color:var(--red)">INT4→15-30%越狱</td><td>诊断并修复"对齐崩塌"：INT4→Key范数畸变→注意力偏移→拒绝失效</td></tr>
+</table>
+</div>
+
+<!-- ============ 剪枝/稀疏 ============ -->
+<div class="dim-section" id="prune">
+<div class="tp-box" style="border-color:var(--green)">
+  <h3 style="color:var(--green)">✂️ 剪枝/稀疏转折点</h3>
+  <div class="tp-item"><strong>TP5 单轴→多轴联合：</strong>从各做各的(H2O/KIVI/ThinK/DuoAttention)→MoE-nD/RDKV/STAR-KV按层组合多方法</div>
+  <div class="tp-item"><strong>TP6 推理模型专项：</strong>长CoT(32K+)打破经典KV压缩 → TriAttention/OSCAR/ThinKV专为推理模型设计</div>
+  <div class="tp-item"><strong>TP7 规则→可学习→语义：</strong>H2O(静态分)→TRIM-KV(可学习)→CompressKV(语义检索头)→IntentKV(Agent意图感知)</div>
+  <div class="tp-item"><strong>TP8 原生可训练稀疏确立：</strong>NSA(DeepSeek)+MoBA(Kimi)证明原生训练的稀疏注意力≥全注意力</div>
+  <div class="tp-item"><strong>TP9 计算复用新正交轴：</strong>MAC-Attention不压缩而是复用——99% KV访问减少</div>
+</div>
+
+<h3 style="color:var(--green);margin:16px 0 8px">🏢 业界进展</h3>
+<table class="adv-table">
+<tr><th></th><th>名称</th><th>来源</th><th>时间</th><th>关键指标</th><th>一句话</th></tr>
+<tr><td><span class="tag-break">突破</span></td><td><strong>NSA 原生稀疏注意力</strong></td><td>DeepSeek</td><td>2025.02</td><td class="metric">≥全注意力质量 64K全速</td><td>三分支层级稀疏(压缩+选择+窗口) · 硬件对齐块GEMM · 端到端可训练</td></tr>
+<tr><td><span class="tag-break">突破</span></td><td><strong>MoBA</strong></td><td>Moonshot/Kimi</td><td>2025.02</td><td class="metric">Kimi生产部署</td><td>MoE应用于注意力本身 · 模型自选block · 全↔稀疏无缝切换</td></tr>
+<tr><td><span class="tag-break">突破</span></td><td><strong>RocketKV</strong></td><td>NVIDIA+Georgia Tech</td><td>ICML 2025</td><td class="metric">💎400x! 3.7x端到端</td><td>两阶段(粗永久淘汰+细近似top-k) · A100验证 · 首个400x</td></tr>
+<tr><td><span class="tag-ind">业界</span></td><td><strong>DeepSeek DualPipe</strong></td><td>DeepSeek</td><td>2025.12</td><td class="metric">计算-通信重叠</td><td>生产级隐藏MoE通信延迟</td></tr>
+<tr><td><span class="tag-ind">业界</span></td><td><strong>vLLM PagedAttention</strong></td><td>Meta/community</td><td>2023-26</td><td class="metric">碎片~0 吞吐2-4x</td><td>OS式KV管理(非淘汰) · 生产标准 ⚠️配套非压缩</td></tr>
+<tr><td><span class="tag-ind">业界</span></td><td><strong>SGLang RadixAttention</strong></td><td>SGLang</td><td>2026.01</td><td class="metric">自动KV复用+前缀共享</td><td>第二大开源推理框架 · DeepSeek/OpenAI部署</td></tr>
+</table>
+
+<h3 style="color:var(--blue);margin:16px 0 8px">🎓 学术进展</h3>
+<table class="adv-table">
+<tr><th></th><th>名称</th><th>来源</th><th>时间</th><th>关键指标</th><th>一句话</th></tr>
+<tr><td><span class="tag-break">突破</span></td><td><strong>Dustin</strong></td><td>ICML 2026</td><td>2026.06</td><td class="metric">27.85x自注意力 9.17x端到端</td><td>投机解码的稀疏验证 · 87.5%验证时间花在KV加载</td></tr>
+<tr><td><span class="tag-break">突破</span></td><td><strong>CompressKV</strong></td><td>TU Darmstadt</td><td>2026.06</td><td class="metric">3%KV→97%+ 0.7%→90%NIAH</td><td>语义检索头(SRH)识别 · GQA专用 · 层级预算</td></tr>
+<tr><td><span class="tag-break">突破</span></td><td><strong>DMS</strong></td><td>NeurIPS 2025</td><td>2025</td><td class="metric">Qwen-R1 AIME+12 GPQA+8.7</td><td>延迟驱逐+隐式合并 · 推理时超缩放 · 1K步→8x</td></tr>
+<tr><td><span class="tag-break">突破</span></td><td><strong>TriAttention</strong></td><td>MIT HAN Lab</td><td>2026.04</td><td class="metric">AIME25 32K=全注意力</td><td>Pre-RoPE Q/K集中度→三角距离 · 解决长CoT压缩</td></tr>
+<tr><td><span class="tag-break">突破</span></td><td><strong>MoE-nD</strong></td><td>Georgia Tech</td><td>2026.04</td><td class="metric">14x AIME+6~27</td><td>逐层MoE路由把压缩操作当Expert · 离线贪心求解</td></tr>
+<tr><td><span class="tag-break">突破</span></td><td><strong>MAC-Attention</strong></td><td>arXiv 2026.04</td><td>2026.04</td><td class="metric">99%KV访问↓ 14.3x注意力</td><td>💎新正交轴：Match-Amend-Complete计算复用 · 不压缩而是避免重算</td></tr>
+<tr><td><span class="tag-aca">学术</span></td><td><strong>SnapKV</strong></td><td>ICLR 2025</td><td>2025</td><td class="metric">50%保留 <1%损失 8.2x</td><td>观测窗口投票 · Prefill预计算</td></tr>
+<tr><td><span class="tag-aca">学术</span></td><td><strong>ThinK</strong></td><td>ICLR 2025 Spotlight</td><td>2025</td><td class="metric">新维度(Channel)</td><td>Channel而非Token维度剪枝 · 与Token级正交可叠加</td></tr>
+<tr><td><span class="tag-aca">学术</span></td><td><strong>ThinKV</strong></td><td>ICLR 2026 Oral</td><td>2026</td><td class="metric"><5%KV 5.8x吞吐</td><td>Thought类型感知：R/E=4bit/T=2bit · T不能删否则死循环!</td></tr>
+<tr><td><span class="tag-aca">学术</span></td><td><strong>R-KV</strong></td><td>NeurIPS 2025</td><td>2025</td><td class="metric">10%KV→100% 6.6x</td><td>冗余感知 · λ=0.1偏向去冗余 · 推理模型CoT 60-70%可丢</td></tr>
+<tr><td><span class="tag-aca">学术</span></td><td><strong>Activation Beacon</strong></td><td>ICLR 2025 BAASS</td><td>2025</td><td class="metric">8x KV 2x加速</td><td>直接压缩激活(K/V) · 随机比例训练→任意压缩配置</td></tr>
+<tr><td><span class="tag-aca">学术</span></td><td><strong>MagicPIG</strong></td><td>ICLR 2025</td><td>2025</td><td class="metric">5x decode 4090 96K=54ms</td><td>LSH采样 · 无偏理论保证 · GPU+CPU异构</td></tr>
+</table>
+</div>
+
+<!-- ============ 蒸馏 ============ -->
+<div class="dim-section" id="distill">
+<div class="tp-box" style="border-color:var(--purple)">
+  <h3 style="color:var(--purple)">🍶 蒸馏转折点</h3>
+  <div class="tp-item"><strong>TP10 Logits→表示→语义：</strong>从输出对齐→状态压缩→表示蒸馏→语义提炼，四阶段演进</div>
+  <div class="tp-item"><strong>TP11 范式创新(KVSculpt)：</strong>把KV压缩重构为连续空间的蒸馏问题(L-BFGS Key+闭式Value) · KL好3.5-4.1x</div>
+  <div class="tp-item" style="color:var(--purple)"><strong>TP12 核心假设未验证：</strong>"蒸馏信号比attention score更准"这个假设尚未被验证 · 压缩比仅~2x(vs量化4-7x)</div>
+</div>
+
+<div class="note">
+  <strong>蒸馏的现状：</strong>最不成熟的维度。压缩比~2x（vs量化4-7x、稀疏10-100x）。在线蒸馏开销抵消收益；离线预计算丢失动态性。策略建议：蒸馏(保留关键模式)+量化(压非关键)叠加→~8x。但这个叠加假设尚未验证(P0研究问题)。
+</div>
+
+<h3 style="color:var(--green);margin:16px 0 8px">🏢 业界进展</h3>
+<table class="adv-table">
+<tr><th></th><th>名称</th><th>来源</th><th>时间</th><th>关键指标</th><th>一句话</th></tr>
+<tr><td><span class="tag-ind">业界</span></td><td><strong>KV Prediction</strong></td><td>Apple</td><td>2024</td><td class="metric">TriviaQA+15-50%</td><td>小模型处理prompt→生成大模型KV近似→大模型使用(蒸馏式KV迁移) · M2 Pro验证</td></tr>
+<tr><td><span class="tag-ind">业界</span></td><td><strong>Models Take Notes</strong></td><td>arXiv 2026.06</td><td>2026.06</td><td class="metric">低秩高效微调</td><td>KV Cache通过低秩表示蒸馏吸收到权重中</td></tr>
+</table>
+
+<h3 style="color:var(--blue);margin:16px 0 8px">🎓 学术进展</h3>
+<table class="adv-table">
+<tr><th></th><th>名称</th><th>来源</th><th>时间</th><th>关键指标</th><th>一句话</th></tr>
+<tr><td><span class="tag-break">突破</span></td><td><strong>KVSculpt</strong></td><td>arXiv:2603.27819</td><td>2026.03</td><td class="metric">KL好3.5-4.1x 层间MSE差100x</td><td>💎范式创新：连续空间KV蒸馏(L-BFGS Key+闭式Value) · 证明均匀分配次优</td></tr>
+<tr><td><span class="tag-aca">学术</span></td><td><strong>YouZhi</strong></td><td>arXiv 2026.06</td><td>2026.06</td><td class="metric">2.69x并发</td><td>GQA→MLA架构转换+蒸馏 · 金融LLM · 需微调</td></tr>
+<tr><td><span class="tag-aca">学术</span></td><td><strong>SCD 语义缓存蒸馏</strong></td><td>华为 ICML 2026</td><td>2026.06</td><td class="metric">TTFT 2.65x</td><td>跨异构模型KV迁移 · 低秩投影+选择性patch</td></tr>
+<tr><td><span class="tag-aca">学术</span></td><td><strong>SwiftKV</strong></td><td>arXiv 2025</td><td>2025</td><td class="metric">仅1篇 Prefill阶段</td><td>Prefill阶段KV蒸馏 · Decoding阶段=0篇💎最大空白</td></tr>
+</table>
+
+<h3 style="color:var(--cyan);margin:16px 0 8px">📊 三维对比</h3>
+<table class="cmp-table">
+<tr><th>维度</th><th>压缩比</th><th>精度损失</th><th>开销</th><th>需微调</th><th>动态适应</th><th>成熟度</th></tr>
+<tr><td style="color:var(--blue)">量化</td><td class="metric">4-8x</td><td>&lt;1%</td><td>低</td><td>否</td><td>高</td><td style="color:var(--green)">生产标配</td></tr>
+<tr><td style="color:var(--green)">剪枝/稀疏</td><td class="metric">10-400x</td><td>&lt;1%</td><td>低</td><td>否</td><td>中</td><td style="color:var(--green)">生产/成熟</td></tr>
+<tr><td style="color:var(--purple)">蒸馏</td><td class="metric" style="color:var(--yellow)">~2x</td><td>可&lt;1%</td><td style="color:var(--red)">高</td><td style="color:var(--red)">通常需要</td><td style="color:var(--red)">低</td><td style="color:var(--purple)">长期布局</td></tr>
+</table>
+
+<div class="note">
+  <strong>理想压缩栈2026（突破篇推导）：</strong><br>
+  层级: PyramidKV + MoE-nD(逐层混合) · 头级: DuoAttention · Token级: SnapKV→RocketKV(400x)<br>
+  Channel级: ThinK · 比特级: KIVI→OSCAR(INT2) · 低秩: STAR-KV · 存储: ShadowKV<br>
+  推理专项: TriAttention · 统一理论: RDKV · 原生训练: NSA
+</div>
+</div>
+
+<div class="note" style="margin-top:20px">
+  <strong>📌 数据来源：</strong>8个文件（4论文精读+4综合报告）· 65-264+篇论文 · 3,876篇corpus<br>
+  <strong>📌 时间范围：</strong>2024-2026.06（重点2025-2026）<br>
+  <strong>📌 标注：</strong>[业界]=生产部署 [学术]=顶会/arXiv [突破]=转折点 [⚠️风险]=安全问题<br>
+  <strong>📌 注意：</strong>材料以KV Cache压缩为中心。权重级量化/剪枝/蒸馏主要作为成熟度背景（GPTQ/AWQ/SmoothQuant已生产标配）
+</div>
+
+</div>
+
+<script>
+function showTab(id){
+  document.querySelectorAll('.dim-section').forEach(s=>s.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  event.target.classList.add('active');
+}
+</script>
+</body>
+</html>

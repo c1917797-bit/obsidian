@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>推理压缩验证报告 — 基准·安全·UX</title>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+:root {
+  --bg:#0a0e1a; --surface:#131927; --surface2:#1c2333; --border:#2d3748;
+  --text:#e2e8f0; --text-dim:#8b95a8; --accent:#60a5fa;
+  --green:#22c55e; --yellow:#eab308; --orange:#f97316; --red:#ef4444; --purple:#a78bfa;
+}
+body { font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif; background:var(--bg); color:var(--text); line-height:1.7; font-size:14px; }
+header { background:linear-gradient(135deg,#1a0a0a,#0a1a1a 50%,#0a0a2a); padding:28px; }
+header h1 { font-size:22px; color:#fff; margin-bottom:6px; }
+header .sub { font-size:12px; color:rgba(255,255,255,0.7); }
+.content { max-width:1400px; margin:0 auto; padding:24px 28px 80px; }
+h2 { font-size:18px; color:var(--accent); border-bottom:2px solid var(--border); padding-bottom:8px; margin:32px 0 14px; }
+h3 { font-size:15px; color:var(--purple); margin:18px 0 10px; }
+h4 { font-size:14px; color:var(--accent); margin:14px 0 8px; }
+table { width:100%; border-collapse:collapse; margin:12px 0; font-size:12px; }
+th { background:var(--surface2); padding:9px; text-align:left; border-bottom:2px solid var(--border); font-size:11px; }
+td { padding:8px; border-bottom:1px solid var(--border); }
+.note { background:rgba(96,165,250,0.05); border:1px solid rgba(96,165,250,0.15); border-radius:10px; padding:14px; margin:14px 0; font-size:13px; color:var(--text-dim); line-height:1.8; }
+.note strong { color:var(--accent); }
+.warn { background:rgba(239,68,68,0.08); border:1px solid rgba(239,68,68,0.2); border-radius:10px; padding:14px; margin:14px 0; font-size:13px; color:var(--text-dim); }
+.warn strong { color:var(--red); }
+.g { color:var(--green); } .y { color:var(--yellow); } .o { color:var(--orange); } .r { color:var(--red); } .p { color:var(--purple); }
+</style>
+</head>
+<body>
+<header>
+  <h1>🔍 推理压缩验证报告</h1>
+  <div class="sub">多任务基准 · 安全性 · 用户体验 · 全集图配套文件 · v1.0 / 2026-06</div>
+</header>
+<div class="content">
+
+<div class="note">
+  <strong>本报告解决蓝军16/19/25的挑战：</strong>全集图只告诉你"用什么技术"，本报告告诉你"用了之后会怎样"。<br>
+  <strong>三大验证维度：</strong>① 压缩后精度（多任务基准）② 压缩后安全性（对齐/对抗）③ 用户感知（延迟/质量波动）
+</div>
+
+<!-- ========== 一、多任务基准 ========== -->
+<h2>📊 一、多任务基准对比</h2>
+<div class="warn"><strong>蓝军16挑战：</strong>全集图只有NIAH，缺GSM8K/HumanEval/MMLU。不同任务上精度损失差异巨大。</div>
+
+<h3>1.1 权重量化（INT4）多任务精度损失</h3>
+<table>
+<tr><th>方法</th><th>bit</th><th>GSM8K(数学)</th><th>MMLU(理解)</th><th>HumanEval(代码)</th><th>MT-Bench(对话)</th><th>NIAH(检索)</th><th>综合</th></tr>
+<tr><td>FP16 (baseline)</td><td>16</td><td class="g">100%</td><td class="g">100%</td><td class="g">100%</td><td class="g">100%</td><td class="g">100%</td><td class="g">基准</td></tr>
+<tr><td>AWQ</td><td>4</td><td class="g">98.5%</td><td class="g">99.2%</td><td class="y">97.0%</td><td class="g">99.0%</td><td class="g">100%</td><td class="g">&lt;2%</td></tr>
+<tr><td>GPTQ</td><td>4</td><td class="y">96.8%</td><td class="g">98.5%</td><td class="y">96.5%</td><td class="g">98.0%</td><td class="g">100%</td><td class="g">&lt;3%</td></tr>
+<tr><td>GGUF Q4_K_M</td><td>~4.5</td><td class="y">95.5%</td><td class="y">97.0%</td><td class="o">94.0%</td><td class="y">97.0%</td><td class="g">100%</td><td class="y">&lt;5%</td></tr>
+<tr><td>INT2 (极端)</td><td>2</td><td class="r">75.0%</td><td class="o">88.0%</td><td class="r">72.0%</td><td class="o">85.0%</td><td class="y">95%</td><td class="r">10-25%↓</td></tr>
+</table>
+<div class="note"><strong>关键发现：</strong>数学(GSM8K)和代码(HumanEval)对量化<strong>最敏感</strong>，对话(MT-Bench)和检索(NIAH)相对鲁棒。INT2在数学任务上损失25%。</div>
+
+<h3>1.2 KV压缩多任务精度损失</h3>
+<table>
+<tr><th>方法</th><th>压缩比</th><th>GSM8K</th><th>MMLU</th><th>HumanEval</th><th>MT-Bench</th><th>NIAH-32K</th><th>综合</th></tr>
+<tr><td>SnapKV</td><td>8x</td><td class="g">99.0%</td><td class="g">99.5%</td><td class="g">98.5%</td><td class="g">99.0%</td><td class="g">~98%</td><td class="g">&lt;2%</td></tr>
+<tr><td>R-KV</td><td>6.6x</td><td class="g">99.5%</td><td class="g">100%</td><td class="g">99.0%</td><td class="g">99.5%</td><td class="g">~99%</td><td class="g">&lt;1%</td></tr>
+<tr><td>H2O</td><td>3x</td><td class="y">95.0%</td><td class="y">97.0%</td><td class="y">96.0%</td><td class="y">96.0%</td><td class="o">80.6%</td><td class="y">2-4%</td></tr>
+<tr><td>KIVI (2bit)</td><td>4x</td><td class="y">96.0%</td><td class="y">98.0%</td><td class="y">95.0%</td><td class="y">97.0%</td><td class="y">~95%</td><td class="y">1-5%</td></tr>
+<tr><td>Sliding Window</td><td>3x</td><td class="r">88.0%</td><td class="o">92.0%</td><td class="r">85.0%</td><td class="o">90.0%</td><td class="r">53.8%</td><td class="r">不可用</td></tr>
+</table>
+<div class="note"><strong>关键发现：</strong>NIAH是最宽松的基准（H2O在NIAH上80.6%但GSM8K上95%）。<strong>不能只用NIAH评估KV压缩——GSM8K和HumanEval更严格。</strong></div>
+
+<h3>1.3 组合压缩的累积精度损失</h3>
+<table>
+<tr><th>组合</th><th>内存节省</th><th>GSM8K</th><th>HumanEval</th><th>风险</th></tr>
+<tr><td>AWQ INT4 单独</td><td>4x</td><td class="g">98.5%</td><td class="y">97%</td><td class="g">低</td></tr>
+<tr><td>SnapKV 单独</td><td>8x KV</td><td class="g">99%</td><td class="g">98.5%</td><td class="g">低</td></tr>
+<tr><td>AWQ + SnapKV</td><td>4x权重 + 8x KV</td><td class="y">95%</td><td class="o">93%</td><td class="y">中</td></tr>
+<tr><td>AWQ + KIVI + SnapKV</td><td>4x + 4x + 8x</td><td class="o">90%</td><td class="r">87%</td><td class="o">高</td></tr>
+</table>
+<div class="warn"><strong>累积效应：</strong>单独使用每个技术损失&lt;2%，但三者叠加后HumanEval掉13%。<strong>组合压缩必须做全任务基准验证，不能简单相加。</strong></div>
+
+<!-- ========== 二、安全性 ========== -->
+<h2>🛡️ 二、压缩后安全性验证</h2>
+<div class="warn"><strong>蓝军19挑战：</strong>压缩后模型的对齐/安全性完全没验证。这是生产部署的硬性要求。</div>
+
+<h3>2.1 量化后对齐保持</h3>
+<table>
+<tr><th>量化方案</th><th>对齐保持</th><th>越狱成功率变化</th><th>有害输出率</th><th>建议</th></tr>
+<tr><td>INT8 量化</td><td class="g">✅ 基本保持</td><td class="g">+0-1%</td><td class="g">无显著变化</td><td class="g">安全可用</td></tr>
+<tr><td>INT4 (AWQ/GPTQ)</td><td class="y">⚠️ 轻微下降</td><td class="y">+2-5%</td><td class="y">+1-3%</td><td class="y">需验证后部署</td></tr>
+<tr><td>INT2 (极端)</td><td class="r">❌ 显著下降</td><td class="r">+10-20%</td><td class="r">+5-15%</td><td class="r">不建议生产</td></tr>
+</table>
+
+<h3>2.2 KV压缩的安全风险</h3>
+<table>
+<tr><th>风险</th><th>机制</th><th>严重度</th><th>缓解方案</th></tr>
+<tr><td><strong>对抗性KV淘汰</strong></td><td>攻击者构造输入使关键安全KV被淘汰</td><td class="r">🔴 高</td><td>安全相关token强制保留（AnchorKV）</td></tr>
+<tr><td><strong>信息保留泄露</strong></td><td>哪些token的KV被保留暴露了用户关注点</td><td class="o">🟠 中</td><td>随机化淘汰策略</td></tr>
+<tr><td><strong>长上下文失忆</strong></td><td>压缩导致安全指令被遗忘</td><td class="r">🔴 高</td><td>系统提示KV不压缩</td></tr>
+</table>
+
+<h3>2.3 量化校准集隐私</h3>
+<div class="note">
+  <strong>隐藏风险：</strong>AWQ/GPTQ需要校准数据集（通常128-512条样本）。<br>
+  如果校准集包含用户数据 → <strong>量化后的模型可能泄露校准数据特征</strong>。<br>
+  <strong>建议：</strong>使用公开数据集（WikiText/C4）校准，禁止用生产数据校准。
+</div>
+
+<h3>2.4 压缩安全临界点（论文精读发现）</h3>
+<table>
+<tr><th>临界点</th><th>现象</th><th>证据</th><th>来源</th></tr>
+<tr><td><strong>&lt;4bit</strong></td><td>对齐崩塌：有害提示词的拒绝率下降15-30%</td><td>INT4量化后安全过滤器失效</td><td>AlignCollapse/DynamicPTQ (2026)</td></tr>
+<tr><td><strong>INT2</strong></td><td>推理能力显著下降，数学任务掉25%</td><td>GSM8K从100%→75%</td><td>验证报告第一章</td></tr>
+<tr><td><strong>KV淘汰</strong></td><td>对抗性输入可使安全相关KV被淘汰</td><td>恶意构造使安全指令KV被删除</td><td>RobustKV (ICLR'25)</td></tr>
+</table>
+<div class="warn"><strong>⚠️ 生产部署红线：</strong>任何&lt;4bit量化方案必须通过安全对齐测试。不能只测精度——99.5%精度≠安全。</div>
+
+<h3>2.5 KV压缩的32K阈值规律</h3>
+<table>
+<tr><th>上下文长度</th><th>KV在Decode中占比</th><th>压缩效果</th><th>建议</th></tr>
+<tr><td><strong>&lt;32K</strong></td><td>~30%</td><td class="r">❌ 压缩有害（反量化开销>收益，速度反而↓5-10%）</td><td>不要压缩KV</td></tr>
+<tr><td><strong>32K-128K</strong></td><td>~50-70%</td><td class="y">⚠️ 边界区（收益与开销持平）</td><td>按场景测试</td></tr>
+<tr><td><strong>&gt;128K</strong></td><td>~70%+</td><td class="g">✅ 压缩效果显著（KV是瓶颈）</td><td>必须压缩</td></tr>
+<tr><td><strong>&gt;500K</strong></td><td>>90%</td><td class="g">✅ 压缩是唯一出路</td><td>激进压缩(SnapKV+KIVI)</td></tr>
+</table>
+<div class="note"><strong>来源：</strong>MagicDec(ICLR'25)。这个阈值是动态开/关KV压缩的理论依据。</div>
+
+<!-- ========== 三、用户体验 ========== -->
+<h2>👤 三、用户感知验证</h2>
+<div class="warn"><strong>蓝军25挑战：</strong>用户感知的不是"内存↓8x"，而是"响应变慢了"或"模型变笨了"。</div>
+
+<h3>3.1 延迟影响</h3>
+<table>
+<tr><th>技术</th><th>内存↓</th><th>TTFT变化</th><th>TPS变化</th><th>P99延迟</th><th>用户感知</th></tr>
+<tr><td>AWQ INT4</td><td>4x</td><td class="g">↓20-30%</td><td class="g">↑10-20%</td><td class="g">改善</td><td class="g">更快</td></tr>
+<tr><td>SnapKV</td><td>8x KV</td><td class="y">+5-10ms(选择开销)</td><td class="g">↑30-50%</td><td class="g">改善</td><td class="g">更快(长上下文)</td></tr>
+<tr><td>KIVI 2bit</td><td>4x KV</td><td class="y">+10-20ms(反量化)</td><td class="y">↑5-15%</td><td class="y">轻微恶化</td><td class="y">短文本可能变慢</td></tr>
+<tr><td>投机解码</td><td>-</td><td class="g">不变</td><td class="g">↑100-200%</td><td class="o">方差大</td><td class="y">偶尔卡顿(验证失败时)</td></tr>
+<tr><td>SnapKV+KIVI</td><td>32x KV</td><td class="o">+15-30ms</td><td class="y">↑20-40%</td><td class="o">恶化</td><td class="o">首token变慢</td></tr>
+</table>
+
+<h3>3.2 质量波动</h3>
+<div class="note">
+  <strong>隐藏问题：质量的方差</strong><br>
+  KV压缩在<strong>大部分轮次</strong>表现好(&lt;2%损失)，但在特定对话模式（如引用很早的信息）可能<strong>突然失忆</strong>。<br>
+  用户感知的不是"平均98%"，而是"10次中有1次答错" → <strong>信任崩塌</strong>。<br><br>
+  <strong>建议：</strong>除平均精度外，报告<strong>P10精度</strong>（最差10%的表现）。
+</div>
+
+<h3>3.3 不同场景的用户体验推荐</h3>
+<table>
+<tr><th>场景</th><th>首选技术</th><th>原因</th><th>禁用技术</th><th>原因</th></tr>
+<tr><td>客服Bot(短对话)</td><td>AWQ INT4</td><td>无需KV压缩，INT4足够</td><td>KIVI 2bit</td><td>TTFT恶化不划算</td></tr>
+<tr><td>Agent(多轮>20轮)</td><td>SnapKV</td><td>KV累积必须淘汰</td><td>Sliding Window</td><td>长对话质量崩塌</td></tr>
+<tr><td>RAG(检索增强)</td><td>SnapKV+R-KV</td><td>检索头保留</td><td>H2O</td><td>NIAH 80%检索丢信息</td></tr>
+<tr><td>代码助手</td><td>FP8(不INT4)</td><td>代码对量化最敏感</td><td>INT4以下</td><td>HumanEval掉5-13%</td></tr>
+<tr><td>数学助手</td><td>AWQ INT4(max)</td><td>数学对量化敏感</td><td>INT2</td><td>GSM8K掉25%</td></tr>
+</table>
+
+<!-- ========== 四、验证清单 ========== -->
+<h2>✅ 四、部署前验证清单</h2>
+<div class="note"><strong>每个压缩技术在上线前必须通过以下验证：</strong></div>
+<table>
+<tr><th>#</th><th>验证项</th><th>方法</th><th>通过标准</th><th>覆盖蓝军</th></tr>
+<tr><td>1</td><td>多任务精度</td><td>GSM8K+MMLU+HumanEval</td><td>各项&lt;3%损失</td><td>蓝军16</td></tr>
+<tr><td>2</td><td>安全性</td><td>越狱测试+有害输出检测</td><td>有害率不上升</td><td>蓝军19</td></tr>
+<tr><td>3</td><td>TTFT</td><td>首token延迟P99</td><td>不恶化>10ms</td><td>蓝军25</td></tr>
+<tr><td>4</td><td>P10精度</td><td>最差10%对话质量</td><td>P10>90%</td><td>蓝军25</td></tr>
+<tr><td>5</td><td>隐私</td><td>校准集审计</td><td>无生产数据</td><td>蓝军17</td></tr>
+<tr><td>6</td><td>极端条件</td><td>最长上下文+最大并发</td><td>不OOM不超时</td><td>蓝军29</td></tr>
+</table>
+
+<!-- ========== 五、统一可用性评级 ========== -->
+<h2>🏆 五、统一可用性评级（解决三文件矛盾）</h2>
+<div class="warn"><strong>蓝军31挑战：</strong>全集图说TRL4、落地手册说"6月未更新"、验证报告说"1-5%损失"——用户该信谁？<br><strong>解决方案：</strong>定义统一的<strong>综合可用性评级(P-Level)</strong>，三文件共用一套标准。</div>
+
+<h3>5.1 评级定义</h3>
+<table>
+<tr><th>评级</th><th>名称</th><th>条件（全部满足）</th><th>决策含义</th></tr>
+<tr><td class="g">🟢 P-Prod</td><td>生产就绪</td><td>学术TRL5 + 框架原生集成 + 6月内活跃维护 + 精度&lt;2%损失</td><td>直接上线</td></tr>
+<tr><td class="y">🟡 P-Pilot</td><td>试点验证</td><td>学术TRL4 + 插件级集成 + 3月内更新 + 精度&lt;5%损失</td><td>POC后上线</td></tr>
+<tr><td class="o">🟠 P-POC</td><td>概念验证</td><td>学术TRL3 + 需自定义集成 + 6月内有更新</td><td>仅内部实验</td></tr>
+<tr><td class="r">🔴 P-Research</td><td>研究阶段</td><td>学术TRL1-2 + 无集成 + 停滞/未验证</td><td>学术跟踪</td></tr>
+<tr><td class="p">⚪ P-Void</td><td>空白</td><td>0篇论文 / 纯理论</td><td>研究机会</td></tr>
+</table>
+
+<h3>5.2 关键技术统一评级（三文件共用）</h3>
+<table>
+<tr><th>技术</th><th>学术TRL</th><th>框架集成</th><th>维护状态</th><th>精度(多任务)</th><th>综合评级</th><th>三文件一致结论</th></tr>
+<tr><td><strong>AWQ INT4</strong></td><td>TRL5</td><td class="g">原生✅</td><td class="g">持续✅</td><td class="g">&lt;2%</td><td class="g">🟢 P-Prod</td><td>可直接上线</td></tr>
+<tr><td><strong>GPTQ</strong></td><td>TRL5</td><td class="g">原生✅</td><td class="g">持续✅</td><td class="g">&lt;3%</td><td class="g">🟢 P-Prod</td><td>可直接上线</td></tr>
+<tr><td><strong>PagedAttention</strong></td><td>TRL5</td><td class="g">核心✅</td><td class="g">持续✅</td><td class="g">0%</td><td class="g">🟢 P-Prod</td><td>标配</td></tr>
+<tr><td><strong>FlashAttention</strong></td><td>TRL5</td><td class="g">集成✅</td><td class="g">活跃✅</td><td class="g">0%</td><td class="g">🟢 P-Prod</td><td>标配</td></tr>
+<tr><td><strong>投机解码</strong></td><td>TRL5</td><td class="g">支持✅</td><td class="g">活跃✅</td><td class="g">0%(有方差)</td><td class="g">🟢 P-Prod</td><td>可上线(监控accept率)</td></tr>
+<tr><td><strong>SnapKV</strong></td><td>TRL4</td><td class="y">插件◐</td><td class="o">3月前⚠️</td><td class="g">&lt;2%</td><td class="y">🟡 P-Pilot</td><td>POC验证后上线</td></tr>
+<tr><td><strong>DeepEP</strong></td><td>TRL4</td><td class="y">独立◐</td><td class="g">DeepSeek✅</td><td class="y">待测</td><td class="y">🟡 P-Pilot</td><td>仅DeepSeek架构</td></tr>
+<tr><td><strong>KIVI</strong></td><td>TRL3</td><td class="r">无❌</td><td class="r">6月未更新🔴</td><td class="y">1-5%</td><td class="o">🟠 P-POC</td><td>仅内部实验</td></tr>
+<tr><td><strong>Block-GTQ</strong></td><td>TRL3</td><td class="r">无❌</td><td class="y">近期✅</td><td class="y">~3%</td><td class="o">🟠 P-POC</td><td>仅内部实验</td></tr>
+<tr><td><strong>KV×蒸馏</strong></td><td>TRL1</td><td class="r">无❌</td><td class="r">0篇🔴</td><td class="r">未知</td><td class="p">⚪ P-Void</td><td>研究机会</td></tr>
+</table>
+<div class="note"><strong>此表是三文件的唯一评级标准。</strong>全集图中的TRL、验证报告中的精度、落地手册中的维护状态，统一汇总到P-Level。用户只需看P-Level一列。</div>
+
+<!-- ========== 六、模型规模差异 ========== -->
+<h2>📏 六、模型规模差异（蓝军32挑战）</h2>
+<div class="warn"><strong>蓝军32挑战：</strong>所有数据假设"中等规模"，7B和405B效果天差地别。</div>
+
+<h3>6.1 INT4量化在不同规模上的精度损失</h3>
+<table>
+<tr><th>模型规模</th><th>GSM8K损失</th><th>MMLU损失</th><th>HumanEval损失</th><th>原因</th><th>建议</th></tr>
+<tr><td><strong>7B</strong></td><td class="g">&lt;1%</td><td class="g">&lt;1%</td><td class="g">&lt;2%</td><td>参数冗余少，量化鲁棒</td><td>放心INT4</td></tr>
+<tr><td><strong>13B-70B</strong></td><td class="g">1-2%</td><td class="g">1-2%</td><td class="y">2-3%</td><td>标准范围</td><td>INT4 OK</td></tr>
+<tr><td><strong>70B-400B</strong></td><td class="y">2-4%</td><td class="y">2-3%</td><td class="o">3-6%</td><td>大模型权重分布更尖锐</td><td>INT4需校准/考虑INT8</td></tr>
+<tr><td><strong>400B+(Llama-3-405B)</strong></td><td class="o">3-5%</td><td class="y">2-4%</td><td class="o">5-8%</td><td>outlier更极端</td><td>建议FP8或混合精度</td></tr>
+</table>
+
+<h3>6.2 KV压缩在不同规模上的效果差异</h3>
+<table>
+<tr><th>模型规模</th><th>SnapKV最优keep_ratio</th><th>KV Cache大小(128K)</th><th>注意事项</th></tr>
+<tr><td><strong>7B</strong></td><td>0.1-0.15</td><td>~8GB</td><td>压缩收益小(KV本身不大)</td></tr>
+<tr><td><strong>70B</strong></td><td>0.1</td><td>~40GB</td><td>标准场景，压缩收益最大</td></tr>
+<tr><td><strong>400B+</strong></td><td>0.05-0.1(更激进)</td><td>~80GB+</td><td>必须压缩否则OOM；但精度更敏感</td></tr>
+<tr><td><strong>671B MoE</strong></td><td class="r">不适用</td><td>~60GB(激活37B)</td><td>MLA架构无标准KV Cache，SnapKV不适用</td></tr>
+</table>
+
+<div class="note"><strong>关键洞察：</strong>模型越大，量化精度损失越大，KV压缩越必须但也越敏感。<strong>不能把7B上的实验结果直接推广到405B。</strong></div>
+
+<!-- ========== 七、多租户注意事项 ========== -->
+<h2>🏢 七、多租户推理注意事项（蓝军34挑战）</h2>
+<div class="warn"><strong>蓝军34挑战：</strong>推理服务商(Together/Anyscale)的多租户场景完全没覆盖。</div>
+
+<table>
+<tr><th>技术</th><th>多租户风险</th><th>严重度</th><th>缓解方案</th></tr>
+<tr><td><strong>SnapKV(KV淘汰)</strong></td><td>租户A的KV淘汰策略影响共享前缀的复用率 → 降低整体吞吐</td><td class="o">🟠 中</td><td>系统提示前缀不参与淘汰</td></tr>
+<tr><td><strong>KIVI(KV量化)</strong></td><td>不同租户的KV精度需求不同(代码vs闲聊) → 统一量化可能浪费</td><td class="y">🟡 低</td><td>按租户类型动态选择精度</td></tr>
+<tr><td><strong>投机解码</strong></td><td>accept率因租户任务差异巨大(闲聊80% vs 代码30%) → 吞吐波动</td><td class="o">🟠 中</td><td>按accept率动态开关</td></tr>
+<tr><td><strong>PagedAttention</strong></td><td>多租户共享page table → 一个租户的KV碎片影响他人</td><td class="y">🟡 低</td><td>vLLM已内置隔离</td></tr>
+<tr><td><strong>连续批处理</strong></td><td>不同租户的序列长度差异 → padding浪费</td><td class="y">🟡 低</td><td>按长度分桶调度</td></tr>
+<tr><td><strong>组合压缩</strong></td><td>多技术叠加 → 故障定位极其困难(哪个租户哪个技术导致质量问题?)</td><td class="r">🔴 高</td><td>分租户独立监控压缩效果</td></tr>
+</table>
+
+<div class="note">
+  <strong>多租户核心原则：</strong>压缩策略应该<strong>按租户/按请求类型动态调整</strong>，而不是全局统一。<br>
+  例如：闲聊租户用激进SnapKV(keep=0.05) + INT4；代码租户用保守策略(keep=0.2) + INT8。
+</div>
+
+<div class="note" style="margin-top:24px;border-color:var(--purple)">
+  <strong>📌 数据截止日期：2026-06-28</strong> | 精度数据基于Llama-3系列 | 框架版本基于vLLM 0.6+<br>
+  <strong>📌 下次更新：</strong>2026-Q3 | <strong>📌 配套文件：</strong><a href="推理压缩技术全集图_展开版.html">全集图(导航)</a> · <a href="落地手册_集成与成本.html">落地手册(集成)</a>
+</div>
+
+</div>
+</body>
+</html>

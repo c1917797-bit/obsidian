@@ -1,0 +1,8 @@
+﻿{
+  "schema_version": 1,
+  "query": "(cat:cs.CL OR cat:cs.LG OR cat:cs.AI) AND (ti:inference OR abs:inference OR ti:prefill OR abs:prefill OR ti:decoding OR abs:decoding OR all:\"kv cache\" OR all:kv-cache OR all:speculative OR all:MoE OR all:\"tensor parallel\" OR all:serving OR all:\"LLM serving\" OR all:\"token throughput\")",
+  "last_published": null,
+  "updated_at": "2026-09-06T11:04:42",
+  "seen": {},
+  "created_at": "2026-09-06T10:59:23"
+}

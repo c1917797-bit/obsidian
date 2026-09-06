@@ -1,0 +1,302 @@
+{
+  "output_formats": {
+    "热点技术": {
+      "header_template": "[{category}]: {title}@{entity}",
+      "sections": [
+        {
+          "name": "一句话总结",
+          "prefix": "[一句话总结]",
+          "suffix": ":",
+          "template": "{summary}",
+          "description": "2026年X月，【发布者】发布了【技术名】，用于【目的】，实现了【核心效果】",
+          "required": true
+        },
+        {
+          "name": "关键词",
+          "prefix": "[关键词]",
+          "suffix": ":",
+          "template": "{keywords}",
+          "description": "关键词1、关键词2、关键词3、关键词4、关键词5（5-8个）",
+          "required": true
+        },
+        {
+          "name": "业务启示",
+          "prefix": "[业务启示]",
+          "suffix": ":",
+          "template": "{business_insight}",
+          "multiline": true,
+          "description": "2-4个维度",
+          "required": true
+        },
+        {
+          "name": "背景介绍",
+          "prefix": "[背景介绍]",
+          "suffix": ":",
+          "template": "{background}",
+          "multiline": true,
+          "description": "100-150字",
+          "required": true
+        },
+        {
+          "name": "技术和创新点",
+          "prefix": "[技术和创新点]",
+          "suffix": ":",
+          "template": "{tech_innovation}",
+          "multiline": true,
+          "numbered": true,
+          "description": "3-6个技术点",
+          "required": true
+        },
+        {
+          "name": "效果总结",
+          "prefix": "[效果总结]",
+          "suffix": ":",
+          "template": "{results}",
+          "description": "80-120字",
+          "required": true
+        }
+      ],
+      "full_format": "[{category}]: {title}@{entity}\n\n[一句话总结]: {summary}\n\n[关键词]: {keywords}\n\n[业务启示]:\n{business_insight}\n\n[背景介绍]:\n{background}\n\n[技术和创新点]:\n{tech_innovation}\n\n[效果总结]:\n{results}",
+      "metadata_template": "---\n- **来源**: {url}\n- **置信度**: {confidence}\n- **信号等级**: {signal_level}\n- **行动**: {action}",
+      "example": "[热点技术]: Gemini 2.5 Flash-Lite@Google DeepMind\n\n[一句话总结]: 2025年6月，Google 发布 Gemini 2.5 Flash-Lite，通过长上下文理解与稀疏注意力机制，在保持 1.5M token 上下文的同时，成本降低 60%。\n\n[关键词]: 长上下文、稀疏注意力、成本优化、多模态、Flash-Lite\n\n[业务启示]:\n【成本优化】: 60% 成本降低意味着企业可以在相同预算下处理更多请求\n【长上下文】: 1.5M token 上下文为文档分析、代码库理解等场景提供新可能\n\n[背景介绍]:\nGoogle DeepMind 是 Google 旗下的 AI 研究部门，此前发布了 Gemini 2.0 系列。Gemini 2.5 Flash-Lite 是轻量级版本，专注于成本效益。\n\n[技术和创新点]:\n1. 稀疏注意力机制: 通过动态稀疏化 attention pattern，减少 40% 计算量\n2. 长上下文优化: 分段缓存机制，支持 1.5M token 无显著延迟\n3. 成本感知路由: 根据查询复杂度自动选择 Expert，提高资源利用效率\n\n[效果总结]:\nGemini 2.5 Flash-Lite 在成本降低 60% 的同时，保持了 95% 的基准性能。"
+    },
+    "热点事件": {
+      "header_template": "[{category}]: {title}@{entity}",
+      "sections": [
+        {
+          "name": "一句话总结",
+          "prefix": "[一句话总结]",
+          "suffix": ":",
+          "template": "{summary}",
+          "description": "2026年X月，【发布者】发布了【技术名】，用于【目的】，实现了【核心效果】",
+          "required": true
+        },
+        {
+          "name": "关键词",
+          "prefix": "[关键词]",
+          "suffix": ":",
+          "template": "{keywords}",
+          "description": "关键词1、关键词2、关键词3、关键词4、关键词5（5-8个）",
+          "required": true
+        },
+        {
+          "name": "业务启示",
+          "prefix": "[业务启示]",
+          "suffix": ":",
+          "template": "{business_insight}",
+          "multiline": true,
+          "description": "2-4个维度",
+          "required": true
+        },
+        {
+          "name": "背景介绍",
+          "prefix": "[背景介绍]",
+          "suffix": ":",
+          "template": "{background}",
+          "multiline": true,
+          "description": "100-150字",
+          "required": true
+        },
+        {
+          "name": "技术和创新点",
+          "prefix": "[技术和创新点]",
+          "suffix": ":",
+          "template": "{tech_innovation}",
+          "multiline": true,
+          "numbered": true,
+          "description": "3-6个技术点",
+          "required": true
+        },
+        {
+          "name": "效果总结",
+          "prefix": "[效果总结]",
+          "suffix": ":",
+          "template": "{results}",
+          "description": "80-120字",
+          "required": true
+        }
+      ],
+      "full_format": "[{category}]: {title}@{entity}\n\n[一句话总结]: {summary}\n\n[关键词]: {keywords}\n\n[业务启示]:\n{business_insight}\n\n[背景介绍]:\n{background}\n\n[技术和创新点]:\n{tech_innovation}\n\n[效果总结]:\n{results}",
+      "metadata_template": "---\n- **来源**: {url}\n- **置信度**: {confidence}\n- **信号等级**: {signal_level}\n- **行动**: {action}",
+      "example": "[热点技术]: Gemini 2.5 Flash-Lite@Google DeepMind\n\n[一句话总结]: 2025年6月，Google 发布 Gemini 2.5 Flash-Lite，通过长上下文理解与稀疏注意力机制，在保持 1.5M token 上下文的同时，成本降低 60%。\n\n[关键词]: 长上下文、稀疏注意力、成本优化、多模态、Flash-Lite\n\n[业务启示]:\n【成本优化】: 60% 成本降低意味着企业可以在相同预算下处理更多请求\n【长上下文】: 1.5M token 上下文为文档分析、代码库理解等场景提供新可能\n\n[背景介绍]:\nGoogle DeepMind 是 Google 旗下的 AI 研究部门，此前发布了 Gemini 2.0 系列。Gemini 2.5 Flash-Lite 是轻量级版本，专注于成本效益。\n\n[技术和创新点]:\n1. 稀疏注意力机制: 通过动态稀疏化 attention pattern，减少 40% 计算量\n2. 长上下文优化: 分段缓存机制，支持 1.5M token 无显著延迟\n3. 成本感知路由: 根据查询复杂度自动选择 Expert，提高资源利用效率\n\n[效果总结]:\nGemini 2.5 Flash-Lite 在成本降低 60% 的同时，保持了 95% 的基准性能。"
+    },
+    "行业趋势": {
+      "template": "[{category}]：{title}@{entity}",
+      "fields": {
+        "title": "原始标题",
+        "entity": "相关公司",
+        "source": "来源",
+        "url": "链接",
+        "summary": "趋势说明",
+        "category": "趋势分类"
+      }
+    },
+    "AI-Agent": {
+      "template": "[{category}]：{title}@{entity}",
+      "fields": {
+        "title": "原始标题",
+        "entity": "发布者",
+        "source": "来源",
+        "url": "链接",
+        "summary": "技术描述",
+        "category": "Agent类型"
+      }
+    },
+    "LLM推理": {
+      "template": "[{category}]：{title}@{entity}",
+      "fields": {
+        "title": "原始标题",
+        "entity": "发布者",
+        "source": "来源",
+        "url": "链接",
+        "summary": "技术描述",
+        "category": "推理优化类型"
+      }
+    },
+    "多模态推理": {
+      "template": "[{category}]：{title}@{entity}",
+      "fields": {
+        "title": "原始标题",
+        "entity": "发布者",
+        "source": "来源",
+        "url": "链接",
+        "summary": "技术描述",
+        "category": "多模态类型"
+      }
+    },
+    "模型压缩": {
+      "template": "[{category}]：{title}@{entity}",
+      "fields": {
+        "title": "原始标题",
+        "entity": "发布者",
+        "source": "来源",
+        "url": "链接",
+        "summary": "技术描述",
+        "category": "压缩方法"
+      }
+    },
+    "推理框架": {
+      "template": "[{category}]：{title}@{entity}",
+      "fields": {
+        "title": "原始标题",
+        "entity": "发布者",
+        "source": "来源",
+        "url": "链接",
+        "summary": "版本/功能更新"
+      }
+    },
+    "热点方向": {
+      "header_template": "[{category}]：{title}@{entity}",
+      "sections": [
+        {
+          "name": "一句话总结",
+          "prefix": "[一句话总结]",
+          "suffix": "：",
+          "template": "{summary}",
+          "description": "【领域】正在发生【趋势描述】，反映出【核心变化】",
+          "required": true
+        },
+        {
+          "name": "关键信号",
+          "prefix": "[关键信号]",
+          "suffix": "：",
+          "template": "{signals}",
+          "numbered": true,
+          "multiline": true,
+          "description": "3-5个关键事实，每个包含具体数据或事件",
+          "required": true
+        },
+        {
+          "name": "玩家动态",
+          "prefix": "[玩家动态]",
+          "suffix": "：",
+          "template": "{players}",
+          "multiline": true,
+          "description": "主要玩家及最新动态，2-4个",
+          "required": true
+        },
+        {
+          "name": "趋势研判",
+          "prefix": "[趋势研判]",
+          "suffix": "：",
+          "template": "{trend_analysis}",
+          "multiline": true,
+          "description": "2-3句话的趋势判断",
+          "required": true
+        },
+        {
+          "name": "战略启示",
+          "prefix": "[战略启示]",
+          "suffix": "：",
+          "template": "{strategic_insight}",
+          "numbered": true,
+          "multiline": true,
+          "description": "2-3个维度的战略建议",
+          "required": true
+        }
+      ],
+      "full_format": "[{category}]：{title}@{entity}\n\n{one_summary}\n\n{signals}\n\n{players}\n\n{trend_analysis}\n\n{strategic_insight}",
+      "example": "[热点方向]：大厂转向开源模型战略@AI行业\n\n[一句话总结]：2025年Q2起大厂转向开源模型战略，反映出闭源垄断格局被打破的趋势。\n\n[关键信号]：\n1. 【Meta】：开源Llama系列并提供商用许可，用户突破1000万\n2. 【Google】：开源Gemma模型并发布技术报告\n3. 【Mistral】：发布Mistral-7B/8x22B，在多项基准超越Llama2\n\n[玩家动态]：\n- 【Meta】：动作+影响\n- 【Google】：动作+影响\n\n[趋势研判]：\n根据上述信号，AI模型领域正在发生从闭源向开源的转型，预计将在2025年内产生以下影响：1）更多企业将采用开源模型降低成本2）开源生态将加速发展\n\n[战略启示]：\n1. 【企业】：应该关注开源模型进展，评估成本节省空间\n2. 【开发者】：应该学习开源模型技术，参与社区贡献"
+    },
+    "rich": {
+      "header_template": "[{category}]: {title}@{entity}",
+      "sections": [
+        {
+          "name": "一句话总结",
+          "prefix": "[一句话总结]",
+          "suffix": ":",
+          "template": "{summary}",
+          "description": "2026年X月，【发布者】发布了【技术名】，用于【目的】，实现了【核心效果】",
+          "required": true
+        },
+        {
+          "name": "关键词",
+          "prefix": "[关键词]",
+          "suffix": ":",
+          "template": "{keywords}",
+          "description": "关键词1、关键词2、关键词3、关键词4、关键词5（5-8个）",
+          "required": true
+        },
+        {
+          "name": "业务启示",
+          "prefix": "[业务启示]",
+          "suffix": ":",
+          "template": "{business_insight}",
+          "multiline": true,
+          "description": "2-4个维度",
+          "required": true
+        },
+        {
+          "name": "背景介绍",
+          "prefix": "[背景介绍]",
+          "suffix": ":",
+          "template": "{background}",
+          "multiline": true,
+          "description": "100-150字",
+          "required": true
+        },
+        {
+          "name": "技术和创新点",
+          "prefix": "[技术和创新点]",
+          "suffix": ":",
+          "template": "{tech_innovation}",
+          "multiline": true,
+          "numbered": true,
+          "description": "3-6个技术点",
+          "required": true
+        },
+        {
+          "name": "效果总结",
+          "prefix": "[效果总结]",
+          "suffix": ":",
+          "template": "{results}",
+          "description": "80-120字",
+          "required": true
+        }
+      ],
+      "full_format": "[{category}]: {title}@{entity}\n\n[一句话总结]: {summary}\n\n[关键词]: {keywords}\n\n[业务启示]:\n{business_insight}\n\n[背景介绍]:\n{background}\n\n[技术和创新点]:\n{tech_innovation}\n\n[效果总结]:\n{results}",
+      "metadata_template": "---\n- **来源**: {url}\n- **置信度**: {confidence}\n- **信号等级**: {signal_level}\n- **行动**: {action}",
+      "example": "[热点技术]: Gemini 2.5 Flash-Lite@Google DeepMind\n\n[一句话总结]: 2025年6月，Google 发布 Gemini 2.5 Flash-Lite，通过长上下文理解与稀疏注意力机制，在保持 1.5M token 上下文的同时，成本降低 60%。\n\n[关键词]: 长上下文、稀疏注意力、成本优化、多模态、Flash-Lite\n\n[业务启示]:\n【成本优化】: 60% 成本降低意味着企业可以在相同预算下处理更多请求\n【长上下文】: 1.5M token 上下文为文档分析、代码库理解等场景提供新可能\n\n[背景介绍]:\nGoogle DeepMind 是 Google 旗下的 AI 研究部门，此前发布了 Gemini 2.0 系列。Gemini 2.5 Flash-Lite 是轻量级版本，专注于成本效益。\n\n[技术和创新点]:\n1. 稀疏注意力机制: 通过动态稀疏化 attention pattern，减少 40% 计算量\n2. 长上下文优化: 分段缓存机制，支持 1.5M token 无显著延迟\n3. 成本感知路由: 根据查询复杂度自动选择 Expert，提高资源利用效率\n\n[效果总结]:\nGemini 2.5 Flash-Lite 在成本降低 60% 的同时，保持了 95% 的基准性能。"
+    }
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "total_papers": 27784,
+  "filtered_papers": 685,
+  "matrix": {
+    "参数(Weights) x 低秩(LowRank)": 153,
+    "参数(Weights) x 量化(Quant)": 174,
+    "参数(Weights) x 蒸馏(Distill)": 135,
+    "通信(Comm) x 量化(Quant)": 2,
+    "通信(Comm) x 稀疏(Sparse)": 9,
+    "参数(Weights) x 稀疏(Sparse)": 131,
+    "参数(Weights) x 剪枝(Prune)": 102,
+    "状态(State/KV) x 剪枝(Prune)": 6,
+    "状态(State/KV) x 稀疏(Sparse)": 7,
+    "状态(State/KV) x 低秩(LowRank)": 4,
+    "状态(State/KV) x 量化(Quant)": 6,
+    "通信(Comm) x 剪枝(Prune)": 8,
+    "通信(Comm) x 低秩(LowRank)": 11,
+    "通信(Comm) x 蒸馏(Distill)": 1
+  },
+  "all_kv_papers": [
+    "Not All Heads Matter: A Head-Level KV Cache Compression Method with Integrated Retrieval and Reasoning",
+    "KV-Dict: Sparse KV Cache Compression with Universal Dictionaries",
+    "VL-Cache: Sparsity and Modality-Aware KV Cache Compression for Vision-Language Model Inference Acceleration",
+    "LoRC: Low-Rank Compression for LLMs KV Cache with a Progressive Compression Strategy",
+    "LogQuant: Log-Distributed 2-Bit Quantization of KV Cache with Superior Accuracy Preservation",
+    "Preserving Large Activations: The Key to KV Cache Pruning",
+    "SinkQ: Accurate 2-bit KV Cache Quantization with Dynamic Sink Tracking",
+    "ZipVL: Efficient Large Vision-Language Models with Dynamic Token Sparsification and KV Cache Compression",
+    "CASAK-V: Dynamic Sparse Attention and Adaptive KV-Cache Compression for Memory-Efficient Long-Context LLM Inference",
+    "EMS: Adaptive Evict-then-Merge Strategy for Head-wise KV Cache Compression Based on Global-Local Importance",
+    "RazorAttention: Efficient KV Cache Compression Through Retrieval Heads",
+    "QJL: 1-Bit Quantized JL Transform for KV Cache Quantization with Zero Overhead",
+    "Transformer Key-Value Memories Are Nearly as Interpretable as Sparse Autoencoders",
+    "MUSTAFAR: Promoting Unstructured Sparsity for KV Cache Pruning in LLM Inference",
+    "NSNQuant: A Double Normalization Approach for Calibration-Free Low-Bit Vector Quantization of KV Cache",
+    "QSVD: Efficient Low-rank Approximation for Unified Query-Key-Value Weight Compression in Low-Precision Vision-Language Models",
+    "SALS: Sparse Attention in Latent Space for KV Cache Compression",
+    "KIVI: A Tuning-Free Asymmetric 2bit Quantization for KV Cache",
+    "Eigen Attention: Attention in Low-Rank Space for KV Cache Compression",
+    "Unlocking Data-free Low-bit Quantization with Matrix Decomposition for KV Cache Compression"
+  ]
+}

@@ -1,0 +1,268 @@
+{
+  "collected_date": "2026-07-05",
+  "period": "2026-06 ~ 2026-07-02",
+  "total_raw": 118,
+  "total_after_filter1": 29,
+  "total_strict": 14,
+  "stats_objects": {
+    "KV": 4,
+    "激活": 3
+  },
+  "stats_methods": {
+    "低秩": 4,
+    "蒸馏": 3,
+    "量化": 2,
+    "注意力优化": 1,
+    "剪枝": 1,
+    "投机解码": 1
+  },
+  "stats_cells": {
+    "KV×注意力优化": 1,
+    "激活×剪枝": 1,
+    "激活×量化": 1,
+    "KV×量化": 1
+  },
+  "papers": [
+    {
+      "title": "Combating Textual Noise and Redundancy: Entropy-Aware Dense Visual Token Pruning",
+      "arxiv_id": "2607.02484",
+      "abstract": "Visual token pruning is a crucial strategy for accelerating VLMs by compressing redundant image patches, yet existing methods often fail to preserve critical cues under dense instructions and fine-grained queries. In this paper, we investigate this failure and identify two underlying bottlenecks: the widespread dispersion of textual noise that corrupts dense cross-modal scoring, and the feature fragmentation inherent to standard token selection. To address these issues, we propose Entropy-Aware ",
+      "published": "2026-07-02",
+      "url": "http://arxiv.org/abs/2607.02484v1",
+      "search_query": "KV Cache压缩",
+      "source": "arxiv_june_2026",
+      "matched_keywords": [
+        "pruning",
+        "token pruning"
+      ],
+      "objects": [
+        "激活"
+      ],
+      "methods": []
+    },
+    {
+      "title": "A Hippocampus for Linear Attention: An Exact Memory for What the Recurrent State Forgets",
+      "arxiv_id": "2607.02303",
+      "abstract": "Linear-attention and state-space language models compress the prefix into a fixed-size recurrent state, yielding O(1) memory at the cost of a lossy exact memory: when many key--value associations compete, earlier facts are overwritten and needle recall degrades. Inspired by Complementary Learning Systems, we give linear attention a hippocampal complement. HOLA (Hippocampal Linear Attention) keeps the usual delta-rule state as a compressive memory and adds a bounded exact KV cache, forming a semi",
+      "published": "2026-07-02",
+      "url": "http://arxiv.org/abs/2607.02303v1",
+      "search_query": "KV Cache压缩",
+      "source": "arxiv_june_2026",
+      "matched_keywords": [
+        "kv cache",
+        "linear attention"
+      ],
+      "objects": [
+        "KV"
+      ],
+      "methods": [
+        "注意力优化"
+      ]
+    },
+    {
+      "title": "When Token Compression Breaks: Structural Pruning vs. Token Reduction for Robust ViT Segmentation under High Compression",
+      "arxiv_id": "2607.02237",
+      "abstract": "Vision Transformers (ViTs) are strong backbones for semantic segmentation, but their computational cost limits deployment. Recent token compression methods for efficient transformer-based segmentation reduce this cost by decreasing the number of tokens. However, existing evaluations primarily focus on low-to-moderate compression, leaving their behavior under aggressive compression and corrupted inputs unclear. Meanwhile, structural pruning provides an orthogonal route to efficiency by removing r",
+      "published": "2026-07-02",
+      "url": "http://arxiv.org/abs/2607.02237v1",
+      "search_query": "KV Cache压缩",
+      "source": "arxiv_june_2026",
+      "matched_keywords": [
+        "pruning",
+        "structur",
+        "token compression",
+        "token reduction"
+      ],
+      "objects": [
+        "激活"
+      ],
+      "methods": [
+        "剪枝"
+      ]
+    },
+    {
+      "title": "Towards Load-Aware Prefill Deflection for Disaggregated LLM Serving",
+      "arxiv_id": "2607.02043",
+      "abstract": "Disaggregated LLM serving runs prefill and decode on separate GPU pools to keep the two phases from interfering. In practice, this creates a new asymmetry: under bursty, heavy-tailed workloads prefill nodes saturate while decode nodes have compute underutilized, and on a production-style A100 cluster with 2 prefill and 2 decode nodes (2P2D), we find that prefill execution accounts for only 2-23% of P95 Time-to-First-Token (TTFT). Queuing and inter-node GPU-GPU KV-cache transfer account for the r",
+      "published": "2026-07-02",
+      "url": "http://arxiv.org/abs/2607.02043v1",
+      "search_query": "KV Cache压缩",
+      "source": "arxiv_june_2026",
+      "matched_keywords": [
+        "kv-cache",
+        "prefill"
+      ],
+      "objects": [
+        "KV"
+      ],
+      "methods": []
+    },
+    {
+      "title": "WorldDirector: Building Controllable World Simulators with Persistent Dynamic Memory",
+      "arxiv_id": "2607.02517",
+      "abstract": "We present WorldDirector, a highly controllable video world model framework designed for persistent dynamic object memory and unrestricted viewpoint exploration. Unlike existing world models that entangle physical dynamics with pixel rendering and rely on continuous visual observation to sustain motion, our framework explicitly decouples semantic motion orchestration from visual generation. By leveraging an LLM to coordinate 3D trajectories with camera movements and subsequently employing these ",
+      "published": "2026-07-02",
+      "url": "http://arxiv.org/abs/2607.02517v1",
+      "search_query": "量化",
+      "source": "arxiv_june_2026",
+      "matched_keywords": [
+        "lora"
+      ],
+      "objects": [],
+      "methods": [
+        "低秩"
+      ]
+    },
+    {
+      "title": "DemoPSD: Disagreement-Modulated Policy Self-Distillation",
+      "arxiv_id": "2607.02502",
+      "abstract": "On-policy self-distillation (OPSD) has emerged as a practical method for training large language models (LLMs) to reason, where a single model acts as both the teacher and the student with different levels of information access. However, recent studies have found that the teacher's dense token-level supervision, conditioned on privileged information, can lead to overfitting to in-domain patterns, suppress exploration, and hurt cross-domain generalization, while also introducing a more fundamenta",
+      "published": "2026-07-02",
+      "url": "http://arxiv.org/abs/2607.02502v1",
+      "search_query": "量化",
+      "source": "arxiv_june_2026",
+      "matched_keywords": [
+        "distill",
+        "lora"
+      ],
+      "objects": [],
+      "methods": [
+        "蒸馏",
+        "低秩"
+      ]
+    },
+    {
+      "title": "OrbitQuant: Data-Agnostic Quantization for Image and Video Diffusion Transformers",
+      "arxiv_id": "2607.02461",
+      "abstract": "Diffusion transformers (DiTs) achieve state-of-the-art image and video generation, but their multi-step sampling and growing parameter count make inference expensive. Post-training quantization (PTQ) is the natural remedy, yet DiT activations shift across timesteps, prompts, and guidance branches, forcing prior methods to re-fit calibration data for every new checkpoint or modality. We present OrbitQuant, a data-agnostic weight-activation quantizer that bypasses range estimation by quantizing in",
+      "published": "2026-07-02",
+      "url": "http://arxiv.org/abs/2607.02461v1",
+      "search_query": "量化",
+      "source": "arxiv_june_2026",
+      "matched_keywords": [
+        "quantiz"
+      ],
+      "objects": [
+        "激活"
+      ],
+      "methods": [
+        "量化"
+      ]
+    },
+    {
+      "title": "Neuron-Aware Data Selection for Annotation-Free LLM Self-Distillation",
+      "arxiv_id": "2607.02460",
+      "abstract": "Post-training large language models (LLMs) without real-world interaction feedback or human-labeled supervision remains challenging, particularly in specialized domains where expert annotations are costly to obtain. Recent annotation-free self-evolution methods address this by using the model's own outputs as supervision signals, constructing a teacher via additional context and aggregating predictions across multiple rollouts through majority voting to produce pseudo-labels. However, these appr",
+      "published": "2026-07-02",
+      "url": "http://arxiv.org/abs/2607.02460v1",
+      "search_query": "量化",
+      "source": "arxiv_june_2026",
+      "matched_keywords": [
+        "distill"
+      ],
+      "objects": [],
+      "methods": [
+        "蒸馏"
+      ]
+    },
+    {
+      "title": "EAGLE-360: Embodied Active Global-to-Local Exploration in 360$^\\circ$",
+      "arxiv_id": "2607.02479",
+      "abstract": "While Multimodal Large Language Models (MLLMs) have demonstrated exceptional capabilities in standard visual understanding, adapting them for active visual search in 360$^\\circ$ panoramic environments exposes fundamental limitations. Specifically, standard MLLMs struggle to effectively model inherent panoramic properties, such as severe polar distortion and continuous cylindrical topologies, which significantly degrades target detection accuracy. Consequently, existing panoramic search methods a",
+      "published": "2026-07-02",
+      "url": "http://arxiv.org/abs/2607.02479v1",
+      "search_query": "蒸馏",
+      "source": "arxiv_june_2026",
+      "matched_keywords": [
+        "lora"
+      ],
+      "objects": [],
+      "methods": [
+        "低秩"
+      ]
+    },
+    {
+      "title": "Spec-AUF: Accept-Until-Fail Training under Train-Inference Misalignment for Masked Block Drafters",
+      "arxiv_id": "2607.01893",
+      "abstract": "Speculative decoding accelerates autoregressive generation by drafting a block of tokens that the target model verifies left-to-right, committing only the longest accepted prefix. Block (DLM-style) drafters predict the whole block in parallel, which is fast but trained with a full-block cross-entropy that supervises every position against the gold continuation -- even though inference discards every token after the first rejection. Recent acceptance-aware objectives patch this by reweighting the",
+      "published": "2026-07-02",
+      "url": "http://arxiv.org/abs/2607.01893v1",
+      "search_query": "投机解码",
+      "source": "arxiv_june_2026",
+      "matched_keywords": [
+        "speculative decoding"
+      ],
+      "objects": [],
+      "methods": [
+        "投机解码"
+      ]
+    },
+    {
+      "title": "Lynx: Progressive Speculative Quantization for accelerating KV Transfer in Long-Context Inference",
+      "arxiv_id": "2607.01831",
+      "abstract": "Long-context inference is increasingly common in large language model (LLM) serving, driven by retrieval-augmented generation and agentic systems. In disaggregated inference, these workloads require transferring large Key-Value (KV) caches across the network, where decoding cannot begin until the transfer completes. Recent KV quantization techniques reduce data volume and alleviate this bottleneck, but existing schemes fail to achieve both low network-exposed latency and high inference accuracy.",
+      "published": "2026-07-02",
+      "url": "http://arxiv.org/abs/2607.01831v1",
+      "search_query": "投机解码",
+      "source": "arxiv_june_2026",
+      "matched_keywords": [
+        "quantiz",
+        "long-context"
+      ],
+      "objects": [
+        "KV"
+      ],
+      "methods": [
+        "量化"
+      ]
+    },
+    {
+      "title": "PARTREP: Learning What to Repeat for Decoder-only LLMs",
+      "arxiv_id": "2607.01792",
+      "abstract": "While decoder-only LLMs excel at a vast array of natural language tasks, it suffers from an asymmetric information flow induced by causal attention: later tokens are richer in contextual grounding than earlier ones. A simple and effective remedy is prompt repetition -- just appending a second copy of prompt before generation can redistribute grounding across positions and improve reasoning performance. However, full repetition of the original prompt doubles the KV cache footprint and quadruples ",
+      "published": "2026-07-02",
+      "url": "http://arxiv.org/abs/2607.01792v1",
+      "search_query": "投机解码",
+      "source": "arxiv_june_2026",
+      "matched_keywords": [
+        "kv cache"
+      ],
+      "objects": [
+        "KV"
+      ],
+      "methods": []
+    },
+    {
+      "title": "EAGLE-360: Embodied Active Global-to-Local Exploration in 360^circ",
+      "arxiv_id": "2607.02479",
+      "abstract": "While Multimodal Large Language Models (MLLMs) have demonstrated exceptional capabilities in standard visual understanding, adapting them for active visual search in 360^circ panoramic environments exposes fundamental limitations. Specifically, standard MLLMs struggle to effectively model inherent panoramic properties, such as severe polar distortion and continuous cylindrical topologies, which significantly degrades target detection accuracy. Consequently, existing panoramic search methods atte",
+      "published": "2026-06",
+      "url": "https://huggingface.co/papers/2607.02479",
+      "search_query": "HuggingFace Trending",
+      "source": "huggingface_june_2026",
+      "matched_keywords": [
+        "lora"
+      ],
+      "objects": [],
+      "methods": [
+        "低秩"
+      ]
+    },
+    {
+      "title": "Denser neq Better: Limits of On-Policy Self-Distillation for Continual Post-Training",
+      "arxiv_id": "2607.01763",
+      "abstract": "Continual post-training enables foundation models to acquire new knowledge while preserving existing capabilities. Recent work suggests that on-policy learning can mitigate forgetting, with on-policy self-distillation emerging as a particularly attractive approach. In this work, we revisit this optimistic view through self-distillation policy optimization (SDPO). Our experiments show that SDPO can accelerate in-domain specialization when teacher signals are stable and well aligned, but it strugg",
+      "published": "2026-06",
+      "url": "https://huggingface.co/papers/2607.01763",
+      "search_query": "HuggingFace Trending",
+      "source": "huggingface_june_2026",
+      "matched_keywords": [
+        "distill"
+      ],
+      "objects": [],
+      "methods": [
+        "蒸馏"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Report</title>
+    
+<style>
+:root {
+    --bg-primary: #0d1117;
+    --bg-secondary: #161b22;
+    --bg-tertiary: #21262d;
+    --border: #30363d;
+    --text-primary: #e6edf3;
+    --text-secondary: #8b949e;
+    --text-muted: #6e7681;
+    --accent-blue: #58a6ff;
+    --accent-green: #3fb950;
+    --accent-orange: #d29922;
+    --accent-red: #f85149;
+    --accent-purple: #a371f7;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    line-height: 1.6;
+    padding: 2rem;
+}
+
+.container { max-width: 1200px; margin: 0 auto; }
+
+/* Header */
+.report-header {
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.report-title {
+    font-size: 2rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+}
+
+.report-meta {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+}
+
+.report-meta span { margin-right: 1.5rem; }
+
+/* Headings */
+h1 { font-size: 1.75rem; font-weight: 600; margin: 2rem 0 1rem; color: var(--text-primary); border-bottom: 1px solid var(--border); padding-bottom: 0.5rem; }
+h2 { font-size: 1.4rem; font-weight: 600; margin: 1.5rem 0 0.75rem; color: var(--accent-blue); }
+h3 { font-size: 1.15rem; font-weight: 600; margin: 1.25rem 0 0.5rem; color: var(--text-primary); }
+h4 { font-size: 1rem; font-weight: 600; margin: 1rem 0 0.5rem; color: var(--text-secondary); }
+
+/* Tables */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1rem 0;
+    font-size: 0.9rem;
+}
+
+th {
+    background: var(--bg-secondary);
+    color: var(--text-primary);
+    padding: 0.75rem;
+    text-align: left;
+    font-weight: 600;
+    border-bottom: 2px solid var(--border);
+}
+
+td {
+    padding: 0.75rem;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+}
+
+tr:hover { background: var(--bg-secondary); }
+
+/* Tags */
+.tag {
+    display: inline-block;
+    padding: 0.2rem 0.5rem;
+    background: var(--bg-tertiary);
+    border-radius: 4px;
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    margin: 0.2rem;
+}
+
+.tag-red { background: rgba(248, 81, 73, 0.15); color: var(--accent-red); }
+.tag-orange { background: rgba(210, 153, 34, 0.15); color: var(--accent-orange); }
+.tag-green { background: rgba(63, 185, 80, 0.15); color: var(--accent-green); }
+.tag-blue { background: rgba(88, 166, 255, 0.15); color: var(--accent-blue); }
+.tag-purple { background: rgba(163, 113, 247, 0.15); color: var(--accent-purple); }
+
+/* Cards */
+.card {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 1rem;
+    margin: 1rem 0;
+}
+
+.card-header {
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: var(--text-primary);
+}
+
+/* Lists */
+ul, ol { padding-left: 1.5rem; margin: 0.5rem 0; }
+li { margin: 0.3rem 0; }
+
+/* Code */
+code {
+    font-family: 'SF Mono', Consolas, monospace;
+    background: var(--bg-tertiary);
+    padding: 0.15rem 0.4rem;
+    border-radius: 3px;
+    font-size: 0.875rem;
+}
+
+pre {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 1rem;
+    overflow-x: auto;
+    margin: 1rem 0;
+}
+
+/* Blockquote */
+blockquote {
+    border-left: 3px solid var(--accent-blue);
+    padding-left: 1rem;
+    margin: 1rem 0;
+    color: var(--text-secondary);
+    font-style: italic;
+}
+
+/* Horizontal rule */
+hr {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 1.5rem 0;
+}
+
+/* Highlight */
+.highlight {
+    background: rgba(88, 166, 255, 0.1);
+    border-left: 3px solid var(--accent-blue);
+    padding: 0.75rem 1rem;
+    margin: 1rem 0;
+}
+
+/* Badges */
+.badge {
+    display: inline-block;
+    padding: 0.25rem 0.5rem;
+    border-radius: 50px;
+    font-size: 0.7rem;
+    font-weight: 600;
+}
+
+.badge-green { background: var(--accent-green); color: #000; }
+.badge-orange { background: var(--accent-orange); color: #000; }
+.badge-red { background: var(--accent-red); color: #fff; }
+
+/* Grid */
+.grid { display: grid; gap: 1rem; }
+.grid-2 { grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
+
+/* Print */
+@media print {
+    body { background: #fff; color: #000; }
+    .tag, .badge { border: 1px solid currentColor; }
+}
+</style>
+
+</head>
+<body>
+    <div class="container">
+        <div class="report-header">
+            <h1 class="report-title">Report</h1>
+            <div class="report-meta">
+                <span>生成时间: 2026-06-12</span>
+                <span class="tag">AI-Intelligence</span><span class="tag">Weekly</span>
+            </div>
+        </div>
+        <div class="report-body">
+            
+<h1>Weekly Report - 2026-W24</h1>
+
+<h2>本周技术演化</h2>
+
+<p>📡 前沿科技简报 · 2026-W24 周报</p>
+
+<h2>本周技术主线</h2>
+
+<p>本周共记录 23 条技术事件，分类分布：</p>
+<li>热点技术: 16 条</li>
+<li>AI-Agent: 3 条</li>
+<li>热点事件: 2 条</li>
+<li>行业趋势: 1 条</li>
+<li>LLM推理: 1 条</li>
+
+<h2>🔥 热点事件</h2>
+<p>【LLM推理】Reroute, Don't Remove: Recoverable Visual Token Routing for Vision-Language Models</p>
+
+<li><strong></strong>: https://huggingface.co/papers/2606.12412</li>
+<li><strong></strong>: 中</li>
+
+<h2>💡 热点技术</h2>
+<p>【LLM推理】Reroute, Don't Remove: Recoverable Visual Token Routing for Vision-Language Models</p>
+
+<li><strong></strong>: https://huggingface.co/papers/2606.12412</li>
+<li><strong></strong>: 中</li>
+
+<h2>📊 热点方向</h2>
+<h3>热点技术</h3>
+<p>[热点技术]：CCKS: Consensus-based Communication and Knowledge Sharing@arXiv cs.MA (Multiagent Systems)</p>
+
+<p>[一句话总结]：CCKS通过基于共识的通信和知识共享机制，促进了多智能体强化学习中代理间的可解释和可扩展合作，提升了协作效率和系统性能。</p>
+
+<p>[关键词]：多智能体系统、知识共享、共识机制、协作学习、强化学习</p>
+
+<p>[业务启示]：</p>
+<p>【模型设计】：CCKS采用基于共识的通信机制，优化了代理间的知识共享过程，使模型设计更具可解释性和扩展性。</p>
+<p>【训练策略】：通过改进的知识共享策略，CCKS在训练过程中实现了更高效的协作学习，提升了整体训练效率和效果。</p>
+
+<p>[背景介绍]：</p>
+<p>CCKS（Consensus-based Communication and Knowledge Sharing）是arXiv cs.MA（多智能体系统）推出的新型通信和知识共享技术，用于提升多智能体强化学习中的协作效率。此前，多智能体系统中的知识共享主要依赖于传统的行动建议方法，存在可解释性和扩展性不足的问题。现在，CCKS通过引入共识机制，显著改善了代理间的通信效率和知识共享质量。</p>
+
+<p>[技术和创新点]：</p>
+<p>共识机制：引入了基于共识的通信机制，确保代理间知识共享的一致性和可靠性。</p>
+<p>知识共享优化：通过优化知识共享策略，提升了代理间的协作效率和系统整体性能。</p>
+<p>可解释性增强：提供了更清晰的知识共享路径，使系统行为更易于理解和解释。</p>
+<p>扩展性提升：新的通信机制使系统更易于扩展，能够适应更大规模的多智能体环境。</p>
+<p>协作学习改进：通过改进的协作学习策略，显著提升了代理间的协同工作效率。</p>
+
+<p>[效果总结]：</p>
+<p>CCKS在多智能体强化学习的协作效率和系统性能方面有显著提升，特别是在知识共享和通信机制上表现出色。其基于共识的通信策略和优化的知识共享方法，使得代理间的协作更加高效和可靠，为多智能体系统的进一步发展提供了新的思路和技术支持。</p>
+
+<p>[热点技术]：ITME: Inference Tiered Memory Expansion with Disaggregated CXL-Hybrid Memories@arXiv cs.DC (Distributed Computing)</p>
+
+<p>[一句话总结]：ITME通过使用解耦的CXL混合内存扩展推理层级的内存容量，解决了大语言模型对TB级上下文状态处理的需求，提升了系统处理能力和资源利用效率。</p>
+
+<p>[关键词]：大语言模型、内存扩展、解耦架构、CXL混合内存、上下文状态处理</p>
+
+<p>[业务启示]：</p>
+<p>【架构设计】：ITME采用了解耦的CXL混合内存架构，能够有效应对大语言模型对TB级上下文状态的处理需求，为未来AI系统架构设计提供了新的思路。</p>
+<p>【资源管理】：通过分层内存扩展，ITME优化了内存资源的分配和使用，提升了系统整体的资源利用效率，为AI工作负载的资源管理提供了参考。</p>
+
+<p>[背景介绍]：</p>
+<p>ITME是arXiv cs.DC (Distributed Computing)推出的新型内存扩展技术，用于解决大语言模型对大规模上下文状态的处理需求。此前，随着大语言模型向代理化和长上下文工作负载的快速转变，单个服务器的内存容量已无法满足需求。现在，ITME通过解耦的CXL混合内存扩展技术，实现了TB级上下文状态的高效处理。</p>
+
+<p>[技术和创新点]：</p>
+<p>解耦CXL架构: 采用解耦的CXL架构，实现内存资源的灵活扩展和高效利用。</p>
+<p>分层内存管理: 通过分层内存管理，优化内存资源的分配和使用。</p>
+<p>TB级上下文处理: 支持TB级上下文状态的存储和处理，满足大语言模型的需求。</p>
+<p>混合内存策略: 结合不同类型的内存技术，提供多样化的内存解决方案。</p>
+<p>动态内存分配: 实现动态内存分配，适应不同工作负载的需求。</p>
+
+<p>[效果总结]：</p>
+<p>ITME在内存扩展和资源管理方面有显著提升，能够有效应对大语言模型对大规模上下文状态的处理需求，提升了系统处理能力和资源利用效率，为AI系统的内存管理提供了新的解决方案。</p>
+
+<h3>热点事件</h3>
+<p>[热点事件]：A股指数体系迈向精细化，年内新增374条指数@36kr</p>
+
+<p>[一句话总结]：A股年内新增374条指数，涵盖科技主题并向产业链关键环节延伸，存量指数规则修订提升市场表征准确性和风险控制能力，推动新质生产力发展。</p>
+
+<p>[关键词]：A股指数、科技主题、产业链、ESG规则、风险控制</p>
+
+<p>[业务启示]：</p>
+<p>【市场影响】：新增指数聚焦机器人、半导体、人工智能和新型电力系统等科技领域，反映市场对科技创新的重视，推动相关产业链发展。</p>
+<p>【规则优化】：通过引入ESG负面剔除、调整样本容量等机制，存量指数规则修订提升市场表征准确性和风险控制能力，适应市场精细化需求。</p>
+<p>【产品布局】：围绕关键领域的新指数产品布局，为投资者提供更多元化的投资工具，满足不同风险偏好和投资策略的需求。</p>
+<p>【引导作用】：精细化指数体系引导资金流向新质生产力领域，促进产业升级和技术创新。</p>
+
+<p>[背景介绍]：</p>
+<p>A股指数体系是反映市场走势和投资机会的重要工具，由Wind等数据提供商和证券交易所推出，用于衡量市场表现和引导投资方向。此前，A股指数体系已涵盖多个行业和主题，现在新增374条指数，聚焦科技领域并向产业链关键环节延伸，同时对存量指数进行系统性规则修订。</p>
+
+<p>[技术和创新点]：</p>
+<p>新增指数数量: 年内新增374条指数，涵盖多个科技主题。</p>
+<p>科技主题聚焦: 指数产品布局围绕机器人、半导体、人工智能、新型电力系统四大领域。</p>
+<p>ESG规则引入: 对存量指数引入ESG负面剔除机制，提升指数的社会责任表现。</p>
+<p>样本容量调整: 优化选样流程和样本容量，提升指数的市场表征准确性。</p>
+<p>风险控制提升: 通过规则修订增强指数的风险控制能力。</p>
+
+<p>[效果总结]：</p>
+<p>A股指数体系精细化在市场表征、风险控制和投资引导方面有显著提升。新增科技主题指数和存量指数规则修订，不仅丰富了投资工具，还推动了资金向新质生产力领域流动，促进了产业升级和技术创新。</p>
+
+<p>[热点事件]：Redesign Mixture-of-Experts Routers with Manifold Power Iteration@HuggingFace Papers</p>
+
+<p>[一句话总结]：HuggingFace Papers提出了一种通过流形幂迭代重新设计专家混合模型路由器的创新方法，旨在提高专家激活的效率和准确性，从而优化模型性能。</p>
+
+<p>[关键词]：专家混合模型、路由器设计、流形幂迭代、模型优化、路由矩阵</p>
+
+<p>[业务启示]：</p>
+<p>【技术战略】：通过改进路由器设计，提升专家混合模型的整体性能，为AI模型优化提供新思路。</p>
+<p>【市场影响】：该创新可能推动相关AI技术在自然语言处理等领域的应用，提升市场竞争力。</p>
+<p>【研发方向】：鼓励进一步探索流形幂迭代在其他AI组件中的应用，拓展技术边界。</p>
+
+<p>[背景介绍]：</p>
+<p>专家混合模型（MoE）中的路由器是其核心组件，负责计算路由器矩阵行与MoE输入的相似度，以确定激活的专家子集。此前，路由器设计主要关注于专家矩阵的编码表示，现在HuggingFace Papers提出了一种新的方法，通过流形幂迭代重新设计路由器，以提高专家激活的效率和准确性。</p>
+
+<p>[技术和创新点]：</p>
+<p>流形幂迭代应用: 将流形幂迭代应用于路由器设计，以优化专家激活过程。</p>
+<p>路由器矩阵优化: 通过改进路由器矩阵的计算方式，提高相似度计算的准确性。</p>
+<p>专家激活效率: 提升专家激活的效率，减少不必要的计算开销。</p>
+<p>模型性能提升: 整体提升专家混合模型的性能，特别是在处理复杂任务时。</p>
+<p>路由策略改进: 引入新的路由策略，使模型在选择专家时更加智能和高效。</p>
+
+<p>[效果总结]：</p>
+<p>该方法在提高专家混合模型的专家激活效率和准确性方面表现出色，特别是在处理复杂任务时，能够显著提升模型性能，为AI模型的优化提供了新的技术路径。</p>
+
+<h3>AI-Agent</h3>
+<p>【AI-Agent】🎉 DeepSeek-V4 预览版本发布，具备世界顶级推理性能，Agent 能力大幅提高，已在网页端、APP 和 API 上线，点击查看详情。</p>
+
+<li><strong></strong>: https://mp.weixin.qq.com/s/8bxXqS2R8Fx5-1TLDBiEDg</li>
+<li><strong></strong>: 中</li>
+
+<p>【AI-Agent】InternVideo3: Agentify Foundation Models with Multimodal Contextual Reasoning</p>
+
+<li><strong></strong>: https://huggingface.co/papers/2606.12195</li>
+<li><strong></strong>: 中</li>
+
+<h2>深读推荐</h2>
+
+<p>本周深读论文：</p>
+<li>Reroute, Don't Remove: Recoverable Visual Token Routing for Vision-Language Mode</li>
+<p>来源: https://huggingface.co/papers/2606.12412</p>
+
+<hr>
+<p>📌 文末汇总</p>
+<li>本周最值得深读: Reroute, Don't Remove: Recoverable Visual Token Ro</li>
+<li>本周可跳过: 无</li>
+<li>下周重点关注: 推理框架新版本、Agent架构演进、成本优化技术</li>
+
+
+
+
+<h2>事件统计</h2>
+
+<p>共记录 1 条事件</p>
+
+
+<h2>反向链接</h2>
+
+<blockquote>[!info] 相关笔记</blockquote>
+<blockquote>- [[Daily/2026-06-12|今日日报]]</blockquote>
+<blockquote>- [[Monthly/Monthly_2026-06|本月月报]]</blockquote>
+<blockquote>- [[技术收敛_2026-06|技术收敛报告]]</blockquote>
+
+<hr>
+
+<strong></strong>: 2026-06-12T04:12:47.337380
+<strong></strong>: 95131c1e1ea54a8b
+
+        </div>
+    </div>
+</body>
+</html>

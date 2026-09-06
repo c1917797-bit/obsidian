@@ -1,0 +1,30 @@
+# Obsidian / local state
+.obsidian/workspace*.json
+.obsidian/cache
+.trash/
+
+# AgentWorkspace is a local mirror; keep the vault repo focused on notes and guardrails.
+0_Codex工作台/AgentWorkspace/
+0_Codex工作台/quality-guardian/
+0_Codex工作台/quality-guardian/
+# Ignore any mojibake duplicate created by an old encoding path, while keeping the real folder.
+0_Codex*/
+!0_Codex工作台/
+!0_Codex工作台/**
+0_Codex工作台/AgentWorkspace/
+0_Codex工作台/quality-guardian/
+
+# Generated / temporary artifacts
+**/.tmp/
+**/node_modules/
+**/venv/
+**/__pycache__/
+**/.pytest_cache/
+**/dist/
+**/build/
+
+# Local secrets and runtime logs
+*.env
+*.log
+credentials*
+secrets*

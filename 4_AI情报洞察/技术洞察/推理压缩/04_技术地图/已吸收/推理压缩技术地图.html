@@ -1,0 +1,1320 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Agent推理压缩技术地图 v1.0</title>
+<style>
+  :root {
+    --bg: #0f1117;
+    --surface: #1a1d27;
+    --surface2: #24283b;
+    --border: #3b4261;
+    --text: #c0caf5;
+    --text-dim: #565f89;
+    --accent: #7aa2f7;
+    --accent2: #bb9af7;
+    --green: #9ece6a;
+    --yellow: #e0af68;
+    --red: #f7768e;
+    --cyan: #7dcfff;
+    --hot: #ff9e64;
+    --cold: #73daca;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* Header */
+  header {
+    background: linear-gradient(135deg, #1a1d27 0%, #16192a 100%);
+    border-bottom: 1px solid var(--border);
+    padding: 20px 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+
+  header h1 {
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--accent);
+    letter-spacing: -0.3px;
+  }
+
+  header h1 span {
+    color: var(--text-dim);
+    font-weight: 400;
+    margin-left: 12px;
+    font-size: 14px;
+  }
+
+  .legend-inline {
+    display: flex;
+    gap: 16px;
+    font-size: 12px;
+    color: var(--text-dim);
+  }
+
+  .legend-inline .dot {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 2px;
+    margin-right: 4px;
+    vertical-align: middle;
+  }
+
+  /* Main layout */
+  main {
+    display: grid;
+    grid-template-columns: 240px 1fr;
+    min-height: calc(100vh - 73px);
+  }
+
+  /* Sidebar */
+  aside {
+    background: var(--surface);
+    border-right: 1px solid var(--border);
+    padding: 20px;
+    overflow-y: auto;
+  }
+
+  aside h3 {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--text-dim);
+    margin-bottom: 12px;
+  }
+
+  .filter-group {
+    margin-bottom: 20px;
+  }
+
+  .filter-group h4 {
+    font-size: 13px;
+    color: var(--text);
+    margin-bottom: 8px;
+    font-weight: 500;
+  }
+
+  .filter-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 7px 10px;
+    border-radius: 6px;
+    border: 1px solid transparent;
+    background: var(--surface2);
+    color: var(--text-dim);
+    cursor: pointer;
+    font-size: 13px;
+    width: 100%;
+    text-align: left;
+    margin-bottom: 4px;
+    transition: all 0.15s;
+  }
+
+  .filter-btn:hover {
+    border-color: var(--border);
+    color: var(--text);
+  }
+
+  .filter-btn.active {
+    background: var(--accent);
+    color: #0f1117;
+    border-color: var(--accent);
+  }
+
+  .filter-btn .count {
+    margin-left: auto;
+    font-size: 11px;
+    opacity: 0.7;
+  }
+
+  .filter-btn .dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 2px;
+    flex-shrink: 0;
+  }
+
+  /* Grid area */
+  .grid-area {
+    padding: 24px;
+    overflow-x: auto;
+  }
+
+  .grid-container {
+    min-width: 800px;
+  }
+
+  /* Column headers */
+  .col-headers {
+    display: grid;
+    grid-template-columns: 140px repeat(5, 1fr);
+    gap: 6px;
+    margin-bottom: 6px;
+    padding-left: 0;
+  }
+
+  .col-header {
+    text-align: center;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--text-dim);
+    padding: 8px 4px;
+  }
+
+  /* Row headers */
+  .row-headers {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    position: absolute;
+    left: 0;
+    width: 140px;
+  }
+
+  /* Grid */
+  .map-grid {
+    display: grid;
+    grid-template-columns: 140px repeat(5, 1fr);
+    gap: 6px;
+    position: relative;
+  }
+
+  .row-label {
+    display: flex;
+    align-items: center;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--text);
+    padding: 8px 10px;
+    background: var(--surface);
+    border-radius: 8px;
+    border-left: 3px solid var(--border);
+  }
+
+  .row-label.kv { border-color: var(--accent); }
+  .row-label.moe { border-color: var(--hot); }
+  .row-label.prefill { border-color: var(--cyan); }
+  .row-label.cross { border-color: var(--green); }
+
+  .row-label .sub {
+    font-size: 10px;
+    color: var(--text-dim);
+    font-weight: 400;
+    margin-left: 4px;
+  }
+
+  /* Cells */
+  .cell {
+    background: var(--surface);
+    border-radius: 8px;
+    padding: 10px;
+    border: 1px solid var(--border);
+    cursor: pointer;
+    transition: all 0.2s;
+    position: relative;
+    min-height: 100px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .cell:hover {
+    border-color: var(--accent);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+    z-index: 10;
+  }
+
+  .cell.hot { background: linear-gradient(135deg, #2d1f3d 0%, #1a1d27 100%); border-color: var(--accent2); }
+  .cell.warm { background: linear-gradient(135deg, #1f2d3d 0%, #1a1d27 100%); }
+  .cell.cold { background: var(--surface); }
+  .cell.empty { background: var(--surface); opacity: 0.4; cursor: default; }
+  .cell.empty:hover { transform: none; box-shadow: none; border-color: var(--border); }
+
+  .cell.highlight {
+    border-color: var(--green);
+    box-shadow: 0 0 0 1px var(--green), 0 0 20px rgba(158, 206, 106, 0.15);
+  }
+
+  .cell.dimmed {
+    opacity: 0.25;
+  }
+
+  .cell-stars {
+    font-size: 10px;
+    color: var(--accent);
+    margin-bottom: 6px;
+    letter-spacing: 1px;
+  }
+
+  .cell-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 6px;
+    line-height: 1.3;
+  }
+
+  .cell-papers {
+    font-size: 11px;
+    color: var(--text-dim);
+    line-height: 1.5;
+    flex: 1;
+  }
+
+  .cell-tag {
+    display: inline-block;
+    font-size: 9px;
+    padding: 2px 5px;
+    border-radius: 3px;
+    margin-top: 6px;
+    font-weight: 500;
+  }
+
+  .tag-industrial { background: var(--green); color: #0f1117; }
+  .tag-research { background: var(--yellow); color: #0f1117; }
+  .tag-opportunity { background: var(--accent); color: #0f1117; }
+  .tag-frontier { background: var(--red); color: white; }
+
+  /* Detail Panel */
+  .detail-panel {
+    position: fixed;
+    top: 73px;
+    right: 0;
+    width: 420px;
+    height: calc(100vh - 73px);
+    background: var(--surface);
+    border-left: 1px solid var(--border);
+    overflow-y: auto;
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
+    z-index: 50;
+  }
+
+  .detail-panel.open {
+    transform: translateX(0);
+  }
+
+  .detail-header {
+    padding: 20px;
+    border-bottom: 1px solid var(--border);
+    position: sticky;
+    top: 0;
+    background: var(--surface);
+  }
+
+  .detail-close {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    width: 28px;
+    height: 28px;
+    border-radius: 6px;
+    border: 1px solid var(--border);
+    background: var(--surface2);
+    color: var(--text-dim);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    transition: all 0.15s;
+  }
+
+  .detail-close:hover {
+    background: var(--red);
+    color: white;
+    border-color: var(--red);
+  }
+
+  .detail-category {
+    font-size: 11px;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 6px;
+  }
+
+  .detail-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 10px;
+    padding-right: 40px;
+  }
+
+  .detail-tags {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+
+  .detail-body {
+    padding: 20px;
+  }
+
+  .detail-section {
+    margin-bottom: 20px;
+  }
+
+  .detail-section h4 {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--text-dim);
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .detail-section h4 .icon {
+    width: 16px;
+    height: 16px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+  }
+
+  .paper-list {
+    list-style: none;
+  }
+
+  .paper-list li {
+    padding: 8px 10px;
+    background: var(--surface2);
+    border-radius: 6px;
+    margin-bottom: 6px;
+    font-size: 12px;
+    line-height: 1.4;
+    border-left: 2px solid var(--border);
+  }
+
+  .paper-list li .name {
+    color: var(--accent);
+    font-weight: 500;
+  }
+
+  .paper-list li .venue {
+    color: var(--text-dim);
+    font-size: 11px;
+  }
+
+  .paper-list li .desc {
+    color: var(--text-dim);
+    margin-top: 3px;
+    font-size: 11px;
+  }
+
+  .evolve-chain {
+    background: var(--surface2);
+    border-radius: 8px;
+    padding: 12px;
+  }
+
+  .evolve-node {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 6px 0;
+  }
+
+  .evolve-node:not(:last-child) {
+    border-bottom: 1px dashed var(--border);
+    padding-bottom: 10px;
+    margin-bottom: 4px;
+  }
+
+  .evolve-year {
+    font-size: 10px;
+    color: var(--text-dim);
+    min-width: 36px;
+    padding-top: 2px;
+  }
+
+  .evolve-content {
+    flex: 1;
+  }
+
+  .evolve-content .method {
+    font-size: 12px;
+    color: var(--text);
+    font-weight: 500;
+  }
+
+  .evolve-content .limit {
+    font-size: 11px;
+    color: var(--text-dim);
+    margin-top: 2px;
+  }
+
+  .evolve-arrow {
+    color: var(--accent);
+    font-size: 14px;
+    padding-top: 2px;
+  }
+
+  .evolve-frontier {
+    background: linear-gradient(135deg, rgba(122, 162, 247, 0.1), rgba(187, 154, 247, 0.1));
+    border: 1px solid var(--accent2);
+    border-radius: 6px;
+    padding: 10px 12px;
+    margin-top: 8px;
+  }
+
+  .evolve-frontier .label {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--accent2);
+    margin-bottom: 4px;
+  }
+
+  .evolve-frontier .content {
+    font-size: 12px;
+    color: var(--text);
+  }
+
+  .status-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+
+  .status-item {
+    background: var(--surface2);
+    border-radius: 6px;
+    padding: 10px;
+  }
+
+  .status-item .label {
+    font-size: 10px;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 4px;
+  }
+
+  .status-item .value {
+    font-size: 14px;
+    font-weight: 600;
+  }
+
+  .status-item .value.green { color: var(--green); }
+  .status-item .value.yellow { color: var(--yellow); }
+  .status-item .value.red { color: var(--red); }
+  .status-item .value.accent { color: var(--accent); }
+
+  .opportunity-score {
+    display: flex;
+    gap: 3px;
+    margin-top: 4px;
+  }
+
+  .score-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 2px;
+    background: var(--border);
+  }
+
+  .score-dot.filled { background: var(--green); }
+
+  /* Overlay */
+  .overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.5);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s;
+    z-index: 40;
+  }
+
+  .overlay.visible {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  /* Responsive */
+  @media (max-width: 1200px) {
+    main { grid-template-columns: 200px 1fr; }
+    .detail-panel { width: 360px; }
+  }
+
+  @media (max-width: 900px) {
+    main { grid-template-columns: 1fr; }
+    aside { display: none; }
+    .detail-panel { width: 100%; }
+  }
+
+  /* Tooltip */
+  .tooltip {
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 6px 10px;
+    font-size: 11px;
+    color: var(--text);
+    white-space: nowrap;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.15s;
+    margin-bottom: 6px;
+    z-index: 20;
+  }
+
+  .cell:hover .tooltip {
+    opacity: 1;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div>
+    <h1>🔬 Agent推理压缩技术地图 <span>v1.0 · 2026</span></h1>
+  </div>
+  <div class="legend-inline">
+    <span><span class="dot" style="background:var(--green)"></span>已工业集成</span>
+    <span><span class="dot" style="background:var(--yellow)"></span>学术活跃</span>
+    <span><span class="dot" style="background:var(--accent)"></span>机会窗口</span>
+    <span><span class="dot" style="background:var(--red)"></span>前沿演进</span>
+  </div>
+</header>
+
+<main>
+  <aside>
+    <div class="filter-group">
+      <h4>🎯 目标筛选</h4>
+      <button class="filter-btn active" data-filter="all">
+        <span class="dot" style="background:var(--accent)"></span>
+        全部显示
+        <span class="count">18</span>
+      </button>
+      <button class="filter-btn" data-filter="b-up">
+        <span class="dot" style="background:var(--green)"></span>
+        B↑ 吞吐提升
+        <span class="count">6</span>
+      </button>
+      <button class="filter-btn" data-filter="tpot-down">
+        <span class="dot" style="background:var(--yellow)"></span>
+        TPOT↓ 时延优化
+        <span class="count">5</span>
+      </button>
+      <button class="filter-btn" data-filter="ttft-down">
+        <span class="dot" style="background:var(--cyan)"></span>
+        TTFT↓ 首Token
+        <span class="count">4</span>
+      </button>
+    </div>
+
+    <div class="filter-group">
+      <h4>📐 对象筛选</h4>
+      <button class="filter-btn" data-filter="kv-text">文本 KV Cache</button>
+      <button class="filter-btn" data-filter="kv-visual">视觉 Token</button>
+      <button class="filter-btn" data-filter="moe">MoE 通信</button>
+      <button class="filter-btn" data-filter="prefill">Prefill 计算</button>
+    </div>
+
+    <div class="filter-group">
+      <h4>🔥 热度筛选</h4>
+      <button class="filter-btn" data-filter="hot">热（>50篇）</button>
+      <button class="filter-btn" data-filter="warm">温（20-50篇）</button>
+      <button class="filter-btn" data-filter="cold">冷（<20篇）</button>
+    </div>
+  </aside>
+
+  <div class="grid-area">
+    <div class="grid-container">
+      <div class="map-grid" id="mapGrid">
+        <!-- Header row -->
+        <div></div>
+        <div class="col-header">量化</div>
+        <div class="col-header">剪枝/稀疏</div>
+        <div class="col-header">蒸馏</div>
+        <div class="col-header">复用/缓存</div>
+        <div class="col-header">联合</div>
+
+        <!-- KV Cache 文本 -->
+        <div class="row-label kv">KV Cache<span class="sub">文本</span></div>
+        <div class="cell warm" data-cell="kv-q">
+          <div class="tooltip">点击查看详情</div>
+          <div class="cell-stars">★★☆☆☆</div>
+          <div class="cell-title">Head-wise 敏感度量化</div>
+          <div class="cell-papers">KVTuner · Block-GTQ</div>
+          <span class="cell-tag tag-industrial">vLLM已集成</span>
+        </div>
+        <div class="cell hot" data-cell="kv-prune">
+          <div class="tooltip">点击查看详情</div>
+          <div class="cell-stars">★★★★☆</div>
+          <div class="cell-title">蒸馏信号动态剪枝</div>
+          <div class="cell-papers">H2O · SnapKV · LazyLLM</div>
+          <span class="cell-tag tag-research">学术活跃</span>
+        </div>
+        <div class="cell cold" data-cell="kv-distill">
+          <div class="tooltip">点击查看详情</div>
+          <div class="cell-stars">★☆☆☆☆</div>
+          <div class="cell-title">蒸馏KV重要性</div>
+          <div class="cell-papers">[空白领域]</div>
+          <span class="cell-tag tag-opportunity">⚡ 机会窗口</span>
+        </div>
+        <div class="cell empty"><div class="cell-title">—</div></div>
+        <div class="cell warm" data-cell="kv-joint">
+          <div class="tooltip">点击查看详情</div>
+          <div class="cell-stars">★★★☆☆</div>
+          <div class="cell-title">推测解码×KV协同</div>
+          <div class="cell-papers">SpecInfer · Medusa</div>
+          <span class="cell-tag tag-research">学术活跃</span>
+        </div>
+
+        <!-- KV Cache 视觉 -->
+        <div class="row-label kv">KV Cache<span class="sub">视觉Token</span></div>
+        <div class="cell empty"><div class="cell-title">—</div></div>
+        <div class="cell cold" data-cell="visual-prune">
+          <div class="tooltip">点击查看详情</div>
+          <div class="cell-stars">★☆☆☆☆</div>
+          <div class="cell-title">空间语义双维压缩</div>
+          <div class="cell-papers">[空白领域]</div>
+          <span class="cell-tag tag-opportunity">⚡ 机会窗口</span>
+        </div>
+        <div class="cell empty"><div class="cell-title">—</div></div>
+        <div class="cell cold" data-cell="visual-cache">
+          <div class="tooltip">点击查看详情</div>
+          <div class="cell-stars">★☆☆☆☆</div>
+          <div class="cell-title">语义指纹缓存</div>
+          <div class="cell-papers">Models Take Notes</div>
+          <span class="cell-tag tag-opportunity">⚡ 机会窗口</span>
+        </div>
+        <div class="cell empty"><div class="cell-title">—</div></div>
+
+        <!-- MoE 通信 -->
+        <div class="row-label moe">MoE 通信<span class="sub">T_comm</span></div>
+        <div class="cell warm" data-cell="moe-q">
+          <div class="tooltip">点击查看详情</div>
+          <div class="cell-stars">★★☆☆☆</div>
+          <div class="cell-title">Rank-Aware 量化</div>
+          <div class="cell-papers">ExpertQuant · ASAP</div>
+          <span class="cell-tag tag-research">学术爆发</span>
+        </div>
+        <div class="cell warm" data-cell="moe-prune">
+          <div class="tooltip">点击查看详情</div>
+          <div class="cell-stars">★★☆☆☆</div>
+          <div class="cell-title">Expert协作×跳过</div>
+          <div class="cell-papers">C2R · TACG</div>
+          <span class="cell-tag tag-research">学术活跃</span>
+        </div>
+        <div class="cell cold" data-cell="moe-distill">
+          <div class="tooltip">点击查看详情</div>
+          <div class="cell-stars">★☆☆☆☆</div>
+          <div class="cell-title">蒸馏通信拓扑</div>
+          <div class="cell-papers">[空白领域]</div>
+          <span class="cell-tag tag-opportunity">⚡ 机会窗口</span>
+        </div>
+        <div class="cell empty"><div class="cell-title">—</div></div>
+        <div class="cell warm" data-cell="moe-joint">
+          <div class="tooltip">点击查看详情</div>
+          <div class="cell-stars">★★★☆☆</div>
+          <div class="cell-title">三路径流水线</div>
+          <div class="cell-papers">ASAP · DeepEP</div>
+          <span class="cell-tag tag-industrial">DeepEP已集成</span>
+        </div>
+
+        <!-- Prefill 计算 -->
+        <div class="row-label prefill">Prefill 计算<span class="sub">TTFT</span></div>
+        <div class="cell empty"><div class="cell-title">—</div></div>
+        <div class="cell warm" data-cell="prefill-prune">
+          <div class="tooltip">点击查看详情</div>
+          <div class="cell-stars">★★★☆☆</div>
+          <div class="cell-title">FFN 激活稀疏</div>
+          <div class="cell-papers">FTP · ActivationBeacon</div>
+          <span class="cell-tag tag-research">学术活跃</span>
+        </div>
+        <div class="cell empty"><div class="cell-title">—</div></div>
+        <div class="cell warm" data-cell="prefill-cache">
+          <div class="tooltip">点击查看详情</div>
+          <div class="cell-stars">★★★☆☆</div>
+          <div class="cell-title">前缀缓存</div>
+          <div class="cell-papers">RadixAttention</div>
+          <span class="cell-tag tag-industrial">vLLM已集成</span>
+        </div>
+        <div class="cell cold" data-cell="prefill-joint">
+          <div class="tooltip">点击查看详情</div>
+          <div class="cell-stars">★☆☆☆☆</div>
+          <div class="cell-title">Attention-FFN联合</div>
+          <div class="cell-papers">[空白领域]</div>
+          <span class="cell-tag tag-opportunity">⚡ 机会窗口</span>
+        </div>
+
+        <!-- 跨请求 -->
+        <div class="row-label cross">跨请求<span class="sub">多模态/多Agent</span></div>
+        <div class="cell empty"><div class="cell-title">—</div></div>
+        <div class="cell cold" data-cell="cross-prune">
+          <div class="tooltip">点击查看详情</div>
+          <div class="cell-stars">★☆☆☆☆</div>
+          <div class="cell-title">Agent KV压缩</div>
+          <div class="cell-papers">UltraAgent</div>
+          <span class="cell-tag tag-research">前沿探索</span>
+        </div>
+        <div class="cell empty"><div class="cell-title">—</div></div>
+        <div class="cell cold" data-cell="cross-cache">
+          <div class="tooltip">点击查看详情</div>
+          <div class="cell-stars">★★☆☆☆</div>
+          <div class="cell-title">多模态RAG缓存</div>
+          <div class="cell-papers">MultimodalCache</div>
+          <span class="cell-tag tag-research">学术探索</span>
+        </div>
+        <div class="cell empty"><div class="cell-title">—</div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<div class="overlay" id="overlay"></div>
+
+<div class="detail-panel" id="detailPanel">
+  <div class="detail-header">
+    <button class="detail-close" onclick="closePanel()">✕</button>
+    <div class="detail-category" id="detailCategory">KV Cache · 量化</div>
+    <div class="detail-title" id="detailTitle">Head-wise 敏感度自适应 KV 混合精度量化</div>
+    <div class="detail-tags" id="detailTags">
+      <span class="cell-tag tag-industrial">vLLM已集成</span>
+    </div>
+  </div>
+  <div class="detail-body" id="detailBody">
+    <!-- Dynamic content -->
+  </div>
+</div>
+
+<script>
+// Cell data
+const cellData = {
+  'kv-q': {
+    category: 'KV Cache · 文本 · 量化',
+    title: 'Head-wise 敏感度自适应 KV 混合精度量化',
+    tags: ['tag-industrial'],
+    status: [
+      { label: '论文数量', value: '46篇', valueClass: 'yellow' },
+      { label: '顶会', value: '3篇', valueClass: 'accent' },
+      { label: '工业集成', value: 'vLLM已集成', valueClass: 'green' },
+      { label: '趋势', value: '平稳增长', valueClass: 'yellow' }
+    ],
+    papers: [
+      { name: 'KVTuner', venue: 'ICML 2025', desc: 'Per-layer 混合精度，敏感度分析' },
+      { name: 'Block-GTQ', venue: 'ICLR 2025', desc: 'RoPE 频域感知块级量化' },
+      { name: 'KIVI', venue: 'NeurIPS 2023', desc: '2-bit KV 量化先驱' }
+    ],
+    evolve: [
+      { year: '2023', method: 'KIVI (per-token INT4)', limit: 'per-token均匀，忽略层间差异' },
+      { year: '2025', method: 'KVTuner (per-layer)', limit: '层间差异已知，层内仍均匀' },
+      { year: '2025', method: 'Block-GTQ (频域)', limit: 'RoPE频域感知，block级量化' },
+      { year: '2026→', frontier: 'Head-wise 敏感度 + RoPE频域联合', limit: '无人做，机会窗口' }
+    ],
+    opportunity: 4,
+    contribution: ['B↑（Bit↓→M_KV↓→B↑）', 'TPOT无影响（量化在显存层）'],
+    risk: 'INT2 解压可能成为TPOT瓶颈'
+  },
+  'kv-prune': {
+    category: 'KV Cache · 文本 · 剪枝/稀疏',
+    title: '蒸馏信号感知的 KV 动态剪枝',
+    tags: ['tag-research'],
+    status: [
+      { label: '论文数量', value: '106篇', valueClass: 'red' },
+      { label: '顶会', value: '4篇', valueClass: 'accent' },
+      { label: '工业集成', value: '未集成', valueClass: 'yellow' },
+      { label: '趋势', value: '活跃', valueClass: 'green' }
+    ],
+    papers: [
+      { name: 'H2O', venue: 'NeurIPS 2023', desc: 'Heavy-Hitter Oracle，attention score排序' },
+      { name: 'SnapKV', venue: 'NeurIPS 2024', desc: '语义聚类，16倍压缩' },
+      { name: 'LazyLLM', venue: 'ICML 2024', desc: '按需恢复，震荡率<5%' }
+    ],
+    evolve: [
+      { year: '2023', method: 'H2O (静态剪枝)', limit: '一次性决策，无法动态调整' },
+      { year: '2024', method: 'SnapKV (语义聚类)', limit: 'Prefill定死，Decode无法调整' },
+      { year: '2025', method: 'LazyLLM (按需恢复)', limit: '恢复开销和触发条件不明确' },
+      { year: '2026→', frontier: '蒸馏信号驱动动态剪枝', limit: '无人做，核心问题未解决' }
+    ],
+    opportunity: 5,
+    contribution: ['S↓→M_KV↓→B↑', '精度保持优于均匀剪枝'],
+    risk: 'B↑ vs TPOT↑ 对偶关系需验证'
+  },
+  'kv-distill': {
+    category: 'KV Cache · 文本 · 蒸馏',
+    title: '蒸馏信号感知的 KV 选择性压缩',
+    tags: ['tag-opportunity'],
+    status: [
+      { label: '论文数量', value: '~10篇', valueClass: 'green' },
+      { label: '顶会', value: '0篇', valueClass: 'yellow' },
+      { label: '工业集成', value: '无', valueClass: 'red' },
+      { label: '趋势', value: '正在涌现', valueClass: 'green' }
+    ],
+    papers: [
+      { name: '[空白]', venue: '—', desc: '蒸馏思想从未用于 KV 压缩领域' }
+    ],
+    evolve: [
+      { year: '2015', method: 'Hinton 蒸馏', limit: 'soft label 包含类别间距离信息' },
+      { year: '2024→', method: '[空白]', limit: 'KV 领域无人用蒸馏信号判断重要性' },
+      { year: '2026→', frontier: 'Teacher soft label → KV重要性分数', limit: '核心假设待验证' }
+    ],
+    opportunity: 5,
+    contribution: ['S↓→M_KV↓→B↑', '蒸馏信号比attention score更丰富'],
+    risk: '假设：蒸馏信号与attention score互补'
+  },
+  'kv-joint': {
+    category: 'KV Cache · 联合',
+    title: '推测解码与 KV 压力感知协同',
+    tags: ['tag-research'],
+    status: [
+      { label: '论文数量', value: '~30篇', valueClass: 'yellow' },
+      { label: '顶会', value: '2篇', valueClass: 'accent' },
+      { label: '工业集成', value: 'vLLM已集成', valueClass: 'green' },
+      { label: '趋势', value: '平稳', valueClass: 'yellow' }
+    ],
+    papers: [
+      { name: 'SpecInfer', venue: 'NeurIPS 2023', desc: '推测解码基础框架' },
+      { name: 'Medusa', venue: 'FRAUNHOFER', desc: '工业已集成' }
+    ],
+    evolve: [
+      { year: '2023', method: 'SpecInfer', limit: '推测解码增加KV负担' },
+      { year: '2025', method: 'CAS-Spec', limit: '自适应步数（单一维度）' },
+      { year: '2026→', frontier: 'KV压力×推测步数×Draft KV联合', limit: '无人做' }
+    ],
+    opportunity: 3,
+    contribution: ['推测步数自适应', 'Draft KV层级共享'],
+    risk: '系统集成复杂度'
+  },
+  'visual-prune': {
+    category: 'KV Cache · 视觉Token · 剪枝',
+    title: '空间语义双维度协同的视觉 KV 压缩',
+    tags: ['tag-opportunity'],
+    status: [
+      { label: '论文数量', value: '~5篇', valueClass: 'green' },
+      { label: '顶会', value: '0篇', valueClass: 'red' },
+      { label: '工业集成', value: '无', valueClass: 'red' },
+      { label: '趋势', value: '刚出现', valueClass: 'green' }
+    ],
+    papers: [
+      { name: '[空白]', venue: '—', desc: '视觉token压缩无专门研究' },
+      { name: 'ClusterKV', venue: 'CUHK 2025', desc: '聚类降低语义冗余，2.5倍吞吐' }
+    ],
+    evolve: [
+      { year: '2024', method: 'LLaVA-PruMerge', limit: '静态剪枝，未用空间结构' },
+      { year: '2025', method: 'ClusterKV', limit: '语义聚类，未用空间冗余' },
+      { year: '2026→', frontier: '空间（像素） × 语义（CLIP） 双维协同', limit: '核心假设待验证' }
+    ],
+    opportunity: 5,
+    contribution: ['S_visual↓→M_KV↓→B↑', '576 token压缩50%+'],
+    risk: 'VLM场景特殊性需独立验证'
+  },
+  'visual-cache': {
+    category: 'KV Cache · 视觉Token · 复用',
+    title: '视觉语义指纹缓存',
+    tags: ['tag-opportunity'],
+    status: [
+      { label: '论文数量', value: '~3篇', valueClass: 'green' },
+      { label: '顶会', value: '0篇', valueClass: 'red' },
+      { label: '工业集成', value: '无', valueClass: 'red' },
+      { label: '趋势', value: '刚出现', valueClass: 'green' }
+    ],
+    papers: [
+      { name: 'Models Take Notes', venue: 'arXiv 2026', desc: '98.5% hit rate，但仅文本' }
+    ],
+    evolve: [
+      { year: '2024', method: 'RadixAttention', limit: '精确文本前缀，无法识别同图不同问' },
+      { year: '2026', method: 'Models Take Notes', limit: 'KV可编辑，但仅文本场景' },
+      { year: '2026→', frontier: 'CLIP指纹 × 文本前缀 联合缓存', limit: '核心假设待验证' }
+    ],
+    opportunity: 4,
+    contribution: ['TTFT↓（命中时跳过ViT编码）', '等效B↑'],
+    risk: '命中率需>60%才有价值'
+  },
+  'moe-q': {
+    category: 'MoE通信 · 量化',
+    title: 'Rank-Aware MoE 通信量化',
+    tags: ['tag-research'],
+    status: [
+      { label: '论文数量', value: '44篇', valueClass: 'yellow' },
+      { label: '顶会', value: '2篇', valueClass: 'accent' },
+      { label: '工业集成', value: 'DeepEP开发中', valueClass: 'yellow' },
+      { label: '趋势', value: '爆发(+20%/月)', valueClass: 'green' }
+    ],
+    papers: [
+      { name: 'ExpertQuant', venue: '2025', desc: 'W4A4 Expert，精度损失<1%' },
+      { name: 'ASAP', venue: 'OSDI 2026', desc: '量化+调度联合，吞吐↑90%' }
+    ],
+    evolve: [
+      { year: '2025', method: 'ExpertQuant', limit: 'Expert级别W4A4，忽略排名翻转' },
+      { year: '2026', method: 'ASAP', limit: '量化+调度联合，但未显式约束排名' },
+      { year: '2026→', frontier: 'Rank-Aware Jaccard Loss', limit: '显式约束top-k排名稳定性' }
+    ],
+    opportunity: 4,
+    contribution: ['T_comm↓→TPOT↓→TPS↑', 'B不变（无对偶冲突）'],
+    risk: 'Rank-Aware可能与perplexity冲突'
+  },
+  'moe-prune': {
+    category: 'MoE通信 · 剪枝/稀疏',
+    title: 'Expert协作约束×任务感知跳过',
+    tags: ['tag-research'],
+    status: [
+      { label: '论文数量', value: '45篇', valueClass: 'yellow' },
+      { label: '顶会', value: '2篇', valueClass: 'accent' },
+      { label: '工业集成', value: '部分', valueClass: 'yellow' },
+      { label: '趋势', value: '活跃(+18%/月)', valueClass: 'green' }
+    ],
+    papers: [
+      { name: 'C2R', venue: 'NAACL 2025', desc: '协作约束，减少跨设备20-30%' },
+      { name: 'TACG', venue: 'ACL 2024', desc: '任务感知，通信成本↓31%' }
+    ],
+    evolve: [
+      { year: '2025', method: 'C2R', limit: '静态协作，分组固定' },
+      { year: '2025', method: 'TACG', limit: '任务感知，但未联合协作约束' },
+      { year: '2026', method: 'Expert Skipping', limit: '低频Expert跳过，减少参与量' },
+      { year: '2026→', frontier: '三步流水线联合', limit: '从未被系统联合' }
+    ],
+    opportunity: 4,
+    contribution: ['T_comm↓→TPOT↓', '与Rank-Aware量化叠加'],
+    risk: '三步集成的工程复杂度'
+  },
+  'moe-distill': {
+    category: 'MoE通信 · 蒸馏',
+    title: '蒸馏通信拓扑优化',
+    tags: ['tag-opportunity'],
+    status: [
+      { label: '论文数量', value: '~18篇', valueClass: 'green' },
+      { label: '顶会', value: '0篇', valueClass: 'red' },
+      { label: '工业集成', value: '无', valueClass: 'red' },
+      { label: '趋势', value: '初现', valueClass: 'yellow' }
+    ],
+    papers: [
+      { name: 'DistillMoE', venue: '2026', desc: '用蒸馏训练更优路由（还不是通信拓扑）' }
+    ],
+    evolve: [
+      { year: '2026', method: 'DistillMoE', limit: '训练路由，非推理通信' },
+      { year: '2026→', frontier: '蒸馏信号→最优通信拓扑', limit: '从未被研究' }
+    ],
+    opportunity: 4,
+    contribution: ['T_comm↓（拓扑优化）', '与量化/跳过叠加'],
+    risk: '通信拓扑蒸馏复杂度高'
+  },
+  'moe-joint': {
+    category: 'MoE通信 · 联合',
+    title: 'MoE通信三路径流水线联合压缩',
+    tags: ['tag-industrial'],
+    status: [
+      { label: '论文数量', value: '~30篇', valueClass: 'yellow' },
+      { label: '顶会', value: '2篇', valueClass: 'accent' },
+      { label: '工业集成', value: 'DeepEP已集成', valueClass: 'green' },
+      { label: '趋势', value: '爆发', valueClass: 'green' }
+    ],
+    papers: [
+      { name: 'ASAP', venue: 'OSDI 2026', desc: '量化+调度联合' },
+      { name: 'DeepEP', venue: 'DeepSeek', desc: '通信-计算重叠，生产验证' }
+    ],
+    evolve: [
+      { year: '2025', method: 'C2R + ExpertQuant', limit: '两路径独立' },
+      { year: '2026', method: 'ASAP', limit: '量化+调度联合，单路径' },
+      { year: '2026→', frontier: '跳过×协作×量化 三步流水线', limit: '从未系统联合' }
+    ],
+    opportunity: 5,
+    contribution: ['T_comm↓30-50%×交换↓×参与量↓', '三因子乘积叠加'],
+    risk: '三步依赖关系需明确'
+  },
+  'prefill-prune': {
+    category: 'Prefill计算 · 剪枝',
+    title: 'FFN激活稀疏感知的选择性计算',
+    tags: ['tag-research'],
+    status: [
+      { label: '论文数量', value: '~40篇', valueClass: 'yellow' },
+      { label: '顶会', value: '1篇', valueClass: 'accent' },
+      { label: '工业集成', value: '未集成', valueClass: 'red' },
+      { label: '趋势', value: '平稳', valueClass: 'yellow' }
+    ],
+    papers: [
+      { name: 'FTP', venue: 'ICLR 2025', desc: 'FFN token剪枝，Prefill加速2.34倍' }
+    ],
+    evolve: [
+      { year: '2025', method: 'FTP', limit: '只跳过FFN，不跳过KV' },
+      { year: '2026→', frontier: 'FFN跳过×KV生成联动', limit: 'FTP只做FFN，未联动KV' }
+    ],
+    opportunity: 4,
+    contribution: ['TTFT↓20-30%', 'Prefill计算量↓35-40%'],
+    risk: 'FFN-KV联动可能引入TPOT↑'
+  },
+  'prefill-cache': {
+    category: 'Prefill计算 · 复用',
+    title: '前缀缓存与跨模态复用',
+    tags: ['tag-industrial'],
+    status: [
+      { label: '论文数量', value: '~50篇', valueClass: 'yellow' },
+      { label: '顶会', value: '2篇', valueClass: 'accent' },
+      { label: '工业集成', value: 'vLLM/SGLang已集成', valueClass: 'green' },
+      { label: '趋势', value: '成熟', valueClass: 'yellow' }
+    ],
+    papers: [
+      { name: 'RadixAttention', venue: 'SGLang/LMSYS', desc: '精确前缀匹配，生产验证' }
+    ],
+    evolve: [
+      { year: '2024', method: 'RadixAttention', limit: '精确前缀，无法识别同图不同问' },
+      { year: '2026→', frontier: '文本前缀×视觉指纹 联合缓存', limit: '需与课题visual-cache联动' }
+    ],
+    opportunity: 3,
+    contribution: ['TTFT↓（命中时跳过Prefill）', 'B↑（减少重复计算）'],
+    risk: 'vLLM已有，差异化空间小'
+  },
+  'prefill-joint': {
+    category: 'Prefill计算 · 联合',
+    title: 'Attention-FFN联合重要性评估',
+    tags: ['tag-opportunity'],
+    status: [
+      { label: '论文数量', value: '~10篇', valueClass: 'green' },
+      { label: '顶会', value: '0篇', valueClass: 'red' },
+      { label: '工业集成', value: '无', valueClass: 'red' },
+      { label: '趋势', value: '刚出现', valueClass: 'green' }
+    ],
+    papers: [
+      { name: '[空白]', venue: '—', desc: 'Attention和FFN联合评估从未被研究' }
+    ],
+    evolve: [
+      { year: '2025', method: 'FTP', limit: 'FFN稀疏单独研究' },
+      { year: '2025', method: 'Hymba', limit: 'Hybrid SSM-Attention架构' },
+      { year: '2026→', frontier: 'Attention-FFN 2×2象限联合决策', limit: '从未有人做' }
+    ],
+    opportunity: 5,
+    contribution: ['TTFT↓20-30%', 'Prefill计算量↓35-40%'],
+    risk: '假设：attention和FFN重要性不正相关'
+  },
+  'cross-prune': {
+    category: '跨请求 · 多Agent',
+    title: '多Agent KV压缩与上下文感知',
+    tags: ['tag-research'],
+    status: [
+      { label: '论文数量', value: '~15篇', valueClass: 'green' },
+      { label: '顶会', value: '1篇', valueClass: 'accent' },
+      { label: '工业集成', value: '探索中', valueClass: 'yellow' },
+      { label: '趋势', value: '前沿', valueClass: 'green' }
+    ],
+    papers: [
+      { name: 'UltraAgent', venue: '2026', desc: '多Agent上下文管理' }
+    ],
+    evolve: [
+      { year: '2026', method: 'UltraAgent', limit: '上下文管理，未深入KV压缩' },
+      { year: '2026→', frontier: 'Agent间KV复用/压缩', limit: '场景新，未系统研究' }
+    ],
+    opportunity: 4,
+    contribution: ['跨Agent通信↓', 'Agent间B↑'],
+    risk: '多Agent场景尚未成熟'
+  },
+  'cross-cache': {
+    category: '跨请求 · 多模态',
+    title: '多模态RAG与跨模态缓存',
+    tags: ['tag-research'],
+    status: [
+      { label: '论文数量', value: '~20篇', valueClass: 'yellow' },
+      { label: '顶会', value: '1篇', valueClass: 'accent' },
+      { label: '工业集成', value: '探索中', valueClass: 'yellow' },
+      { label: '趋势', value: '增长', valueClass: 'green' }
+    ],
+    papers: [
+      { name: 'MultimodalCache', venue: '2026', desc: '多模态内容缓存框架' }
+    ],
+    evolve: [
+      { year: '2025', method: '文本RAG缓存', limit: '仅文本，无视觉' },
+      { year: '2026', method: 'MultimodalCache', limit: '多模态缓存框架早期' },
+      { year: '2026→', frontier: '文本×视觉×Agent 联合缓存', limit: '需场景成熟' }
+    ],
+    opportunity: 3,
+    contribution: ['多模态TTFT↓', 'RAG场景B↑'],
+    risk: 'RAG场景依赖产品形态'
+  }
+};
+
+// Current filter
+let currentFilter = 'all';
+
+// Filter logic
+document.querySelectorAll('.filter-btn[data-filter]').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const filter = btn.dataset.filter;
+    currentFilter = filter;
+
+    // Update active button
+    document.querySelectorAll('.filter-btn[data-filter]').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+
+    // Apply filter
+    applyFilter(filter);
+  });
+});
+
+function applyFilter(filter) {
+  const cells = document.querySelectorAll('.cell:not(.empty)');
+
+  cells.forEach(cell => {
+    const id = cell.dataset.cell;
+    if (!id) return;
+
+    const data = cellData[id];
+    if (!data) return;
+
+    let show = false;
+
+    if (filter === 'all') {
+      show = true;
+    } else if (filter === 'hot') {
+      show = cell.classList.contains('hot');
+    } else if (filter === 'warm') {
+      show = cell.classList.contains('warm');
+    } else if (filter === 'cold') {
+      show = cell.classList.contains('cold');
+    } else if (filter === 'kv-text') {
+      show = id.startsWith('kv-') && !id.includes('visual');
+    } else if (filter === 'kv-visual') {
+      show = id.includes('visual');
+    } else if (filter === 'moe') {
+      show = id.startsWith('moe-');
+    } else if (filter === 'prefill') {
+      show = id.startsWith('prefill');
+    } else if (filter === 'b-up') {
+      // Quantization and pruning affect B↑
+      show = id.includes('kv-') || id.includes('visual') || id.includes('prune') || id.includes('distill');
+    } else if (filter === 'tpot-down') {
+      // Communication affects TPOT↓
+      show = id.includes('moe') || id.includes('joint');
+    } else if (filter === 'ttft-down') {
+      // Prefill affects TTFT↓
+      show = id.includes('prefill') || id.includes('cache');
+    }
+
+    cell.classList.toggle('dimmed', !show);
+  });
+}
+
+// Cell click
+document.querySelectorAll('.cell[data-cell]').forEach(cell => {
+  cell.addEventListener('click', () => {
+    const id = cell.dataset.cell;
+    const data = cellData[id];
+    if (!data) return;
+
+    openPanel(data);
+  });
+});
+
+function openPanel(data) {
+  document.getElementById('detailCategory').textContent = data.category;
+  document.getElementById('detailTitle').textContent = data.title;
+
+  // Tags
+  const tagsEl = document.getElementById('detailTags');
+  tagsEl.innerHTML = data.tags.map(t => `<span class="cell-tag ${t}">${t === 'tag-industrial' ? '🏭 已工业集成' : t === 'tag-research' ? '📚 学术活跃' : '⚡ 机会窗口'}</span>`).join('');
+
+  // Status
+  let statusHtml = '<div class="status-grid">';
+  data.status.forEach(s => {
+    statusHtml += `<div class="status-item">
+      <div class="label">${s.label}</div>
+      <div class="value ${s.valueClass}">${s.value}</div>
+    </div>`;
+  });
+  statusHtml += '</div>';
+
+  // Papers
+  let papersHtml = '<ul class="paper-list">';
+  data.papers.forEach(p => {
+    papersHtml += `<li>
+      <div><span class="name">${p.name}</span> <span class="venue">${p.venue}</span></div>
+      <div class="desc">${p.desc}</div>
+    </li>`;
+  });
+  papersHtml += '</ul>';
+
+  // Evolve
+  let evolveHtml = '<div class="evolve-chain">';
+  data.evolve.forEach((e, i) => {
+    if (i < data.evolve.length - 1) {
+      evolveHtml += `<div class="evolve-node">
+        <div class="evolve-year">${e.year}</div>
+        <div class="evolve-content">
+          <div class="method">${e.method}</div>
+          <div class="limit">${e.limit}</div>
+        </div>
+        <div class="evolve-arrow">→</div>
+      </div>`;
+    } else {
+      evolveHtml += `<div class="evolve-frontier">
+        <div class="label">⚡ 前沿方向</div>
+        <div class="content"><strong>${e.year}</strong> ${e.frontier}</div>
+        <div class="limit">${e.limit}</div>
+      </div>`;
+    }
+  });
+  evolveHtml += '</div>';
+
+  // Opportunity
+  let oppHtml = '<div style="margin-top:12px">';
+  oppHtml += '<div style="font-size:11px;color:var(--text-dim);margin-bottom:6px;text-transform:uppercase;letter-spacing:0.5px">机会评分</div>';
+  oppHtml += '<div class="opportunity-score">';
+  for (let i = 1; i <= 5; i++) {
+    oppHtml += `<div class="score-dot ${i <= data.opportunity ? 'filled' : ''}"></div>`;
+  }
+  oppHtml += '</div></div>';
+
+  // Contribution & Risk
+  const crHtml = `
+    <div class="detail-section">
+      <h4><span class="icon" style="background:var(--green)">✓</span> 对目标贡献</h4>
+      <ul class="paper-list">
+        ${data.contribution.map(c => `<li style="border-left-color:var(--green)">${c}</li>`).join('')}
+      </ul>
+    </div>
+    <div class="detail-section">
+      <h4><span class="icon" style="background:var(--yellow)">!</span> 关键风险</h4>
+      <ul class="paper-list">
+        <li style="border-left-color:var(--yellow)">${data.risk}</li>
+      </ul>
+    </div>
+  `;
+
+  document.getElementById('detailBody').innerHTML =
+    `<div class="detail-section"><h4><span class="icon" style="background:var(--accent)">📊</span>研究状态</h4>${statusHtml}${oppHtml}</div>` +
+    `<div class="detail-section"><h4><span class="icon" style="background:var(--accent2)">📖</span>代表性工作</h4>${papersHtml}</div>` +
+    `<div class="detail-section"><h4><span class="icon" style="background:var(--cyan)">🔮</span>技术演进链</h4>${evolveHtml}</div>` +
+    crHtml;
+
+  document.getElementById('overlay').classList.add('visible');
+  document.getElementById('detailPanel').classList.add('open');
+}
+
+function closePanel() {
+  document.getElementById('overlay').classList.remove('visible');
+  document.getElementById('detailPanel').classList.remove('open');
+}
+
+document.getElementById('overlay').addEventListener('click', closePanel);
+</script>
+</body>
+</html>

@@ -1,0 +1,45 @@
+# Claim Audit Query
+# Claim-Faithfulness 审计状态跟踪
+
+```dataview
+TABLE project, paper_section, audit_status, claims_total, claims_verified, claims_failed, high_warn_count, created
+FROM "5_学术研究织网/claim_audit"
+WHERE type = "claim-tracking"
+SORT created DESC
+```
+
+## 待处理声明
+
+```dataview
+TABLE claim_id, claim_text, source, anchor_type, audit_status
+FROM "5_学术研究织网/claim_audit"
+WHERE type = "claim-tracking"
+WHERE audit_status = "pending"
+FLATTEN claims as claim
+WHERE claim.audit_status = "pending"
+```
+
+## HIGH-WARN 声明
+
+```dataview
+TABLE project, claim_id, claim_text, high_warn_category, audit_status
+FROM "5_学术研究织网/claim_audit"
+WHERE type = "claim-tracking"
+WHERE high_warn_count > 0
+SORT project ASC, claim_id ASC
+```
+
+## 声明验证进度
+
+```dataview
+TABLE WITHOUT ID
+  project AS "Project",
+  claims_total AS "Total",
+  claims_verified AS "Verified",
+  claims_failed AS "Failed",
+  claims_pending AS "Pending",
+  round(claims_verified / claims_total * 100, 1) AS "Progress %"
+FROM "5_学术研究织网/claim_audit"
+WHERE type = "claim-tracking"
+SORT project ASC
+```

@@ -1,0 +1,10 @@
+{
+  "pluginId": "obsidian-citation-plugin",
+  "enabled": true,
+  "data": {
+    "libraryPath": "library.json",
+    "insertCitationTemplate": "![[{{citeKey}}]]",
+    "bibliographyTemplate": "{{bibliography}}",
+    "defaultLibraryPath": "library.json"
+  }
+}

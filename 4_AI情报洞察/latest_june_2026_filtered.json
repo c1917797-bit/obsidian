@@ -1,0 +1,494 @@
+{
+  "collected_date": "2026-07-05",
+  "period": "2026-06",
+  "total_raw": 118,
+  "total_filtered": 29,
+  "stats_objects": {
+    "参数": 5,
+    "KV": 3,
+    "激活": 2
+  },
+  "stats_methods": {
+    "低秩": 6,
+    "蒸馏": 5,
+    "剪枝": 2,
+    "量化": 2,
+    "稀疏化": 1
+  },
+  "stats_cells": {
+    "参数×低秩": 1,
+    "参数×量化": 1,
+    "激活×量化": 1,
+    "参数×稀疏化": 1,
+    "激活×稀疏化": 1,
+    "参数×蒸馏": 1
+  },
+  "papers": [
+    {
+      "title": "Combating Textual Noise and Redundancy: Entropy-Aware Dense Visual Token Pruning",
+      "arxiv_id": "2607.02484",
+      "abstract": "Visual token pruning is a crucial strategy for accelerating VLMs by compressing redundant image patches, yet existing methods often fail to preserve critical cues under dense instructions and fine-grained queries. In this paper, we investigate this failure and identify two underlying bottlenecks: the widespread dispersion of textual noise that corrupts dense cross-modal scoring, and the feature fragmentation inherent to standard token selection. To address these issues, we propose Entropy-Aware ",
+      "published": "2026-07-02",
+      "url": "http://arxiv.org/abs/2607.02484v1",
+      "search_query": "KV Cache压缩",
+      "source": "arxiv_june_2026",
+      "matched_keywords": [
+        "pruning",
+        "token pruning"
+      ],
+      "objects": [],
+      "methods": [
+        "剪枝"
+      ]
+    },
+    {
+      "title": "A Hippocampus for Linear Attention: An Exact Memory for What the Recurrent State Forgets",
+      "arxiv_id": "2607.02303",
+      "abstract": "Linear-attention and state-space language models compress the prefix into a fixed-size recurrent state, yielding O(1) memory at the cost of a lossy exact memory: when many key--value associations compete, earlier facts are overwritten and needle recall degrades. Inspired by Complementary Learning Systems, we give linear attention a hippocampal complement. HOLA (Hippocampal Linear Attention) keeps the usual delta-rule state as a compressive memory and adds a bounded exact KV cache, forming a semi",
+      "published": "2026-07-02",
+      "url": "http://arxiv.org/abs/2607.02303v1",
+      "search_query": "KV Cache压缩",
+      "source": "arxiv_june_2026",
+      "matched_keywords": [
+        "kv cache",
+        "linear attention"
+      ],
+      "objects": [
+        "KV"
+      ],
+      "methods": []
+    },
+    {
+      "title": "When Token Compression Breaks: Structural Pruning vs. Token Reduction for Robust ViT Segmentation under High Compression",
+      "arxiv_id": "2607.02237",
+      "abstract": "Vision Transformers (ViTs) are strong backbones for semantic segmentation, but their computational cost limits deployment. Recent token compression methods for efficient transformer-based segmentation reduce this cost by decreasing the number of tokens. However, existing evaluations primarily focus on low-to-moderate compression, leaving their behavior under aggressive compression and corrupted inputs unclear. Meanwhile, structural pruning provides an orthogonal route to efficiency by removing r",
+      "published": "2026-07-02",
+      "url": "http://arxiv.org/abs/2607.02237v1",
+      "search_query": "KV Cache压缩",
+      "source": "arxiv_june_2026",
+      "matched_keywords": [
+        "pruning",
+        "structur",
+        "token compression",
+        "token reduction"
+      ],
+      "objects": [],
+      "methods": [
+        "剪枝"
+      ]
+    },
+    {
+      "title": "Towards Load-Aware Prefill Deflection for Disaggregated LLM Serving",
+      "arxiv_id": "2607.02043",
+      "abstract": "Disaggregated LLM serving runs prefill and decode on separate GPU pools to keep the two phases from interfering. In practice, this creates a new asymmetry: under bursty, heavy-tailed workloads prefill nodes saturate while decode nodes have compute underutilized, and on a production-style A100 cluster with 2 prefill and 2 decode nodes (2P2D), we find that prefill execution accounts for only 2-23% of P95 Time-to-First-Token (TTFT). Queuing and inter-node GPU-GPU KV-cache transfer account for the r",
+      "published": "2026-07-02",
+      "url": "http://arxiv.org/abs/2607.02043v1",
+      "search_query": "KV Cache压缩",
+      "source": "arxiv_june_2026",
+      "matched_keywords": [
+        "kv-cache",
+        "prefill"
+      ],
+      "objects": [
+        "KV"
+      ],
+      "methods": []
+    },
+    {
+      "title": "Understanding Geometric Representations in Self-Supervised Vision Transformers via Subspace Intervention",
+      "arxiv_id": "2607.01987",
+      "abstract": "We introduce a controlled subspace intervention framework to investigate how self-supervised Vision Transformers (ViTs) encode dense geometric information. While linear probing is widely used to assess geometric representations, it treats features as a black box, failing to disentangle the underlying topology. To address this issue, we decompose the weights of converged linear probes to isolate the low-rank subspaces containing explicit geometric signals using Singular Value Decomposition (SVD).",
+      "published": "2026-07-02",
+      "url": "http://arxiv.org/abs/2607.01987v1",
+      "search_query": "KV Cache压缩",
+      "source": "arxiv_june_2026",
+      "matched_keywords": [
+        "low-rank",
+        "svd",
+        "decomposition"
+      ],
+      "objects": [
+        "参数"
+      ],
+      "methods": [
+        "低秩"
+      ]
+    },
+    {
+      "title": "WorldDirector: Building Controllable World Simulators with Persistent Dynamic Memory",
+      "arxiv_id": "2607.02517",
+      "abstract": "We present WorldDirector, a highly controllable video world model framework designed for persistent dynamic object memory and unrestricted viewpoint exploration. Unlike existing world models that entangle physical dynamics with pixel rendering and rely on continuous visual observation to sustain motion, our framework explicitly decouples semantic motion orchestration from visual generation. By leveraging an LLM to coordinate 3D trajectories with camera movements and subsequently employing these ",
+      "published": "2026-07-02",
+      "url": "http://arxiv.org/abs/2607.02517v1",
+      "search_query": "量化",
+      "source": "arxiv_june_2026",
+      "matched_keywords": [
+        "lora"
+      ],
+      "objects": [],
+      "methods": [
+        "低秩"
+      ]
+    },
+    {
+      "title": "ReContext: Recursive Evidence Replay as LLM Harness for Long-Context Reasoning",
+      "arxiv_id": "2607.02509",
+      "abstract": "Understanding and reasoning over long contexts has become a key requirement for deploying large language models (LLMs) in realistic applications. Although recent LLMs support increasingly long context windows, they often fail to use relevant evidence that is already present in the input, revealing a gap between context access and effective context utilization. In this work, we propose Recursive Evidence Replay as LLM Harness for Long-Context Reasoning (RECONTEXT), a training-free inference metho",
+      "published": "2026-07-02",
+      "url": "http://arxiv.org/abs/2607.02509v1",
+      "search_query": "量化",
+      "source": "arxiv_june_2026",
+      "matched_keywords": [
+        "long context",
+        "long-context"
+      ],
+      "objects": [],
+      "methods": []
+    },
+    {
+      "title": "What LLM Agents Say When No One Is Watching: Social Structure and Latent Objective Emergence in Multi-Agent Debates",
+      "arxiv_id": "2607.02507",
+      "abstract": "LLM agents will increasingly act in socially structured settings where role, audience, and relational context can shape what is advantageous or costly to say. We study whether such social structure, without any explicit objective in the prompt, changes what an agent expresses publicly relative to an off-the-record (OTR) channel elicited under the same condition. We introduce a dual-channel debate framework in which agents produce public utterances that enter the shared history alongside OTR resp",
+      "published": "2026-07-02",
+      "url": "http://arxiv.org/abs/2607.02507v1",
+      "search_query": "量化",
+      "source": "arxiv_june_2026",
+      "matched_keywords": [
+        "structur"
+      ],
+      "objects": [],
+      "methods": []
+    },
+    {
+      "title": "DemoPSD: Disagreement-Modulated Policy Self-Distillation",
+      "arxiv_id": "2607.02502",
+      "abstract": "On-policy self-distillation (OPSD) has emerged as a practical method for training large language models (LLMs) to reason, where a single model acts as both the teacher and the student with different levels of information access. However, recent studies have found that the teacher's dense token-level supervision, conditioned on privileged information, can lead to overfitting to in-domain patterns, suppress exploration, and hurt cross-domain generalization, while also introducing a more fundamenta",
+      "published": "2026-07-02",
+      "url": "http://arxiv.org/abs/2607.02502v1",
+      "search_query": "量化",
+      "source": "arxiv_june_2026",
+      "matched_keywords": [
+        "distill",
+        "lora"
+      ],
+      "objects": [],
+      "methods": [
+        "蒸馏",
+        "低秩"
+      ]
+    },
+    {
+      "title": "OrbitQuant: Data-Agnostic Quantization for Image and Video Diffusion Transformers",
+      "arxiv_id": "2607.02461",
+      "abstract": "Diffusion transformers (DiTs) achieve state-of-the-art image and video generation, but their multi-step sampling and growing parameter count make inference expensive. Post-training quantization (PTQ) is the natural remedy, yet DiT activations shift across timesteps, prompts, and guidance branches, forcing prior methods to re-fit calibration data for every new checkpoint or modality. We present OrbitQuant, a data-agnostic weight-activation quantizer that bypasses range estimation by quantizing in",
+      "published": "2026-07-02",
+      "url": "http://arxiv.org/abs/2607.02461v1",
+      "search_query": "量化",
+      "source": "arxiv_june_2026",
+      "matched_keywords": [
+        "quantiz"
+      ],
+      "objects": [
+        "参数",
+        "激活"
+      ],
+      "methods": [
+        "量化"
+      ]
+    },
+    {
+      "title": "Neuron-Aware Data Selection for Annotation-Free LLM Self-Distillation",
+      "arxiv_id": "2607.02460",
+      "abstract": "Post-training large language models (LLMs) without real-world interaction feedback or human-labeled supervision remains challenging, particularly in specialized domains where expert annotations are costly to obtain. Recent annotation-free self-evolution methods address this by using the model's own outputs as supervision signals, constructing a teacher via additional context and aggregating predictions across multiple rollouts through majority voting to produce pseudo-labels. However, these appr",
+      "published": "2026-07-02",
+      "url": "http://arxiv.org/abs/2607.02460v1",
+      "search_query": "量化",
+      "source": "arxiv_june_2026",
+      "matched_keywords": [
+        "distill"
+      ],
+      "objects": [],
+      "methods": [
+        "蒸馏"
+      ]
+    },
+    {
+      "title": "AgentsCAD: Automated Design for Manufacturing of FDM Parts via Multi-Agent LLM Reasoning and Geometric Feature Recognition",
+      "arxiv_id": "2607.02448",
+      "abstract": "Parts manufactured with Fused Deposition Modeling (FDM) often require Design for Additive Manufacturing (DFAM) modifications to ensure printability, structural integrity, and reduced post-processing. Current slicers identify defects such as steep overhangs but are unable to modify the underlying geometry. This work presents AgentsCAD, a multi-agent system that bridges raw boundary-representation (B-Rep) geometry and Large Language Model (LLM) reasoning to automate targeted DFM. The workflow begi",
+      "published": "2026-07-02",
+      "url": "http://arxiv.org/abs/2607.02448v1",
+      "search_query": "量化",
+      "source": "arxiv_june_2026",
+      "matched_keywords": [
+        "structur"
+      ],
+      "objects": [],
+      "methods": []
+    },
+    {
+      "title": "Beyond Adam: SOAP and Muon for Faster, Label-Efficient Training of Machine Learning Interatomic Potentials",
+      "arxiv_id": "2607.02499",
+      "abstract": "Machine learning interatomic potentials (MLIPs) have become a hallmark of AI for scientific simulation. While efforts on new architectures and datasets have led to increasingly accurate and general models, the choice of optimizer for training has largely remained unexplored, defaulting to Adam and its variants in the community. Here, we implement and systematically compare a class of recently proposed matrix-structured optimizers, including Muon, SOAP, and the hybrid SOAP-Muon, for training Nequ",
+      "published": "2026-07-02",
+      "url": "http://arxiv.org/abs/2607.02499v1",
+      "search_query": "蒸馏",
+      "source": "arxiv_june_2026",
+      "matched_keywords": [
+        "structur"
+      ],
+      "objects": [],
+      "methods": []
+    },
+    {
+      "title": "EAGLE-360: Embodied Active Global-to-Local Exploration in 360$^\\circ$",
+      "arxiv_id": "2607.02479",
+      "abstract": "While Multimodal Large Language Models (MLLMs) have demonstrated exceptional capabilities in standard visual understanding, adapting them for active visual search in 360$^\\circ$ panoramic environments exposes fundamental limitations. Specifically, standard MLLMs struggle to effectively model inherent panoramic properties, such as severe polar distortion and continuous cylindrical topologies, which significantly degrades target detection accuracy. Consequently, existing panoramic search methods a",
+      "published": "2026-07-02",
+      "url": "http://arxiv.org/abs/2607.02479v1",
+      "search_query": "蒸馏",
+      "source": "arxiv_june_2026",
+      "matched_keywords": [
+        "lora"
+      ],
+      "objects": [],
+      "methods": [
+        "低秩"
+      ]
+    },
+    {
+      "title": "Self-Auditing Residual Drifting for Pathology-Preserving Accelerated Knee MRI",
+      "arxiv_id": "2607.02428",
+      "abstract": "Accelerated magnetic resonance imaging reduces acquisition time, but reconstruction from undersampled k-space can blur diagnostically relevant structures or introduce failures that are not captured by global image metrics. We propose SA-RDM-DC, a Self-Auditing Residual generative Drifting Model with Data Consistency for accelerated knee MRI. The method adapts the newly proposed generative drifting paradigm to accelerated MRI by training a physics-conditioned drift field from the zero-filled reco",
+      "published": "2026-07-02",
+      "url": "http://arxiv.org/abs/2607.02428v1",
+      "search_query": "低秩",
+      "source": "arxiv_june_2026",
+      "matched_keywords": [
+        "structur"
+      ],
+      "objects": [],
+      "methods": []
+    },
+    {
+      "title": "An Efficient vLLM-Based Inference Pipeline for Unified Audio Understanding and Generation",
+      "arxiv_id": "2607.02119",
+      "abstract": "While Large Multimodal Models excel in comprehension, high-throughput inference engines lack native support for multimodal generation. This is severe in Speech Language Models, where generating multi-layered audio tokens via decoupled AR+NAR or synchronous Multi-Token Prediction (MTP) with delay-pattern interleaving conflicts with standard single-stream loops. We present a vLLM-based inference pipeline for unified speech understanding and generation. We extend autoregressive decoding to natively",
+      "published": "2026-07-02",
+      "url": "http://arxiv.org/abs/2607.02119v1",
+      "search_query": "投机解码",
+      "source": "arxiv_june_2026",
+      "matched_keywords": [
+        "throughput"
+      ],
+      "objects": [],
+      "methods": []
+    },
+    {
+      "title": "Spec-AUF: Accept-Until-Fail Training under Train-Inference Misalignment for Masked Block Drafters",
+      "arxiv_id": "2607.01893",
+      "abstract": "Speculative decoding accelerates autoregressive generation by drafting a block of tokens that the target model verifies left-to-right, committing only the longest accepted prefix. Block (DLM-style) drafters predict the whole block in parallel, which is fast but trained with a full-block cross-entropy that supervises every position against the gold continuation -- even though inference discards every token after the first rejection. Recent acceptance-aware objectives patch this by reweighting the",
+      "published": "2026-07-02",
+      "url": "http://arxiv.org/abs/2607.01893v1",
+      "search_query": "投机解码",
+      "source": "arxiv_june_2026",
+      "matched_keywords": [
+        "speculative decoding"
+      ],
+      "objects": [
+        "参数"
+      ],
+      "methods": []
+    },
+    {
+      "title": "Lynx: Progressive Speculative Quantization for accelerating KV Transfer in Long-Context Inference",
+      "arxiv_id": "2607.01831",
+      "abstract": "Long-context inference is increasingly common in large language model (LLM) serving, driven by retrieval-augmented generation and agentic systems. In disaggregated inference, these workloads require transferring large Key-Value (KV) caches across the network, where decoding cannot begin until the transfer completes. Recent KV quantization techniques reduce data volume and alleviate this bottleneck, but existing schemes fail to achieve both low network-exposed latency and high inference accuracy.",
+      "published": "2026-07-02",
+      "url": "http://arxiv.org/abs/2607.01831v1",
+      "search_query": "投机解码",
+      "source": "arxiv_june_2026",
+      "matched_keywords": [
+        "quantiz",
+        "long-context"
+      ],
+      "objects": [],
+      "methods": [
+        "量化"
+      ]
+    },
+    {
+      "title": "Expander Sparse Autoencoders: Parameter-Efficient Dictionaries for Mechanistic Interpretability",
+      "arxiv_id": "2607.01799",
+      "abstract": "Sparse autoencoders (SAEs) decompose internal activations of neural networks into sparse linear combinations of learned features by fitting an overcomplete dictionary $\\mathbf{W}\\in\\mathbb{R}^{m\\times n}$ with $m<n$, and inferring a sparse code $\\mathbf{x}\\in\\mathbb{R}^n$ from $\\mathbf{h}\\approx\\mathbf{W}\\mathbf{x}$. This inference problem closely resembles the canonical setup of compressed sensing, but dense decoders requires $O(mn)$ learned values, which becomes costly at large feature counts.",
+      "published": "2026-07-02",
+      "url": "http://arxiv.org/abs/2607.01799v1",
+      "search_query": "投机解码",
+      "source": "arxiv_june_2026",
+      "matched_keywords": [
+        "sparse"
+      ],
+      "objects": [
+        "参数",
+        "激活"
+      ],
+      "methods": [
+        "稀疏化"
+      ]
+    },
+    {
+      "title": "PARTREP: Learning What to Repeat for Decoder-only LLMs",
+      "arxiv_id": "2607.01792",
+      "abstract": "While decoder-only LLMs excel at a vast array of natural language tasks, it suffers from an asymmetric information flow induced by causal attention: later tokens are richer in contextual grounding than earlier ones. A simple and effective remedy is prompt repetition -- just appending a second copy of prompt before generation can redistribute grounding across positions and improve reasoning performance. However, full repetition of the original prompt doubles the KV cache footprint and quadruples ",
+      "published": "2026-07-02",
+      "url": "http://arxiv.org/abs/2607.01792v1",
+      "search_query": "投机解码",
+      "source": "arxiv_june_2026",
+      "matched_keywords": [
+        "kv cache"
+      ],
+      "objects": [
+        "KV"
+      ],
+      "methods": []
+    },
+    {
+      "title": "Learning to Move Before Learning to Do: Task-Agnostic pretraining for VLAs",
+      "arxiv_id": "2607.02466",
+      "abstract": "Vision-Language-Action (VLA) models are fundamentally bottlenecked by the scarcity of expert demonstrations -- triplets of observations, instructions, and actions that are costly to collect at scale. We argue that this bottleneck stems from conflating two distinct learning objectives: acquiring physical competence (how to move) and acquiring semantic alignment (what to do). Crucially, only the latter requires language supervision. Building on this Decomposition Hypothesis, we propose Task-Agnost",
+      "published": "2026-07-02",
+      "url": "http://arxiv.org/abs/2607.02466v1",
+      "search_query": "MoE推理",
+      "source": "arxiv_june_2026",
+      "matched_keywords": [
+        "decomposition"
+      ],
+      "objects": [],
+      "methods": [
+        "低秩"
+      ]
+    },
+    {
+      "title": "Learning to Evolve Scenes: Reasoning about Human Activities with Scene Graphs",
+      "arxiv_id": "2607.02425",
+      "abstract": "Understanding human behavior while interacting with the surrounding world is crucial for many applications of embodied AI. First-person videos are particularly informative for this problem, as they well capture how activities reshape the scene over time. However, existing approaches often rely on implicit visual or language-aligned representations, disregarding structured reasoning over the scene dynamic. We argue that explicit, compositional and editable representations of human-environment int",
+      "published": "2026-07-02",
+      "url": "http://arxiv.org/abs/2607.02425v1",
+      "search_query": "视觉token压缩",
+      "source": "arxiv_june_2026",
+      "matched_keywords": [
+        "structur"
+      ],
+      "objects": [],
+      "methods": []
+    },
+    {
+      "title": "EAGLE-360: Embodied Active Global-to-Local Exploration in 360^circ",
+      "arxiv_id": "2607.02479",
+      "abstract": "While Multimodal Large Language Models (MLLMs) have demonstrated exceptional capabilities in standard visual understanding, adapting them for active visual search in 360^circ panoramic environments exposes fundamental limitations. Specifically, standard MLLMs struggle to effectively model inherent panoramic properties, such as severe polar distortion and continuous cylindrical topologies, which significantly degrades target detection accuracy. Consequently, existing panoramic search methods atte",
+      "published": "2026-06",
+      "url": "https://huggingface.co/papers/2607.02479",
+      "search_query": "HuggingFace Trending",
+      "source": "huggingface_june_2026",
+      "matched_keywords": [
+        "lora"
+      ],
+      "objects": [],
+      "methods": [
+        "低秩"
+      ]
+    },
+    {
+      "title": "BamiBERT: A New BERT-based Language Model for Vietnamese",
+      "arxiv_id": "2607.02259",
+      "abstract": "In this paper, we introduce BamiBERT, a new BERT-based pre-trained language model for Vietnamese that addresses key limitations of PhoBERT -- the current de facto Vietnamese text encoder. Trained from scratch on a 129GB corpus of general-domain Vietnamese text for 20 epochs, BamiBERT supports an extended context length of up to 2048 tokens and operates directly on raw input, eliminating the need for external word segmentation. Across 8 Vietnamese benchmarks, it achieves the best score on 11 of 1",
+      "published": "2026-06",
+      "url": "https://huggingface.co/papers/2607.02259",
+      "search_query": "HuggingFace Trending",
+      "source": "huggingface_june_2026",
+      "matched_keywords": [
+        "context length"
+      ],
+      "objects": [],
+      "methods": []
+    },
+    {
+      "title": "Bridge-WA: Predicting Where and How the World Changes for Robotic Action",
+      "arxiv_id": "2607.02195",
+      "abstract": "General-purpose vision-language-action models benefit from large vision-language priors, but effective manipulation also requires anticipating action-relevant scene changes. Existing world-action models often rely on large generative world models or dense future rollouts, which are expensive and spend capacity on visual details weakly coupled to control. We present Bridge-WA, a lightweight world-action framework that distills a frozen future-change teacher into three compact priors: future token",
+      "published": "2026-06",
+      "url": "https://huggingface.co/papers/2607.02195",
+      "search_query": "HuggingFace Trending",
+      "source": "huggingface_june_2026",
+      "matched_keywords": [
+        "distill"
+      ],
+      "objects": [
+        "参数"
+      ],
+      "methods": [
+        "蒸馏"
+      ]
+    },
+    {
+      "title": "DeepGaze3.5-VL: Modeling Scanpaths via Autoregressive Token Prediction",
+      "arxiv_id": "2607.02083",
+      "abstract": "Understanding human visual attention on a scene over time has applications in domains such as interface design and inferring cognitive states. Modeling visual scanpaths has historically relied on specialized architectures with hand-crafted priors. While these architectures can model fixation sequences, their rigid structural biases restrict easy extendability and flexible conditioning. For instance, integrating task-specific instructions or adapting to distinct viewer identities requires custom,",
+      "published": "2026-06",
+      "url": "https://huggingface.co/papers/2607.02083",
+      "search_query": "HuggingFace Trending",
+      "source": "huggingface_june_2026",
+      "matched_keywords": [
+        "structur"
+      ],
+      "objects": [],
+      "methods": []
+    },
+    {
+      "title": "PACE: A Proxy for Agentic Capability Evaluation",
+      "arxiv_id": "2607.02032",
+      "abstract": "Evaluating LLM agents on benchmarks like SWE-Bench and GAIA can be expensive, time-consuming, and requires complex infrastructure. A single evaluation can cost thousands of dollars and take days to complete. In contrast, non-agentic LLM benchmarks that test individual capabilities (e.g., reasoning, code generation) are fast and cheap to run. In this paper, we investigate whether performance on expensive agentic benchmarks can be accurately predicted by the performance on a small, carefully selec",
+      "published": "2026-06",
+      "url": "https://huggingface.co/papers/2607.02032",
+      "search_query": "HuggingFace Trending",
+      "source": "huggingface_june_2026",
+      "matched_keywords": [
+        "structur"
+      ],
+      "objects": [],
+      "methods": []
+    },
+    {
+      "title": "Denser neq Better: Limits of On-Policy Self-Distillation for Continual Post-Training",
+      "arxiv_id": "2607.01763",
+      "abstract": "Continual post-training enables foundation models to acquire new knowledge while preserving existing capabilities. Recent work suggests that on-policy learning can mitigate forgetting, with on-policy self-distillation emerging as a particularly attractive approach. In this work, we revisit this optimistic view through self-distillation policy optimization (SDPO). Our experiments show that SDPO can accelerate in-domain specialization when teacher signals are stable and well aligned, but it strugg",
+      "published": "2026-06",
+      "url": "https://huggingface.co/papers/2607.01763",
+      "search_query": "HuggingFace Trending",
+      "source": "huggingface_june_2026",
+      "matched_keywords": [
+        "distill"
+      ],
+      "objects": [],
+      "methods": [
+        "蒸馏"
+      ]
+    },
+    {
+      "title": "Multi-Resolution Flow Matching: Training-Free Diffusion Acceleration via Staged Sampling",
+      "arxiv_id": "2607.01642",
+      "abstract": "Hardware-agnostic strategies for accelerating text-to-image diffusion, such as timestep distillation and feature caching, can reduce inference time without custom kernels or system-level optimization. Among them, multi-resolution generation strategies have recently received broad attention, attaining more than 5x speedup without any training. However, the design of performing upsampling in the latent space, together with the selective modification of partial regions, causes these methods to exhi",
+      "published": "2026-06",
+      "url": "https://huggingface.co/papers/2607.01642",
+      "search_query": "HuggingFace Trending",
+      "source": "huggingface_june_2026",
+      "matched_keywords": [
+        "distill"
+      ],
+      "objects": [],
+      "methods": [
+        "蒸馏"
+      ]
+    }
+  ]
+}

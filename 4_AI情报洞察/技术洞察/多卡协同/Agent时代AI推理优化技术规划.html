@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Agent时代AI推理优化技术规划（数学严谨版）</title>
+<style>
+:root{--bg:#fff;--bg-alt:#f7f9fc;--border:#d0d7de;--text:#1a1a1a;--muted:#57606a;--primary:#003366;--pl:#e8f0fe;--accent:#0550ae;--ok:#1a7f37;--warn:#9a6700;--dv:#e8f5e9;--do:#fff3e0;--dl:#fce4ec}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"Segoe UI","PingFang SC","Microsoft YaHei",serif;background:var(--bg);color:var(--text);line-height:1.65;font-size:15px}
+nav{position:fixed;top:0;left:0;width:240px;height:100vh;background:var(--bg-alt);border-right:1px solid var(--border);padding:1rem .75rem;overflow-y:auto;font-size:.8rem}
+nav a{display:block;padding:.35rem .5rem;color:var(--muted);text-decoration:none;border-radius:4px}
+nav a:hover{background:var(--pl);color:var(--primary)}
+nav .ng{font-weight:600;color:var(--primary);margin:.75rem .5rem .25rem;font-size:.72rem;letter-spacing:.04em}
+main{margin-left:240px;max-width:1000px;padding:2rem 2.5rem 4rem}
+.page{margin-bottom:3.5rem;padding-bottom:2rem;border-bottom:2px solid var(--border)}
+.ptitle{font-size:1.65rem;font-weight:700;color:var(--primary);margin-bottom:.75rem}
+.meta{color:var(--muted);font-size:.875rem;margin-top:.5rem}
+.page-q{background:var(--pl);border-left:4px solid var(--primary);padding:.85rem 1.1rem;margin:1rem 0;font-weight:600;color:var(--primary)}
+.claim{background:var(--bg-alt);border:1px solid var(--border);padding:.75rem 1rem;margin:.75rem 0;font-size:.95rem;font-style:italic;color:var(--muted)}
+.scr{border:1px solid var(--border);border-radius:6px;margin:1rem 0;overflow:hidden}
+.scr-h{background:var(--primary);color:#fff;padding:.45rem .85rem;font-size:.82rem;font-weight:600}
+.scr-b{padding:.85rem 1.1rem;font-size:.92rem}
+.scr-b .known{font-weight:600;color:var(--primary)}
+.scr-b .evi{margin:.5rem 0;font-size:.88rem}
+.scr-b .so{margin-top:.5rem;padding-top:.5rem;border-top:1px dashed var(--border)}
+.concl{background:var(--bg-alt);border:1px solid var(--border);padding:.85rem 1.15rem;margin-top:1.5rem;font-size:.95rem}
+.concl strong{color:var(--primary)}
+.trans{background:var(--pl);border:1px dashed var(--accent);padding:.75rem 1rem;margin-top:1rem;font-size:.92rem}
+h2{font-size:1.15rem;color:var(--primary);margin:1.5rem 0 .65rem;border-bottom:1px solid var(--border);padding-bottom:.3rem}
+h3{font-size:1.02rem;margin:1rem 0 .45rem}
+table{width:100%;border-collapse:collapse;margin:.85rem 0;font-size:.84rem}
+th{background:var(--primary);color:#fff;padding:.5rem .65rem;text-align:left}
+td{padding:.5rem .65rem;border-bottom:1px solid var(--border);vertical-align:top}
+tr:nth-child(even){background:var(--bg-alt)}
+.tag{display:inline-block;padding:.12rem .4rem;background:var(--bg-alt);border:1px solid var(--border);border-radius:3px;font-size:.72rem;margin:.1rem}
+.insight{display:inline-block;background:var(--accent);color:#fff;padding:.1rem .45rem;border-radius:3px;font-size:.75rem;font-weight:600}
+.topic{display:inline-block;background:var(--primary);color:#fff;padding:.15rem .55rem;border-radius:4px;font-size:.82rem;font-weight:600}
+.evidence{font-size:.78rem;color:var(--muted)}
+.evidence a{color:var(--accent)}
+.fig{margin:1.1rem 0;text-align:center}
+.fig svg{max-width:100%;height:auto}
+.fig-cap{font-size:.8rem;color:var(--muted);margin-top:.4rem;text-align:left}
+.footnote{font-size:.78rem;color:var(--muted);margin-top:.5rem}
+.formula{background:var(--pl);border:2px solid var(--primary);padding:.85rem 1rem;margin:1rem 0;text-align:center;font-size:1rem}
+.eqn{font-family:"Cambria Math","Times New Roman",serif}
+.domain-v{background:var(--dv);border-left:4px solid var(--ok);padding:.6rem .9rem;margin:.5rem 0;font-size:.88rem}
+.domain-o{background:var(--do);border-left:4px solid var(--warn);padding:.6rem .9rem;margin:.5rem 0;font-size:.88rem}
+.domain-l{background:var(--dl);border-left:4px solid #c2185b;padding:.6rem .9rem;margin:.5rem 0;font-size:.88rem}
+.proof-qed{text-align:right;color:var(--muted);font-size:.85rem;margin-top:.35rem}
+@media print{nav{display:none}main{margin-left:0;max-width:100%}}
+@media(max-width:900px){nav{position:static;width:100%;height:auto}main{margin-left:0;padding:1rem}}
+</style>
+</head>
+<body>
+<nav>
+<div class="ng">给定课题</div>
+<a href="#cover">封面</a>
+<div class="ng">公式公理</div>
+<a href="#p1">P1 式 (1.1)–(1.10)</a>
+<a href="#p2">P2 命题 2.1 / 2.2</a>
+<div class="ng">洞察推导</div>
+<a href="#p3">P3 看业界 · L1</a>
+<a href="#p4">P4 看技术 · 算子三分划</a>
+<a href="#p5">P5 战略收敛 · 双课题</a>
+<div class="ng">方案与路线</div>
+<a href="#p6">P6 课题 N</a>
+<a href="#p7">P7 课题 N+1</a>
+<a href="#p8">P8 三阶段路线图</a>
+<a href="#appendix">附录</a>
+</nav>
+<main>
+
+<!-- COVER -->
+<section id="cover" class="page">
+<h1 class="ptitle">Agent 时代 AI 推理优化技术规划</h1>
+<p class="meta">数学严谨版 · 生成时间：2026-06-12 · 算例锚点：<strong>Qwen3-30B-A3B</strong></p>
+<p class="meta"><span class="tag">公式驱动</span><span class="tag">三层符号域</span><span class="tag">课题 N · N+1</span><span class="tag">时延 1.5× · 吞吐 2×</span></p>
+<div class="concl">
+<strong>给定课题：</strong>在 Agent 长上下文与多卡 MoE 场景下，以算法创新优化推理<strong>时延</strong>与<strong>吞吐</strong>。<br>
+<strong>叙事结构：</strong>式 (1.1)–(1.10) 公理 → 命题 2.1/2.2 → L1 边界 (P3) → 算子三分划 (P4) → 定理 5.1 双课题 → 路线图。<br>
+<strong>核心公式：</strong><span class="eqn">KV<sub>bytes</sub> = 2·L·H<sub>kv</sub>·d<sub>h</sub>·ℓ·(b<sub>p</sub>/8)·N<sub>c</sub></span>（式 1.1）<br>
+<strong>符号约束：</strong>公式变量域 𝒱、算子域 𝒪、中文标签域 ℒ <strong>不交</strong>；S类/B类/D类仅在 P4 定义 4.2 后作为 ℒ 别名出现。
+</div>
+</section>
+
+<!-- P1 -->
+<section id="p1" class="page">
+<h1 class="ptitle">P1 公理页：时延与吞吐的完整公式体系</h1>
+<div class="page-q">命题 1.0：在前提假设 1.A 下，推理性能指标可分解为公式变量域 𝒱 中变量的函数。</div>
+<div class="claim">本页只建立编号公式与符号表，不引入算子域 𝒪 或 S类/B类/D类标签。</div>
+
+<h2>公理 0.1 · 三层符号域</h2>
+<div class="domain-v"><strong>域 I · 公式变量域 𝒱</strong>（本页定义，后文只引用）：L, H<sub>kv</sub>, d<sub>h</sub>, ℓ, b<sub>p</sub>, N<sub>c</sub>, W, M, B<sub>w</sub>, B<sub>r</sub>, F, V<sub>disp</sub>, B<sub>n</sub>, η<sub>ov</sub>, η<sub>b</sub>, T<sub>q</sub>, k<sub>tail</sub></div>
+<div class="domain-o"><strong>域 II · 算子域 𝒪</strong>（P4 形式定义）：φ<sub>ℓ</sub>, φ<sub>b</sub>, φ<sub>V</sub>, φ<sub>η</sub></div>
+<div class="domain-l"><strong>域 III · 中文标签域 ℒ</strong>（P4 定义 4.2 后引入）：S类≡𝒪<sup>(ℓ)</sup>，B类≡𝒪<sup>(b)</sup>，D类≡𝒪<sup>(κ)</sup> — <em>非公式变量</em></div>
+
+<h2>前提假设 1.A</h2>
+<ul style="margin:.5rem 0 .5rem 1.2rem;font-size:.9rem">
+<li><strong>A1</strong>：Decode 阶段 memory-bandwidth bound，T<sub>dec</sub> 对 ℓ 线性（经 KV<sub>token</sub>·ℓ）。</li>
+<li><strong>A2</strong>：Prefill 本报告取 linear-in-ℓ 工程近似；严格 attention 为 Θ(ℓ²)，脚注见附录。</li>
+<li><strong>A3</strong>：单卡 V<sub>disp</sub>=0；多卡 MoE EP 场景 V<sub>disp</sub>&gt;0。</li>
+</ul>
+
+<h2>符号表（域 𝒱）</h2>
+<table>
+<tr><th>符号</th><th>含义</th><th>单位</th><th>说明</th></tr>
+<tr><td>L</td><td>Transformer 层数</td><td>—</td><td>Layers</td></tr>
+<tr><td>H<sub>kv</sub></td><td>KV 注意力头数</td><td>—</td><td>GQA 下 H<sub>kv</sub>≪H<sub>q</sub></td></tr>
+<tr><td>d<sub>h</sub></td><td>单头维度</td><td>—</td><td>不用 D，避免与 D类 混淆</td></tr>
+<tr><td>ℓ</td><td>KV 缓存有效序列长度</td><td>tokens</td><td>不用裸 S</td></tr>
+<tr><td>b<sub>p</sub></td><td>元素精度位宽</td><td>bits</td><td>不用 P，避免与百分位混淆</td></tr>
+<tr><td>N<sub>c</sub></td><td>并发独立会话数</td><td>—</td><td>Concurrent sessions</td></tr>
+<tr><td>W, M</td><td>权重 / 可用 HBM</td><td>bytes</td><td>—</td></tr>
+<tr><td>B<sub>w</sub>, B<sub>r</sub></td><td>写/读带宽</td><td>B/s</td><td>不用 B 作标签</td></tr>
+<tr><td>V<sub>disp</sub></td><td>每 step MoE dispatch 载荷</td><td>bytes/step</td><td>—</td></tr>
+<tr><td>η<sub>ov</sub>, η<sub>b</sub></td><td>重叠率 / batching 效率</td><td>[0,1)</td><td>—</td></tr>
+</table>
+<p class="footnote">业界指标 TTFT、TPOT、TPS 用正体；尾时延记 <strong>T<sub>p99</sub></strong>（不用 P99 作公式符号）。</p>
+
+<h2>编号公式</h2>
+<div class="formula eqn"><strong>式 (1.1)</strong>&nbsp; KV<sub>bytes</sub> = 2 · L · H<sub>kv</sub> · d<sub>h</sub> · ℓ · (b<sub>p</sub>/8) · N<sub>c</sub></div>
+<div class="formula eqn"><strong>式 (1.2)</strong>&nbsp; KV<sub>token</sub> = 2 · L · H<sub>kv</sub> · d<sub>h</sub> · (b<sub>p</sub>/8)</div>
+<div class="formula eqn"><strong>式 (1.3)</strong>&nbsp; T<sub>TTFT</sub> = T<sub>q</sub> + T<sub>pre</sub></div>
+<div class="formula eqn"><strong>式 (1.4)</strong>&nbsp; T<sub>pre</sub> ≈ (c<sub>pre</sub>·L·H<sub>q</sub>·d<sub>h</sub>·ℓ)/F + KV<sub>bytes</sub>(ℓ,N<sub>c</sub>=1)/B<sub>w</sub></div>
+<div class="formula eqn"><strong>式 (1.5)</strong>&nbsp; T<sub>TPOT</sub> ≈ T<sub>dec</sub> + T<sub>comm</sub></div>
+<div class="formula eqn"><strong>式 (1.6)</strong>&nbsp; T<sub>dec</sub> ≈ (KV<sub>token</sub>·ℓ)/B<sub>r</sub> + (c<sub>dec</sub>·L·H<sub>q</sub>·d<sub>h</sub>)/F</div>
+<div class="formula eqn"><strong>式 (1.7)</strong>&nbsp; T<sub>comm</sub> ≈ (V<sub>disp</sub>/B<sub>n</sub>) · (1 − η<sub>ov</sub>)</div>
+<div class="formula eqn"><strong>式 (1.8)</strong>&nbsp; TPS ≈ (N<sub>c</sub>/T<sub>TPOT</sub>) · η<sub>b</sub></div>
+<div class="formula eqn"><strong>式 (1.9)</strong>&nbsp; N<sub>c,max</sub> = ⌊(M − W) / KV<sub>bytes</sub>(ℓ,N<sub>c</sub>=1)⌋</div>
+<div class="formula eqn"><strong>式 (1.10)</strong>&nbsp; T<sub>p99</sub> ≈ k<sub>tail</sub> · T<sub>TPOT</sub> + T<sub>q,var</sub></div>
+
+<h2>算例锚定 · Qwen3-30B-A3B</h2>
+<table>
+<tr><th>参数</th><th>值</th><th>来源</th></tr>
+<tr><td>L / H<sub>kv</sub> / d<sub>h</sub> / b<sub>p</sub></td><td>48 / 4 / 128 / 16</td><td><span class="evidence"><a href="https://huggingface.co/Qwen/Qwen3-30B-A3B">HF Config</a></span></td></tr>
+<tr><td>KV<sub>token</sub></td><td>2·48·4·128·2 = <strong>98,304 B</strong></td><td>式 (1.2)</td></tr>
+<tr><td>W</td><td>≈61 GB</td><td>公开权重估算</td></tr>
+<tr><td>ℓ=32K, N<sub>c</sub>=1</td><td>KV ≈ <strong>3.0 GB</strong></td><td>式 (1.1)</td></tr>
+<tr><td>ℓ=32K, N<sub>c</sub>=8</td><td>KV ≈ <strong>24 GB</strong> → W+KV≈85 GB</td><td>式 (1.1)</td></tr>
+<tr><td>ℓ=128K, N<sub>c</sub>=4</td><td>KV ≈ <strong>48 GB</strong></td><td>Agent 外推</td></tr>
+</table>
+
+<div class="fig">
+<svg viewBox="0 0 820 280" xmlns="http://www.w3.org/2000/svg">
+<text x="20" y="22" font-size="13" font-weight="bold" fill="#003366">图 P1-1 · 公式依赖 DAG</text>
+<rect x="20" y="40" width="100" height="36" fill="#003366"/><text x="70" y="62" text-anchor="middle" font-size="9" fill="#fff">ℓ, N<sub>c</sub>, b<sub>p</sub></text>
+<text x="130" y="58" font-size="14" fill="#333">→</text>
+<rect x="145" y="40" width="110" height="36" fill="#0550ae"/><text x="200" y="62" text-anchor="middle" font-size="9" fill="#fff">式1.1 KV<sub>bytes</sub></text>
+<text x="265" y="58" font-size="14" fill="#333">→</text>
+<rect x="280" y="35" width="90" height="46" fill="#e8f0fe" stroke="#003366"/><text x="325" y="55" text-anchor="middle" font-size="8">式1.4 T<sub>pre</sub></text><text x="325" y="70" text-anchor="middle" font-size="8">式1.6 T<sub>dec</sub></text>
+<text x="380" y="58" font-size="14" fill="#333">→</text>
+<rect x="395" y="40" width="100" height="36" fill="#0550ae"/><text x="445" y="55" text-anchor="middle" font-size="8" fill="#fff">式1.3 TTFT</text><text x="445" y="68" text-anchor="middle" font-size="8" fill="#fff">式1.5 TPOT</text>
+<rect x="20" y="100" width="100" height="36" fill="#003366"/><text x="70" y="122" text-anchor="middle" font-size="9" fill="#fff">V<sub>disp</sub>, η<sub>ov</sub></text>
+<text x="130" y="118" font-size="14" fill="#333">→</text>
+<rect x="145" y="100" width="110" height="36" fill="#0550ae"/><text x="200" y="122" text-anchor="middle" font-size="9" fill="#fff">式1.7 T<sub>comm</sub></text>
+<text x="265" y="118" font-size="14" fill="#333">→</text>
+<rect x="280" y="100" width="90" height="36" fill="#e8f0fe" stroke="#003366"/><text x="325" y="122" text-anchor="middle" font-size="9">式1.5 TPOT</text>
+<rect x="395" y="95" width="200" height="46" fill="#e8f0fe" stroke="#003366"/>
+<text x="495" y="115" text-anchor="middle" font-size="9">式1.8 TPS · 式1.9 N<sub>c,max</sub> · 式1.10 T<sub>p99</sub></text>
+<rect x="20" y="160" width="780" height="100" fill="#f7f9fc" stroke="#d0d7de"/>
+<text x="410" y="185" text-anchor="middle" font-size="10" fill="#003366">量纲校验 (1.1)：bytes = ··× tokens × (bits/8) × sessions ✓</text>
+<text x="410" y="205" text-anchor="middle" font-size="10" fill="#003366">量纲校验 (1.7)：s = (bytes/step)/(B/s) × 无量纲 ✓</text>
+<text x="410" y="230" text-anchor="middle" font-size="9" fill="#57606a">c<sub>pre</sub>, c<sub>dec</sub> 为模型相关常数因子，Qwen3 算例中由 HF 配置确定</text>
+</svg>
+<p class="fig-cap">图 P1-1：性能指标对式 (1.1)–(1.10) 的依赖关系（无环、可逐式推导）</p>
+</div>
+
+<div class="concl"><strong>页总结：</strong>式 (1.1)–(1.10) 构成全文公理；变量域 𝒱 单符单义。<br><strong>过渡：</strong>Agent Workload 改变式 (1.1)–(1.10) 中哪些变量的<strong>取值域</strong>？ → P2</div>
+</section>
+
+<!-- P2 -->
+<section id="p2" class="page">
+<h1 class="ptitle">P2 辨识页：Agent 时代「变了 / 没变」</h1>
+<div class="page-q">待证：命题 2.1（恶化项）、命题 2.2（系数项）→ 推论 2.1（发力点）。本页禁止出现 S类/B类/D类。</div>
+
+<div class="scr"><div class="scr-h">命题 2.1 · Agent 恶化项</div><div class="scr-b">
+<div class="known">【已知】Agent 长生命周期 workload。</div>
+<div class="evi">【陈述】ℓ: ℓ<sub>0</sub>→ℓ<sub>1</sub>, ℓ<sub>1</sub>≫ℓ<sub>0</sub>；N<sub>c</sub>: N<sub>c,0</sub>→N<sub>c,1</sub>, N<sub>c,1</sub>&gt;N<sub>c,0</sub>；V<sub>disp</sub>: 0→V<sub>disp</sub><sup>+</sup>（MoE 多卡）。</div>
+<div class="evi">【证明】<br>
+(1) 多轮会话 + tool 注入 ⇒ ℓ 单调增。<span class="evidence"><a href="https://arxiv.org/html/2606.09916">IntentKV：多轮 KV 2.1×–4.2×</a></span><br>
+(2) 多 Agent 并发 ⇒ N<sub>c</sub> 增。<br>
+(3) MoE EP 部署 ⇒ 每 decode step 存在 dispatch ⇒ V<sub>disp</sub>&gt;0。<span class="evidence"><a href="https://arxiv.org/abs/2412.19437">DeepSeek-V3</a></span><br>
+(4) 代入式 (1.1)：KV<sub>bytes</sub> ∝ ℓ·N<sub>c</sub>，双线性增。</div>
+<div class="so proof-qed">∎ 命题 2.1 成立。</div>
+</div></div>
+
+<div class="scr"><div class="scr-h">命题 2.2 · 系数项不变性</div><div class="scr-b">
+<div class="known">【已知】式 (1.1)(1.7) 的结构函数形式固定。</div>
+<div class="evi">【陈述】F, B<sub>w</sub>, B<sub>r</sub>, B<sub>n</sub>, M, η<sub>b</sub>, η<sub>ov</sub> 仅可通过硬件或 L1 调度改变其<strong>取值</strong>，不改变对 ℓ, V<sub>disp</sub> 的依赖关系。</div>
+<div class="evi">【证明要点】PagedAttention 提高 M 利用率但不引入 ℓ 的变换；DualPipe 增大 η<sub>ov</sub>，式 (1.7) 中 V<sub>disp</sub> 本体不变。<span class="evidence"><a href="https://arxiv.org/abs/2309.06180">PagedAttention</a></span></div>
+<div class="so proof-qed">∎ 命题 2.2 成立。</div>
+</div></div>
+
+<h2>代入算例（Qwen3-30B-A3B）</h2>
+<table>
+<tr><th>场景</th><th>ℓ</th><th>N<sub>c</sub></th><th>KV<sub>bytes</sub>（式 1.1）</th><th>判定</th></tr>
+<tr><td>基线</td><td>32K</td><td>1</td><td>≈3.0 GB</td><td>KV ≪ W</td></tr>
+<tr><td>Agent 并发</td><td>32K</td><td>8</td><td>≈24 GB</td><td>W+KV≈85 GB → OOM</td></tr>
+<tr><td>长上下文 Agent</td><td>128K</td><td>4</td><td>≈48 GB</td><td>State-bound</td></tr>
+</table>
+
+<div class="scr"><div class="scr-h">推论 2.1 · 发力点（由命题 2.1+2.2）</div><div class="scr-b">
+<div class="known">【已知】要改善 T<sub>TTFT</sub>, T<sub>TPOT</sub>, TPS, N<sub>c,max</sub>（式 1.3–1.10）。</div>
+<div class="evi">【反设】若仅调 F, B<sub>*</sub>, η<sub>*</sub> 而不改变 ℓ, V<sub>disp</sub> 在公式中的有效值，则由命题 2.2，式 (1.1) 中 ℓ·N<sub>c</sub> 与式 (1.7) 中 V<sub>disp</sub> 的量级不变，无法抵消命题 2.1 的恶化。</div>
+<div class="so">【所以】<strong>必要</strong>对 ℓ 施加减缩变换（ℓ→ℓ<sub>eff</sub>&lt;ℓ），或对 V<sub>disp</sub> 施加减缩变换（V<sub>disp</sub>→V′&lt;V<sub>disp</sub>）。算子形式在 P4 定义。<br>
+<strong>本页不出现 S类/B类/D类</strong>——仅确立对 ℓ 与 V<sub>disp</sub> 的减缩算子需求。</div>
+</div></div>
+
+<div class="fig">
+<svg viewBox="0 0 700 220" xmlns="http://www.w3.org/2000/svg">
+<text x="20" y="20" font-size="12" font-weight="bold" fill="#003366">图 P2-1 · 双瓶颈正交坐标（推论 2.1）</text>
+<line x1="80" y1="180" x2="620" y2="180" stroke="#333"/><line x1="80" y1="40" x2="80" y2="180" stroke="#333"/>
+<text x="350" y="205" text-anchor="middle" font-size="10">ℓ · N<sub>c</sub>（式 1.1 方向）</text>
+<text x="35" y="110" font-size="10" transform="rotate(-90 35 110)">V<sub>disp</sub>（式 1.7 方向）</text>
+<rect x="400" y="60" width="180" height="90" fill="#e8f0fe" stroke="#003366"/>
+<text x="490" y="85" text-anchor="middle" font-size="9">Agent 恶化区</text>
+<text x="490" y="105" text-anchor="middle" font-size="9">ℓ↑ N<sub>c</sub>↑</text>
+<text x="490" y="125" text-anchor="middle" font-size="9">V<sub>disp</sub>↑</text>
+<text x="200" y="100" text-anchor="middle" font-size="9" fill="#1a7f37">ℓ<sub>eff</sub>=r<sub>ℓ</sub>ℓ 发力点</text>
+<text x="200" y="150" text-anchor="middle" font-size="9" fill="#1a7f37">V′=r<sub>V</sub>V<sub>disp</sub> 发力点</text>
+</svg>
+<p class="fig-cap">图 P2-1：两个独立瓶颈变量，系数优化（命题 2.2）不改变坐标位置</p>
+</div>
+
+<div class="concl"><strong>推论 2.1：</strong>必要减缩 ℓ 或 V<sub>disp</sub>。<br><strong>过渡：</strong>L1 能否实现上述减缩？ → P3</div>
+</section>
+
+<!-- P3 -->
+<section id="p3" class="page">
+<h1 class="ptitle">P3 洞察 · 看业界：L1 算子覆盖范围 <span class="insight">→ I2</span></h1>
+<div class="page-q">命题 3.0：L1 手段 ⊆ {M 管理, 系数 F/B<sub>*</sub>/η<sub>b</sub>, φ<sub>η</sub>}，且 φ<sub>ℓ</sub>∉L1，φ<sub>V</sub>∉L1（对载荷本体）。</div>
+
+<table>
+<tr><th>案例</th><th>形式化</th><th>作用公式</th><th>不变量</th><th>引用</th></tr>
+<tr><td>NVIDIA Dynamo</td><td>M<sub>eff</sub>↑</td><td>式 (1.9) 延迟触顶</td><td>ℓ 不变</td><td><span class="evidence"><a href="https://developer.nvidia.com/blog/introducing-nvidia-dynamo-a-low-latency-distributed-inference-framework-for-scaling-reasoning-ai-models/">Dynamo</a></span></td></tr>
+<tr><td>vLLM / SGLang</td><td>碎片率↓</td><td>M 利用↑</td><td>式 (1.1) 中 ℓ·N<sub>c</sub></td><td><span class="evidence"><a href="https://arxiv.org/abs/2309.06180">PagedAttention</a></span></td></tr>
+<tr><td>华为灵衢</td><td>跨卡 M 池化</td><td>式 (1.9) 扩展</td><td>V<sub>disp</sub> 不减</td><td><span class="evidence"><a href="https://www.huawei.com/cn/news/2025/9/hc-xu-keynote-speech">HC 2025</a></span></td></tr>
+<tr><td>DeepSeek-V3 EP</td><td>暴露 V<sub>disp</sub>&gt;0</td><td>式 (1.7) 激活</td><td>计算:通信≈1:1</td><td><span class="evidence"><a href="https://arxiv.org/abs/2412.19437">arXiv:2412.19437</a></span></td></tr>
+<tr><td>DualPipe</td><td>φ<sub>η</sub>：η<sub>ov</sub>↑</td><td>式 (1.7) (1−η<sub>ov</sub>)↓</td><td>V<sub>disp</sub> 不变</td><td>DeepSeek 技术报告</td></tr>
+</table>
+
+<div class="scr"><div class="scr-h">推论 3.1（洞察 I2）</div><div class="scr-b">
+<div class="known">【已知】推论 2.1 要求 φ<sub>ℓ</sub> 或 φ<sub>V</sub>。</div>
+<div class="evi">【代入】上表无一实现 ℓ→ℓ<sub>eff</sub> 或 V<sub>disp</sub>→V′。</div>
+<div class="so">【所以】L1 <strong>不能</strong>单独满足推论 2.1 的必要条件。算法层算子 𝒪 如何划分？ → P4</div>
+</div></div>
+
+<div class="fig">
+<svg viewBox="0 0 680 160" xmlns="http://www.w3.org/2000/svg">
+<text x="20" y="20" font-size="12" font-weight="bold" fill="#003366">图 P3-1 · L1 作用边界</text>
+<rect x="20" y="40" width="280" height="50" fill="#e8f5e9" stroke="#1a7f37"/><text x="160" y="70" text-anchor="middle" font-size="10">L1 可改：M, η<sub>ov</sub>, η<sub>b</sub>, F, B<sub>*</sub></text>
+<rect x="320" y="40" width="340" height="50" fill="#fff3e0" stroke="#9a6700"/><text x="490" y="70" text-anchor="middle" font-size="10">L1 不可改：ℓ, V<sub>disp</sub>（推论 2.1 必要项）</text>
+<rect x="120" y="110" width="440" height="40" fill="#f7f9fc" stroke="#d0d7de"/><text x="340" y="135" text-anchor="middle" font-size="9">L2 算法插件为减量必选</text>
+</svg>
+<p class="fig-cap">图 P3-1：L1 仅触及命题 2.2 系数项</p>
+</div>
+
+<div class="concl"><strong>I2：</strong>L1 不减 ℓ 与 V<sub>disp</sub> 本体。<br><strong>过渡：</strong>算法层 𝒪 如何划分以覆盖 φ<sub>ℓ</sub>, φ<sub>V</sub>？ → P4（<strong>首次定义 𝒪</strong>）</div>
+</section>
+
+<!-- P4 -->
+<section id="p4" class="page">
+<h1 class="ptitle">P4 洞察 · 看技术：算子三分划的正式导出 <span class="insight">→ I4</span></h1>
+<div class="page-q">由式 (1.1)(1.7) 变量分离，形式导出 𝒪 不交三分划；<strong>此后</strong>引入 S类/B类/D类（定义 4.2）。</div>
+
+<div class="scr"><div class="scr-h">定义 4.0 · 优化问题</div><div class="scr-b">
+给定 (ℓ<sub>1</sub>, N<sub>c,1</sub>, V<sub>disp</sub><sup>+</sup>)，求 φ 使 T<sub>TTFT</sub>(φ), T<sub>TPOT</sub>(φ), TPS(φ), N<sub>c,max</sub>(φ) 相对基线改善。
+</div></div>
+
+<div class="scr"><div class="scr-h">定义 4.1 · 算子空间（域 II）</div><div class="scr-b">
+<div class="domain-o">
+φ<sub>ℓ</sub>: ℓ ↦ ℓ<sub>eff</sub> = r<sub>ℓ</sub>·ℓ, r<sub>ℓ</sub>∈(0,1] &nbsp;|&nbsp;
+φ<sub>b</sub>: b<sub>p</sub> ↦ b<sub>p</sub>′ &lt; b<sub>p</sub> &nbsp;|&nbsp;
+φ<sub>V</sub>: V<sub>disp</sub> ↦ r<sub>V</sub>·V<sub>disp</sub> &nbsp;|&nbsp;
+φ<sub>η</sub>: η<sub>ov</sub> ↦ η<sub>ov</sub>′ &gt; η<sub>ov</sub>
+</div>
+<div class="evi">由式 (1.1)：KV<sub>bytes</sub> = f(L, H<sub>kv</sub>, d<sub>h</sub>, ℓ, b<sub>p</sub>, N<sub>c</sub>)；由式 (1.7)：T<sub>comm</sub> = g(V<sub>disp</sub>, B<sub>n</sub>, η<sub>ov</sub>)。故 𝒪 ⊆ {φ<sub>ℓ</sub>, φ<sub>b</sub>, φ<sub>V</sub>, φ<sub>η</sub>}。</div>
+</div></div>
+
+<div class="scr"><div class="scr-h">命题 4.1 · 不交三分划</div><div class="scr-b">
+<div class="formula eqn" style="font-size:.95rem">𝒪<sup>(ℓ)</sup>≜{φ<sub>ℓ</sub>} &nbsp; ⊔ &nbsp; 𝒪<sup>(b)</sup>≜{φ<sub>b</sub>} &nbsp; ⊔ &nbsp; 𝒪<sup>(κ)</sup>≜{φ<sub>V</sub>, φ<sub>η</sub>} = 𝒪</div>
+<div class="evi">【证明】ℓ, b<sub>p</sub>, V<sub>disp</sub>, η<sub>ov</sub> 在式 (1.1)(1.7) 中<strong>函数分离</strong>（无交叉项），故算子作用独立。∎</div>
+</div></div>
+
+<div class="scr"><div class="scr-h">定义 4.2 · 中文产业标签（域 III，仅此处首次引入）</div><div class="scr-b">
+<div class="domain-l">
+<strong>S类</strong> ≡ 𝒪<sup>(ℓ)</sup>（状态<strong>规模</strong>类，Scale）&nbsp;|&nbsp;
+<strong>B类</strong> ≡ 𝒪<sup>(b)</sup>（状态<strong>表达</strong>类，Bit-representation）&nbsp;|&nbsp;
+<strong>D类</strong> ≡ 𝒪<sup>(κ)</sup>（<strong>通信</strong>调度类，dispatch/overlap）
+</div>
+<p class="footnote"><strong>脚注：</strong>S类/B类/D类为产业助记简称，<strong>不是</strong>式 (1.x) 中的变量。公式内永远写 ℓ, b<sub>p</sub>, V<sub>disp</sub>。κ 表示 communication，不用字母 D 作域标签（避免与 d<sub>h</sub> 混淆）。</p>
+</div></div>
+
+<h2>命题 4.2 · 各类对推论 2.1 的充分性</h2>
+<table>
+<tr><th>算子类</th><th>作用变量</th><th>主效应（式）</th><th>满足推论 2.1？</th></tr>
+<tr><td>𝒪<sup>(ℓ)</sup>（S类）</td><td>ℓ→ℓ<sub>eff</sub></td><td>(1.1)(1.4)(1.6)↓</td><td><strong>是</strong>（必要类之一）</td></tr>
+<tr><td>𝒪<sup>(b)</sup>（B类）</td><td>b<sub>p</sub>→b<sub>p</sub>′</td><td>(1.1) 线性↓</td><td>偏充分；b<sub>p</sub> 有下界</td></tr>
+<tr><td>𝒪<sup>(κ)</sup>, φ<sub>V</sub></td><td>V<sub>disp</sub>↓</td><td>(1.7)↓</td><td><strong>是</strong>（必要类之一）</td></tr>
+<tr><td>𝒪<sup>(κ)</sup>, φ<sub>η</sub></td><td>η<sub>ov</sub>↑</td><td>(1.7)↓</td><td>不充分（V<sub>disp</sub> 未减）</td></tr>
+</table>
+
+<h2>学术代表 · 算子映射</h2>
+<table>
+<tr><th>算子类</th><th>代表</th><th>论文锚点</th><th>形式化</th></tr>
+<tr><td>𝒪<sup>(ℓ)</sup></td><td>SnapKV, H2O, IntentKV</td><td><span class="evidence"><a href="https://arxiv.org/abs/2404.14469">SnapKV</a> · <a href="https://arxiv.org/abs/2306.14048">H2O</a> · IntentKV</span></td><td>φ<sub>ℓ</sub></td></tr>
+<tr><td>𝒪<sup>(b)</sup></td><td>KIVI, TurboQuant</td><td><span class="evidence"><a href="https://research.google/blog/turboquant-redefining-ai-efficiency-with-extreme-compression/">TurboQuant</a></span></td><td>φ<sub>b</sub></td></tr>
+<tr><td>𝒪<sup>(κ)</sup>, φ<sub>V</sub></td><td>MegaScale-MoE</td><td><span class="evidence"><a href="https://arxiv.org/abs/2505.11432">arXiv:2505.11432</a></span></td><td>φ<sub>V</sub></td></tr>
+<tr><td>𝒪<sup>(κ)</sup>, φ<sub>η</sub></td><td>DualPipe</td><td>DeepSeek 技术报告</td><td>φ<sub>η</sub></td></tr>
+</table>
+
+<div class="scr"><div class="scr-h">推论 4.1（洞察 I4）</div><div class="scr-b">
+<div class="so">满足推论 2.1 的<strong>最小算子覆盖</strong>为 𝒪<sup>(ℓ)</sup> × 𝒪<sup>(κ)</sup><sub>φ<sub>V</sub></sub>。<br>
+𝒪<sup>(b)</sup>（B类）为通用基础能力，非 Agent 瓶颈下主攻（b<sub>p</sub> 下界约束，TurboQuant 6×+ 已近边际）。</div>
+</div></div>
+
+<div class="fig">
+<svg viewBox="0 0 720 200" xmlns="http://www.w3.org/2000/svg">
+<text x="20" y="18" font-size="12" font-weight="bold" fill="#003366">图 P4-1 · 算子三分划（命题 4.1）→ 中文标签（定义 4.2）</text>
+<rect x="30" y="35" width="200" height="55" fill="#e8f5e9" stroke="#1a7f37"/><text x="130" y="58" text-anchor="middle" font-size="10" font-weight="bold">𝒪<sup>(ℓ)</sup> = {φ<sub>ℓ</sub>}</text><text x="130" y="78" text-anchor="middle" font-size="9">⇔ S类（状态规模类）</text>
+<rect x="260" y="35" width="200" height="55" fill="#fff3e0" stroke="#9a6700"/><text x="360" y="58" text-anchor="middle" font-size="10" font-weight="bold">𝒪<sup>(b)</sup> = {φ<sub>b</sub>}</text><text x="360" y="78" text-anchor="middle" font-size="9">⇔ B类（状态表达类）</text>
+<rect x="490" y="35" width="200" height="55" fill="#fce4ec" stroke="#c2185b"/><text x="590" y="58" text-anchor="middle" font-size="10" font-weight="bold">𝒪<sup>(κ)</sup> = {φ<sub>V</sub>,φ<sub>η</sub>}</text><text x="590" y="78" text-anchor="middle" font-size="9">⇔ D类（通信调度类）</text>
+<text x="360" y="115" text-anchor="middle" font-size="9" fill="#57606a">推导链：式(1.1)(1.7) 变量分离 → 命题4.1 → 定义4.2 标签</text>
+<rect x="80" y="130" width="280" height="50" fill="#e8f0fe" stroke="#003366"/><text x="220" y="160" text-anchor="middle" font-size="9">主攻：φ<sub>ℓ</sub> + φ<sub>V</sub>（推论 4.1）</text>
+<rect x="380" y="130" width="280" height="50" fill="#f7f9fc" stroke="#d0d7de"/><text x="520" y="160" text-anchor="middle" font-size="9">基础：φ<sub>b</sub>（B类，非主攻）</text>
+</svg>
+<p class="fig-cap">图 P4-1：S类/B类/D类 由算子三分划形式导出，非突现分类</p>
+</div>
+
+<div class="concl"><strong>I4：</strong>最小覆盖 φ<sub>ℓ</sub>+φ<sub>V</sub>；B类边际收敛。<br><strong>过渡：</strong>如何固化为课题？ → P5</div>
+</section>
+
+<!-- P5 -->
+<section id="p5" class="page">
+<h1 class="ptitle">P5 战略收敛：定理 5.1 与收益叠加</h1>
+<div class="page-q">定理 5.1：在命题 2.1 条件下，同时改善 State-bound 与 Comm-bound 的必要策略至少包含 φ<sub>ℓ</sub> 与 φ<sub>V</sub>。</div>
+
+<div class="scr"><div class="scr-h">定理 5.1 · 双课题必要性</div><div class="scr-b">
+<div class="known">【已知】推论 2.1 + 推论 4.1 + 推论 3.1（L1 不足）。</div>
+<div class="evi">State-bound：式 (1.1)(1.9) 由 ℓ·N<sub>c</sub> 主导 → 需 φ<sub>ℓ</sub> ∈ 𝒪<sup>(ℓ)</sup>。<br>
+Comm-bound：式 (1.7) 由 V<sub>disp</sub> 主导 → 需 φ<sub>V</sub> ∈ 𝒪<sup>(κ)</sup>（φ<sub>η</sub> 不充分）。</div>
+<div class="so">【所以】<br>
+<span class="topic">课题 N</span>：实现 φ<sub>ℓ</sub>（KV 状态语义筛选压缩），ℓ<sub>eff</sub>=r<sub>ℓ</sub>ℓ。<br>
+<span class="topic">课题 N+1</span>：实现 φ<sub>V</sub>（MoE 通信减量），V′=r<sub>V</sub>V<sub>disp</sub>。</div>
+</div></div>
+
+<h2>假设 5.A · 收益叠加（显式声明）</h2>
+<p class="footnote">r<sub>ℓ</sub> 与 r<sub>V</sub> 分别作用于式 (1.1) 与式 (1.7)，在工程测量窗口内近似<strong>独立</strong>。<strong>失效条件</strong>：φ<sub>ℓ</sub> 与 φ<sub>V</sub> 竞争同一硬件资源（HBM 带宽）时，独立性假设需重新验证。</p>
+<table>
+<tr><th>课题</th><th>算子</th><th>作用式</th><th>预估时延因子</th><th>预估吞吐因子</th></tr>
+<tr><td>N</td><td>φ<sub>ℓ</sub></td><td>(1.1)(1.4)(1.6)</td><td>1.3</td><td>1.4</td></tr>
+<tr><td>N+1</td><td>φ<sub>V</sub></td><td>(1.7)(1.5)</td><td>1.2</td><td>1.3</td></tr>
+<tr><td>联合（假设 5.A）</td><td>φ<sub>ℓ</sub>∘φ<sub>V</sub></td><td>—</td><td><strong>≈1.56</strong></td><td><strong>≈1.82</strong></td></tr>
+</table>
+<p class="footnote">* 上表为研发启动前预估，需阶段性验证。终局目标：时延 <strong>1.5×</strong>、吞吐 <strong>2×</strong>（2028）。</p>
+
+<div class="fig">
+<svg viewBox="0 0 700 140" xmlns="http://www.w3.org/2000/svg">
+<text x="20" y="18" font-size="12" font-weight="bold" fill="#003366">图 P5-1 · 证明树（附录完整版摘要）</text>
+<text x="40" y="45" font-size="9">式(1.1)–(1.10)</text><text x="140" y="45" font-size="12">→</text><text x="165" y="45" font-size="9">命题2.1/2.2</text><text x="260" y="45" font-size="12">→</text><text x="285" y="45" font-size="9">推论2.1</text>
+<text x="360" y="45" font-size="12">→</text><text x="385" y="45" font-size="9">推论3.1(I2)</text><text x="470" y="45" font-size="12">→</text><text x="495" y="45" font-size="9">命题4.1/推论4.1</text>
+<text x="40" y="85" font-size="12">→</text><text x="65" y="85" font-size="9">定理5.1</text><text x="140" y="85" font-size="12">→</text><text x="165" y="85" font-size="9" font-weight="bold">课题N(φ<sub>ℓ</sub>)</text><text x="280" y="85" font-size="12">+</text><text x="305" y="85" font-size="9" font-weight="bold">课题N+1(φ<sub>V</sub>)</text>
+<text x="40" y="115" font-size="9" fill="#57606a">无跳跃：每一结论均可回溯至式(1.x)</text>
+</svg>
+<p class="fig-cap">图 P5-1：从公理到课题的演绎链</p>
+</div>
+
+<div class="concl"><strong>定理 5.1 结论：</strong>课题 N + N+1 为推论 2.1 的显式解。<br><strong>过渡：</strong>各课题 KPI 如何与式 (1.x) 对齐？ → P6/P7</div>
+</section>
+
+<!-- P6 -->
+<section id="p6" class="page">
+<h1 class="ptitle">P6 课题 N：KV 状态语义筛选压缩（φ<sub>ℓ</sub>）</h1>
+<div class="carry"><strong>回溯：</strong>定理 5.1 · 算子 φ<sub>ℓ</sub> ∈ 𝒪<sup>(ℓ)</sup>（S类）</div>
+
+<div class="scr"><div class="scr-h">形式化目标</div><div class="scr-b">
+<div class="formula eqn" style="font-size:.95rem">ℓ<sub>eff</sub> = r<sub>ℓ</sub> · ℓ, &nbsp; r<sub>ℓ</sub> ∈ (0,1]</div>
+<div class="evi"><strong>作用链：</strong>r<sub>ℓ</sub>↓ ⇒ 式 (1.1) KV<sub>bytes</sub>↓ ⇒ 式 (1.4) T<sub>pre</sub>↓ ⇒ 式 (1.3) T<sub>TTFT</sub>↓；式 (1.6) T<sub>dec</sub>↓ ⇒ 式 (1.5) T<sub>TPOT</sub>↓；式 (1.9) N<sub>c,max</sub>↑。</div>
+</div></div>
+
+<table>
+<tr><th>KPI（2026）</th><th>公式映射</th><th>目标</th></tr>
+<tr><td>TTFT ↓</td><td>式 (1.3)(1.4)，ℓ=128K</td><td>≥30%</td></tr>
+<tr><td>并发 ↑</td><td>式 (1.9)，N<sub>c,max</sub></td><td>≥1.4×</td></tr>
+</table>
+
+<h2>技术路线</h2>
+<ul style="margin:.5rem 0 .5rem 1.2rem;font-size:.9rem">
+<li>突破统计型 Attention 筛选（SnapKV/H2O 基线），升至 Agent 语义判别层。</li>
+<li>综合对话逻辑、任务类型、tool 调用行为判定 KV 有效性。</li>
+<li>对标 IntentKV（peak ↓77.8%）<span class="evidence"><a href="https://arxiv.org/html/2606.09916">IntentKV</a></span>，增量在 Agent 轨迹评测与引擎集成。</li>
+</ul>
+
+<div class="fig">
+<svg viewBox="0 0 700 120" xmlns="http://www.w3.org/2000/svg">
+<text x="20" y="18" font-size="11" font-weight="bold" fill="#003366">图 P6-1 · φ<sub>ℓ</sub> 挂载流水线</text>
+<rect x="20" y="35" width="90" height="40" fill="#003366"/><text x="65" y="60" text-anchor="middle" font-size="8" fill="#fff">Agent 上下文</text>
+<text x="115" y="58" font-size="12">→</text>
+<rect x="125" y="35" width="110" height="40" fill="#0550ae"/><text x="180" y="60" text-anchor="middle" font-size="8" fill="#fff">语义筛选 φ<sub>ℓ</sub></text>
+<text x="240" y="58" font-size="12">→</text>
+<rect x="250" y="35" width="100" height="40" fill="#e8f0fe" stroke="#003366"/><text x="300" y="55" text-anchor="middle" font-size="8">ℓ<sub>eff</sub>=r<sub>ℓ</sub>ℓ</text>
+<text x="355" y="58" font-size="12">→</text>
+<rect x="365" y="35" width="130" height="40" fill="#e8f0fe" stroke="#003366"/><text x="430" y="55" text-anchor="middle" font-size="8">式(1.1) KV↓</text>
+<text x="500" y="58" font-size="12">→</text>
+<rect x="510" y="35" width="160" height="40" fill="#1a7f37"/><text x="590" y="55" text-anchor="middle" font-size="8" fill="#fff">TTFT↓ TPOT↓ N<sub>c,max</sub>↑</text>
+</svg>
+<p class="fig-cap">图 P6-1：φ<sub>ℓ</sub> 作用路径与式 (1.1)–(1.9) 对齐</p>
+</div>
+
+<div class="concl"><strong>课题 N：</strong>式 (1.1) 中 ℓ 的减缩算子 φ<sub>ℓ</sub>，S类（𝒪<sup>(ℓ)</sup>）主攻方向。</div>
+</section>
+
+<!-- P7 -->
+<section id="p7" class="page">
+<h1 class="ptitle">P7 课题 N+1：MoE 通信减量（φ<sub>V</sub>）</h1>
+<div class="carry"><strong>回溯：</strong>定理 5.1 · 算子 φ<sub>V</sub> ∈ 𝒪<sup>(κ)</sup>（D类），与 φ<sub>η</sub> 正交</div>
+
+<div class="scr"><div class="scr-h">形式化目标</div><div class="scr-b">
+<div class="formula eqn" style="font-size:.95rem">V′<sub>disp</sub> = r<sub>V</sub> · V<sub>disp</sub>, &nbsp; r<sub>V</sub> ∈ (0,1]</div>
+<div class="evi"><strong>作用链：</strong>r<sub>V</sub>↓ ⇒ 式 (1.7) T<sub>comm</sub>↓ ⇒ 式 (1.5) T<sub>TPOT</sub>↓ ⇒ 式 (1.8) TPS↑；式 (1.10) T<sub>p99</sub>↓（k<sub>tail</sub> 放大减弱）。</div>
+<p class="footnote">φ<sub>η</sub>（DualPipe）为 L1 使能；φ<sub>V</sub> 为 L2 主攻——减载荷本体，非仅调 (1−η<sub>ov</sub>)。</p>
+</div></div>
+
+<table>
+<tr><th>KPI（2027）</th><th>公式映射</th><th>目标</th></tr>
+<tr><td>TPOT ↓</td><td>式 (1.5)–(1.7)，8 卡 MoE</td><td>≥25%</td></tr>
+<tr><td>T<sub>p99</sub> ↓</td><td>式 (1.10)</td><td>≥20%</td></tr>
+<tr><td>多卡 TPS ↑</td><td>式 (1.8)</td><td>≥1.3×</td></tr>
+</table>
+
+<h2>技术路线</h2>
+<ul style="margin:.5rem 0 .5rem 1.2rem;font-size:.9rem">
+<li>任务感知动态路由 + 数据流轻量化编码，削减专家 dispatch/聚合载荷。</li>
+<li>对标 MegaScale-MoE FP8 all-to-all <span class="evidence"><a href="https://arxiv.org/abs/2505.11432">arXiv:2505.11432</a></span>、DeepEP（链路效率，与 φ<sub>V</sub> 正交）。</li>
+<li>配合 φ<sub>η</sub>（DualPipe）放大收益。</li>
+</ul>
+
+<div class="fig">
+<svg viewBox="0 0 700 120" xmlns="http://www.w3.org/2000/svg">
+<text x="20" y="18" font-size="11" font-weight="bold" fill="#003366">图 P7-1 · φ<sub>V</sub> 与 φ<sub>η</sub> 正交</text>
+<rect x="20" y="40" width="140" height="45" fill="#fce4ec" stroke="#c2185b"/><text x="90" y="60" text-anchor="middle" font-size="8">φ<sub>V</sub>：V<sub>disp</sub>↓</text><text x="90" y="75" text-anchor="middle" font-size="8">式(1.7) 分子</text>
+<rect x="180" y="40" width="140" height="45" fill="#fff3e0" stroke="#9a6700"/><text x="250" y="60" text-anchor="middle" font-size="8">φ<sub>η</sub>：η<sub>ov</sub>↑</text><text x="250" y="75" text-anchor="middle" font-size="8">式(1.7) 分母项</text>
+<text x="340" y="65" font-size="14">→</text>
+<rect x="360" y="40" width="200" height="45" fill="#e8f0fe" stroke="#003366"/><text x="460" y="67" text-anchor="middle" font-size="9">T<sub>comm</sub>↓ → T<sub>TPOT</sub>↓ → TPS↑</text>
+</svg>
+<p class="fig-cap">图 P7-1：φ<sub>V</sub>（主攻）与 φ<sub>η</sub>（使能）作用于式 (1.7) 不同因子</p>
+</div>
+
+<div class="concl"><strong>课题 N+1：</strong>式 (1.7) 中 V<sub>disp</sub> 的减缩算子 φ<sub>V</sub>，D类（𝒪<sup>(κ)</sup>）主攻方向。</div>
+</section>
+
+<!-- P8 -->
+<section id="p8" class="page">
+<h1 class="ptitle">P8 三阶段迭代路线图</h1>
+
+<table>
+<tr><th>时间</th><th>课题 N（φ<sub>ℓ</sub>）</th><th>课题 N+1（φ<sub>V</sub>）</th><th>公式里程碑</th><th>时延</th><th>吞吐</th></tr>
+<tr><td>2026 Q2–Q3</td><td>算法原型</td><td>算法原型</td><td>r<sub>ℓ</sub>, r<sub>V</sub> 单点验证</td><td>—</td><td>—</td></tr>
+<tr><td>2026 Q4</td><td>单卡 ℓ=128K 验证</td><td>8 卡 MoE 验证</td><td>式 (1.4)(1.7) 达标</td><td>1.25×</td><td>1.4×</td></tr>
+<tr><td>2027 Q1–Q2</td><td>鲁棒性增强</td><td>全链路落地</td><td>引擎集成</td><td>—</td><td>—</td></tr>
+<tr><td>2027 Q3–Q4</td><td>联合优化 φ<sub>ℓ</sub>∘φ<sub>V</sub></td><td>联合优化</td><td>假设 5.A 验证</td><td>1.45×</td><td>1.75×</td></tr>
+<tr><td>2028+</td><td>全场景泛化</td><td>极限通信减量</td><td>终局收敛</td><td><strong>1.5×</strong></td><td><strong>2×</strong></td></tr>
+</table>
+
+<div class="fig">
+<svg viewBox="0 0 720 100" xmlns="http://www.w3.org/2000/svg">
+<text x="20" y="18" font-size="11" font-weight="bold" fill="#003366">图 P8-1 · 里程碑时间轴</text>
+<line x1="40" y1="55" x2="680" y2="55" stroke="#333" stroke-width="2"/>
+<circle cx="100" cy="55" r="6" fill="#0550ae"/><text x="100" y="80" text-anchor="middle" font-size="8">2026Q4</text><text x="100" y="40" text-anchor="middle" font-size="7">1.25×/1.4×</text>
+<circle cx="300" cy="55" r="6" fill="#0550ae"/><text x="300" y="80" text-anchor="middle" font-size="8">2027Q2</text><text x="300" y="40" text-anchor="middle" font-size="7">集成</text>
+<circle cx="500" cy="55" r="6" fill="#0550ae"/><text x="500" y="80" text-anchor="middle" font-size="8">2027Q4</text><text x="500" y="40" text-anchor="middle" font-size="7">1.45×/1.75×</text>
+<circle cx="650" cy="55" r="8" fill="#003366"/><text x="650" y="80" text-anchor="middle" font-size="8">2028+</text><text x="650" y="40" text-anchor="middle" font-size="7" font-weight="bold">1.5×/2×</text>
+</svg>
+<p class="fig-cap">图 P8-1：各阶段 KPI 与式 (1.3)–(1.8) 因子改善对齐</p>
+</div>
+
+<div class="concl"><strong>路线图：</strong>三阶段逐式验证 r<sub>ℓ</sub>, r<sub>V</sub>，2028 达成时延 1.5×、吞吐 2×。</div>
+</section>
+
+<!-- APPENDIX -->
+<section id="appendix" class="page">
+<h1 class="ptitle">附录：符号索引 · 证明树 · 论断来源</h1>
+
+<h2>A.1 三层符号域索引</h2>
+<table>
+<tr><th>域</th><th>符号/标签</th><th>首次定义</th><th>禁止混用</th></tr>
+<tr><td>𝒱</td><td>ℓ, d<sub>h</sub>, b<sub>p</sub>, H<sub>kv</sub>, N<sub>c</sub>, V<sub>disp</sub></td><td>P1</td><td>—</td></tr>
+<tr><td>𝒪</td><td>φ<sub>ℓ</sub>, φ<sub>b</sub>, φ<sub>V</sub>, φ<sub>η</sub>, 𝒪<sup>(ℓ)</sup>, 𝒪<sup>(b)</sup>, 𝒪<sup>(κ)</sup></td><td>P4 定义 4.1</td><td>—</td></tr>
+<tr><td>ℒ</td><td>S类, B类, D类</td><td>P4 定义 4.2</td><td>≠ ℓ, ≠ b<sub>p</sub>, ≠ d<sub>h</sub></td></tr>
+</table>
+
+<h2>A.2 公式索引</h2>
+<table>
+<tr><th>编号</th><th>公式</th><th>量纲</th></tr>
+<tr><td>(1.1)</td><td>KV<sub>bytes</sub> = 2·L·H<sub>kv</sub>·d<sub>h</sub>·ℓ·(b<sub>p</sub>/8)·N<sub>c</sub></td><td>bytes</td></tr>
+<tr><td>(1.7)</td><td>T<sub>comm</sub> ≈ (V<sub>disp</sub>/B<sub>n</sub>)·(1−η<sub>ov</sub>)</td><td>s</td></tr>
+<tr><td>(1.9)</td><td>N<sub>c,max</sub> = ⌊(M−W)/KV<sub>bytes</sub>(ℓ,1)⌋</td><td>—</td></tr>
+</table>
+
+<h2>A.3 页间证明链</h2>
+<pre style="font-size:.82rem;background:var(--bg-alt);padding:1rem;border:1px solid var(--border);overflow-x:auto">
+式(1.1)–(1.10) [P1]
+  ├─ 命题2.1：ℓ↑, Nc↑, Vdisp↑ [P2]
+  ├─ 命题2.2：系数项不改结构 [P2]
+  └─ 推论2.1：必要 φℓ 或 φV [P2]
+       ├─ 推论3.1(I2)：L1 不覆盖 φℓ, φV [P3]
+       ├─ 命题4.1：𝒪 三分划 [P4]
+       ├─ 定义4.2：S类/B类/D类 ≡ 𝒪^(ℓ)/𝒪^(b)/𝒪^(κ) [P4]
+       └─ 推论4.1(I4)：最小覆盖 φℓ+φV [P4]
+            └─ 定理5.1：课题N + 课题N+1 [P5]
+                 ├─ P6：φℓ KPI ↔ 式(1.1)(1.4)(1.9)
+                 └─ P7：φV KPI ↔ 式(1.7)(1.5)(1.10)
+</pre>
+
+<h2>A.4 论断-来源索引</h2>
+<table>
+<tr><th>论断</th><th>来源</th></tr>
+<tr><td>多轮 KV 2.1×–4.2×</td><td><a href="https://arxiv.org/html/2606.09916">IntentKV</a></td></tr>
+<tr><td>MoE 计算:通信≈1:1</td><td><a href="https://arxiv.org/abs/2412.19437">DeepSeek-V3</a></td></tr>
+<tr><td>SnapKV 3.6×/8.2×</td><td><a href="https://arxiv.org/abs/2404.14469">arXiv:2404.14469</a></td></tr>
+<tr><td>H2O 流式 KV</td><td><a href="https://arxiv.org/abs/2306.14048">arXiv:2306.14048</a></td></tr>
+<tr><td>TurboQuant 6×+</td><td><a href="https://research.google/blog/turboquant-redefining-ai-efficiency-with-extreme-compression/">Google Research</a></td></tr>
+<tr><td>MegaScale-MoE FP8</td><td><a href="https://arxiv.org/abs/2505.11432">arXiv:2505.11432</a></td></tr>
+<tr><td>PagedAttention</td><td><a href="https://arxiv.org/abs/2309.06180">arXiv:2309.06180</a></td></tr>
+<tr><td>Qwen3-30B-A3B 参数</td><td><a href="https://huggingface.co/Qwen/Qwen3-30B-A3B">HuggingFace</a></td></tr>
+</table>
+
+<h2>A.5 数学专家审校清单</h2>
+<table>
+<tr><th>项</th><th>状态</th></tr>
+<tr><td>公式域无重载（d<sub>h</sub>≠D类，ℓ≠S类，b<sub>p</sub>≠B类）</td><td>✓</td></tr>
+<tr><td>S类/B类/D类 仅在 P4 定义 4.2 后出现</td><td>✓</td></tr>
+<tr><td>式 (1.1) 量纲 bytes = ··×(bits/8)</td><td>✓</td></tr>
+<tr><td>推论 2.1 有反设证明</td><td>✓</td></tr>
+<tr><td>命题 4.1 基于变量分离</td><td>✓</td></tr>
+<tr><td>假设 5.A 及失效条件已声明</td><td>✓</td></tr>
+<tr><td>假设 1.A（Prefill 线性 / Θ(ℓ²) 脚注）</td><td>✓</td></tr>
+<tr><td>预估收益标注「研发启动前预估」</td><td>✓</td></tr>
+</table>
+
+<h2>A.6 Qwen3-30B-A3B 演算表（手算可复现）</h2>
+<table>
+<tr><th>ℓ</th><th>N<sub>c</sub></th><th>计算式</th><th>KV<sub>bytes</sub></th></tr>
+<tr><td>8K</td><td>1</td><td>98304×8192</td><td>≈0.8 GB</td></tr>
+<tr><td>32K</td><td>1</td><td>98304×32768</td><td>≈3.0 GB</td></tr>
+<tr><td>32K</td><td>8</td><td>98304×32768×8</td><td>≈24 GB</td></tr>
+<tr><td>128K</td><td>4</td><td>98304×131072×4</td><td>≈48 GB</td></tr>
+</table>
+</section>
+
+</main>
+</body>
+</html>

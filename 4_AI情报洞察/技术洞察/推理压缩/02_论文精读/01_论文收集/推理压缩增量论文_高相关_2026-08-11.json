@@ -1,0 +1,3323 @@
+{
+  "generated_at": "2026-08-11T11:36:36.760829",
+  "source_file": "C:\\Users\\Huawei\\Documents\\code\\Obsidian\\4_AI情报洞察\\inference_compression_incremental.json",
+  "date_range": "2026-07-05 to 2026-08-11",
+  "raw_new_count": 1180,
+  "high_relevance_count": 134,
+  "selection_rule": {
+    "base": "仓库 filter_inference_compression_v5.py 的标题严格匹配规则",
+    "additional_exclusions": [
+      "lora adaptation",
+      "federated",
+      "physics-informed",
+      "medical",
+      "retinal",
+      "traffic sign",
+      "emotion recognition",
+      "recommendation",
+      "backdoor prompt",
+      "prompt injection",
+      "sentiment classification",
+      "diffusion model",
+      "visual upscaling",
+      "image generation",
+      "audio",
+      "speech",
+      "tts",
+      "asr"
+    ],
+    "note": "高精度阅读集；原始高召回结果仍完整保留，不从数据库删除。"
+  },
+  "object_counts": {
+    "状态(State/KV)": 40,
+    "参数(Weights)": 81,
+    "通信(Comm)": 22
+  },
+  "method_counts": {
+    "稀疏(Sparse)": 19,
+    "蒸馏(Distill)": 26,
+    "低秩(LowRank)": 11,
+    "量化(Quant)": 33,
+    "剪枝(Prune)": 17
+  },
+  "papers": [
+    {
+      "id": "2608.09291",
+      "date": "2026-08-10",
+      "title": "UnionSparse: An Index-Efficient Sparsity Framework for Low-Bit Sparse LLM Inference on Edge",
+      "summary": "Edge LLM inference combines sparsity and low-bit quantization to meet device memory, latency, and power limits. Yet quantization shrinks weight payloads without proportionally reducing sparse metadata, so index traffic and nonzero extraction become critical SpMM bottlenecks. We introduce the Payload-to-Metadata Ratio (PMR) and show that improving PMR raises effective compute intensity in decoding.   We present UnionSparse, an index-efficient framework that combines Index-Efficient Bitmap Encoding (IE-BME) with a SpMM kernel using Low-Bit Shared-Memory Parallel Decoding (LSPD). IE-BME amortizes",
+      "authors": [
+        "Tianhao Jiang",
+        "Hang Gu",
+        "Teng Wang",
+        "Qianyu Cheng",
+        "ZhenDong Zheng"
+      ],
+      "query_source": "quantization",
+      "objects": [
+        "参数"
+      ],
+      "methods": [
+        "量化",
+        "剪枝/稀疏"
+      ],
+      "strict_score": 2,
+      "matched_objects_v5": [
+        "状态(State/KV)"
+      ],
+      "matched_methods_v5": [
+        "稀疏(Sparse)"
+      ]
+    },
+    {
+      "id": "2608.08878",
+      "date": "2026-08-09",
+      "title": "DistillCache: KL-Guided Adaptive KV-Cache Eviction for Memory-Efficient LLM Inference",
+      "summary": "Transformer-based large language models (LLMs) achieve strong performance across many tasks, but their Key-Value (KV) cache grows linearly with sequence length, creating a severe memory bottleneck for long-context inference. Existing heuristic eviction methods (e.g., H$_2$O and SnapKV) rely on static attention or positional signals that often fail to capture a token's future predictive influence. We propose DistillCache, a reinforcement learning framework that formulates KV-cache eviction as a sequential decision problem. DistillCache learns a lightweight policy network using rich internal mod",
+      "authors": [
+        "Asaad Althoubi"
+      ],
+      "query_source": "KV_cache",
+      "objects": [
+        "KV",
+        "参数"
+      ],
+      "methods": [
+        "蒸馏"
+      ],
+      "strict_score": 3,
+      "matched_objects_v5": [
+        "状态(State/KV)",
+        "参数(Weights)"
+      ],
+      "matched_methods_v5": [
+        "蒸馏(Distill)"
+      ]
+    },
+    {
+      "id": "2608.08506",
+      "date": "2026-08-09",
+      "title": "Understanding Calibration and Truncation Error Propagation in Training-Free Low-Rank Compression for LLMs",
+      "summary": "Training-free low-rank compression frameworks have been gaining prominence for LLM compression given their effectiveness in reducing model parameter count while maintaining task-level accuracy. However, existing SOTA frameworks share two key limitations: (1) residual errors in calibration data activations accumulate across layers during compression, causing misalignment between representations simulated at compression time and those experienced at inference; (2) the assumption that layer importance distribution is preserved post-compression does not hold. Together, these two effects introduce ",
+      "authors": [
+        "Mohanad Odema",
+        "Gabrielle De Micheli",
+        "Dayin Gou",
+        "Nilesh Malpeddi",
+        "Prathamesh Vaste"
+      ],
+      "query_source": "low_rank",
+      "objects": [
+        "参数",
+        "激活"
+      ],
+      "methods": [
+        "低秩"
+      ],
+      "strict_score": 2,
+      "matched_objects_v5": [
+        "参数(Weights)"
+      ],
+      "matched_methods_v5": [
+        "低秩(LowRank)"
+      ]
+    },
+    {
+      "id": "2608.08910",
+      "date": "2026-08-09",
+      "title": "Tied Trit-Planes: Constraining PTQTP to a Uniform Nine-Level Quantizer, with a Persistent Folded Format for Disk-Streamed Mixture-of-Experts Serving",
+      "summary": "PTQTP decomposes LLM weight matrices into two ternary (trit) planes with two free per-group scales. Tying the scales to a fixed ratio of three collapses the decomposition into a single uniform nine-level quantizer, a known balanced-ternary identity. To our knowledge, at the time of writing, this work is the first to impose that identity as a constraint inside PTQTP's solver. The two trit planes then fold losslessly into one 4-bit code plane that we make the persistent serving representation: disk bytes, expert-cache bytes, and kernel input are the same 4.0625-bits/weight blocks, consumed in on",
+      "authors": [
+        "Matteo Grella"
+      ],
+      "query_source": "moe",
+      "objects": [
+        "参数"
+      ],
+      "methods": [
+        "量化",
+        "低秩"
+      ],
+      "strict_score": 2,
+      "matched_objects_v5": [
+        "通信(Comm)"
+      ],
+      "matched_methods_v5": [
+        "量化(Quant)"
+      ]
+    },
+    {
+      "id": "2608.08650",
+      "date": "2026-08-09",
+      "title": "The Evolution of Mixture-of-Experts Architectures in Large Language Models: Routing, Topology, Load Balancing, and Expert Parallelism",
+      "summary": "Mixture-of-Experts models increase parameter capacity while keeping the computation activated by each token bounded, but their architectural evolution cannot be explained by a chronological list of model releases alone. This technical survey synthesizes primary papers, official technical reports, and prior surveys to organize modern Mixture-of-Experts systems along five coupled dimensions: expert granularity, expert topology, routing freedom, the scope of load balancing, and execution structure. We describe eight architectural milestones as a dependency graph with six mainline developments and",
+      "authors": [
+        "Jiguo Li"
+      ],
+      "query_source": "moe",
+      "objects": [
+        "参数",
+        "通信"
+      ],
+      "methods": [],
+      "strict_score": 1,
+      "matched_objects_v5": [
+        "通信(Comm)"
+      ],
+      "matched_methods_v5": []
+    },
+    {
+      "id": "2608.08168",
+      "date": "2026-08-08",
+      "title": "Thinking vs. NoThinking: Towards Interpreting Reasoning Mechanisms of Large Language Models via Sparse Autoencoders",
+      "summary": "While Large Language Models (LLMs) employing Chain-of-Thought (CoT) exhibit superior reasoning capabilities, the neural mechanisms distinguishing this explicit Thinking mode from direct answer generation (NoThinking mode) remain poorly understood. To deconstruct this cognitive process, we apply Top-K Sparse Autoencoders (SAEs) to the intermediate representations of DeepSeek-R1-Distill-Qwen-7B and examine the model's divergent behaviors across math-solving tasks of three distinct difficulty levels. Observationally, we identify a clear distinction in how the model functions under two reasoning m",
+      "authors": [
+        "Bo Cheng",
+        "Qiaolin Lu",
+        "Yi Chang",
+        "Yuan Wu"
+      ],
+      "query_source": "distillation_broad",
+      "objects": [],
+      "methods": [
+        "剪枝/稀疏",
+        "蒸馏"
+      ],
+      "strict_score": 2,
+      "matched_objects_v5": [
+        "状态(State/KV)"
+      ],
+      "matched_methods_v5": [
+        "稀疏(Sparse)"
+      ]
+    },
+    {
+      "id": "2608.08188",
+      "date": "2026-08-08",
+      "title": "Quantization Degradation in Large Language Models: A Signal-Noise Perspective",
+      "summary": "Post-training quantization reduces the deployment cost of large language models, yet how severely a quantized model degrades is not determined by bit-width alone. We systematically study weight-only post-training quantization across bit-widths, quantization methods, model scales and downstream tasks on multiple model families. We observe that such degradation varies substantially across these factors: 4-bit quantization usually preserves performance, 2-bit often causes broad degradation, and at 3-bit, degradation becomes apparent but varies markedly with task type, quantization method and mode",
+      "authors": [
+        "Chenxi Zhou",
+        "Pengfei Cao",
+        "Jinyu Ye",
+        "Bohan Yu",
+        "Haida Yu"
+      ],
+      "query_source": "cross_layer",
+      "objects": [
+        "参数"
+      ],
+      "methods": [
+        "量化"
+      ],
+      "strict_score": 2,
+      "matched_objects_v5": [
+        "参数(Weights)"
+      ],
+      "matched_methods_v5": [
+        "量化(Quant)"
+      ]
+    },
+    {
+      "id": "2608.07964",
+      "date": "2026-08-08",
+      "title": "EasyBalance: Cross-Layer Load Balancing in Distributed MoE Inference",
+      "summary": "Load Balancing has emerged as a critical problem in expert-parallel distributed inference of Mixture-of-Experts (MoE) models. As routing distributions are typically skewed across experts, devices hosting lighter-loaded experts must idle to wait for the heaviest during expert computing, leading to inefficiency. Existing load-balancing approaches primarily rely on expert replication or migration within each layer, which introduce additional overhead and limit their flexibility and scalability. To address this problem, we propose EasyBalance, a cross-layer load balancing strategy that requires no",
+      "authors": [
+        "Yize Wu",
+        "Ke Gao",
+        "Ling Li",
+        "Yanjun Wu"
+      ],
+      "query_source": "moe",
+      "objects": [
+        "通信"
+      ],
+      "methods": [
+        "注意力优化"
+      ],
+      "strict_score": 1,
+      "matched_objects_v5": [
+        "通信(Comm)"
+      ],
+      "matched_methods_v5": []
+    },
+    {
+      "id": "2608.07169",
+      "date": "2026-08-07",
+      "title": "Agent Memory Distillation: Empowering Small LLM Agents with Hierarchical Teacher Memory",
+      "summary": "Memory systems have shown promise for improving agent performance, but their potential remains largely unexplored for small language models, which struggle to generate sufficient successful trajectories on their own. We propose Agent Memory Distillation (AMD), a training-free framework that transfers structured knowledge from a large teacher agent to a small student agent through hierarchical memory. AMD constructs three complementary memory types from successful teacher trajectories: Workflow memory encodes task-level strategies, Subtask memory provides concrete behavioral examples at an inte",
+      "authors": [
+        "Taeil Kim",
+        "Kangsan Kim",
+        "Sung Ju Hwang"
+      ],
+      "query_source": "distillation_broad",
+      "objects": [],
+      "methods": [
+        "蒸馏"
+      ],
+      "strict_score": 3,
+      "matched_objects_v5": [
+        "状态(State/KV)",
+        "参数(Weights)"
+      ],
+      "matched_methods_v5": [
+        "蒸馏(Distill)"
+      ]
+    },
+    {
+      "id": "2608.06901",
+      "date": "2026-08-07",
+      "title": "Prune Once: Retraining-Free Task-Agnostic Pruning for Vision-Language Models",
+      "summary": "Vision-language models (VLMs) have achieved remarkable generalization across diverse multimodal tasks through large-scale pre-training, yet their rapidly increasing computational and memory requirements pose significant challenges for deployment in constrained environments. Existing pruning strategies often depend on task-specific criteria or LLM-oriented importance measures, making them unsuitable for task-agnostic pruning, where no task-specific samples are available at pruning time and the pruned model remains broadly applicable. We introduce a retraining-free VLM pruning framework called P",
+      "authors": [
+        "Minseok Kang",
+        "Hyunwoo Kim",
+        "Chanyoung Kim",
+        "Minwoo Kim",
+        "Jaekoo Lee"
+      ],
+      "query_source": "pruning_broad",
+      "objects": [],
+      "methods": [
+        "剪枝/稀疏"
+      ],
+      "strict_score": 2,
+      "matched_objects_v5": [
+        "参数(Weights)"
+      ],
+      "matched_methods_v5": [
+        "剪枝(Prune)"
+      ]
+    },
+    {
+      "id": "2608.06763",
+      "date": "2026-08-07",
+      "title": "CubicQuant: Parametric Non-Uniform Codebooks for High-Throughput LLM Inference with 1-8-Bit Weights",
+      "summary": "Weight quantization for large-language-model inference must balance adaptive reconstruction levels with representations regular enough for efficient GPU execution. Uniform integers constrain each group to a linear grid. Low-bit floating-point formats use a fixed exponent-mantissa structure, while learned codebooks gain flexibility at the cost of irregular decoding and additional metadata.   We introduce CubicQuant, a parametric non-uniform scalar format that preserves a dense integer code stream while adapting reconstruction levels within each weight group. A monotonic cubic curve, specified b",
+      "authors": [
+        "Xuetian Gao"
+      ],
+      "query_source": "weight_quant",
+      "objects": [
+        "参数"
+      ],
+      "methods": [
+        "量化"
+      ],
+      "strict_score": 2,
+      "matched_objects_v5": [
+        "参数(Weights)"
+      ],
+      "matched_methods_v5": [
+        "量化(Quant)"
+      ]
+    },
+    {
+      "id": "2608.05104",
+      "date": "2026-08-05",
+      "title": "BnBERT-iPET: Sparse Few-Shot Language Modeling for Bengali via Lottery Ticket Pruning",
+      "summary": "Deep neural networks have shown impressive success in NLP tasks owing to their complex structure and huge number of edges. Achieving state-of-the-art performance in natural language processing with a large pre-trained model such as BERT is expensive and time-consuming, carries a large carbon footprint, and is difficult to realize on machines with minimal computational capability. This creates a barrier to training complex models for resource-constrained languages such as Bengali. However, in a complex neural model, not all edges are equally impactful, and the contributions of some of them can ",
+      "authors": [
+        "Sajib Hossain",
+        "Md Kamrus Samad",
+        "Anan Ghosh",
+        "Labib Imam Chowdhury",
+        "Nabeel Mohammed"
+      ],
+      "query_source": "pruning_broad",
+      "objects": [],
+      "methods": [
+        "剪枝/稀疏"
+      ],
+      "strict_score": 4,
+      "matched_objects_v5": [
+        "参数(Weights)",
+        "状态(State/KV)"
+      ],
+      "matched_methods_v5": [
+        "剪枝(Prune)",
+        "稀疏(Sparse)"
+      ]
+    },
+    {
+      "id": "2608.05127",
+      "date": "2026-08-05",
+      "title": "SSTQ:Privacy-Preserving Vector Quantization via Subsampled Stochastic TurboQuant",
+      "summary": "Achieving local differential privacy in distributed optimization while maintaining low communication cost remains challenging. Existing vector quantization methods, such as vqSGD, use high-dimensional geometric constructions but incur unfavorable dimension-dependent variance. In this work, we propose Subsampled Stochastic TurboQuant (SSTQ), a framework that combines overcomplete equal-norm tight frames, coordinate subsampling, and privacy-aware one-dimensional quantization. SSTQ includes two variants: a Flat Randomized Response version and a Metric-Aware Laplace version, the latter being bette",
+      "authors": [
+        "Adel Javanmard",
+        "David P. Woodruff",
+        "Vahab Mirrokni"
+      ],
+      "query_source": "quantization",
+      "objects": [
+        "通信"
+      ],
+      "methods": [
+        "量化"
+      ],
+      "strict_score": 2,
+      "matched_objects_v5": [
+        "参数(Weights)"
+      ],
+      "matched_methods_v5": [
+        "量化(Quant)"
+      ]
+    },
+    {
+      "id": "2608.04472",
+      "date": "2026-08-05",
+      "title": "EndoVLM: An Endoscopy Vision-Language Pre-training Model via Anatomy-Guided Sparsity and Progressive Alignment",
+      "summary": "The development of foundation models (FMs) is crucial for advancing endoscopic image analysis. However, existing endoscopy FMs mainly rely on self-supervised learning from uni-modal images or videos, overlooking the rich semantic knowledge contained in clinical reports. Furthermore, effectively leveraging these records is hindered by a fundamental modality gap: structured anatomical descriptions are not naturally mapped to specific frames within the high-redundancy, uncurated visual streams. In this paper, we present EndoVLM, a novel vision-language FM pre-trained on over 348K endoscopic exami",
+      "authors": [
+        "Zhenyu Yi",
+        "Jianwei Xu",
+        "Yue Hu",
+        "Zhongwei Qiu",
+        "Sijing Li"
+      ],
+      "query_source": "sparse_attn",
+      "objects": [],
+      "methods": [
+        "剪枝/稀疏"
+      ],
+      "strict_score": 2,
+      "matched_objects_v5": [
+        "状态(State/KV)"
+      ],
+      "matched_methods_v5": [
+        "稀疏(Sparse)"
+      ]
+    },
+    {
+      "id": "2608.04893",
+      "date": "2026-08-05",
+      "title": "When Does Latent Communication Pay? A Causal Audit of Relayed KV Caches in Multi-Agent LLMs",
+      "summary": "Multi-agent LLM systems relay key--value caches instead of text and credit their gains to exchanged ``latent thoughts''. That credit is a claim about \\emph{which} example's cache is relayed, not merely that one is. We audit it causally in released systems. The cache is replaced with deranged (mismatched-example), zeroed, and moment-matched random counterparts, under two regimes defined by whether the receiver needs the sender's private information. Where it does, the battery reads ceiling: 100% against 23--25% for answer-irrelevant relays on the primary backbone, a contrast replicated across t",
+      "authors": [
+        "Jiaming Cheng",
+        "Subhransu Das",
+        "Rajiv Ramnath"
+      ],
+      "query_source": "KV_cache",
+      "objects": [
+        "KV",
+        "通信"
+      ],
+      "methods": [],
+      "strict_score": 1,
+      "matched_objects_v5": [
+        "状态(State/KV)"
+      ],
+      "matched_methods_v5": []
+    },
+    {
+      "id": "2608.04401",
+      "date": "2026-08-05",
+      "title": "Elbow-Based MoE Routing: A Training-Free Inference Time Plugin for Expert Selection",
+      "summary": "Mixture-of-Experts (MoE) models enable model scaling while maintaining low inference-time compute by activating only a subset of experts per token. However, conventional routing relies on a fixed top-k selection, forcing the model to spend the same compute regardless of how many experts are relevant. We introduce elbow-based routing, a training-free inference-time modification that dynamically adjusts the number of experts on a per-token basis. Our method examines the sorted router probability distribution and identifies an elbow point that separates high- and low-probability experts. We find ",
+      "authors": [
+        "Robin Pan",
+        "Raymond Liu",
+        "Daniel Fang",
+        "Adelina Andrei",
+        "Rosa Wu"
+      ],
+      "query_source": "moe",
+      "objects": [],
+      "methods": [],
+      "strict_score": 1,
+      "matched_objects_v5": [
+        "通信(Comm)"
+      ],
+      "matched_methods_v5": []
+    },
+    {
+      "id": "2608.05303",
+      "date": "2026-08-05",
+      "title": "EdgeXpert: An Edge Device for Memory-Efficient LLM Inference with Mixture-of-Experts and Speculative Decoding",
+      "summary": "On-device deployment of Large Language Models (LLMs) has become essential for personalized edge applications. A primary bottleneck is external memory access (EMA) in feed-forward network (FFN) layers. Speculative decoding and mixture-of-experts (MoE) are promising solutions. Speculative decoding reduces the number of decoding stages by generating multiple tokens per stage, and MoE minimizes per-stage cost through sparse expert activation. However, there is an incompatibility when combining these two techniques. We propose EdgeXpert, a software-hardware co-designed LLM accelerator that resolves",
+      "authors": [
+        "Sangwoo Ha",
+        "Hyunwoo Seo",
+        "Yurim Jo",
+        "Youngjin Moon",
+        "Hoi-Jun Yoo"
+      ],
+      "query_source": "spec_decode",
+      "objects": [
+        "激活"
+      ],
+      "methods": [
+        "剪枝/稀疏",
+        "投机解码"
+      ],
+      "strict_score": 1,
+      "matched_objects_v5": [
+        "通信(Comm)"
+      ],
+      "matched_methods_v5": []
+    },
+    {
+      "id": "2608.04454",
+      "date": "2026-08-05",
+      "title": "Beyond Global Routing Aggregation: Phase-Aware Expert Merging for MoE Vision-Language Models",
+      "summary": "Mixture-of-experts vision-language models (MoE-VLMs) increase model capacity with sparse expert activation, yet deployment requires storing the full expert pool. Training-free expert merging reduces this burden, and many routing-based methods aggregate routing statistics across all tokens to determine merge compatibility. However, MoE-VLM inference is phase-structured: image-context tokens carry visual content, question tokens specify the query, and answer tokens produce the output, with different counts and routing distributions. Because image-context tokens are far more numerous, global aggr",
+      "authors": [
+        "Hongyu Zhang",
+        "Cheng Yan",
+        "Xiang Xia",
+        "Wuyang Zhang"
+      ],
+      "query_source": "moe",
+      "objects": [
+        "激活"
+      ],
+      "methods": [
+        "剪枝/稀疏"
+      ],
+      "strict_score": 1,
+      "matched_objects_v5": [
+        "通信(Comm)"
+      ],
+      "matched_methods_v5": []
+    },
+    {
+      "id": "2608.02975",
+      "date": "2026-08-04",
+      "title": "TQLite: Multi-LLM Jury Guided Distillation for Real-time MQM Translation Quality Evaluation",
+      "summary": "Large language models (LLMs) have demonstrated impressive performance in MQM-based translation quality (TQ) evaluation, and recent advances in large reasoning models (LRMs) promise even greater improvements. However, both LLMs and LRMs are computationally expensive to deploy at scale, while small language models (SLMs)---though much more efficient---struggle with the complex reasoning required for evaluation tasks. In this work, we present an extensive empirical study benchmarking SLMs, LLMs, and LRMs across a wide range of TQ evaluation setups, providing a comprehensive view of the current la",
+      "authors": [
+        "Bhavin Jawade",
+        "Cameron R. Wolfe"
+      ],
+      "query_source": "distillation_broad",
+      "objects": [],
+      "methods": [
+        "蒸馏"
+      ],
+      "strict_score": 2,
+      "matched_objects_v5": [
+        "参数(Weights)"
+      ],
+      "matched_methods_v5": [
+        "蒸馏(Distill)"
+      ]
+    },
+    {
+      "id": "2608.04074",
+      "date": "2026-08-04",
+      "title": "Spend Bits Where Queries Look: KV Cache Vector Quantization with Attention-Preserving Transforms",
+      "summary": "Long-context LLM decoding reads the key-value (KV) cache at every step. Loading it takes longer than computing attention over it, so throughput is bandwidth-bound. Hence, reducing the cache size can raise both decoding speed and serving capacity. The challenge is to reduce cache size while preserving the attention products, keeping reconstruction cheap, and using a fixed per-token bit count. At two bits per element, the most competitive methods rely on orthogonal transforms. However, existing techniques are either data-oblivious or use the query statistics without deriving the transform from a",
+      "authors": [
+        "Samuel Fernández-Menduiña",
+        "Amir Ziashahabi",
+        "Eduardo Pavez",
+        "Antonio Ortega",
+        "Salman Avestimehr"
+      ],
+      "query_source": "KV_cache",
+      "objects": [
+        "KV"
+      ],
+      "methods": [
+        "量化"
+      ],
+      "strict_score": 2,
+      "matched_objects_v5": [
+        "状态(State/KV)"
+      ],
+      "matched_methods_v5": [
+        "量化(Quant)"
+      ]
+    },
+    {
+      "id": "2608.04048",
+      "date": "2026-08-04",
+      "title": "Recurrent Residual Quantization: A Progressive Multi-Precision Representation for LLMs",
+      "summary": "Serving large language models (LLMs) under diverse deployment constraints requires flexible trade-offs between accuracy, memory footprint, and throughput. However, conventional quantization methods typically require a separate checkpoint for each target bit-width. We introduce Recurrent Residual Quantization (RRQ), a post-training quantization (PTQ) framework that represents weights as a low-bit quantized base together with a sequence of quantized residual corrections, enabling multiple effective precisions from a single checkpoint. Starting from a 2-bit model obtained via post-training quanti",
+      "authors": [
+        "Yu Luo",
+        "Bo Dong",
+        "Wenhua Cheng",
+        "Haihao Shen"
+      ],
+      "query_source": "quantization",
+      "objects": [
+        "参数"
+      ],
+      "methods": [
+        "量化"
+      ],
+      "strict_score": 2,
+      "matched_objects_v5": [
+        "参数(Weights)"
+      ],
+      "matched_methods_v5": [
+        "量化(Quant)"
+      ]
+    },
+    {
+      "id": "2608.03026",
+      "date": "2026-08-04",
+      "title": "Pruning-Aware Multi-Cluster Co-Inference for Large AI Models in AI-RANs",
+      "summary": "The increasing scale and computational demands of large artificial intelligence models (LAIMs) present significant challenges for efficient inference in resource-constrained distributed environments. In this paper, we propose a multi-cluster LAIM co-inference framework, where an edge server equipped with multiple graphics processing units (GPUs) coordinates multiple user clusters to execute inference tasks collaboratively. Within each cluster, devices capture data from diverse perspectives and employ lightweight on-device LAIMs to extract local features. These features are then transmitted to ",
+      "authors": [
+        "Xiaowen Cao",
+        "Zhonghao Lyu",
+        "Shicheng Chu",
+        "Zezhong Zhang",
+        "Dingzhu Wen"
+      ],
+      "query_source": "pruning",
+      "objects": [
+        "参数"
+      ],
+      "methods": [
+        "剪枝/稀疏"
+      ],
+      "strict_score": 2,
+      "matched_objects_v5": [
+        "参数(Weights)"
+      ],
+      "matched_methods_v5": [
+        "剪枝(Prune)"
+      ]
+    },
+    {
+      "id": "2608.03555",
+      "date": "2026-08-04",
+      "title": "Heterogeneous LLM Serving with General-Purpose Processing-Near-Memory for Retrieval-Based Sparse Attention",
+      "summary": "This paper presents a heterogeneous decode-phase serving system that relocates the KV cache out of GPU memory, motivated by the retrieval-based sparse attention that recent frontier LLMs adopt to serve million-token contexts. It partitions a decode step by operation type: GPU nodes hold the model weights and execute the projections and MoE layers, while processing-near-memory (PNM) nodes hold the KV cache and index keys and execute every operation that reads them. We first show that the assumptions behind prior PIM and PNM designs no longer hold for these operations, and derive four design req",
+      "authors": [
+        "Hyungkyu Ham",
+        "Junhyeong Bae",
+        "Seungheon Lee",
+        "Myeongjae Jeon",
+        "Gwangsun Kim"
+      ],
+      "query_source": "KV_cache",
+      "objects": [
+        "KV",
+        "参数"
+      ],
+      "methods": [
+        "剪枝/稀疏",
+        "注意力优化"
+      ],
+      "strict_score": 2,
+      "matched_objects_v5": [
+        "状态(State/KV)"
+      ],
+      "matched_methods_v5": [
+        "稀疏(Sparse)"
+      ]
+    },
+    {
+      "id": "2608.03083",
+      "date": "2026-08-04",
+      "title": "GSTEP: Global Spatio-Temporal Density-Driven Visual Token Pruning for Efficient Video Large Language Models",
+      "summary": "Video large language models (VideoLLMs) achieve strong video understanding performance, but their inference remains expensive due to the large number of redundant spatio-temporal visual tokens in long videos. Existing token pruning methods alleviate this cost by reducing redundant tokens, yet most of them rely on segment-level local pruning, where videos are partitioned into isolated segments and tokens are selected independently within each segment. Such designs may under-preserve short but semantically dense segments and discard tokens that appear non-salient locally but remain critical from",
+      "authors": [
+        "Mengjie Zhang",
+        "Qihui Zhu",
+        "Tao Zhang",
+        "Shuangwu Chen",
+        "Huihuang Qin"
+      ],
+      "query_source": "visual_token",
+      "objects": [
+        "激活"
+      ],
+      "methods": [
+        "剪枝/稀疏"
+      ],
+      "strict_score": 2,
+      "matched_objects_v5": [
+        "参数(Weights)"
+      ],
+      "matched_methods_v5": [
+        "剪枝(Prune)"
+      ]
+    },
+    {
+      "id": "2608.03796",
+      "date": "2026-08-04",
+      "title": "Efficient Knowledge Distillation for LLMs: Offline Top-K Logits and a Fused Chunked KL Loss",
+      "summary": "Small language models are often the only option for deployment under tight latency, cost, and on-premises constraints, but they are rarely trained from scratch: a compressed model is usually recovered through knowledge distillation (KD). This recovery step largely decides the final quality, yet it is expensive. We present a practitioner's study of how to make distillation training efficient, organised around two systems contributions. First, we show that offline KD (caching the teacher's top-$K$ logits once and training the student against the cache) matches online distillation at near-identic",
+      "authors": [
+        "Bakbergen Ryskulov",
+        "Iker García-Ferrero",
+        "David Montero",
+        "David Jansen",
+        "Ali Hashemi"
+      ],
+      "query_source": "distillation",
+      "objects": [],
+      "methods": [
+        "蒸馏"
+      ],
+      "strict_score": 2,
+      "matched_objects_v5": [
+        "参数(Weights)"
+      ],
+      "matched_methods_v5": [
+        "蒸馏(Distill)"
+      ]
+    },
+    {
+      "id": "2608.03275",
+      "date": "2026-08-04",
+      "title": "MoEGen: Mixture-of-Experts for Instance-Adaptive LoRA Generation",
+      "summary": "Parameter-efficient fine-tuning (PEFT) enables efficient adaptation of large language models, but existing MoE-based PEFT methods typically improve capacity by storing multiple full LoRA experts, causing adapter storage to grow linearly with the number of experts and restricting adaptation to a fixed expert pool. We ask whether MoE-based PEFT can produce instance-specific adaptations without explicitly storing a separate LoRA module for each expert. To address this gap, we propose MoEGen, an adaptation framework that shifts MoE-based PEFT from expert selection to expert-conditioned parameter g",
+      "authors": [
+        "Yiming Zeng",
+        "Lei Lu",
+        "Zexin Li",
+        "Zhuochun Li",
+        "Shuoqiu Li"
+      ],
+      "query_source": "moe",
+      "objects": [
+        "参数"
+      ],
+      "methods": [
+        "低秩"
+      ],
+      "strict_score": 1,
+      "matched_objects_v5": [
+        "通信(Comm)"
+      ],
+      "matched_methods_v5": []
+    },
+    {
+      "id": "2608.03893",
+      "date": "2026-08-04",
+      "title": "Cross-Model KV Cache Transfer in LLM Families: A Closed-Form Linear Mapping for Prefill Reuse",
+      "summary": "Production deployments often swap between different-sized models in a family for cost-quality cascading, mid-conversation switching, and routing, and each swap forces the receiver to repay the prefill from scratch. We propose cross-model KV cache transfer, where the receiver reuses the source's KV cache, skipping prefill. We find that cross-model KV has substantial linear structure across matched-KV pairs, where source and target share KV head count and per-head dimension. On Qwen3 14B-&gt;32B, one source layer explains 56% of variance in the target's keys and 32% in values, rising to 79% and ",
+      "authors": [
+        "Taekyung Heo",
+        "Rasoul Shafipour",
+        "Ritchie Zhao",
+        "Maximilian Golub",
+        "Mohammad Mahdi Kamani"
+      ],
+      "query_source": "KV_cache",
+      "objects": [
+        "KV"
+      ],
+      "methods": [],
+      "strict_score": 1,
+      "matched_objects_v5": [
+        "状态(State/KV)"
+      ],
+      "matched_methods_v5": []
+    },
+    {
+      "id": "2608.02942",
+      "date": "2026-08-03",
+      "title": "OPTD: On-Policy Transition Distillation with Consistency-Guided Adaptive Compression for Few-Step Diffusion Language Models",
+      "summary": "Diffusion language models (dLLMs) can predict many tokens in parallel, but accurate generation still requires many iterative denoising steps. Few-step distillation accelerates decoding by compressing multiple teacher steps into a single student transition. However, existing methods construct supervision on off-policy trajectories. At inference, the student's early parallel commitments alter the context of later predictions, so the states it actually visits drift away from the supervised ones--precisely when step compression is most aggressive. On-policy distillation is a natural remedy for thi",
+      "authors": [
+        "Xiaocheng Lu",
+        "Hualei Zhang",
+        "Shuhan Guo",
+        "Jie Zhang",
+        "Xiaoyi Pang"
+      ],
+      "query_source": "distillation_broad",
+      "objects": [],
+      "methods": [
+        "蒸馏"
+      ],
+      "strict_score": 2,
+      "matched_objects_v5": [
+        "参数(Weights)"
+      ],
+      "matched_methods_v5": [
+        "蒸馏(Distill)"
+      ]
+    },
+    {
+      "id": "2608.01804",
+      "date": "2026-08-03",
+      "title": "LEAP: Lean Environment-Feedback via Adaptive Pruning for Code RL in GPU Kernel Generation",
+      "summary": "Post-training large language models (LLMs) via reinforcement learning (RL) has significantly advanced code generation capabilities. To bypass the heavy memory footprint of critic networks, current state-of-the-art frameworks leverage critic-free paradigms like Group Relative Policy Optimization (GRPO) tied to rule-based verification sandboxes. However, applying these frameworks to low-level systems programming, such as CUDA kernel generation-presents severe challenges: binary pass/fail rewards introduce severe signal sparsity, while multi-turn environmental feedback loops suffer from prohibiti",
+      "authors": [
+        "Tankun Li",
+        "Zhi Chen",
+        "Yaohua Tang"
+      ],
+      "query_source": "pruning_broad",
+      "objects": [],
+      "methods": [
+        "剪枝/稀疏"
+      ],
+      "strict_score": 2,
+      "matched_objects_v5": [
+        "参数(Weights)"
+      ],
+      "matched_methods_v5": [
+        "剪枝(Prune)"
+      ]
+    },
+    {
+      "id": "2608.01979",
+      "date": "2026-08-03",
+      "title": "ET-Prune: Evidence-Aware Dynamic Budgeting for Visual Token Pruning in Text-Rich MLLMs",
+      "summary": "Visual token pruning reduces the inference cost of multimodal large language models, but a fixed token ratio is poorly matched to text-rich inputs. In OCR-centric tasks, decisive evidence can be a small number, label, or field whose relevance is specified by the question; indiscriminate pruning can erase that evidence while retaining visually salient but irrelevant regions. We present ET-Prune, a training-free framework that casts pruning as evidence allocation. It derives question-conditioned evidence from a decoder-side partial query-key block, safeguards text-like spatial regions, and conve",
+      "authors": [
+        "Zizhong Ding",
+        "Junxian Li",
+        "Kai Liu",
+        "Shaoqiu Zhang",
+        "Xiao Xiao"
+      ],
+      "query_source": "visual_token",
+      "objects": [
+        "激活"
+      ],
+      "methods": [
+        "剪枝/稀疏"
+      ],
+      "strict_score": 2,
+      "matched_objects_v5": [
+        "参数(Weights)"
+      ],
+      "matched_methods_v5": [
+        "剪枝(Prune)"
+      ]
+    },
+    {
+      "id": "2608.01784",
+      "date": "2026-08-03",
+      "title": "REFLEX: Rethinking MoE Inference as Refinement-Aware Compute Allocation in Diffusion Language Models",
+      "summary": "Mixture-of-experts (MoE) models increase parameter capacity by activating only a small subset of experts for each token. This conditional-computation paradigm has enabled autoregressive language models to scale model capacity without a proportional increase in per-token computation. In diffusion language models (DLMs), however, each denoising forward jointly revisits all token positions despite their sharply different refinement demands, while the default fixed token-choice routing assigns them a uniform expert budget, creating a mismatch between expert computation and refinement demand. We ar",
+      "authors": [
+        "Xiang Xia",
+        "Cheng Yan",
+        "Yiming Zhang",
+        "Jiazheng Liu",
+        "Hongyu Zhang"
+      ],
+      "query_source": "moe",
+      "objects": [
+        "参数"
+      ],
+      "methods": [],
+      "strict_score": 1,
+      "matched_objects_v5": [
+        "通信(Comm)"
+      ],
+      "matched_methods_v5": []
+    },
+    {
+      "id": "2608.01263",
+      "date": "2026-08-02",
+      "title": "Distill What the Student Can See: Fisher-Projected On-Policy Distillation for Vision-Language Models",
+      "summary": "On-policy distillation (OPD) samples trajectories from the current student policy and minimizes token-level divergence between student and teacher next-token distributions at prefixes along those trajectories. This aligns the distillation states with the student's own generation distribution. However, it still assumes that the complete teacher distribution is an appropriate target across student capacities. In vision--language reasoning, teacher corrections can depend on visual distinctions that a compact student cannot represent. Our target-scaling study shows that, as the target approaches t",
+      "authors": [
+        "Leyan Xue",
+        "Feng Xiong",
+        "Mingjun Ma",
+        "Changqing Zhang"
+      ],
+      "query_source": "distillation_broad",
+      "objects": [],
+      "methods": [
+        "蒸馏"
+      ],
+      "strict_score": 2,
+      "matched_objects_v5": [
+        "参数(Weights)"
+      ],
+      "matched_methods_v5": [
+        "蒸馏(Distill)"
+      ]
+    },
+    {
+      "id": "2608.01536",
+      "date": "2026-08-02",
+      "title": "Celty: SpMspV GPU Kernel and SIMT Co-Design for Efficient Dual-Sparse LLM Inference",
+      "summary": "Large Language Models (LLMs) increasingly rely on sparsity to reduce inference cost, but most prior work targets a single sparsity source-either weight or activation-and optimizes for batched multi-user inference. Dual-sparsity, which combines unstructured weight pruning with runtime activation sparsity, offers a compelling tradeoff among model size, accuracy, and latency for single-user decoding, but formulates as a Sparse Matrix-Sparse Vector (spMspV) workload that existing GPU kernels handle poorly. We propose Celty, a co-designed sparse format, GPU kernel, and SIMT microarchitecture for ef",
+      "authors": [
+        "Ruokai Yin",
+        "Priyadarshini Panda"
+      ],
+      "query_source": "pruning_broad",
+      "objects": [
+        "参数",
+        "激活"
+      ],
+      "methods": [
+        "剪枝/稀疏"
+      ],
+      "strict_score": 2,
+      "matched_objects_v5": [
+        "状态(State/KV)"
+      ],
+      "matched_methods_v5": [
+        "稀疏(Sparse)"
+      ]
+    },
+    {
+      "id": "2608.01078",
+      "date": "2026-08-02",
+      "title": "Attend to Your Own Thoughts: Breaking the Barrier for Post-Training Quantization of Reasoning LLMs through the Lens of 1.58-Bit Quantization",
+      "summary": "We propose ScaleQ-1.58, a scalable ternary post-training quantization (PTQ) framework for reasoning LLMs. Its core insight stems from an empirical finding: although modern LLMs are typically trained to exhibit chain-of-thought reasoning capabilities, in the PTQ regime, even the latest CAT-Q method based on learning-based differentiable ternarization still leads to performance collapse on challenging mathematics and coding tasks when using conventional calibration schemes that ignore the model's reasoning process. Driven by this finding, we introduce a simple calibration approach, Attend to You",
+      "authors": [
+        "Shigeng Wang",
+        "Chao Li",
+        "Yangyuxuan Kang",
+        "Jiawei Fan",
+        "Anbang Yao"
+      ],
+      "query_source": "quantization",
+      "objects": [],
+      "methods": [
+        "量化"
+      ],
+      "strict_score": 2,
+      "matched_objects_v5": [
+        "参数(Weights)"
+      ],
+      "matched_methods_v5": [
+        "量化(Quant)"
+      ]
+    },
+    {
+      "id": "2608.00902",
+      "date": "2026-08-02",
+      "title": "Practical Online KV Cache Compaction for LLM Agents: An Empirical Study",
+      "summary": "LLM agents accumulate long trajectories of reasoning steps, tool calls, and environment feedback, making the KV cache a major inference bottleneck. KV cache compaction can reduce this cost, but most prior methods assume a static context where future queries are known or can be approximated offline. Agents instead require online compaction: new information must be compressed before future relevance is known, using proxy queries cheap enough for the inference path. We study online compaction across token eviction (TE) and attention matching (AM), adapting both to compact agent turns and comparin",
+      "authors": [
+        "Yujian Liu",
+        "Jiabao Ji",
+        "Li An",
+        "Rohit Jain",
+        "Gungor Polatkan"
+      ],
+      "query_source": "KV_cache",
+      "objects": [
+        "KV"
+      ],
+      "methods": [],
+      "strict_score": 1,
+      "matched_objects_v5": [
+        "状态(State/KV)"
+      ],
+      "matched_methods_v5": []
+    },
+    {
+      "id": "2608.00561",
+      "date": "2026-08-01",
+      "title": "Through the LENS: Local Geometric Decomposition of Vision-Language Model Representations",
+      "summary": "Vision-language models (VLMs) process image patches and text tokens in a shared residual stream, but the local geometry through which the two modalities interact remains poorly understood. Most interpretability methods identify global linear directions, which may miss representations that are globally high-dimensional but locally low-dimensional. We introduce LENS (Local Explanation of Neighborhood Subspaces), a method that decomposes VLM activations into local low-rank Gaussian neighborhoods using a Mixture of Factor Analyzers. Applied to LLaVA-1.5-7B and Qwen3-VL-8B, LENS reveals distinct de",
+      "authors": [
+        "Shalom Kachko",
+        "Raz Lapid",
+        "Margarita Vald",
+        "Almog Dubin",
+        "Moshe Sipper"
+      ],
+      "query_source": "low_rank",
+      "objects": [
+        "激活"
+      ],
+      "methods": [
+        "低秩"
+      ],
+      "strict_score": 2,
+      "matched_objects_v5": [
+        "参数(Weights)"
+      ],
+      "matched_methods_v5": [
+        "低秩(LowRank)"
+      ]
+    },
+    {
+      "id": "2608.00573",
+      "date": "2026-08-01",
+      "title": "TrimMoE A communication aware and adaptive depth framework for distributed edge inference",
+      "summary": "Serving Mixture-of-Experts (MoE) large language models across distributed edge servers is bottlenecked by the cross-server expert transmission. The existing approaches mainly focus on how to reach a remote expert faster. However, in this paper, we instead consider whether a given layer, and the layers after it, need to be executed at all. To this end, a communication-aware adaptive-depth framework is proposed in this paper, termed TrimMoE, which couples layer skipping and confidence-based early exit with substitute execution and server-expert selection under a unified quality budget. Specifica",
+      "authors": [
+        "Ning Li",
+        "Shuting Bai",
+        "Xin Yuan",
+        "Wenchao Xu",
+        "Athanasios V. Vasilakos"
+      ],
+      "query_source": "moe",
+      "objects": [
+        "通信"
+      ],
+      "methods": [
+        "早退/跳层"
+      ],
+      "strict_score": 1,
+      "matched_objects_v5": [
+        "通信(Comm)"
+      ],
+      "matched_methods_v5": []
+    },
+    {
+      "id": "2608.00577",
+      "date": "2026-08-01",
+      "title": "HetRoute Heterogeneous and Cost-aware Collaborative Routing Framework for Distributed Edge MoE Inference",
+      "summary": "Mixture-of-Experts (MoE) models have become a dominant architecture for large-scale AI services, yet deploying them over geo-distributed heterogeneous edge servers remains challenging. When the Top-k activated experts of a token are spread across multiple servers, the optimal routing depends jointly on cross-server link bandwidth, heterogeneous GPU computing capability, GPU-CPU expert loading delay, instantaneous queueing backlog, and replica-level quantization quality loss. Existing distributed inference and MoE serving methods address these factors separately and do not provide a unified fra",
+      "authors": [
+        "Xin Yuan",
+        "Ning Li",
+        "Wenchao Xu",
+        "Athanasios V. Vasilakos",
+        "Song Guo"
+      ],
+      "query_source": "moe",
+      "objects": [
+        "通信"
+      ],
+      "methods": [
+        "量化"
+      ],
+      "strict_score": 1,
+      "matched_objects_v5": [
+        "通信(Comm)"
+      ],
+      "matched_methods_v5": []
+    },
+    {
+      "id": "2608.00358",
+      "date": "2026-08-01",
+      "title": "HCCL: Collective Communication for Meta Training and Inference Accelerators",
+      "summary": "We present HCCL, a collective communication library co-designed with Meta's MTIA 300 accelerator, the first Meta chip to integrate backend networking directly on chip package. MTIA 300 includes dedicated message engines (MEs) with near-memory compute (NMC) that fully offload collective execution from the compute grid, enabling large overlap between computation and communication. HCCL uses a compiled communication model in which the host generates a complete description of each collective including dependencies. We describe the control and data path architecture, topology-aware algorithm select",
+      "authors": [
+        "Wesley Bland",
+        "Tiago Antunes",
+        "Lars Paul Huse",
+        "Chidambaram Muthu",
+        "Adel Abouchaev"
+      ],
+      "query_source": "infer_accel",
+      "objects": [
+        "通信"
+      ],
+      "methods": [],
+      "strict_score": 1,
+      "matched_objects_v5": [
+        "通信(Comm)"
+      ],
+      "matched_methods_v5": []
+    },
+    {
+      "id": "2607.29397",
+      "date": "2026-07-31",
+      "title": "Studying quantization trade-offs for efficient inference deployment in machine translation",
+      "summary": "Deploying large language models in realistic server environments poses challenges, as the system needs to provide high-quality responses with low latency. Quantization is a common approach to reduce the memory footprint and improve inference efficiency, yet its impact on latency and throughput is rarely evaluated under controlled, orchestration-level workloads. In this work we study the quantization trade-offs of two translation model families, EuroLLM \\citep{martins2025eurollm} and Hy-MT2 \\citep{zheng2026hy} across five models ranging from 1.7B to 22B for efficient deployment on a single A100",
+      "authors": [
+        "Jim Zhao",
+        "Sohir Maskey",
+        "Koen Oostermeijer",
+        "Douglas Orr",
+        "Teryn Jones"
+      ],
+      "query_source": "long_ctx",
+      "objects": [],
+      "methods": [
+        "量化"
+      ],
+      "strict_score": 2,
+      "matched_objects_v5": [
+        "参数(Weights)"
+      ],
+      "matched_methods_v5": [
+        "量化(Quant)"
+      ]
+    },
+    {
+      "id": "2607.28959",
+      "date": "2026-07-31",
+      "title": "Efficient LLM Adversarial Training via Low-Rank Defense and Circuit-Guided Surrogates",
+      "summary": "Adversarial training is one of the most effective defenses against adversarial attacks, yet the computational cost remains prohibitive at modern scales, especially for large language models (LLMs). While existing mitigation strategies, e.g., latent adversarial training (LAT), have been developed, they still incur a high computational cost. In this work, we comprehensively investigate computation-efficient strategies to speed up LAT from two complementary perspectives: (1) Defense-side optimization: We explore the representation fine-tuning (ReFT) within LAT, and reveal a potential issue if the",
+      "authors": [
+        "Weiyi He",
+        "Yuping Lin",
+        "Jiliang Tang",
+        "Yue Xing"
+      ],
+      "query_source": "low_rank",
+      "objects": [],
+      "methods": [
+        "低秩"
+      ],
+      "strict_score": 2,
+      "matched_objects_v5": [
+        "参数(Weights)"
+      ],
+      "matched_methods_v5": [
+        "低秩(LowRank)"
+      ]
+    },
+    {
+      "id": "2608.06396",
+      "date": "2026-07-31",
+      "title": "TEXAS: Task-Expert-Aware Supervision for Downstream Mixture-of-Experts LLM Adaptation",
+      "summary": "Mixture-of-Experts (MoE) language models route each token through a small subset of experts, making routing patterns useful for identifying task-relevant experts during downstream adaptation. Yet current approaches have two limitations: task experts are typically identified from aggregate routing statistics that reflect usage rather than association with successful task completion, and task-expert activations remain underexplored as signals for supervision allocation. We introduce Task-Expert-Aware Supervision (TEXAS), which combines correctness-conditioned task expert discovery with token-lev",
+      "authors": [
+        "Guanzhi Deng",
+        "Haibo Wang",
+        "Kuan Wu",
+        "Xiangru Jian",
+        "Shing Yin Wong"
+      ],
+      "query_source": "moe",
+      "objects": [
+        "激活"
+      ],
+      "methods": [],
+      "strict_score": 1,
+      "matched_objects_v5": [
+        "通信(Comm)"
+      ],
+      "matched_methods_v5": []
+    },
+    {
+      "id": "2607.29076",
+      "date": "2026-07-31",
+      "title": "Selective KV Cache Protection for Noise-Resilient LLM Inference on Analog Compute-In-Memory Systems",
+      "summary": "Analog compute-in-memory (CIM) arrays have emerged as a promising substrate for energy-efficient LLM inference, particularly for weight-stationary computations in linear layers. However, extending analog CIM to attention mechanisms introduces a fundamental challenge: KV cache operations demand repeated in-situ weight updates, and the resulting mismatch with the weight-stationary paradigm exposes dynamic computations to significant hardware noise, a critical problem that remains largely unexplored. In this paper, we present the first systematic study of dynamic attention computation on analog C",
+      "authors": [
+        "Yuannuo Feng",
+        "Wenyong Zhou",
+        "Yuang Ma",
+        "Yizhe Chen",
+        "Wenshuai Yao"
+      ],
+      "query_source": "KV_cache",
+      "objects": [
+        "KV",
+        "参数"
+      ],
+      "methods": [],
+      "strict_score": 1,
+      "matched_objects_v5": [
+        "状态(State/KV)"
+      ],
+      "matched_methods_v5": []
+    },
+    {
+      "id": "2607.28979",
+      "date": "2026-07-31",
+      "title": "Mixture-of-Translators: Translating KV Caches Across Heterogeneous Large Language Models",
+      "summary": "Heterogeneous Large Language Model (LLM) systems increasingly rely on shared contexts, retrieved evidence, and multi-agent dialogue histories, yet their internal key-value (KV) caches remain model-specific and cannot be reused across architectures. Consequently, each model must repeatedly prefill or store caches for the same context, limiting the scalability of multi-model reasoning and long-context generation. We propose Mixture-of-Translators(MoT), a cache translation framework that maps context KV caches from a source LLM into the cache space of a target LLM. Unlike prior approaches that de",
+      "authors": [
+        "Jin-woo Lee",
+        "Minkyung Song",
+        "Junghyun Oh",
+        "Seunghoon Han",
+        "Soyoung Park"
+      ],
+      "query_source": "KV_cache",
+      "objects": [
+        "KV"
+      ],
+      "methods": [],
+      "strict_score": 1,
+      "matched_objects_v5": [
+        "状态(State/KV)"
+      ],
+      "matched_methods_v5": []
+    },
+    {
+      "id": "2607.28292",
+      "date": "2026-07-30",
+      "title": "CACHE-UK: A Stability-Aware Memory Editor for Sequentially Updated Quantized LLMs in Finance",
+      "summary": "Large Language Models (LLMs) deployed in dynamic financial environments face a critical challenge: maintaining factual accuracy as market conditions, regulations, and corporate facts change continuously. While 4-bit quantization enables efficient deployment, it severely limits the viability of sequential memory editing: existing methods undergo catastrophic performance degradation under this \"quantization stability crisis.\" We introduce CACHE-UK (Contextual Adaptive Continual Hybrid Editor for UK Finance), a stability-aware memory editing framework specifically designed for domain-specific, qu",
+      "authors": [
+        "Anubhav Lakra",
+        "Yue Feng"
+      ],
+      "query_source": "quantization",
+      "objects": [],
+      "methods": [
+        "量化"
+      ],
+      "strict_score": 3,
+      "matched_objects_v5": [
+        "状态(State/KV)",
+        "参数(Weights)"
+      ],
+      "matched_methods_v5": [
+        "量化(Quant)"
+      ]
+    },
+    {
+      "id": "2607.28418",
+      "date": "2026-07-30",
+      "title": "WIDE: Boosting Adaptive LLM Inference via Token-level Dynamic Width Pruning",
+      "summary": "Pruning is a promising approach for improving the efficiency of LLMs. Existing static structured pruning methods are hardware-friendly and can deliver practical throughput gains, but their input-agnostic computation allocation often causes substantial accuracy degradation under aggressive sparsity. Recent dynamic sparsity methods improve quality retention by adapting computation to individual inputs, yet they remain largely limited to coarse-grained structural decisions and their practical acceleration under real-world inference scenarios remains challenging. To address these challenges, we pr",
+      "authors": [
+        "Haozhe Hu",
+        "Hao Wu",
+        "Peiran Yin",
+        "Chao Han",
+        "Yunpu Ma"
+      ],
+      "query_source": "pruning_broad",
+      "objects": [],
+      "methods": [
+        "剪枝/稀疏"
+      ],
+      "strict_score": 2,
+      "matched_objects_v5": [
+        "参数(Weights)"
+      ],
+      "matched_methods_v5": [
+        "剪枝(Prune)"
+      ]
+    },
+    {
+      "id": "2607.28590",
+      "date": "2026-07-30",
+      "title": "VAD: Attributing Visual Evidence for Target Reconstruction in Multimodal On-Policy Distillation",
+      "summary": "Multimodal on-policy distillation (OPD) transfers fine-grained visual knowledge by supervising student-generated trajectories with a privileged-view teacher. Yet its next-token corrections are source-mixed, combining visual signals with linguistic priors and teacher-specific effects. The key challenge is to estimate which corrections are supported by visual evidence, not merely where or how strongly to distill. We introduce Visual Attribution Distillation (VAD), a counterfactual target-reconstruction algorithm that estimates the visually attributable part of a teacher correction. At each stude",
+      "authors": [
+        "Kangning Zhang",
+        "Yixing Li",
+        "Shuai Shao",
+        "Qingyao Li",
+        "Zhengxi Lu"
+      ],
+      "query_source": "distillation_broad",
+      "objects": [],
+      "methods": [
+        "蒸馏"
+      ],
+      "strict_score": 2,
+      "matched_objects_v5": [
+        "参数(Weights)"
+      ],
+      "matched_methods_v5": [
+        "蒸馏(Distill)"
+      ]
+    },
+    {
+      "id": "2607.27591",
+      "date": "2026-07-30",
+      "title": "Prox: Training-Free FFN Activation Sparsity via Approximate Intermediate-Channel Salience in LLMs",
+      "summary": "Feed-forward networks (FFNs) dominate memory traffic and computation in large language model (LLM) inference, making them a primary target for activation sparsification. However, existing training-free methods suffer substantial model-quality degradation at high sparsity due to limitations in their channel-selection strategies. We observe that the SwiGLU intermediate state provides a highly effective channel-selection signal, but obtaining it requires costly dense computation. To address this, we present \\emph{Prox}, a two-stage training-free framework for sparse SwiGLU FFNs. Prox hinges on th",
+      "authors": [
+        "Jinyi Liu",
+        "Wei Chen",
+        "Pengyu Chen",
+        "Xinyi Yuan",
+        "Minghe Bai"
+      ],
+      "query_source": "sparse_attn",
+      "objects": [
+        "激活"
+      ],
+      "methods": [
+        "剪枝/稀疏"
+      ],
+      "strict_score": 2,
+      "matched_objects_v5": [
+        "状态(State/KV)"
+      ],
+      "matched_methods_v5": [
+        "稀疏(Sparse)"
+      ]
+    },
+    {
+      "id": "2607.28589",
+      "date": "2026-07-30",
+      "title": "MixFrag: Fragility-Guided Mixed-Precision Post-Training Quantization for Vision Transformers",
+      "summary": "Post-training quantization (PTQ) has emerged as an effective solution for deploying Vision Transformers (ViTs) on resource-constrained devices. However, existing PTQ methods typically employ uniform bit-widths across transformer components, overlooking their heterogeneous sensitivity to quantization and leading to inefficient precision allocation. In this paper, we propose {MixFrag, a fragility-guided mixed-precision PTQ framework for Vision Transformers. MixFrag first estimates component-level quantization fragility by measuring the Kullback--Leibler (KL) divergence between full-precision and",
+      "authors": [
+        "Md. Mehrab Hossain Opi",
+        "Robiul Islam Ryad",
+        "Md. Umar Faruk"
+      ],
+      "query_source": "quantization",
+      "objects": [],
+      "methods": [
+        "量化"
+      ],
+      "strict_score": 2,
+      "matched_objects_v5": [
+        "参数(Weights)"
+      ],
+      "matched_methods_v5": [
+        "量化(Quant)"
+      ]
+    },
+    {
+      "id": "2607.27694",
+      "date": "2026-07-30",
+      "title": "GyRot: Leveraging Hidden Synergy between Rotation and Fine-grained Group Quantization for Low-bit LLM Inference",
+      "summary": "Low-bit quantization is essential for efficient LLM inference, and both rotation and fine-grained group quantization have shown individual promise. However, their combination often leads to accuracy degradation or hardware overhead due to a mismatch between the global nature of rotation and the localized behavior of group scaling. We propose GyRot, a quantization framework and hardware accelerator that bridges this gap through algorithm-hardware co-design. GyRot introduces Coarse Rotation, Fine Grouping (CoRFiG) and Harmonic-Aligned Permutation (HAP) to enable cooperative integration of rotati",
+      "authors": [
+        "Sangjin Kim",
+        "Yuseon Choi",
+        "Byeongcheol Kim",
+        "Jungjun Oh",
+        "Hoi-jun Yoo"
+      ],
+      "query_source": "quantization",
+      "objects": [],
+      "methods": [
+        "量化"
+      ],
+      "strict_score": 2,
+      "matched_objects_v5": [
+        "参数(Weights)"
+      ],
+      "matched_methods_v5": [
+        "量化(Quant)"
+      ]
+    },
+    {
+      "id": "2607.28826",
+      "date": "2026-07-30",
+      "title": "Distilling Knowledge from Large Language Models into Lightweight Reinforcement Learning Agents for Autonomous Cyber Operations",
+      "summary": "Autonomous Cyber Operations (ACO) are increasingly important for defending enterprise networks as cyber threats continue to evolve in sophistication. ACO applications commonly employ Reinforcement Learning (RL) agents to learn defensive behaviors through interaction with environments. However, RL agents typically require extensive exploration during training, often resulting in unstable behavior and poor initial decision-making before converging toward effective defense strategies.   In this work, we investigate the use of a Large Language Model (LLM) to improve autonomous defensive decision-m",
+      "authors": [
+        "Konur Tholl",
+        "François Rivest",
+        "Mariam El Mezouar",
+        "Adrian Taylor",
+        "Ranwa Al Mallah"
+      ],
+      "query_source": "distillation_broad",
+      "objects": [
+        "参数"
+      ],
+      "methods": [
+        "蒸馏",
+        "低秩"
+      ],
+      "strict_score": 2,
+      "matched_objects_v5": [
+        "参数(Weights)"
+      ],
+      "matched_methods_v5": [
+        "蒸馏(Distill)"
+      ]
+    },
+    {
+      "id": "2607.28150",
+      "date": "2026-07-30",
+      "title": "SmartGen: Seamless Disaggregated LLM Inference with Selective KV Cache Transfer",
+      "summary": "Disaggregating the prefill and decoding stages of large language model (LLM) inference into two separate sets of nodes is widely adopted in today's LLM serving systems. However, such an architecture poses significant challenges for self-hosted LLM deployments on rented cloud instances, since transferring enormous key-value (KV) caches between disaggregated nodes can easily saturate the limited inter-node network bandwidth. In this paper, we propose to mitigate the network bottleneck by selectively transferring essential KV cache entries across the two stages. There are two challenges to achiev",
+      "authors": [
+        "Xuchuan Luo",
+        "Jiacheng Shen",
+        "Xin Wang",
+        "Yangfan Zhou"
+      ],
+      "query_source": "KV_cache",
+      "objects": [
+        "KV"
+      ],
+      "methods": [],
+      "strict_score": 1,
+      "matched_objects_v5": [
+        "状态(State/KV)"
+      ],
+      "matched_methods_v5": []
+    },
+    {
+      "id": "2607.27081",
+      "date": "2026-07-29",
+      "title": "On-Policy Distillation for LLM Safety: A Routing Approach to Template-Robust Realignment",
+      "summary": "Fine-tuning is the dominant paradigm for specializing large language models (LLMs), yet it exposes a critical vulnerability: malicious data providers can embed harmful behaviors into downstream corpora, creating models that retain professional skills while violating human values on demand. Existing safety-realignment defenses often fail in practice due to three key limitations: they frequently cause catastrophic forgetting of specialized skills; their effectiveness collapses when the defender cannot observe the attacker's prompt template; and successfully realigned models remain susceptible to",
+      "authors": [
+        "Yongjian Guo",
+        "Wanlun Ma",
+        "Lingyu Shen",
+        "Xi Xiao",
+        "Sheng Wen"
+      ],
+      "query_source": "distillation_broad",
+      "objects": [],
+      "methods": [
+        "蒸馏"
+      ],
+      "strict_score": 2,
+      "matched_objects_v5": [
+        "参数(Weights)"
+      ],
+      "matched_methods_v5": [
+        "蒸馏(Distill)"
+      ]
+    },
+    {
+      "id": "2607.27275",
+      "date": "2026-07-29",
+      "title": "Flat Score, Amplified Failures: How the Error Budget Masks Damage in Quantized LLM Agents",
+      "summary": "Post-training quantization to 4-bit weights is widely reported to be nearly lossless. We test this claim for multi-turn, tool-calling agents, where it now matters most. On $τ^2$-bench, across two open-weight model families in dense and MoE variants and two domains (eight cells, 456 episodes each, at 16-, 8-, and 4-bit weights), quantization indeed looks free on the standard metric. No cell shows a score change that survives multiple-comparison correction, and in the cell that carries the largest process damage, equivalence testing bounds the change within $\\pm$7.5 points. The process tells a d",
+      "authors": [
+        "Jiwon Jang",
+        "Kisu Yang",
+        "Heuiseok Lim",
+        "Hyunwoo Park"
+      ],
+      "query_source": "weight_quant",
+      "objects": [
+        "参数"
+      ],
+      "methods": [
+        "量化"
+      ],
+      "strict_score": 2,
+      "matched_objects_v5": [
+        "参数(Weights)"
+      ],
+      "matched_methods_v5": [
+        "量化(Quant)"
+      ]
+    },
+    {
+      "id": "2607.27187",
+      "date": "2026-07-29",
+      "title": "A Photonic-CXL Memory Appliance for Scalable KV Cache Management in LLM Inference",
+      "summary": "LLM inference at scale faces a memory wall. The KV cache demands tens of terabytes at hundreds of gigabytes per second, yet no current memory tier delivers both at once. Characterization across multi-generation GPU systems with various LLaMA models shows host memory retrieval achieves up to 100x speedup over re-computation but supports only tens of concurrent long-context users. Electrical CXL pooling theoretically bridges this gap, but switch latency, cable reach limits, and power-scaling issues prevent practical TB-scale deployments. We present the Marvell Photonic Fabric Memory Appliance, a",
+      "authors": [
+        "Jing Ding",
+        "Yash Nishant",
+        "Chandrish Ambati",
+        "Jyothsna Kamati",
+        "Trung Diep"
+      ],
+      "query_source": "KV_cache",
+      "objects": [
+        "KV"
+      ],
+      "methods": [],
+      "strict_score": 1,
+      "matched_objects_v5": [
+        "状态(State/KV)"
+      ],
+      "matched_methods_v5": []
+    },
+    {
+      "id": "2607.26004",
+      "date": "2026-07-28",
+      "title": "Parallel Decoding Distillation for Fast Image and Video Generation",
+      "summary": "Generation in video diffusion or flow models is computationally expensive due to the slow and iterative sampling process. Current state-of-the-art (SOTA) acceleration methods heavily rely on variational score distillation (VSD) and adversarial losses to distill diffusion models into few-step generators. Albeit achieving high-quality video generation, these training losses are notoriously hard to optimize and suffer from mode collapse, leading to loss of video diversity and lack of motion. In this paper, we introduce Parallel Decoding Distillation (PDD), a simplified and scalable trajectory-bas",
+      "authors": [
+        "Neta Shaul",
+        "Chao Liu",
+        "Arash Vahdat",
+        "Julius Berner"
+      ],
+      "query_source": "distillation_broad",
+      "objects": [],
+      "methods": [
+        "蒸馏"
+      ],
+      "strict_score": 2,
+      "matched_objects_v5": [
+        "参数(Weights)"
+      ],
+      "matched_methods_v5": [
+        "蒸馏(Distill)"
+      ]
+    },
+    {
+      "id": "2607.26238",
+      "date": "2026-07-28",
+      "title": "Lightweight Image Classification of Raptor Species for Edge Devices: Rare-Species Dataset Expansion via Video Frame Extraction, Knowledge Distillation, and TensorRT Deployment",
+      "summary": "We investigate lightweight raptor-species classification for real-time edge deployment in wind-turbine collision mitigation. Using DINOv2-L (304M parameters) as a teacher, we distilled three lightweight students (MobileNetV4, ViT-Small, and EfficientNet-B0). To reduce confusion between closely related species, we expanded the dataset to 12,519 images, including an increase in Steller's Sea Eagle images from 463 to 2,050 via video-frame extraction. Under a group split that separates samples at the video- and source-image level to mitigate source leakage at that granularity, the three-student en",
+      "authors": [
+        "Takeshi Nishikawa"
+      ],
+      "query_source": "distillation",
+      "objects": [
+        "参数"
+      ],
+      "methods": [
+        "蒸馏"
+      ],
+      "strict_score": 2,
+      "matched_objects_v5": [
+        "参数(Weights)"
+      ],
+      "matched_methods_v5": [
+        "蒸馏(Distill)"
+      ]
+    },
+    {
+      "id": "2607.25291",
+      "date": "2026-07-28",
+      "title": "CoSA: Accelerating Long-Context Inference via Proxy-Kernel Co-Designed Sparse Attention",
+      "summary": "The quadratic cost of self-attention makes long-context inference prohibitively expensive, and proxy-based block-sparse attention has become a practical remedy. Existing methods typically rely on a proxy to predict a binary sparse mask and a kernel to consume this mask and perform sparse attention computation. Such an approach is effective under moderate budgets. However, as the budget tightens, the estimated proxy inevitably drops some salient blocks, while the kernel can only apply the sparse mask mechanically, leading to an evident drop in model accuracy. We propose CoSA, a two-stage traini",
+      "authors": [
+        "Yufei Xue",
+        "Lin Niu",
+        "Hong Liu",
+        "Siran Liu",
+        "Hanyong Shao"
+      ],
+      "query_source": "sparse_attn",
+      "objects": [],
+      "methods": [
+        "剪枝/稀疏",
+        "注意力优化"
+      ],
+      "strict_score": 2,
+      "matched_objects_v5": [
+        "状态(State/KV)"
+      ],
+      "matched_methods_v5": [
+        "稀疏(Sparse)"
+      ]
+    },
+    {
+      "id": "2607.25451",
+      "date": "2026-07-28",
+      "title": "Bits and Memories: Measuring Verbatim Extraction Across LLM Quantization",
+      "summary": "Language models are almost always quantized before they are deployed, and a growing line of work asks whether quantization also lowers their privacy risk. That work measures privacy almost entirely with membership inference. We think this is the wrong thing to measure for the risk that most people actually worry about, namely a model reproducing its training data word for word, and we measure that directly. Using the Pythia models and the public set of sequences each of them is known to have memorized, we track verbatim extraction across five precision levels, from full precision down to four ",
+      "authors": [
+        "Akshay Sasi"
+      ],
+      "query_source": "llm_quant",
+      "objects": [],
+      "methods": [
+        "量化"
+      ],
+      "strict_score": 2,
+      "matched_objects_v5": [
+        "参数(Weights)"
+      ],
+      "matched_methods_v5": [
+        "量化(Quant)"
+      ]
+    },
+    {
+      "id": "2607.25504",
+      "date": "2026-07-28",
+      "title": "At-the-Roofline Sparse Tensor Contractions on Vector Processors for Transformer Inference",
+      "summary": "Fine-grained weight pruning and activation sparsification have emerged as effective approaches for reducing the compute and memory cost of inference for Transformer models. In the moderate-sparsity regime, Gustavson's dataflow provides a natural execution model for exploiting both activation and weight sparsity on vector processors through metadata-driven indexed accumulation. However, existing RVV architectures lack native support for this pattern, forcing kernels to rely on software index decoding and L1-backed indexed memory operations that keep sparse tensor contractions far below their ro",
+      "authors": [
+        "Bowen Wang",
+        "Chi Zhang",
+        "Diyou Shen",
+        "Renzo Andri",
+        "Navaneeth Kunhi Purayil"
+      ],
+      "query_source": "pruning_broad",
+      "objects": [
+        "参数",
+        "激活"
+      ],
+      "methods": [
+        "剪枝/稀疏"
+      ],
+      "strict_score": 2,
+      "matched_objects_v5": [
+        "状态(State/KV)"
+      ],
+      "matched_methods_v5": [
+        "稀疏(Sparse)"
+      ]
+    },
+    {
+      "id": "2607.24440",
+      "date": "2026-07-27",
+      "title": "Bigger or Cheaper? Scale and Quantization Effects on Uncertainty Signals in Vision-Language Models Under Image Degradation",
+      "summary": "Vision-language models (VLMs) deployed on consumer hardware must decide when to answer and when to defer, and that decision depends on having a confidence signal that tracks correctness. A practitioner with a fixed memory budget faces a choice between a small model at full precision, the same small model quantized, and a larger model quantized into the same footprint -- three configurations that push the confidence signal in opposing directions. We measure, on identical inputs, how model scale and 4-bit quantization affect two confidence signals in the Qwen2-VL family: the confidence a model s",
+      "authors": [
+        "M M Asif Ferdous"
+      ],
+      "query_source": "quantization",
+      "objects": [],
+      "methods": [
+        "量化"
+      ],
+      "strict_score": 2,
+      "matched_objects_v5": [
+        "参数(Weights)"
+      ],
+      "matched_methods_v5": [
+        "量化(Quant)"
+      ]
+    },
+    {
+      "id": "2607.24434",
+      "date": "2026-07-27",
+      "title": "DraftExpert: Expansion-Aware Self-Speculative Decoding for End-Device MoE Inference",
+      "summary": "Large Mixture-of-Experts (MoE) language models are attractive for end-device deployment because only a small subset of experts is active per token, but their routed expert weights often exceed accelerator memory. We target latency-critical single-user settings where routed experts are staged on demand from CPU memory to a GPU or from Flash to a mobile NPU. In this setting, self-speculative decoding faces a new bottleneck: increasing the draft expert set improves accuracy but triggers extra expert loading, while cheap small-footprint drafts have low acceptance; moreover, verifying a multi-token",
+      "authors": [
+        "Dengke Han"
+      ],
+      "query_source": "spec_decode",
+      "objects": [
+        "参数"
+      ],
+      "methods": [
+        "投机解码"
+      ],
+      "strict_score": 1,
+      "matched_objects_v5": [
+        "通信(Comm)"
+      ],
+      "matched_methods_v5": []
+    },
+    {
+      "id": "2607.23445",
+      "date": "2026-07-26",
+      "title": "Omni-Prune: Query-Aware Unified Token Pruning for Efficient Omnimodal Large Language Models",
+      "summary": "Omnimodal large language models (OmniLLMs) are rapidly extending multimodal reasoning to cover synchronized audio and video. However, the resulting audio-video token sequences are long, leading to high prefill latency and GPU memory usage at inference time. Existing token pruning methods, designed mainly for vision-only inputs, miss both the cross-modal links between audio and video and the user query that decides which content matters. To bridge this gap, we present Omni-Prune, a training-free, query-aware audio-visual token pruning framework that jointly removes redundancy from both modaliti",
+      "authors": [
+        "Yiming Zhong",
+        "Chang Nie",
+        "Caifeng Shan"
+      ],
+      "query_source": "visual_token",
+      "objects": [
+        "KV",
+        "激活"
+      ],
+      "methods": [
+        "剪枝/稀疏"
+      ],
+      "strict_score": 2,
+      "matched_objects_v5": [
+        "参数(Weights)"
+      ],
+      "matched_methods_v5": [
+        "剪枝(Prune)"
+      ]
+    },
+    {
+      "id": "2607.23125",
+      "date": "2026-07-25",
+      "title": "Self-Boosting Vision-Language Models with Noisy Student On-Policy Self-Distillation",
+      "summary": "Post-training enables vision-language models (VLMs) to understand human instructions and perform various downstream tasks. Current post-training methods usually rely on human-annotated data, distillation from external models, reinforcement learning with human feedback, or verifiable answers. This limits their ability to improve without external supervision. To tackle this, we propose NOPD (Noisy Student On-Policy Self-Distillation), a simple yet effective self-distillation approach that improves VLMs without any external models or ground-truth answers. Our key insight is that prediction discre",
+      "authors": [
+        "Shuai Wang",
+        "Daoan Zhang",
+        "Zhe Tang",
+        "Hao Cheng",
+        "Jiaheng Wei"
+      ],
+      "query_source": "distillation_broad",
+      "objects": [],
+      "methods": [
+        "蒸馏"
+      ],
+      "strict_score": 2,
+      "matched_objects_v5": [
+        "参数(Weights)"
+      ],
+      "matched_methods_v5": [
+        "蒸馏(Distill)"
+      ]
+    },
+    {
+      "id": "2607.23047",
+      "date": "2026-07-25",
+      "title": "MixQuant: Adaptive Mixed-Precision Quantization for Large Language Models",
+      "summary": "Mixed-precision quantization improves the accuracy of post-training quantization by allocating higher bitwidths to sensitive layers, but existing methods solve the allocation for a single fixed memory budget. In practice the budget varies across deployments and is unknown at calibration time. Adaptive quantization addresses this with one offline calibration that serves any budget, yet current methods score layer sensitivity in a manner that does not consider its dependency on quantization levels of other layers. We show that a layer's sensitivity depends strongly on the bitwidths of its upstre",
+      "authors": [
+        "Ashitabh Misra",
+        "Madhav Agrawal",
+        "Arham Jain",
+        "Tarek Abdelzaher"
+      ],
+      "query_source": "quantization",
+      "objects": [],
+      "methods": [
+        "量化"
+      ],
+      "strict_score": 2,
+      "matched_objects_v5": [
+        "参数(Weights)"
+      ],
+      "matched_methods_v5": [
+        "量化(Quant)"
+      ]
+    },
+    {
+      "id": "2607.23227",
+      "date": "2026-07-25",
+      "title": "INT8 Quantization Makes ARM Edge Inference Dispatch-Invariant",
+      "summary": "On x86, kernel dispatch fragments the outputs of the same neural network into many equivalence classes across hardware. We ask whether the same fragmentation governs ARM edge inference, where most edge ML actually runs. Across four Raspberry Pi devices spanning Cortex-A53, A72, and A76 under ONNX Runtime CPU, microarchitecture is not observable in the outputs of a fixed FP32 CNN. Holding hardware constant at Cortex-A76 and switching only the execution provider, FP32 outputs disagree on every CIFAR-10 image with a mean remaining precision of 14.97 of 23 mantissa bits. INT8 QDQ post-training qua",
+      "authors": [
+        "Sebastián A. Cruz Romero",
+        "Shenied E. Maldonado Guerra"
+      ],
+      "query_source": "quantization",
+      "objects": [],
+      "methods": [
+        "量化"
+      ],
+      "strict_score": 2,
+      "matched_objects_v5": [
+        "参数(Weights)"
+      ],
+      "matched_methods_v5": [
+        "量化(Quant)"
+      ]
+    },
+    {
+      "id": "2607.23099",
+      "date": "2026-07-25",
+      "title": "Decoding the Skew: Distribution-Aware MoE Inference with Adaptive Kernel Dispatch",
+      "summary": "Mixture-of-Experts (MoE) inference consists of sparse expert GEMMs whose shapes vary with the runtime routing distribution. Existing serving systems typically select fused-MoE kernels using static token-count buckets, ignoring the per-expert routing distribution that determines tile padding, memory reuse, and kernel efficiency. We introduce a distribution-aware framework for modeling and benchmarking MoE inference. The framework combines the compact Effective Experts metric with a Dirichlet-based reverse-modeling procedure that generates controllable routing distributions for systematic hardwa",
+      "authors": [
+        "En-Ming Huang",
+        "An-Cheng Chang",
+        "Bai-Cheng Jeng",
+        "Shih-Hao Hung",
+        "H. T. Kung"
+      ],
+      "query_source": "moe",
+      "objects": [],
+      "methods": [
+        "剪枝/稀疏"
+      ],
+      "strict_score": 1,
+      "matched_objects_v5": [
+        "通信(Comm)"
+      ],
+      "matched_methods_v5": []
+    },
+    {
+      "id": "2607.21985",
+      "date": "2026-07-24",
+      "title": "Unified Static-Dynamic Pruning for Efficient LLM Inference",
+      "summary": "The increasing deployment of large language models (LLMs) has magnified the computational and memory bottlenecks of autoregressive decoding, where low compute intensity and bandwidth-bound kernels dominate inference cost. Weight pruning offers a promising remedy, but existing methods remain confined to either static pruning (SP), which permanently removes redundant weights but lacks adaptivity, or dynamic pruning (DP), which adapts to input sparsity but introduces runtime irregularity. This paper presents SPDP, a unified sparse-inference framework that integrates unstructured SP with input-ada",
+      "authors": [
+        "Jinhyeok Kim",
+        "Yejoon Lee",
+        "Jaeyoung Do"
+      ],
+      "query_source": "llm_serving",
+      "objects": [
+        "参数"
+      ],
+      "methods": [
+        "剪枝/稀疏"
+      ],
+      "strict_score": 2,
+      "matched_objects_v5": [
+        "参数(Weights)"
+      ],
+      "matched_methods_v5": [
+        "剪枝(Prune)"
+      ]
+    },
+    {
+      "id": "2607.22038",
+      "date": "2026-07-24",
+      "title": "Sparse by Command: Task-Conditional Compute Skipping for Multi-Task Inference Accelerators",
+      "summary": "Multi-task inference models share a single backbone across diverse tasks, yet execute identical computation regardless of which task is active - wasting energy and cycles on task-irrelevant operations. We observe that the task command, typically available before inference begins, provides a free signal that can be exploited to skip unnecessary computation at the hardware level. We present a HW/SW co-designed approach in which a lightweight gating network, trained jointly with the backbone, predicts per-tile binary execution masks conditioned on the task input. Each tile corresponds to a fixed ",
+      "authors": [
+        "Afzal Ahmad",
+        "Gaoyu Mao",
+        "Shoubo Hu",
+        "Hui-Ling Zhen",
+        "Mingxuan Yuan"
+      ],
+      "query_source": "infer_accel",
+      "objects": [
+        "参数"
+      ],
+      "methods": [
+        "剪枝/稀疏"
+      ],
+      "strict_score": 2,
+      "matched_objects_v5": [
+        "状态(State/KV)"
+      ],
+      "matched_methods_v5": [
+        "稀疏(Sparse)"
+      ]
+    },
+    {
+      "id": "2607.21927",
+      "date": "2026-07-24",
+      "title": "RIS-Kernel: A Model-Agnostic Architecture for Long-Context LLM Inference via Sparse Attention",
+      "summary": "Full self-attention in large language models scales as O(N^2), which limits long-context document analysis to 65,536 tokens and requires costly GPU clusters. The Reduced Interaction Sampling (RIS) inference engine addresses this constraint as a model-agnostic architecture. Without modifying weights, RIS reduces self-attention complexity to O(N log N) using sparse stochastic geometry that fits within commodity memory limits. We validate RIS on Qwen2-1.5B-Instruct across two regimes. In controlled evaluations at 32,768 tokens (where native dense attention serves as the upper bound), RIS-Stochast",
+      "authors": [
+        "Anderson R. Santos"
+      ],
+      "query_source": "sparse_attn",
+      "objects": [
+        "参数"
+      ],
+      "methods": [
+        "剪枝/稀疏",
+        "注意力优化"
+      ],
+      "strict_score": 2,
+      "matched_objects_v5": [
+        "状态(State/KV)"
+      ],
+      "matched_methods_v5": [
+        "稀疏(Sparse)"
+      ]
+    },
+    {
+      "id": "2607.22389",
+      "date": "2026-07-24",
+      "title": "HiKV: Hierarchical Importance-Aware KV Cache with Hardware Acceleration for LLM Decoding",
+      "summary": "With the rapid adoption of long-context large language models (LLMs), the continuously growing KV cache during decoding has become the critical memory bottleneck. To tackle this challenge, we propose HiKV, a novel algorithm-hardware co-design that exploits KV cache redundancy through hierarchical importance awareness. Algorithmically, HiKV compresses the KV cache at two granularities: Stage I evicts unimportant tokens within a fixed budget, and Stage II further loads only the significant elements of each retained token, reaching compression ratios unattainable at a single granularity. Architec",
+      "authors": [
+        "Chao Fang",
+        "Jun Yin",
+        "Man Shi",
+        "Marian Verhelst"
+      ],
+      "query_source": "KV_cache",
+      "objects": [
+        "KV"
+      ],
+      "methods": [],
+      "strict_score": 1,
+      "matched_objects_v5": [
+        "状态(State/KV)"
+      ],
+      "matched_methods_v5": []
+    },
+    {
+      "id": "2607.21446",
+      "date": "2026-07-23",
+      "title": "KroQuant: Kronecker-Structured Block Transforms for Efficient Post-Training Quantization of Diffusion Transformers",
+      "summary": "Post-training quantization (PTQ) of diffusion transformers (DiTs) to W4A4 severely degrades output quality, because activations entering each linear layer contain outliers that 4-bit formats cannot represent. The standard fix applies an invertible linear transform to the activations and its inverse to the weights before quantizing both. Normalization layers between blocks force this transform to run online at every denoising step, making its inference computation cost the binding design constraint. Existing options trade quantization quality for inference cost: per-channel scaling (SmoothQuant",
+      "authors": [
+        "Yann Bouquet",
+        "Alireza Khodamoradi",
+        "Kristof Denolf",
+        "Mathieu Salzmann"
+      ],
+      "query_source": "weight_quant",
+      "objects": [
+        "参数",
+        "激活"
+      ],
+      "methods": [
+        "量化"
+      ],
+      "strict_score": 3,
+      "matched_objects_v5": [
+        "参数(Weights)"
+      ],
+      "matched_methods_v5": [
+        "量化(Quant)",
+        "低秩(LowRank)"
+      ]
+    },
+    {
+      "id": "2607.21063",
+      "date": "2026-07-23",
+      "title": "QuantiBias: Benchmarking Quantization-Induced Bias in LLMs",
+      "summary": "Almost every large language model that reaches a broad audience is quantized: trained in full precision, then compressed for efficiency. This step is assumed harmless and its safety is rarely re-checked. We find its principal side effect is increased bias that standard safety evaluation misses. Holding the model, its training, and the prompts fixed, a quantized model still refuses harmful requests, still avoids over-refusing benign prompts, and still selects the unbiased multiple-choice answer. Yet asked an open-ended question, the same model volunteers stereotypes in all eight languages we pr",
+      "authors": [
+        "Emilio Ferrara"
+      ],
+      "query_source": "quantization",
+      "objects": [],
+      "methods": [
+        "量化"
+      ],
+      "strict_score": 2,
+      "matched_objects_v5": [
+        "参数(Weights)"
+      ],
+      "matched_methods_v5": [
+        "量化(Quant)"
+      ]
+    },
+    {
+      "id": "2607.20214",
+      "date": "2026-07-22",
+      "title": "ELSAA: Efficient Low-Rank and Sparse Attention Approximation for Training Transformers",
+      "summary": "The quadratic $N\\times N$ attention score matrix remains a central obstacle to extending Transformers to longer input lengths. Existing efficient attention methods usually reduce this bottleneck by either imposing sparsity, so that each query attends to only a small subset of keys, or by using low-rank/kernel sketches, so that global interactions are compressed into a lower-dimensional representation. We propose \\emph{ELSAA}, an efficient low-rank and sparse approximation of attention. Importantly, ELSAA does \\emph{not} decompose the learned projection or output matrices of the Transformer int",
+      "authors": [
+        "Mahdi Heidari",
+        "Mohammad Mahdi Rahimi",
+        "Jaekyun Moon"
+      ],
+      "query_source": "sparse_attn",
+      "objects": [],
+      "methods": [
+        "剪枝/稀疏",
+        "低秩",
+        "注意力优化"
+      ],
+      "strict_score": 4,
+      "matched_objects_v5": [
+        "状态(State/KV)",
+        "参数(Weights)"
+      ],
+      "matched_methods_v5": [
+        "稀疏(Sparse)",
+        "低秩(LowRank)"
+      ]
+    },
+    {
+      "id": "2607.20205",
+      "date": "2026-07-22",
+      "title": "Statistical Inference for Rank Allocation in Low-Rank Adaptation",
+      "summary": "Low-rank adaptation (LoRA) has become a widely used parameter-efficient fine-tuning method for large language models. Since different modules and layers may contribute unequally to downstream adaptation, allocating rank resources under a fixed parameter budget is an important problem for balancing efficiency, expressiveness, and generalization. Existing adaptive rank methods address this problem mainly through carefully designed importance scores constructed from gradient-derived sensitivity and uncertainty measures, without an explicit statistical interpretation. In this paper, we formulate L",
+      "authors": [
+        "Yihang Gao",
+        "Vincent Y. F. Tan"
+      ],
+      "query_source": "pruning_broad",
+      "objects": [
+        "参数"
+      ],
+      "methods": [
+        "低秩"
+      ],
+      "strict_score": 2,
+      "matched_objects_v5": [
+        "参数(Weights)"
+      ],
+      "matched_methods_v5": [
+        "低秩(LowRank)"
+      ]
+    },
+    {
+      "id": "2607.20757",
+      "date": "2026-07-22",
+      "title": "GaugeQuant: Online Learning of Quantization-Optimal Bases from LLM Symmetries",
+      "summary": "Transformers are known to have internal continuous symmetries that leave outputs invariant, while modifying quantization. GaugeQuant leverages this in-training by introducing a LogSumExp term to the loss that breaks the symmetries, thus selecting a basis that minimizes activation outliers. A stop-gradient operator ensures that only rotation matrices are updated, yielding the language modeling objective completely unaltered. Our requires no specific calibration data, no quantization simulation, and adds negligible training overhead. With the LLaMA-2 7B model under W4A4 quantization with group s",
+      "authors": [
+        "Miguel P. Bento",
+        "João F. Seabra"
+      ],
+      "query_source": "quantization",
+      "objects": [
+        "激活"
+      ],
+      "methods": [
+        "量化"
+      ],
+      "strict_score": 2,
+      "matched_objects_v5": [
+        "参数(Weights)"
+      ],
+      "matched_methods_v5": [
+        "量化(Quant)"
+      ]
+    },
+    {
+      "id": "2607.22720",
+      "date": "2026-07-21",
+      "title": "CausalGate: Causal Importance Distillation for Transformer Module Pruning",
+      "summary": "Existing adaptive inference methods for Large Language Models rely on observational heuristics, such as hidden-state similarity or activation magnitudes, to drop redundant modules. However, these correlation-based metrics often fail to capture subtle, non-linear structural computations vital for semantic accuracy. We introduce CausalGate, an intervention-guided framework for compute-efficient transformer inference. During a calibration phase, CausalGate isolates individual Attention and MLP sub-layers, zeros out their respective outputs, and measures the exact semantic damage via the Kullback-",
+      "authors": [
+        "Kiran Nair",
+        "Smriti Regmi",
+        "Rodrigue Rizk"
+      ],
+      "query_source": "pruning_broad",
+      "objects": [
+        "激活"
+      ],
+      "methods": [
+        "剪枝/稀疏",
+        "蒸馏"
+      ],
+      "strict_score": 3,
+      "matched_objects_v5": [
+        "参数(Weights)"
+      ],
+      "matched_methods_v5": [
+        "剪枝(Prune)",
+        "蒸馏(Distill)"
+      ]
+    },
+    {
+      "id": "2607.19248",
+      "date": "2026-07-21",
+      "title": "A Flexible Sparsity-Aware FPGA Accelerator with Column-Wise Compression for Efficient CNN Inference",
+      "summary": "Efficient acceleration of convolutional neural networks (CNNs) on resource-constrained platforms remains challenging due to the irregularity of sparsity patterns and the associated hardware overhead. While unstructured sparsity offers high model accuracy, it introduces significant inefficiencies in hardware mapping, whereas structured sparsity simplifies execution at the cost of reduced flexibility. This paper presents SparHiXcel-v2, a cost-effective and highly configurable FPGA-based CNN accelerator that achieves an improved balance between sparsity flexibility and hardware efficiency. The pr",
+      "authors": [
+        "Amirhossein Zarei",
+        "Shervin Vakili"
+      ],
+      "query_source": "pruning_broad",
+      "objects": [],
+      "methods": [
+        "剪枝/稀疏"
+      ],
+      "strict_score": 2,
+      "matched_objects_v5": [
+        "状态(State/KV)"
+      ],
+      "matched_methods_v5": [
+        "稀疏(Sparse)"
+      ]
+    },
+    {
+      "id": "2607.18631",
+      "date": "2026-07-21",
+      "title": "Searching for Plans You Can Actually Build: A Realizability-Aware Full-Space Optimizer for MoE Training and Serving",
+      "summary": "Mixture-of-Experts (MoE) systems split a program's plan space in two: the space a cost model can rank, and the smaller space a real toolchain can actually build. Automatic optimizers rank the first and silently assume the two coincide -- so they can return a plan that is optimal on paper and impossible to emit. We present moefs, a realizability-aware full-space optimizer for MoE training and serving that makes deployment realizability a first-class search constraint. moefs closes a three-tier search over parallelism, schedule, and kernels; it emits both a Megatron training stack and an SGLang ",
+      "authors": [
+        "Quan Yuan",
+        "Jie Zhao"
+      ],
+      "query_source": "moe",
+      "objects": [],
+      "methods": [],
+      "strict_score": 1,
+      "matched_objects_v5": [
+        "通信(Comm)"
+      ],
+      "matched_methods_v5": []
+    },
+    {
+      "id": "2607.17828",
+      "date": "2026-07-20",
+      "title": "When a Name Is Not a Name: A Benchmark Dataset and Distilled Reasoning for Culturally Entangled Bangla Homographs in Low-Resource LLMs",
+      "summary": "Many Bangla words are at once personal names and culturally loaded common nouns, \"Maya\" is both a girl's name and a word for affectionate compassion. Choosing the right reading demands cultural knowledge that is scarce in the pretraining data of modern language models. We introduce Culturally Entangled Homograph (CEH) disambiguation and build a Bangla benchmark of 1,516 expert-verified sentences (3,032 labelled occurrences) in which one word appears twice with two distinct readings, each labelled with a culturally grounded category and an explanation of the reasoning behind it. Across open- an",
+      "authors": [
+        "Md. Asaduzzaman Shuvo"
+      ],
+      "query_source": "distillation_broad",
+      "objects": [],
+      "methods": [
+        "蒸馏"
+      ],
+      "strict_score": 2,
+      "matched_objects_v5": [
+        "参数(Weights)"
+      ],
+      "matched_methods_v5": [
+        "蒸馏(Distill)"
+      ]
+    },
+    {
+      "id": "2607.18213",
+      "date": "2026-07-20",
+      "title": "SWE-Pruner Pro: The Coder LLM Already Knows What to Prune",
+      "summary": "Pruning long context for coding agents has been a vital technology for efficient context management. While existing context pruning methods such as SWE-Pruner realize this by attaching a separate code classifier, we find the agent itself encodes internal representations indicating the relevance of code context when reading tool output. Based on this finding, we propose SWE-Pruner Pro, which prunes tool outputs directly inside the agent. Concretely, a small head turns the agent's own internal representations into a keep-or-prune label for each line, with a length-aware embedding keyed to each t",
+      "authors": [
+        "Yuhang Wang",
+        "Yuling Shi",
+        "Shaoqiu Zhang",
+        "Jialiang Liang",
+        "Shilin He"
+      ],
+      "query_source": "long_ctx",
+      "objects": [],
+      "methods": [
+        "剪枝/稀疏"
+      ],
+      "strict_score": 2,
+      "matched_objects_v5": [
+        "参数(Weights)"
+      ],
+      "matched_methods_v5": [
+        "剪枝(Prune)"
+      ]
+    },
+    {
+      "id": "2607.17568",
+      "date": "2026-07-20",
+      "title": "CoCurve: Cross-Module Co-Pruning Curvature for Training-Free Structured LLM Pruning",
+      "summary": "Structured pruning compresses large language models (LLMs) by removing whole computational units, such as attention heads and feed-forward (FFN) channel groups. Most training-free methods, however, rank these units independently, implicitly treating the loss from pruning a set as the sum of its individual losses. This view fails for Transformers, whose sublayers are coupled through a shared residual stream. Two individually weak units can thus be jointly indispensable, yet independent scoring is blind to such dependence and removes them together. We introduce CoCurve (Cross-Module Co-Pruning C",
+      "authors": [
+        "Zhiren Gong",
+        "Zihao Zeng",
+        "Zijie Wang",
+        "Tiantong Wang",
+        "Chau Yuen"
+      ],
+      "query_source": "pruning_broad",
+      "objects": [],
+      "methods": [
+        "剪枝/稀疏"
+      ],
+      "strict_score": 2,
+      "matched_objects_v5": [
+        "参数(Weights)"
+      ],
+      "matched_methods_v5": [
+        "剪枝(Prune)"
+      ]
+    },
+    {
+      "id": "2607.19431",
+      "date": "2026-07-20",
+      "title": "BRIM: Workload-Balanced Dual-Sided Bit-Serial Sparse Inference Accelerator",
+      "summary": "Bit-serial accelerators exploit bit-level sparsity to reduce DNN inference cost, but existing designs exploit sparsity on only one operand, bounding the speedup. Extending sparsity exploitation to both operands simultaneously yields compounding reductions in partial products but introduces a critical new bottleneck: workload imbalance. Because each concurrent weight - activation pair's execution cost depends on the product of two independently varying operand non-zero bit counts, pairs that must complete together finish at vastly different times, leaving faster computations idle. We show this ",
+      "authors": [
+        "Varun Manjunath",
+        "Ruokai Yin",
+        "Donghyun Lee",
+        "Arkapravo Ghosh",
+        "Priyadarshini Panda"
+      ],
+      "query_source": "infer_accel",
+      "objects": [
+        "参数",
+        "激活"
+      ],
+      "methods": [
+        "剪枝/稀疏"
+      ],
+      "strict_score": 2,
+      "matched_objects_v5": [
+        "状态(State/KV)"
+      ],
+      "matched_methods_v5": [
+        "稀疏(Sparse)"
+      ]
+    },
+    {
+      "id": "2607.18002",
+      "date": "2026-07-20",
+      "title": "ExpertPlex: A High-Goodput Disaggregated Serving System for MoE LLMs with Adaptive Persistent Kernels",
+      "summary": "LLMs scale Mixture-of-Experts (MoE) parameters for superior intelligence, but massive weights and dynamic computation impede efficient serving. Existing instance-level prefill-decode disaggregation isolates the phases on separate full-model replicas. As MoE weights grow, each instance may span tens to hundreds of GPUs, making resource allocation increasingly coarse. Configured prefill-to-decode ratios thus often mismatch demand, overprovisioning one phase while overloading the other. Prefill-decode colocation avoids this duplication, but existing Green Context solutions partition each GPU by p",
+      "authors": [
+        "Bingyang Wu",
+        "Chao Jin",
+        "Zili Zhang",
+        "Xinming Wei",
+        "Yinmin Zhong"
+      ],
+      "query_source": "moe",
+      "objects": [
+        "KV",
+        "参数"
+      ],
+      "methods": [],
+      "strict_score": 1,
+      "matched_objects_v5": [
+        "通信(Comm)"
+      ],
+      "matched_methods_v5": []
+    },
+    {
+      "id": "2607.17715",
+      "date": "2026-07-20",
+      "title": "C$^2$KV: Compressed and Composable KV Cache Reuse for Efficient LLM Inference",
+      "summary": "Long-context inference is central to modern large language model (LLM) applications such as retrieval-augmented generation and multi-document reasoning. To mitigate the growing inference cost, recent work has explored key-value (KV) cache reuse to reduce redundant prefill computation. However, existing reuse methods primarily focus on computation savings and overlook a critical bottleneck in long-context LLM serving: the cost of storing and accessing large KV caches. While KV compression appears to be a natural complement, naively combining compression with non-prefix KV reuse often leads to s",
+      "authors": [
+        "Chuheng Du",
+        "Junyi Chen",
+        "Hanlin Tang",
+        "Kan Liu",
+        "Tao Lan"
+      ],
+      "query_source": "KV_cache",
+      "objects": [
+        "KV"
+      ],
+      "methods": [],
+      "strict_score": 1,
+      "matched_objects_v5": [
+        "状态(State/KV)"
+      ],
+      "matched_methods_v5": []
+    },
+    {
+      "id": "2607.17091",
+      "date": "2026-07-19",
+      "title": "ThRIve: Thermally Robust CNN Inference via Low-Rank Adaptation in Heterogeneous PIM Architectures",
+      "summary": "Processing-In-Memory (PIM) has emerged as a promising technology for accelerating machine learning (ML) workloads. Specifically, non-volatile memory-based PIM architectures have enabled effective ML acceleration due to their ability to perform energy-efficient matrix-vector multiplication operations. However, these devices suffer from non-idealities such as thermal noise. This noise alters the stored values in the memory cells which correspond to actual model weights, compromising the inference accuracy. In this work, we introduce ThRIve, a noise-aware training methodology that leverages low-r",
+      "authors": [
+        "Vibhanshu Sharma",
+        "Pratyush Dhingra",
+        "Janardhan Rao Doppa",
+        "Partha Pratim Pande"
+      ],
+      "query_source": "low_rank",
+      "objects": [
+        "参数"
+      ],
+      "methods": [
+        "低秩"
+      ],
+      "strict_score": 2,
+      "matched_objects_v5": [
+        "参数(Weights)"
+      ],
+      "matched_methods_v5": [
+        "低秩(LowRank)"
+      ]
+    },
+    {
+      "id": "2607.17117",
+      "date": "2026-07-19",
+      "title": "Persistent Sparse Autoencoders: Learning Feature Timescales in Language Models",
+      "summary": "Sparse autoencoders (SAEs) decompose language model activations into sparse features, but standard SAEs encode each token independently and do not expose information that persists across a sequence. We introduce Persistent Sparse Autoencoders (Persistent SAEs), which extend standard SAEs by learning a persistence coefficient for each feature, allowing the model to learn which features should persist and for how long. Our experiments show that they retain competitive reconstruction quality while learning a spectrum of feature timescales: fast features behave as locally interpretable detectors, ",
+      "authors": [
+        "Haoyan Luo",
+        "Mateo Espinosa Zarlenga",
+        "Mateja Jamnik"
+      ],
+      "query_source": "long_ctx",
+      "objects": [
+        "激活"
+      ],
+      "methods": [
+        "剪枝/稀疏"
+      ],
+      "strict_score": 2,
+      "matched_objects_v5": [
+        "状态(State/KV)"
+      ],
+      "matched_methods_v5": [
+        "稀疏(Sparse)"
+      ]
+    },
+    {
+      "id": "2607.17247",
+      "date": "2026-07-19",
+      "title": "Distilled Reinforcement Learning for LLM Post-training",
+      "summary": "Large language model (LLM) post-training is essential for improving reasoning, adaptation, and alignment. Existing methods mainly follow two paradigms: reinforcement learning (RL) and on-policy distillation (OPD). However, RL relies on coarse-grained outcome supervision, resulting in difficult credit assignment and limited capability to acquire new knowledge. OPD, meanwhile, unconditionally matches teacher logits through KL divergence, which creates a dilemma: similar teachers provide little new knowledge, while substantially different teachers often yield ineffective guidance, largely restric",
+      "authors": [
+        "Chen Wang",
+        "Zhaochun Li",
+        "Jionghao Bai",
+        "Yining Zhang",
+        "Hexuan Deng"
+      ],
+      "query_source": "distillation_broad",
+      "objects": [],
+      "methods": [
+        "蒸馏"
+      ],
+      "strict_score": 2,
+      "matched_objects_v5": [
+        "参数(Weights)"
+      ],
+      "matched_methods_v5": [
+        "蒸馏(Distill)"
+      ]
+    },
+    {
+      "id": "2607.17074",
+      "date": "2026-07-19",
+      "title": "ThAME: 3D Memory-Enabled Heterogeneous Accelerator for LLM Mixture of Experts",
+      "summary": "Mixture of Experts (MoE) architectures have emerged as a dominant paradigm for scaling Large Language Models (LLMs). However, MoE inference on conventional hardware is constrained by three fundamental bottlenecks. These encompass the massive memory bandwidth required to fetch non-contiguous expert weights, the non-deterministic scatter-gather traffic generated by input-dependent token routing, and the tail-latency dependency imposed by synchronous expert output aggregation. To address these challenges, we propose ThAME, a three-dimensional (3D) heterogeneous multi-chiplet architecture for MoE ",
+      "authors": [
+        "Pratyush Dhingra",
+        "Pramit Kumar Pal",
+        "Janardhan Rao Doppa",
+        "Partha Pratim Pande"
+      ],
+      "query_source": "moe",
+      "objects": [
+        "参数"
+      ],
+      "methods": [],
+      "strict_score": 1,
+      "matched_objects_v5": [
+        "通信(Comm)"
+      ],
+      "matched_methods_v5": []
+    },
+    {
+      "id": "2607.17154",
+      "date": "2026-07-19",
+      "title": "OrderMoE: An expert similarity driven distributed edge MoE inference",
+      "summary": "Although mixture-of-experts, MoE, models have been increasingly adopted to scale large language models with moderate computation cost, it remains challenging to deploy MoE inference over resource-constrained and bandwidth-limited edge infrastructures. Existing distributed MoE serving methods mainly rely on exact expert placement, caching, replication, or communication scheduling, while overlooking the functional similarity among experts, which provides an opportunity to reduce cross-server token transmission. Therefore, this paper introduces a similarity-aware expert allocation and distributed",
+      "authors": [
+        "Xin Yuan",
+        "Ning Li",
+        "Quan Chen",
+        "Wenchao Xu",
+        "Athanasios V. Vasilakos"
+      ],
+      "query_source": "moe",
+      "objects": [
+        "通信"
+      ],
+      "methods": [],
+      "strict_score": 1,
+      "matched_objects_v5": [
+        "通信(Comm)"
+      ],
+      "matched_methods_v5": []
+    },
+    {
+      "id": "2607.16872",
+      "date": "2026-07-18",
+      "title": "Trace-Based On-Policy Distillation for Masked Diffusion Language Models",
+      "summary": "Diffusion large language models (dLLMs) are a promising alternative to autoregressive generation. However, reasoning-oriented post-training for dLLMs remains challenging. Supervised fine-tuning (SFT) for dLLMs requires dense but often off-policy masked states, while reinforcement learning (RL) relies on sparse rewards or value modeling. This paper proposes \\textbf{trace-based on-policy distillation (TOPD)}, a teacher-supervised framework that transfers reasoning ability to a target dLLM without reward estimation. The key idea is to supervise a dLLM on its own denoising trajectory, focusing on ",
+      "authors": [
+        "Haolin Ren",
+        "Ziyang Huang",
+        "Chenhao Yuan",
+        "Jun Zhao",
+        "Kang Liu"
+      ],
+      "query_source": "distillation_broad",
+      "objects": [],
+      "methods": [
+        "剪枝/稀疏",
+        "蒸馏"
+      ],
+      "strict_score": 2,
+      "matched_objects_v5": [
+        "参数(Weights)"
+      ],
+      "matched_methods_v5": [
+        "蒸馏(Distill)"
+      ]
+    },
+    {
+      "id": "2607.16789",
+      "date": "2026-07-18",
+      "title": "MultiLoReFT: Decoupling Shared and Modality-Specific Subspaces in Multimodal Learning via Low-Rank Representation Fine-Tuning",
+      "summary": "Real-world perception and decision making are inherently multimodal, integrating complementary signals across modalities. However, training multimodal models faces two main obstacles. First, collecting large-scale, well-aligned paired multimodal datasets is often impractical, making end-to-end multimodal training difficult. Second, existing multimodal representations frequently entangle information shared across modalities with modality-specific information, hindering interpretability and control. We introduce MultiLoReFT, an efficient and scalable low-rank representation fine-tuning framework",
+      "authors": [
+        "Sana Tonekaboni",
+        "Viktoria Schuster",
+        "Caroline Uhler"
+      ],
+      "query_source": "low_rank",
+      "objects": [],
+      "methods": [
+        "低秩"
+      ],
+      "strict_score": 2,
+      "matched_objects_v5": [
+        "参数(Weights)"
+      ],
+      "matched_methods_v5": [
+        "低秩(LowRank)"
+      ]
+    },
+    {
+      "id": "2607.16721",
+      "date": "2026-07-18",
+      "title": "Half the Experts, All the Code: One-Shot Domain Pruning of Mixture-of-Experts LLMs for Coding",
+      "summary": "The strongest open-weight coding models are mixture-of-experts (MoE) networks: most of their size comes from large pools of \"expert\" subnetworks, of which only a few act on any token. That pool is why these models do not fit on the machines most developers own, yet for a user who only wants coding help, most experts encode abilities that will never be invoked. We ask how many experts can be removed, and which, by pruning two recent open-weight MoE models from different families (Qwen3.6-35B-A3B and Gemma-4-26B-A4B) under five selection strategies, judged the way a user would: by whether the mo",
+      "authors": [
+        "Anik Jha"
+      ],
+      "query_source": "moe",
+      "objects": [
+        "参数"
+      ],
+      "methods": [
+        "剪枝/稀疏"
+      ],
+      "strict_score": 2,
+      "matched_objects_v5": [
+        "通信(Comm)"
+      ],
+      "matched_methods_v5": [
+        "剪枝(Prune)"
+      ]
+    },
+    {
+      "id": "2607.16692",
+      "date": "2026-07-18",
+      "title": "Dependency-Guided Code Generation: Structured Matrix Decomposition and Consistency-Guided Refinement",
+      "summary": "The increasing complexity of modern software systems has made automated code generation a fundamental task in software engineering. However, existing approaches often fail to adequately capture the intricate, multi-level dependencies among code entities, leading to generated code that is logically incomplete or difficult to integrate into real-world systems. To address this limitation, we propose a dependency-aware code generation framework that explicitly models interactions among code entities through a graph-based representation. We decompose dependencies into two complementary components: ",
+      "authors": [
+        "Mingqiao Mo",
+        "Yangchen Zeng",
+        "Zikai Xiao",
+        "Xin Xiao",
+        "Wenhua Nie"
+      ],
+      "query_source": "quantization",
+      "objects": [],
+      "methods": [
+        "低秩"
+      ],
+      "strict_score": 2,
+      "matched_objects_v5": [
+        "参数(Weights)"
+      ],
+      "matched_methods_v5": [
+        "低秩(LowRank)"
+      ]
+    },
+    {
+      "id": "2607.16184",
+      "date": "2026-07-17",
+      "title": "PagedWeight: Efficient MoE LLM Serving with Dynamic Quality-Aware Weight Quantization",
+      "summary": "Mixture-of-Experts (MoE) is a popular class of large language models (LLMs), offering high efficiency and accuracy. However, in KV-cache-intensive serving scenarios, MoEs often exhibit a tension between the GPU memory requirements of the model weights and the growing KV cache. We propose PagedWeight, a novel management method for MoE LLM serving that dynamically quantizes MoE model's weights at runtime and balances expert-weight precision with the KV cache sizes. PagedWeight exposes and effectively navigates the complex tradeoff between the model's task accuracy, memory consumption, and throug",
+      "authors": [
+        "Yuchen Yang",
+        "Yifan Zhao",
+        "Anisha Dasgupta",
+        "Sasa Misailovic"
+      ],
+      "query_source": "KV_cache",
+      "objects": [
+        "KV",
+        "参数"
+      ],
+      "methods": [
+        "量化"
+      ],
+      "strict_score": 3,
+      "matched_objects_v5": [
+        "参数(Weights)",
+        "通信(Comm)"
+      ],
+      "matched_methods_v5": [
+        "量化(Quant)"
+      ]
+    },
+    {
+      "id": "2607.14618",
+      "date": "2026-07-16",
+      "title": "PolyQ: Codesigning End-to-End Quantization Framework for Scalable Edge CPU LLM Inference",
+      "summary": "CPUs are the most universal target for on-device LLM inference, but existing low-bit quantization methods offer either coarse operating points or fine-grained mixed precision that is difficult to execute efficiently on CPUs. We present PolyQ, a CPU-oriented compiler/quantization co-design for activation-aware channel-wise bit allocation under a user-specified average-bit budget. PolyQ assigns per-channel bit-widths from $\\{2,3,4,8,16\\}$, then uses a compile-time model compiler to permute and cluster channels into bit-homogeneous blocks, generate SIMD- and LUT-compatible kernels, and merge comp",
+      "authors": [
+        "Hyunwoo Oh",
+        "Suyeon Jang",
+        "Hanning Chen",
+        "KyungIn Nam",
+        "Sanggeon Yun"
+      ],
+      "query_source": "quantization",
+      "objects": [
+        "激活"
+      ],
+      "methods": [
+        "量化"
+      ],
+      "strict_score": 2,
+      "matched_objects_v5": [
+        "参数(Weights)"
+      ],
+      "matched_methods_v5": [
+        "量化(Quant)"
+      ]
+    },
+    {
+      "id": "2607.14552",
+      "date": "2026-07-16",
+      "title": "Answer-Conditioned Chains of Thought Degrade Verifiable-Reasoning Distillation in Large Language Models",
+      "summary": "A standard recipe for distilling the reasoning ability of large language models (LLMs) is to sample chains of thought from the model, keep those that reach the correct final answer, and fine-tune on the survivors. When sampling fails, a common fix shows the generator the gold answer and asks it to write a chain that reaches that answer. We show that this second step degrades the training data in a way that correctness filtering cannot catch. We run a controlled experiment that fixes the generator, the problem set, and the correctness filter, and varies only whether the chain is generated under",
+      "authors": [
+        "Jungseob Lee",
+        "Seungyoon Lee",
+        "Suhyune Son",
+        "Dongyub Jude Lee",
+        "Sungbin Han"
+      ],
+      "query_source": "distillation_broad",
+      "objects": [],
+      "methods": [
+        "蒸馏"
+      ],
+      "strict_score": 2,
+      "matched_objects_v5": [
+        "参数(Weights)"
+      ],
+      "matched_methods_v5": [
+        "蒸馏(Distill)"
+      ]
+    },
+    {
+      "id": "2607.15498",
+      "date": "2026-07-16",
+      "title": "VarRate: Training-Free Variable-Rate KV Cache Compression for Long-Context LLMs",
+      "summary": "The key-value (KV) cache is the main memory bottleneck in long-context large language model (LLM) inference. Two leading training-free families are both structurally limited: token-selection methods (SnapKV, Ada-KV) score importance from an observation window and evict low-scoring tokens, but eviction is irreversible -- so when the importance signal degrades under query-agnostic reuse, accuracy collapses by 11-15 points; uniform low-rank coding keeps every token but spends equal rank everywhere, wasting budget. We observe that both failures share one cure: rank should be allocated, not evicted",
+      "authors": [
+        "Shahrzad Esmat",
+        "Dhawal Shah",
+        "Ali Jannesari"
+      ],
+      "query_source": "KV_cache",
+      "objects": [
+        "KV"
+      ],
+      "methods": [
+        "低秩"
+      ],
+      "strict_score": 1,
+      "matched_objects_v5": [
+        "状态(State/KV)"
+      ],
+      "matched_methods_v5": []
+    },
+    {
+      "id": "2607.13511",
+      "date": "2026-07-15",
+      "title": "ExTernD: Expanded-Rank Ternary Decomposition Ternary LLM PTQ with Accuracy Approaching Any Quantization Level",
+      "summary": "We introduce ExTernD (Expanded-rank Ternary Decomposition), a post-training factorization of each LLM weight matrix $A \\in \\mathbb{R}^{m \\times n}$ into $A \\approx B \\mathrm{diag}(D) C$ with ternary factors $B \\in \\{-1,0,+1\\}^{m \\times k}$, $C \\in \\{-1,0,+1\\}^{k \\times n}$ and a real scale vector $D \\in \\mathbb{R}^k$. The inner rank $k = μ\\min(m,n)$ is deliberately expanded beyond full rank ($μ&gt; 1$), so that components past full rank correct the quantization error of earlier ones. We prove the residual decreases monotonically in $k$ and can be driven below any $\\varepsilon &gt; 0$: ExTernD ",
+      "authors": [
+        "Chethan Reddy G. P"
+      ],
+      "query_source": "quantization",
+      "objects": [
+        "参数"
+      ],
+      "methods": [
+        "量化",
+        "低秩"
+      ],
+      "strict_score": 3,
+      "matched_objects_v5": [
+        "参数(Weights)"
+      ],
+      "matched_methods_v5": [
+        "量化(Quant)",
+        "低秩(LowRank)"
+      ]
+    },
+    {
+      "id": "2607.14181",
+      "date": "2026-07-15",
+      "title": "Quantize with Confidence? An Empirical Study of Quantization for Code Generation",
+      "summary": "The growing adoption of local inference frameworks such as Ollama has made it increasingly common for developers to run large code models on laptops and other resource-constrained hardware. In these settings, post-training quantization is essential for reducing memory footprint and enabling practical deployment, yet its impact on generated code remains insufficiently understood. We empirically evaluate six state-of-the-art quantization methods (GPTQ, AWQ, QuIP#, AQLM, BitsAndBytes, and GGUF) on two representative large code model families, Qwen2.5-Coder and CodeLlama, using the multilingual Mc",
+      "authors": [
+        "Saima Afrin",
+        "Md. Zahidul Haque",
+        "Antonio Mastropaolo"
+      ],
+      "query_source": "quantization",
+      "objects": [],
+      "methods": [
+        "量化"
+      ],
+      "strict_score": 2,
+      "matched_objects_v5": [
+        "参数(Weights)"
+      ],
+      "matched_methods_v5": [
+        "量化(Quant)"
+      ]
+    },
+    {
+      "id": "2607.13124",
+      "date": "2026-07-14",
+      "title": "ShortOPD: Recovering Pruned LLMs with Short-to-Long On-Policy Distillation",
+      "summary": "Structured pruning is a hardware-friendly way to compress LLMs, but it is mostly validated on multiple-choice recognition tasks, while the same compressed checkpoints can collapse on the free-form generation that deployment actually requires. Two observations trace this gap. First, greedy \\textsc{pass}@$1$ nearly vanishes after compression, yet \\textsc{pass}@$k$ recovers substantially under repeated sampling: useful generations are demoted, not erased. Second, the recoverable regime fails mainly through suffix repetition. Recovery should therefore train on the compressed model's own on-policy ",
+      "authors": [
+        "Qingyu Zhang",
+        "Qianhao Yuan",
+        "Hongyu Lin",
+        "Yaojie Lu",
+        "Xianpei Han"
+      ],
+      "query_source": "pruning_broad",
+      "objects": [],
+      "methods": [
+        "剪枝/稀疏",
+        "蒸馏"
+      ],
+      "strict_score": 3,
+      "matched_objects_v5": [
+        "参数(Weights)"
+      ],
+      "matched_methods_v5": [
+        "剪枝(Prune)",
+        "蒸馏(Distill)"
+      ]
+    },
+    {
+      "id": "2607.13205",
+      "date": "2026-07-14",
+      "title": "Adaptive Filtering of the KV Cache: Diagnosing and Correcting Structural-Role Bias in LLM Inference",
+      "summary": "Attention-based KV cache eviction (H2O and its descendants) compresses the memory-constrained state of a long-context model by ranking tokens on accumulated attention mass, treated here as signal energy, and keeping the heaviest. On schema-dense input streams such as nested JSON, this score acts as a non-stationary filter that disproportionately retains noise: a non-content sink role (delimiters or whitespace) carries an order of magnitude more energy than any content role, and structural KEY tokens are over-retained at roughly 1.8x the rate of the answer-carrying VALUE tokens, collapsing exac",
+      "authors": [
+        "Soumil Mandal"
+      ],
+      "query_source": "KV_cache",
+      "objects": [
+        "KV"
+      ],
+      "methods": [],
+      "strict_score": 1,
+      "matched_objects_v5": [
+        "状态(State/KV)"
+      ],
+      "matched_methods_v5": []
+    },
+    {
+      "id": "2607.12550",
+      "date": "2026-07-14",
+      "title": "A JoLT for the KV Cache: Near-Lossless KV Cache Compression via Joint Tucker and JL-Residual Allocation for LLMs",
+      "summary": "The key-value (KV) cache has become the dominant memory cost of transformer inference: it grows with batch size, context length, and depth, and at long context it, rather than the model weights, sets the throughput ceiling. Existing reductions fall into two families. Low-rank methods factor two-dimensional slices of the cache, either per-head matrices or cross-layer feature blocks, and quantization methods lower the bit-width of every entry. Neither exploits the fact that the cache at a layer is naturally a third-order tensor whose three axes, the heads, the tokens, and the features, carry ver",
+      "authors": [
+        "Rahul Krishnan",
+        "Volker Schulz"
+      ],
+      "query_source": "KV_cache",
+      "objects": [
+        "KV",
+        "参数"
+      ],
+      "methods": [
+        "量化",
+        "低秩",
+        "注意力优化"
+      ],
+      "strict_score": 1,
+      "matched_objects_v5": [
+        "状态(State/KV)"
+      ],
+      "matched_methods_v5": []
+    },
+    {
+      "id": "2607.11990",
+      "date": "2026-07-13",
+      "title": "Sparse Inter-Layer Dependencies of Transformer FFN Neurons",
+      "summary": "Feedforward network (FFN) blocks account for a large fraction of the parameters and computation in Transformer architectures, yet their internal structure remains difficult to interpret due to the additive superposition induced by the residual stream. We examine whether the activation of an FFN neuron can be explained by a sparse set of preceding neuron activations and attention outputs. We introduce a training-free attribution method that estimates the relative influence of upstream neurons and attention outputs on a target neuron's activation. Empirically, across models and layers, we find t",
+      "authors": [
+        "Johannes Knittel",
+        "Hanspeter Pfister"
+      ],
+      "query_source": "eff_infer",
+      "objects": [
+        "参数",
+        "激活"
+      ],
+      "methods": [
+        "剪枝/稀疏"
+      ],
+      "strict_score": 2,
+      "matched_objects_v5": [
+        "状态(State/KV)"
+      ],
+      "matched_methods_v5": [
+        "稀疏(Sparse)"
+      ]
+    },
+    {
+      "id": "2607.11012",
+      "date": "2026-07-13",
+      "title": "EasyOPD: An Easy-to-use On-Policy Distillation Framework for Large Language Models",
+      "summary": "Conventional language-model distillation often relies on fixed teacher-generated data, which may not cover the states encountered by an evolving student policy. On-policy distillation (OPD) instead collects teacher or evaluator supervision on student-generated rollouts. However, existing OPD methods differ substantially in supervision form, tokenizer compatibility, teacher access, and supervision granularity, leading to fragmented implementations that are difficult to reproduce and extend. We present \\textsc{EasyOPD}, an on-policy distillation framework built on verl, a distributed reinforceme",
+      "authors": [
+        "Jie Sun",
+        "Mao Zheng",
+        "Mingyang Song",
+        "Qiyong Zhong",
+        "Gengsheng Li"
+      ],
+      "query_source": "model_distill",
+      "objects": [],
+      "methods": [
+        "蒸馏"
+      ],
+      "strict_score": 2,
+      "matched_objects_v5": [
+        "参数(Weights)"
+      ],
+      "matched_methods_v5": [
+        "蒸馏(Distill)"
+      ]
+    },
+    {
+      "id": "2607.10666",
+      "date": "2026-07-12",
+      "title": "Answer-Conditioned Chain-of-Thought Distillation for Few-Shot Industrial Vision with Small VLMs",
+      "summary": "Deploying AI-based visual inspection in manufacturing is hard because requirements change often, new defect types appear, and large labeled datasets are rarely available. We propose answer-conditioned chain-of-thought (CoT) distillation for rapidly adapting small vision-language models (VLMs) to new industrial tasks using minimal labeled data. A frontier VLM receives each training image along with its correct label and generates a justified visual explanation. A 3B-parameter model is then fine-tuned on these reasoning-augmented examples via LoRA. By conditioning on correct answers, we ensure a",
+      "authors": [
+        "Shubham Rao"
+      ],
+      "query_source": "distillation_broad",
+      "objects": [
+        "参数"
+      ],
+      "methods": [
+        "蒸馏",
+        "低秩"
+      ],
+      "strict_score": 2,
+      "matched_objects_v5": [
+        "参数(Weights)"
+      ],
+      "matched_methods_v5": [
+        "蒸馏(Distill)"
+      ]
+    },
+    {
+      "id": "2607.10582",
+      "date": "2026-07-12",
+      "title": "MemDecay: Region-Aware KV Cache Eviction for Efficient LLM Agent Inference",
+      "summary": "Large language model (LLM) agents accumulate heterogeneous context, including system instructions, plans, user turns, retrieved documents, tool outputs, and intermediate reasoning, whose key-value (KV) cache can become a major memory bottleneck. Existing eviction policies generally apply the same attention- or recency-based rule to every token, ignoring semantic structure already available to the agent orchestrator.   We introduce MemDecay, a training-free, region-aware KV-cache eviction policy. MemDecay assigns tokens region-specific base priorities and decay rates, refreshes retention scores",
+      "authors": [
+        "Venkatesha Matam",
+        "Keon Kim"
+      ],
+      "query_source": "KV_cache",
+      "objects": [
+        "KV"
+      ],
+      "methods": [],
+      "strict_score": 1,
+      "matched_objects_v5": [
+        "状态(State/KV)"
+      ],
+      "matched_methods_v5": []
+    },
+    {
+      "id": "2607.11933",
+      "date": "2026-07-11",
+      "title": "Transforming LLMs into Efficient Cross-Encoders via Knowledge Distillation for RAG Reranking",
+      "summary": "Cross-encoders achieve high reranking accuracy in Retrieval-Augmented Generation (RAG) pipelines but impose quadratic inference costs that limit real-time deployment. We address this by fine-tuning LLaMA 3 (8B) as a drop-in reranker using a two-stage pipeline: supervised fine-tuning on a custom query-document relevance dataset via the Unsloth framework with LoRA adapters, followed by 4-bit quantization for efficient inference. The resulting model replaces the cross-encoder in a dual-retriever RAG pipeline combining BM25 and dense vector search. Evaluated on a domain-specific question-answering",
+      "authors": [
+        "Shreeya Dasa Lakshminath",
+        "Shubhan S"
+      ],
+      "query_source": "distillation",
+      "objects": [],
+      "methods": [
+        "量化",
+        "蒸馏",
+        "低秩"
+      ],
+      "strict_score": 2,
+      "matched_objects_v5": [
+        "参数(Weights)"
+      ],
+      "matched_methods_v5": [
+        "蒸馏(Distill)"
+      ]
+    },
+    {
+      "id": "2607.10137",
+      "date": "2026-07-11",
+      "title": "RDQ: Residual Distribution Quantization for Large Language Models",
+      "summary": "Post-training quantization (PTQ) of large language models degrades sharply below 4-bit precision. We identify the root cause as residual stream distributional drift: quantization noise injected at each transformer layer accumulates in the shared residual representation, causing KL divergence from the FP16 baseline to grow super-linearly with depth (Pearson r=0.999 with log-perplexity, p&lt;0.001, confirmed across all tested methods and bit-widths). We discover that 84% of LLaMA-3-8B layers exhibit non-Gaussian residual distributions (KS test, p&lt;=0.05), and that per-layer residual stream var",
+      "authors": [
+        "Prateek Singh"
+      ],
+      "query_source": "quantization",
+      "objects": [],
+      "methods": [
+        "量化"
+      ],
+      "strict_score": 2,
+      "matched_objects_v5": [
+        "参数(Weights)"
+      ],
+      "matched_methods_v5": [
+        "量化(Quant)"
+      ]
+    },
+    {
+      "id": "2607.11948",
+      "date": "2026-07-11",
+      "title": "Ontology-Amplified Distillation and Contextuality Auditing for Sovereign Enterprise Language Models: A Combined Proof-of-Mechanism and Negative-Results Method Study",
+      "summary": "Regulated financial institutions operating under data-residency rules need tenant-owned language models that can run inside the institution's perimeter. This paper combines two related FAOS studies into one mechanism-and-control article. First, it reports a reduced-power proof-of-mechanism study of ontology-amplified distillation: a Qwen3.6-27B student is adapted to the Foundation AgenticOS ontology through supervised fine-tuning on frontier-teacher trajectories and ontology-grounded direct preference optimization (DPO), trained locally on a single Apple M5 Max from 47 synthetic, English-langu",
+      "authors": [
+        "Thanh Luong Tuan"
+      ],
+      "query_source": "distillation_broad",
+      "objects": [],
+      "methods": [
+        "蒸馏"
+      ],
+      "strict_score": 2,
+      "matched_objects_v5": [
+        "参数(Weights)"
+      ],
+      "matched_methods_v5": [
+        "蒸馏(Distill)"
+      ]
+    },
+    {
+      "id": "2607.10109",
+      "date": "2026-07-11",
+      "title": "Adaptive Model Compression (AMC): Saliency-Driven Resource Allocation for Ultra-Low-Power Transformer Inference",
+      "summary": "Deploying large-scale transformer models on resource-constrained edge devices remains a challenge due to the high energy and memory overhead inherent in static inference, which processes simple and complex tokens with uniform intensity. To address this, we propose Adaptive Model Compression (AMC), a saliency-driven framework that dynamically allocates hardware resources based on token importance. By implementing a multi-tier architecture, our system identifies critical high-saliency information for full-precision processing while aggressively reducing the rank and bit-width of less significant",
+      "authors": [
+        "Jiayin Hu",
+        "Kai Yuan",
+        "Vanessa Hu",
+        "Xuetao Yin",
+        "Jianhua Li"
+      ],
+      "query_source": "model_comp",
+      "objects": [
+        "参数"
+      ],
+      "methods": [],
+      "strict_score": 1,
+      "matched_objects_v5": [
+        "参数(Weights)"
+      ],
+      "matched_methods_v5": []
+    },
+    {
+      "id": "2607.09999",
+      "date": "2026-07-10",
+      "title": "Silent Failures in Quantized LLM Reasoning: A Taxonomy-Based Analysis of Hollow Convergence and Failure Mode Shifts",
+      "summary": "We show that post-training quantization can silently alter how large language models reason even when task accuracy is preserved. Using a six-category failure taxonomy validated by two independent human annotators (Cohen's $κ$ = 0.906), we classify 30,000 chain-of-thought outputs from five instruction-tuned LLMs (3B--14B parameters) across three quantization precisions (FP32, FP16, NF4) and four reasoning benchmarks. We find that while accuracy is robust across precisions (maximum 3.1 pp drop), Hollow Convergence (correct answers reached through incomplete or unverifiable reasoning) shows a si",
+      "authors": [
+        "Renuka Oladri",
+        "Mohan Vamsi Varadaraju Priya",
+        "Jerry Wu"
+      ],
+      "query_source": "quantization",
+      "objects": [
+        "参数"
+      ],
+      "methods": [
+        "量化"
+      ],
+      "strict_score": 2,
+      "matched_objects_v5": [
+        "参数(Weights)"
+      ],
+      "matched_methods_v5": [
+        "量化(Quant)"
+      ]
+    },
+    {
+      "id": "2607.09385",
+      "date": "2026-07-10",
+      "title": "STEEL: Sparsity-Aware Fused Attention for Energy-Efficient Long-Sequence Inference on AMD's XDNA NPU",
+      "summary": "The growing adoption of large language model-based agents within operating system workflows has increased the importance of energy-efficient inference on laptop-class systems-on-chip (SoCs). While cloud offloading remains common, it introduces reliability and privacy concerns that are particularly problematic for agentic workloads. Recent laptop SoCs, therefore, incorporate neural processing engines (NPUs) optimized for energy efficiency; however, effectively mapping attention mechanisms onto NPUs remains challenging due to architectural diversity and explicit data-movement programming models.",
+      "authors": [
+        "Victor J. B. Jung",
+        "Gagandeep Singh",
+        "Joseph Melber",
+        "Kristof Denolf",
+        "Francesco Conti"
+      ],
+      "query_source": "eff_infer",
+      "objects": [],
+      "methods": [
+        "剪枝/稀疏"
+      ],
+      "strict_score": 2,
+      "matched_objects_v5": [
+        "状态(State/KV)"
+      ],
+      "matched_methods_v5": [
+        "稀疏(Sparse)"
+      ]
+    },
+    {
+      "id": "2607.20538",
+      "date": "2026-07-10",
+      "title": "Codec-Gauge: Learning Compression-Friendly Gauges for Transformer KV Caches",
+      "summary": "Long-context Transformer inference increasingly relies on KV-cache compression or quantization. Prior rotation and transform-coding results suggest that the channel basis of each key/value vector affects how faithfully a fixed backend preserves model behavior. We introduce Codec-Gauge, a post-training cache-coordinate layer that learns small orthogonal channel transforms around existing compression and quantization backends. Its frequency-distribution objective combines a token-channel DCT spectral-centroid loss with a smooth rate proxy to concentrate KV energy in low-frequency codec-facing la",
+      "authors": [
+        "Yitao Jiang",
+        "Yaoqing Yang",
+        "Luyang Zhao",
+        "Muhao Chen",
+        "Devin Balkcom"
+      ],
+      "query_source": "KV_cache",
+      "objects": [
+        "KV"
+      ],
+      "methods": [
+        "量化"
+      ],
+      "strict_score": 1,
+      "matched_objects_v5": [
+        "状态(State/KV)"
+      ],
+      "matched_methods_v5": []
+    },
+    {
+      "id": "2607.08993",
+      "date": "2026-07-09",
+      "title": "StreamDQ: Near-Memory Weight DeQuantization in Custom HBM for Scalable AI Inference Acceleration",
+      "summary": "As large language models (LLMs) scale, their memory and computation demands have grown substantially, making weight-only quantization a widely adopted technique for reducing model size with minimal accuracy loss. However, on current GPUs, CUDA-core-based dequantization introduces substantial instruction overhead, on-chip traffic, and pipeline stalls, making it a major bottleneck for high-throughput, cloud-scale LLM serving. To address these limitations, we propose StreamDQ, a lightweight architectural enhancement that enables on-the-fly dequantization in the memory subsystem for high-throughpu",
+      "authors": [
+        "Minki Jeong",
+        "Daegun Yoon",
+        "Soohong Ahn",
+        "Seungyong Lee",
+        "Nameun Kang"
+      ],
+      "query_source": "llm_serving",
+      "objects": [
+        "参数"
+      ],
+      "methods": [
+        "量化"
+      ],
+      "strict_score": 3,
+      "matched_objects_v5": [
+        "状态(State/KV)",
+        "参数(Weights)"
+      ],
+      "matched_methods_v5": [
+        "量化(Quant)"
+      ]
+    },
+    {
+      "id": "2607.08027",
+      "date": "2026-07-09",
+      "title": "Structured Pruning of Large Language Models via Power Transformation and Sign-Preserving Score Aggregation with Adaptive Feature Retention",
+      "summary": "This paper proposes an improved structured pruning method for large language models (LLMs) that addresses key challenges in adapting Adaptive Feature Retention (AFR), an unstructured pruning technique, to structured pruning. When applying AFR to structured pruning, three major problems arise: distribution mismatch between heterogeneous pruning scores, loss of sign information indicating optimization direction consistency, and influence of outliers. To address these issues, we propose a unified approach combining power transformation for nonlinear distribution alignment, sign-preserving score a",
+      "authors": [
+        "Ryota Kobayashi",
+        "Tsubasa Hirakawa",
+        "Takayoshi Yamashita",
+        "Hironobu Fujiyoshi",
+        "Yasunori Ishii"
+      ],
+      "query_source": "pruning_broad",
+      "objects": [],
+      "methods": [
+        "剪枝/稀疏"
+      ],
+      "strict_score": 2,
+      "matched_objects_v5": [
+        "参数(Weights)"
+      ],
+      "matched_methods_v5": [
+        "剪枝(Prune)"
+      ]
+    },
+    {
+      "id": "2607.08991",
+      "date": "2026-07-09",
+      "title": "Sensitivity-Aware Thresholding and Token Routing for Activation Sparsification in Large Language Models",
+      "summary": "Efficient inference in Large Language Models (LLMs) requires deciding where computation can be reduced while preserving model quality. We study this problem through multilayer perceptron (MLP) activation sparsification and token-level conditional routing. We first propose Sensitivity-Aware Thresholding for Sparsity (SATS), a threshold calibration method to choose layerwise gate thresholds using a local MLP output sensitivity proxy rather than calibrating thresholds directly from activation percentiles. While SATS retains the existing mechanism of sparsifying MLP activations by thresholding gat",
+      "authors": [
+        "Bishmoy Paul",
+        "Youngmin Yi",
+        "Hoeseok Yang"
+      ],
+      "query_source": "eff_infer",
+      "objects": [
+        "激活"
+      ],
+      "methods": [
+        "剪枝/稀疏"
+      ],
+      "strict_score": 2,
+      "matched_objects_v5": [
+        "状态(State/KV)"
+      ],
+      "matched_methods_v5": [
+        "稀疏(Sparse)"
+      ]
+    },
+    {
+      "id": "2607.08161",
+      "date": "2026-07-09",
+      "title": "SQuaD-SQL: Efficient Text-to-SQL with Small Language Models via LLM-Guided Knowledge Distillation",
+      "summary": "Text-to-SQL is a fundamental task in natural language processing that enables users to interact with structured databases using natural language. While large language models (LLMs) have demonstrated remarkable performance on this task, their substantial computational requirements hinder deployment in resource-constrained settings. In this paper, we introduce SQuaD-SQL (Small-Qualified and Distilled for SQL), a novel approach that empowers small language models (SLMs) to approach the performance of LLMs on the Text-to-SQL task while significantly improving efficiency through knowledge distillat",
+      "authors": [
+        "Wangyu Wu",
+        "Xiaojian Lin",
+        "Rong Fu",
+        "Zaiyang Yu",
+        "Xuhang Chen"
+      ],
+      "query_source": "distillation",
+      "objects": [],
+      "methods": [
+        "蒸馏"
+      ],
+      "strict_score": 2,
+      "matched_objects_v5": [
+        "参数(Weights)"
+      ],
+      "matched_methods_v5": [
+        "蒸馏(Distill)"
+      ]
+    },
+    {
+      "id": "2607.08029",
+      "date": "2026-07-09",
+      "title": "Rethinking Small VLM Quantization: From Component-Wise Analysis to Hardware-Aware Edge Deployment",
+      "summary": "The emergence of vision language models with fewer than 3 billion parameters has accelerated the implementation of on-device multimodal intelligence. However, a detailed understanding of component-wise quantization remains a bottleneck for optimal deployment. This paper presents a systematic evaluation framework for empirically validating five hypotheses across six quantization configurations on the Jetson Orin NX and AGX. By separating the vision encoder, projector, and large language model backbone yields the following results: (1) Quantization sensitivity is governed by the structural parad",
+      "authors": [
+        "Hyeju Shin",
+        "Chorwon Kim",
+        "Ryangsoo Kim",
+        "Hark Yoo",
+        "Jaein Kim"
+      ],
+      "query_source": "quantization",
+      "objects": [
+        "参数"
+      ],
+      "methods": [
+        "量化"
+      ],
+      "strict_score": 2,
+      "matched_objects_v5": [
+        "参数(Weights)"
+      ],
+      "matched_methods_v5": [
+        "量化(Quant)"
+      ]
+    },
+    {
+      "id": "2607.08057",
+      "date": "2026-07-09",
+      "title": "Towards Efficient Large Language Model Serving: A Survey on System-Aware KV Cache Optimization",
+      "summary": "Despite the rapid advancements of large language models (LLMs), LLM serving systems remain memory-intensive and costly. The key-value (KV) cache, which stores KV tensors during autoregressive decoding, is crucial for enabling low-latency, high-throughput LLM inference serving. In this survey, we focus on system-aware KV infrastructure for serving LLMs (abbreviated as sKis). We revisit recent work from a system behavior perspective, organizing existing efforts into three dimensions: execution and scheduling (temporal), placement and migration (spatial), and representation and retention (structu",
+      "authors": [
+        "Jiantong Jiang",
+        "Peiyu Yang",
+        "Rui Zhang",
+        "Feng Liu"
+      ],
+      "query_source": "KV_cache",
+      "objects": [
+        "KV"
+      ],
+      "methods": [],
+      "strict_score": 1,
+      "matched_objects_v5": [
+        "状态(State/KV)"
+      ],
+      "matched_methods_v5": []
+    },
+    {
+      "id": "2607.08643",
+      "date": "2026-07-09",
+      "title": "BiSCo-LLM: Lookup-Free Binary Spherical Coding for Extreme Low-Bit Large Language Model Compression",
+      "summary": "Large language models (LLMs) are increasingly constrained by memory capacity, weight bandwidth, and checkpoint storage during deployment. Existing low-bit compression methods mainly follow two directions. Scalar or group-wise quantization is simple and compatible with efficient low-precision kernels, but its representation capacity becomes limited when the target budget approaches 2 bits per weight. Vector-quantized weight compression provides a richer block-level representation, but usually introduces explicit codebooks, index lookup, and additional storage accounting. This paper presents BiS",
+      "authors": [
+        "Yuantian Shao",
+        "Peisong Wang",
+        "Zhilei Liu",
+        "Chuangyi Li",
+        "Yuanteng Chen"
+      ],
+      "query_source": "quantization",
+      "objects": [
+        "参数"
+      ],
+      "methods": [
+        "量化"
+      ],
+      "strict_score": 1,
+      "matched_objects_v5": [
+        "参数(Weights)"
+      ],
+      "matched_methods_v5": []
+    },
+    {
+      "id": "2607.07557",
+      "date": "2026-07-08",
+      "title": "PALS: Percentile-Aware Layerwise Sparsity for LLM Pruning",
+      "summary": "One-shot pruning methods like Wanda and SparseGPT apply the same sparsity ratio to every layer of a transformer, ignoring known variation in layer importance. We propose PALS (Percentile-Aware Layerwise Sparsity), which adjusts per-layer sparsity based on the 99th percentile of activation magnitudes, bounded to $\\pm 5\\%$ around the target ratio. On LLaMA-2-7B at 50\\% sparsity, PALS achieves 10.96 WikiText-2 perplexity versus 12.92 for uniform Wanda (mean over 9 runs, $p &lt; 0.001$). The benefit is architecture-dependent: LLaMA-3-8B shows marginal gains and Mistral-7B shows none. We also find ",
+      "authors": [
+        "Yazdan Jamshidi",
+        "Alexey Shvets"
+      ],
+      "query_source": "pruning_broad",
+      "objects": [
+        "激活"
+      ],
+      "methods": [
+        "剪枝/稀疏"
+      ],
+      "strict_score": 4,
+      "matched_objects_v5": [
+        "参数(Weights)",
+        "状态(State/KV)"
+      ],
+      "matched_methods_v5": [
+        "剪枝(Prune)",
+        "稀疏(Sparse)"
+      ]
+    },
+    {
+      "id": "2607.07207",
+      "date": "2026-07-08",
+      "title": "Memory Scarcity, Open Models, and the Restructuring of the AI Industry, 2026-2030 -- A quantitative scenario analysis of inference economics, training-cost divergence, and infrastructure solvency",
+      "summary": "We analyze how four forces restructure the AI industry over 2026-2030: the DRAM/HBM price surge, frontier-capable open-weight models (GLM-5.2), rapid inference-efficiency gains (near-Shannon-limit KV-cache compression, lightweight local runtimes), and the entry of Meta and xAI into compute resale on fleets bought before the memory repricing. Formulating inference economics in dollars per petabyte of bandwidth delivered (\\$/PB) -- model-agnostic for bandwidth-bound decode -- we show the entrant-incumbent cost gap never closes: a depreciation conveyor delivers newly amortized fleets to incumbent",
+      "authors": [
+        "Satoshi Matsuoka"
+      ],
+      "query_source": "KV_cache",
+      "objects": [
+        "KV",
+        "参数"
+      ],
+      "methods": [],
+      "strict_score": 3,
+      "matched_objects_v5": [
+        "状态(State/KV)",
+        "参数(Weights)"
+      ],
+      "matched_methods_v5": [
+        "量化(Quant)"
+      ]
+    },
+    {
+      "id": "2607.07964",
+      "date": "2026-07-08",
+      "title": "KronQ: LLM Quantization via Kronecker-Factored Hessian",
+      "summary": "Post-training quantization (PTQ) is a widely adopted technique for compressing large language models (LLMs) without retraining. Most existing second-order PTQ methods, including GPTQ, construct quantization objectives from input activation statistics, effectively assuming that all output channels contribute equally to the layer-wise reconstruction objective. We propose KronQ, a PTQ framework that challenges this assumption by introducing the gradient covariance into the quantization pipeline. Under the Kronecker-factored Hessian approximation, the quantization loss depends jointly on both the ",
+      "authors": [
+        "Donghyun Lee",
+        "Yuhang Li",
+        "Ruokai Yin",
+        "Priyadarshini Panda"
+      ],
+      "query_source": "llm_quant",
+      "objects": [
+        "激活"
+      ],
+      "methods": [
+        "量化"
+      ],
+      "strict_score": 3,
+      "matched_objects_v5": [
+        "参数(Weights)"
+      ],
+      "matched_methods_v5": [
+        "量化(Quant)",
+        "低秩(LowRank)"
+      ]
+    },
+    {
+      "id": "2607.07626",
+      "date": "2026-07-08",
+      "title": "Future Confidence Distillation in Large Language Models",
+      "summary": "Reliable confidence estimation is essential for deploying large language models (LLMs) in confidence-aware systems, where downstream decisions such as retrieval, tool use, and adaptive computation depend on accurately estimating answer reliability. Existing approaches, however, largely treat confidence as a property of completed responses, overlooking how confidence-related information evolves throughout the answering process. In this work, we investigate confidence from a temporal perspective by comparing pre-solution Feeling-of-Knowing (FOK) and post-solution Judgement-of-Learning (JOL) conf",
+      "authors": [
+        "Sahil Kale"
+      ],
+      "query_source": "distillation_broad",
+      "objects": [],
+      "methods": [
+        "蒸馏"
+      ],
+      "strict_score": 2,
+      "matched_objects_v5": [
+        "参数(Weights)"
+      ],
+      "matched_methods_v5": [
+        "蒸馏(Distill)"
+      ]
+    },
+    {
+      "id": "2607.06982",
+      "date": "2026-07-08",
+      "title": "EdgeCompress: Coupling Multidimensional Model Compression and Dynamic Inference for EdgeAI",
+      "summary": "Convolutional neural networks (CNNs) have demonstrated encouraging results in image classification tasks. However, the prohibitive computational cost of CNNs hinders the deployment of CNNs onto resource-constrained embedded devices. To address this issue, we propose EdgeCompress, a comprehensive compression framework to reduce the computational overhead of CNNs. In EdgeCompress, we first introduce dynamic image cropping (DIC), where we design a lightweight foreground predictor to accurately crop the most informative foreground object of input images for inference, which avoids redundant comput",
+      "authors": [
+        "Hao Kong",
+        "Di Liu",
+        "Shuo Huai",
+        "Xiangzhong Luo",
+        "Ravi Subramaniam"
+      ],
+      "query_source": "model_comp",
+      "objects": [
+        "参数"
+      ],
+      "methods": [],
+      "strict_score": 1,
+      "matched_objects_v5": [
+        "参数(Weights)"
+      ],
+      "matched_methods_v5": []
+    },
+    {
+      "id": "2607.05721",
+      "date": "2026-07-07",
+      "title": "SpanUQ: Span-Level Uncertainty Quantification for Large Language Model Generation",
+      "summary": "Uncertainty estimation is essential not only for the trustworthy deployment of large language models (LLMs) but also as a foundation for self-refinement in LLM generation. However, existing approaches operate at suboptimal granularities: token-level scores lack semantic coherence, while sequence-level scores fail to localize errors. We formalize Span-Level Uncertainty Estimation (SLUE), a new task that targets the natural granularity for uncertainty: semantically coherent text spans, each conveying a single assessable unit of meaning. To address this task, we introduce SPANUQ, a lightweight pr",
+      "authors": [
+        "Yimeng Zhang",
+        "Yingying Zhuang",
+        "Ziyi Wang",
+        "Yuxuan Lu",
+        "Pei Chen"
+      ],
+      "query_source": "distillation_broad",
+      "objects": [
+        "参数"
+      ],
+      "methods": [],
+      "strict_score": 2,
+      "matched_objects_v5": [
+        "参数(Weights)"
+      ],
+      "matched_methods_v5": [
+        "量化(Quant)"
+      ]
+    },
+    {
+      "id": "2607.06631",
+      "date": "2026-07-07",
+      "title": "Dynamic-in-Few-Step: Unifying Dynamic Computation and Few-Step Distillation for Efficient Video Generation",
+      "summary": "Video Diffusion Models (VDMs) have demonstrated superior generation quality but suffer from prohibitive computational costs. While recent few-step distillation techniques significantly accelerate inference, they typically enforce a static model architecture across all denoising stages, ignoring the varying computational demands inherent to different noise levels. In this work, we propose a novel post-training acceleration framework that exploits this redundancy by integrating dynamic structural sparsification directly into the distillation process. Unlike conventional post-hoc compression appl",
+      "authors": [
+        "Yu Cheng",
+        "Siyue Yao",
+        "Zhongang Qi",
+        "Shanyan Guan",
+        "Wei Li"
+      ],
+      "query_source": "distillation_broad",
+      "objects": [],
+      "methods": [
+        "蒸馏"
+      ],
+      "strict_score": 2,
+      "matched_objects_v5": [
+        "参数(Weights)"
+      ],
+      "matched_methods_v5": [
+        "蒸馏(Distill)"
+      ]
+    },
+    {
+      "id": "2607.05116",
+      "date": "2026-07-06",
+      "title": "Communication-Aware Placement and Pruning for Efficient Mixture-of-Experts Inference",
+      "summary": "As MoE models scale to hundreds of experts, placement and pruning decisions increasingly dictate communication volume, affecting the performance of distributed inference across GPUs and nodes. We propose CAP (Communication-Aware Assignment and Pruning), a framework that considers computation, communication and accuracy together for efficient MoE inference through expert placement and pruning. It consists of three components: (1) Co-activation driven expert placement, which groups frequently co-activated experts to reduce inter-device and inter-node communication; (2) Communicationcomputation t",
+      "authors": [
+        "Xiao Shi",
+        "Yingying Sun",
+        "Jiangsu Du",
+        "Zhiguang Chen",
+        "Yutong Lu"
+      ],
+      "query_source": "moe",
+      "objects": [
+        "激活",
+        "通信"
+      ],
+      "methods": [
+        "剪枝/稀疏"
+      ],
+      "strict_score": 2,
+      "matched_objects_v5": [
+        "通信(Comm)"
+      ],
+      "matched_methods_v5": [
+        "剪枝(Prune)"
+      ]
+    },
+    {
+      "id": "2607.04428",
+      "date": "2026-07-05",
+      "title": "dOPSD: On-Policy Self-Distillation for Diffusion Language Models",
+      "summary": "Diffusion large language models (dLLMs) generate text by iteratively denoising a masked sequence, offering a parallel alternative to autoregressive models, but eliciting strong reasoning through post-training remains difficult: supervised fine-tuning is off-policy and suffers from exposure bias, while reinforcement learning gives only sparse, sequence-level rewards and is hard to apply without tractable sequence likelihoods. On-policy self-distillation (OPSD) offers a promising alternative, using one model as both student and teacher to provide dense, token-level, on-policy supervision, but it",
+      "authors": [
+        "Phuong Tuan Dat",
+        "Qi Li",
+        "Xinchao Wang"
+      ],
+      "query_source": "distillation_broad",
+      "objects": [],
+      "methods": [
+        "剪枝/稀疏",
+        "蒸馏"
+      ],
+      "strict_score": 2,
+      "matched_objects_v5": [
+        "参数(Weights)"
+      ],
+      "matched_methods_v5": [
+        "蒸馏(Distill)"
+      ]
+    },
+    {
+      "id": "2607.04244",
+      "date": "2026-07-05",
+      "title": "Quantize the Target, Quantize the Drafter: Efficient Inference with Qwen3.5-4B",
+      "summary": "This report describes our approach to the Efficient Qwen Competition, where the goal is to enable low-latency serving of Qwen3.5-4B on a resource-constrained NVIDIA A10G GPU. Our system combines a quantized target model with speculative decoding. To recover accuracy, we apply quantization-aware distillation to the target model while retaining the original quantization grid. To speed up decoding, a block-diffusion drafter specialized for the quantized target model is trained using a two-stage procedure: first learning from the high-precision target and then adapting to the low-precision target.",
+      "authors": [
+        "Jaeyeon Kim",
+        "Jewon Lee",
+        "Bo-Kyeong Kim"
+      ],
+      "query_source": "spec_decode",
+      "objects": [],
+      "methods": [
+        "量化",
+        "蒸馏",
+        "投机解码"
+      ],
+      "strict_score": 2,
+      "matched_objects_v5": [
+        "参数(Weights)"
+      ],
+      "matched_methods_v5": [
+        "量化(Quant)"
+      ]
+    },
+    {
+      "id": "2607.04302",
+      "date": "2026-07-05",
+      "title": "HiFA4: Training-Free 4-bit FlashAttention on Ascend HIF4 NPUs for LLM Inference",
+      "summary": "We present HiFA4, a post-training operator-level design that executes both QK^T and PV in FlashAttention as 4-bit HIF4 Cube GEMMs for LLM inference on Ascend NPUs, while maintaining the online softmax state in FP16. To our knowledge, HiFA4 is the first Ascend-HIF4-targeted design of this kind evaluated on standard NLP benchmarks.   HiFA4 combines two mechanisms. Smooth-QK applies a calibration-static per-channel equivalent rescaling to Q and K after RoPE, transferring quantization difficulty from K to Q without per-tile online reduction at inference. P-Reordering accumulates the softmax normal",
+      "authors": [
+        "Hui Dong",
+        "Yanzhao Li",
+        "Jie Gao",
+        "Chunlu Li",
+        "Zhiyuan Zhang"
+      ],
+      "query_source": "quantization",
+      "objects": [],
+      "methods": [
+        "量化"
+      ],
+      "strict_score": 2,
+      "matched_objects_v5": [
+        "参数(Weights)"
+      ],
+      "matched_methods_v5": [
+        "量化(Quant)"
+      ]
+    },
+    {
+      "id": "2607.04422",
+      "date": "2026-07-05",
+      "title": "Full-Stack FP4: Stable LLM Pretraining with Quantized Projections, Optimizers, and Attention",
+      "summary": "Recent NVFP4 pretraining work has primarily optimized Transformer linear projections, leaving persistent optimizer states, optimizer computation, and low-precision attention forward--backward paths less explored. We present \\textbf{Full-Stack FP4}, a modular NVFP4 framework with separate recipes for projections, AdamW states, Root/Muon computation, and attention. \\textbf{LoRA-SVD} protects a compact projection subspace in BF16 while retaining full-shape NVFP4 computation, reducing the linear-only loss gap from \\textbf{1.40\\%} to \\textbf{0.61\\%}. An ordered square-root, tile-mean, and Hadamard ",
+      "authors": [
+        "Siyu Ding",
+        "Mingchuan Ma",
+        "Jiabo Tong",
+        "Xingrun Xing",
+        "Ziming Wang"
+      ],
+      "query_source": "quantization",
+      "objects": [],
+      "methods": [
+        "量化",
+        "低秩"
+      ],
+      "strict_score": 2,
+      "matched_objects_v5": [
+        "参数(Weights)"
+      ],
+      "matched_methods_v5": [
+        "量化(Quant)"
+      ]
+    },
+    {
+      "id": "2607.04164",
+      "date": "2026-07-05",
+      "title": "BrownoutMoE: Structure-Aware Expert Grouping for Efficient and Accurate LLM Web-based Services",
+      "summary": "Mixture-of-Experts (MoE) large language models (LLMs) are increasingly deployed in Web-facing services, where inference must be both accurate and responsive under bursty demand. Although MoE models improve parameter efficiency through sparse expert activation, efficient MoE inference remains challenging in practice. A major reason is the highly imbalanced expert access pattern during inference: a few hot experts process most routed tokens, while many cold experts are rarely activated, leaving GPU parallelism underutilized. Existing systems mainly optimize runtime execution, such as scheduling,",
+      "authors": [
+        "Yi Ding",
+        "Minxian Xu",
+        "Zhengxin Fang",
+        "Kejiang Ye",
+        "Chengzhong Xu"
+      ],
+      "query_source": "moe",
+      "objects": [
+        "参数",
+        "激活"
+      ],
+      "methods": [
+        "剪枝/稀疏"
+      ],
+      "strict_score": 1,
+      "matched_objects_v5": [
+        "通信(Comm)"
+      ],
+      "matched_methods_v5": []
+    }
+  ]
+}

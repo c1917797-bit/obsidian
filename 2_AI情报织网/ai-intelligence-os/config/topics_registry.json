@@ -1,0 +1,69 @@
+{
+  "topics": [
+    {
+      "name": "KV Runtime",
+      "keywords": ["kv cache", "KV cache", "key-value cache", "cache eviction", "cache compression"],
+      "children": [],
+      "priority": "P0",
+      "description": "KV Cache 运行时管理"
+    },
+    {
+      "name": "Communication Runtime",
+      "keywords": ["nccl", "通信优化", "communication", "gpu互联", "卡间通信", "ring all-reduce", "all-gather"],
+      "children": [],
+      "priority": "P0",
+      "description": "分布式通信runtime"
+    },
+    {
+      "name": "Runtime Scheduling",
+      "keywords": ["调度", "scheduling", "batch", "batching", "continuous batching", "preempt", "资源调度"],
+      "children": [],
+      "priority": "P0",
+      "description": "推理调度runtime"
+    },
+    {
+      "name": "模型压缩",
+      "keywords": ["quantization", "pruning", "sparsity", "模型压缩", "int4", "int8", "fp8", "awq", "gptq"],
+      "children": [
+        {"name": "迭代低比特量化", "keywords": ["int4", "int8", "fp8", "quantization", "量化"]},
+        {"name": "模型稀疏", "keywords": ["sparsity", "稀疏", "prune"]},
+        {"name": "模型剪枝", "keywords": ["pruning", "剪枝", "channel prune"]}
+      ],
+      "priority": "P0",
+      "description": "LLM模型压缩技术"
+    },
+    {
+      "name": "迭代算法加速",
+      "keywords": ["speculative decoding", "投机解码", "推测解码", "decoding speed", "延迟优化"],
+      "children": [
+        {"name": "缓存代计算", "keywords": ["kv cache", "cache"]},
+        {"name": "数据稀疏化", "keywords": ["sparse", "稀疏", "data sparsity"]},
+        {"name": "迭代次数压缩", "keywords": ["iterations", "减少迭代", "early exit"]}
+      ],
+      "priority": "P0",
+      "description": "迭代算法层面的推理加速"
+    },
+    {
+      "name": "算子定制加速",
+      "keywords": ["kernel", "算子优化", "operator optimization", "flash attention", "cuda kernel"],
+      "children": [
+        {"name": "热点算子加速", "keywords": ["attention kernel", "matmul kernel", "softmax kernel"]},
+        {"name": "通信算子加速", "keywords": ["nccl kernel", "all-reduce kernel", "通信kernel"]}
+      ],
+      "priority": "P0",
+      "description": "算子级别的定制优化"
+    },
+    {
+      "name": "Agent调度",
+      "keywords": ["agent", "multi-agent", "mcp", "a2a", "agent protocol", "agent调度", "agent scheduling"],
+      "children": [
+        {"name": "Agent协作", "keywords": ["multi-agent", "协作", "collaboration"]},
+        {"name": "Agent协议", "keywords": ["mcp", "a2a", "protocol"]},
+        {"name": "Agent记忆", "keywords": ["memory", "记忆", "context"]}
+      ],
+      "priority": "P0",
+      "description": "Agent系统调度与协作"
+    }
+  ],
+  "_comment": "topics_registry - 情报靶点定义，系统会持续向这些方向积累数据"
+}

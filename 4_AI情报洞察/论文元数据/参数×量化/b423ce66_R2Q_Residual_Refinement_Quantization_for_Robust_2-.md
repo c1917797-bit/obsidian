@@ -1,0 +1,92 @@
+---
+type: literature-corpus-entry
+citekey: chen2026r
+title: "R2Q: Residual Refinement Quantization for Robust 2-Bit Large Language Models"
+authors:
+  - "Jiayi Chen"
+  - "Jieqi Shi"
+  - "Jing Huo"
+  - "Chen Wu"
+year: 2026
+venue: ICLR 2026
+venue_type: conference
+arxiv_id: ""
+doi: ""
+url: "https://openreview.net/forum?id=YjMCArLE1r"
+pdf_url: ""
+object: 参数
+method: 量化
+cell: "参数×量化"
+all_objects: []
+all_methods: []
+abstract: |
+  The dramatic growth of Large Language Models (LLMs) has been accompanied by significant computational and memory demands, driving the adoption of low-bit quantization. While 8-bit and 4-bit formats have become standard, ultra-low-bit quantization, particularly 2-bit, presents a substantial challenge due to severe accuracy degradation. To address this, we propose Residual Refinement Quantization (R2Q)—a novel 2-bit quantization strategy that decomposes the quantization process into two sequential 1-bit subproblems, enabling adaptive quantization lattice. Extensive experiments on Llama, OPT and
+key_innovation: "待精读后填写"
+performance: "待精读后填写"
+code_url: ""
+hf_model: ""
+status: unread
+priority: P2
+date_added: 2026-07-06
+obtained_via: "openreview"
+obtained_at: 2026-07-06
+tags:
+  - inference-compression
+  - 参数
+  - 量化
+  - chen26
+---
+
+# R2Q: Residual Refinement Quantization for Robust 2-Bit Large Language Models
+
+## 基本信息
+
+| 字段 | 值 |
+|------|------|
+| **Citekey** | `chen2026r` |
+| **年份** | 2026 |
+| **会议/期刊** | ICLR 2026 |
+| **arXiv** | N/A |
+| **4×5分类** | 参数×量化 |
+| **来源** | openreview |
+| **作者** | Jiayi Chen, Jieqi Shi, Jing Huo |
+
+## 摘要
+
+The dramatic growth of Large Language Models (LLMs) has been accompanied by significant computational and memory demands, driving the adoption of low-bit quantization. While 8-bit and 4-bit formats have become standard, ultra-low-bit quantization, particularly 2-bit, presents a substantial challenge due to severe accuracy degradation. To address this, we propose Residual Refinement Quantization (R2Q)—a novel 2-bit quantization strategy that decomposes the quantization process into two sequential 1-bit subproblems, enabling adaptive quantization lattice. Extensive experiments on Llama, OPT and 
+
+## 关键创新
+
+*待精读后在此填写 1-3 个方法核心创新点*
+
+> 提示：
+> - 这个方法解决什么问题？
+> - 相比已有方法的本质区别？
+> - 实验中验证了什么关键指标？
+
+## 性能数据
+
+| 模型/场景 | 压缩率 | 精度 | 加速比 | 显存 |
+|-----------|--------|------|--------|------|
+| 待填 | | | | |
+
+> 精读时把论文表格中的关键数字搬过来
+
+## 代码与资源
+
+
+- **代码**: （精读时查找GitHub链接）
+- **HuggingFace模型**: （如适用）
+
+## 我的笔记
+
+*精读笔记在此写，或链接到 [[专题笔记名]]*
+
+## 相关论文
+
+*精读时用Obsidian双链 `[[arxiv_id]]` 连接相关工作*
+
+---
+
+*基于 ARS v3.6.4 literature_corpus_entry schema*  
+*生成日期: 2026-07-06 | 来源: openreview*

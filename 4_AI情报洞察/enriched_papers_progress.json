@@ -1,0 +1,3154 @@
+{
+  "last_update": "2026-07-07T10:54:14.513400",
+  "done": [
+    "2606.12921",
+    "2112.00254",
+    "2603.26705",
+    "2603.01792",
+    "2303.06865",
+    "2606.06946",
+    "2603.24044",
+    "2601.11219",
+    "2606.22272",
+    "2602.20492",
+    "2511.17593",
+    "2604.10649",
+    "2510.00570",
+    "2603.17637",
+    "2603.19278",
+    "2604.15167",
+    "2605.01046",
+    "2604.19157",
+    "2606.31168",
+    "2601.09684",
+    "2604.12834",
+    "2605.18822",
+    "2606.05899",
+    "2605.21217",
+    "2605.03252",
+    "2605.23913",
+    "2603.22379",
+    "2512.06929",
+    "2604.01694",
+    "2602.00451",
+    "2606.00831",
+    "2601.06356",
+    "2605.10681",
+    "2601.13105",
+    "2606.18114",
+    "2605.08177",
+    "2603.21316",
+    "2604.17221",
+    "2510.19266",
+    "2603.18031",
+    "2602.16456",
+    "2605.16380",
+    "2510.08731",
+    "2602.01668",
+    "2512.20848",
+    "2603.26716",
+    "2307.08691",
+    "2603.15530",
+    "2605.05214",
+    "2509.19633",
+    "2511.02302",
+    "2606.23698",
+    "2602.06385",
+    "2606.31717",
+    "2508.12247",
+    "2509.19742",
+    "2602.06358",
+    "2602.20727",
+    "2211.10438",
+    "2605.14448",
+    "2606.06521",
+    "2606.00428",
+    "2606.01080",
+    "2106.09685",
+    "2604.26078",
+    "2606.16454",
+    "2603.06738",
+    "2606.05371",
+    "2603.08014",
+    "2604.13328",
+    "2605.08423",
+    "2604.08844",
+    "2604.16615",
+    "2605.30189",
+    "2606.28623",
+    "2603.00573",
+    "2602.21222",
+    "2605.22416",
+    "2605.01605",
+    "2604.16583",
+    "2603.05451",
+    "2606.00944",
+    "2603.26317",
+    "2510.00399",
+    "2605.29580",
+    "2605.31484",
+    "2606.10428",
+    "2511.15927",
+    "2603.13282",
+    "2606.31432",
+    "2603.21884",
+    "2606.26618",
+    "2605.28896",
+    "2309.06180",
+    "2606.29904",
+    "2605.03229",
+    "2604.18655",
+    "2604.08749",
+    "2605.00421",
+    "2606.04238",
+    "2604.16826",
+    "2602.15874",
+    "2606.05698",
+    "2606.11033",
+    "2606.05176",
+    "2604.00773",
+    "2603.23495",
+    "2603.01097",
+    "2305.11627",
+    "2601.02128",
+    "2606.19528",
+    "2510.18684",
+    "2604.15174",
+    "2603.00053",
+    "2603.15405",
+    "2507.09076",
+    "2507.17662",
+    "2601.04823",
+    "2602.02855",
+    "2606.08051",
+    "2602.01746",
+    "2303.10512",
+    "2605.01862",
+    "2601.21719",
+    "2602.14728",
+    "2603.26299",
+    "2606.22429",
+    "2602.05743",
+    "2603.13307",
+    "2605.07420",
+    "2603.27981",
+    "2601.21293",
+    "2602.04998",
+    "2602.09492",
+    "2606.12392",
+    "2604.19321",
+    "2606.09432",
+    "2605.10741",
+    "2605.13163",
+    "2601.02135",
+    "2511.18571",
+    "2605.07111",
+    "2603.06938",
+    "2602.10718",
+    "2603.12499",
+    "2605.02904",
+    "2606.15963",
+    "2603.14723",
+    "2602.13770",
+    "2606.01412",
+    "2601.03323",
+    "2601.05527",
+    "2605.00253",
+    "2510.10432",
+    "2604.20313",
+    "2607.01502",
+    "2605.05769",
+    "2605.30260",
+    "2606.03792",
+    "2606.05016",
+    "2601.18150",
+    "2602.15195",
+    "2602.00084",
+    "2601.22828",
+    "2401.04088",
+    "2602.01126",
+    "2603.21354",
+    "2605.01429",
+    "2602.21212",
+    "2606.10932",
+    "2606.13767",
+    "2601.21109",
+    "2511.11729",
+    "2310.08659",
+    "2603.21970",
+    "2601.06305",
+    "2508.17250",
+    "2602.17510",
+    "2601.02569",
+    "2603.05204",
+    "2510.08600",
+    "2605.07366",
+    "2603.00638",
+    "2604.26340",
+    "2602.09081",
+    "2605.01935",
+    "2606.30266",
+    "2605.28222",
+    "2601.11932",
+    "2605.04948",
+    "2606.12280",
+    "2605.19767",
+    "2602.23638",
+    "2602.11655",
+    "2602.06043",
+    "2603.08088",
+    "2606.05889",
+    "2603.29824",
+    "2603.03995",
+    "2605.06733",
+    "2603.08058",
+    "2604.03329",
+    "2606.06920",
+    "2604.16396",
+    "2602.01469",
+    "2602.21546",
+    "2604.17751",
+    "2603.21418",
+    "2604.07173",
+    "2604.06370",
+    "2604.20720",
+    "2308.13137",
+    "2601.21795",
+    "2602.07278",
+    "2606.00930",
+    "2601.17108",
+    "2601.22708",
+    "2603.12681",
+    "2605.19018",
+    "2606.15007",
+    "2606.05781",
+    "2601.02500",
+    "2604.14191",
+    "2604.02051",
+    "2603.08743",
+    "2602.11171",
+    "2605.07959",
+    "2604.16332",
+    "2602.07263",
+    "2606.06510",
+    "2602.10993",
+    "2605.10111",
+    "2603.05878",
+    "2603.00191",
+    "2603.03001",
+    "2512.17910",
+    "2602.10212",
+    "2604.14167",
+    "2604.12526",
+    "2605.03724",
+    "2511.21709",
+    "2601.22631",
+    "2603.01288",
+    "2602.20730",
+    "2604.03650",
+    "2602.12078",
+    "2602.05988",
+    "2606.22878",
+    "2603.10634",
+    "2605.31035",
+    "2605.16800",
+    "2509.00141",
+    "2602.12746",
+    "2602.04769",
+    "2605.17774",
+    "2604.15351",
+    "2604.05426",
+    "2605.11153",
+    "2604.12686",
+    "2509.18137",
+    "2605.04341",
+    "2601.12711",
+    "2603.17558",
+    "2605.29498",
+    "2602.10262",
+    "2605.01959",
+    "2603.15990",
+    "2606.00074",
+    "2604.14175",
+    "2606.28445",
+    "2602.15902",
+    "2605.16351",
+    "2601.16098",
+    "2602.02060",
+    "2606.09686",
+    "2601.14243",
+    "2601.06702",
+    "2601.10043",
+    "2606.24119",
+    "2604.19048",
+    "2604.01152",
+    "2605.05699",
+    "2604.12374",
+    "2509.19873",
+    "2603.03959",
+    "2604.17753",
+    "2512.22455",
+    "2606.02602",
+    "2602.06204",
+    "2602.01053",
+    "2603.12646",
+    "2602.12499",
+    "2509.00731",
+    "2604.22127",
+    "2605.04793",
+    "2601.07935",
+    "2510.03683",
+    "2606.01838",
+    "2605.01240",
+    "2605.22775"
+  ],
+  "results": {
+    "2303.06865": {
+      "title": "FlexGen: High-Throughput Generative Inference of Large Language Models with a Si",
+      "primary_cell": "参数×量化",
+      "innovations": [
+        "通过在单个消费级GPU上实现大语言模型的高通量生成推理"
+      ],
+      "performance": "未提数字",
+      "code": "未开源"
+    },
+    "2112.00254": {
+      "title": "FlashAttention: Fast and Memory-Efficient Exact Attention with IO-Awareness",
+      "primary_cell": "参数×量化",
+      "innovations": [
+        "提出了一种IO感知的精确注意力算法FlashAttention，通过减少内存读写次数来提升Transformer在长序列上的速度和内存效率"
+      ],
+      "performance": "训练速度提升2倍",
+      "code": "未开源"
+    },
+    "2307.08691": {
+      "title": "FlashAttention-2: Faster Attention with Better Parallelism and Work Partitioning",
+      "primary_cell": "参数×量化",
+      "innovations": [
+        "引入序列长度的并行化解码，提高并行度",
+        "改进注意力矩阵的访问模式，减少内存访问次数"
+      ],
+      "performance": "加速1.6x",
+      "code": "未开源"
+    },
+    "2211.10438": {
+      "title": "SmoothQuant: Accurate and Efficient Post-Training Quantization for Large Languag",
+      "primary_cell": "参数×量化",
+      "innovations": [
+        "提出SmoothQuant，一种无需训练的后训练量化方法，能够在保持大语言模型准确性的同时实现8-bit权重量化。",
+        "通过平滑权重和激活，实现硬件高效的量化，同时保持模型性能。"
+      ],
+      "performance": "未提数字",
+      "code": "未开源"
+    },
+    "2308.13137": {
+      "title": "OmniQuant: Omnidirectionally Calibrated Quantization for Large Language Models",
+      "primary_cell": "参数×量化",
+      "innovations": [
+        "OmniQuant提出了一种全方位校准的量化方法，通过自动调整量化参数来提高大语言模型的性能。"
+      ],
+      "performance": "未提数字",
+      "code": "未开源"
+    },
+    "2310.08659": {
+      "title": "LoftQ: LoRA-Fine-Tuning-Aware Quantization for Large Language Models",
+      "primary_cell": "参数×量化",
+      "innovations": [
+        "提出了一种名为LoftQ的新方法，将LoRA微调与量化结合，优化大语言模型的性能。"
+      ],
+      "performance": "未提数字",
+      "code": "未开源"
+    },
+    "2603.21354": {
+      "title": "The Workload-Router-Pool Architecture for LLM Inference Optimization: A Vision P",
+      "primary_cell": "参数×量化",
+      "innovations": [
+        "提出了信号驱动的路由机制，实现高效的LLM推理优化",
+        "引入上下文长度池路由，提升路由性能"
+      ],
+      "performance": "未提数字",
+      "code": "未开源"
+    },
+    "2602.10718": {
+      "title": "SnapMLA: Efficient Long-Context MLA Decoding via Hardware-Aware FP8 Quantized Pi",
+      "primary_cell": "参数×量化",
+      "innovations": [
+        "提出了SnapMLA，一种基于硬件感知FP8量化的MLA解码框架，显著提升了长上下文处理效率。"
+      ],
+      "performance": "未提数字",
+      "code": "未开源"
+    },
+    "2601.18150": {
+      "title": "FP8-RL: A Practical and Stable Low-Precision Stack for LLM Reinforcement Learnin",
+      "primary_cell": "KV×量化",
+      "innovations": [
+        "提出了FP8-RL，一种在LLM强化学习中实用且稳定的低精度计算框架，通过使用FP8精度加速推理过程。",
+        "解决了FP8在RL中应用时的独特工程和算法挑战，包括每步策略权重的变化和低精度推理的偏差问题。"
+      ],
+      "performance": "加速1.5x",
+      "code": "未开源"
+    },
+    "2511.17593": {
+      "title": "Comparative Analysis of Large Language Model Inference Serving Systems: A Perfor",
+      "primary_cell": "参数×量化",
+      "innovations": [
+        "对比分析了vLLM和HuggingFace TGI在生产环境中的性能表现，涵盖了吞吐量、延迟、GPU内存利用率和可扩展性等多个维度。"
+      ],
+      "performance": "未提数字",
+      "code": "未开源"
+    },
+    "2511.11729": {
+      "title": "Harli: SLO-Aware Co-location of LLM Inference and PEFT-based Finetuning on Model",
+      "primary_cell": "KV×量化",
+      "innovations": [
+        "通过将参数高效微调（PEFT）任务与LLM解码实例共置，提升GPU利用率。"
+      ],
+      "performance": "未提数字",
+      "code": "未开源"
+    },
+    "2606.30266": {
+      "title": "Towards Continual Motion-Language Agents: LoRA Variants for Incremental Motion U",
+      "primary_cell": "参数×低秩",
+      "innovations": [
+        "提出了适用于持续性运动语言学习的新型LoRA变体，以解决增量运动理解和生成中的稳定性-可塑性权衡问题。"
+      ],
+      "performance": "未提数字",
+      "code": "未开源"
+    },
+    "2606.19528": {
+      "title": "Techniques for Peak Memory Reduction for LoRA Fine-tuning of LLMs on Edge Device",
+      "primary_cell": "参数×量化",
+      "innovations": [
+        "引入了量化与动态反量化的基模型技术来减少峰值内存使用。",
+        "提出了结合选择性激活的内存高效检查点机制。"
+      ],
+      "performance": "未提数字",
+      "code": "未开源"
+    },
+    "2606.18114": {
+      "title": "Ternary Mamba: Grouped Quantization-Aware Training of W1.58A16 State Space Model",
+      "primary_cell": "参数×量化",
+      "innovations": [
+        "提出分组量化感知训练（QAT）和知识蒸馏方法，在仅使用102M tokens训练的情况下，显著压缩Mamba-2模型。",
+        "利用预训练检查点而非从头训练，将边际token预算减少1000倍。"
+      ],
+      "performance": "压缩比1.3B到744MB（3.61x），零样本准确率达48.1%（7任务平均），接近Bi-Mamb",
+      "code": "未开源"
+    },
+    "2606.15007": {
+      "title": "Nemotron 3 Ultra: Open, Efficient Mixture-of-Experts Hybrid Mamba-Transformer Mo",
+      "primary_cell": "参数×量化",
+      "innovations": [
+        "引入了基于MoE的混合Mamba-Transformer架构，实现了5500亿总参数和550亿活跃参数的高效推理。",
+        "采用了LatentMoE、多Token预测（MTP）和NVFP4预训练等关键技术，提升模型性能和效率。"
+      ],
+      "performance": "未提数字",
+      "code": "未开源"
+    },
+    "2606.12921": {
+      "title": "LoRA-Muon: Spectral Steepest Descent on the Low-Rank Manifold",
+      "primary_cell": "参数×低秩",
+      "innovations": [
+        "将Muon优化器的谱最速下降规则应用于低秩自适应(LoRA)设置，提出LoRA-Muon优化器。"
+      ],
+      "performance": "未提数字",
+      "code": "未开源"
+    },
+    "2606.05698": {
+      "title": "Rethinking LoRA Memory Through the Lens of KV Cache Compression",
+      "primary_cell": "KV×低秩",
+      "innovations": [
+        "研究了LoRA参数化记忆与KV缓存上下文记忆的交互机制。",
+        "通过逐步驱逐文档键值状态，揭示了LoRA在KV缓存保留不同比例时的贡献变化。"
+      ],
+      "performance": "未提数字",
+      "code": "未开源"
+    },
+    "2606.04238": {
+      "title": "Recover-LoRA for Aggressive Quantization: Reclaiming Accuracy in 2-Bit Language ",
+      "primary_cell": "参数×量化",
+      "innovations": [
+        "将Recover-LoRA方法扩展到2-bit量化，实现大语言模型在低比特量化下的精度恢复。",
+        "提出了一种选择性混合精度策略，仅对门控层和上投影层进行特殊处理，以减少精度损失。"
+      ],
+      "performance": "未提数字",
+      "code": "未开源"
+    },
+    "2605.22416": {
+      "title": "Asymmetric Virtual Memory Paging for Hybrid Mamba-Transformer Inference",
+      "primary_cell": "参数×量化",
+      "innovations": [
+        "提出非对称虚拟内存分页（AVMP），为混合语言模型中的KV缓存和SSM状态提供物理分离的内存池。"
+      ],
+      "performance": "未提数字",
+      "code": "未开源"
+    },
+    "2605.05699": {
+      "title": "When Quantization Is Free: An int4 KV Cache That Outruns fp16 on Apple Silicon",
+      "primary_cell": "KV×量化",
+      "innovations": [
+        "提出了在Apple Silicon统一内存上实现int4 KV缓存量化，且量化后的性能超越了fp16。",
+        "开发了首个单融合Metal内核，包含符号随机化FFT、每通道λ、每组绝对最大值和int4 nibble打包。"
+      ],
+      "performance": "在Gemma-3 1B上加速3%-8%，在Qwen2.5-1.5B上短上下文加速0.7%-2.6%。",
+      "code": "未开源"
+    },
+    "2605.03252": {
+      "title": "Ortho-Hydra: Orthogonalized Experts for DiT LoRA",
+      "primary_cell": "参数×低秩",
+      "innovations": [
+        "提出了Ortho-Hydra方法，通过正交化专家（orthogonalized experts）解决多风格数据下LoRA微调中的“风格混淆”问题"
+      ],
+      "performance": "未提数字",
+      "code": "未开源"
+    },
+    "2605.08177": {
+      "title": "Echo-LoRA: Parameter-Efficient Fine-Tuning via Cross-Layer Representation Inject",
+      "primary_cell": "参数×低秩",
+      "innovations": [
+        "提出Echo-LoRA，通过跨层表示注入进行参数高效微调，充分利用深层隐藏状态信息"
+      ],
+      "performance": "未提数字",
+      "code": "未开源"
+    },
+    "2605.01959": {
+      "title": "Flexi-LoRA with Input-Adaptive Ranks: Efficient Finetuning for Speech and Reason",
+      "primary_cell": "参数×低秩",
+      "innovations": [
+        "提出了Flexi-LoRA框架，动态调整LoRA秩以适应输入复杂度。"
+      ],
+      "performance": "未提数字",
+      "code": "未开源"
+    },
+    "2605.01935": {
+      "title": "ViM-Q: Scalable Algorithm-Hardware Co-Design for Vision Mamba Model Inference on",
+      "primary_cell": "参数×量化",
+      "innovations": [
+        "提出了ViM-Q算法-硬件协同设计框架，通过混合量化方案解决Vision Mamba模型在FPGA上的部署挑战"
+      ],
+      "performance": "未提数字",
+      "code": "未开源"
+    },
+    "2604.26340": {
+      "title": "Adaptive and Fine-grained Module-wise Expert Pruning for Efficient LoRA-MoE Fine",
+      "primary_cell": "参数×剪枝/稀疏",
+      "innovations": [
+        "提出了一种自适应且细粒度的模块化专家剪枝方法，针对不同Transformer模块的功能角色和容量需求进行差异化处理。",
+        "通过动态调整LoRA-MoE框架中的专家配置，避免了局部过度配置和冗余的可训练参数，从而提高了训练效率。"
+      ],
+      "performance": "未提数字",
+      "code": "未开源"
+    },
+    "2604.20720": {
+      "title": "COMPASS: COntinual Multilingual PEFT with Adaptive Semantic Sampling",
+      "primary_cell": "参数×量化",
+      "innovations": [
+        "提出了一种新的数据为中心的多语言参数高效微调框架，通过自适应语义采样减少跨语言负干扰"
+      ],
+      "performance": "未提数字",
+      "code": "未开源"
+    },
+    "2604.19048": {
+      "title": "SAMoRA: Semantic-Aware Mixture of LoRA Experts for Task-Adaptive Learning",
+      "primary_cell": "参数×低秩",
+      "innovations": [
+        "提出了语义感知专家路由机制（Semantic-Aware Routing），实现输入语义与专家能力的精确匹配，提升专家专业化水平。",
+        "引入了任务自适应权重融合策略（Adaptive Weight Fusion），根据任务复杂度动态调整更新强度。"
+      ],
+      "performance": "未提数字",
+      "code": "未开源"
+    },
+    "2604.18655": {
+      "title": "Unlocking the Edge deployment and ondevice acceleration of multi-LoRA enabled on",
+      "primary_cell": "参数×低秩",
+      "innovations": [
+        "开发了一个硬件感知的框架，实现了对多任务LoRA支持的LLaMA基础模型在智能手机上的高效推理。",
+        "通过将应用特定的LoRA作为运行时输入整合到单一的冻结推理图中，实现了无需重新编译或额外内存开销的动态任务切换。"
+      ],
+      "performance": "未提数字",
+      "code": "未开源"
+    },
+    "2604.16583": {
+      "title": "POLAR: Online Learning for LoRA Adapter Caching and Routing in Edge LLM Serving",
+      "primary_cell": "参数×低秩",
+      "innovations": [
+        "提出了一种在线学习方法POLAR，用于优化边缘设备上LoRA适配器的缓存和路由策略。"
+      ],
+      "performance": "未提数字",
+      "code": "未开源"
+    },
+    "2604.12374": {
+      "title": "Nemotron 3 Super: Open, Efficient Mixture-of-Experts Hybrid Mamba-Transformer Mo",
+      "primary_cell": "参数×量化",
+      "innovations": [
+        "首次在Nemotron 3系列中预训练于NVFP4平台",
+        "采用LatentMoE架构，优化每FLOP和每参数的精度"
+      ],
+      "performance": "未提数字",
+      "code": "未开源"
+    },
+    "2604.06370": {
+      "title": "ForkKV: Scaling Multi-LoRA Agent Serving via Copy-on-Write Disaggregated KV Cach",
+      "primary_cell": "KV×低秩",
+      "innovations": [
+        "提出ForkKV，通过写时复制（Copy-on-Write）机制实现了对多LoRA代理共享上下文的分离式KV缓存管理。"
+      ],
+      "performance": "未提数字",
+      "code": "未开源"
+    },
+    "2604.15351": {
+      "title": "Aletheia: Gradient-Guided Layer Selection for Efficient LoRA Fine-Tuning Across ",
+      "primary_cell": "参数×低秩",
+      "innovations": [
+        "提出了Aletheia，一种基于梯度的层选择方法，用于高效地在不同架构的模型上进行LoRA微调。"
+      ],
+      "performance": "未提数字",
+      "code": "未开源"
+    },
+    "2603.24044": {
+      "title": "MoE-Sieve: Routing-Guided LoRA for Efficient MoE Fine-Tuning",
+      "primary_cell": "参数×低秩",
+      "innovations": [
+        "提出MoE-Sieve，通过对专家路由进行引导，仅对每层中路由次数最多的前k个专家应用LoRA，从而实现高效的MoE模型微调。"
+      ],
+      "performance": "未提数字",
+      "code": "未开源"
+    },
+    "2603.23495": {
+      "title": "VISion On Request: Enhanced VLLM efficiency with sparse, dynamically selected, v",
+      "primary_cell": "激活×剪枝/稀疏",
+      "innovations": [
+        "通过稀疏化图像与文本标记的交互来提高大型视觉-语言模型效率，同时保留视觉信息，避免信息瓶颈。"
+      ],
+      "performance": "未提数字",
+      "code": "未开源"
+    },
+    "2603.05878": {
+      "title": "ROSE: Reordered SparseGPT for More Accurate One-Shot Large Language Models Pruni",
+      "primary_cell": "参数×剪枝/稀疏",
+      "innovations": [
+        "提出了ROSE算法，通过重新排序剪枝顺序，改进SparseGPT框架下的LLM剪枝效果。",
+        "解决了SparseGPT中预定义的从左到右剪枝顺序在权重呈现列模式时性能不佳的问题。"
+      ],
+      "performance": "未提数字",
+      "code": "未开源"
+    },
+    "2603.06938": {
+      "title": "Swimba: Switch Mamba Model Scales State Space Models",
+      "primary_cell": "参数×量化",
+      "innovations": [
+        "提出了将专家混合模型（MoE）应用于选择性状态空间模型（SSM），在保持计算效率的同时引入专家专业化。",
+        "设计了两种MoE-SSM架构：(1) 基于分离SSM的MoE，可并行维护多条状态轨迹；(2) 基于参数混合的MoE-SSM，保持单一状态轨迹并在参数空间混合专家。"
+      ],
+      "performance": "未提数字",
+      "code": "未开源"
+    },
+    "2603.05451": {
+      "title": "FlashAttention-4: Algorithm and Kernel Pipelining Co-Design for Asymmetric Hardw",
+      "primary_cell": "参数×量化",
+      "innovations": [
+        "提出了针对Blackwell架构的FlashAttention-4，通过算法和内核流水线协同设计，解决了非对称硬件扩展带来的性能瓶颈问题。"
+      ],
+      "performance": "未提数字",
+      "code": "未开源"
+    },
+    "2603.03001": {
+      "title": "MaBERT:A Padding Safe Interleaved Transformer Mamba Hybrid Encoder for Efficient",
+      "primary_cell": "参数×量化",
+      "innovations": [
+        "提出了一种混合编码器MaBERT，结合Transformer层进行全局依赖建模和Mamba层实现线性时间状态更新。",
+        "通过交替进行全局上下文整合和快速状态积累，解决了长上下文建模中的效率和全局交互问题。"
+      ],
+      "performance": "未提数字",
+      "code": "未开源"
+    },
+    "2603.08743": {
+      "title": "Zipage: Maintain High Request Concurrency for LLM Reasoning through Compressed P",
+      "primary_cell": "KV×量化",
+      "innovations": [
+        "提出了压缩分页注意力机制（Compressed PagedAttention），结合了逐token的KV缓存剔除与分页注意力机制。"
+      ],
+      "performance": "未提数字",
+      "code": "未开源"
+    },
+    "2603.01097": {
+      "title": "Understanding LoRA as Knowledge Memory: An Empirical Analysis",
+      "primary_cell": "参数×低秩",
+      "innovations": [
+        "将LoRA作为模块化知识记忆用于大语言模型的持续知识更新。"
+      ],
+      "performance": "未提数字",
+      "code": "未开源"
+    },
+    "2602.20492": {
+      "title": "Wireless Federated Multi-Task LLM Fine-Tuning via Sparse-and-Orthogonal LoRA",
+      "primary_cell": "参数×剪枝/稀疏",
+      "innovations": [
+        "通过稀疏正交低秩适应（LoRA）实现多任务大语言模型（LLM）的无线联邦学习，有效整合异构数据集上的知识。"
+      ],
+      "performance": "未提数字",
+      "code": "未开源"
+    },
+    "2602.17510": {
+      "title": "LORA-CRAFT: Cross-layer Rank Adaptation via Frozen Tucker Decomposition of Pre-t",
+      "primary_cell": "参数×低秩",
+      "innovations": [
+        "提出了一种新的参数高效微调方法，通过对预训练的注意力权重矩阵进行冻结的Tucker分解，并在冻结的Tucker因子上训练小型适应矩阵，实现跨层的秩自适应。"
+      ],
+      "performance": "未提数字",
+      "code": "未开源"
+    },
+    "2602.16456": {
+      "title": "Beyond SGD, Without SVD: Proximal Subspace Iteration LoRA with Diagonal Fraction",
+      "primary_cell": "参数×低秩",
+      "innovations": [
+        "提出了一种新的优化方法LoRSum，通过将LoRA优化视为近邻子问题并使用交替最小二乘更新高效解决。",
+        "证明了这种方法是一种隐式块幂法，从而在低秩投影下实现了全步训练。"
+      ],
+      "performance": "未提数字",
+      "code": "未开源"
+    },
+    "2602.15902": {
+      "title": "Doc-to-LoRA: Learning to Instantly Internalize Contexts",
+      "primary_cell": "参数×蒸馏",
+      "innovations": [
+        "提出了一种轻量级超网络Doc-to-LoRA（D2L），能够在单次前向传播中近似实现上下文蒸馏，解决长序列输入带来的推理瓶颈。"
+      ],
+      "performance": "未提数字",
+      "code": "未开源"
+    },
+    "2602.04769": {
+      "title": "NeuroCanvas: VLLM-Powered Robust Seizure Detection by Reformulating Multichannel",
+      "primary_cell": "参数×量化",
+      "innovations": [
+        "将多通道脑电图（EEG）信号重新格式化为图像，并利用视觉语言大模型（VLLM）进行癫痫发作检测，解决了多通道异质性问题。",
+        "通过将EEG信号编码为图像，大幅减少了所需的计算量和预测所需的token数量，提升了计算效率。"
+      ],
+      "performance": "未提数字",
+      "code": "未开源"
+    },
+    "2602.01053": {
+      "title": "LRAgent: Efficient KV Cache Sharing for Multi-LoRA LLM Agents",
+      "primary_cell": "KV×低秩",
+      "innovations": [
+        "提出了LRAgent，一种针对多LoRA LLM代理系统的KV缓存共享方法，通过共享预训练骨干模型的缓存来减少内存和计算开销。"
+      ],
+      "performance": "未提数字",
+      "code": "未开源"
+    },
+    "2601.22708": {
+      "title": "A Unified Study of LoRA Variants: Taxonomy, Review, Codebase, and Empirical Eval",
+      "primary_cell": "参数×低秩",
+      "innovations": [
+        "首次对LoRA变体进行系统性分类和统一研究"
+      ],
+      "performance": "未提数字",
+      "code": "未开源"
+    },
+    "2601.21109": {
+      "title": "ChunkWise LoRA: Adaptive Sequence Partitioning for Memory-Efficient Low-Rank Ada",
+      "primary_cell": "参数×低秩",
+      "innovations": [
+        "提出ChunkWise LoRA，通过动态自适应地划分序列并分配不同的低秩配置，提升LLM微调和推理效率"
+      ],
+      "performance": "未提数字",
+      "code": "未开源"
+    },
+    "2601.12711": {
+      "title": "Neurosymbolic LoRA: Why and When to Tune Weights vs. Rewrite Prompts",
+      "primary_cell": "参数×低秩",
+      "innovations": [
+        "提出了一个神经符号LoRA框架，动态结合了数值更新和符号操作两种策略，以决定何时进行权重调整或重写提示。",
+        "设计了一个统一的监控信号和基于奖励的分类器，用于智能决策何时进行更深层次的事实重建。"
+      ],
+      "performance": "未提数字",
+      "code": "未开源"
+    },
+    "2601.07935": {
+      "title": "Towards Specialized Generalists: A Multi-Task MoE-LoRA Framework for Domain-Spec",
+      "primary_cell": "参数×低秩",
+      "innovations": [
+        "提出了一种多任务MoE-LoRA框架，用于在保持通用知识的同时，让LLM适应特定领域（如医学），有效解决“稳定性-可塑性困境”和“任务干扰”问题。"
+      ],
+      "performance": "未提数字",
+      "code": "未开源"
+    },
+    "2601.05527": {
+      "title": "DeMa: Dual-Path Delay-Aware Mamba for Efficient Multivariate Time Series Analysi",
+      "primary_cell": "参数×量化",
+      "innovations": [
+        "提出了双路径延迟感知Mamba（Dual-Path Delay-Aware Mamba）架构，用于高效的多变量时间序列分析。"
+      ],
+      "performance": "未提数字",
+      "code": "未开源"
+    },
+    "2601.06356": {
+      "title": "Monkey Jump : MoE-Style PEFT for Efficient Multi-Task Learning",
+      "primary_cell": "参数×量化",
+      "innovations": [
+        "提出了Monkey Jump方法，在参数高效微调中引入了MoE风格的专业化，同时无需增加额外的可训练专家或路由器参数。"
+      ],
+      "performance": "未提数字",
+      "code": "未开源"
+    },
+    "2601.04823": {
+      "title": "DR-LoRA: Dynamic Rank LoRA for Fine-Tuning Mixture-of-Experts Models",
+      "primary_cell": "参数×低秩",
+      "innovations": [
+        "DR-LoRA引入动态分配LoRA秩的方法，针对预训练MoE模型中不同专家模块的异质性进行优化。"
+      ],
+      "performance": "未提数字",
+      "code": "未开源"
+    },
+    "2601.02569": {
+      "title": "LoRA-Drop: Temporal LoRA Decoding for Efficient LLM Inference",
+      "primary_cell": "参数×低秩",
+      "innovations": [
+        "提出了LoRA-Drop，一种通过在固定中间层子集上应用时间计算调度来加速LLM解码的即插即用推理框架"
+      ],
+      "performance": "未提数字",
+      "code": "未开源"
+    },
+    "2601.02135": {
+      "title": "HFRWKV: A High-Performance Fully On-Chip Hardware Accelerator for RWKV",
+      "primary_cell": "参数×量化",
+      "innovations": [
+        "提出了一个针对RWKV架构的高性能全芯片硬件加速器HFRWKV。",
+        "设计了矩阵操作模块中的混合精度量化策略，使其对硬件更加友好。"
+      ],
+      "performance": "未提数字。",
+      "code": "未开源。"
+    },
+    "2512.22455": {
+      "title": "AFA-LoRA: Enabling Non-Linear Adaptations in LoRA with Activation Function Annea",
+      "primary_cell": "参数×低秩",
+      "innovations": [
+        "提出了激活函数退火机制，将非线性表达能力引入LoRA，同时保持其无缝可合并性"
+      ],
+      "performance": "未提数字",
+      "code": "未开源"
+    },
+    "2512.20848": {
+      "title": "Nemotron 3 Nano: Open, Efficient Mixture-of-Experts Hybrid Mamba-Transformer Mod",
+      "primary_cell": "参数×量化",
+      "innovations": [
+        "提出了混合专家（MoE）架构与Mamba-Transformer结合的全新模型架构"
+      ],
+      "performance": "激活参数减少一半，推理吞吐量提升3.3倍",
+      "code": "未开源"
+    },
+    "2512.06929": {
+      "title": "Adaptive Normalization Mamba with Multi Scale Trend Decomposition and Patch MoE ",
+      "primary_cell": "参数×低秩",
+      "innovations": [
+        "提出了AdaMamba，一种集成了自适应归一化、多尺度趋势提取和上下文序列建模的统一预测架构"
+      ],
+      "performance": "未提数字",
+      "code": "未开源"
+    },
+    "2512.17910": {
+      "title": "Efficient Multi-Adapter LLM Serving via Cross-Model KV-Cache Reuse with Activate",
+      "primary_cell": "KV×低秩",
+      "innovations": [
+        "首次提出通过Activated LoRA实现基模型与适配模型间的跨模型前缀缓存重用，大幅减少适配器切换时的重复计算开销。"
+      ],
+      "performance": "未提数字",
+      "code": "未开源"
+    },
+    "2511.18571": {
+      "title": "SAMBA: Toward a Long-Context EEG Foundation Model via Spatial Embedding and Diff",
+      "primary_cell": "参数×量化",
+      "innovations": [
+        "提出了结合空间嵌入和差分Mamba的长序列EEG建模方法，解决了Transformer在高采样率和长时间记录的EEG数据处理中的二次复杂度问题。"
+      ],
+      "performance": "未提数字",
+      "code": "未开源"
+    },
+    "2511.15927": {
+      "title": "DiffuMamba: High-Throughput Diffusion LMs with Mamba Backbone",
+      "primary_cell": "KV×量化",
+      "innovations": [
+        "提出了DiffuMamba，一种基于双向Mamba骨干网络的掩码扩散语言模型，结合了扩散目标和线性时间序列建模。"
+      ],
+      "performance": "推理效率提升8.2倍。",
+      "code": "未开源"
+    },
+    "2511.21709": {
+      "title": "Quantifying and Mitigating Selection Bias in LLMs: A Transferable LoRA Fine-Tuni",
+      "primary_cell": "参数×低秩",
+      "innovations": [
+        "提出了可迁移的LoRA微调方法和高效多数投票机制来量化并减轻大语言模型在多选问答中的选择偏差。"
+      ],
+      "performance": "未提数字",
+      "code": "未开源"
+    },
+    "2511.02302": {
+      "title": "FP8-Flow-MoE: A Casting-Free FP8 Recipe without Double Quantization Error",
+      "primary_cell": "参数×量化",
+      "innovations": [
+        "提出了一种无需双量化误差的免转换FP8方案，消除了BF16与FP8之间的频繁量化/反量化转换。"
+      ],
+      "performance": "未提数字",
+      "code": "未开源"
+    },
+    "2510.19266": {
+      "title": "Data Efficient Any Transformer-to-Mamba Distillation via Attention Bridge",
+      "primary_cell": "参数×蒸馏",
+      "innovations": [
+        "提出了跨架构蒸馏方法（CAB），通过Attention Bridge实现Transformer到Mamba的高效知识迁移。",
+        "实现了数据高效的蒸馏过程，减少了对大量训练数据的依赖。"
+      ],
+      "performance": "未提数字",
+      "code": "未开源"
+    },
+    "2510.18684": {
+      "title": "MLMA: Towards Multilingual ASR With Mamba-based Architectures",
+      "primary_cell": "参数×量化",
+      "innovations": [
+        "引入Mamba架构用于多语言语音识别，提升长序列处理的效率和可扩展性。"
+      ],
+      "performance": "未提数字",
+      "code": "未开源"
+    },
+    "2510.10432": {
+      "title": "Hierarchical LoRA MoE for Efficient CTR Model Scaling",
+      "primary_cell": "参数×低秩",
+      "innovations": [
+        "结合层次化结构与专家混合模型（MoE），实现高效的CTR模型扩展。",
+        "利用LoRA（Low-Rank Adaptation）技术，进一步提升模型扩展效率和性能。"
+      ],
+      "performance": "未提数字",
+      "code": "未开源"
+    },
+    "2510.08731": {
+      "title": "When to Reason: Semantic Router for vLLM",
+      "primary_cell": "参数×量化",
+      "innovations": [
+        "提出了一种语义路由器，可以根据查询的推理需求进行分类，并选择性地应用推理。"
+      ],
+      "performance": "在MMLU-Pro基准测试中提高了10.2个百分点的准确性，同时减少了响应时间。",
+      "code": "未开源"
+    },
+    "2510.08600": {
+      "title": "Recover-LoRA: Data-Free Accuracy Recovery of Degraded Language Models via Low-Ra",
+      "primary_cell": "参数×量化",
+      "innovations": [
+        "提出了一种名为Recover-LoRA的轻量级方法，通过低秩适应（LoRA）实现无需数据集即可恢复退化语言模型的精度。",
+        "利用合成数据和logit蒸馏技术，学习并恢复模型权重，解决了由于模型序列化不当等因素导致的性能下降问题。"
+      ],
+      "performance": "未提数字",
+      "code": "未开源"
+    },
+    "2510.03683": {
+      "title": "Fine-Tuning Large Language Models with QLoRA for Offensive Language Detection in",
+      "primary_cell": "参数×低秩",
+      "innovations": [
+        "提出了一种基于QLoRA的微调框架，用于罗马乌尔都语-英语代码混合文本中的冒犯性语言检测。"
+      ],
+      "performance": "未提数字",
+      "code": "未开源"
+    },
+    "2510.00399": {
+      "title": "Can Mamba Learn In Context with Outliers? A Theoretical Generalization Analysis",
+      "primary_cell": "参数×量化",
+      "innovations": [
+        "首次对Mamba模型的上下文学习能力进行理论泛化分析，特别是研究其在处理异常值时的表现。"
+      ],
+      "performance": "未提数字",
+      "code": "未开源"
+    },
+    "2510.00570": {
+      "title": "Adaptive Shared Experts with LoRA-Based Mixture of Experts for Multi-Task Learni",
+      "primary_cell": "参数×剪枝/稀疏",
+      "innovations": [
+        "提出了基于低秩适应（LoRA）的自适应共享专家（ASE）方法，用于多任务学习（MTL），解决了从单任务到多任务学习过渡时的冗余适应和知识共享效率问题。"
+      ],
+      "performance": "未提数字",
+      "code": "未开源"
+    },
+    "2509.19742": {
+      "title": "HiCoLoRA: Addressing Context-Prompt Misalignment via Hierarchical Collaborative ",
+      "primary_cell": "参数×低秩",
+      "innovations": [
+        "提出了一种分层协作的低秩适应（HiCoLoRA）框架，通过增强的提示对齐提升零样本对话状态追踪性能。"
+      ],
+      "performance": "未提数字",
+      "code": "未开源"
+    },
+    "2509.19633": {
+      "title": "Mamba Modulation: On the Length Generalization of Mamba",
+      "primary_cell": "参数×量化",
+      "innovations": [
+        "提出了Mamba模型的上下文长度泛化问题，并深入分析了其性能下降的原因。"
+      ],
+      "performance": "未提数字",
+      "code": "未开源"
+    },
+    "2509.18137": {
+      "title": "LoRALib: A Standardized Benchmark for Evaluating LoRA-MoE Methods",
+      "primary_cell": "参数×低秩",
+      "innovations": [
+        "提出了LoRALib，这是一个用于评估LoRA-MoE方法的标准化基准测试平台，旨在统一模型、数据集、超参数和评估方法。",
+        "通过结合LoRA和MoE，改进模型的跨任务泛化能力，同时保持参数高效的微调优势。"
+      ],
+      "performance": "未提数字",
+      "code": "未开源"
+    },
+    "2509.00141": {
+      "title": "Scaling Legal AI: Benchmarking Mamba and Transformers for Statutory Classificati",
+      "primary_cell": "参数×量化",
+      "innovations": [
+        "首次对Mamba模型在法规分类和案例法检索任务上进行全面基准测试，并将其与领先的Transformer模型进行对比。"
+      ],
+      "performance": "未提数字",
+      "code": "未开源"
+    },
+    "2508.12247": {
+      "title": "STM3: Mixture of Multiscale Mamba for Long-Term Spatio-Temporal Time-Series Pred",
+      "primary_cell": "参数×量化",
+      "innovations": [
+        "提出了STM3模型，通过混合多尺度Mamba结构高效学习复杂的长程时空依赖关系"
+      ],
+      "performance": "未提数字",
+      "code": "未开源"
+    },
+    "2507.17662": {
+      "title": "Mammo-Mamba: A Hybrid State-Space and Transformer Architecture with Sequential M",
+      "primary_cell": "参数×量化",
+      "innovations": [
+        "提出了Mammo-Mamba，一种结合状态空间模型和Transformer架构的混合模型，并引入了序列专家混合机制，用于多视图乳腺X线摄影。"
+      ],
+      "performance": "未提数字",
+      "code": "未开源"
+    },
+    "2507.09076": {
+      "title": "Dynamic Parameter Memory: Temporary LoRA-Enhanced LLM for Long-Sequence Emotion ",
+      "primary_cell": "参数×低秩",
+      "innovations": [
+        "提出了一种动态参数记忆（DPM）机制，用于长序列对话中的情感识别。"
+      ],
+      "performance": "未提数字",
+      "code": "未开源"
+    },
+    "2606.31717": {
+      "title": "Nonlinearity-Aware LoRA: Structured Gate Adaptation under Low-Rank Constraints",
+      "primary_cell": "参数×低秩",
+      "innovations": [
+        "提出了非线性感知LoRA方法，通过结构化门控适应在低秩约束下优化自门控Transformer前馈网络。"
+      ],
+      "performance": "未提数字",
+      "code": "未开源"
+    },
+    "2606.31432": {
+      "title": "Clinically Structured Rank-Gated LoRA for Cross-Benchmark Medical Question Answe",
+      "primary_cell": "参数×低秩",
+      "innovations": [
+        "提出了一种名为BiRG-LoRA的单一适配器秩门控LoRA方法，用于跨基准的医学问答，能够根据不同问题动态调整低秩更新。"
+      ],
+      "performance": "未提数字",
+      "code": "未开源"
+    },
+    "2606.31168": {
+      "title": "Probe Choice Changes Canary-Memorization Verdicts: Three Post-Hoc Disagreement C",
+      "primary_cell": "参数×低秩",
+      "innovations": [
+        "研究了在文本主导的LoRA微调自回归测试环境中，不同探测方法对Canary记忆性判断的差异，并指出了三种事后不一致的案例。"
+      ],
+      "performance": "未提数字",
+      "code": "未开源"
+    },
+    "2606.28445": {
+      "title": "LoRA-Tuned Large Language Models for Dementia Detection via Multi-View Speech-De",
+      "primary_cell": "参数×低秩",
+      "innovations": [
+        "提出了基于低秩适应（LoRA）调优的大语言模型（LLM），用于通过多视角语音特征进行痴呆症检测。",
+        "整合了四种互补的语音派生信号（ASR转录、语音描述、停顿建模和声学特征），实现了异质认知症状的综合推理。"
+      ],
+      "performance": "未提数字",
+      "code": "未开源"
+    },
+    "2606.26618": {
+      "title": "Closing the Quality Gap in Low-Resource Text-to-Speech: LoRA Fine-Tuning of VoxC",
+      "primary_cell": "参数×低秩",
+      "innovations": [
+        "使用LoRA适配器对VoxCPM2模型进行微调，弥合了低资源语言（如高棉语和韩语）TTS生成的质量差距。"
+      ],
+      "performance": "未提数字",
+      "code": "未开源"
+    },
+    "2606.24119": {
+      "title": "When Top-1 Fails: Calibrating LoRA Monitors for Masked Diffusion LMs",
+      "primary_cell": "参数×低秩",
+      "innovations": [
+        "提出了对LoRA监控器的校准方法，以解决离散扩散语言模型（DLM）微调中的top-1 argmax浓度问题。",
+        "揭示了top-1浓度在优化前已经很高，导致其对最终训练稳定性的敏感性降低，从而无法有效预警模型崩溃。"
+      ],
+      "performance": "未提数字",
+      "code": "未开源"
+    },
+    "2606.22878": {
+      "title": "Priority-Aware Learning-Unlearning Correction for Dynamic Decentralized LoRA Fin",
+      "primary_cell": "参数×低秩",
+      "innovations": [
+        "提出了一种优先感知的学习-遗忘校正机制，用于动态去中心化LoRA微调，以适应设备动态加入或离开的情况。",
+        "通过参数高效的更新在去中心化联邦学习中实现隐私保护和领域特定的微调。"
+      ],
+      "performance": "未提数字",
+      "code": "未开源"
+    },
+    "2606.22429": {
+      "title": "Enhancing LLMs for Graph Tasks via Graph-aware LoRA Generation",
+      "primary_cell": "参数×低秩",
+      "innovations": [
+        "提出了一种新的基于权重级信息注入的范式（Graph-aware LoRA），将语言模型（LM）更好地适配于图任务。",
+        "通过LoRA生成机制，有效编码整图信息，减少信息损失，提升图理解能力。"
+      ],
+      "performance": "未提数字",
+      "code": "未开源"
+    },
+    "2606.22272": {
+      "title": "MixedPEFT: Combining Multiple PEFT Methods with Mixed Objectives for Unsupervise",
+      "primary_cell": "参数×量化",
+      "innovations": [
+        "提出了结合多种PEFT方法和使用混合目标的参数高效策略，用于无监督领域自适应。",
+        "同时优化源域数据的分类性能和目标域数据的掩码语言模型（MLM）任务。"
+      ],
+      "performance": "未提数字",
+      "code": "未开源"
+    },
+    "2606.16454": {
+      "title": "SDS-LoRA: Overcoming Anisotropic Gradient Scaling in Low-Rank Adaptation",
+      "primary_cell": "参数×低秩",
+      "innovations": [
+        "提出SDS-LoRA，通过分析低秩适应中梯度各向异性缩放问题，提出改进方案以克服此限制"
+      ],
+      "performance": "未提数字",
+      "code": "未开源"
+    },
+    "2606.15963": {
+      "title": "PreLort: Prefix-Nested LoRA for Federated Fine-Tuning under Rank Heterogeneity",
+      "primary_cell": "参数×低秩",
+      "innovations": [
+        "提出了一种名为PreLort的新方法，通过嵌套的低秩结构来组织适配器维度，从而在联邦学习环境下更好地应对不同客户端的适配器秩异质性问题。"
+      ],
+      "performance": "未提数字",
+      "code": "未开源"
+    },
+    "2606.13767": {
+      "title": "Beyond LoRA: Is Sparsity-Induced Adaptation Better?",
+      "primary_cell": "参数×剪枝/稀疏",
+      "innovations": [
+        "提出通过在现有LoRA变体中引入稀疏性来实现更简单、更经济的参数高效扩展方法"
+      ],
+      "performance": "未提数字",
+      "code": "未开源"
+    },
+    "2606.12280": {
+      "title": "Holding the FP8 Quality Ceiling at 8-Bit Weights and Activations: INT8 and GGUF ",
+      "primary_cell": "参数×量化",
+      "innovations": [
+        "提出了针对Ampere RTX 3090 GPU的Ideogram 4.0模型的后训练量化方法，使用INT8和GGUF格式进行8位权重和激活量化。",
+        "在没有FP8张量核心的硬件上实现了高质量的量化结果，保持了模型性能。"
+      ],
+      "performance": "未提数字",
+      "code": "未开源"
+    },
+    "2606.12392": {
+      "title": "System Report for CCL25-Eval Task 5: New Dataset and LoRA-Fine-Tuned Qwen2.5",
+      "primary_cell": "参数×低秩",
+      "innovations": [
+        "提出了一个新的数据集，专门针对古典诗歌的精确翻译和情感语义理解。",
+        "采用LoRA（Low-Rank Adaptation）技术对Qwen2.5模型进行微调，提升了模型在特定领域任务中的表现。"
+      ],
+      "performance": "未提数字",
+      "code": "未开源"
+    },
+    "2606.11033": {
+      "title": "AuRA: Internalizing Audio Understanding into LLMs as LoRA",
+      "primary_cell": "参数×蒸馏",
+      "innovations": [
+        "将音频理解能力通过低秩适配（LoRA）内化到大型语言模型（LLM）中，消除了传统语音-文本-语言的多阶段处理流程。"
+      ],
+      "performance": "未提数字",
+      "code": "未开源"
+    },
+    "2606.10428": {
+      "title": "Which LoRA? An Empirical Study on the Effectiveness of LoRA Techniques During Mu",
+      "primary_cell": "参数×低秩",
+      "innovations": [
+        "研究了不同LoRA变体在多语言指令微调中的有效性，发现基本LoRA与其他复杂变体相比无显著优势。"
+      ],
+      "performance": "未提数字",
+      "code": "未开源"
+    },
+    "2606.09686": {
+      "title": "An 83-Format Numeric Catalog with Bit-Exact Conformance Vectors: A Vendor-Neutra",
+      "primary_cell": "参数×量化",
+      "innovations": [
+        "提出了一个包含83种数值格式的通用目录，涵盖13个格式家族，解决了机器学习硬件中数值格式激增带来的兼容性问题。"
+      ],
+      "performance": "未提数字",
+      "code": "未开源"
+    },
+    "2606.08051": {
+      "title": "How Small Can You Go? LoRA Fine-Tuning 270M-8B Models for Merchant Information E",
+      "primary_cell": "参数×低秩",
+      "innovations": [
+        "系统性评估了四种不同模型家族（涵盖24种变体）的性能，重点在于在保持高准确率的同时寻找部署更高效的模型。"
+      ],
+      "performance": "达到了96.95%的F1分数。",
+      "code": "未开源。"
+    },
+    "2606.06946": {
+      "title": "Auditing Training Data in Domain-adapted LLMs: LoRA-MINT",
+      "primary_cell": "参数×低秩",
+      "innovations": [
+        "提出了LoRA-MINT方法，用于对通过低秩适应（LoRA）微调的领域适应大语言模型（LLMs）进行成员推理测试（MINT）。"
+      ],
+      "performance": "未提数字",
+      "code": "未开源"
+    },
+    "2606.06920": {
+      "title": "The Fine-Tuning Trap: Evaluating Negative Transfer and the Role of PEFT in Sub-1",
+      "primary_cell": "参数×低秩",
+      "innovations": [
+        "揭示了全量微调（Full Fine-Tuning）在小规模语言模型（<300M参数）上会导致显著的负迁移问题，显著降低数学推理任务的性能。"
+      ],
+      "performance": "未提数字",
+      "code": "未开源"
+    },
+    "2606.05899": {
+      "title": "High-Dimensional Theory of LoRA Fine-Tuning in a Solvable Attention Model",
+      "primary_cell": "参数×低秩",
+      "innovations": [
+        "开发了低秩适配（LoRA）在注意力模型中的高维统计理论，揭示了预训练和微调之间的相互作用。",
+        "提出了一个可解的框架，其中单头注意力层首先在数据丰富的任务上进行预训练，然后通过秩为1的LoRA更新在有限数据上进行适配。"
+      ],
+      "performance": "未提数字",
+      "code": "未开源"
+    },
+    "2606.05889": {
+      "title": "GLASS: GRPO-Trained LoRA for Acoustic Style Steering in Zero-Shot Text-to-Speech",
+      "primary_cell": "参数×低秩",
+      "innovations": [
+        "通过后生成奖励而非风格标签来学习控制，实现可组合的声学风格控制。",
+        "将每个声学属性视为一个奖励定义的控 制方向，解决了说话人提示中身份与韵律属性（如语速和音高）纠缠的问题。"
+      ],
+      "performance": "未提数字",
+      "code": "未开源"
+    },
+    "2606.05781": {
+      "title": "Domain-Adapted Small Language Models with Hybrid Post-Processing: Achieving Cost",
+      "primary_cell": "参数×低秩",
+      "innovations": [
+        "通过LoRA对小型语言模型进行微调，结合确定性规则后处理，实现了在数据稀缺情况下的高效多标签结构化预测。"
+      ],
+      "performance": "在219个精选样本上达到83.0%的人工验证整体准确率，100%的JSON结构有效性和100%的特定",
+      "code": "未开源"
+    },
+    "2606.05016": {
+      "title": "TaDA: Calibrated Probe Gating for Task-Domain LoRA Merging",
+      "primary_cell": "参数×低秩",
+      "innovations": [
+        "提出了一种无需训练的任务-领域LoRA适配器融合方法TaDA，通过深度依赖的非对称权重分配实现更有效的模型融合。"
+      ],
+      "performance": "未提数字",
+      "code": "未开源"
+    },
+    "2606.06521": {
+      "title": "P-Cast Precision in FP8 Attention: Sink-Induced Collapse and the Optimality of S",
+      "primary_cell": "参数×量化",
+      "innovations": [
+        "分析了FP8 (E4M3) 加速注意力的精度挑战，特别是在softmax概率矩阵P进行FP8转换时。",
+        "提出了两种实现选择会影响输出精度：KV块迭代顺序和P的静态缩放因子。"
+      ],
+      "performance": "未提数字",
+      "code": "未开源"
+    },
+    "2606.03792": {
+      "title": "Training-Free Multi-Concept LoRA Composition with Prompt-Aware Weighting",
+      "primary_cell": "参数×低秩",
+      "innovations": [
+        "提出了一种无需训练的多概念LoRA组合方法，通过提示感知权重优化多个LoRA输出的组合。"
+      ],
+      "performance": "未提数字",
+      "code": "未开源"
+    },
+    "2606.01838": {
+      "title": "LayerRoute: Input-Conditioned Adaptive Layer Skipping via LoRA Fine-Tuning for A",
+      "primary_cell": "参数×低秩",
+      "innovations": [
+        "LayerRoute通过LoRA微调实现输入条件下的自适应层跳过，提升异构推理效率"
+      ],
+      "performance": "未提数字",
+      "code": "未开源"
+    },
+    "2606.01412": {
+      "title": "GPTQ-intrinsic LoRA: A Near-optimal Algorithm for Low-precision Quantization wit",
+      "primary_cell": "参数×量化",
+      "innovations": [
+        "提出了GPTQ-intrinsic LoRA算法，首次为低精度量化与低秩自适应结合的问题建立了信息论下界。",
+        "通过逐层重建目标函数$\\|XW-X(Q+LR)\\|_F^2$优化模型，其中$X$为校准矩阵，提升了低比特量化模型的精度。"
+      ],
+      "performance": "未提数字",
+      "code": "未开源"
+    },
+    "2606.01080": {
+      "title": "ThinkSwitch: Context Distillation with LoRA and Weight Interpolation for Specifi",
+      "primary_cell": "参数×蒸馏",
+      "innovations": [
+        "提出ThinkSwitch，通过上下文蒸馏和权重插值实现推理任务的低计算量处理"
+      ],
+      "performance": "未提数字",
+      "code": "未开源"
+    },
+    "2606.00944": {
+      "title": "PRISM: Gauge-Invariant Tangent-Space Differentially Private LoRA",
+      "primary_cell": "参数×低秩",
+      "innovations": [
+        "PRISM提出了一种基于切线空间的差分隐私方法，解决了LoRA低秩参数化带来的不可识别性问题。",
+        "通过引入规范不变的扰动机制，PRISM避免了噪声的无界放大问题。"
+      ],
+      "performance": "未提数字",
+      "code": "未开源"
+    },
+    "2606.00831": {
+      "title": "Subliminal Learning is a LoRA Artifact",
+      "primary_cell": "参数×低秩",
+      "innovations": [
+        "揭示了潜意识学习现象本质上是LoRA（低秩适配器）的一种伪影，而非模型间的真正行为传递。",
+        "发现潜意识学习效果与LoRA的秩呈倒U形关系，为理解模型行为传递机制提供新视角。"
+      ],
+      "performance": "未提数字",
+      "code": "未开源"
+    },
+    "2605.31035": {
+      "title": "MixFP4: Enhancing NVFP4 with Adaptive FP4/INT4 Block Representations",
+      "primary_cell": "参数×量化",
+      "innovations": [
+        "提出了MixFP4，一种混合微格式扩展，通过在每个数据块中选择两种存储的FP4微格式（E2M1和E1M2）来提高NVFP4的适应性。",
+        "不改变标准块缩放MMA/GEMM执行路径的情况下，MixFP4通过重用NVFP4的缩放层级并编码格式选择，无需额外元数据。"
+      ],
+      "performance": "未提数字",
+      "code": "未开源"
+    },
+    "2606.00428": {
+      "title": "Finer Parameter Steps for Low-Rank PEFT: A Controlled Study with CP Tensor Adapt",
+      "primary_cell": "参数×低秩",
+      "innovations": [
+        "提出了基于CP张量的低秩适配器，通过更细粒度的参数步长改进低秩适配器的精度-预算权衡。"
+      ],
+      "performance": "未提数字",
+      "code": "未开源"
+    },
+    "2605.31484": {
+      "title": "Balanced LoRA: Removing Parameter Invariance to Accelerate Convergence",
+      "primary_cell": "参数×低秩",
+      "innovations": [
+        "提出了平衡低秩自适应（BaLoRA），通过投影迭代到平衡流形上，去除了LoRA中的参数不变性问题。"
+      ],
+      "performance": "加速收敛（具体数字未提及）。",
+      "code": "未开源。"
+    },
+    "2605.30260": {
+      "title": "How LoRA Remembers? A Parametric Memory Law for LLM Finetuning",
+      "primary_cell": "参数×低秩",
+      "innovations": [
+        "提出了参数记忆定律（Parametric Memory Law），首次系统量化了LoRA在LLM微调中的精确参数记忆容量。"
+      ],
+      "performance": "未提数字",
+      "code": "未开源"
+    },
+    "2605.29580": {
+      "title": "On the Construction and Implications of Low-Loss Valleys in LoRA-based Bayesian ",
+      "primary_cell": "参数×低秩",
+      "innovations": [
+        "探索了在LoRA框架下构建连续低损失谷的可能性，以实现更有效的贝叶斯模型集成。"
+      ],
+      "performance": "未提数字",
+      "code": "未开源"
+    },
+    "2605.29498": {
+      "title": "Mask the Target: A Plug-and-Play Regularizer Against LoRA Forgetting",
+      "primary_cell": "参数×低秩",
+      "innovations": [
+        "提出了一种名为Mask the Target的即插即用正则化方法，用于缓解LoRA微调中的遗忘问题。"
+      ],
+      "performance": "未提数字",
+      "code": "未开源"
+    },
+    "2605.30189": {
+      "title": "Token-Level Generalization in LoRA Adapter Backdoors: Attack Characterization an",
+      "primary_cell": "参数×低秩",
+      "innovations": [
+        "提出了LoRA适配器后门攻击的新方法，通过训练数据中毒实现，可靠地保留基线任务性能。"
+      ],
+      "performance": "未提数字",
+      "code": "未开源"
+    },
+    "2606.23698": {
+      "title": "FP8 is All You Need (Part 2): Efficient Ozaki-Bailey Style FFT Through Tensor-co",
+      "primary_cell": "参数×量化",
+      "innovations": [
+        "提出了Ozaki-Bailey FFT算法，通过FP8 Tensor Core进行3-D FFT的模拟实现。",
+        "使用尾数切片的中国剩余定理重构来恢复FP64等效吞吐量。"
+      ],
+      "performance": "未提数字",
+      "code": "未开源"
+    },
+    "2606.06510": {
+      "title": "FP8 is All You Need (Part 1): Debunking Hardware FP64 as the HPC Holy Grail (Jun",
+      "primary_cell": "参数×量化",
+      "innovations": [
+        "提出FP8张量核心矩阵乘法是构建双精度科学计算的唯一必要计算原语，挑战了传统HPC对硬件FP64的依赖。"
+      ],
+      "performance": "FP8吞吐量达到数PFLOPS，而FP64吞吐量降至约1.3 TFLOPS。",
+      "code": "未开源"
+    },
+    "2605.28896": {
+      "title": "Feature Geometry of LoRA Adapters: A Sparse Autoencoder Analysis of Representati",
+      "primary_cell": "激活×剪枝/稀疏",
+      "innovations": [
+        "提出了delta激活框架，用于隔离LoRA适配器对残差流的特定贡献，从而更好地理解其内部表示变化。",
+        "使用稀疏自编码器（SAE）分析LoRA适配器在不同Transformer层中引起的特征几何变化。"
+      ],
+      "performance": "未提数字",
+      "code": "未开源"
+    },
+    "2605.21217": {
+      "title": "Federated LoRA Fine-Tuning for LLMs via Collaborative Alignment",
+      "primary_cell": "参数×低秩",
+      "innovations": [
+        "提出了CLAIR框架，将LoRA与联邦学习结合，实现跨客户端的高效协同微调，同时处理客户端数据异构性和污染问题"
+      ],
+      "performance": "未提数字",
+      "code": "未开源"
+    },
+    "2605.19767": {
+      "title": "AR1-ZO: Topology-Aware Rank-1 Zeroth-Order Queries for High-Rank LoRA Fine-Tunin",
+      "primary_cell": "激活×低秩",
+      "innovations": [
+        "提出了一种拓扑感知的一阶零阶查询方法AR1-ZO，解决了高阶LoRA微调中的秩悖论问题。"
+      ],
+      "performance": "未提数字",
+      "code": "未开源"
+    },
+    "2605.19018": {
+      "title": "LoRA vs. Full Fine-Tuning: A Theoretical Perspective",
+      "primary_cell": "参数×低秩",
+      "innovations": [
+        "通过线性回归设置下的理论分析，揭示了LoRA在过定和欠定系统中优于全量微调的特定场景。"
+      ],
+      "performance": "未提数字",
+      "code": "未开源"
+    },
+    "2605.17774": {
+      "title": "Internalizing Tool Knowledge in Small Language Models via QLoRA Fine-Tuning",
+      "primary_cell": "参数×低秩",
+      "innovations": [
+        "研究了通过QLoRA微调将工具使用知识内化到小型语言模型中，以减少推理时的显式工具描述需求。"
+      ],
+      "performance": "未提数字",
+      "code": "未开源"
+    },
+    "2605.16800": {
+      "title": "FIM-LoRA: Task-Informative Rank Allocation for LoRA via Calibration-Time Gradien",
+      "primary_cell": "参数×低秩",
+      "innovations": [
+        "提出了FIM-LoRA方法，通过在微调前进行梯度方差估计，为不同层分配不同的低秩适配器排名，从而更有效地利用排名预算。",
+        "采用轻量级的工程解决方案，仅需八个校准反向传播步骤，无需额外参数或训练开销。"
+      ],
+      "performance": "未提数字",
+      "code": "未开源"
+    },
+    "2605.14448": {
+      "title": "Think When Needed: Adaptive Reasoning-Driven Multimodal Embeddings with a Dual-L",
+      "primary_cell": "参数×低秩",
+      "innovations": [
+        "提出了一种自适应推理驱动的多模态嵌入方法，通过Dual-LoRA架构实现，仅在必要时进行推理，减少冗余计算。"
+      ],
+      "performance": "未提数字",
+      "code": "未开源"
+    },
+    "2605.13163": {
+      "title": "LoREnc: Low-Rank Encryption for Securing Foundation Models and LoRA Adapters",
+      "primary_cell": "参数×低秩",
+      "innovations": [
+        "LoREnc通过频谱截断和补偿技术，无需重新训练即可保护基础模型和LoRA适配器。",
+        "通过抑制基础模型权重的低秩成分并补偿授权适配器中的缺失信息，增强了模型的安全性。"
+      ],
+      "performance": "未提数字",
+      "code": "未开源"
+    },
+    "2605.18822": {
+      "title": "Hybrid-LoRA: Bridging Full Fine-Tuning and Low-Rank Adaptation for Post-Training",
+      "primary_cell": "参数×低秩",
+      "innovations": [
+        "提出Hybrid-LoRA方法，结合了全量微调（FFT）和低秩适应（LoRA），在保持推理能力提升的同时显著降低GPU内存需求。"
+      ],
+      "performance": "未提数字",
+      "code": "未开源"
+    },
+    "2605.10741": {
+      "title": "AdaPaD: Adaptive Parallel Deflation for PEFT with Self-Correcting Rank Discovery",
+      "primary_cell": "参数×低秩",
+      "innovations": [
+        "提出了AdaPaD方法，可同时训练所有rank-1分量，并通过自适应并行 deflation 机制动态调整每个分量的更新方向"
+      ],
+      "performance": "未提数字",
+      "code": "未开源"
+    },
+    "2605.11153": {
+      "title": "Decomposing Evolutionary Mixture-of-LoRA Architectures: The Routing Lever, the L",
+      "primary_cell": "参数×低秩",
+      "innovations": [
+        "提出了分解进化混合LoRA架构的三个关键因素：路由器重写、领域特定的留一法评估范围以及包含死亡、alpha混合继承、奇异值分解突变和插槽重分配的生存周期。"
+      ],
+      "performance": "未提数字",
+      "code": "未开源"
+    },
+    "2605.08423": {
+      "title": "Queryable LoRA: Instruction-Regularized Routing Over Shared Low-Rank Update Atom",
+      "primary_cell": "参数×低秩",
+      "innovations": [
+        "提出了一种数据自适应的低秩适应方法，通过共享可查询的低秩更新原子实现高效微调，克服了传统静态参数化的局限性。"
+      ],
+      "performance": "未提数字",
+      "code": "未开源"
+    },
+    "2605.07959": {
+      "title": "Convergent Stochastic Training of Attention and Understanding LoRA",
+      "primary_cell": "参数×低秩",
+      "innovations": [
+        "提出了一个统一框架来严格证明在随机方法下，Transformer模型中注意力层和LoRA的可训练性。"
+      ],
+      "performance": "未提数字",
+      "code": "未开源"
+    },
+    "2605.07420": {
+      "title": "SR$^2$-LoRA: Self-Rectifying Inter-layer Relations in Low-Rank Adaptation for Cl",
+      "primary_cell": "参数×低秩",
+      "innovations": [
+        "提出了SR²-LoRA方法，通过分析层间关系漂移来缓解灾难性遗忘问题"
+      ],
+      "performance": "未提数字",
+      "code": "未开源"
+    },
+    "2605.07366": {
+      "title": "Gradient-Based LoRA Rank Allocation Under GRPO: An Empirical Study",
+      "primary_cell": "参数×低秩",
+      "innovations": [
+        "研究了在GRPO框架下自适应分配LoRA参数对模型性能的影响，发现与监督微调（SFT）相比，梯度幅度分析无法有效提升强化学习模型的效率。"
+      ],
+      "performance": "相比统一分配（74.5%），比例分配导致准确率下降4.5个百分点（70.0%）。",
+      "code": "未开源"
+    },
+    "2605.07111": {
+      "title": "Beyond LoRA vs. Full Fine-Tuning: Gradient-Guided Optimizer Routing for LLM Adap",
+      "primary_cell": "参数×低秩",
+      "innovations": [
+        "提出了一种梯度引导的优化器路由方法，用于大语言模型的适配，在全量微调和低秩适应之间找到平衡。"
+      ],
+      "performance": "未提数字",
+      "code": "未开源"
+    },
+    "2605.06733": {
+      "title": "Beyond Factor Aggregation: Gauge-Aware Low-Rank Server Representations for Feder",
+      "primary_cell": "参数×低秩",
+      "innovations": [
+        "提出了一种新的联邦学习框架GLoRA，通过考虑李代数中的规范不变性来解决LoRA因子的聚合问题。",
+        "引入了一种基于规范感知（gauge-aware）的服务器表示方法，避免了在聚合过程中因坐标系选择不同而导致的语义不一致问题。"
+      ],
+      "performance": "未提数字",
+      "code": "未开源"
+    },
+    "2605.05769": {
+      "title": "Adaptive Selection of LoRA Components in Privacy-Preserving Federated Learning",
+      "primary_cell": "通信×低秩",
+      "innovations": [
+        "提出了AS-LoRA框架，通过自适应选择LoRA组件来减少差分隐私联邦学习中的聚合误差"
+      ],
+      "performance": "未提数字",
+      "code": "未开源"
+    },
+    "2605.04948": {
+      "title": "Adapting Large Language Models to a Low-Resource Agglutinative Language: A Compa",
+      "primary_cell": "参数×低秩",
+      "innovations": [
+        "首次系统比较LoRA和QLoRA在大规模语言模型适应低资源黏着性语言（巴什基尔语）中的表现。"
+      ],
+      "performance": "未提数字",
+      "code": "未开源"
+    },
+    "2605.04341": {
+      "title": "Budgeted LoRA: Distillation as Structured Compute Allocation for Efficient Infer",
+      "primary_cell": "参数×蒸馏",
+      "innovations": [
+        "将模型压缩视为结构化计算分配问题，提出了Budgeted LoRA框架"
+      ],
+      "performance": "未提数字",
+      "code": "未开源"
+    },
+    "2605.03724": {
+      "title": "Rethinking the Rank Threshold for LoRA Fine-Tuning",
+      "primary_cell": "参数×低秩",
+      "innovations": [
+        "将LoRA微调所需的秩从12降低到1，适用于二分类问题。"
+      ],
+      "performance": "未提数字",
+      "code": "未开源"
+    },
+    "2605.01429": {
+      "title": "SCALE-LoRA: Auditing Post-Retrieval LoRA Composition with Residual Merging and V",
+      "primary_cell": "参数×低秩",
+      "innovations": [
+        "提出了SCALE-LoRA方法，通过残差合并和视图可靠性来审计检索后的LoRA组合，确保参数更新兼容。",
+        "实现了任务级和实例级的LoRA模块动态选择和重用，提升了开放池适配器的适用性。"
+      ],
+      "performance": "未提数字",
+      "code": "未开源"
+    },
+    "2605.01605": {
+      "title": "Where Do Prompt Perturbations Break Generation? A Segment-Level View of Robustne",
+      "primary_cell": "参数×低秩",
+      "innovations": [
+        "提出了S$^2$R$^2$框架，从语义段级别分析并增强LoRA微调语言模型的鲁棒性。"
+      ],
+      "performance": "未提数字",
+      "code": "未开源"
+    },
+    "2605.00421": {
+      "title": "RadLite: Multi-Task LoRA Fine-Tuning of Small Language Models for CPU-Deployable",
+      "primary_cell": "参数×低秩",
+      "innovations": [
+        "通过LoRA微调使小型语言模型（3-4B参数）在多任务放射学任务中实现强大性能，并在消费级CPU上部署。"
+      ],
+      "performance": "未提数字",
+      "code": "未开源"
+    },
+    "2605.01046": {
+      "title": "Learning in the Fisher Subspace: A Guided Initialization for LoRA Fine-Tuning",
+      "primary_cell": "参数×低秩",
+      "innovations": [
+        "提出了一种基于费舍尔子空间的学习方法，用于引导LoRA微调中的初始化选择，从而提升下游任务性能。"
+      ],
+      "performance": "未提数字",
+      "code": "未开源"
+    },
+    "2606.10932": {
+      "title": "Density Field State Space Models: 1-Bit Distillation, Efficient Inference, and K",
+      "primary_cell": "参数×量化",
+      "innovations": [
+        "提出了一种新的框架DF-SSM，将状态空间模型(SSM)压缩为1-bit的骨架，并使用int8低秩校正进行优化。"
+      ],
+      "performance": "模型体积缩小9.7倍，推理速度提升21.4倍，任务性能仅下降2-4个百分点。",
+      "code": "未开源"
+    },
+    "2604.22127": {
+      "title": "Where Should LoRA Go? Component-Type Placement in Hybrid Language Models",
+      "primary_cell": "参数×低秩",
+      "innovations": [
+        "首次系统研究了不同组件类型在混合语言模型中的LoRA适配器放置位置的影响。",
+        "提出了针对混合架构（如Qwen3.5-0.8B和Falcon-H1-0.5B）优化的LoRA适配器配置方法。"
+      ],
+      "performance": "未提数字",
+      "code": "未开源"
+    },
+    "2604.20313": {
+      "title": "Formalising the Logit Shift Induced by LoRA: A Technical Note",
+      "primary_cell": "参数×低秩",
+      "innovations": [
+        "首次对LoRA引起的logit偏移和事实边界变化进行了初步形式化分析。"
+      ],
+      "performance": "未提数字",
+      "code": "未开源"
+    },
+    "2604.19321": {
+      "title": "RDP LoRA: Geometry-Driven Identification for Parameter-Efficient Adaptation in L",
+      "primary_cell": "参数×低秩",
+      "innovations": [
+        "提出了RDP LoRA方法，通过几何轨迹分析优化大语言模型的参数高效适配。",
+        "使用Ramer-Douglas-Peucker算法来识别并简化隐藏状态的高维几何轨迹，保留全局结构变化的同时消除局部冗余。"
+      ],
+      "performance": "未提数字",
+      "code": "未开源"
+    },
+    "2604.17753": {
+      "title": "Evolutionary Negative Module Pruning for Better LoRA Merging",
+      "primary_cell": "参数×剪枝/稀疏",
+      "innovations": [
+        "提出进化负模块剪枝方法，解决LoRA合并中的负模块问题"
+      ],
+      "performance": "未提数字",
+      "code": "未开源"
+    },
+    "2604.17751": {
+      "title": "HiP-LoRA: Budgeted Spectral Plasticity for Robust Low-Rank Adaptation",
+      "primary_cell": "参数×低秩",
+      "innovations": [
+        "提出了HiP-LoRA，一种基于谱感知的低秩适配框架，解决LoRA中的谱干扰问题。",
+        "利用预训练层的缓存奇异值分解（SVD）来分解更新，保持模型的基础能力和避免灾难性遗忘。"
+      ],
+      "performance": "未提数字",
+      "code": "未开源"
+    },
+    "2604.16826": {
+      "title": "Crowded in B-Space: Calibrating Shared Directions for LoRA Merging",
+      "primary_cell": "参数×低秩",
+      "innovations": [
+        "提出了Pico方法，通过在合并LoRA适配器前区分并校正输出侧矩阵B中的共享方向，减少了合并时的性能损失。"
+      ],
+      "performance": "未提数字",
+      "code": "未开源"
+    },
+    "2604.16615": {
+      "title": "Beyond Feature Fusion: Contextual Bayesian PEFT for Multimodal Uncertainty Estim",
+      "primary_cell": "参数×低秩",
+      "innovations": [
+        "提出了一种名为CoCo-LoRA的多模态、低秩自适应方法，能够在文本预测任务中有效地结合音频上下文进行不确定性估计。",
+        "相比现有的确定性PEFT方法（如LoRA），CoCo-LoRA能够更准确地反映由外部声学因素（如背景噪声、信道变异或说话风格）引起的不确定性。"
+      ],
+      "performance": "未提数字",
+      "code": "未开源"
+    },
+    "2606.05176": {
+      "title": "PEFT of SLM for Telecommunications Customer Support: A Comparative Study of LoRA",
+      "primary_cell": "参数×低秩",
+      "innovations": [
+        "**首次系统性地研究了在电信客户服务领域应用LoRA对Qwen2.5-3B模型进行参数高效微调(PEFT)的性能表现。**"
+      ],
+      "performance": "**未提数字**",
+      "code": "**未开源**"
+    },
+    "2604.15167": {
+      "title": "When Flat Minima Fail: Characterizing INT4 Quantization Collapse After FP32 Conv",
+      "primary_cell": "参数×量化",
+      "innovations": [
+        "揭示了模型在FP32训练收敛后进行INT4量化时存在结构性崩溃现象，并将其细分为三个阶段。",
+        "通过对154个公开的Pythia-160m训练检查点进行无校准的每组INT4探针分析，提供了量化的、可测量的崩溃特征。"
+      ],
+      "performance": "未提数字",
+      "code": "未开源"
+    },
+    "2604.13328": {
+      "title": "Multi-Task LLM with LoRA Fine-Tuning for Automated Cancer Staging and Biomarker ",
+      "primary_cell": "参数×低秩",
+      "innovations": [
+        "提出了一种基于LoRA的多任务大语言模型框架，用于自动化癌症分期和生物标志物提取。"
+      ],
+      "performance": "未提数字",
+      "code": "未开源"
+    },
+    "2604.12834": {
+      "title": "Rapid LoRA Aggregation for Wireless Channel Adaptation in Open-Set Radio Frequen",
+      "primary_cell": "参数×低秩",
+      "innovations": [
+        "提出了一种使用低秩适应（LoRA）的轻量级、自适应射频指纹（RFF）提取框架"
+      ],
+      "performance": "实现了对未知信道条件的快速适应",
+      "code": "未开源"
+    },
+    "2604.12686": {
+      "title": "BID-LoRA: A Parameter-Efficient Framework for Continual Learning and Unlearning",
+      "primary_cell": "参数×低秩",
+      "innovations": [
+        "提出了一种参数高效的统一框架BID-LoRA，能够同时实现持续学习(CL)和机器遗忘(MU)，解决了知识泄露和基础知识退化问题。"
+      ],
+      "performance": "未提数字",
+      "code": "未开源"
+    },
+    "2604.12526": {
+      "title": "Orthogonal Subspace Projection for Continual Machine Unlearning via SVD-Based Lo",
+      "primary_cell": "参数×低秩",
+      "innovations": [
+        "提出了基于奇异值分解（SVD）的低秩适应（LoRA）方法，通过正交子空间投影实现持续机器遗忘，解决顺序删除请求带来的参数冲突问题。"
+      ],
+      "performance": "未提数字",
+      "code": "未开源"
+    },
+    "2604.10649": {
+      "title": "SpectralLoRA: Is Low-Frequency Structure Sufficient for LoRA Adaptation? A Spect",
+      "primary_cell": "参数×低秩",
+      "innovations": [
+        "通过2D离散余弦变换（DCT）对LoRA权重更新进行频谱分析，揭示了LoRA更新主要由低频成分主导。",
+        "提出仅保留10%的频率系数即可显著减少适配器存储空间，同时仅在SST-2基准上损失1.95个百分点。"
+      ],
+      "performance": "减少存储空间10倍，精度损失1.95个百分点。",
+      "code": "未开源"
+    },
+    "2604.08844": {
+      "title": "Spectral Geometry of LoRA Adapters Encodes Training Objective and Predicts Harmf",
+      "primary_cell": "参数×低秩",
+      "innovations": [
+        "提出了通过低秩谱摘要分析LoRA权重变化来识别微调目标并预测下游行为危害的方法。"
+      ],
+      "performance": "未提数字",
+      "code": "未开源"
+    },
+    "2605.23913": {
+      "title": "Can LoRA Fusion Support Cross-Domain Tasks in Cloud-Edge Collaboration?",
+      "primary_cell": "参数×低秩",
+      "innovations": [
+        "提出了LoRA Fusion方法，使得云端大语言模型能够整合多个边缘设备的私有领域知识，实现跨域任务处理。",
+        "解决了现有方法中边缘设备无法承载云规模大语言模型的局限性，提出在本地训练LoRA适配器并在云端进行融合的方案。"
+      ],
+      "performance": "未提数字",
+      "code": "未开源"
+    },
+    "2604.08749": {
+      "title": "A Little Rank Goes a Long Way: Random Scaffolds with LoRA Adapters Are All You N",
+      "primary_cell": "参数×低秩",
+      "innovations": [
+        "通过随机冻结主干网络权重，仅训练低秩LoRA适配器，显著减少需要训练的参数量。"
+      ],
+      "performance": "恢复96-100%全训练性能，同时只训练0.5-40%的参数。",
+      "code": "未开源"
+    },
+    "2604.07173": {
+      "title": "InfiniLoRA: Disaggregated Multi-LoRA Serving for Large Language Models",
+      "primary_cell": "通信×低秩",
+      "innovations": [
+        "InfiniLoRA提出了一种解耦的LoRA执行系统，将LoRA执行与基础模型推理分离。"
+      ],
+      "performance": "未提数字",
+      "code": "未开源"
+    },
+    "2604.05426": {
+      "title": "ALTO: Adaptive LoRA Tuning and Orchestration for Heterogeneous LoRA Training Wor",
+      "primary_cell": "参数×低秩",
+      "innovations": [
+        "ALTO系统通过自适应调优和调度机制，优化异构LoRA训练工作负载，提升了计算资源的利用率。"
+      ],
+      "performance": "未提数字",
+      "code": "未开源"
+    },
+    "2605.02904": {
+      "title": "StateSMix: Online Lossless Compression via Mamba State Space Models and Sparse N",
+      "primary_cell": "参数×剪枝/稀疏",
+      "innovations": [
+        "结合了在线训练的Mamba风格状态空间模型（SSM）和稀疏n-gram上下文混合技术，实现了无损压缩。",
+        "模型无需预训练权重、GPU或外部依赖，完全自包含，适合实时压缩任务。"
+      ],
+      "performance": "未提数字",
+      "code": "未开源"
+    },
+    "2604.01694": {
+      "title": "MiCA Learns More Knowledge Than LoRA and Full Fine-Tuning",
+      "primary_cell": "参数×低秩",
+      "innovations": [
+        "提出了一种新的参数高效微调方法——Minor Component Adaptation (MiCA)，通过关注模型表示中未充分利用的子空间进行优化。",
+        "利用奇异值分解（SVD）识别与最小奇异值相关的次要奇异向量，并限制微调过程中参数更新仅在这些方向上进行。"
+      ],
+      "performance": "在知识获取方面实现了高达5.9倍的提升。",
+      "code": "未开源"
+    },
+    "2604.03329": {
+      "title": "CoLoRSMamba: Conditional LoRA-Steered Mamba for Supervised Multimodal Violence D",
+      "primary_cell": "参数×低秩",
+      "innovations": [
+        "提出了一种新的视频到音频的多模态架构CoLoRSMamba，通过CLS引导的条件LoRA将VideoMamba和AudioMamba耦合在一起。"
+      ],
+      "performance": "未提数字",
+      "code": "未开源"
+    },
+    "2604.02051": {
+      "title": "Ouroboros: Dynamic Weight Generation for Recursive Transformers via Input-Condit",
+      "primary_cell": "参数×低秩",
+      "innovations": [
+        "通过输入条件下的LoRA调制，动态生成递归Transformer的权重，解决了每一步应用相同变换的问题。",
+        "引入了紧凑的控制器网络，生成每一步的对角调制向量，使递归步骤依赖于输入状态。"
+      ],
+      "performance": "未提数字",
+      "code": "未开源"
+    },
+    "2604.01152": {
+      "title": "Brainstacks: Cross-Domain Cognitive Capabilities via Frozen MoE-LoRA Stacks for ",
+      "primary_cell": "参数×量化",
+      "innovations": [
+        "提出了一种名为Brainstacks的模块化架构，通过冻结的适配器堆栈在推理时对大语言模型进行跨领域持续微调。"
+      ],
+      "performance": "未提数字",
+      "code": "未开源"
+    },
+    "2604.14191": {
+      "title": "Attention to Mamba: A Recipe for Cross-Architecture Distillation",
+      "primary_cell": "参数×蒸馏",
+      "innovations": [
+        "提出了一种跨架构的知识蒸馏方法，将基于Attention的Transformer模型的知识转移到Mamba-like的State Space Models (SSMs) 上。"
+      ],
+      "performance": "未提数字",
+      "code": "未开源"
+    },
+    "2604.00773": {
+      "title": "From Baselines to Preferences: A Comparative Study of LoRA/QLoRA and Preference ",
+      "primary_cell": "参数×低秩",
+      "innovations": [
+        "系统性比较了LoRA/QLoRA和偏好优化方法在心理健康文本分类任务中的表现。"
+      ],
+      "performance": "未提数字",
+      "code": "未开源"
+    },
+    "2603.29824": {
+      "title": "Curvature-Guided LoRA: Matching Full Fine-Tuning in Function Space",
+      "primary_cell": "参数×低秩",
+      "innovations": [
+        "提出了一种基于曲率引导的LoRA方法，通过在函数空间上对齐LoRA与全量微调的预测输出，显著提升了模型适配的收敛速度和最终性能。"
+      ],
+      "performance": "未提数字",
+      "code": "未开源"
+    },
+    "2604.16396": {
+      "title": "QU-NLP at QIAS 2026: Multi-Stage QLoRA Fine-Tuning for Arabic Islamic Inheritanc",
+      "primary_cell": "参数×量化",
+      "innovations": [
+        "采用多阶段量化低秩适应（QLoRA）微调策略，针对阿拉伯语伊斯兰继承法进行领域适应和推理优化"
+      ],
+      "performance": "未提数字",
+      "code": "未开源"
+    },
+    "2603.26317": {
+      "title": "Label-Free Cross-Task LoRA Merging with Null-Space Compression",
+      "primary_cell": "参数×低秩",
+      "innovations": [
+        "提出了无需标签的跨任务LoRA合并方法，结合了零空间压缩（NSC）技术。",
+        "解决了现有方法在处理分类和回归混合任务时的局限性。"
+      ],
+      "performance": "未提数字",
+      "code": "未开源"
+    },
+    "2603.26299": {
+      "title": "Preference-Aligned LoRA Merging: Preserving Subspace Coverage and Addressing Dir",
+      "primary_cell": "参数×低秩",
+      "innovations": [
+        "提出了一种新的LoRA合并方法，通过保持子空间覆盖率和解决方向性各向异性来改进多任务模型的表现。"
+      ],
+      "performance": "未提数字",
+      "code": "未开源"
+    },
+    "2604.14175": {
+      "title": "QU-NLP at ArchEHR-QA 2026: Two-Stage QLoRA Fine-Tuning of Qwen3-4B for Patient-O",
+      "primary_cell": "参数×低秩",
+      "innovations": [
+        "提出了两阶段量化低秩适应（QLoRA）微调方法，针对患者导向的临床问答和证据句子对齐任务进行优化。",
+        "在4-bit NF4量化下加载Qwen3-4B模型，通过在emrQA-MedSQuAD语料库上进行第一阶段微调，增强了模型在临床领域的专业能力。"
+      ],
+      "performance": "官方测试-2026分割集上总体得分为32.87（BLEU = 9.42, ROUGE-L = 27.",
+      "code": "未开源"
+    },
+    "2604.14167": {
+      "title": "Chinese Essay Rhetoric Recognition Using LoRA, In-context Learning and Model Ens",
+      "primary_cell": "参数×低秩",
+      "innovations": [
+        "将LoRA和上下文学习结合，用于中文作文修辞识别，显著提升了模型对修辞元素的识别能力。"
+      ],
+      "performance": "未提数字",
+      "code": "未开源"
+    },
+    "2603.21970": {
+      "title": "Parameter-Efficient Fine-Tuning for Medical Text Summarization: A Comparative St",
+      "primary_cell": "参数×低秩",
+      "innovations": [
+        "首次系统比较了LoRA、Prompt Tuning和Full Fine-Tuning在医学文本摘要任务中的表现，并证明LoRA在参数效率和性能上均优于全量微调。"
+      ],
+      "performance": "LoRA在ROUGE指标上达到43.52 ± 0.18，优于全量微调。",
+      "code": "未开源"
+    },
+    "2603.21884": {
+      "title": "Not All Layers Are Created Equal: Adaptive LoRA Ranks for Personalized Image Gen",
+      "primary_cell": "参数×低秩",
+      "innovations": [
+        "提出自适应LoRA秩方法，根据个性化图像生成任务的复杂度动态调整各层LoRA的秩。"
+      ],
+      "performance": "未提数字。",
+      "code": "未开源。"
+    },
+    "2603.22379": {
+      "title": "Instruction-Tuned, but Not More Verifiable Instruction-Following: A Cross-Task D",
+      "primary_cell": "参数×低秩",
+      "innovations": [
+        "提出了一种跨任务诊断方法，评估LoRA适配器的实际能力提升是否与名义训练目标一致。"
+      ],
+      "performance": "未提数字",
+      "code": "未开源"
+    },
+    "2603.21418": {
+      "title": "Efficient Fine-Tuning Methods for Portuguese Question Answering: A Comparative S",
+      "primary_cell": "参数×量化",
+      "innovations": [
+        "系统性地评估了PEFT和量化技术对BERTimbau在巴西葡萄牙语问答任务中的性能。"
+      ],
+      "performance": "未提数字",
+      "code": "未开源"
+    },
+    "2603.26716": {
+      "title": "FEMBA on the Edge: Physiologically-Aware Pre-Training, Quantization, and Deploym",
+      "primary_cell": "激活×量化",
+      "innovations": [
+        "提出了FEMBA，一种针对可穿戴设备设计的双向Mamba架构EEG基础模型，专注于克服Transformer模型的计算瓶颈和状态空间模型的量化挑战。",
+        "引入了生理感知预训练目标，通过低通滤波重建优先考虑神经振荡而非高频伪影。"
+      ],
+      "performance": "未提数字",
+      "code": "未开源"
+    },
+    "2603.17558": {
+      "title": "Zipper-LoRA: Dynamic Parameter Decoupling for Speech-LLM based Multilingual Spee",
+      "primary_cell": "参数×蒸馏",
+      "innovations": [
+        "提出了一种名为Zipper-LoRA的动态参数解耦方法，用于多语言语音识别中的高效微调，解决稳定性-可塑性困境。"
+      ],
+      "performance": "未提数字",
+      "code": "未开源"
+    },
+    "2603.15990": {
+      "title": "W2T: LoRA Weights Already Know What They Can Do",
+      "primary_cell": "参数×低秩",
+      "innovations": [
+        "提出了一种直接从LoRA权重中读取任务特定信息的方法，无需运行基础模型或访问训练数据。",
+        "解决了LoRA更新因子化的模糊性问题，确保模型训练不受特定因子化方式的影响。"
+      ],
+      "performance": "未提数字",
+      "code": "未开源"
+    },
+    "2603.15405": {
+      "title": "Fusian: Multi-LoRA Fusion for Fine-Grained Continuous MBTI Personality Control i",
+      "primary_cell": "参数×低秩",
+      "innovations": [
+        "提出了Fusian框架，实现对大语言模型中MBTI人格特质的细粒度连续控制"
+      ],
+      "performance": "未提数字",
+      "code": "未开源"
+    },
+    "2603.14723": {
+      "title": "Beyond Creed: A Non-Identity Safety Condition A Strong Empirical Alternative to ",
+      "primary_cell": "参数×低秩",
+      "innovations": [
+        "提出了一种非身份安全条件，作为低数据LoRA微调的强实证替代方案，证明了安全监督的表述方式比其显性身份内容更重要。"
+      ],
+      "performance": "未提数字",
+      "code": "未开源"
+    },
+    "2603.12681": {
+      "title": "Colluding LoRA: A Compositional Vulnerability in LLM Safety Alignment",
+      "primary_cell": "参数×低秩",
+      "innovations": [
+        "提出了Colluding LoRA (CoLoRA)，揭示了在模块化大语言模型中，安全对齐机制在适配器组合时可能产生的新型漏洞。"
+      ],
+      "performance": "未提数字",
+      "code": "未开源"
+    },
+    "2604.16332": {
+      "title": "Annotation Entropy Predicts Per-Example Learning Dynamics in LoRA Fine-Tuning",
+      "primary_cell": "参数×低秩",
+      "innovations": [
+        "发现LoRA微调在有争议样本上表现出遗忘现象，损失函数随训练增加。"
+      ],
+      "performance": "未提数字",
+      "code": "未开源"
+    },
+    "2603.10634": {
+      "title": "Double-Precision Matrix Multiplication Emulation via Ozaki-II Scheme with FP8 Qu",
+      "primary_cell": "参数×量化",
+      "innovations": [
+        "提出了一种基于Ozaki-II方案并结合FP8量化的双精度矩阵乘法（DGEMM）模拟方法"
+      ],
+      "performance": "未提数字",
+      "code": "未开源"
+    },
+    "2603.08058": {
+      "title": "Stabilized Fine-Tuning with LoRA in Federated Learning: Mitigating the Side Effe",
+      "primary_cell": "参数×低秩",
+      "innovations": [
+        "提出了通过缩放因子解决联邦学习中LoRA参数更新不稳定问题的方法，特别是缓解了客户端数量和适配器秩带来的负面影响。"
+      ],
+      "performance": "未提数字",
+      "code": "未开源"
+    },
+    "2603.08014": {
+      "title": "FedMomentum: Preserving LoRA Training Momentum in Federated Fine-Tuning",
+      "primary_cell": "通信×低秩",
+      "innovations": [
+        "提出FedMomentum算法，在联邦微调过程中保留LoRA训练动量，避免噪声并保持低秩结构的表达能力。"
+      ],
+      "performance": "未提数字",
+      "code": "未开源"
+    },
+    "2603.06738": {
+      "title": "Rank-Factorized Implicit Neural Bias: Scaling Super-Resolution Transformer with ",
+      "primary_cell": "参数×量化",
+      "innovations": [
+        "提出了Rank-Factorized隐式神经偏置方法，使超分辨率Transformer能够利用硬件高效的FlashAttention，从而突破相对位置偏置的限制。"
+      ],
+      "performance": "未提数字",
+      "code": "未开源"
+    },
+    "2603.05204": {
+      "title": "Stable-LoRA: Stabilizing Feature Learning of Low-Rank Adaptation",
+      "primary_cell": "参数×低秩",
+      "innovations": [
+        "提出了Stable-LoRA方法，通过理论分析证明了LoRA在特征学习中的稳定性，并实现了自稳定机制。"
+      ],
+      "performance": "未提数字",
+      "code": "未开源"
+    },
+    "2603.03995": {
+      "title": "Spectral Surgery: Training-Free Refinement of LoRA via Gradient-Guided Singular ",
+      "primary_cell": "参数×低秩",
+      "innovations": [
+        "提出了一种无需训练的LoRA微调方法，通过梯度引导的奇异值重加权来优化低秩适配器。",
+        "发现训练后的LoRA更新在奇异方向上的任务效应集中在少数方向，而其他组件则呈中性或有害。"
+      ],
+      "performance": "未提数字",
+      "code": "未开源"
+    },
+    "2603.03959": {
+      "title": "LoRA-MME: Multi-Model Ensemble of LoRA-Tuned Encoders for Code Comment Classific",
+      "primary_cell": "参数×低秩",
+      "innovations": [
+        "提出了LoRA-MME架构，结合了四种不同的Transformer编码器（UniXcoder、CodeBERT、GraphCodeBERT和CodeBERTa），通过多模型集成增强代码注释分类的性能。"
+      ],
+      "performance": "未提数字",
+      "code": "未开源"
+    },
+    "2603.13307": {
+      "title": "Suppressing Domain-Specific Hallucination in Construction LLMs: A Knowledge Grap",
+      "primary_cell": "参数×低秩",
+      "innovations": [
+        "提出了基于知识图谱的GraphRAG和QLoRA方法，用于抑制本地部署的LLM在处理日本河流与泥沙控制技术标准时的领域特定幻觉问题。"
+      ],
+      "performance": "未提数字",
+      "code": "未开源"
+    },
+    "2603.01792": {
+      "title": "ALTER: Asymmetric LoRA for Token-Entropy-Guided Unlearning of LLMs",
+      "primary_cell": "参数×低秩",
+      "innovations": [
+        "提出了一种非对称LoRA方法，用于指导大语言模型进行选择性遗忘，同时保持其他知识的完整性。",
+        "利用token熵作为指导信号，帮助模型更精准地识别和遗忘特定信息，避免对无关知识的破坏。"
+      ],
+      "performance": "未提数字",
+      "code": "未开源"
+    },
+    "2603.19278": {
+      "title": "HypeLoRA: Hyper-Network-Generated LoRA Adapters for Calibrated Language Model Fi",
+      "primary_cell": "参数×低秩",
+      "innovations": [
+        "提出了一种基于超网络的LoRA适配器框架，用于调整语言模型的校准问题。"
+      ],
+      "performance": "在GLUE基准测试中，LoRA适配器在保持高参数效率的同时，校准效果与完整微调相当，甚至在特定任务中",
+      "code": "未开源"
+    },
+    "2603.00638": {
+      "title": "RAIE: Region-Aware Incremental Preference Editing with LoRA for LLM-based Recomm",
+      "primary_cell": "参数×低秩",
+      "innovations": [
+        "提出了区域感知增量偏好编辑方法RAIE，通过LoRA实现更精细的偏好更新"
+      ],
+      "performance": "未提数字",
+      "code": "未开源"
+    },
+    "2603.00573": {
+      "title": "CoMoL: Efficient Mixture of LoRA Experts via Dynamic Core Space Merging",
+      "primary_cell": "参数×低秩",
+      "innovations": [
+        "提出了一种新的混合专家（MoE）架构CoMoL，通过动态核心空间合并实现高效参数微调。",
+        "引入专家多样性和细粒度适应机制，显著提升了参数效率和模型性能。"
+      ],
+      "performance": "未提数字",
+      "code": "未开源"
+    },
+    "2603.13282": {
+      "title": "FedTreeLoRA: Reconciling Statistical and Functional Heterogeneity in Federated L",
+      "primary_cell": "参数×低秩",
+      "innovations": [
+        "提出了FedTreeLoRA框架，首次在联邦学习中同时解决统计异质性和功能异质性问题。"
+      ],
+      "performance": "未提数字",
+      "code": "未开源"
+    },
+    "2602.23638": {
+      "title": "FedRot-LoRA: Mitigating Rotational Misalignment in Federated LoRA",
+      "primary_cell": "通信×低秩",
+      "innovations": [
+        "提出FedRot-LoRA方法，通过纠正低秩分解中的旋转变换偏差，解决联邦学习中由于旋转不变性导致的聚合误差问题。"
+      ],
+      "performance": "未提数字",
+      "code": "未开源"
+    },
+    "2603.00191": {
+      "title": "Task-Driven Subspace Decomposition for Knowledge Sharing and Isolation in LoRA-b",
+      "primary_cell": "参数×蒸馏",
+      "innovations": [
+        "提出了任务驱动的子空间分解方法，通过分离任务更新空间并识别共享方向，实现了知识共享与隔离的平衡。",
+        "改进了对任务特定方向的有效捕捉，避免了仅依赖过去任务的零空间估计，从而提高了持续学习中的知识保留能力。"
+      ],
+      "performance": "未提数字",
+      "code": "未开源"
+    },
+    "2602.20727": {
+      "title": "ID-LoRA: Efficient Low-Rank Adaptation Inspired by Matrix Interpolative Decompos",
+      "primary_cell": "参数×低秩",
+      "innovations": [
+        "提出ID-LoRA，通过矩阵插值分解提取并重用预训练权重矩阵中的参数簇，打破了低秩适配中的性能与参数量权衡问题。"
+      ],
+      "performance": "未提数字",
+      "code": "未开源"
+    },
+    "2602.15195": {
+      "title": "Weight space Detection of Backdoors in LoRA Adapters",
+      "primary_cell": "参数×低秩",
+      "innovations": [
+        "提出了一种无需运行模型即可通过直接分析权重矩阵来检测LoRA适配器中的后门的方法。"
+      ],
+      "performance": "未提数字",
+      "code": "未开源"
+    },
+    "2602.14728": {
+      "title": "D2-LoRA: A Synergistic Approach to Differential and Directional Low-Rank Adaptat",
+      "primary_cell": "参数×低秩",
+      "innovations": [
+        "提出了一种结合差分和方向性低秩适应的新型方法D2-LoRA，通过符号化低秩残差更新和训练时列向投影实现高效微调。"
+      ],
+      "performance": "平均准确率达76.4%，仅需每任务5k训练样本和两个训练周期。",
+      "code": "未开源"
+    },
+    "2602.12746": {
+      "title": "Lamer-SSL: Layer-aware Mixture of LoRA Experts for Continual Multilingual Expans",
+      "primary_cell": "参数×低秩",
+      "innovations": [
+        "提出了Lamer-SSL框架，通过Layer-Aware Mixture of LoRA Experts (Lamer)模块和重播策略，实现自监督模型的多语言扩展并减少遗忘"
+      ],
+      "performance": "未提数字",
+      "code": "未开源"
+    },
+    "2602.11655": {
+      "title": "LoRA-based Parameter-Efficient LLMs for Continuous Learning in Edge-based Malwar",
+      "primary_cell": "参数×低秩",
+      "innovations": [
+        "提出了基于LoRA的低参数量高效大语言模型（LLMs），实现边缘设备的实时恶意软件检测。",
+        "通过连续学习机制，模型能够自适应不断演变的威胁和异构流量，保持高性能。"
+      ],
+      "performance": "未提数字",
+      "code": "未开源"
+    },
+    "2602.10993": {
+      "title": "LoRA-Squeeze: Simple and Effective Post-Tuning and In-Tuning Compression of LoRA",
+      "primary_cell": "参数×低秩",
+      "innovations": [
+        "提出了LoRA-Squeeze方法，可在训练后或训练过程中动态调整LoRA模块的秩，以提升标准LoRA的学习效果。"
+      ],
+      "performance": "未提数字",
+      "code": "未开源"
+    },
+    "2602.10212": {
+      "title": "Rank-Accuracy Trade-off for LoRA: A Gradient-Flow Analysis",
+      "primary_cell": "参数×低秩",
+      "innovations": [
+        "从动态系统角度分析了LoRA更新秩与精度的关系，首次建立了秩与精度之间的显式关系。",
+        "通过梯度流分析，揭示了LoRA在低秩和全秩情况下的性能差异。"
+      ],
+      "performance": "未提数字",
+      "code": "未开源"
+    },
+    "2602.09492": {
+      "title": "Beware of the Batch Size: Hyperparameter Bias in Evaluating LoRA",
+      "primary_cell": "参数×低秩",
+      "innovations": [
+        "揭示了批大小对LoRA微调性能的关键影响，纠正了现有研究的偏差。",
+        "提出了基于代理的高效批大小调优策略，优化了LoRA在不同条件下的表现。"
+      ],
+      "performance": "未提数字",
+      "code": "未开源"
+    },
+    "2602.10262": {
+      "title": "Execution-Centric Characterization of FP8 Matrix Cores, Asynchronous Execution, ",
+      "primary_cell": "参数×量化",
+      "innovations": [
+        "对AMD MI300A的FP8矩阵核心、非同步计算引擎和2:4结构化稀疏性的执行特性进行了系统级表征和分析"
+      ],
+      "performance": "未提数字",
+      "code": "未开源"
+    },
+    "2602.09081": {
+      "title": "DMamba: Decomposition-enhanced Mamba for Time Series Forecasting",
+      "primary_cell": "参数×低秩",
+      "innovations": [
+        "在Mamba基础上引入分解技术，分别处理趋势和季节性成分，以应对非平稳时间序列数据。",
+        "利用时间序列理论中变量关系的统计特性差异，设计了针对趋势和季节成分的特定模型结构。"
+      ],
+      "performance": "未提数字",
+      "code": "未开源"
+    },
+    "2602.07278": {
+      "title": "Laplacian-LoRA: Delaying Oversmoothing in Deep GCNs via Spectral Low-Rank Adapta",
+      "primary_cell": "参数×低秩",
+      "innovations": [
+        "通过引入可学习的谱锚定校正，延迟GCN中的过平滑问题"
+      ],
+      "performance": "未提数字",
+      "code": "未开源"
+    },
+    "2602.07263": {
+      "title": "tLoRA: Efficient Multi-LoRA Training with Elastic Shared Super-Models",
+      "primary_cell": "通信×低秩",
+      "innovations": [
+        "提出tLoRA方法，实现多LoRA训练任务的高效共享训练，通过弹性共享超级模型解决异构LoRA适配器共存的挑战"
+      ],
+      "performance": "未提数字",
+      "code": "未开源"
+    },
+    "2602.06385": {
+      "title": "Uniform Spectral Growth and Convergence of Muon in LoRA-Style Matrix Factorizati",
+      "primary_cell": "参数×低秩",
+      "innovations": [
+        "发现Muon算法在LoRA微调中展现独特的均匀谱增长现象。",
+        "揭示了Muon在LoRA风格矩阵分解中的奇异值均匀增长机制，尽管分别对两个低秩因子进行正交化。"
+      ],
+      "performance": "未提数字",
+      "code": "未开源"
+    },
+    "2602.06358": {
+      "title": "SHINE: A Scalable In-Context Hypernetwork for Mapping Context to LoRA in a Singl",
+      "primary_cell": "参数×低秩",
+      "innovations": [
+        "提出了SHINE，这是一种可扩展的上下文超网络，能在单次处理中将多样化上下文映射到高质量的LoRA适配器。"
+      ],
+      "performance": "未提数字",
+      "code": "未开源"
+    },
+    "2602.06204": {
+      "title": "Learning Rate Scaling across LoRA Ranks and Transfer to Full Finetuning",
+      "primary_cell": "参数×低秩",
+      "innovations": [
+        "提出了Maximal-Update Adaptation (μA)理论框架，解释了学习率如何随LoRA适配器秩变化而调整。"
+      ],
+      "performance": "未提数字",
+      "code": "未开源"
+    },
+    "2602.06043": {
+      "title": "Shared LoRA Subspaces for almost Strict Continual Learning",
+      "primary_cell": "参数×低秩",
+      "innovations": [
+        "提出了一种名为Share的新方法，通过学习并动态更新单一共享的低秩子空间，实现了几乎严格的持续学习。",
+        "无需依赖数据重放或多个适配器，实现了参数高效的持续微调。"
+      ],
+      "performance": "未提数字",
+      "code": "未开源"
+    },
+    "2602.05988": {
+      "title": "Layer-wise LoRA fine-tuning: a similarity metric approach",
+      "primary_cell": "参数×低秩",
+      "innovations": [
+        "提出了一种基于相似性度量的逐层LoRA微调方法，用于高效调整预训练大语言模型。"
+      ],
+      "performance": "未提数字",
+      "code": "未开源"
+    },
+    "2602.05743": {
+      "title": "Balancing FP8 Computation Accuracy and Efficiency on Digital CIM via Shift-Aware",
+      "primary_cell": "参数×量化",
+      "innovations": [
+        "提出了一种动态位移感知位宽预测（DSBP）机制，可根据输入数据动态调整权重和输入的位宽。",
+        "引入了实时输入预测技术，实现了对FP8计算中变量对齐尾数位宽的灵活支持。"
+      ],
+      "performance": "未提数字",
+      "code": "未开源"
+    },
+    "2602.04998": {
+      "title": "Learning Rate Matters: Vanilla LoRA May Suffice for LLM Fine-tuning",
+      "primary_cell": "参数×低秩",
+      "innovations": [
+        "研究发现，通过调整学习率，原始LoRA方法在LLM微调中可能已经足够有效，挑战了之前认为需要复杂变体的观点。"
+      ],
+      "performance": "未提数字",
+      "code": "未开源"
+    },
+    "2602.02855": {
+      "title": "When pre-training hurts LoRA fine-tuning: a dynamical analysis via single-index ",
+      "primary_cell": "参数×低秩",
+      "innovations": [
+        "首次通过数学分析揭示了过度预训练会减慢LoRA微调优化的现象。"
+      ],
+      "performance": "未提数字",
+      "code": "未开源"
+    },
+    "2602.01746": {
+      "title": "Rethinking LoRA for Data Heterogeneous Federated Learning: Subspace and State Al",
+      "primary_cell": "参数×低秩",
+      "innovations": [
+        "提出了FedGaLore，通过结合客户端的GaLore风格梯度子空间优化和服务器端的对齐机制，解决了低秩适应在非独立同分布数据下的性能下降问题。",
+        "揭示了低秩适应在联邦学习中的两个关键不匹配问题：更新空间不匹配和优化器状态不匹配，并针对性地设计了解决方案。"
+      ],
+      "performance": "未提数字",
+      "code": "未开源"
+    },
+    "2602.15874": {
+      "title": "P-RAG: Prompt-Enhanced Parametric RAG with LoRA and Selective CoT for Biomedical",
+      "primary_cell": "参数×低秩",
+      "innovations": [
+        "P-RAG结合了参数化知识和检索到的证据，通过LoRA和选择性思维链（CoT）提示增强模型性能"
+      ],
+      "performance": "未提数字",
+      "code": "未开源"
+    },
+    "2602.02060": {
+      "title": "FiLoRA: Focus-and-Ignore LoRA for Controllable Feature Reliance",
+      "primary_cell": "参数×低秩",
+      "innovations": [
+        "提出FiLoRA框架，通过指令调节实现对多模态基础模型内部特征依赖性的显式控制。"
+      ],
+      "performance": "未提数字",
+      "code": "未开源"
+    },
+    "2602.21222": {
+      "title": "Task-Aware LoRA Adapter Composition via Similarity Retrieval in Vector Databases",
+      "primary_cell": "参数×低秩",
+      "innovations": [
+        "提出了一种基于向量数据库相似性检索的动态LoRA适配器组合方法，实现了对未见任务的零样本泛化。"
+      ],
+      "performance": "未提数字",
+      "code": "未开源"
+    },
+    "2602.01126": {
+      "title": "WinFLoRA: Incentivizing Client-Adaptive Aggregation in Federated LoRA under Priv",
+      "primary_cell": "参数×低秩",
+      "innovations": [
+        "WinFLoRA通过引入激励机制，在联邦低秩适应（LoRA）中协调隐私异质性，实现客户端自适应的聚合。"
+      ],
+      "performance": "未提数字",
+      "code": "未开源"
+    },
+    "2602.00451": {
+      "title": "Stabilizing Decentralized Federated Fine-Tuning via Topology-Aware Alternating L",
+      "primary_cell": "参数×低秩",
+      "innovations": [
+        "提出了TAD-LoRA框架，通过拓扑感知协调LoRA因子的更新与混合，解决去中心化联邦学习中的参数高效微调问题。",
+        "理论证明了TAD-LoRA在动态通信图下能够稳定训练过程，控制客户端间的对齐误差。"
+      ],
+      "performance": "未提数字",
+      "code": "未开源"
+    },
+    "2601.22828": {
+      "title": "Decomposing and Composing: Towards Efficient Vision-Language Continual Learning ",
+      "primary_cell": "参数×低秩",
+      "innovations": [
+        "提出了一种新颖的框架，通过将单个LoRA模块重构为可分解的Rank-1专家池，实现了视觉-语言模型的高效持续学习。",
+        "通过动态学习机制，有效解决了持续学习中的灾难性遗忘问题，同时保持了参数高效性。"
+      ],
+      "performance": "未提数字",
+      "code": "未开源"
+    },
+    "2601.22631": {
+      "title": "PEFT-MuTS: A Multivariate Parameter-Efficient Fine-Tuning Framework for Remainin",
+      "primary_cell": "参数×量化",
+      "innovations": [
+        "提出PEFT-MuTS框架，实现少样本剩余寿命预测，通过跨域时间序列表示模型进行参数高效微调。"
+      ],
+      "performance": "未提数字",
+      "code": "未开源"
+    },
+    "2601.21795": {
+      "title": "Effective LoRA Adapter Routing using Task Representations",
+      "primary_cell": "参数×低秩",
+      "innovations": [
+        "提出LORAUTER，一种基于任务表示而非适配器特性的新颖LoRA适配器路由框架"
+      ],
+      "performance": "未提数字",
+      "code": "未开源"
+    },
+    "2601.21719": {
+      "title": "LoRA and Privacy: When Random Projections Help (and When They Don't)",
+      "primary_cell": "参数×低秩",
+      "innovations": [
+        "提出了一种新的随机投影机制（Wishart投影机制），在向量值查询中无需添加噪声即可实现差分隐私。"
+      ],
+      "performance": "未提数字",
+      "code": "未开源"
+    },
+    "2602.21212": {
+      "title": "Disaster Question Answering with LoRA Efficiency and Accurate End Position",
+      "primary_cell": "参数×低秩",
+      "innovations": [
+        "结合LoRA（Low-Rank Adaptation）技术提升灾难问答的效率和准确性"
+      ],
+      "performance": "未提数字",
+      "code": "未开源"
+    },
+    "2602.00084": {
+      "title": "Why LoRA Resists Label Noise: A Theoretical Framework for Noise-Robust Parameter",
+      "primary_cell": "参数×低秩",
+      "innovations": [
+        "提出了首个理论框架解释LoRA对标签噪声的固有抵抗性。",
+        "证明了当样本量超过O(r(d+k-r))时，秩为r的LoRA无法记住所有可能的标签分配，从而限制了它对任意噪声的拟合能力。"
+      ],
+      "performance": "未提数字",
+      "code": "未开源"
+    },
+    "2601.14243": {
+      "title": "Jet-RL: Enabling On-Policy FP8 Reinforcement Learning with Unified Training and ",
+      "primary_cell": "参数×量化",
+      "innovations": [
+        "首次全面研究了使用FP8精度进行强化学习训练，并在训练和推演阶段统一使用FP8精度。"
+      ],
+      "performance": "未提数字",
+      "code": "未开源"
+    },
+    "2602.11171": {
+      "title": "A Language-Guided Bayesian Optimization for Efficient LoRA Hyperparameter Search",
+      "primary_cell": "参数×低秩",
+      "innovations": [
+        "提出了一个语言引导的贝叶斯优化框架，利用预训练大语言模型(LLM)的领域知识来高效搜索LoRA超参数。"
+      ],
+      "performance": "未提数字",
+      "code": "未开源"
+    },
+    "2601.13105": {
+      "title": "Leveraging Lora Fine-Tuning and Knowledge Bases for Construction Identification",
+      "primary_cell": "参数×低秩",
+      "innovations": [
+        "结合LoRA微调与知识库检索增强生成（RAG）框架，实现英语双及物结构的自动识别。"
+      ],
+      "performance": "LoRA微调的Qwen3-8B模型显著优于原生Qwen3-MAX模型和仅基于理论的RAG系统（具体数",
+      "code": "未开源"
+    },
+    "2601.11932": {
+      "title": "Event Detection with a Context-Aware Encoder and LoRA for Improved Performance o",
+      "primary_cell": "参数×低秩",
+      "innovations": [
+        "提出了一种结合上下文感知编码器和低秩适应（LoRA）的架构，解决了单向解码器LLM在自然语言理解任务中的上下文依赖瓶颈。",
+        "强调使用Macro-F1作为评估指标，以更准确地反映模型在长尾事件类型上的性能表现，避免了传统Micro-F1指标对多数类的偏向。"
+      ],
+      "performance": "未提数字",
+      "code": "未开源"
+    },
+    "2601.11219": {
+      "title": "SDFLoRA: Selective Decoupled Federated LoRA for Privacy-preserving Fine-tuning w",
+      "primary_cell": "参数×低秩",
+      "innovations": [
+        "提出了一种选择性解耦联邦LoRA（SDFLoRA）方法，以应对联邦学习中客户端的低秩预算和数据分布异质性问题。"
+      ],
+      "performance": "未提数字",
+      "code": "未开源"
+    },
+    "2601.10043": {
+      "title": "Instruction Finetuning LLaMA-3-8B Model Using LoRA for Financial Named Entity Re",
+      "primary_cell": "参数×低秩",
+      "innovations": [
+        "将指令微调和LoRA结合应用于LLaMA-3-8B模型，提升金融命名实体识别的准确性"
+      ],
+      "performance": "未提数字",
+      "code": "未开源"
+    },
+    "2601.09684": {
+      "title": "Disentangling Task Conflicts in Multi-Task LoRA via Orthogonal Gradient Projecti",
+      "primary_cell": "参数×低秩",
+      "innovations": [
+        "通过正交梯度投影解决多任务学习中的任务冲突问题"
+      ],
+      "performance": "未提数字",
+      "code": "未开源"
+    },
+    "2601.06702": {
+      "title": "GRASP LoRA: GRPO Guided Adapter Sparsity Policy for Cross Lingual Transfer",
+      "primary_cell": "参数×剪枝/稀疏",
+      "innovations": [
+        "提出GRASP LoRA，通过可学习的控制变量优化全局稀疏性，避免了传统的网格搜索方法。"
+      ],
+      "performance": "未提数字",
+      "code": "未开源"
+    },
+    "2601.06305": {
+      "title": "Why LoRA Fails to Forget: Regularized Low-Rank Adaptation Against Backdoors in L",
+      "primary_cell": "参数×低秩",
+      "innovations": [
+        "揭示了LoRA在对抗语言模型后门攻击中的根本脆弱性源于其频谱特性，而非单纯的低秩问题。",
+        "提出了通过增强LoRA更新的频谱强度和改善其频谱对齐性来提升后门去除效果的方法。"
+      ],
+      "performance": "未提数字",
+      "code": "未开源"
+    },
+    "2601.02500": {
+      "title": "GEM-Style Constraints for PEFT with Dual Gradient Projection in LoRA",
+      "primary_cell": "参数×低秩",
+      "innovations": [
+        "在LoRA子空间内引入I-GEM，通过双梯度投影方法实现了GEM风格的无干扰约束"
+      ],
+      "performance": "降低了投影开销多个数量级",
+      "code": "未开源"
+    },
+    "2601.02128": {
+      "title": "Towards Multi-Level Transcript Segmentation: LoRA Fine-Tuning for Table-of-Conte",
+      "primary_cell": "参数×低秩",
+      "innovations": [
+        "提出了一种用于语音转录稿的多级主题分割方法，生成包含主题和子主题边界的分层目录。"
+      ],
+      "performance": "未提数字",
+      "code": "未开源"
+    },
+    "2309.06180": {
+      "title": "Efficient Memory Management for Large Language Model Serving with PagedAttention",
+      "primary_cell": "参数×量化",
+      "innovations": [
+        "提出了PagedAttention算法，通过借鉴操作系统中的虚拟内存和分页技术，实现了大语言模型服务中KV缓存内存的近零浪费。"
+      ],
+      "performance": "吞吐量提升2-4倍，延迟与现有最先进系统（如FasterTransformer和Orca）相当。",
+      "code": "未开源",
+      "is_new_file": false
+    },
+    "2106.09685": {
+      "title": "LoRA: Low-Rank Adaptation of Large Language Models",
+      "primary_cell": "weight×low_rank",
+      "innovations": [
+        "提出了一种参数高效的微调方法，仅训练少量附加矩阵，大幅减少可训练参数。"
+      ],
+      "performance": "未提数字",
+      "code": "未开源",
+      "is_new_file": false
+    },
+    "2305.11627": {
+      "title": "LLM-Pruner: On the Structural Pruning of Large Language Models",
+      "primary_cell": "参数×量化",
+      "innovations": [
+        "提出了一种针对大语言模型（LLM）的任务无关的结构剪枝方法，旨在减少模型大小并保持其通用任务解决能力。"
+      ],
+      "performance": "未提数字",
+      "code": "未开源",
+      "is_new_file": true
+    },
+    "2303.10512": {
+      "title": "AdaLoRA: Adaptive Budget Allocation for Parameter-Efficient Fine-Tuning",
+      "primary_cell": "参数×量化",
+      "innovations": [
+        "提出AdaLoRA算法，通过自适应预算分配实现参数高效的微调，显著减少计算和存储需求。"
+      ],
+      "performance": "未提数字",
+      "code": "未开源",
+      "is_new_file": false
+    },
+    "2401.04088": {
+      "title": "Mixtral of Experts",
+      "primary_cell": "参数×量化",
+      "innovations": [
+        "引入了稀疏专家混合(SMoE)架构，每个token在每层由两个专家处理并结合输出"
+      ],
+      "performance": "未提数字",
+      "code": "未开源",
+      "is_new_file": true
+    },
+    "2604.19157": {
+      "title": "SAW-INT4: System-Aware 4-Bit KV-Cache Quantization for Real-World LLM Serving",
+      "primary_cell": "参数×量化",
+      "innovations": [
+        "提出了系统感知（SAW）的4位KV-Cache量化方法，用于实际场景中的大语言模型（LLM）服务。"
+      ],
+      "performance": "未提数字",
+      "code": "未开源",
+      "is_new_file": false
+    },
+    "2603.27981": {
+      "title": "On the Role of Encoder Depth: Pruning Whisper and LoRA Fine-Tuning in SLAM-ASR",
+      "primary_cell": "参数×剪枝/稀疏",
+      "innovations": [
+        "研究了在SLAM-ASR系统中对Whisper编码器进行逐层剪枝的影响。"
+      ],
+      "performance": "未提数字",
+      "code": "未开源",
+      "is_new_file": false
+    },
+    "2603.12646": {
+      "title": "98$\\times$ Faster LLM Routing Without a Dedicated GPU: Flash Attention, Prompt C",
+      "primary_cell": "参数×注意力优化",
+      "innovations": [
+        "提出了Flash Attention、Prompt Compression和Near-Streaming技术，显著提升了LLM路由器的速度和效率。"
+      ],
+      "performance": "98倍加速",
+      "code": "未开源",
+      "is_new_file": false
+    },
+    "2603.08088": {
+      "title": "EAGLE-Pangu: Accelerator-Safe Tree Speculative Decoding on Ascend NPUs",
+      "primary_cell": "KV×投机解码",
+      "innovations": [
+        "提出了一种在Ascend NPUs上可复现的树状推测解码系统EAGLE-Pangu，解决了不同硬件后端和加速器堆栈之间的兼容性问题。"
+      ],
+      "performance": "未提数字",
+      "code": "未开源",
+      "is_new_file": false
+    },
+    "2602.01469": {
+      "title": "P-EAGLE: Parallel-Drafting EAGLE with Scalable Training",
+      "primary_cell": "参数×投机解码",
+      "innovations": [
+        "提出了P-EAGLE，通过可学习的共享隐藏状态将EAGLE从自回归模式转变为并行多词预测。"
+      ],
+      "performance": "未提数字",
+      "code": "未开源",
+      "is_new_file": false
+    },
+    "2509.19873": {
+      "title": "SpecMamba: Accelerating Mamba Inference on FPGA with Speculative Decoding",
+      "primary_cell": "参数×投机解码",
+      "innovations": [
+        "提出了适用于Mamba模型的推测解码方法，解决了隐藏状态回溯、并行验证不兼容和硬件负载不匹配的问题。"
+      ],
+      "performance": "未提数字",
+      "code": "未开源",
+      "is_new_file": false
+    },
+    "2509.00731": {
+      "title": "LLM Encoder vs. Decoder: Robust Detection of Chinese AI-Generated Text with LoRA",
+      "primary_cell": "参数×蒸馏",
+      "innovations": [
+        "首次系统比较了基于编码器的Transformer模型、基于解码器的LLM模型以及FastText基线在中文AI生成文本检测中的性能。",
+        "通过低秩适应（LoRA）微调了Alibaba's Qwen2.5-7B和DeepSeek-R1-Distill-Qwen-7B模型，显著提升了在中文语言环境下的检测准确性。"
+      ],
+      "performance": "未提数字",
+      "code": "未开源",
+      "is_new_file": false
+    },
+    "2508.17250": {
+      "title": "Routing Distilled Knowledge via Mixture of LoRA Experts for Large Language Model",
+      "primary_cell": "参数×蒸馏",
+      "innovations": [
+        "提出RouteDK框架，通过LoRA专家混合架构来路由蒸馏知识，解决知识冲突问题。"
+      ],
+      "performance": "未提数字",
+      "code": "未开源",
+      "is_new_file": false
+    },
+    "2607.01502": {
+      "title": "From Monolingual to Multilingual: Evaluating Mamba for ASR in South African Lang",
+      "primary_cell": "参数×注意力优化",
+      "innovations": [
+        "首次将Mamba状态空间模型应用于南非七种语言的自动语音识别（ASR）任务。"
+      ],
+      "performance": "与Conformer基线模型相比，Mamba达到了类似的识别准确率。",
+      "code": "未开源",
+      "is_new_file": false
+    },
+    "2606.29904": {
+      "title": "Timesteps of Mamba Align with Human Reading Times",
+      "primary_cell": "参数×注意力优化",
+      "innovations": [
+        "首次发现Mamba模型中每个词的离散化处理时间与人类阅读时间存在显著相关性。"
+      ],
+      "performance": "未提数字",
+      "code": "未开源",
+      "is_new_file": false
+    },
+    "2606.28623": {
+      "title": "Improving Patient Subtyping on Longitudinal Data using Representations from Mamb",
+      "primary_cell": "参数×注意力优化",
+      "innovations": [
+        "提出了一种基于Mamba的自监督模型，用于从纵向EHR数据中学习有效的患者表示，从而提升患者亚型分类效果。"
+      ],
+      "performance": "未提数字。",
+      "code": "未开源。",
+      "is_new_file": false
+    },
+    "2606.09432": {
+      "title": "Graph Mamba Operator: A Latent Simulator for Interacting Particle Systems",
+      "primary_cell": "参数×注意力优化",
+      "innovations": [
+        "提出了Graph Mamba Operator (GraMO)，一种在潜在空间模拟相互作用的粒子系统的方法，整合了状态空间模型来捕捉空间和时间上的长程依赖性。"
+      ],
+      "performance": "未提数字",
+      "code": "未开源",
+      "is_new_file": false
+    },
+    "2606.05371": {
+      "title": "Mamba-Assisted Non-Markovian Closure for Reduced-Order Modeling",
+      "primary_cell": "参数×注意力优化",
+      "innovations": [
+        "将高维动力系统的非马尔可夫闭包项建模问题转化为序列建模问题，并提出基于Mamba的闭包预测框架。"
+      ],
+      "performance": "未提数字",
+      "code": "未开源",
+      "is_new_file": false
+    },
+    "2606.00930": {
+      "title": "Detection vs. Execution: Single-Bucket Probes Miss Half the Mamba-2 State Sink",
+      "primary_cell": "激活×注意力优化",
+      "innovations": [
+        "揭示了单桶探针在检测和执行层之间的系统性失败，特别是在Mamba-2模型的状态下沉机制中。",
+        "发现状态下沉机制可以分解为两个功能头集，突破了传统单桶探针的局限。"
+      ],
+      "performance": "未提数字",
+      "code": "未开源",
+      "is_new_file": false
+    },
+    "2605.28222": {
+      "title": "Analyzing Quality-Latency-Resource Trade-offs in a Technical Documentation RAG A",
+      "primary_cell": "参数×剪枝/稀疏",
+      "innovations": [
+        "首次系统研究了基于LoRA微调的RAG系统在技术文档问答中的质量-延迟-资源权衡问题。"
+      ],
+      "performance": "未提数字",
+      "code": "未开源",
+      "is_new_file": false
+    },
+    "2606.02602": {
+      "title": "Graph Mamba Survival Analysis Based on Topology-Aware ordering",
+      "primary_cell": "参数×注意力优化",
+      "innovations": [
+        "提出了基于拓扑感知排序的Graph Mamba模型，突破了传统Transformer在WSI生存分析中的计算瓶颈。"
+      ],
+      "performance": "未提数字",
+      "code": "未开源",
+      "is_new_file": false
+    },
+    "2605.22775": {
+      "title": "MambaGaze: Bidirectional Mamba with Explicit Missing Data Modeling for Cognitive",
+      "primary_cell": "参数×注意力优化",
+      "innovations": [
+        "提出了XMD编码，通过观测掩码和时间差分显式建模数据不确定性，解决眼动追踪数据中频繁缺失的问题。",
+        "采用双向Mamba模型，有效捕捉长程时间依赖性，提升认知负荷评估的准确性。"
+      ],
+      "performance": "未提数字",
+      "code": "未开源",
+      "is_new_file": false
+    },
+    "2606.00074": {
+      "title": "CLSP-REQA: A Real-Time Quality-Aware Closed-Loop Seizure Prediction Framework wi",
+      "primary_cell": "参数×注意力优化",
+      "innovations": [
+        "提出了一个实时癫痫预测框架CLSP-REQA，集成了实时脑电图（EEG）质量评估模块以提高预测可靠性"
+      ],
+      "performance": "未提数字",
+      "code": "未开源",
+      "is_new_file": false
+    },
+    "2605.10681": {
+      "title": "Scalable Mamba-Based Message-Passing Neural Decoder for Error-Correcting Codes",
+      "primary_cell": "通信×注意力优化",
+      "innovations": [
+        "提出了一种基于Mamba的无注意力消息传递神经网络解码器MMPD，用于二元线性码的错误纠正。",
+        "通过在变量-校验边进行局部成对聚合，保留了消息传递解码器的Tanner图结构，解决了传统基于注意力模型在处理长码时的二次内存和计算成本问题。"
+      ],
+      "performance": "未提数字",
+      "code": "未开源",
+      "is_new_file": false
+    },
+    "2605.10111": {
+      "title": "CFSPMNet: Cross-subject Fourier-guided Spatial-Patch Mamba Network for EEG Motor",
+      "primary_cell": "参数×注意力优化",
+      "innovations": [
+        "提出了跨受试者的傅里叶引导空间补丁Mamba网络（CFSPMNet），用于中风患者的脑电图运动想象解码"
+      ],
+      "performance": "未提数字",
+      "code": "未开源",
+      "is_new_file": false
+    },
+    "2605.16380": {
+      "title": "ReTAMamba: Reliability-Aware Temporal Aggregation with Mamba for Irregular Clini",
+      "primary_cell": "参数×注意力优化",
+      "innovations": [
+        "提出ReTAMamba模型，通过可靠性感知的时间聚合方法处理不规则临床时间序列数据",
+        "连续捕捉过去观察的可靠性衰减，并一致地组织多分辨率信息"
+      ],
+      "performance": "未提数字",
+      "code": "未开源",
+      "is_new_file": false
+    },
+    "2605.16351": {
+      "title": "PIMSM: Physics-Informed Multi-Scale Mamba for Stable Neural Representations unde",
+      "primary_cell": "参数×注意力优化",
+      "innovations": [
+        "提出了一种基于物理信息的Mamba模型（PIMSM），能够处理多尺度物理时间序列，有效应对分布偏移问题。",
+        "首次将多尺度物理时间结构引入到科学基础模型的表示学习中，确保模型在不同数据集、采集协议和部署领域下的稳定性。"
+      ],
+      "performance": "未提数字",
+      "code": "未开源",
+      "is_new_file": false
+    },
+    "2605.04793": {
+      "title": "Bilinear Mamba-Koopman Neural MPC for Varying Dynamics",
+      "primary_cell": "参数×注意力优化",
+      "innovations": [
+        "提出了控制依赖的耦合机制，允许有效操作符适应当前输入，从而在单个MPC 预测范围内更好地适应动态变化。"
+      ],
+      "performance": "未提数字",
+      "code": "未开源",
+      "is_new_file": false
+    },
+    "2605.03229": {
+      "title": "Sparse Memory Finetuning as a Low-Forgetting Alternative to LoRA and Full Finetu",
+      "primary_cell": "参数×剪枝/稀疏",
+      "innovations": [
+        "通过在模型中添加键值记忆层并在每次训练步骤中仅更新当前批次读取最多的少量记忆行，避免灾难性遗忘。"
+      ],
+      "performance": "在MedMCQA任务上提升2.5%。",
+      "code": "未开源",
+      "is_new_file": false
+    },
+    "2605.01862": {
+      "title": "QHyer: Q-conditioned Hybrid Attention-mamba Transformer for Offline Goal-conditi",
+      "primary_cell": "参数×注意力优化",
+      "innovations": [
+        "提出QHyer模型，结合了Q-条件化的混合注意力机制和Mamba Transformer，以更高效地处理局部和长程依赖关系。",
+        "引入Q-条件化的机制，增强了模型在目标导向的强化学习中的适应性和性能。"
+      ],
+      "performance": "未提数字",
+      "code": "未开源",
+      "is_new_file": false
+    },
+    "2605.01240": {
+      "title": "Rhamba: Region-Aware Hybrid Attention-Mamba Framework for Self-Supervised Learni",
+      "primary_cell": "参数×注意力优化",
+      "innovations": [
+        "提出了Rhamba框架，结合了基于解剖学指导的掩码和混合Attention-Mamba架构，用于静息态fMRI的自监督预训练。"
+      ],
+      "performance": "未提数字",
+      "code": "未开源",
+      "is_new_file": false
+    },
+    "2605.00253": {
+      "title": "Lost in State Space: Probing Frozen Mamba Representations",
+      "primary_cell": "参数×注意力优化",
+      "innovations": [
+        "提出了一种无需额外池化层、微调或[CLS]标记，从预训练的Mamba模型中提取语义句子摘要的方法。"
+      ],
+      "performance": "未提数字",
+      "code": "未开源",
+      "is_new_file": false
+    },
+    "2604.26078": {
+      "title": "PPG-Based Affect Recognition with Long-Range Deep Models: A Measurement-Driven C",
+      "primary_cell": "参数×注意力优化",
+      "innovations": [
+        "首次系统比较了CNN、Transformer和Mamba三种长程深度模型在基于PPG的情感识别任务中的性能。"
+      ],
+      "performance": "未提数字",
+      "code": "未开源",
+      "is_new_file": false
+    },
+    "2604.17221": {
+      "title": "Bilinear Input Modulation for Mamba: Koopman Bilinear Forms for Memory Retention",
+      "primary_cell": "参数×注意力优化",
+      "innovations": [
+        "提出了因式分解的双线性输入调制方法，增强了选择性状态空间模型（如Mamba）的记忆保持能力和双线性计算能力。",
+        "引入了跨通道共享状态（Coupled SSM），实现了三种不同的实现方式。"
+      ],
+      "performance": "未提数字",
+      "code": "未开源",
+      "is_new_file": false
+    },
+    "2605.05214": {
+      "title": "MedMamba: Recasting Mamba for Medical Time Series Classification",
+      "primary_cell": "参数×注意力优化",
+      "innovations": [
+        "提出了一种面向医疗时间序列分类的改进版Mamba模型，名为MedMamba，能够捕捉复杂的时间动态和多尺度双向依赖关系。"
+      ],
+      "performance": "未提数字",
+      "code": "未开源",
+      "is_new_file": false
+    },
+    "2604.15174": {
+      "title": "MambaSL: Exploring Single-Layer Mamba for Time Series Classification",
+      "primary_cell": "参数×注意力优化",
+      "innovations": [
+        "首次提出MambaSL框架，通过最小化重新设计单层Mamba的选择性状态空间模型和投影层，提升时间序列分类性能"
+      ],
+      "performance": "未提数字",
+      "code": "未开源",
+      "is_new_file": false
+    },
+    "2604.03650": {
+      "title": "CAGMamba: Context-Aware Gated Cross-Modal Mamba Network for Multimodal Sentiment",
+      "primary_cell": "参数×注意力优化",
+      "innovations": [
+        "提出了一种基于门控机制和上下文感知的多模态情感分析模型CAGMamba，避免了Transformer的二次复杂度问题。",
+        "引入了时间建模机制，捕捉对话轮次之间的情感演变。"
+      ],
+      "performance": "未提数字",
+      "code": "未开源",
+      "is_new_file": false
+    },
+    "2603.21316": {
+      "title": "HELIX: Scaling Raw Audio Understanding with Hybrid Mamba-Attention Beyond the Qu",
+      "primary_cell": "参数×注意力优化",
+      "innovations": [
+        "提出了HELIX框架，首次系统性地比较了纯Mamba、纯Attention以及包含单个Attention瓶颈的混合模型在音频表示学习中的表现，揭示了输入表示与模型主干之间的耦合关系。"
+      ],
+      "performance": "未提数字",
+      "code": "未开源",
+      "is_new_file": false
+    },
+    "2603.17637": {
+      "title": "DSS-GAN: Directional State Space GAN with Mamba backbone for Class-Conditional I",
+      "primary_cell": "激活×注意力优化",
+      "innovations": [
+        "首次提出DSS-GAN，使用Mamba作为层次生成器骨干进行噪声到图像的合成",
+        "提出方向性潜在路由（DLR），一种新颖的条件机制，将潜在向量分解为方向特定的子向量"
+      ],
+      "performance": "未提数字",
+      "code": "未开源",
+      "is_new_file": false
+    },
+    "2603.26705": {
+      "title": "PI-Mamba: Linear-Time Protein Backbone Generation via Spectrally Initialized Flo",
+      "primary_cell": "参数×注意力优化",
+      "innovations": [
+        "通过谱初始化流匹配实现蛋白质骨架生成，同时保证局部共价几何结构的精确性和线性时间推理。"
+      ],
+      "performance": "未提数字",
+      "code": "未开源",
+      "is_new_file": false
+    },
+    "2603.15530": {
+      "title": "DUET: Disaggregated Hybrid Mamba-Transformer LLMs with Prefill and Decode-Specif",
+      "primary_cell": "KV×注意力优化",
+      "innovations": [
+        "提出了DUET，一种将大语言模型的预填充和解析阶段分配给专用硬件模块的分解加速器架构"
+      ],
+      "performance": "未提数字",
+      "code": "未开源",
+      "is_new_file": false
+    },
+    "2603.12499": {
+      "title": "Probing Length Generalization in Mamba via Image Reconstruction",
+      "primary_cell": "参数×注意力优化",
+      "innovations": [
+        "首次通过图像重建任务系统分析了Mamba模型在不同序列长度下的行为适应性和性能变化，揭示了其在训练时对序列长度分布的依赖性。"
+      ],
+      "performance": "未提数字",
+      "code": "未开源",
+      "is_new_file": false
+    },
+    "2603.18031": {
+      "title": "InfoMamba: An Attention-Free Hybrid Mamba-Transformer Model",
+      "primary_cell": "参数×注意力优化",
+      "innovations": [
+        "提出了一种名为InfoMamba的混合Mamba-Transformer模型，结合了局部建模和长程依赖捕获的优势。"
+      ],
+      "performance": "未提数字",
+      "code": "未开源",
+      "is_new_file": false
+    },
+    "2603.01288": {
+      "title": "Efficient Extractive Summarization with MAMBA-Transformer Hybrids for Low-Resour",
+      "primary_cell": "参数×注意力优化",
+      "innovations": [
+        "首次提出Mamba-Transformer混合架构用于抽取式摘要，利用Mamba处理全文且无需截断。",
+        "结合预训练Transformer的语义理解能力和状态空间模型的线性时间处理能力，解决了长文档摘要中的二次复杂度瓶颈。"
+      ],
+      "performance": "未提数字",
+      "code": "未开源",
+      "is_new_file": false
+    },
+    "2602.21546": {
+      "title": "Mamba Meets Scheduling: Learning to Solve Flexible Job Shop Scheduling with Effi",
+      "primary_cell": "参数×注意力优化",
+      "innovations": [
+        "引入Mamba模型解决柔性作业车间调度问题，提升了对跨操作和机器依赖关系的建模能力。"
+      ],
+      "performance": "未提数字",
+      "code": "未开源",
+      "is_new_file": false
+    },
+    "2602.20730": {
+      "title": "Rethinking Efficiency in Neural Combinatorial Optimization: Batched Preference O",
+      "primary_cell": "参数×注意力优化",
+      "innovations": [
+        "提出ECO框架，将轨迹生成与梯度更新解耦，采用分阶段的监督预热和批量偏好优化。",
+        "结合Mamba编码器-解码器架构，提升模型处理组合优化问题的效率。"
+      ],
+      "performance": "未提数字",
+      "code": "未开源",
+      "is_new_file": false
+    },
+    "2602.13770": {
+      "title": "NeuroMambaLLM: Dynamic Graph Learning of fMRI Functional Connectivity in Autisti",
+      "primary_cell": "参数×注意力优化",
+      "innovations": [
+        "结合Mamba和语言模型推理，实现了自闭症患者大脑功能连接图的动态建模。",
+        "利用Mamba模型捕捉fMRI数据中的瞬态神经动力学，克服了静态功能连接表示的局限性。"
+      ],
+      "performance": "未提数字",
+      "code": "未开源",
+      "is_new_file": false
+    },
+    "2602.12499": {
+      "title": "A Theoretical Analysis of Mamba's Training Dynamics: Filtering Relevant Features",
+      "primary_cell": "参数×注意力优化",
+      "innovations": [
+        "首次对Mamba模型的训练动力学进行理论分析，揭示其泛化能力与学习动态。"
+      ],
+      "performance": "未提数字",
+      "code": "未开源",
+      "is_new_file": false
+    },
+    "2602.12078": {
+      "title": "Tiny Recursive Reasoning with Mamba-2 Attention Hybrid",
+      "primary_cell": "参数×注意力优化",
+      "innovations": [
+        "将Mamba-2状态空间递归机制引入递归推理模型，以探索其在隐藏表示空间中的迭代精炼能力。",
+        "验证了Mamba-2在保持推理能力的同时，是否能作为Transformer的替代方案。"
+      ],
+      "performance": "未提数字",
+      "code": "未开源",
+      "is_new_file": false
+    },
+    "2603.00053": {
+      "title": "Mag-Mamba: Modeling Coupled spatiotemporal Asymmetry for POI Recommendation",
+      "primary_cell": "参数×注意力优化",
+      "innovations": [
+        "提出了Mag-Mamba框架，通过建模城市移动中的耦合时空不对称性来提升兴趣点（POI）推荐性能。"
+      ],
+      "performance": "未提数字",
+      "code": "未开源",
+      "is_new_file": false
+    },
+    "2602.01668": {
+      "title": "ASGMamba: Adaptive Spectral Gating Mamba for Multivariate Time Series Forecastin",
+      "primary_cell": "参数×注意力优化",
+      "innovations": [
+        "提出了自适应谱门控机制 (Adaptive Spectral Gating) 来解决线性状态空间模型难以区分高频噪声的问题"
+      ],
+      "performance": "未提数字",
+      "code": "未开源",
+      "is_new_file": false
+    },
+    "2601.21293": {
+      "title": "Reliability-Calibrated Edge-IoT Early Fault Warning for Rotating Machinery with ",
+      "primary_cell": "参数×注意力优化",
+      "innovations": [
+        "提出了一个可靠性校准的边缘物联网早期故障预警框架，结合了物理引导的微型Mamba Transformer模型。"
+      ],
+      "performance": "未提数字",
+      "code": "未开源",
+      "is_new_file": false
+    },
+    "2601.17108": {
+      "title": "MambaNet: Mamba-assisted Channel Estimation Neural Network With Attention Mechan",
+      "primary_cell": "参数×注意力优化",
+      "innovations": [
+        "提出了一种结合自注意力机制的Mamba辅助神经网络框架，用于OFDM波形的大规模子载波信道估计"
+      ],
+      "performance": "未提数字",
+      "code": "未开源",
+      "is_new_file": false
+    },
+    "2601.16098": {
+      "title": "Clustering-Guided Spatial-Spectral Mamba for Hyperspectral Image Classification",
+      "primary_cell": "参数×注意力优化",
+      "innovations": [
+        "将聚类机制集成到空间Mamba架构中，提出了一种新的聚类引导的空间Mamba模块（CSpaMamba），实现了更高效和自适应的token序列。"
+      ],
+      "performance": "未提数字",
+      "code": "未开源",
+      "is_new_file": false
+    },
+    "2601.03323": {
+      "title": "Listen to Rhythm, Choose Movements: Autoregressive Multimodal Dance Generation v",
+      "primary_cell": "参数×注意力优化",
+      "innovations": [
+        "提出了一种支持多模态输入和自回归舞蹈动作生成的多模态引导扩散框架LRCM",
+        "探索了舞蹈数据集的特征解耦范式，并将其应用于Motorica Dance数据集"
+      ],
+      "performance": "未提数字",
+      "code": "未开源",
+      "is_new_file": false
+    }
+  },
+  "failures": []
+}

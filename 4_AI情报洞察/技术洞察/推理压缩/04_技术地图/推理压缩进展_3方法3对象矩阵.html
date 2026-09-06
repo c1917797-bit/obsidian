@@ -1,0 +1,182 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>推理压缩最新进展 — 3方法×3对象 业界vs学术</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#080c14;--s1:#0f1623;--s2:#182234;--bd:#243044;--t:#dce6f0;--td:#7a8699;--blue:#3b82f6;--green:#22c55e;--yellow:#eab308;--orange:#f97316;--red:#ef4444;--purple:#a78bfa;--cyan:#06b6d4}
+body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--t);font-size:13px;line-height:1.5}
+.wrap{max-width:1600px;margin:0 auto;padding:16px 20px 60px}
+.hdr{background:linear-gradient(135deg,#0a0a1a,#101028);border-radius:14px;padding:24px;text-align:center;margin-bottom:16px}
+.hdr h1{font-size:20px;color:#fff;margin-bottom:6px}
+.hdr .sub{font-size:12px;color:var(--td)}
+.note{background:rgba(59,130,246,0.05);border:1px solid rgba(59,130,246,0.15);border-radius:10px;padding:12px;margin:10px 0;font-size:12px;color:var(--td);line-height:1.7}
+.note strong{color:var(--blue)}
+
+/* matrix */
+.mtx-grid{display:grid;grid-template-columns:120px 1fr 1fr 1fr;gap:4px;margin-bottom:16px}
+.mtx-corner{grid-column:1;grid-row:1;background:var(--s2);border-radius:8px;padding:10px;display:flex;align-items:center;justify-content:center;font-size:11px;color:var(--td);text-align:center}
+.mtx-col-hdr{background:var(--s2);border-radius:8px;padding:10px;text-align:center;border-bottom:3px solid}
+.mtx-col-hdr .cn{font-size:14px;font-weight:700}
+.mtx-col-hdr .ce{font-size:10px;color:var(--td);margin-top:2px}
+.mtx-row-hdr{background:var(--s2);border-radius:8px;padding:12px;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;text-align:center}
+.mtx-cell{background:var(--s1);border:1px solid var(--bd);border-radius:8px;padding:10px;min-height:120px}
+.mtx-cell .cell-hdr{font-size:11px;font-weight:700;margin-bottom:6px;display:flex;justify-content:space-between}
+.tag-ind{background:rgba(34,197,94,0.15);color:var(--green);padding:1px 5px;border-radius:3px;font-size:9px;font-weight:700}
+.tag-aca{background:rgba(59,130,246,0.15);color:var(--blue);padding:1px 5px;border-radius:3px;font-size:9px;font-weight:700}
+.adv-item{font-size:10px;padding:3px 0;border-bottom:1px solid rgba(255,255,255,0.03);line-height:1.5}
+.adv-item:last-child{border-bottom:none}
+.adv-item .an{font-weight:600;color:var(--t)}
+.adv-item .am{font-family:monospace;font-weight:700}
+.adv-item .ad{color:var(--td)}
+.metric{font-family:monospace;font-weight:700;color:var(--green)}
+</style>
+</head>
+<body>
+<div class="wrap">
+<div class="hdr">
+  <h1>📊 推理压缩最新进展 — 3方法 × 3对象</h1>
+  <div class="sub">量化·剪枝稀疏·蒸馏 × 参数·KVCache·通信 · 业界vs学术 · 2024-2026.06</div>
+</div>
+
+<div class="note">
+  <strong>读法：</strong>3列=3个方法（量化/剪枝稀疏/蒸馏），3行=3个对象（参数/KVCache/通信）。每格分业界(绿标)和学术(蓝标)。<br>
+  <strong>颜色：</strong><span class="tag-ind">业界</span>=生产部署 <span class="tag-aca">学术</span>=顶会/arXiv
+</div>
+
+<div class="mtx-grid">
+<!-- 表头 -->
+<div class="mtx-corner">方法↓ / 对象→</div>
+<div class="mtx-col-hdr" style="border-color:var(--blue)"><div class="cn">📦 参数</div><div class="ce">权重压缩</div></div>
+<div class="mtx-col-hdr" style="border-color:var(--green)"><div class="cn">💾 KV Cache</div><div class="ce">动态累积</div></div>
+<div class="mtx-col-hdr" style="border-color:var(--orange)"><div class="cn">🌐 通信</div><div class="ce">多卡传输</div></div>
+
+<!-- ============ 量化行 ============ -->
+<div class="mtx-row-hdr" style="color:var(--blue);border-left:4px solid var(--blue)">量化<br><span style="font-size:10px;font-weight:400">FP16→INT4→INT2</span></div>
+
+<!-- 参数×量化 -->
+<div class="mtx-cell">
+  <div class="cell-hdr"><span style="color:var(--green)">业界</span> <span style="color:var(--blue)">学术</span></div>
+  <div class="adv-item"><span class="tag-ind">业界</span> <span class="an">DeepSeek-V3 FP8</span> <span class="am metric">成本-90%</span><br><span class="ad">原生FP8训练+推理 · 2025.12</span></div>
+  <div class="adv-item"><span class="tag-ind">业界</span> <span class="an">Mistral AWQ INT4</span> <span class="am metric">MMLU-0.5%</span><br><span class="ad">官方量化发布 · 最成熟生产INT4</span></div>
+  <div class="adv-item"><span class="tag-ind">业界</span> <span class="an">TensorRT-LLM</span> <span class="am metric">FP8/INT8原生</span><br><span class="ad">H100 Tensor Core · "FP8够快"</span></div>
+  <div class="adv-item"><span class="tag-ind">业界</span> <span class="an">Meta GPTQ+llama.cpp</span> <span class="am metric">70B 4卡→2卡</span><br><span class="ad">GGUF INT4 · 消费级GPU标配</span></div>
+  <div class="adv-item"><span class="tag-aca">学术</span> <span class="an">SpinQuant</span> <span class="am metric">87引用</span><br><span class="ad">学习旋转矩阵使分布更易量化 · ICLR'25</span></div>
+  <div class="adv-item"><span class="tag-aca">学术</span> <span class="an">EfficientQAT</span> <span class="am metric">37引用</span><br><span class="ad">高效QAT · ICLR'25</span></div>
+  <div class="adv-item"><span class="tag-aca">学术</span> <span class="an">Scaling Laws for Precision</span> <span class="am metric">24引用</span><br><span class="ad">精度-参数量理论边界 · ICLR'25</span></div>
+  <div class="adv-item"><span class="tag-aca">学术</span> <span class="an">Q-DiT / ViDiT-Q</span> <span class="am metric">28/22引用</span><br><span class="ad">扩散模型INT4量化 · CVPR'25</span></div>
+</div>
+
+<!-- KV×量化 -->
+<div class="mtx-cell" style="border-color:rgba(234,179,8,0.3)">
+  <div class="cell-hdr"><span style="color:var(--green)">业界</span> <span style="color:var(--blue)">学术</span></div>
+  <div class="adv-item"><span class="tag-ind">业界</span> <span class="an">DeepSeek MLA</span> <span class="am metric">KV↓93%</span><br><span class="ad">架构级潜变量压缩(512/7168) · 需重训</span></div>
+  <div class="adv-item"><span style="color:var(--red)">❌已纠正</span> <span class="an" style="text-decoration:line-through">Qwen3内置混合精度KV</span> — Qwen3实际使用标准GQA(64Q/4KV)，无内置混合精度KV。信息来源为一手推断非官方文档。</div>
+  <div class="adv-item"><span class="tag-aca">学术</span> <span class="an">Block-GTQ</span> <span class="am metric">💎AIME 0→51.7</span><br><span class="ad">RoPE频域块自适应比特 · 256K可行 · 2026.06</span></div>
+  <div class="adv-item"><span class="tag-aca">学术</span> <span class="an">OSCAR</span> <span class="am metric">INT2仅差3.78分</span><br><span class="ad">注意力谱旋转 · reasoning-safe · vLLM集成 · 2026.05</span></div>
+  <div class="adv-item"><span class="tag-aca">学术</span> <span class="an">HyperQuant</span> <span class="am metric">KV低至1.7bps</span><br><span class="ad">统一权重+KV流水线 · 2026.06</span></div>
+  <div class="adv-item"><span class="tag-aca">学术</span> <span class="an">KIVI</span> <span class="am metric">4x <1%PPL</span><br><span class="ad">K per-channel/V per-token · ICML'24 基准</span></div>
+  <div class="adv-item"><span class="tag-aca">学术</span> <span class="an">QJL</span> <span class="am metric">3-bit >5x零开销</span><br><span class="ad">1-bit JL变换+符号量化 · 2024</span></div>
+  <div class="adv-item"><span class="tag-aca">学术</span> <span class="an">KVQuant</span> <span class="am metric">3-bit 1M上下文</span><br><span class="ad">揭示RoPE是outlier元凶 · NeurIPS'24</span></div>
+  <div class="adv-item"><span class="tag-aca">学术</span> <span class="an">KV Pareto</span> <span class="am metric">68-78%↓</span><br><span class="ad">权重+KV联合Pareto · 2025.12</span></div>
+</div>
+
+<!-- 通信×量化 -->
+<div class="mtx-cell" style="border-color:rgba(249,115,22,0.3)">
+  <div class="cell-hdr"><span style="color:var(--green)">业界</span> <span style="color:var(--blue)">学术</span></div>
+  <div class="adv-item"><span class="tag-ind">业界</span> <span class="an">DeepSeek-V3 FP8通信</span> <span class="am metric">通信↓50%</span><br><span class="ad">FP8 All-to-All · 生产级 · 2025.12</span></div>
+  <div class="adv-item"><span class="tag-aca">学术</span> <span class="an">ExpertQuant</span> <span class="am metric">💎首个MoE量化</span><br><span class="ad">MoE Expert INT4 · 精度损失<1% · 2025</span></div>
+  <div class="adv-item"><span class="tag-aca">学术</span> <span class="an">MoE量化基准</span> <span class="am metric">11引用</span><br><span class="ad">Examining PTQ for MoE · ICLR'25</span></div>
+</div>
+
+<!-- ============ 剪枝/稀疏行 ============ -->
+<div class="mtx-row-hdr" style="color:var(--green);border-left:4px solid var(--green)">剪枝/稀疏<br><span style="font-size:10px;font-weight:400">减元素/跳过</span></div>
+
+<!-- 参数×剪枝稀疏 -->
+<div class="mtx-cell">
+  <div class="cell-hdr"><span style="color:var(--green)">业界</span> <span style="color:var(--blue)">学术</span></div>
+  <div class="adv-item"><span class="tag-ind">业界</span> <span class="an">NVIDIA 2:4稀疏</span> <span class="am metric">硬件原生</span><br><span class="ad">Ampere+原生支持 · SparseGPT 2:4</span></div>
+  <div class="adv-item"><span class="tag-ind">业界</span> <span class="an">LoRA生态</span> <span class="am metric">126篇涉及</span><br><span class="ad">低秩适配 · 社区主流 · ⚠️训练效率非推理压缩</span></div>
+  <div class="adv-item"><span class="tag-aca">学术</span> <span class="an">ShortGPT 层剪枝</span> <span class="am metric">139引用 最高!</span><br><span class="ad">层冗余>权重冗余 · ICLR'25</span></div>
+  <div class="adv-item"><span class="tag-aca">学术</span> <span class="an">Deeper Layers</span> <span class="am metric">90引用</span><br><span class="ad">丢弃深层 · ICLR'25</span></div>
+  <div class="adv-item"><span class="tag-aca">学术</span> <span class="an">SparseGPT</span> <span class="am metric">50%无重训</span><br><span class="ad">OBQ+Hessian · ICML'23</span></div>
+  <div class="adv-item"><span class="tag-aca">学术</span> <span class="an">Wanda</span> <span class="am metric">|W|×|X|</span><br><span class="ad">极简权重×激活剪枝 · ICLR'24</span></div>
+  <div class="adv-item"><span class="tag-aca">学术</span> <span class="an">ASVD</span> <span class="am metric">53引用</span><br><span class="ad">激活感知SVD · ICLR'25</span></div>
+  <div class="adv-item"><span class="tag-aca">学术</span> <span class="an">MoRA</span> <span class="am metric">38引用</span><br><span class="ad">高秩更新突破LoRA限制 · ICLR'25</span></div>
+</div>
+
+<!-- KV×剪枝稀疏 -->
+<div class="mtx-cell" style="border-color:rgba(234,179,8,0.3)">
+  <div class="cell-hdr"><span style="color:var(--green)">业界</span> <span style="color:var(--blue)">学术</span></div>
+  <div class="adv-item"><span class="tag-ind">业界</span> <span class="an">NSA 原生稀疏注意力</span> <span class="am metric">≥全注意力</span><br><span class="ad">DeepSeek · 三分支层级稀疏 · 端到端可训练 · 2025.02</span></div>
+  <div class="adv-item"><span class="tag-ind">业界</span> <span class="an">MoBA</span> <span class="am metric">Kimi生产部署</span><br><span class="ad">Moonshot · MoE应用于注意力 · 全↔稀疏切换 · 2025.02</span></div>
+  <div class="adv-item"><span class="tag-ind">业界</span> <span class="an">RocketKV</span> <span class="am metric">💎400x!</span><br><span class="ad">NVIDIA · 两阶段极限压缩 · ICML'25</span></div>
+  <div class="adv-item"><span class="tag-aca">学术</span> <span class="an">SnapKV</span> <span class="am metric">8.2x <1%损失</span><br><span class="ad">观测窗口投票 · ICLR'25</span></div>
+  <div class="adv-item"><span class="tag-aca">学术</span> <span class="an">ThinK</span> <span class="am metric">新轴Channel</span><br><span class="ad">Channel维度剪枝 · ICLR'25 Spotlight</span></div>
+  <div class="adv-item"><span class="tag-aca">学术</span> <span class="an">DuoAttention</span> <span class="am metric">34引用</span><br><span class="ad">检索头vs流式头 · ICLR'25</span></div>
+  <div class="adv-item"><span class="tag-aca">学术</span> <span class="an">Retrieval Head</span> <span class="am metric">51引用 <5%头</span><br><span class="ad">5属性：universal/sparse/intrinsic/causal · ICLR'25</span></div>
+  <div class="adv-item"><span class="tag-aca">学术</span> <span class="an">CompressKV</span> <span class="am metric">3%KV→97%+</span><br><span class="ad">语义检索头 · 2026.06</span></div>
+  <div class="adv-item"><span class="tag-aca">学术</span> <span class="an">ThinKV</span> <span class="am metric"><5%KV 5.8x</span><br><span class="ad">Thought感知R/E/T · ICLR'26 Oral</span></div>
+  <div class="adv-item"><span class="tag-aca">学术</span> <span class="an">R-KV</span> <span class="am metric">10%→100% 6.6x</span><br><span class="ad">推理模型冗余感知 · NeurIPS'25</span></div>
+  <div class="adv-item"><span class="tag-aca">学术</span> <span class="an">Dustin</span> <span class="am metric">27.85x自注意力</span><br><span class="ad">投机解码稀疏验证 · ICML'26</span></div>
+  <div class="adv-item"><span class="tag-aca">学术</span> <span class="an">MAC-Attention</span> <span class="am metric">💎99%KV↓新轴</span><br><span class="ad">计算复用Match-Amend-Complete · 2026.04</span></div>
+  <div class="adv-item"><span class="tag-aca">学术</span> <span class="an">ShadowKV</span> <span class="am metric">6x batch</span><br><span class="ad">低秩Key GPU+Value CPU · ICML'25</span></div>
+</div>
+
+<!-- 通信×剪枝稀疏 -->
+<div class="mtx-cell" style="border-color:rgba(249,115,22,0.3)">
+  <div class="cell-hdr"><span style="color:var(--green)">业界</span> <span style="color:var(--blue)">学术</span></div>
+  <div class="adv-item"><span class="tag-ind">业界</span> <span class="an">DeepEP</span> <span class="am metric">DeepSeek生产</span><br><span class="ad">MoE All-to-All通信库 · 开源 · 2024</span></div>
+  <div class="adv-item"><span class="tag-ind">业界</span> <span class="an">Mixtral/DeepSeek MoE</span> <span class="am metric">Top-K激活</span><br><span class="ad">8/256专家 · CE=8x · 生产级</span></div>
+  <div class="adv-item"><span class="tag-aca">学术</span> <span class="an">FoMoE</span> <span class="am metric">💎通信↓45x!</span><br><span class="ad">打破全复制范式 · ICLR'26</span></div>
+  <div class="adv-item"><span class="tag-aca">学术</span> <span class="an">MosaicPrune</span> <span class="am metric">Expert剪枝</span><br><span class="ad">MoE层级化专家剪枝 · 2024</span></div>
+  <div class="adv-item"><span class="tag-aca">学术</span> <span class="an">FlashMoE</span> <span class="am metric">9x GPU利用率</span><br><span class="ad">单kernel融合dispatch→compute→combine · NeurIPS'25</span></div>
+</div>
+
+<!-- ============ 蒸馏行 ============ -->
+<div class="mtx-row-hdr" style="color:var(--purple);border-left:4px solid var(--purple)">蒸馏<br><span style="font-size:10px;font-weight:400">大→小迁移</span></div>
+
+<!-- 参数×蒸馏 -->
+<div class="mtx-cell">
+  <div class="cell-hdr"><span style="color:var(--green)">业界</span> <span style="color:var(--blue)">学术</span></div>
+  <div class="adv-item"><span class="tag-ind">业界</span> <span class="an">DistilBERT/Whisper</span> <span class="am metric">3x加速</span><br><span class="ad">经典蒸馏 · 工业部署</span></div>
+  <div class="adv-item"><span class="tag-aca">社区</span> <span class="an">Alpaca/Vicuna</span> <span class="am metric">API蒸馏</span><br><span class="ad">GPT-4输出蒸馏 · 广泛使用</span></div>
+  <div class="adv-item"><span class="tag-aca">学术</span> <span class="an">MiniLLM</span> <span class="am metric">反向KL</span><br><span class="ad">LLM专用蒸馏 · ICLR'24</span></div>
+  <div class="adv-item"><span class="tag-aca">学术</span> <span class="an">BitDistiller</span> <span class="am metric">量化恢复</span><br><span class="ad">蒸馏恢复INT4后精度 · 2024</span></div>
+  <div class="adv-item"><span class="tag-aca">学术</span> <span class="an">LLaVA-MoD</span> <span class="am metric">11引用</span><br><span class="ad">MoE知识蒸馏 · ICLR'25</span></div>
+</div>
+
+<!-- KV×蒸馏 -->
+<div class="mtx-cell" style="border-color:rgba(167,139,250,0.3)">
+  <div class="cell-hdr"><span style="color:var(--purple)">💎几乎空白(21篇)</span></div>
+  <div class="adv-item"><span class="tag-ind">业界</span> <span class="an">KV Prediction</span> <span class="am metric">TriviaQA+50%</span><br><span class="ad">Apple · 小模型生成大模型KV近似 · 2024</span></div>
+  <div class="adv-item"><span class="tag-ind">业界</span> <span class="an">Models Take Notes</span> <span class="am metric">低秩吸收</span><br><span class="ad">KV通过低秩表示蒸馏吸收到权重 · 2026.06</span></div>
+  <div class="adv-item"><span class="tag-aca">学术</span> <span class="an">KVSculpt</span> <span class="am metric">💎KL好3.5-4.1x</span><br><span class="ad">连续空间蒸馏 L-BFGS Key+闭式Value · 2026.03</span></div>
+  <div class="adv-item"><span class="tag-aca">学术</span> <span class="an">SwiftKV</span> <span class="am metric">仅1篇</span><br><span class="ad">Prefill阶段蒸馏 · Decoding阶段💎0篇</span></div>
+  <div class="adv-item"><span class="tag-aca">学术</span> <span class="an">VoCo-LLaMA</span> <span class="am metric">34引用</span><br><span class="ad">视觉Token蒸馏压缩 · CVPR'25</span></div>
+  <div class="adv-item"><span class="tag-aca">学术</span> <span class="an">YouZhi</span> <span class="am metric">2.69x并发</span><br><span class="ad">GQA→MLA架构转换+蒸馏 · 2026.06</span></div>
+</div>
+
+<!-- 通信×蒸馏 -->
+<div class="mtx-cell" style="border-color:rgba(167,139,250,0.3)">
+  <div class="cell-hdr"><span style="color:var(--purple)">💎最大空白(21篇仅3-5真相关)</span></div>
+  <div class="adv-item"><span class="tag-aca">学术</span> <span class="an">SCD 语义缓存蒸馏</span> <span class="am metric">TTFT 2.65x</span><br><span class="ad">华为 · 跨异构模型KV迁移 · ICML'26</span></div>
+  <div class="adv-item"><span style="color:var(--purple);font-style:italic">💎 通信压缩蒸馏几乎完全空白 — 需分布式系统+蒸馏双背景人才</span></div>
+</div>
+
+</div><!-- end mtx-grid -->
+
+<div class="note">
+  <strong>📌 9格成熟度一目了然：</strong><br>
+  <span class="tag-ind">业界</span>多的格子=生产就绪 · <span class="tag-aca">学术</span>多的格子=研究热点 · 💎多的格子=机会窗口<br><br>
+  <strong>最热格子：</strong>KV×剪枝稀疏（13个进展！业界3+学术10）<br>
+  <strong>最空白格子：</strong>通信×蒸馏（仅1个真相关进展）<br>
+  <strong>最成熟格子：</strong>参数×量化（6业界+4学术 · 生产标配）<br><br>
+  <strong>📌 数据来源：</strong>8个文件（论文精读+综合报告）· 3,876篇corpus · 2024-2026.06
+</div>
+
+</div>
+</body>
+</html>

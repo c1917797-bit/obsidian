@@ -1,0 +1,30 @@
+# Integrity Check Query
+# 查找所有学术诚信闸门检查的状态
+
+```dataview
+TABLE stage, mode_1_status, mode_2_status, mode_3_status, mode_4_status, mode_5_status, mode_6_status, mode_7_status, block_status, created
+FROM "5_学术研究织网/整合检查"
+WHERE type = "integrity-gate"
+SORT created DESC
+```
+
+## 快速统计
+
+```dataview
+TABLE WITHOUT ID
+  "待检查" AS "Pending",
+  length(filter(row.block_status, (s) => s = "pending")) AS "Pending Gates",
+  length(filter(row.block_status, (s) => s = "cleared")) AS "Cleared Gates",
+  length(filter(row.block_status, (s) => s = "blocked")) AS "Blocked Gates"
+WHERE type = "integrity-gate"
+```
+
+## HIGH-RISK 项目
+
+```dataview
+TABLE project, stage, mode_1_status, mode_2_status, mode_3_status, block_status
+FROM "5_学术研究织网/整合检查"
+WHERE type = "integrity-gate"
+WHERE block_status = "blocked" OR mode_2_status = "SUSPECTED" OR mode_3_status = "SUSPECTED"
+SORT created DESC
+```

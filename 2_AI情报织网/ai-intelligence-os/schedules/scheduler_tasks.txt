@@ -1,0 +1,44 @@
+# AI Intelligence OS - 定时调度配置
+# Windows Task Scheduler 任务计划
+
+# 每日工作流 - 每天08:00执行
+#powershell -Command "cd 'C:\Users\Huawei\Documents\code\ai-intelligence-os'; python main.py --mode daily --api-key 'YOUR_API_KEY'"
+
+# 每周工作流 - 每周日20:00执行
+#powershell -Command "cd 'C:\Users\Huawei\Documents\code\ai-intelligence-os'; python main.py --mode weekly --api-key 'YOUR_API_KEY'"
+
+# 每月工作流 - 每月最后一天21:00执行
+#powershell -Command "cd 'C:\Users\Huawei\Documents\code\ai-intelligence-os'; python main.py --mode monthly --api-key 'YOUR_API_KEY'"
+
+# ============================================
+# 手动创建Windows计划任务（以管理员权限运行PowerShell）
+# ============================================
+
+# 每日任务
+# $action = New-ScheduledTaskAction -Execute 'powershell.exe' -Argument '-NoExit -Command "cd C:\Users\Huawei\Documents\code\ai-intelligence-os; python main.py --mode daily --api-key YOUR_KEY"'
+# $trigger = New-ScheduledTaskTrigger -Daily -At '08:00'
+# $settings = New-ScheduledTaskSettingsSet -AllowStartIfOnBatteries -DontStopIfGoingOnBatteries
+# Register-ScheduledTask -Action $action -Trigger $trigger -Settings $settings -TaskName "AIIntelligenceOS_Daily" -Description "AI Intelligence OS Daily Pipeline"
+
+# 每周任务（周日20:00）
+# $action = New-ScheduledTaskAction -Execute 'powershell.exe' -Argument '-NoExit -Command "cd C:\Users\Huawei\Documents\code\ai-intelligence-os; python main.py --mode weekly --api-key YOUR_KEY"'
+# $trigger = New-ScheduledTaskTrigger -Weekly -DaysOfWeek Sunday -At '20:00'
+# $settings = New-ScheduledTaskSettingsSet -AllowStartIfOnBatteries -DontStopIfGoingOnBatteries
+# Register-ScheduledTask -Action $action -Trigger $trigger -Settings $settings -TaskName "AIIntelligenceOS_Weekly" -Description "AI Intelligence OS Weekly Report"
+
+# 每月任务（最后一天21:00）
+# $trigger = New-ScheduledTaskTrigger -Monthly -DaysOfMonth 28,29,30,31 -At '21:00'
+# 使用上面的$action创建月报任务
+
+# ============================================
+# Linux/Mac Cron 定时配置（可选）
+# ============================================
+
+# 每日08:00
+# 0 8 * * * cd /path/to/ai-intelligence-os && python main.py --mode daily --api-key YOUR_KEY >> /var/log/ai-os/daily.log 2>&1
+
+# 每周日20:00
+# 0 20 * * 0 cd /path/to/ai-intelligence-os && python main.py --mode weekly --api-key YOUR_KEY >> /var/log/ai-os/weekly.log 2>&1
+
+# 每月最后一天21:00
+# 0 21 28-31 * * cd /path/to/ai-intelligence-os && python main.py --mode monthly --api-key YOUR_KEY >> /var/log/ai-os/monthly.log 2>&1

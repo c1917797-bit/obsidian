@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>参数压缩技术子树 — 4维正交分类</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#080c14;--s1:#0f1623;--s2:#182234;--s3:#1e2d44;--bd:#243044;--t:#dce6f0;--td:#7a8699;--blue:#3b82f6;--green:#22c55e;--yellow:#eab308;--orange:#f97316;--red:#ef4444;--purple:#a78bfa;--cyan:#06b6d4;--pink:#ec4899}
+body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--t);font-size:13px;line-height:1.5}
+.wrap{max-width:1500px;margin:0 auto;padding:16px 20px 60px}
+.hdr{background:linear-gradient(135deg,#0a0a1a,#101028);border-radius:14px;padding:24px;text-align:center;margin-bottom:16px}
+.hdr h1{font-size:20px;color:#fff;margin-bottom:6px}
+.hdr .sub{font-size:12px;color:var(--td)}
+.note{background:rgba(59,130,246,0.05);border:1px solid rgba(59,130,246,0.15);border-radius:10px;padding:14px;margin:12px 0;font-size:12px;color:td);line-height:1.8}
+.note strong{color:var(--blue)}
+
+/* 4 axis cards */
+.axis-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:20px}
+.axis-card{background:var(--s1);border:2px solid;border-radius:14px;padding:16px}
+.axis-card h3{font-size:14px;margin-bottom:6px}
+.axis-card .adesc{font-size:11px;color:var(--td);margin-bottom:10px}
+.sub-item{background:var(--s2);border:1px solid var(--bd);border-radius:8px;padding:8px 10px;margin-bottom:4px}
+.sub-item .sn{font-size:12px;font-weight:700;display:flex;justify-content:space-between;align-items:center}
+.sub-item .sd{font-size:10px;color:var(--td);margin-top:2px;line-height:1.5}
+.sub-item .sp{font-size:10px;color:var(--blue);margin-top:2px}
+.sub-item .sp .pn{font-weight:600}
+.tag{font-size:8px;padding:1px 5px;border-radius:3px;font-weight:600}
+.t-mature{background:rgba(34,197,94,0.15);color:var(--green)}
+.t-rising{background:rgba(234,179,8,0.15);color:var(--yellow)}
+.t-new{background:rgba(249,115,22,0.15);color:var(--orange)}
+.t-blank{background:rgba(167,139,250,0.15);color:var(--purple)}
+
+/* tree */
+.tree-box{background:var(--s1);border:1px solid var(--bd);border-radius:14px;padding:20px;margin-bottom:16px}
+.tree-box h3{font-size:15px;color:var(--cyan);margin-bottom:12px}
+.tree{font-family:monospace;font-size:12px;line-height:2;white-space:pre;color:var(--t);overflow-x:auto}
+.tree .root{color:var(--cyan);font-weight:700}
+.tree .axis{color:var(--yellow);font-weight:700}
+.tree .leaf{color:var(--blue)}
+.tree .meta{color:var(--td)}
+.tree .hot{color:var(--green);font-weight:600}
+.tree .new{color:var(--orange);font-weight:600}
+.tree .blank{color:var(--purple);font-weight:600}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<div class="hdr">
+  <h1>📦 参数压缩技术子树</h1>
+  <div class="sub">4维正交分类 · 2,207篇论文 · 不按量化/剪枝/稀疏/蒸馏分（那只是词汇不是分类）· v1.0</div>
+</div>
+
+<div class="note">
+  <strong>为什么不用"量化/剪枝/稀疏/蒸馏/低秩"分？</strong><br>
+  因为论文分析证明这5个标签是<strong>词汇而非分类</strong>——同一篇论文（如ShortGPT 139引用）同时出现在"量化"和"剪枝"格子里；SparseVLM同时标为"剪枝"和"稀疏"。"低秩"格子里混了推理压缩(SVD-LLM)和训练效率(LoRA)两个完全不同的目标。<br><br>
+  <strong>真正的分类维度是什么？</strong>论文分析发现4个正交轴：<strong>粒度(压什么结构) × 决策依据(怎么选) × 训练阶段(什么时候) × 结构目标(压成什么形态)</strong>
+</div>
+
+<!-- ===== 轴1: 粒度 ===== -->
+<div class="axis-grid">
+<div class="axis-card" style="border-color:var(--blue)">
+  <h3 style="color:var(--blue)">轴1：粒度（压什么结构单元）</h3>
+  <div class="adesc">最强的组织轴。论文按"操作的结构单元"天然分裂。</div>
+
+  <div class="sub-item">
+    <div class="sn">层/深度级 <span class="tag t-mature">热点</span></div>
+    <div class="sd">丢弃冗余Transformer层。ShortGPT证明层冗余>权重冗余。</div>
+    <div class="sp"><span class="pn">ShortGPT</span>(139引用!) <span class="pn">Deeper Layers</span>(90引用)</div>
+  </div>
+
+  <div class="sub-item">
+    <div class="sn">注意力头级 <span class="tag t-new">2025突破</span></div>
+    <div class="sd">按头的功能角色选择保留/丢弃。检索头vs流式头。</div>
+    <div class="sp"><span class="pn">DuoAttention</span>(34引用) <span class="pn">Retrieval Head</span>(51引用) <span class="pn">MoA</span>(21引用)</div>
+  </div>
+
+  <div class="sub-item">
+    <div class="sn">Token/序列级 <span class="tag t-rising">活跃</span></div>
+    <div class="sd">输入侧Token稀疏化。视觉Token=2570/图需减少。</div>
+    <div class="sp"><span class="pn">SparseVLM</span>(43引用) <span class="pn">LazyLLM</span>(25引用) <span class="pn">ZipVL</span>(16引用)</div>
+  </div>
+
+  <div class="sub-item">
+    <div class="sn">通道/维度级 <span class="tag t-new">新轴</span></div>
+    <div class="sd">Channel维度剪枝（不是Token维度）。与Token级正交可叠加。</div>
+    <div class="sp"><span class="pn">ThinK</span>(18引用) — Channel而非Token的新压缩轴</div>
+  </div>
+
+  <div class="sub-item">
+    <div class="sn">Expert级(MoE) <span class="tag t-rising">上升</span></div>
+    <div class="sd">MoE专家级剪枝/蒸馏。冷门专家移除。</div>
+    <div class="sp"><span class="pn">LLaVA-MoD</span>(11引用) <span class="pn">MoE-Pruner</span>(3引用)</div>
+  </div>
+
+  <div class="sub-item">
+    <div class="sn">全权重矩阵级 <span class="tag t-mature">经典</span></div>
+    <div class="sd">对整个权重矩阵做SVD/量化/旋转。</div>
+    <div class="sp"><span class="pn">ASVD</span>(53引用) <span class="pn">SVD-LLM</span>(37引用) <span class="pn">SpinQuant</span>(87引用) <span class="pn">EfficientQAT</span>(37引用)</div>
+  </div>
+</div>
+
+<!-- ===== 轴2: 决策依据 ===== -->
+<div class="axis-card" style="border-color:var(--green)">
+  <h3 style="color:var(--green)">轴2：决策依据（怎么选要压缩的）</h3>
+  <div class="adesc">论文按"用什么标准决定保留/丢弃"分成6族。</div>
+
+  <div class="sub-item">
+    <div class="sn">幅值/统计驱动 <span class="tag t-mature">经典</span></div>
+    <div class="sd">按权重/奇异值的绝对值大小排序。最小的丢弃。</div>
+    <div class="sp"><span class="pn">ThinK</span>(Channel幅值) <span class="pn">SVD-LLM</span>(奇异值截断)</div>
+  </div>
+
+  <div class="sub-item">
+    <div class="sn">激活/数据感知 <span class="tag t-rising">上升</span></div>
+    <div class="sd">用输入数据的分布（激活值）指导压缩决策。</div>
+    <div class="sp"><span class="pn">ASVD</span>(53引用,激活感知SVD) <span class="pn">SparseVLM</span>(注意力激活选Token)</div>
+  </div>
+
+  <div class="sub-item">
+    <div class="sn">损失/Hessian感知 <span class="tag t-mature">成熟</span></div>
+    <div class="sd">评估移除对输出损失的影响（二阶导数/Hessian近似）。</div>
+    <div class="sp"><span class="pn">SVD-LLM</span>(截断感知) <span class="pn">SparseGPT</span>(OBQ+Hessian)</div>
+  </div>
+
+  <div class="sub-item">
+    <div class="sn">学习/优化驱动 <span class="tag t-rising">上升</span></div>
+    <div class="sd">用梯度下降/优化算法学习压缩策略（旋转矩阵/mask/rank）。</div>
+    <div class="sp"><span class="pn">SpinQuant</span>(87引用,学习旋转) <span class="pn">SeerAttention</span>(14引用,MoE门控学稀疏) <span class="pn">MoRA</span>(38引用,学习高秩)</div>
+  </div>
+
+  <div class="sub-item">
+    <div class="sn">机制/功能角色驱动 <span class="tag t-new">💎2025突破</span></div>
+    <div class="sd">按组件的<strong>可解释因果功能</strong>选择（检索头vs流式头）。不是统计而是理解。</div>
+    <div class="sp"><span class="pn">Retrieval Head</span>(51引用,<5%头是检索头) <span class="pn">DuoAttention</span>(34引用)</div>
+  </div>
+
+  <div class="sub-item">
+    <div class="sn">冗余/相关性驱动 <span class="tag t-mature">成熟</span></div>
+    <div class="sd">计算层间/组件间的相似度，移除高度相似的。</div>
+    <div class="sp"><span class="pn">ShortGPT</span>(139引用,层间余弦相似度)</div>
+  </div>
+
+  <div class="sub-item">
+    <div class="sn">理论/Scaling Law驱动 <span class="tag t-new">新兴</span></div>
+    <div class="sd">用理论分析推导压缩的理论边界。不是方法而是理论。</div>
+    <div class="sp"><span class="pn">Physics of LLM</span>(62引用,容量定律) <span class="pn">Scaling Laws for Precision</span>(24引用)</div>
+  </div>
+</div>
+
+<!-- ===== 轴3: 训练阶段 ===== -->
+<div class="axis-card" style="border-color:var(--yellow)">
+  <h3 style="color:var(--yellow)">轴3：训练阶段（什么时候压缩）</h3>
+  <div class="adesc">论文按压缩执行的时机分裂——"低秩"格子其实是训练效率不是推理压缩。</div>
+
+  <div class="sub-item">
+    <div class="sn">训练后(PTQ) <span class="tag t-mature">主流</span></div>
+    <div class="sd">模型训练完成后直接压缩，推理时零额外开销。</div>
+    <div class="sp"><span class="pn">GPTQ</span> <span class="pn">AWQ</span> <span class="pn">SVD-LLM</span>(37引用) <span class="pn">Q-DiT</span>(28引用)</div>
+  </div>
+
+  <div class="sub-item">
+    <div class="sn">量化感知训练(QAT) <span class="tag t-rising">探索</span></div>
+    <div class="sd">训练中模拟量化噪声，精度更高但需要训练资源。</div>
+    <div class="sp"><span class="pn">EfficientQAT</span>(37引用) <span class="pn">LLM-QAT</span></div>
+  </div>
+
+  <div class="sub-item">
+    <div class="sn">免训练/推理时 <span class="tag t-rising">活跃</span></div>
+    <div class="sd">推理时动态决定压缩策略，不修改模型。</div>
+    <div class="sp"><span class="pn">SparseVLM</span> <span class="pn">LazyLLM</span>(25引用,动态Token剪枝)</div>
+  </div>
+
+  <div class="sub-item">
+    <div class="sn">微调阶段(PEFT) <span class="tag t-mature">标配</span></div>
+    <div class="sd">⚠️这其实是训练效率不是推理压缩！LoRA系列占低秩格子的90%。</div>
+    <div class="sp"><span class="pn">LoRA</span>(126篇涉及) <span class="pn">MoRA</span>(38引用) <span class="pn">LoRA-XS</span>(25引用) <span class="pn">WeLore</span>(17引用)</div>
+  </div>
+
+  <div class="sub-item">
+    <div class="sn">教师-学生(蒸馏) <span class="tag t-mature">成熟</span></div>
+    <div class="sd">用大模型(教师)指导小模型(学生)。</div>
+    <div class="sp"><span class="pn">LLaVA-MoD</span>(11引用,MoE蒸馏) <span class="pn">D-FINE</span>(16引用)</div>
+  </div>
+</div>
+
+<!-- ===== 轴4: 结构目标 ===== -->
+<div class="axis-card" style="border-color:var(--purple)">
+  <h3 style="color:var(--purple)">轴4：结构目标（压成什么形态）</h3>
+  <div class="adesc">压缩后权重的结构特征——低秩和旋转是隐藏的第4、5族。</div>
+
+  <div class="sub-item">
+    <div class="sn">非结构化(任意置零) <span class="tag t-mature">经典但衰退</span></div>
+    <div class="sd">任意位置权重置零。压缩比最高但硬件不友好。2025顶会已几乎消失。</div>
+  </div>
+
+  <div class="sub-item">
+    <div class="sn">半结构化(N:M/2:4) <span class="tag t-mature">硬件标准</span></div>
+    <div class="sd">每M个中N个非零。NVIDIA Ampere+原生支持。</div>
+  </div>
+
+  <div class="sub-item">
+    <div class="sn">结构化(层/头/Token/通道/Expert) <span class="tag t-mature">2025主流</span></div>
+    <div class="sd">移除整个结构单元。硬件最友好。顶会Top引用几乎全是这类。</div>
+    <div class="sp"><span class="pn">ShortGPT</span>(层) <span class="pn">DuoAttention</span>(头) <span class="pn">SparseVLM</span>(Token) <span class="pn">ThinK</span>(通道)</div>
+  </div>
+
+  <div class="sub-item">
+    <div class="sn">低秩分解(降维/无零值) <span class="tag t-rising">上升</span></div>
+    <div class="sd">把高维矩阵分解为低秩近似。本质是降维不是置零。</div>
+    <div class="sp"><span class="pn">ASVD</span>(53引用) <span class="pn">SVD-LLM</span>(37引用) <span class="pn">SVDQuant</span>(18引用)</div>
+  </div>
+
+  <div class="sub-item">
+    <div class="sn">旋转/重参数化(不移除/不降维) <span class="tag t-new">💎隐藏第5族</span></div>
+    <div class="sd">旋转权重空间使分布更易量化。不移除任何东西！</div>
+    <div class="sp"><span class="pn">SpinQuant</span>(87引用,学习旋转) <span class="pn">SVDQuant</span>(18引用,低秩吸收outlier)</div>
+  </div>
+</div>
+</div><!-- end axis-grid -->
+
+<!-- ===== 子技术树（可视化） ===== -->
+<div class="tree-box">
+  <h3>🌲 参数压缩完整子技术树</h3>
+<div class="tree">
+<span class="root">参数压缩（2,207篇）</span>
+<span class="meta">  │ 不按量化/剪枝/稀疏/蒸馏分（那只是词汇）</span>
+<span class="meta">  │ 按4个正交轴交叉定位</span>
+<span class="root">  │</span>
+<span class="root">  ├── 轴1: 粒度（压什么结构单元）</span>
+<span class="root">  │   ├── </span><span class="leaf">层/深度级</span> <span class="hot">[热点 139+90引用]</span> <span class="meta">→ ShortGPT / Deeper Layers</span>
+<span class="root">  │   │   └─ </span><span class="meta">决策: 余弦相似度(冗余驱动) · 时机: PTQ · 目标: 结构化(层)</span>
+<span class="root">  │   │</span>
+<span class="root">  │   ├── </span><span class="leaf">注意力头级</span> <span class="new">[💎2025突破 51+34引用]</span> <span class="meta">→ DuoAttention / Retrieval Head / MoA</span>
+<span class="root">  │   │   └─ </span><span class="meta">决策: 功能角色(机制驱动💎) · 时机: 免训练 · 目标: 结构化(头)</span>
+<span class="root">  │   │</span>
+<span class="root">  │   ├── </span><span class="leaf">Token/序列级</span> <span class="hot">[活跃 43+25引用]</span> <span class="meta">→ SparseVLM / LazyLLM / ZipVL</span>
+<span class="root">  │   │   └─ </span><span class="meta">决策: 激活感知(数据驱动) · 时机: 免训练 · 目标: 结构化(Token)</span>
+<span class="root">  │   │</span>
+<span class="root">  │   ├── </span><span class="leaf">通道/维度级</span> <span class="new">[新轴 18引用]</span> <span class="meta">→ ThinK</span>
+<span class="root">  │   │   └─ </span><span class="meta">决策: 幅值(统计驱动) · 时机: PTQ · 目标: 结构化(通道) · 与Token级正交可叠加</span>
+<span class="root">  │   │</span>
+<span class="root">  │   ├── </span><span class="leaf">Expert级(MoE)</span> <span class="hot">[上升 11引用]</span> <span class="meta">→ LLaVA-MoD / MoE-Pruner</span>
+<span class="root">  │   │   └─ </span><span class="meta">决策: 激活频率(数据驱动) · 时机: 蒸馏 · 目标: 结构化(Expert)</span>
+<span class="root">  │   │</span>
+<span class="root">  │   └── </span><span class="leaf">全权重矩阵级</span> <span class="hot">[经典 87+53+37引用]</span> <span class="meta">→ SpinQuant / ASVD / SVD-LLM / EfficientQAT</span>
+<span class="root">  │       └─ </span><span class="meta">决策: 学习/优化(旋转矩阵/rank) · 时机: PTQ+QAT · 目标: 低秩+旋转</span>
+<span class="root">  │</span>
+<span class="root">  ├── 轴2: 决策依据（怎么选要压的）</span>
+<span class="root">  │   ├── </span><span class="leaf">幅值/统计驱动</span> <span class="meta">→ ThinK(Channel幅值) / SVD-LLM(奇异值截断)</span>
+<span class="root">  │   ├── </span><span class="leaf">激活/数据感知</span> <span class="hot">[上升]</span> <span class="meta">→ ASVD(53引用) / SparseVLM(43引用)</span>
+<span class="root">  │   ├── </span><span class="leaf">损失/Hessian感知</span> <span class="meta">→ SparseGPT(OBQ) / SVD-LLM(截断感知)</span>
+<span class="root">  │   ├── </span><span class="leaf">学习/优化驱动</span> <span class="hot">[上升]</span> <span class="meta">→ SpinQuant(87引用,学习旋转) / SeerAttention(14引用)</span>
+<span class="root">  │   ├── </span><span class="leaf">机制/功能角色</span> <span class="new">[💎2025最大突破]</span> <span class="meta">→ Retrieval Head(51引用) / DuoAttention(34引用)</span>
+<span class="root">  │   ├── </span><span class="leaf">冗余/相关性驱动</span> <span class="meta">→ ShortGPT(139引用,余弦相似度)</span>
+<span class="root">  │   └── </span><span class="leaf">理论/Scaling Law</span> <span class="new">[新兴]</span> <span class="meta">→ Physics of LLM(62引用) / Scaling Laws for Precision(24引用)</span>
+<span class="root">  │</span>
+<span class="root">  ├── 轴3: 训练阶段（什么时候压）</span>
+<span class="root">  │   ├── </span><span class="leaf">训练后(PTQ)</span> <span class="hot">[主流]</span> <span class="meta">→ GPTQ / AWQ / SVD-LLM / Q-DiT / ViDiT-Q</span>
+<span class="root">  │   ├── </span><span class="leaf">量化感知训练(QAT)</span> <span class="meta">→ EfficientQAT(37引用) / LLM-QAT</span>
+<span class="root">  │   ├── </span><span class="leaf">免训练/推理时</span> <span class="hot">[活跃]</span> <span class="meta">→ SparseVLM / LazyLLM / RetrievalAttention</span>
+<span class="root">  │   ├── </span><span class="leaf">微调阶段(PEFT) ⚠️训练效率非推理压缩</span> <span class="meta">→ LoRA(126篇!) / MoRA / LoRA-XS / WeLore</span>
+<span class="root">  │   └── </span><span class="leaf">教师-学生(蒸馏)</span> <span class="meta">→ LLaVA-MoD(11引用) / D-FINE(16引用)</span>
+<span class="root">  │</span>
+<span class="root">  └── 轴4: 结构目标（压成什么形态）</span>
+<span class="root">      ├── </span><span class="leaf">非结构化(任意置零)</span> <span class="meta">[经典但2025顶会已衰退]</span>
+<span class="root">      ├── </span><span class="leaf">半结构化(N:M/2:4)</span> <span class="meta">[NVIDIA硬件标准]</span>
+<span class="root">      ├── </span><span class="leaf">结构化(层/头/Token/通道/Expert)</span> <span class="hot">[2025主流]</span> <span class="meta">→ ShortGPT/DuoAttention/SparseVLM/ThinK</span>
+<span class="root">      ├── </span><span class="leaf">低秩分解(降维/无零值)</span> <span class="hot">[上升]</span> <span class="meta">→ ASVD(53引用) / SVD-LLM(37引用) / SVDQuant(18引用)</span>
+<span class="root">      └── </span><span class="leaf">旋转/重参数化(不移除不降维)</span> <span class="new">[💎隐藏第5族]</span> <span class="meta">→ SpinQuant(87引用) / SVDQuant(18引用)</span>
+</div>
+</div>
+
+<!-- ===== 关键发现 ===== -->
+<div class="tree-box">
+  <h3>💡 论文分析的关键发现</h3>
+  <div class="note">
+    <strong>发现1：5方法标签是最弱的组织原则。</strong>ShortGPT(139引用)同时出现在"量化"和"剪枝"格子；SparseVLM同时标为"剪枝"和"稀疏"。方法标签本质是噪声。<br><br>
+    <strong>发现2：粒度和训练阶段是最强组织轴。</strong>同一粒度（如注意力头级）的论文天然聚在一起，无论它被标为"量化"还是"剪枝"还是"稀疏"。<br><br>
+    <strong>发现3："低秩"混了两个不同目标。</strong>推理压缩(SVD-LLM/ASVD：压缩冻结模型用于部署) vs 训练效率(LoRA/MoRA：高效微调)。两者社区不同、基线不同、不应该并列。<br><br>
+    <strong>发现4：2025年最大突破是"机制/功能角色驱动"。</strong>Retrieval Head(51引用)和DuoAttention(34引用)按组件的<strong>可解释因果功能</strong>选择，不是统计量。这是全新范式。<br><br>
+    <strong>发现5："旋转/重参数化"是隐藏的第5族。</strong>SpinQuant(87引用)不移除任何东西——它旋转权重空间使量化更精确。这既不是剪枝也不是低秩，是预处理/重参数化。<br><br>
+    <strong>发现6：非结构化权重剪枝在2025顶会几乎消失。</strong>Top引用论文全是结构化(层/头/Token/通道/Expert)的。纯非结构化已被淘汰。<br><br>
+    <strong>发现7：理论分析是独立子类。</strong>Physics of LLM(62引用)和Scaling Laws for Precision(24引用)不是方法——是理论边界。现有分类没有"理论"格子。
+  </div>
+</div>
+
+<div class="note">
+  <strong>📌 本图定位：</strong>参数压缩的<strong>子技术分类树</strong>。用4个正交轴(粒度×决策×时机×目标)替代传统的5方法标签。<br>
+  <strong>📌 与全集图的关系：</strong>全集图用"对象×根技术"做粗分类；本图对"参数"对象做细分类。其他对象(KV/激活/通信)可用同样的4轴方法做细分类。<br>
+  <strong>📌 数据来源：</strong>2,207篇参数压缩论文(cell_analysis.txt) · 2026-06-28
+</div>
+
+</div>
+</body>
+</html>

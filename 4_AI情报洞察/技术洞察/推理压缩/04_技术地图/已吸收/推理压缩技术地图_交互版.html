@@ -1,0 +1,967 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>推理压缩技术地图 v1.0 - 交互式导航版</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif;
+  background: #0a0e1a;
+  color: #e2e8f0;
+  line-height: 1.7;
+  padding: 0;
+}
+.container { max-width: 1500px; margin: 0 auto; padding: 24px; }
+
+/* Header */
+.map-header {
+  background: linear-gradient(135deg, #1e3a8a 0%, #4c1d95 50%, #831843 100%);
+  border-radius: 16px;
+  padding: 32px;
+  margin-bottom: 24px;
+  position: relative;
+  overflow: hidden;
+}
+.map-header::before {
+  content: "🗺️";
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  font-size: 80px;
+  opacity: 0.3;
+}
+.map-header h1 {
+  font-size: 2.4em;
+  color: #fff;
+  margin-bottom: 8px;
+}
+.map-header .subtitle {
+  color: #cbd5e1;
+  font-size: 1.05em;
+  margin-bottom: 16px;
+}
+.map-stats {
+  display: flex;
+  gap: 24px;
+  margin-top: 16px;
+  flex-wrap: wrap;
+}
+.map-stat {
+  background: rgba(255,255,255,0.1);
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-size: 0.9em;
+}
+.map-stat strong { color: #fbbf24; font-size: 1.3em; }
+
+/* Filter Bar */
+.filter-bar {
+  background: rgba(30, 41, 59, 0.8);
+  border: 1px solid #334155;
+  border-radius: 12px;
+  padding: 16px 20px;
+  margin-bottom: 24px;
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  flex-wrap: wrap;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  backdrop-filter: blur(10px);
+}
+.filter-label {
+  color: #94a3b8;
+  font-size: 0.9em;
+  font-weight: 600;
+}
+.filter-btn {
+  background: rgba(96, 165, 250, 0.1);
+  border: 1px solid rgba(96, 165, 250, 0.3);
+  color: #93c5fd;
+  padding: 6px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.88em;
+  transition: all 0.15s;
+}
+.filter-btn:hover {
+  background: rgba(96, 165, 250, 0.25);
+}
+.filter-btn.active {
+  background: #60a5fa;
+  color: #0a0e1a;
+  border-color: #60a5fa;
+  font-weight: 600;
+}
+.search-input {
+  flex: 1;
+  background: rgba(15, 23, 42, 0.8);
+  border: 1px solid #334155;
+  border-radius: 6px;
+  padding: 8px 14px;
+  color: #e2e8f0;
+  font-size: 0.95em;
+  outline: none;
+  min-width: 200px;
+}
+.search-input:focus {
+  border-color: #60a5fa;
+}
+
+/* Region */
+.region {
+  background: rgba(30, 41, 59, 0.5);
+  border: 2px solid #334155;
+  border-radius: 16px;
+  padding: 24px;
+  margin-bottom: 24px;
+  transition: all 0.3s;
+}
+.region.active { border-color: #60a5fa; }
+.region.dimmed { opacity: 0.3; }
+
+.region-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #334155;
+}
+.region-icon {
+  width: 50px;
+  height: 50px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  background: linear-gradient(135deg, #1e40af, #6d28d9);
+}
+.region-title {
+  flex: 1;
+}
+.region-title h2 {
+  font-size: 1.6em;
+  color: #60a5fa;
+  margin: 0;
+}
+.region-title .meta {
+  color: #94a3b8;
+  font-size: 0.88em;
+  margin-top: 4px;
+}
+.region-count {
+  background: rgba(96, 165, 250, 0.15);
+  border: 1px solid rgba(96, 165, 250, 0.4);
+  color: #93c5fd;
+  padding: 6px 14px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.9em;
+}
+
+/* Landmarks Grid */
+.landmarks {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 12px;
+  margin-bottom: 16px;
+}
+.landmark {
+  background: rgba(15, 23, 42, 0.6);
+  border: 1px solid #334155;
+  border-radius: 10px;
+  padding: 14px;
+  cursor: pointer;
+  transition: all 0.2s;
+  position: relative;
+}
+.landmark:hover {
+  border-color: #60a5fa;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(96, 165, 250, 0.2);
+}
+.landmark-name {
+  font-size: 1.05em;
+  font-weight: 700;
+  color: #fbbf24;
+  margin-bottom: 6px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.landmark-tag {
+  display: inline-block;
+  background: #1e40af;
+  color: #dbeafe;
+  padding: 1px 6px;
+  border-radius: 4px;
+  font-size: 0.7em;
+  font-weight: 500;
+}
+.landmark-tag.trl9 { background: #047857; }
+.landmark-tag.trl7 { background: #1e40af; }
+.landmark-tag.trl5 { background: #ea580c; }
+.landmark-tag.trl3 { background: #be185d; }
+.landmark-tag.gap { background: #be185d; }
+.landmark-tag.hot { background: #ea580c; }
+.landmark-tag.mature { background: #047857; }
+
+.landmark-desc {
+  font-size: 0.86em;
+  color: #cbd5e1;
+  margin-bottom: 8px;
+  line-height: 1.5;
+}
+.landmark-meta {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  font-size: 0.78em;
+}
+.landmark-meta span {
+  background: rgba(96, 165, 250, 0.1);
+  color: #93c5fd;
+  padding: 2px 8px;
+  border-radius: 4px;
+}
+.landmark-link {
+  display: inline-block;
+  margin-top: 8px;
+  font-size: 0.78em;
+  color: #60a5fa;
+  text-decoration: none;
+}
+.landmark-link:hover { text-decoration: underline; }
+
+/* Region content sub-sections */
+.region-subsection {
+  background: rgba(15, 23, 42, 0.4);
+  border-radius: 10px;
+  padding: 16px;
+  margin-top: 16px;
+}
+.region-subsection h4 {
+  color: #a78bfa;
+  font-size: 1.05em;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.framework-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 8px;
+}
+.framework-item {
+  background: rgba(96, 165, 250, 0.08);
+  border: 1px solid rgba(96, 165, 250, 0.2);
+  border-radius: 6px;
+  padding: 8px 12px;
+  font-size: 0.85em;
+  text-align: center;
+}
+.framework-item strong { color: #fbbf24; }
+
+/* Route / Path */
+.route {
+  background: linear-gradient(90deg, rgba(234, 88, 12, 0.1), rgba(234, 88, 12, 0.05));
+  border-left: 3px solid #ea580c;
+  padding: 12px 16px;
+  border-radius: 0 8px 8px 0;
+  margin: 12px 0;
+}
+.route strong { color: #ea580c; }
+
+/* Opportunity */
+.opportunity {
+  background: linear-gradient(90deg, rgba(190, 24, 93, 0.15), rgba(190, 24, 93, 0.05));
+  border-left: 3px solid #be185d;
+  padding: 12px 16px;
+  border-radius: 0 8px 8px 0;
+  margin: 12px 0;
+}
+.opportunity strong { color: #f472b6; }
+
+/* Legend */
+.legend {
+  background: rgba(30, 41, 59, 0.6);
+  border: 1px solid #334155;
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 24px;
+}
+.legend h3 {
+  color: #a78bfa;
+  margin-bottom: 12px;
+  font-size: 1.1em;
+}
+.legend-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 8px;
+  font-size: 0.88em;
+}
+
+/* Hidden for filtering */
+.hidden { display: none; }
+
+.toc {
+  background: rgba(30, 41, 59, 0.6);
+  border: 1px solid #334155;
+  border-radius: 12px;
+  padding: 20px 24px;
+  margin-bottom: 24px;
+}
+.toc-title { font-size: 1.2em; color: #60a5fa; margin-bottom: 12px; font-weight: 600; }
+.toc-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 8px;
+}
+.toc-item {
+  background: rgba(15, 23, 42, 0.5);
+  border-radius: 8px;
+  padding: 10px 14px;
+  cursor: pointer;
+  transition: all 0.15s;
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+.toc-item:hover {
+  background: rgba(96, 165, 250, 0.15);
+  border-color: #60a5fa;
+}
+.toc-item strong { color: #60a5fa; }
+.toc-item .count { color: #fbbf24; margin-left: 8px; font-size: 0.9em; }
+</style>
+</head>
+<body>
+<div class="container">
+
+<!-- Map Header -->
+<div class="map-header">
+<h1>推理压缩技术地图 v1.0</h1>
+<p class="subtitle">🗺️ Interactive Map · 基于 2,757 篇顶会论文聚类 · 实际工作/项目导航</p>
+<div class="map-stats">
+<div class="map-stat"><strong>5</strong> 大区域</div>
+<div class="map-stat"><strong>50+</strong> 地标</div>
+<div class="map-stat"><strong>3</strong> 类机会窗口</div>
+<div class="map-stat"><strong>2026-06</strong> 更新</div>
+</div>
+</div>
+
+<!-- TOC -->
+<div class="toc">
+<div class="toc-title">🗺️ 地图区域导航</div>
+<div class="toc-grid">
+<a href="#region1" class="toc-item"><strong>📍 区域1: 经典压缩重镇</strong> <span class="count">(1624篇)</span><br><span style="color:#94a3b8;font-size:0.85em">权重/低秩/剪枝/量化 - 已成熟</span></a>
+<a href="#region2" class="toc-item"><strong>📍 区域2: KV缓存特区</strong> <span class="count">(310篇)</span><br><span style="color:#94a3b8;font-size:0.85em">长上下文/Agent - 当前热点</span></a>
+<a href="#region3" class="toc-item"><strong>📍 区域3: MoE通信前沿</strong> <span class="count">(265篇)</span><br><span style="color:#94a3b8;font-size:0.85em">分布式推理 - 新兴</span></a>
+<a href="#region4" class="toc-item"><strong>📍 区域4: 推理框架城邦</strong> <span class="count">(523篇)</span><br><span style="color:#94a3b8;font-size:0.85em">vLLM/SGLang/TensorRT-LLM</span></a>
+<a href="#region5" class="toc-item"><strong>📍 区域5: 输出加速新区</strong><br><span style="color:#94a3b8;font-size:0.85em">投机解码 - 独立维度</span></a>
+<a href="#routes" class="toc-item"><strong>🛣️ 演进路线</strong><br><span style="color:#94a3b8;font-size:0.85em">技术演进时间线</span></a>
+<a href="#gaps" class="toc-item"><strong>⭐ 空白机会</strong><br><span style="color:#94a3b8;font-size:0.85em">结构性研究空白</span></a>
+</div>
+</div>
+
+<!-- Filter Bar -->
+<div class="filter-bar">
+<span class="filter-label">🔍 筛选场景:</span>
+<button class="filter-btn active" data-filter="all">全部</button>
+<button class="filter-btn" data-filter="long-context">长上下文</button>
+<button class="filter-btn" data-filter="agent">Agent</button>
+<button class="filter-btn" data-filter="moe">MoE分布式</button>
+<button class="filter-btn" data-filter="edge">端侧</button>
+<button class="filter-btn" data-filter="cloud">云服务</button>
+<input type="text" class="search-input" id="searchInput" placeholder="🔍 搜索关键词、技术名、论文...">
+</div>
+
+<!-- Legend -->
+<div class="legend">
+<h3>🏷️ 图例</h3>
+<div class="legend-grid">
+<div><span class="landmark-tag trl9">TRL 9</span> 产品化 · 直接采用</div>
+<div><span class="landmark-tag trl7">TRL 7-8</span> 生产可用 · 评估后采用</div>
+<div><span class="landmark-tag trl5">TRL 5-6</span> 试验验证 · POC试点</div>
+<div><span class="landmark-tag trl3">TRL 3-4</span> 实验室阶段 · 跟踪预研</div>
+<div><span class="landmark-tag gap">⭐ 空白</span> 结构性机会窗口</div>
+<div><span class="landmark-tag hot">🔥 热点</span> 当前最热研究方向</div>
+<div><span class="landmark-tag mature">✓ 成熟</span> 工业标准方案</div>
+</div>
+</div>
+
+<!-- Region 1: 经典压缩重镇 -->
+<div class="region" id="region1" data-scenarios="cloud,edge">
+<div class="region-header">
+<div class="region-icon">⚙️</div>
+<div class="region-title">
+<h2>区域 1: 经典压缩重镇 (Weight Compression)</h2>
+<div class="meta">🏛️ 已成熟 / 红海 — 1,624 篇论文 (58.9%) — 工业标准方案聚集地</div>
+</div>
+<div class="region-count">1,624 篇</div>
+</div>
+
+<h4 style="color:#a78bfa;margin-bottom:12px">📍 主要地标 (Landmarks)</h4>
+<div class="landmarks">
+
+<div class="landmark" data-keywords="awq activation aware weight quantization" data-scenarios="cloud,edge">
+<div class="landmark-name">AWQ <span class="landmark-tag mature">成熟</span></div>
+<div class="landmark-desc">激活感知权重量化，INT4精度最优，工业部署标准方案</div>
+<div class="landmark-meta"><span>权重</span><span>INT4</span><span>PTQ</span><span>MIT/林哲宇</span></div>
+<a class="landmark-link" href="https://github.com/mit-han-lab/llm-awq" target="_blank">github.com/mit-han-lab/llm-awq ↗</a>
+</div>
+
+<div class="landmark" data-keywords="gptq accurate post training quantization" data-scenarios="cloud,edge">
+<div class="landmark-name">GPTQ <span class="landmark-tag mature">成熟</span></div>
+<div class="landmark-desc">基于OBQ的精确PTQ，INT4/INT8，速度快工业首选</div>
+<div class="landmark-meta"><span>权重</span><span>INT4/8</span><span>PTQ</span><span>Frantar等</span></div>
+<a class="landmark-link" href="https://github.com/IST-DASLab/gptq" target="_blank">github.com/IST-DASLab/gptq ↗</a>
+</div>
+
+<div class="landmark" data-keywords="lora low rank adaptation" data-scenarios="cloud">
+<div class="landmark-name">LoRA 系列 <span class="landmark-tag mature">成熟</span></div>
+<div class="landmark-desc">低秩适配器，参数高效微调标准方案，衍生QLoRA/AdaLoRA等</div>
+<div class="landmark-meta"><span>权重</span><span>低秩</span><span>微调</span><span>微软</span></div>
+<a class="landmark-link" href="https://github.com/microsoft/LoRA" target="_blank">github.com/microsoft/LoRA ↗</a>
+</div>
+
+<div class="landmark" data-keywords="qlora quantized lora" data-scenarios="cloud,edge">
+<div class="landmark-name">QLoRA <span class="landmark-tag mature">成熟</span></div>
+<div class="landmark-desc">4bit量化 + LoRA，65B模型单卡微调</div>
+<div class="landmark-meta"><span>权重</span><span>4bit+低秩</span><span>华盛顿大学</span></div>
+</div>
+
+<div class="landmark" data-keywords="sparsegpt one shot pruning" data-scenarios="cloud">
+<div class="landmark-name">SparseGPT <span class="landmark-tag trl7">生产可用</span></div>
+<div class="landmark-desc">一次性LLM剪枝，无需重训练，50%稀疏度无精度损失</div>
+<div class="landmark-meta"><span>权重</span><span>剪枝</span><span>50%稀疏</span><span>Frantar</span></div>
+</div>
+
+<div class="landmark" data-keywords="wanda pruning weights activations" data-scenarios="cloud">
+<div class="landmark-name">Wanda <span class="landmark-tag trl7">生产可用</span></div>
+<div class="landmark-desc">基于权重×激活的剪枝，简单高效</div>
+<div class="landmark-meta"><span>权重</span><span>剪枝</span><span>微软</span></div>
+</div>
+
+<div class="landmark" data-keywords="llm pruner structural" data-scenarios="cloud">
+<div class="landmark-name">LLM-Pruner <div class="landmark-tag trl5">试验验证</div>
+<div class="landmark-desc">结构化剪枝，依赖重要性评估</div>
+<div class="landmark-meta"><span>权重</span><span>结构化剪枝</span></div>
+</div>
+
+<div class="landmark" data-keywords="gguf llama.cpp format">
+<div class="landmark-name">GGUF <span class="landmark-tag mature">成熟</span></div>
+<div class="landmark-desc">llama.cpp通用量化格式，多bit支持，CPU/端侧首选</div>
+<div class="landmark-meta"><span>权重</span><span>多bit</span><span>格式</span></div>
+<a class="landmark-link" href="https://github.com/ggerganov/llama.cpp" target="_blank">github.com/ggerganov/llama.cpp ↗</a>
+</div>
+
+<div class="landmark" data-keywords="smoothquant activation quantization">
+<div class="landmark-name">SmoothQuant <span class="landmark-tag trl7">生产可用</span></div>
+<div class="landmark-desc">激活量化平滑技术，W8A8精度无损</div>
+<div class="landmark-meta"><span>激活+权重</span><span>W8A8</span></div>
+</div>
+
+</div>
+
+<div class="region-subsection">
+<h4>🔧 框架支持矩阵</h4>
+<div class="framework-grid">
+<div class="framework-item"><strong>vLLM</strong><br>AWQ/GPTQ</div>
+<div class="framework-item"><strong>SGLang</strong><br>AWQ/GPTQ</div>
+<div class="framework-item"><strong>TensorRT-LLM</strong><br>INT8/FP8</div>
+<div class="framework-item"><strong>llama.cpp</strong><br>GGUF全系</div>
+<div class="framework-item"><strong>AutoGPTQ</strong><br>GPTQ/AWQ</div>
+<div class="framework-item"><strong>Transformers</strong><br>BitsAndBytes</div>
+</div>
+</div>
+
+<div class="region-subsection">
+<h4>💼 适用场景</h4>
+<p style="color:#cbd5e1;font-size:0.92em">
+✓ <strong>云端推理服务</strong>：必选，吞吐和成本核心<br>
+✓ <strong>端侧部署</strong>：必选，内存受限环境<br>
+✓ <strong>模型微调</strong>：LoRA/QLoRA是行业标准<br>
+✗ 长上下文/Agent/MoE：不是主要瓶颈
+</p>
+</div>
+
+<div class="route">
+<strong>🛣️ 进入此区域的路径：</strong> 模型准备 → 选择量化方案（AWQ INT4 / GPTQ INT8） → 部署到推理框架 → 监控精度
+</div>
+
+</div>
+
+<!-- Region 2: KV缓存特区 -->
+<div class="region" id="region2" data-scenarios="long-context,agent">
+<div class="region-header">
+<div class="region-icon">💾</div>
+<div class="region-title">
+<h2>区域 2: KV缓存特区 (KV Cache)</h2>
+<div class="meta">🔥 当前热点 — 310 篇论文 (11.2%) — 长上下文/Agent核心优化</div>
+</div>
+<div class="region-count">310 篇</div>
+</div>
+
+<h4 style="color:#a78bfa;margin-bottom:12px">📍 主要地标 (Landmarks)</h4>
+<div class="landmarks">
+
+<div class="landmark" data-keywords="pagedattention vllm virtual memory">
+<div class="landmark-name">PagedAttention <span class="landmark-tag mature">成熟</span></div>
+<div class="landmark-desc">vLLM虚拟分页注意力，KV Cache分页管理，24x吞吐提升</div>
+<div class="landmark-meta"><span>KV</span><span>分页</span><span>UC伯克利</span></div>
+<a class="landmark-link" href="https://github.com/vllm-project/vllm" target="_blank">github.com/vllm-project/vllm ↗</a>
+</div>
+
+<div class="landmark" data-keywords="flashattention io aware exact attention">
+<div class="landmark-name">FlashAttention <span class="landmark-tag mature">成熟</span></div>
+<div class="landmark-desc">IO感知的精确注意力，HBM优化，v1/v2/v3持续演进</div>
+<div class="landmark-meta"><span>注意力</span><span>IO优化</span><span>Tri Dao</span></div>
+<a class="landmark-link" href="https://github.com/Dao-AILab/flash-attention" target="_blank">github.com/Dao-AILab/flash-attention ↗</a>
+</div>
+
+<div class="landmark" data-keywords="snapkv cluster anchor kv">
+<div class="landmark-name">SnapKV <span class="landmark-tag trl7">生产可用</span></div>
+<div class="landmark-desc">语义聚类锚点，128K上下文8.2x内存效率</div>
+<div class="landmark-meta"><span>KV</span><span>稀疏化</span><span>128K</span></div>
+</div>
+
+<div class="landmark" data-keywords="rkv redundant kv removal">
+<div class="landmark-name">R-KV <span class="landmark-tag trl5">试验验证</span></div>
+<div class="landmark-desc">低秩冗余消除，10% KV近100%性能，6.6x吞吐</div>
+<div class="landmark-meta"><span>KV</span><span>冗余</span><span>128K</span></div>
+</div>
+
+<div class="landmark" data-keywords="h2o heavy hitter kv">
+<div class="landmark-name">H2O <span class="landmark-tag trl5">试验验证</span></div>
+<div class="landmark-desc">Heavy-Hitter经典工作，KV累积淘汰</div>
+<div class="landmark-meta"><span>KV</span><span>淘汰</span><span>经典</span></div>
+</div>
+
+<div class="landmark" data-keywords="kivi 2bit kv quantization">
+<div class="landmark-name">KIVI <span class="landmark-tag trl5">试验验证</span></div>
+<div class="landmark-desc">2bit KV量化，per-channel，4x压缩</div>
+<div class="landmark-meta"><span>KV</span><span>2bit量化</span><span>长上下文</span></div>
+</div>
+
+<div class="landmark" data-keywords="block gtq rope aware">
+<div class="landmark-name">Block-GTQ <span class="landmark-tag trl5">试验验证</span></div>
+<div class="landmark-desc">RoPE-aware KV量化，AIME24 51.7 (FP16为54.2)</div>
+<div class="landmark-meta"><span>KV</span><span>4bit</span><span>RoPE-aware</span><span>256K</span></div>
+</div>
+
+<div class="landmark" data-keywords="ultraquant fp4 amd">
+<div class="landmark-name">UltraQuant <span class="landmark-tag trl5">试验验证</span></div>
+<div class="landmark-desc">FP4 KV量化，AMD硬件优化</div>
+<div class="landmark-meta"><span>KV</span><span>FP4</span><span>AMD</span></div>
+</div>
+
+<div class="landmark" data-keywords="conf kv confidence">
+<div class="landmark-name">CONF-KV <span class="landmark-tag trl3">实验室</span></div>
+<div class="landmark-desc">置信度感知淘汰，NIAH 91.4% (2.8x压缩)</div>
+<div class="landmark-meta"><span>KV</span><span>置信度淘汰</span></div>
+</div>
+
+<div class="landmark" data-keywords="anchorkv alignment anchor">
+<div class="landmark-name">AnchorKV <span class="landmark-tag trl3">实验室</span></div>
+<div class="landmark-desc">对齐锚点保持，专为安全Agent设计</div>
+<div class="landmark-meta"><span>KV</span><span>锚点</span></div>
+</div>
+
+<div class="landmark" data-keywords="trim kv learnable gate">
+<div class="landmark-name">TRIM-KV <span class="landmark-tag trl3">实验室</span></div>
+<div class="landmark-desc">可学习门控，灵活KV管理</div>
+<div class="landmark-meta"><span>KV</span><span>学习门控</span></div>
+</div>
+
+<div class="landmark" data-keywords="swiftkv decoding distillation" data-scenarios="long-context">
+<div class="landmark-name">SwiftKV <span class="landmark-tag trl3">实验室</span> <span class="landmark-tag gap">机会</span></div>
+<div class="landmark-desc">Decoding阶段KV蒸馏，几乎空白方向</div>
+<div class="landmark-meta"><span>KV×蒸馏</span><span>Decoding</span></div>
+</div>
+
+</div>
+
+<div class="region-subsection">
+<h4>🔧 框架支持矩阵</h4>
+<div class="framework-grid">
+<div class="framework-item"><strong>vLLM</strong><br>PagedAttn✓</div>
+<div class="framework-item"><strong>SGLang</strong><br>RadixAttn✓</div>
+<div class="framework-item"><strong>TensorRT-LLM</strong><br>In-flight KV</div>
+<div class="framework-item"><strong>FlashInfer</strong><br>高性能KV</div>
+<div class="framework-item"><strong>SnapKV</strong><br>vLLM插件</div>
+<div class="framework-item"><strong>KIVI</strong><br>需集成</div>
+</div>
+</div>
+
+<div class="region-subsection">
+<h4>💼 适用场景</h4>
+<p style="color:#cbd5e1;font-size:0.92em">
+✓ <strong>长上下文 (&gt;32K)</strong>：核心需求<br>
+✓ <strong>Agent多轮对话</strong>：KV累积问题<br>
+✓ <strong>RAG检索</strong>：长上下文支持<br>
+✗ 短文本/端侧：开销大于收益
+</p>
+</div>
+
+<div class="route">
+<strong>🛣️ 路径选择：</strong> 
+短上下文 → PagedAttention（开箱即用）<br>
+128K+ → SnapKV稀疏化（首选）<br>
+极致压缩 → KIVI/Block-GTQ量化<br>
+⚠️ Decoding蒸馏 → SwiftKV（前沿机会）
+</div>
+
+<div class="opportunity">
+<strong>⭐ 结构性机会窗口：</strong> KV×蒸馏（仅10篇），特别是Decoding阶段，目前几乎是空白。这是最高风险/最高回报的方向。
+</div>
+
+</div>
+
+<!-- Region 3: MoE通信前沿 -->
+<div class="region" id="region3" data-scenarios="moe,cloud">
+<div class="region-header">
+<div class="region-icon">🧩</div>
+<div class="region-title">
+<h2>区域 3: MoE通信前沿 (Communication)</h2>
+<div class="meta">🔥 MoE时代必备 — 265 篇论文 (9.6%) — 分布式推理核心</div>
+</div>
+<div class="region-count">265 篇</div>
+</div>
+
+<h4 style="color:#a78bfa;margin-bottom:12px">📍 主要地标 (Landmarks)</h4>
+<div class="landmarks">
+
+<div class="landmark" data-keywords="deepep moe communication library">
+<div class="landmark-name">DeepEP <span class="landmark-tag trl7">生产可用</span></div>
+<div class="landmark-desc">DeepSeek开源MoE通信库，生产级All-to-All优化</div>
+<div class="landmark-meta"><span>通信</span><span>MoE</span><span>All-to-All</span><span>DeepSeek</span></div>
+<a class="landmark-link" href="https://github.com/deepseek-ai/DeepEP" target="_blank">github.com/deepseek-ai/DeepEP ↗</a>
+</div>
+
+<div class="landmark" data-keywords="expertquant moe quantization" data-scenarios="moe">
+<div class="landmark-name">ExpertQuant <span class="landmark-tag trl3">实验室</span> <span class="landmark-tag gap">机会</span></div>
+<div class="landmark-desc">首个MoE通信量化方案，2025新工作</div>
+<div class="landmark-meta"><span>通信×量化</span><span>MoE</span><span>2025</span></div>
+</div>
+
+<div class="landmark" data-keywords="nccl nvidia collective communication">
+<div class="landmark-name">NCCL <span class="landmark-tag mature">成熟</span></div>
+<div class="landmark-desc">NVIDIA集体通信库，分布式推理基础设施</div>
+<div class="landmark-meta"><span>通信原语</span><span>NVIDIA</span></div>
+</div>
+
+<div class="landmark" data-keywords="mosaicprune moe hierarchical">
+<div class="landmark-name">MosaicPrune <span class="landmark-tag trl3">实验室</span></div>
+<div class="landmark-desc">MoE层级化剪枝，专家稀疏化</div>
+<div class="landmark-meta"><span>通信×剪枝</span><span>MoE</span></div>
+</div>
+
+<div class="landmark" data-keywords="minimoe edge moe">
+<div class="landmark-name">MiniMoE <span class="landmark-tag trl3">实验室</span></div>
+<div class="landmark-desc">边缘MoE协同优化，量化+剪枝联合</div>
+<div class="landmark-meta"><span>MoE</span><span>边缘</span></div>
+</div>
+
+<div class="landmark" data-keywords="mlpmoe dense to moe">
+<div class="landmark-name">MLPMoE <span class="landmark-tag trl3">实验室</span></div>
+<div class="landmark-desc">密集→MoE零样本架构转换</div>
+<div class="landmark-meta"><span>MoE</span><span>架构转换</span></div>
+</div>
+
+</div>
+
+<div class="region-subsection">
+<h4>🔧 框架支持矩阵</h4>
+<div class="framework-grid">
+<div class="framework-item"><strong>vLLM</strong><br>部分支持</div>
+<div class="framework-item"><strong>SGLang</strong><br>MoE优化</div>
+<div class="framework-item"><strong>DeepEP</strong><br>MoE专用</div>
+<div class="framework-item"><strong>Megatron</strong><br>MoE训练</div>
+</div>
+</div>
+
+<div class="region-subsection">
+<h4>💼 适用场景</h4>
+<p style="color:#cbd5e1;font-size:0.92em">
+✓ <strong>MoE模型推理</strong>（Mixtral/DeepSeek-V3/GPT-4）<br>
+✓ <strong>云端大模型服务</strong>（多卡分布式）<br>
+✗ 端侧/单卡：通常用不上
+</p>
+</div>
+
+<div class="route">
+<strong>🛣️ 路径：</strong> 单卡 → 多卡张量并行 → 多卡MoE推理（DeepEP）
+</div>
+
+<div class="opportunity">
+<strong>⭐ 结构性机会窗口：</strong> 通信×蒸馏（仅18篇），是MoE时代关键空白。
+</div>
+
+</div>
+
+<!-- Region 4: 推理框架城邦 -->
+<div class="region" id="region4" data-scenarios="cloud,long-context,agent">
+<div class="region-header">
+<div class="region-icon">🏛️</div>
+<div class="region-title">
+<h2>区域 4: 推理框架城邦 (Frameworks)</h2>
+<div class="meta">🏛️ 系统级基础设施 — 523 篇相关 — 5大主流框架聚集</div>
+</div>
+<div class="region-count">5 框架</div>
+</div>
+
+<h4 style="color:#a78bfa;margin-bottom:12px">📍 主流框架地标</h4>
+<div class="landmarks">
+
+<div class="landmark" data-keywords="vllm uc berkeley paged attention" data-scenarios="cloud,long-context">
+<div class="landmark-name">vLLM <span class="landmark-tag mature">成熟</span></div>
+<div class="landmark-desc">UC伯克利开源，PagedAttention核心，工业部署首选</div>
+<div class="landmark-meta"><span>通用推理</span><span>PagedAttn</span><span>社区活跃</span></div>
+<a class="landmark-link" href="https://github.com/vllm-project/vllm" target="_blank">github.com/vllm-project/vllm ↗</a>
+</div>
+
+<div class="landmark" data-keywords="sglang radix attention long context" data-scenarios="long-context,agent">
+<div class="landmark-name">SGLang <span class="landmark-tag mature">成熟</span></div>
+<div class="landmark-desc">RadixAttention，长上下文+Agent场景首选</div>
+<div class="landmark-meta"><span>长上下文</span><span>RadixAttn</span><span>Agent</span></div>
+<a class="landmark-link" href="https://github.com/sgl-project/sglang" target="_blank">github.com/sgl-project/sglang ↗</a>
+</div>
+
+<div class="landmark" data-keywords="tensorrt llm nvidia fp8 int8">
+<div class="landmark-name">TensorRT-LLM <span class="landmark-tag mature">成熟</span></div>
+<div class="landmark-desc">NVIDIA官方，FP8/INT8极致性能，生产环境首选</div>
+<div class="landmark-meta"><span>NVIDIA</span><span>FP8/INT8</span><span>极致性能</span></div>
+<a class="landmark-link" href="https://github.com/NVIDIA/TensorRT-LLM" target="_blank">github.com/NVIDIA/TensorRT-LLM ↗</a>
+</div>
+
+<div class="landmark" data-keywords="llama.cpp gguf cpu edge">
+<div class="landmark-name">llama.cpp <span class="landmark-tag mature">成熟</span></div>
+<div class="landmark-desc">GGUF格式，CPU/端侧部署，社区驱动</div>
+<div class="landmark-meta"><span>CPU/端侧</span><span>GGUF</span></div>
+<a class="landmark-link" href="https://github.com/ggerganov/llama.cpp" target="_blank">github.com/ggerganov/llama.cpp ↗</a>
+</div>
+
+<div class="landmark" data-keywords="ollama simple deployment">
+<div class="landmark-name">Ollama <span class="landmark-tag mature">成熟</span></div>
+<div class="landmark-desc">一键本地部署，小白友好</div>
+<div class="landmark-meta"><span>本地</span><span>一键</span></div>
+</div>
+
+<div class="landmark" data-keywords="flashinfer high performance attention kernel">
+<div class="landmark-name">FlashInfer <span class="landmark-tag trl7">生产可用</span></div>
+<div class="landmark-desc">高性能注意力kernel库，KV Cache优化</div>
+<div class="landmark-meta"><span>注意力</span><span>高性能</span></div>
+<a class="landmark-link" href="https://github.com/flashinfer-ai/flashinfer" target="_blank">github.com/flashinfer-ai/flashinfer ↗</a>
+</div>
+
+</div>
+
+<div class="region-subsection">
+<h4>🎯 选型决策树</h4>
+<div class="route">
+<strong>追求极致性能（NVIDIA生产）</strong> → TensorRT-LLM<br>
+<strong>通用推理服务</strong> → vLLM<br>
+<strong>长上下文+Agent</strong> → SGLang<br>
+<strong>CPU/端侧部署</strong> → llama.cpp / Ollama
+</div>
+</div>
+
+</div>
+
+<!-- Region 5: 输出加速 -->
+<div class="region" id="region5" data-scenarios="cloud,agent">
+<div class="region-header">
+<div class="region-icon">⚡</div>
+<div class="region-title">
+<h2>区域 5: 输出加速新区 (Speculative Decoding)</h2>
+<div class="meta">⚡ 独立维度 — 不在传统压缩6方法中 — 2024爆发</div>
+</div>
+<div class="region-count">~30+ 篇</div>
+</div>
+
+<h4 style="color:#a78bfa;margin-bottom:12px">📍 主要地标 (Landmarks)</h4>
+<div class="landmarks">
+
+<div class="landmark" data-keywords="speculative decoding draft model">
+<div class="landmark-name">Speculative Decoding <span class="landmark-tag mature">成熟</span></div>
+<div class="landmark-desc">草稿模型+验证，加速2-3x，无精度损失</div>
+<div class="landmark-meta"><span>输出加速</span><span>无精度损失</span><span>Google/DeepMind</span></div>
+</div>
+
+<div class="landmark" data-keywords="medusa self speculative">
+<div class="landmark-name">Medusa <span class="landmark-tag trl7">生产可用</span></div>
+<div class="landmark-desc">多头自推测，无需草稿模型</div>
+<div class="landmark-meta"><span>自推测</span><span>无草稿</span></div>
+</div>
+
+<div class="landmark" data-keywords="eagle speculative context aware">
+<div class="landmark-name">EAGLE <span class="landmark-tag trl7">生产可用</span></div>
+<div class="landmark-desc">上下文感知特征层推测，业界SOTA</div>
+<div class="landmark-meta"><span>特征层</span><span>上下文感知</span></div>
+</div>
+
+<div class="landmark" data-keywords="deepseek v3 multi token prediction">
+<div class="landmark-name">Multi-Token Prediction <span class="landmark-tag trl7">生产可用</span></div>
+<div class="landmark-desc">DeepSeek-V3原生多token预测</div>
+<div class="landmark-meta"><span>MTP</span><span>原生</span></div>
+</div>
+
+</div>
+
+<div class="region-subsection">
+<h4>💼 适用场景</h4>
+<p style="color:#cbd5e1;font-size:0.92em">
+✓ <strong>云端大模型服务</strong>：吞吐量提升直接<br>
+✓ <strong>Agent多轮</strong>：降低时延<br>
+✗ 端侧：草稿模型本身也耗资源
+</p>
+</div>
+
+</div>
+
+<!-- Routes Section -->
+<h2 id="routes" style="color:#60a5fa;border-bottom:2px solid #334155;padding:20px 0 12px;margin-top:48px">🛣️ 演进路线 (Routes)</h2>
+
+<div class="region">
+<h3 style="color:#a78bfa">阶段 1: 经典压缩 (2018-2023) — 已成熟</h3>
+<div class="route">
+<strong>路径:</strong> GPTQ (2022) → AWQ (2023) → SparseGPT (2023) → QLoRA (2023) → LoRA工业化<br>
+<strong>意义:</strong> 奠定了现代LLM部署的基础。这一阶段的方案现在仍是工业标准。
+</div>
+
+<h3 style="color:#a78bfa;margin-top:24px">阶段 2: 推理专用 (2023-2025) — 当前热点</h3>
+<div class="route">
+<strong>路径:</strong> PagedAttention (2023) → H2O (2023) → SnapKV (2024) → R-KV (2024) → KIVI (2024) → Block-GTQ (2025) → FlashAttention v3 (2024)<br>
+<strong>意义:</strong> 解决了长上下文/Agent的实际部署问题。
+</div>
+
+<h3 style="color:#a78bfa;margin-top:24px">阶段 3: 新兴方向 (2025-2026+) — 未来机会</h3>
+<div class="route">
+<strong>路径:</strong> ExpertQuant (2025) → SwiftKV (2025) → 跨模态压缩 → 端到端联合优化<br>
+<strong>意义:</strong> MoE时代+Decoding蒸馏等结构性空白方向。
+</div>
+</div>
+
+<!-- Gaps Section -->
+<h2 id="gaps" style="color:#60a5fa;border-bottom:2px solid #334155;padding:20px 0 12px;margin-top:48px">⭐ 结构性空白 (Opportunities)</h2>
+
+<div class="region">
+<table style="width:100%">
+<tr style="background:rgba(190,24,93,0.15)">
+  <th style="padding:14px;text-align:left">空白方向</th>
+  <th style="padding:14px;text-align:left">论文数</th>
+  <th style="padding:14px;text-align:left">机会度</th>
+  <th style="padding:14px;text-align:left">推荐行动</th>
+</tr>
+<tr>
+  <td style="padding:12px"><strong>KV × 蒸馏</strong> (特别是Decoding阶段)</td>
+  <td style="padding:12px;color:#fbbf24"><strong>10</strong></td>
+  <td style="padding:12px"><span class="landmark-tag gap">⭐⭐⭐ 最高</span></td>
+  <td style="padding:12px">SwiftKV等前沿方向，最高风险/回报</td>
+</tr>
+<tr>
+  <td style="padding:12px"><strong>通信 × 蒸馏</strong></td>
+  <td style="padding:12px;color:#fbbf24"><strong>18</strong></td>
+  <td style="padding:12px"><span class="landmark-tag gap">⭐⭐⭐ 最高</span></td>
+  <td style="padding:12px">MoE时代关键空白</td>
+</tr>
+<tr>
+  <td style="padding:12px"><strong>通信 × 量化</strong></td>
+  <td style="padding:12px;color:#fbbf24"><strong>44</strong></td>
+  <td style="padding:12px"><span class="landmark-tag hot">⭐⭐ 高</span></td>
+  <td style="padding:12px">ExpertQuant刚提出，进入窗口期</td>
+</tr>
+<tr>
+  <td style="padding:12px"><strong>KV × 量化</strong> (工程化)</td>
+  <td style="padding:12px;color:#fbbf24"><strong>46</strong></td>
+  <td style="padding:12px"><span class="landmark-tag hot">⭐⭐ 高</span></td>
+  <td style="padding:12px">KIVI/Block-GTQ工业集成</td>
+</tr>
+</table>
+
+<div class="opportunity" style="margin-top:16px">
+<strong>🎯 进入空白方向的策略：</strong><br>
+• 优先在已有框架上做插件式实现（如基于vLLM/SGLang的KV压缩插件）<br>
+• 优先复用现有评测基准（NIAH、AIME24、GSM8K）<br>
+• 优先与已有方法组合（如KV×蒸馏+量化联合）
+</div>
+</div>
+
+<!-- Footer -->
+<div style="background:rgba(30,41,59,0.5);border:1px solid #334155;border-radius:12px;padding:20px;margin-top:32px;text-align:center;color:#94a3b8;font-size:0.9em">
+<p><strong>📌 使用说明：</strong>点击顶部按钮可按场景筛选；搜索框可按关键词过滤；点击地标链接跳转到GitHub</p>
+<p style="margin-top:8px">数据来源: <code style="background:rgba(96,165,250,0.15);padding:2px 8px;border-radius:4px">inference_compression_strict.json</code> (2,757篇顶会论文聚类)</p>
+<p style="margin-top:8px">v1.0 · 2026-06 · 持续更新中</p>
+</div>
+
+</div>
+
+<script>
+// Filter functionality
+const filterBtns = document.querySelectorAll('.filter-btn');
+const regions = document.querySelectorAll('.region');
+const landmarks = document.querySelectorAll('.landmark');
+const searchInput = document.getElementById('searchInput');
+
+let currentFilter = 'all';
+let currentSearch = '';
+
+function applyFilters() {
+  regions.forEach(region => {
+    const scenarios = (region.dataset.scenarios || '').split(',');
+    const regionMatches = currentFilter === 'all' || scenarios.includes(currentFilter);
+    
+    if (currentSearch) {
+      // Search mode: only show landmarks that match
+      const regionLandmarks = region.querySelectorAll('.landmark');
+      let hasMatch = false;
+      regionLandmarks.forEach(lm => {
+        const keywords = (lm.dataset.keywords || '').toLowerCase();
+        const name = lm.querySelector('.landmark-name')?.textContent.toLowerCase() || '';
+        const desc = lm.querySelector('.landmark-desc')?.textContent.toLowerCase() || '';
+        const matches = keywords.includes(currentSearch) || name.includes(currentSearch) || desc.includes(currentSearch);
+        lm.classList.toggle('hidden', !matches);
+        if (matches) hasMatch = true;
+      });
+      region.style.display = (regionMatches && hasMatch) ? '' : 'none';
+    } else {
+      // Normal mode: show all landmarks
+      region.querySelectorAll('.landmark').forEach(lm => lm.classList.remove('hidden'));
+      region.style.display = regionMatches ? '' : 'none';
+    }
+  });
+}
+
+filterBtns.forEach(btn => {
+  btn.addEventListener('click', () => {
+    filterBtns.forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    currentFilter = btn.dataset.filter;
+    applyFilters();
+  });
+});
+
+searchInput.addEventListener('input', (e) => {
+  currentSearch = e.target.value.toLowerCase().trim();
+  applyFilters();
+});
+
+// Smooth scroll
+document.querySelectorAll('.toc-item').forEach(item => {
+  item.addEventListener('click', (e) => {
+    e.preventDefault();
+    const target = document.querySelector(item.getAttribute('href'));
+    if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+});
+</script>
+
+</body>
+</html>

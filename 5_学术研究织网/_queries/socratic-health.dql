@@ -1,0 +1,51 @@
+# Socratic Dialogue Health Query
+# 检测苏格拉底对话健康状态
+
+```dataview
+TABLE project, intent, dialogue_turn_count, layer, dialogue_health, status, last_updated
+FROM "5_学术研究织网/对话日志"
+WHERE type = "socratic-dialogue"
+SORT last_updated DESC
+```
+
+## 健康警告
+
+```dataview
+TABLE project, intent, dialogue_turn_count, layer, health_alerts, last_updated
+FROM "5_学术研究织网/对话日志"
+WHERE type = "socratic-dialogue"
+WHERE dialogue_health = "critical" OR dialogue_health = "warning"
+SORT last_updated DESC
+```
+
+## 活跃对话
+
+```dataview
+TABLE project, intent, layer, layer_name, dialogue_turn_count, status
+FROM "5_学术研究织网/对话日志"
+WHERE type = "socratic-dialogue"
+WHERE status = "in-progress"
+SORT last_updated DESC
+```
+
+## 意图分布
+
+```dataview
+TABLE WITHOUT ID
+  intent AS "User Intent",
+  length(rows) AS "Dialogue Count"
+FROM "5_学术研究织网/对话日志"
+WHERE type = "socratic-dialogue"
+GROUP BY intent
+```
+
+## 层进度
+
+```dataview
+TABLE WITHOUT ID
+  layer_name AS "Layer",
+  length(rows) AS "Dialogues at Layer"
+FROM "5_学术研究织网/对话日志"
+WHERE type = "socratic-dialogue"
+GROUP BY layer_name
+```

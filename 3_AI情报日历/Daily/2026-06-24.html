@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Report</title>
+    
+<style>
+:root {
+    --bg-primary: #0d1117;
+    --bg-secondary: #161b22;
+    --bg-tertiary: #21262d;
+    --border: #30363d;
+    --text-primary: #e6edf3;
+    --text-secondary: #8b949e;
+    --text-muted: #6e7681;
+    --accent-blue: #58a6ff;
+    --accent-green: #3fb950;
+    --accent-orange: #d29922;
+    --accent-red: #f85149;
+    --accent-purple: #a371f7;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    line-height: 1.6;
+    padding: 2rem;
+}
+
+.container { max-width: 1200px; margin: 0 auto; }
+
+/* Header */
+.report-header {
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.report-title {
+    font-size: 2rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+}
+
+.report-meta {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+}
+
+.report-meta span { margin-right: 1.5rem; }
+
+/* Headings */
+h1 { font-size: 1.75rem; font-weight: 600; margin: 2rem 0 1rem; color: var(--text-primary); border-bottom: 1px solid var(--border); padding-bottom: 0.5rem; }
+h2 { font-size: 1.4rem; font-weight: 600; margin: 1.5rem 0 0.75rem; color: var(--accent-blue); }
+h3 { font-size: 1.15rem; font-weight: 600; margin: 1.25rem 0 0.5rem; color: var(--text-primary); }
+h4 { font-size: 1rem; font-weight: 600; margin: 1rem 0 0.5rem; color: var(--text-secondary); }
+
+/* Tables */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1rem 0;
+    font-size: 0.9rem;
+}
+
+th {
+    background: var(--bg-secondary);
+    color: var(--text-primary);
+    padding: 0.75rem;
+    text-align: left;
+    font-weight: 600;
+    border-bottom: 2px solid var(--border);
+}
+
+td {
+    padding: 0.75rem;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+}
+
+tr:hover { background: var(--bg-secondary); }
+
+/* Tags */
+.tag {
+    display: inline-block;
+    padding: 0.2rem 0.5rem;
+    background: var(--bg-tertiary);
+    border-radius: 4px;
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    margin: 0.2rem;
+}
+
+.tag-red { background: rgba(248, 81, 73, 0.15); color: var(--accent-red); }
+.tag-orange { background: rgba(210, 153, 34, 0.15); color: var(--accent-orange); }
+.tag-green { background: rgba(63, 185, 80, 0.15); color: var(--accent-green); }
+.tag-blue { background: rgba(88, 166, 255, 0.15); color: var(--accent-blue); }
+.tag-purple { background: rgba(163, 113, 247, 0.15); color: var(--accent-purple); }
+
+/* Cards */
+.card {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 1rem;
+    margin: 1rem 0;
+}
+
+.card-header {
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: var(--text-primary);
+}
+
+/* Lists */
+ul, ol { padding-left: 1.5rem; margin: 0.5rem 0; }
+li { margin: 0.3rem 0; }
+
+/* Code */
+code {
+    font-family: 'SF Mono', Consolas, monospace;
+    background: var(--bg-tertiary);
+    padding: 0.15rem 0.4rem;
+    border-radius: 3px;
+    font-size: 0.875rem;
+}
+
+pre {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 1rem;
+    overflow-x: auto;
+    margin: 1rem 0;
+}
+
+/* Blockquote */
+blockquote {
+    border-left: 3px solid var(--accent-blue);
+    padding-left: 1rem;
+    margin: 1rem 0;
+    color: var(--text-secondary);
+    font-style: italic;
+}
+
+/* Horizontal rule */
+hr {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 1.5rem 0;
+}
+
+/* Highlight */
+.highlight {
+    background: rgba(88, 166, 255, 0.1);
+    border-left: 3px solid var(--accent-blue);
+    padding: 0.75rem 1rem;
+    margin: 1rem 0;
+}
+
+/* Badges */
+.badge {
+    display: inline-block;
+    padding: 0.25rem 0.5rem;
+    border-radius: 50px;
+    font-size: 0.7rem;
+    font-weight: 600;
+}
+
+.badge-green { background: var(--accent-green); color: #000; }
+.badge-orange { background: var(--accent-orange); color: #000; }
+.badge-red { background: var(--accent-red); color: #fff; }
+
+/* Grid */
+.grid { display: grid; gap: 1rem; }
+.grid-2 { grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
+
+/* Print */
+@media print {
+    body { background: #fff; color: #000; }
+    .tag, .badge { border: 1px solid currentColor; }
+}
+</style>
+
+</head>
+<body>
+    <div class="container">
+        <div class="report-header">
+            <h1 class="report-title">Report</h1>
+            <div class="report-meta">
+                <span>生成时间: 2026-06-24</span>
+                <span class="tag">AI-Intelligence</span><span class="tag">Daily</span>
+            </div>
+        </div>
+        <div class="report-body">
+            
+<h1>AI Infra Daily - 2026-06-24</h1>
+
+<h2>今日概要</h2>
+
+<p>📡 前沿科技简报 · 2026-06-24</p>
+
+<h2>🔥 热点事件</h2>
+<p>[热点事件]：Hollywood is bending the knee to OpenAI@The Verge AI</p>
+
+<p>[一句话总结]：好莱坞多家电影公司放弃发行关于OpenAI联合创始人兼CEO萨姆·奥特曼的传记片《Artificial》，表明好莱坞在面对AI技术崛起时开始重新审视其内容创作与发行策略。</p>
+
+<p>[关键词]：好莱坞、AI技术、OpenAI、传记片、电影发行</p>
+
+<p>[业务启示]：</p>
+<p>【市场影响】：好莱坞电影公司对AI题材影片的谨慎态度，反映了AI技术对传统影视行业的冲击，以及市场对AI话题的复杂情绪。</p>
+<p>【内容创作】：AI题材影片的发行遇冷，可能促使电影公司重新评估AI在内容创作中的角色，并探索新的叙事方式和观众需求。</p>
+
+<p>[背景介绍]：</p>
+<p>《Artificial》是导演卢卡·瓜达尼诺推出的一部传记片，讲述了OpenAI联合创始人兼CEO萨姆·奥特曼的故事。OpenAI作为一家领先的人工智能研究机构，推出了包括ChatGPT在内的多项创新技术，引起了全球广泛关注。此前，关于AI的影视作品多以科幻为主，而《Artificial》则尝试从现实角度切入AI领域。现在，多家好莱坞电影公司放弃该片的发行权，表明AI题材在影视行业仍面临挑战。</p>
+
+<p>[技术和创新点]：</p>
+<p>AI技术应用: OpenAI开发的AI技术在多个领域展示了强大的应用潜力。</p>
+<p>ChatGPT: OpenAI推出的聊天机器人，能够进行自然语言处理和生成。</p>
+<p>AI伦理: 影片可能涉及AI技术发展中的伦理问题，引发观众思考。</p>
+<p>AI与影视结合: AI技术开始影响影视行业的创作和发行策略。</p>
+<p>AI题材影片: 影片尝试从现实角度切入AI话题，区别于传统科幻题材。</p>
+
+<p>[效果总结]：</p>
+<p>《Artificial》影片的发行遇冷，显示了好莱坞在面对AI技术崛起时的谨慎态度。这不仅反映了AI技术对传统影视行业的冲击，也揭示了市场对AI话题的复杂情绪。未来，AI题材影片需要在叙事和观众需求上做出更多创新，才能获得更广泛的认可。</p>
+
+<p>[热点事件]：专访火山引擎谭待：模型好对MaaS是最重要的事，豆包2.1算「上牌桌」了@36kr</p>
+
+<p>[一句话总结]：火山引擎总裁谭待表示，优质的模型是MaaS（模型即服务）业务成功的关键，豆包2.1的发布标志着火山引擎在AI云服务市场的竞争力显著提升，实现了从追赶者到竞争者的转变。</p>
+
+<p>[关键词]：MaaS、火山引擎、AI模型、豆包2.1、云计算</p>
+
+<p>[业务启示]：</p>
+<p>【技术战略】：火山引擎通过持续优化AI模型，提升了其在MaaS市场的竞争力，证明了技术领先是云计算领域取得成功的核心要素。</p>
+<p>【市场影响】：随着豆包2.1的发布，火山引擎在AI云服务市场的地位显著提升，预计将吸引更多企业客户，推动市场份额增长。</p>
+<p>【组织管理】：谭待强调团队在年初设定高目标并在年中调整策略的做法，体现了灵活应对市场变化和快速迭代的重要性。</p>
+<p>【客户价值】：优质的AI模型能够为企业客户提供更高效的解决方案，增强客户粘性和满意度，从而推动长期合作。</p>
+
+<p>[背景介绍]：</p>
+<p>MaaS（模型即服务）是火山引擎推出的云计算服务类型，旨在为企业提供高效的AI模型解决方案。此前，火山引擎在云市场作为后来者面临诸多挑战，现在通过AI技术的快速发展，特别是视频模型Seedance 2.0和豆包2.1的发布，实现了显著的市场突破。</p>
+
+<p>[技术和创新点]：</p>
+<p>Seedance 2.0: 字节推出的视频模型，提供了更强大的视频处理能力。</p>
+<p>豆包2.1: 火山引擎最新发布的AI模型，标志着其在AI技术上的重大进步。</p>
+<p>MaaS营收目标: 火山引擎通过设定并超额完成高营收目标，展示了其市场拓展能力。</p>
+<p>Coding模型: 解锁了商业化生产场景，扩展了AI模型的应用范围。</p>
+<p>AI技术迭代: 持续的技术迭代和优化，确保了火山引擎在AI领域的竞争力。</p>
+
+<p>[效果总结]：</p>
+<p>豆包2.1在AI云服务领域有显著的技术突破和市场影响，提升了火山引擎在MaaS市场的竞争力。通过持续的技术创新和优化，火山引擎不仅实现了自身业务的快速增长，也为客户提供了更高效的AI解决方案，推动了AI技术在企业应用中的普及。</p>
+
+<p>[热点事件]：抖音发布3D内容创作工具“造世界”@36kr</p>
+
+<p>[一句话总结]：抖音推出集成多Agent的3D世界创作工具“造世界”，旨在加速布局3D UGC互动内容赛道，为创作者提供虚拟世界模型生成工具，并可进入抖音和多闪的社交与推荐分发场景，推动3D内容创作生态发展。</p>
+
+<p>[关键词]：抖音、3D UGC、造世界、多Agent、虚拟世界</p>
+
+<p>[业务启示]：</p>
+<p>【市场影响】：抖音通过“造世界”工具切入3D UGC互动内容领域，有望吸引更多创作者和用户参与，推动虚拟内容生态的繁荣，提升平台内容多样性和用户粘性。</p>
+<p>【技术战略】：集成多Agent技术，简化3D内容创作流程，降低创作门槛，体现了抖音在AI和虚拟现实技术上的持续投入和战略布局。</p>
+<p>【用户参与】：提供从素材搭建到场景编辑的完整创作工具链，鼓励用户生成内容，增强用户互动性和创作积极性。</p>
+<p>【社交分发】：作品可进入抖音和多闪的社交与推荐分发场景，形成创作-分享-互动的闭环，提升用户活跃度和平台影响力。</p>
+
+<p>[背景介绍]：</p>
+<p>“造世界”是抖音推出的3D世界创作工具，用于帮助创作者生成可发布、可游玩的虚拟世界模型。此前，抖音已在3D UGC内容方面有所探索，现在通过“造世界”工具进一步丰富其3D内容创作生态。该工具在6月24日的火山引擎FORCE大会上首次亮相，主要服务于抖音3D UGC场景“多闪仔仔世界”创作，创作者可在“抖音虚拟创作平台”官网申请内测。</p>
+
+<p>[技术和创新点]：</p>
+<p>多Agent集成: 集成多个智能体，协同完成3D世界创作任务。</p>
+<p>多轮对话: 支持创作者与系统进行多轮对话，提升创作交互体验。</p>
+<p>素材搭建: 提供丰富的素材库，帮助创作者快速搭建3D场景。</p>
+<p>场景编辑: 强大的场景编辑功能，支持精细化调整和个性化创作。</p>
+<p>社交分发: 作品可发布到抖音和多闪平台，进入社交与推荐分发场景。</p>
+
+<p>[效果总结]：</p>
+<p>“造世界”在3D内容创作方面简化了创作流程，降低了创作门槛，为创作者提供了强大的工具支持。在虚拟世界构建和UGC内容生态方面有显著推动作用，有助于提升用户参与度和平台内容多样性。</p>
+
+<h2>💡 热点技术</h2>
+<p>[热点技术]：Concordia: JIT-Compiled Persistent-Kernel Checkpointing for Fault-Tolerant LLM Inference@arXiv cs.DC (Distributed Computing)</p>
+
+<p>[一句话总结]：Concordia通过即时编译的持久化内核检查点技术，为长时间运行的LLM推理任务提供容错机制，确保在GPU或通信故障后能够快速恢复，减少工作损失。</p>
+
+<p>[关键词]：即时编译、持久化内核、检查点容错、LLM推理、故障恢复</p>
+
+<p>[业务启示]：</p>
+<p>【模型部署】：Concordia通过即时编译技术优化了模型在GPU上的持久化状态管理，提升了部署的稳定性和可靠性。</p>
+<p>【容错机制】：该技术引入了高效的检查点机制，确保在硬件故障情况下，LLM推理任务能够快速恢复，减少数据丢失和工作中断。</p>
+<p>【性能优化】：通过减少恢复时间和提高系统鲁棒性，Concordia提升了长时间运行任务的整体性能。</p>
+
+<p>[背景介绍]：</p>
+<p>Concordia是由arXiv cs.DC (Distributed Computing)发布的容错技术，用于解决长时间运行的LLM推理任务在GPU或通信故障后状态丢失的问题。此前，LLM推理任务在遇到硬件故障时通常需要从头开始重新启动，导致大量时间和计算资源的浪费。现在，Concordia通过即时编译的持久化内核检查点技术，提供了一种高效的恢复机制，确保在故障发生后能够快速恢复，减少工作损失。</p>
+
+<p>[技术和创新点]：</p>
+<p>即时编译技术: Concordia采用即时编译技术，动态生成持久化内核，确保状态管理的灵活性和高效性。</p>
+<p>持久化内核: 通过持久化内核，Concordia能够在故障发生后快速恢复GPU上的关键状态，如KV缓存和请求调度器。</p>
+<p>检查点机制: 该技术引入了高效的检查点机制，定期保存系统状态，确保在故障发生时能够快速恢复到最近的安全状态。</p>
+<p>容错设计: Concordia的设计考虑了各种硬件和通信故障场景，提供全面的容错解决方案。</p>
+<p>性能优化: 通过减少恢复时间和提高系统鲁棒性，Concordia提升了长时间运行任务的整体性能。</p>
+
+<p>[效果总结]：</p>
+<p>Concordia在容错能力和系统稳定性方面有显著提升。通过即时编译的持久化内核检查点技术，该系统能够在硬件故障后快速恢复，减少了LLM推理任务的工作损失，提高了整体效率和可靠性。</p>
+
+<p>[热点技术]：The Serialized Bridge: Understanding and Recovering LLM Serving Performance under Blackwell GPU Conf@arXiv cs.DC (Distributed Computing)</p>
+
+<p>[一句话总结]：本文研究了在使用Intel TDX和NVIDIA Blackwell GPU进行LLM服务时性能下降的问题，并探讨了恢复吞吐量和降低KV缓存恢复延迟的方法，对提升安全环境下的AI服务性能具有重要意义。</p>
+
+<p>[关键词]：GPU机密 Computing、LLM服务、性能优化、Intel TDX、Blackwell GPU、KV缓存、吞吐量</p>
+
+<p>[业务启示]：</p>
+<p>【安全隐私】：在保证GPU本地性能的同时，Intel TDX和GPU-CC的结合虽然提升了数据安全性，但带来了显著的吞吐量损失，提示需要在安全性和性能之间找到平衡点。</p>
+<p>【部署优化】：KV缓存恢复延迟的增加对LLM服务的实时性提出了挑战，优化缓存管理和恢复机制成为提升服务效率的关键。</p>
+<p>【性能调优】：研究指出在Blackwell GPU上，BF16矩阵乘法的性能接近非机密环境，展示了硬件优化对提升AI服务性能的潜力。</p>
+
+<p>[背景介绍]：</p>
+<p>GPU Confidential Computing (GPU-CC) 是NVIDIA推出的用于保护GPU上数据安全的计算技术，旨在确保在处理敏感数据时不会泄露信息。此前，GPU-CC在NVIDIA B300上实现了接近非机密环境的性能表现，BF16矩阵乘法仅损失0.2%的性能。然而，在Intel TDX和GPU-CC的联合使用下，LLM服务的吞吐量仍出现13-27%的下降，KV缓存恢复延迟甚至翻倍，凸显了当前技术在实际应用中的挑战。</p>
+
+<p>[技术和创新点]：</p>
+<p>KV缓存恢复优化: 通过改进KV缓存的恢复机制，显著降低延迟。</p>
+<p>吞吐量恢复策略: 研究了多种策略以恢复在机密环境下损失的吞吐量。</p>
+<p>硬件加速利用: 探讨了如何更好地利用Blackwell GPU的硬件特性来提升性能。</p>
+<p>BF16矩阵乘法优化: 在机密环境下优化BF16矩阵乘法操作。</p>
+<p>安全与性能平衡: 寻找在保证数据安全的同时最小化性能损失的方法。</p>
+
+<p>[效果总结]：</p>
+<p>本文在提升LLM服务在机密环境下的性能方面取得了显著进展，特别是在KV缓存恢复延迟和吞吐量恢复方面提出了有效策略。尽管在Intel TDX和GPU-CC的联合使用下仍存在性能瓶颈，但研究为未来的优化工作提供了宝贵的见解和方向。</p>
+
+<hr>
+<li><strong></strong>: https://arxiv.org/abs/2606.23969v1</li>
+<li><strong></strong>: 中</li>
+<li><strong></strong>: 🟡关注</li>
+<li><strong></strong>: 深读</li>
+
+<p>[热点技术]：SkyChain Intelligence: A Blockchain-Secured Multi-Agent DRL Framework for Low-Altitude Embodied Arti@arXiv cs.DC (Distributed Computing)</p>
+
+<p>[一句话总结]：SkyChain Intelligence提出了一种基于区块链的多智能体深度强化学习框架，为低空具身人工智能(LAEAI)提供分布式计算资源网络，提升了低空经济的自主服务能力与安全性。</p>
+
+<p>[关键词]：低空经济、具身人工智能、区块链、深度强化学习、分布式计算</p>
+
+<p>[业务启示]：</p>
+<p>【模型设计】：SkyChain通过多智能体深度强化学习框架，实现了智能体间的协同工作与知识共享，提升了整体决策效率。</p>
+<p>【安全隐私】：区块链技术的引入确保了数据的安全性与不可篡改性，为低空经济中的数据交换提供了可靠保障。</p>
+<p>【部署优化】：该框架支持动态低空计算网络(LACNets)的构建，能够灵活适应不同场景下的计算资源需求，优化资源分配。</p>
+
+<p>[背景介绍]：</p>
+<p>SkyChain Intelligence是由arXiv cs.DC (Distributed Computing)发布的一种新型区块链与多智能体深度强化学习结合的框架，用于提升低空具身人工智能(LAEAI)的自主服务能力。此前低空经济生态系统发展迅速，但面临着计算资源分散、数据安全等问题。现在，SkyChain通过构建动态低空计算网络，解决了这些问题，为低空经济的进一步发展提供了新的技术支撑。</p>
+
+<p>[技术和创新点]：</p>
+<p>区块链安全保障: 利用区块链技术确保数据的安全性与不可篡改性。</p>
+<p>多智能体协同: 实现多个智能体之间的协同工作与知识共享。</p>
+<p>动态网络构建: 支持动态低空计算网络(LACNets)的构建，适应不同场景需求。</p>
+<p>深度强化学习: 采用深度强化学习算法提升智能体的决策能力。</p>
+<p>资源优化分配: 优化计算资源的分配，提高整体系统效率。</p>
+
+<p>[效果总结]：</p>
+<p>SkyChain Intelligence在低空具身人工智能的自主服务能力、安全性及计算资源管理方面有显著提升。通过区块链与多智能体深度强化学习的结合，该框架有效解决了低空经济中的数据安全与资源分配问题，为低空经济的快速发展提供了强有力的技术保障。</p>
+
+<p>[热点技术]：CrossPool: Efficient Multi-LLM Serving for Cold MoE Models through KV-Cache and Weight Disaggregatio@arXiv cs.LG</p>
+
+<p>[一句话总结]：CrossPool通过KV-Cache和权重解聚技术优化了多LLM服务中的冷MoE模型推理效率，有效缓解了GPU内存压力，提升了资源利用率和服务性能。</p>
+
+<p>[关键词]：多LLM服务、冷MoE模型、KV-Cache、权重解聚、GPU内存优化</p>
+
+<p>[业务启示]：</p>
+<p>【部署优化】：CrossPool通过解聚模型权重和优化KV-Cache管理，减少了GPU内存占用，使得在资源有限的环境中也能高效部署多LLM服务。</p>
+<p>【资源管理】：该技术有效平衡了模型权重和KV-Cache的内存使用，降低了冷模型在低请求频率下的资源浪费，提高了整体资源利用率。</p>
+<p>【性能提升】：通过优化内存使用和请求调度，CrossPool提升了冷MoE模型的推理速度和响应效率，增强了用户体验。</p>
+
+<p>[背景介绍]：</p>
+<p>CrossPool是arXiv cs.LG推出的优化技术，旨在解决多LLM服务中冷MoE模型的GPU内存问题。此前，大多数稀疏MoE模型在低请求频率下会占用大量GPU内存，导致资源浪费。现在，CrossPool通过KV-Cache和权重解聚技术，有效缓解了这一问题，提升了多LLM服务的整体效率和资源利用率。</p>
+
+<p>[技术和创新点]：</p>
+<p>KV-Cache优化: 通过动态管理KV-Cache，减少冷模型的内存占用。</p>
+<p>权重解聚: 将模型权重解聚为更小的单元，按需加载，降低内存压力。</p>
+<p>请求调度: 优化请求调度策略，确保冷模型在低请求频率下的高效处理。</p>
+<p>内存管理: 引入智能内存管理机制，平衡模型权重和KV-Cache的内存使用。</p>
+<p>多LLM支持: 提供对多种LLM模型的高效支持，提升了服务的灵活性和可扩展性。</p>
+
+<p>[效果总结]：</p>
+<p>CrossPool在多LLM服务中的冷MoE模型推理效率方面有显著提升。通过KV-Cache和权重解聚技术，该方法有效减少了GPU内存占用，提升了资源利用率和服务性能，使得在资源有限的环境中也能高效部署多LLM服务。</p>
+
+<hr>
+<li><strong></strong>: https://arxiv.org/abs/2606.24506v1</li>
+<li><strong></strong>: 中</li>
+<li><strong></strong>: 🟡关注</li>
+<li><strong></strong>: 深读</li>
+
+<h2>📊 行业趋势</h2>
+<p>【行业趋势】DeepSeek R1</p>
+
+<li><strong></strong>: https://github.com/deepseek-ai/DeepSeek-R1</li>
+<li><strong></strong>: 中</li>
+
+<h2>🤖 AI-Agent</h2>
+<p>【AI-Agent】🎉 DeepSeek-V4 预览版本发布，具备世界顶级推理性能，Agent 能力大幅提高，已在网页端、APP 和 API 上线，点击查看详情。</p>
+
+<li><strong></strong>: https://mp.weixin.qq.com/s/8bxXqS2R8Fx5-1TLDBiEDg</li>
+<li><strong></strong>: 中</li>
+
+<h2>⚡ LLM推理</h2>
+<hr>
+<p>📌 文末汇总</p>
+<li>今日最值得深读: Concordia: JIT-Compiled Persistent-Kernel Checkpoi; The Serialized Bridge: Understanding and Recoverin</li>
+<li>今日可跳过: 无</li>
+<li>待观察趋势(跨条目): 推理优化技术持续迭代，Agent框架正在整合</li>
+
+<h2>反向链接</h2>
+
+<blockquote>[!info] 相关笔记</blockquote>
+<blockquote>- [[Weekly_2026-W26|本周周报]]</blockquote>
+<blockquote>- [[技术收敛_2026-06|本月技术收敛]]</blockquote>
+<blockquote>- [[4_AI情报洞察/技术洞察/多卡协同/多卡极致推理系统技术规划报告---以终为始版|多卡协同技术洞察]]</blockquote>
+
+
+
+<h2>分类统计</h2>
+
+<li>热点技术: 14 条</li>
+<li>热点事件: 3 条</li>
+<li>AI-Agent: 1 条</li>
+<li>行业趋势: 1 条</li>
+<li>多模态推理: 1 条</li>
+
+
+<h2>关联事件</h2>
+
+<li>b603f9451b332e71</li>
+<li>7d2d819a973a395e</li>
+<li>cec16bd33448bd90</li>
+<li>8fa474af317baaa6</li>
+<li>fe9919ab390e445f</li>
+<li>cf98f11e6089bfe2</li>
+<li>78ab5d971af6600c</li>
+<li>e4d77b057c6d7b46</li>
+<li>118c23a1fd2b4af3</li>
+<li>7cd116c801974360</li>
+
+
+<h2>反向链接</h2>
+
+<blockquote>[!info] 相关笔记</blockquote>
+<blockquote>- [[Weekly_2026-W26|本周周报]]</blockquote>
+<blockquote>- [[技术收敛_2026-06|本月技术收敛]]</blockquote>
+<blockquote>- [[4_AI情报洞察/技术洞察/多卡协同/多卡极致推理系统技术规划报告---以终为始版|多卡协同技术洞察]]</blockquote>
+
+<hr>
+
+<strong></strong>: 2026-06-24T12:16:56.051821
+<strong></strong>: 80af53ac4f59d0b0
+
+        </div>
+    </div>
+</body>
+</html>

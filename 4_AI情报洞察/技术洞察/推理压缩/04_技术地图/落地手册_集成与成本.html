@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>推理压缩落地手册 — 集成·成本·依赖</title>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+:root {
+  --bg:#0a0e1a; --surface:#131927; --surface2:#1c2333; --border:#2d3748;
+  --text:#e2e8f0; --text-dim:#8b95a8; --accent:#60a5fa;
+  --green:#22c55e; --yellow:#eab308; --orange:#f97316; --red:#ef4444; --purple:#a78bfa;
+}
+body { font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif; background:var(--bg); color:var(--text); line-height:1.7; font-size:14px; }
+header { background:linear-gradient(135deg,#0a1a0a,#1a1a0a 50%,#0a0a1a); padding:28px; }
+header h1 { font-size:22px; color:#fff; margin-bottom:6px; }
+header .sub { font-size:12px; color:rgba(255,255,255,0.7); }
+.content { max-width:1400px; margin:0 auto; padding:24px 28px 80px; }
+h2 { font-size:18px; color:var(--accent); border-bottom:2px solid var(--border); padding-bottom:8px; margin:32px 0 14px; }
+h3 { font-size:15px; color:var(--purple); margin:18px 0 10px; }
+table { width:100%; border-collapse:collapse; margin:12px 0; font-size:12px; }
+th { background:var(--surface2); padding:9px; text-align:left; border-bottom:2px solid var(--border); font-size:11px; }
+td { padding:8px; border-bottom:1px solid var(--border); vertical-align:top; }
+.note { background:rgba(96,165,250,0.05); border:1px solid rgba(96,165,250,0.15); border-radius:10px; padding:14px; margin:14px 0; font-size:13px; color:var(--text-dim); line-height:1.8; }
+.note strong { color:var(--accent); }
+.warn { background:rgba(239,68,68,0.08); border:1px solid rgba(239,68,68,0.2); border-radius:10px; padding:14px; margin:14px 0; font-size:13px; color:var(--text-dim); }
+.warn strong { color:var(--red); }
+.g { color:var(--green); } .y { color:var(--yellow); } .o { color:var(--orange); } .r { color:var(--red); }
+.dep-box { background:var(--surface); border:1px solid var(--border); border-left:3px solid var(--orange); border-radius:8px; padding:12px 16px; margin:8px 0; }
+.dep-box .dn { font-size:13px; font-weight:700; color:var(--accent); }
+.dep-box .dd { font-size:12px; color:var(--text-dim); margin-top:4px; line-height:1.7; }
+</style>
+</head>
+<body>
+<header>
+  <h1>🛠️ 推理压缩落地手册</h1>
+  <div class="sub">集成成本 · 依赖链 · 版本兼容 · 隐藏代价 · 能耗 · 全集图配套文件 · v1.0 / 2026-06</div>
+</header>
+<div class="content">
+
+<div class="note">
+  <strong>本手册解决蓝军4/18/22/24/27的挑战：</strong>全集图负责"导航"，验证报告负责"验证"，本手册负责"落地"。<br>
+  <strong>六大维度：</strong>① 开发人月成本 ② 技术依赖链 ③ 版本兼容性 ④ 隐藏代价 ⑤ 能耗影响 ⑥ 开源维护状态
+</div>
+
+<!-- ========== 一、开发人月 ========== -->
+<h2>💰 一、开发人月成本</h2>
+<div class="warn"><strong>蓝军27挑战：</strong>ROI矩阵标"高/低"太粗。3人月和12人月差异是4倍。</div>
+
+<table>
+<tr><th>技术</th><th>集成方式</th><th>开发人月</th><th>团队规模</th><th>周期</th><th>成本级别</th></tr>
+<tr><td><strong>AWQ INT4</strong></td><td>调用现成工具(autoAWQ)</td><td class="g">0.5人月</td><td>1人</td><td>1-2周</td><td class="g">★ 极低</td></tr>
+<tr><td><strong>GPTQ INT4</strong></td><td>调用autoGPTQ</td><td class="g">0.5人月</td><td>1人</td><td>1-2周</td><td class="g">★ 极低</td></tr>
+<tr><td><strong>GGUF</strong></td><td>llama.cpp convert</td><td class="g">0.3人月</td><td>1人</td><td>3天</td><td class="g">★ 极低</td></tr>
+<tr><td><strong>vLLM部署</strong></td><td>PagedAttention开箱</td><td class="g">0.5人月</td><td>1人</td><td>1周</td><td class="g">★ 极低</td></tr>
+<tr><td><strong>FlashAttention</strong></td><td>pip install</td><td class="g">0.2人月</td><td>1人</td><td>2天</td><td class="g">★ 极低</td></tr>
+<tr><td><strong>投机解码</strong></td><td>vLLM配置开启</td><td class="y">1-2人月</td><td>1人</td><td>2-4周</td><td class="y">★★ 低</td></tr>
+<tr><td><strong>SnapKV</strong></td><td>monkey-patch attention</td><td class="y">3人月</td><td>1-2人</td><td>1-2月</td><td class="y">★★★ 中</td></tr>
+<tr><td><strong>Block-GTQ</strong></td><td>自定义量化kernel</td><td class="o">4-6人月</td><td>2人</td><td>2-3月</td><td class="o">★★★★ 高</td></tr>
+<tr><td><strong>KIVI 2bit</strong></td><td>自定义CUDA kernel</td><td class="o">6人月</td><td>2-3人</td><td>3月</td><td class="o">★★★★ 高</td></tr>
+<tr><td><strong>DeepEP</strong></td><td>分布式系统改造</td><td class="r">12人月</td><td>3-4人</td><td>4-6月</td><td class="r">★★★★★ 极高</td></tr>
+<tr><td><strong>DistServe分离式</strong></td><td>架构级改造</td><td class="r">12-18人月</td><td>4-5人</td><td>6月</td><td class="r">★★★★★ 极高</td></tr>
+</table>
+<div class="note"><strong>成本决策：</strong>0.5人月→直接做。3人月→需POC验证。6人月→需立项。12人月→需战略投入。</div>
+
+<!-- ========== 二、技术依赖链 ========== -->
+<h2>🔗 二、技术依赖链</h2>
+<div class="warn"><strong>蓝军22挑战：</strong>技术依赖链未标注。上游变化可能导致下游失效。</div>
+
+<div class="dep-box">
+  <div class="dn">AWQ INT4 量化</div>
+  <div class="dd">
+    <strong>依赖：</strong>autoAWQ工具 → PyTorch → CUDA<br>
+    <strong>权重格式依赖：</strong>需要HuggingFace格式权重 → 转AWQ格式<br>
+    <strong>框架依赖：</strong>vLLM/SGLang原生支持AWQ格式<br>
+    <strong>风险：</strong>低。工具链成熟。
+  </div>
+</div>
+
+<div class="dep-box">
+  <div class="dn">SnapKV（KV稀疏化）</div>
+  <div class="dd">
+    <strong>依赖：</strong>特定attention实现 → FlashAttention版本兼容<br>
+    <strong>模型架构依赖：</strong>需要标准MHA/GQA（MLA不兼容！）<br>
+    <strong>框架依赖：</strong>vLLM monkey-patch（非原生集成，升级vLLM可能失效）<br>
+    <strong>⚠️ 关键风险：</strong>vLLM大版本升级后monkey-patch可能break
+  </div>
+</div>
+
+<div class="dep-box">
+  <div class="dn">KIVI（2bit KV量化）</div>
+  <div class="dd">
+    <strong>依赖：</strong>自定义CUDA kernel → CUDA版本<br>
+    <strong>硬件依赖：</strong>需要Ampere+(sm_80+) → 旧GPU不兼容<br>
+    <strong>框架依赖：</strong>需要修改vLLM的KV cache管理层 → 深度侵入<br>
+    <strong>⚠️ 关键风险：</strong>每次vLLM升级都需要重新适配kernel
+  </div>
+</div>
+
+<div class="dep-box">
+  <div class="dn">DeepEP（MoE通信）</div>
+  <div class="dd">
+    <strong>依赖：</strong>DeepSeek架构 → 特定MoE routing实现<br>
+    <strong>硬件依赖：</strong>H100/H800(InfiniBand) → A100/Ethernet效果差<br>
+    <strong>网络依赖：</strong>RDMA → TCP网络效果降50%+<br>
+    <strong>⚠️ 关键风险：</strong>仅适用于DeepSeek类MoE，Mixtral/Llama MoE不兼容
+  </div>
+</div>
+
+<div class="dep-box">
+  <div class="dn">Block-GTQ（RoPE-aware KV量化）</div>
+  <div class="dd">
+    <strong>依赖：</strong>RoPE位置编码 → 非RoPE模型(如ALiBi)不适用<br>
+    <strong>计算依赖：</strong>频域分析模块 → 额外计算开销<br>
+    <strong>⚠️ 关键风险：</strong>模型换位置编码方案后失效
+  </div>
+</div>
+
+<!-- ========== 三、版本兼容性 ========== -->
+<h2>🔄 三、版本兼容性矩阵</h2>
+<div class="warn"><strong>蓝军22/24挑战：</strong>"生产可用"标注缺乏验证。代码可能已过时。</div>
+
+<table>
+<tr><th>技术</th><th>vLLM 0.6+</th><th>vLLM 0.5</th><th>SGLang</th><th>TensorRT-LLM</th><th>llama.cpp</th><th>最后更新</th></tr>
+<tr><td>AWQ INT4</td><td class="g">✅原生</td><td class="g">✅原生</td><td class="g">✅</td><td class="g">✅</td><td class="g">✅GGUF</td><td class="g">持续维护</td></tr>
+<tr><td>GPTQ</td><td class="g">✅原生</td><td class="g">✅原生</td><td class="g">✅</td><td class="g">✅</td><td class="g">✅GGUF</td><td class="g">持续维护</td></tr>
+<tr><td>PagedAttention</td><td class="g">✅核心</td><td class="g">✅核心</td><td class="r">❌</td><td class="y">◐In-flight</td><td class="r">❌</td><td class="g">持续维护</td></tr>
+<tr><td>FlashAttention</td><td class="g">✅v3集成</td><td class="g">✅v2</td><td class="g">✅</td><td class="g">✅自有</td><td class="r">❌</td><td class="g">活跃</td></tr>
+<tr><td>投机解码</td><td class="g">✅支持</td><td class="y">◐部分</td><td class="g">✅</td><td class="g">✅</td><td class="r">❌</td><td class="g">活跃</td></tr>
+<tr><td>SnapKV</td><td class="y">◐PR未合并</td><td class="r">❌</td><td class="y">◐内置</td><td class="r">❌</td><td class="r">❌</td><td class="o">3月前</td></tr>
+<tr><td>KIVI</td><td class="r">❌需适配</td><td class="r">❌</td><td class="r">❌</td><td class="r">❌</td><td class="r">❌</td><td class="r">6月未更新</td></tr>
+<tr><td>DeepEP</td><td class="r">❌独立库</td><td class="r">❌</td><td class="r">❌</td><td class="r">❌</td><td class="r">❌</td><td class="g">DeepSeek维护</td></tr>
+</table>
+<div class="note"><strong>⚠️ 注意：</strong>KIVI代码6个月未更新，与最新vLLM(0.6+)不兼容。标"TRL3"但实际可用性低于标注。</div>
+
+<!-- ========== 四、隐藏代价 ========== -->
+<h2>⚠️ 四、隐藏代价清单</h2>
+<table>
+<tr><th>技术</th><th>表面收益</th><th>隐藏代价</th><th>谁会发现</th></tr>
+<tr><td>INT4量化</td><td>4x内存↓</td><td>需要校准数据集(128-512条) + 量化工具链学习成本</td><td>第一次部署的人</td></tr>
+<tr><td>SnapKV</td><td>8x KV↓</td><td>需要选择keep_ratio参数 + 不同任务最优参数不同</td><td>调参的工程师</td></tr>
+<tr><td>KIVI 2bit</td><td>4x KV↓</td><td>反量化计算开销↑ + 自定义kernel维护成本</td><td>CUDA工程师</td></tr>
+<tr><td>投机解码</td><td>2-3x吞吐↑</td><td>草稿模型额外显存 + 验证失败时反而变慢 + 接受率波动</td><td>监控SRE</td></tr>
+<tr><td>DeepEP</td><td>MoE通信↓</td><td>需要InfiniBand网络 + 多节点调试极其困难 + DeepSeek架构绑定</td><td>运维团队</td></tr>
+<tr><td>组合压缩</td><td>叠加收益</td><td>精度损失非线性叠加 + 调试困难(哪个技术导致的问题?)</td><td>所有人</td></tr>
+</table>
+
+<!-- ========== 五、能耗 ========== -->
+<h2>⚡ 五、能耗影响</h2>
+<div class="warn"><strong>蓝军18挑战：</strong>缺能效维度(Joules/token)。内存↓不等于能耗↓。</div>
+
+<table>
+<tr><th>技术</th><th>内存</th><th>计算量</th><th>能耗(tokens/Joule)</th><th>净效果</th></tr>
+<tr><td>INT4量化</td><td class="g">↓75%</td><td class="g">↓40-50%(INT4 Tensor Core)</td><td class="g">↑30-50%</td><td class="g">✅ 能效提升</td></tr>
+<tr><td>SnapKV(8x)</td><td class="g">↓87% KV</td><td class="y">↑5-10%(选择逻辑)</td><td class="g">↑20-30%</td><td class="g">✅ 能效提升</td></tr>
+<tr><td>KIVI 2bit</td><td class="g">↓75% KV</td><td class="o">↑15-25%(反量化)</td><td class="y">↑0-10%</td><td class="y">⚠️ 能效提升有限</td></tr>
+<tr><td>投机解码</td><td class="o">↑(草稿模型)</td><td class="o">↑50-80%(额外计算)</td><td class="y">↓10-20%(但吞吐↑)</td><td class="y">⚠️ 单token能耗↑但总吞吐↑</td></tr>
+<tr><td>DeepEP</td><td>-</td><td class="g">↓(通信减少)</td><td class="g">↑(取决于网络)</td><td class="g">✅ 多节点能效提升</td></tr>
+</table>
+<div class="note"><strong>关键洞察：</strong>INT4量化和SnapKV是能效最优的选择。KIVI虽然省内存但反量化增加的计算可能抵消能耗收益。</div>
+
+<!-- ========== 六、开源维护状态 ========== -->
+<h2>📊 六、开源维护状态</h2>
+<div class="warn"><strong>蓝军24挑战：</strong>"生产可用"≠实际生产可用。需检查维护状态。</div>
+
+<table>
+<tr><th>项目</th><th>Star数</th><th>最近更新</th><th>Issue响应</th><th>生产验证</th><th>信任度</th></tr>
+<tr><td>vLLM</td><td class="g">28k+</td><td class="g">每日</td><td class="g">活跃</td><td class="g">大量公司</td><td class="g">★★★★★</td></tr>
+<tr><td>SGLang</td><td class="g">6k+</td><td class="g">每日</td><td class="g">活跃</td><td class="y">部分公司</td><td class="g">★★★★</td></tr>
+<tr><td>llama.cpp</td><td class="g">65k+</td><td class="g">每日</td><td class="g">活跃</td><td class="g">大量</td><td class="g">★★★★★</td></tr>
+<tr><td>FlashAttention</td><td class="g">12k+</td><td class="g">每周</td><td class="g">活跃</td><td class="g">标配</td><td class="g">★★★★★</td></tr>
+<tr><td>autoAWQ</td><td class="y">2k+</td><td class="y">月度</td><td class="y">中等</td><td class="y">部分</td><td class="y">★★★</td></tr>
+<tr><td>SnapKV</td><td class="y">500+</td><td class="o">3月前</td><td class="o">缓慢</td><td class="o">少量</td><td class="y">★★</td></tr>
+<tr><td>KIVI</td><td class="o">300+</td><td class="r">6月未更新</td><td class="r">停滞</td><td class="r">几乎无</td><td class="r">★</td></tr>
+<tr><td>DeepEP</td><td class="y">3k+</td><td class="g">近期</td><td class="y">中等</td><td class="y">DeepSeek自用</td><td class="y">★★★</td></tr>
+</table>
+
+<!-- ========== 配套系统优化 ========== -->
+<h2>🔧 配套系统优化（非压缩但必须搭配）</h2>
+<div class="warn"><strong>重要：</strong>以下技术<strong>不是压缩技术</strong>（不减少数据量），但它们是压缩技术的<strong>必要配套</strong>。压缩+系统优化=最佳效果。</div>
+<table>
+<tr><th>技术</th><th>类别</th><th>为什么不是压缩</th><th>为什么必须搭配</th></tr>
+<tr><td><strong>PagedAttention</strong></td><td>内存管理</td><td>不减少KV，只分页管理</td><td>SnapKV淘汰+PagedAttn分页=高效KV管理</td></tr>
+<tr><td><strong>FlashAttention</strong></td><td>算子优化</td><td>不减少数据，只优化IO</td><td>KIVI量化+FlashAttn融合=低精度高效计算</td></tr>
+<tr><td><strong>连续批处理</strong></td><td>调度优化</td><td>不减少数据，只优化batch</td><td>INT4省的内存→连续批处理转化为更多并发</td></tr>
+<tr><td><strong>投机解码</strong></td><td>计算加速</td><td>不减少数据，并行预测</td><td>INT4+投机解码=成本最低+速度最快</td></tr>
+<tr><td><strong>DistServe</strong></td><td>架构优化</td><td>不减少数据，分离PD</td><td>分离式+KV压缩=Prefill/Decode独立优化</td></tr>
+<tr><td><strong>DeepEP</strong></td><td>通信库</td><td>不压缩通信，优化传输</td><td>ExpertQuant(压缩)+DeepEP(传输)=最优MoE</td></tr>
+</table>
+<div class="note"><strong>组合公式：</strong>压缩技术（减数据量） + 系统优化（提效率） = 生产级推理服务<br><strong>标准生产栈：</strong>AWQ INT4 + PagedAttention + FlashAttention + 连续批处理 + 投机解码</div>
+
+<!-- ========== 七、决策树 ========== -->
+<h2>🎯 七、综合决策树</h2>
+<div class="note">
+  <strong>第1步：预算多少？</strong><br>
+  0.5人月 → AWQ INT4 + vLLM + FlashAttn（开箱即用）<br>
+  1-2人月 → + 投机解码 + SnapKV插件<br>
+  3-6人月 → + KIVI/Block-GTQ深度集成<br>
+  12人月+ → + DeepEP/DistServe架构改造<br><br>
+  <strong>第2步：硬件是什么？</strong><br>
+  H100 → INT4 + FP8 + FlashAttn v3<br>
+  A100 → INT4 + FlashAttn v2（无FP8）<br>
+  CPU → GGUF + llama.cpp（不碰KV压缩）<br>
+  多节点IB → DeepEP（否则不要碰）<br><br>
+  <strong>第3步：场景是什么？</strong><br>
+  Agent多轮 → SnapKV必须（KV累积）<br>
+  代码助手 → 不要INT4以下（代码敏感）<br>
+  长上下文 → SnapKV + Block-GTQ<br>
+  MoE推理 → DeepEP（否则通信瓶颈）<br><br>
+  <strong>第4步：能接受多大风险？</strong><br>
+  低风险 → 只用原生集成(AWQ/PagedAttn/FlashAttn)<br>
+  中风险 → 插件级(SnapKV/投机解码)<br>
+  高风险 → 自定义kernel(KIVI/Block-GTQ)<br>
+  极高风险 → 架构改造(DeepEP/DistServe)
+</div>
+
+<div class="note" style="margin-top:24px">
+  <strong>📌 统一评级：</strong>本手册的成本/维护数据与全集图的TRL、验证报告的精度，统一汇总为<strong>P-Level评级</strong>。详见<a href="验证报告_基准与安全.html#五">验证报告第五章</a>。<br>
+  <strong>📌 数据截止日期：2026-06-28</strong> | 框架版本基于vLLM 0.6+ / SGLang最新 / TensorRT-LLM 0.13+<br>
+  <strong>📌 多租户注意：</strong>本手册假设单租户场景。多租户推理服务请参考<a href="验证报告_基准与安全.html#七">验证报告第七章</a>。<br>
+  <strong>📌 三文件体系：</strong><br>
+  <strong>全集图</strong>(导航) → <a href="推理压缩技术全集图_展开版.html">用什么技术？</a><br>
+  <strong>验证报告</strong>(验证) → <a href="验证报告_基准与安全.html">用了会怎样？</a><br>
+  <strong>落地手册</strong>(落地) → 本文件(怎么集成？花多少？)
+</div>
+
+</div>
+</body>
+</html>

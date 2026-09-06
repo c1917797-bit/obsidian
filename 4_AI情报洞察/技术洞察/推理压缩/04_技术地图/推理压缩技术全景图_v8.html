@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>推理压缩技术全景图 v8</title>
+<style>
+:root{--bg:#0a0e1a;--sf:#131927;--s2:#1c2333;--bd:#2d3748;--tx:#e2e8f0;--dm:#8b95a8;--ac:#60a5fa;--gr:#22c55e;--yl:#eab308;--or:#f97316;--pp:#a78bfa}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,"PingFang SC",sans-serif;background:var(--bg);color:var(--tx);font-size:13px;line-height:1.6}
+header{background:linear-gradient(135deg,#0c1f14,#1f1908 50%,#1a0c20);padding:24px 28px}
+header h1{font-size:20px;color:#fff;margin-bottom:4px}
+header .sub{font-size:11px;color:rgba(255,255,255,.6)}
+.content{max-width:1400px;margin:0 auto;padding:20px 28px 60px}
+.note{background:rgba(96,165,250,.05);border:1px solid rgba(96,165,250,.15);border-radius:10px;padding:12px 16px;margin-bottom:16px;font-size:11px;color:var(--dm)}
+.note strong{color:var(--ac)}
+.sec{font-size:16px;font-weight:700;color:var(--ac);margin:24px 0 12px;padding-bottom:6px;border-bottom:2px solid var(--bd)}
+table{width:100%;border-collapse:collapse;font-size:12px;margin:12px 0}
+th,td{padding:10px 14px;text-align:center;border:1px solid var(--bd)}
+th{background:var(--s2);font-weight:700}
+td.obj{text-align:left;font-weight:700;background:var(--sf)}
+.dir-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:8px;margin:12px 0}
+.dc{background:var(--sf);border:1px solid var(--bd);border-radius:8px;padding:10px 12px}
+.dc .dn{font-weight:700;margin-bottom:4px}
+.dc .ct{font-size:22px;font-weight:800;color:var(--ac)}
+.dc .pp{font-size:10px;color:var(--dm);margin-top:4px}
+.tier{display:flex;gap:12px;margin:12px 0}
+.tb{flex:1;background:var(--sf);border:1px solid var(--bd);border-radius:10px;padding:14px;text-align:center}
+.tb .n{font-size:28px;font-weight:800}
+.tb .l{font-size:11px;color:var(--dm)}
+.blank{background:rgba(167,139,250,.05);border:1px solid rgba(167,139,250,.2);border-radius:10px;padding:14px;margin:8px 0}
+.blank .bt{font-weight:700;color:var(--pp)}
+.blank .bd2{font-size:11px;color:var(--dm);margin-top:4px}
+</style></head><body>
+<header>
+<h1>推理压缩技术全景图 v8（数据驱动版）</h1>
+<div class="sub">inference_optimization_full.json (17352 papers) + inference_compression_v8.json (2555 papers) | 2026-06-29</div>
+</header>
+<div class="content">
+<div class="note">
+<strong>数据来源：</strong>8个顶会(ICLR/NeurIPS/ICML/CVPR/ACL/EMNLP/AISTATS + ICLR 2026)录用论文 | 2019-2026<br>
+<strong>全量数据库：</strong>17352篇推理优化 | <strong>压缩专用：</strong>2555篇<br>
+<strong>验证命令：</strong>python query_papers.py --stats
+</div>
+<div class="sec">数据库概览</div>
+<div class="tier">
+<div class="tb"><div class="n">17352</div><div class="l">全量推理优化</div></div>
+<div class="tb" style="border-color:var(--yl)"><div class="n" style="color:var(--yl)">80</div><div class="l">Tier 1 必读</div></div>
+<div class="tb" style="border-color:var(--ac)"><div class="n" style="color:var(--ac)">942</div><div class="l">Tier 2 推荐</div></div>
+<div class="tb"><div class="n">1530</div><div class="l">Tier 3 索引</div></div>
+</div>
+<div class="sec">4对象 x 5方法 压缩矩阵（v8数据库 2555 篇实际计算）</div>
+<table>
+<tr><th>对象\方法</th>
+<th>量化</th>
+<th>剪枝</th>
+<th>稀疏化</th>
+<th>蒸馏</th>
+<th>低秩</th>
+<th>合计</th></tr>
+<tr><td class="obj">参数(权重)</td>
+<td style="color:var(--gr)">99</td>
+<td style="color:var(--gr)">59</td>
+<td style="color:var(--gr)">65</td>
+<td style="color:var(--gr)">21</td>
+<td style="color:var(--gr)">141</td>
+<td style="font-weight:700">385</td></tr>
+<tr><td class="obj">激活值</td>
+<td style="">42</td>
+<td style="">9</td>
+<td style="">24</td>
+<td style="">2</td>
+<td style="">10</td>
+<td style="font-weight:700">87</td></tr>
+<tr><td class="obj">KV Cache</td>
+<td style="color:var(--yl);font-size:16px">25</td>
+<td style="">5</td>
+<td style="color:var(--yl);font-size:16px">15</td>
+<td style="">3</td>
+<td style="">9</td>
+<td style="font-weight:700">57</td></tr>
+<tr><td class="obj">通信</td>
+<td style="">4</td>
+<td style="color:var(--pp);font-size:16px">0</td>
+<td style="">7</td>
+<td style="color:var(--pp);font-size:16px">1</td>
+<td style="">5</td>
+<td style="font-weight:700">17</td></tr>
+<tr style="background:var(--s2);font-weight:700"><td>合计</td>
+<td>170</td>
+<td>73</td>
+<td>111</td>
+<td>27</td>
+<td>165</td>
+<td>546</td></tr>
+</table>
+<div class="sec">技术方向分布（full数据库 17352 篇）</div>
+<div class="dir-grid">
+<div class="dc"><div class="dn">注意力优化</div><div class="ct">1472</div><div class="pp">[90ref] Learning to (Learn at Test Time): R<br>[47ref] World Model on Million-Length Video</div></div>
+<div class="dc"><div class="dn">剪枝/稀疏</div><div class="ct">985</div><div class="pp">[90ref] The Unreasonable Ineffectiveness of<br>[34ref] DuoAttention: Efficient Long-Contex</div></div>
+<div class="dc"><div class="dn">推理服务</div><div class="ct">542</div><div class="pp">[12ref] Beyond Perplexity: Multi-dimensiona<br>[11ref] Diffusion Self-Distillation for Zer</div></div>
+<div class="dc"><div class="dn">蒸馏</div><div class="ct">478</div><div class="pp">[12ref] PromptKD: Distilling Student-Friend<br>[11ref] LLaVA-MoD: Making LLaVA Tiny via Mo</div></div>
+<div class="dc"><div class="dn">低秩</div><div class="ct">334</div><div class="pp">[37ref] SVD-LLM: Truncation-aware Singular <br>[18ref] SVDQuant: Absorbing Outliers by Low</div></div>
+<div class="dc"><div class="dn">通信优化</div><div class="ct">333</div><div class="pp">[16ref] Cut the Crap: An Economical Communi<br>[13ref] Shortcut-connected Expert Paralleli</div></div>
+<div class="dc"><div class="dn">量化</div><div class="ct">323</div><div class="pp">[87ref] SpinQuant: LLM Quantization with Le<br>[28ref] Q-DiT: Accurate Post-Training Quant</div></div>
+<div class="dc"><div class="dn">MoE</div><div class="ct">190</div><div class="pp">[27ref] BiMediX: Bilingual Medical Mixture <br>[22ref] Time-MoE: Billion-Scale Time Series</div></div>
+<div class="dc"><div class="dn">长上下文</div><div class="ct">126</div><div class="pp">[90ref] Learning to (Learn at Test Time): R<br>[51ref] Retrieval Head Mechanistically Expl</div></div>
+<div class="dc"><div class="dn">KV Cache</div><div class="ct">116</div><div class="pp">[87ref] SpinQuant: LLM Quantization with Le<br>[35ref] LOOK-M: Look-Once Optimization in K</div></div>
+<div class="dc"><div class="dn">投机解码</div><div class="ct">82</div><div class="pp">[21ref] MagicDec: Breaking the Latency-Thro<br>[14ref] Reward-Guided Speculative Decoding </div></div>
+</div>
+<div class="sec">技术成熟度地图</div>
+<table style="font-size:11px">
+<tr><th></th>
+<th>量化</th>
+<th>剪枝</th>
+<th>稀疏化</th>
+<th>蒸馏</th>
+<th>低秩</th>
+</tr>
+<tr><td class="obj">参数(权重)</td>
+<td style="color:var(--gr);font-size:10px"><strong>GPTQ/AWQ TRL5</strong></td>
+<td style="color:var(--gr);font-size:10px"><strong>SparseGPT TRL5</strong></td>
+<td style="color:var(--gr);font-size:10px"><strong>2:4 Sparse TRL5</strong></td>
+<td style="color:var(--gr);font-size:10px"><strong>MiniLLM TRL5</strong></td>
+<td style="color:var(--gr);font-size:10px"><strong>LoRA TRL5</strong></td>
+</tr>
+<tr><td class="obj">激活值</td>
+<td style="color:var(--gr);font-size:10px"><strong>SmoothQuant TRL4</strong></td>
+<td style="color:var(--gr);font-size:10px"><strong>GQA/MQA TRL4</strong></td>
+<td style="color:var(--yl);font-size:10px"><strong>MoE激活 TRL4</strong></td>
+<td style="color:var(--yl);font-size:10px"><strong>扩散蒸馏 TRL3</strong></td>
+<td style="color:var(--yl);font-size:10px"><strong>ASVD TRL3</strong></td>
+</tr>
+<tr><td class="obj">KV Cache</td>
+<td style="color:var(--yl);font-size:10px"><strong>KIVI 2bit TRL3</strong></td>
+<td style="color:var(--yl);font-size:10px"><strong>ThinK TRL3</strong></td>
+<td style="color:var(--yl);font-size:10px"><strong>SnapKV TRL4</strong></td>
+<td style="color:var(--pp);font-size:10px"><strong>0 papers TRL1</strong></td>
+<td style="color:var(--yl);font-size:10px"><strong>ShadowKV TRL3</strong></td>
+</tr>
+<tr><td class="obj">通信</td>
+<td style="color:var(--or);font-size:10px"><strong>ExpertQuant TRL2</strong></td>
+<td style="color:var(--yl);font-size:10px"><strong>MosaicPrune TRL3</strong></td>
+<td style="color:var(--yl);font-size:10px"><strong>DeepEP TRL3</strong></td>
+<td style="color:var(--pp);font-size:10px"><strong>0 papers TRL1</strong></td>
+<td style="color:var(--gr);font-size:10px"><strong>PowerSGD TRL3</strong></td>
+</tr>
+</table>
+<div class="sec">研究空白（数据库验证）</div>
+<div class="blank"><div class="bt">Blank 1: KV Cache x Decoding Distillation (0 papers)</div>
+<div class="bd2">Reasoning models generate 32K+ CoT, KV cache explodes, but 0 papers on Decoding-stage distillation. Query "kv distill" returns 1 paper (SwiftKV, Prefill only).</div></div>
+<div class="blank"><div class="bt">Blank 2: Communication x Distillation (1 paper)</div>
+<div class="bd2">Requires distributed systems + distillation dual expertise. Nearly empty in database.</div></div>
+<div class="blank"><div class="bt">Blank 3: Multi-dimensional Joint KV Compression (<5 papers)</div>
+<div class="bd2">Token x Channel x Head x Bit theoretical 125x, but <5 papers on joint optimization.</div></div>
+<div class="sec">数据验证</div>
+<div class="note">
+All numbers verifiable via:<br>
+<code>python query_papers.py --stats</code><br>
+<code>python query_papers.py "KV cache"</code> (170 papers)<br>
+<code>python query_papers.py "quantization"</code> (324 papers)<br><br>
+<strong>Files:</strong><br>
+inference_optimization_full.json - 17352 papers<br>
+inference_compression_v8.json - 2555 papers<br>
+query_papers.py - query tool
+</div>
+</div></body></html>

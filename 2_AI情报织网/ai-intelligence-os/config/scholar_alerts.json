@@ -1,0 +1,41 @@
+{
+  "_description": "Scholar Alerts关键词源 - 30组arXiv关键词搜索",
+  "_version": "1.0",
+  "_created": "2026-06-28",
+  "_usage": "合并到sources_comprehensive.json的rss_feeds数组中",
+
+  "rss_feeds": [
+    {"id": "scholar_alert_01", "name": "Scholar Alert: Speculative Decoding", "type": "arxiv_keyword", "query": "speculative decoding LLM inference acceleration", "max_results": 15, "priority": "P0", "category": "scholar_alert", "language": "en", "enabled": true},
+    {"id": "scholar_alert_02", "name": "Scholar Alert: Disaggregated Serving", "type": "arxiv_keyword", "query": "disaggregated serving prefill decode LLM", "max_results": 15, "priority": "P0", "category": "scholar_alert", "language": "en", "enabled": true},
+    {"id": "scholar_alert_03", "name": "Scholar Alert: KV Cache Compression", "type": "arxiv_keyword", "query": "KV cache compression offloading LLM long context", "max_results": 15, "priority": "P0", "category": "scholar_alert", "language": "en", "enabled": true},
+    {"id": "scholar_alert_04", "name": "Scholar Alert: MoE Communication", "type": "arxiv_keyword", "query": "MoE communication optimization expert parallel LLM", "max_results": 15, "priority": "P0", "category": "scholar_alert", "language": "en", "enabled": true},
+    {"id": "scholar_alert_05", "name": "Scholar Alert: Agent Workflow", "type": "arxiv_keyword", "query": "agent workflow scheduling runtime execution optimization", "max_results": 15, "priority": "P0", "category": "scholar_alert", "language": "en", "enabled": true},
+    {"id": "scholar_alert_06", "name": "Scholar Alert: Multi-Agent Collaboration", "type": "arxiv_keyword", "query": "multi-agent collaboration tool learning LLM tool-use", "max_results": 15, "priority": "P0", "category": "scholar_alert", "language": "en", "enabled": true},
+    {"id": "scholar_alert_07", "name": "Scholar Alert: Memory Bandwidth", "type": "arxiv_keyword", "query": "memory bandwidth bottleneck LLM decode", "max_results": 15, "priority": "P1", "category": "scholar_alert", "language": "en", "enabled": true},
+    {"id": "scholar_alert_08", "name": "Scholar Alert: LLM Reasoning", "type": "arxiv_keyword", "query": "LLM reasoning test-time compute Monte Carlo Tree Search", "max_results": 15, "priority": "P0", "category": "scholar_alert", "language": "en", "enabled": true},
+    {"id": "scholar_alert_09", "name": "Scholar Alert: GUI Agent", "type": "arxiv_keyword", "query": "GUI agent web agent computer use LLM", "max_results": 15, "priority": "P0", "category": "scholar_alert", "language": "en", "enabled": true},
+    {"id": "scholar_alert_10", "name": "Scholar Alert: Agent Protocol MCP", "type": "arxiv_keyword", "query": "agent protocol model context protocol MCP A2A", "max_results": 15, "priority": "P0", "category": "scholar_alert", "language": "en", "enabled": true},
+    {"id": "scholar_alert_11", "name": "Scholar Alert: Agent Safety", "type": "arxiv_keyword", "query": "multi-agent coordination safety agent collaboration", "max_results": 15, "priority": "P1", "category": "scholar_alert", "language": "en", "enabled": true},
+    {"id": "scholar_alert_12", "name": "Scholar Alert: Ascend NPU", "type": "arxiv_keyword", "query": "Ascend NPU inference optimization kernel", "max_results": 10, "priority": "P1", "category": "scholar_alert", "language": "en", "enabled": true},
+    {"id": "scholar_alert_13", "name": "Scholar Alert: Edge LLM", "type": "arxiv_keyword", "query": "edge LLM runtime lightweight agent", "max_results": 10, "priority": "P1", "category": "scholar_alert", "language": "en", "enabled": true},
+    {"id": "scholar_alert_14", "name": "Scholar Alert: MoE Load Balancing", "type": "arxiv_keyword", "query": "MoE load balancing scheduling LLM", "max_results": 10, "priority": "P1", "category": "scholar_alert", "language": "en", "enabled": true},
+    {"id": "scholar_alert_15", "name": "Scholar Alert: Agent Compliance", "type": "arxiv_keyword", "query": "AI agent compliance security regulation", "max_results": 10, "priority": "P1", "category": "scholar_alert", "language": "en", "enabled": true},
+    {"id": "scholar_alert_16", "name": "Scholar Alert: LLM Pruning", "type": "arxiv_keyword", "query": "LLM pruning sparse model compression SparseGPT Wanda", "max_results": 15, "priority": "P0", "category": "scholar_alert", "language": "en", "enabled": true},
+    {"id": "scholar_alert_17", "name": "Scholar Alert: Activation Quantization", "type": "arxiv_keyword", "query": "LLM activation quantization SmoothQuant QuaRot ZeroQuant inference", "max_results": 15, "priority": "P0", "category": "scholar_alert", "language": "en", "enabled": true},
+    {"id": "scholar_alert_18", "name": "Scholar Alert: Early Exit", "type": "arxiv_keyword", "query": "LLM early exit adaptive inference layer skip branch", "max_results": 15, "priority": "P0", "category": "scholar_alert", "language": "en", "enabled": true},
+
+    {"id": "scholar_alert_19", "name": "Scholar Alert: Weight Quantization", "type": "arxiv_keyword", "query": "weight quantization GPTQ AWQ GGUF LLM inference", "max_results": 15, "priority": "P0", "category": "scholar_alert", "language": "en", "enabled": true},
+    {"id": "scholar_alert_20", "name": "Scholar Alert: Low-Rank Decomposition", "type": "arxiv_keyword", "query": "low-rank decomposition SVD tensor compression LLM inference", "max_results": 15, "priority": "P0", "category": "scholar_alert", "language": "en", "enabled": true},
+    {"id": "scholar_alert_21", "name": "Scholar Alert: Knowledge Distillation", "type": "arxiv_keyword", "query": "knowledge distillation model compression efficient inference LLM", "max_results": 15, "priority": "P0", "category": "scholar_alert", "language": "en", "enabled": true},
+    {"id": "scholar_alert_22", "name": "Scholar Alert: Context Compression", "type": "arxiv_keyword", "query": "context compression prompt compression gist token LLM", "max_results": 15, "priority": "P0", "category": "scholar_alert", "language": "en", "enabled": true},
+    {"id": "scholar_alert_23", "name": "Scholar Alert: Sparse Attention", "type": "arxiv_keyword", "query": "sparse attention block sparse dynamic long context LLM inference", "max_results": 15, "priority": "P0", "category": "scholar_alert", "language": "en", "enabled": true},
+    {"id": "scholar_alert_24", "name": "Scholar Alert: Cross-Layer KV Sharing", "type": "arxiv_keyword", "query": "cross-layer attention sharing MLA multi-head latent YOCO", "max_results": 15, "priority": "P0", "category": "scholar_alert", "language": "en", "enabled": true},
+    {"id": "scholar_alert_25", "name": "Scholar Alert: Linear Attention SSM", "type": "arxiv_keyword", "query": "linear attention state space model Mamba RetNet efficient transformer", "max_results": 15, "priority": "P0", "category": "scholar_alert", "language": "en", "enabled": true},
+
+    {"id": "scholar_alert_26", "name": "Scholar Alert: Position Encoding", "type": "arxiv_keyword", "query": "rotary position embedding RoPE context extension length extrapolation", "max_results": 10, "priority": "P1", "category": "scholar_alert", "language": "en", "enabled": true},
+    {"id": "scholar_alert_27", "name": "Scholar Alert: Attention Architecture", "type": "arxiv_keyword", "query": "grouped query attention sliding window efficient LLM architecture", "max_results": 10, "priority": "P1", "category": "scholar_alert", "language": "en", "enabled": true},
+    {"id": "scholar_alert_28", "name": "Scholar Alert: Token Merging VLM", "type": "arxiv_keyword", "query": "token merging token pooling visual token reduction VLM efficient", "max_results": 10, "priority": "P1", "category": "scholar_alert", "language": "en", "enabled": true},
+    {"id": "scholar_alert_29", "name": "Scholar Alert: Prefix Caching", "type": "arxiv_keyword", "query": "prefix caching KV cache reuse LLM serving system", "max_results": 10, "priority": "P1", "category": "scholar_alert", "language": "en", "enabled": true},
+    {"id": "scholar_alert_30", "name": "Scholar Alert: Batching Scheduling", "type": "arxiv_keyword", "query": "continuous batching chunked prefill LLM serving scheduling", "max_results": 10, "priority": "P1", "category": "scholar_alert", "language": "en", "enabled": true}
+  ]
+}

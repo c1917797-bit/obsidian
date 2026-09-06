@@ -1,0 +1,43 @@
+{
+  "schedules": [
+    {
+      "name": "daily_morning",
+      "time": "08:00",
+      "mode": "daily",
+      "enabled": true
+    },
+    {
+      "name": "daily_evening",
+      "time": "20:00",
+      "mode": "daily",
+      "enabled": true
+    },
+    {
+      "name": "weekly_report",
+      "day": "monday",
+      "time": "09:00",
+      "mode": "weekly",
+      "enabled": true
+    },
+    {
+      "name": "academic_tracking_morning",
+      "time": "07:30",
+      "mode": "baseline_scan",
+      "enabled": true,
+      "description": "每日增量学术论文扫描 (本地conference数据)"
+    }
+  ],
+  "baseline_scan": {
+    "enabled": true,
+    "venues": ["iclr", "nips"],
+    "years": [2025],
+    "min_score": 20.0,
+    "limit_per_problem": 0,
+    "incremental": true,
+    "description": "基于本地ICLR/NeurIPS 2025数据的增量扫描"
+  },
+  "api_key_env": "MINIMAX_API_KEY",
+  "max_concurrent": 2,
+  "retry_on_failure": true,
+  "max_retries": 3
+}

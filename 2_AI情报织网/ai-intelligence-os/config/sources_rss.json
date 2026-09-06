@@ -1,0 +1,334 @@
+{
+  "rss_feeds": [
+    {
+      "id": "hf_daily_papers",
+      "name": "HuggingFace Daily Papers",
+      "url": "https://huggingface.co/api/papers?sort=trending&limit=20",
+      "type": "hf_api",
+      "category": "tech_papers",
+      "priority": "P0",
+      "language": "en"
+    },
+    {
+      "id": "arxiv_cs_LG",
+      "name": "arXiv cs.LG",
+      "url": "http://export.arxiv.org/api/query?search_query=cat:cs.LG&max_results=20&sortBy=submittedDate&sortOrder=descending",
+      "type": "atom",
+      "category": "tech_papers",
+      "priority": "P0",
+      "language": "en"
+    },
+    {
+      "id": "arxiv_cs_CL",
+      "name": "arXiv cs.CL",
+      "url": "http://export.arxiv.org/api/query?search_query=cat:cs.CL&max_results=20&sortBy=submittedDate&sortOrder=descending",
+      "type": "atom",
+      "category": "tech_papers",
+      "priority": "P0",
+      "language": "en"
+    },
+    {
+      "id": "arxiv_cs_AI",
+      "name": "arXiv cs.AI",
+      "url": "http://export.arxiv.org/api/query?search_query=cat:cs.AI&max_results=20&sortBy=submittedDate&sortOrder=descending",
+      "type": "atom",
+      "category": "tech_papers",
+      "priority": "P0",
+      "language": "en"
+    },
+    {
+      "id": "arxiv_cs_DC",
+      "name": "arXiv cs.DC (Distributed Computing)",
+      "url": "http://export.arxiv.org/api/query?search_query=cat:cs.DC&max_results=20&sortBy=submittedDate&sortOrder=descending",
+      "type": "atom",
+      "category": "tech_papers",
+      "priority": "P1",
+      "language": "en"
+    },
+    {
+      "id": "arxiv_cs_MA",
+      "name": "arXiv cs.MA (Multiagent Systems)",
+      "url": "http://export.arxiv.org/api/query?search_query=cat:cs.MA&max_results=20&sortBy=submittedDate&sortOrder=descending",
+      "type": "atom",
+      "category": "tech_papers",
+      "priority": "P1",
+      "language": "en"
+    },
+    {
+      "id": "vllm_releases",
+      "name": "vLLM Releases",
+      "url": "https://github.com/vllm-project/vllm/releases.atom",
+      "type": "atom",
+      "category": "tech_blog",
+      "priority": "P0",
+      "language": "en"
+    },
+    {
+      "id": "pytorch_blog",
+      "name": "PyTorch Blog",
+      "url": "https://pytorch.org/blog/feed.xml",
+      "type": "rss",
+      "category": "tech_blog",
+      "priority": "P0",
+      "language": "en"
+    },
+    {
+      "id": "deepmind_blog",
+      "name": "Google DeepMind Blog",
+      "url": "https://deepmind.google/blog/rss.xml",
+      "type": "rss",
+      "category": "tech_blog",
+      "priority": "P0",
+      "language": "en"
+    },
+    {
+      "id": "openai_blog",
+      "name": "OpenAI Blog",
+      "url": "https://openai.com/blog/rss.xml",
+      "type": "rss",
+      "category": "tech_blog",
+      "priority": "P0",
+      "language": "en"
+    },
+    {
+      "id": "techcrunch_ai",
+      "name": "TechCrunch AI",
+      "url": "https://techcrunch.com/category/artificial-intelligence/feed/",
+      "type": "rss",
+      "category": "news",
+      "priority": "P1",
+      "language": "en"
+    },
+    {
+      "id": "venturebeat_ai",
+      "name": "VentureBeat AI",
+      "url": "https://venturebeat.com/category/ai/feed/",
+      "type": "rss",
+      "category": "news",
+      "priority": "P1",
+      "language": "en"
+    },
+    {
+      "id": "liangzibit",
+      "name": "量子位",
+      "url": "https://www.qbitai.com/rss",
+      "type": "rss",
+      "category": "news_cn",
+      "priority": "P0",
+      "language": "zh"
+    },
+    {
+      "id": "import_ai",
+      "name": "Import AI Newsletter",
+      "url": "https://importai.substack.com/feed",
+      "type": "rss",
+      "category": "news",
+      "priority": "P1",
+      "language": "en"
+    },
+    {
+      "id": "swe_bench",
+      "name": "SWE-Bench Releases",
+      "url": "https://github.com/princeton-nlp/SWE-bench/releases.atom",
+      "type": "atom",
+      "category": "benchmark",
+      "priority": "P0",
+      "language": "en"
+    },
+    {
+      "id": "lmsys_releases",
+      "name": "LMSYS Chatbot Arena Releases",
+      "url": "https://github.com/lm-sys/FastChat/releases.atom",
+      "type": "atom",
+      "category": "benchmark",
+      "priority": "P0",
+      "language": "en"
+    },
+    {
+      "id": "deepseek_releases",
+      "name": "DeepSeek Releases",
+      "url": "https://github.com/deepseek-ai/DeepSeek-V3/releases.atom",
+      "type": "atom",
+      "category": "industry",
+      "priority": "P0",
+      "language": "en"
+    },
+    {
+      "id": "qwen_releases",
+      "name": "Qwen Releases",
+      "url": "https://github.com/QwenLM/Qwen1.5/releases.atom",
+      "type": "atom",
+      "category": "industry",
+      "priority": "P0",
+      "language": "en"
+    },
+    {
+      "id": "autogen_releases",
+      "name": "AutoGen Releases",
+      "url": "https://github.com/microsoft/autogen/releases.atom",
+      "type": "atom",
+      "category": "agent",
+      "priority": "P0",
+      "language": "en"
+    },
+    {
+      "id": "dspy_releases",
+      "name": "DSPy Releases",
+      "url": "https://github.com/stanfordnlp/dspy/releases.atom",
+      "type": "atom",
+      "category": "agent",
+      "priority": "P0",
+      "language": "en"
+    },
+    {
+      "id": "langchain_releases",
+      "name": "LangChain Releases",
+      "url": "https://github.com/langchain-ai/langchain/releases.atom",
+      "type": "atom",
+      "category": "agent",
+      "priority": "P0",
+      "language": "en"
+    },
+    {
+      "id": "llamaindex_releases",
+      "name": "LlamaIndex Releases",
+      "url": "https://github.com/run-llama/llama_index/releases.atom",
+      "type": "atom",
+      "category": "agent",
+      "priority": "P0",
+      "language": "en"
+    },
+    {
+      "id": "vllm_project_releases",
+      "name": "vLLM Project Releases",
+      "url": "https://github.com/vllm-project/vllm/releases.atom",
+      "type": "atom",
+      "category": "inference",
+      "priority": "P0",
+      "language": "en"
+    },
+    {
+      "id": "sglang_releases",
+      "name": "SGLang Releases",
+      "url": "https://github.com/sgl-project/sglang/releases.atom",
+      "type": "atom",
+      "category": "inference",
+      "priority": "P0",
+      "language": "en"
+    },
+    {
+      "id": "deepspeed_releases",
+      "name": "DeepSpeed Releases",
+      "url": "https://github.com/microsoft/DeepSpeed/releases.atom",
+      "type": "atom",
+      "category": "training",
+      "priority": "P0",
+      "language": "en"
+    },
+    {
+      "id": "flashattention_releases",
+      "name": "FlashAttention Releases",
+      "url": "https://github.com/FlashAttention/FlashAttention/releases.atom",
+      "type": "atom",
+      "category": "inference",
+      "priority": "P0",
+      "language": "en"
+    },
+    {
+      "id": "tensorrt_llm_releases",
+      "name": "TensorRT-LLM Releases",
+      "url": "https://github.com/NVIDIA/TensorRT-LLM/releases.atom",
+      "type": "atom",
+      "category": "inference",
+      "priority": "P0",
+      "language": "en"
+    },
+    {
+      "id": "llama_cpp_releases",
+      "name": "llama.cpp Releases",
+      "url": "https://github.com/ggerganov/llama.cpp/releases.atom",
+      "type": "atom",
+      "category": "inference",
+      "priority": "P0",
+      "language": "en"
+    },
+    {
+      "id": "crewai_releases",
+      "name": "CrewAI Releases",
+      "url": "https://github.com/crewAI/crewai/releases.atom",
+      "type": "atom",
+      "category": "agent",
+      "priority": "P1",
+      "language": "en"
+    },
+    {
+      "id": "metagpt_releases",
+      "name": "MetaGPT Releases",
+      "url": "https://github.com/geekan/MetaGPT/releases.atom",
+      "type": "atom",
+      "category": "agent",
+      "priority": "P1",
+      "language": "en"
+    },
+    {
+      "id": "browser_use_releases",
+      "name": "Browser Use Releases",
+      "url": "https://github.com/browser-use/browser-use/releases.atom",
+      "type": "atom",
+      "category": "agent",
+      "priority": "P1",
+      "language": "en"
+    },
+    {
+      "id": "lmsys_arena",
+      "name": "LMSYS Arena",
+      "url": "https://lmarena.ai",
+      "type": "web",
+      "category": "benchmark",
+      "priority": "P0",
+      "language": "en"
+    },
+    {
+      "id": "nvidia_blog",
+      "name": "NVIDIA Developer Blog",
+      "url": "https://developer.nvidia.com/blog/",
+      "type": "web",
+      "category": "industry",
+      "priority": "P0",
+      "language": "en"
+    },
+    {
+      "id": "deepseek",
+      "name": "DeepSeek Official",
+      "url": "https://www.deepseek.com",
+      "type": "web",
+      "category": "industry",
+      "priority": "P0",
+      "language": "en"
+    },
+    {
+      "id": "aider_news",
+      "name": "Aider (LLM Coding)",
+      "url": "https://aider.chat/docs/releases.xml",
+      "type": "rss",
+      "category": "agent",
+      "priority": "P1",
+      "language": "en"
+    },
+    {
+      "id": "open_interpreter",
+      "name": "Open Interpreter Releases",
+      "url": "https://github.com/OpenInterpreter/open-interpreter/releases.atom",
+      "type": "atom",
+      "category": "agent",
+      "priority": "P1",
+      "language": "en"
+    }
+  ],
+  "arxiv_keywords": {
+    "inference_optimization": ["speculative decoding", "kv cache", "quantization", "pruning", "distillation"],
+    "agent": ["multi-agent", "tool use", "reasoning", "autonomous"],
+    "serving": ["serving", "deployment", "inference system"],
+    "moe": ["mixture of experts", "moe"]
+  }
+}

@@ -1,0 +1,1422 @@
+{
+  "total_papers": 27784,
+  "filtered_papers": 2073,
+  "matrix": {
+    "参数(Weights) x 量化(Quant)": 12,
+    "通信(Comm) x 量化(Quant)": 2,
+    "通信(Comm) x 稀疏(Sparse)": 16,
+    "状态(State/KV) x 低秩(LowRank)": 21,
+    "参数(Weights) x 低秩(LowRank)": 35,
+    "参数(Weights) x 稀疏(Sparse)": 9,
+    "状态(State/KV) x 蒸馏(Distill)": 5,
+    "参数(Weights) x 剪枝(Prune)": 14,
+    "状态(State/KV) x 剪枝(Prune)": 28,
+    "状态(State/KV) x 稀疏(Sparse)": 19,
+    "通信(Comm) x 低秩(LowRank)": 17,
+    "参数(Weights) x 蒸馏(Distill)": 3,
+    "通信(Comm) x 剪枝(Prune)": 10,
+    "状态(State/KV) x 量化(Quant)": 2,
+    "通信(Comm) x 蒸馏(Distill)": 2
+  },
+  "top_papers": [
+    {
+      "paper_id": "0b259140f1fa9af5",
+      "title": "LoRAPrune: Structured Pruning Meets Low-Rank Parameter-Efficient Fine-Tuning",
+      "url": "https://aclanthology.org/2024.findings-acl.178.pdf",
+      "venue": "",
+      "year": "",
+      "score": 4,
+      "objects": [
+        "参数(Weights)"
+      ],
+      "methods": [
+        "剪枝(Prune)",
+        "稀疏(Sparse)",
+        "低秩(LowRank)"
+      ]
+    },
+    {
+      "paper_id": "40f84c79625051b3",
+      "title": "FedComLoc: Communication-Efficient Distributed Training of Sparse and Quantized Models",
+      "url": "",
+      "venue": "",
+      "year": "",
+      "score": 3,
+      "objects": [
+        "通信(Comm)"
+      ],
+      "methods": [
+        "量化(Quant)",
+        "稀疏(Sparse)"
+      ]
+    },
+    {
+      "paper_id": "41ed1ec62ddadf71",
+      "title": "Replicate and Quantize: A Plug-and-Play Strategy for Load Balancing in Sparse Mixture-of-Experts LLMs",
+      "url": "",
+      "venue": "",
+      "year": "",
+      "score": 3,
+      "objects": [
+        "通信(Comm)"
+      ],
+      "methods": [
+        "量化(Quant)",
+        "稀疏(Sparse)"
+      ]
+    },
+    {
+      "paper_id": "ae834bae6603dded",
+      "title": "PruneFuse: Efficient Data Selection via Weight Pruning and Network Fusion",
+      "url": "",
+      "venue": "",
+      "year": "",
+      "score": 3,
+      "objects": [
+        "参数(Weights)"
+      ],
+      "methods": [
+        "剪枝(Prune)",
+        "稀疏(Sparse)"
+      ]
+    },
+    {
+      "paper_id": "13b26ec9575f78f4",
+      "title": "QP-SNN: Quantized and Pruned Spiking Neural Networks",
+      "url": "https://openreview.net/pdf?id=MiPyle6Jef",
+      "venue": "",
+      "year": "",
+      "score": 3,
+      "objects": [],
+      "methods": [
+        "量化(Quant)",
+        "剪枝(Prune)",
+        "稀疏(Sparse)"
+      ]
+    },
+    {
+      "paper_id": "e30e96e97c04aa4c",
+      "title": "Efficient Expert Pruning for Sparse Mixture-of-Experts Language Models: Enhancing Performance and Reducing Inference Costs",
+      "url": "",
+      "venue": "",
+      "year": "",
+      "score": 3,
+      "objects": [
+        "通信(Comm)"
+      ],
+      "methods": [
+        "剪枝(Prune)",
+        "稀疏(Sparse)"
+      ]
+    },
+    {
+      "paper_id": "ab8cba5853253377",
+      "title": "SLiM: One-shot Quantized Sparse Plus Low-rank Approximation of LLMs",
+      "url": "",
+      "venue": "",
+      "year": "",
+      "score": 3,
+      "objects": [],
+      "methods": [
+        "量化(Quant)",
+        "稀疏(Sparse)",
+        "低秩(LowRank)"
+      ]
+    },
+    {
+      "paper_id": "8387004270b70a44",
+      "title": "MoreauPruner: Robust Structured Pruning of Large Language Models against Weight Perturbations",
+      "url": "",
+      "venue": "",
+      "year": "",
+      "score": 3,
+      "objects": [
+        "参数(Weights)"
+      ],
+      "methods": [
+        "剪枝(Prune)",
+        "稀疏(Sparse)"
+      ]
+    },
+    {
+      "paper_id": "722744896d7e22b3",
+      "title": "MLAE: Masked LoRA Experts for Visual Parameter-Efficient Fine-Tuning",
+      "url": "",
+      "venue": "",
+      "year": "",
+      "score": 3,
+      "objects": [
+        "参数(Weights)",
+        "通信(Comm)"
+      ],
+      "methods": [
+        "低秩(LowRank)"
+      ]
+    },
+    {
+      "paper_id": "bf04015e7f0e9f1b",
+      "title": "MoE-Pruner: Pruning Mixture-of-Experts Large Language Model using the Hints from Its Router",
+      "url": "",
+      "venue": "",
+      "year": "",
+      "score": 3,
+      "objects": [
+        "通信(Comm)"
+      ],
+      "methods": [
+        "剪枝(Prune)",
+        "稀疏(Sparse)"
+      ]
+    },
+    {
+      "paper_id": "531d741c2e3cef5d",
+      "title": "Structured Mixture-of-Experts LLMs Compression via Singular Value Decomposition",
+      "url": "",
+      "venue": "",
+      "year": "",
+      "score": 3,
+      "objects": [
+        "通信(Comm)"
+      ],
+      "methods": [
+        "剪枝(Prune)",
+        "低秩(LowRank)"
+      ]
+    },
+    {
+      "paper_id": "7479d0c3246a00ea",
+      "title": "Parameter and Memory Efficient Pretraining via Low-rank Riemannian Optimization",
+      "url": "https://openreview.net/pdf?id=i0zzO7Hslk",
+      "venue": "",
+      "year": "",
+      "score": 3,
+      "objects": [
+        "参数(Weights)",
+        "状态(State/KV)"
+      ],
+      "methods": [
+        "低秩(LowRank)"
+      ]
+    },
+    {
+      "paper_id": "24d607e7895f18f4",
+      "title": "SLoPe: Double-Pruned Sparse Plus Lazy Low-Rank Adapter Pretraining of LLMs",
+      "url": "https://openreview.net/pdf?id=lqHv6dxBkj",
+      "venue": "",
+      "year": "",
+      "score": 3,
+      "objects": [],
+      "methods": [
+        "剪枝(Prune)",
+        "稀疏(Sparse)",
+        "低秩(LowRank)"
+      ]
+    },
+    {
+      "paper_id": "e388b1b0bd3bee24",
+      "title": "Bayesian-LoRA: LoRA based Parameter Efficient Fine-Tuning using Optimal Quantization levels and Rank Values trough Differentiable Bayesian Gates",
+      "url": "",
+      "venue": "",
+      "year": "",
+      "score": 3,
+      "objects": [
+        "参数(Weights)"
+      ],
+      "methods": [
+        "量化(Quant)",
+        "低秩(LowRank)"
+      ]
+    },
+    {
+      "paper_id": "6e68994ec7aa4704",
+      "title": "Block-Diagonal LoRA for Eliminating Communication Overhead in Tensor Parallel LoRA Serving",
+      "url": "",
+      "venue": "",
+      "year": "",
+      "score": 3,
+      "objects": [
+        "通信(Comm)"
+      ],
+      "methods": [
+        "剪枝(Prune)",
+        "低秩(LowRank)"
+      ]
+    },
+    {
+      "paper_id": "7ee83cc89b318feb",
+      "title": "MUSTAFAR: Promoting Unstructured Sparsity for KV Cache Pruning in LLM Inference",
+      "url": "",
+      "venue": "",
+      "year": "",
+      "score": 3,
+      "objects": [
+        "状态(State/KV)"
+      ],
+      "methods": [
+        "剪枝(Prune)",
+        "稀疏(Sparse)"
+      ]
+    },
+    {
+      "paper_id": "842a1b92875de384",
+      "title": "$\\text{S}^2$Q-VDiT: Accurate Quantized Video Diffusion Transformer with Salient Data and Sparse Token Distillation",
+      "url": "",
+      "venue": "",
+      "year": "",
+      "score": 3,
+      "objects": [],
+      "methods": [
+        "量化(Quant)",
+        "稀疏(Sparse)",
+        "蒸馏(Distill)"
+      ]
+    },
+    {
+      "paper_id": "50b48c35cac6843a",
+      "title": "QSVD: Efficient Low-rank Approximation for Unified Query-Key-Value Weight Compression in Low-Precision Vision-Language Models",
+      "url": "",
+      "venue": "",
+      "year": "",
+      "score": 3,
+      "objects": [
+        "参数(Weights)",
+        "状态(State/KV)"
+      ],
+      "methods": [
+        "低秩(LowRank)"
+      ]
+    },
+    {
+      "paper_id": "1984a75071330519",
+      "title": "DL-QAT: Weight-Decomposed Low-Rank Quantization-Aware Training for Large Language Models",
+      "url": "https://aclanthology.org/2024.emnlp-industry.10.pdf",
+      "venue": "",
+      "year": "",
+      "score": 3,
+      "objects": [
+        "参数(Weights)"
+      ],
+      "methods": [
+        "量化(Quant)",
+        "低秩(LowRank)"
+      ]
+    },
+    {
+      "paper_id": "cb14330d6994798f",
+      "title": "DLoRA: Distributed Parameter-Efficient Fine-Tuning Solution for Large Language Model",
+      "url": "https://aclanthology.org/2024.findings-emnlp.802.pdf",
+      "venue": "",
+      "year": "",
+      "score": 3,
+      "objects": [
+        "参数(Weights)",
+        "通信(Comm)"
+      ],
+      "methods": [
+        "低秩(LowRank)"
+      ]
+    },
+    {
+      "paper_id": "3672e540bdc60c0b",
+      "title": "MoE-I2: Compressing Mixture of Experts Models through Inter-Expert Pruning and Intra-Expert Low-Rank Decomposition",
+      "url": "https://aclanthology.org/2024.findings-emnlp.612.pdf",
+      "venue": "",
+      "year": "",
+      "score": 3,
+      "objects": [
+        "通信(Comm)"
+      ],
+      "methods": [
+        "剪枝(Prune)",
+        "低秩(LowRank)"
+      ]
+    },
+    {
+      "paper_id": "9a0b7b4212897b31",
+      "title": "Parameter-Efficient Sparsity Crafting from Dense to Mixture-of-Experts for Instruction Tuning on General Tasks",
+      "url": "https://aclanthology.org/2024.emnlp-main.43.pdf",
+      "venue": "",
+      "year": "",
+      "score": 3,
+      "objects": [
+        "参数(Weights)",
+        "通信(Comm)"
+      ],
+      "methods": [
+        "稀疏(Sparse)"
+      ]
+    },
+    {
+      "paper_id": "1794d209ed70588b",
+      "title": "RoLoRA: Fine-tuning Rotated Outlier-free LLMs for Effective Weight-Activation Quantization",
+      "url": "https://aclanthology.org/2024.findings-emnlp.444.pdf",
+      "venue": "",
+      "year": "",
+      "score": 3,
+      "objects": [
+        "参数(Weights)"
+      ],
+      "methods": [
+        "量化(Quant)",
+        "低秩(LowRank)"
+      ]
+    },
+    {
+      "paper_id": "fed0f161c3ac14d1",
+      "title": "RA-LoRA: Rank-Adaptive Parameter-Efficient Fine-Tuning for Accurate 2-bit Quantized Large Language Models",
+      "url": "https://aclanthology.org/2024.findings-acl.933.pdf",
+      "venue": "",
+      "year": "",
+      "score": 3,
+      "objects": [
+        "参数(Weights)"
+      ],
+      "methods": [
+        "量化(Quant)",
+        "低秩(LowRank)"
+      ]
+    },
+    {
+      "paper_id": "5c2ede6697ee008d",
+      "title": "NanoMoE: Scaling Mixture of Experts to Individual Layers for Parameter-Efficient Deep Learning",
+      "url": "",
+      "venue": "",
+      "year": "",
+      "score": 2,
+      "objects": [
+        "参数(Weights)",
+        "通信(Comm)"
+      ],
+      "methods": []
+    },
+    {
+      "paper_id": "b31fe40259ac9b68",
+      "title": "LLM Compression with Convex Optimization—Part 1: Weight Quantization",
+      "url": "",
+      "venue": "",
+      "year": "",
+      "score": 2,
+      "objects": [
+        "参数(Weights)"
+      ],
+      "methods": [
+        "量化(Quant)"
+      ]
+    },
+    {
+      "paper_id": "6eed38545074bf53",
+      "title": "ME-LORA: MEMORY-EFFICIENT BAYESIAN LOW- RANK ADAPTATION FOR LARGE LANGUAGE MODELS",
+      "url": "",
+      "venue": "",
+      "year": "",
+      "score": 2,
+      "objects": [
+        "状态(State/KV)"
+      ],
+      "methods": [
+        "低秩(LowRank)"
+      ]
+    },
+    {
+      "paper_id": "e21508320fa2796a",
+      "title": "Towards better generalization: Weight Decay induces low-rank bias for neural networks",
+      "url": "",
+      "venue": "",
+      "year": "",
+      "score": 2,
+      "objects": [
+        "参数(Weights)"
+      ],
+      "methods": [
+        "低秩(LowRank)"
+      ]
+    },
+    {
+      "paper_id": "7f15c7d36078f642",
+      "title": "Efficient Automated Circuit Discovery in Transformers using Contextual Decomposition",
+      "url": "https://openreview.net/pdf?id=41HlN8XYM5",
+      "venue": "",
+      "year": "",
+      "score": 2,
+      "objects": [
+        "状态(State/KV)"
+      ],
+      "methods": [
+        "低秩(LowRank)"
+      ]
+    },
+    {
+      "paper_id": "6e7142d28cacb906",
+      "title": "Sparse MeZO: Less Parameters for Better Performance in Zeroth-Order LLM Fine-Tuning",
+      "url": "",
+      "venue": "",
+      "year": "",
+      "score": 2,
+      "objects": [
+        "参数(Weights)"
+      ],
+      "methods": [
+        "稀疏(Sparse)"
+      ]
+    },
+    {
+      "paper_id": "5d8cd8738d9a0ffc",
+      "title": "Cached Multi-Lora Composition for Multi-Concept Image Generation",
+      "url": "https://openreview.net/pdf?id=4iFSBgxvIO",
+      "venue": "",
+      "year": "",
+      "score": 2,
+      "objects": [
+        "状态(State/KV)"
+      ],
+      "methods": [
+        "低秩(LowRank)"
+      ]
+    },
+    {
+      "paper_id": "902d4ba48e8c4618",
+      "title": "Memory-Efficient Algorithm Distillation for In-context Reinforcement Learning",
+      "url": "",
+      "venue": "",
+      "year": "",
+      "score": 2,
+      "objects": [
+        "状态(State/KV)"
+      ],
+      "methods": [
+        "蒸馏(Distill)"
+      ]
+    },
+    {
+      "paper_id": "dd49f5e674fc531c",
+      "title": "ExPLoRA: Parameter-Efficient Extended Pre-Training to Adapt Vision Transformers under Domain Shifts",
+      "url": "",
+      "venue": "",
+      "year": "",
+      "score": 2,
+      "objects": [
+        "参数(Weights)"
+      ],
+      "methods": [
+        "低秩(LowRank)"
+      ]
+    },
+    {
+      "paper_id": "2d667a4fb8fdbfcf",
+      "title": "MoDeGPT: Modular Decomposition for Large Language Model Compression",
+      "url": "https://openreview.net/pdf?id=8EfxjTCg2k",
+      "venue": "",
+      "year": "",
+      "score": 2,
+      "objects": [
+        "参数(Weights)"
+      ],
+      "methods": [
+        "低秩(LowRank)"
+      ]
+    },
+    {
+      "paper_id": "15094ba3e964161d",
+      "title": "R-Sparse: Rank-Aware Activation Sparsity for Efficient LLM Inference",
+      "url": "https://openreview.net/pdf?id=9VMW4iXfKt",
+      "venue": "",
+      "year": "",
+      "score": 2,
+      "objects": [],
+      "methods": [
+        "稀疏(Sparse)",
+        "低秩(LowRank)"
+      ]
+    },
+    {
+      "paper_id": "7a63a9606ff65f66",
+      "title": "TranSpa: Towards Efficient Structured Sparse Training for Transformers",
+      "url": "",
+      "venue": "",
+      "year": "",
+      "score": 2,
+      "objects": [],
+      "methods": [
+        "剪枝(Prune)",
+        "稀疏(Sparse)"
+      ]
+    },
+    {
+      "paper_id": "5488cdd92e335e92",
+      "title": "Sparse Attention Decomposition Applied to Circuit Tracing",
+      "url": "",
+      "venue": "",
+      "year": "",
+      "score": 2,
+      "objects": [],
+      "methods": [
+        "稀疏(Sparse)",
+        "低秩(LowRank)"
+      ]
+    },
+    {
+      "paper_id": "1f707719eeedb66a",
+      "title": "Gating is Weighting: Understanding Gated Linear Attention through In-context Learning",
+      "url": "",
+      "venue": "",
+      "year": "",
+      "score": 2,
+      "objects": [
+        "参数(Weights)",
+        "状态(State/KV)"
+      ],
+      "methods": []
+    },
+    {
+      "paper_id": "030ecca2e41746fd",
+      "title": "OwLore: Outlier-weighed Layerwise Sampled Low-Rank Projection for Memory-Efficient LLM Fine-tuning",
+      "url": "",
+      "venue": "",
+      "year": "",
+      "score": 2,
+      "objects": [
+        "状态(State/KV)"
+      ],
+      "methods": [
+        "低秩(LowRank)"
+      ]
+    },
+    {
+      "paper_id": "8fbeaa5a917723d4",
+      "title": "Conditional LoRA Parameter Generation",
+      "url": "",
+      "venue": "",
+      "year": "",
+      "score": 2,
+      "objects": [
+        "参数(Weights)"
+      ],
+      "methods": [
+        "低秩(LowRank)"
+      ]
+    },
+    {
+      "paper_id": "d4cfa2244cb1e072",
+      "title": "LLaMaFlex: Many-in-one LLMs via Generalized Pruning and Weight Sharing",
+      "url": "https://openreview.net/pdf?id=AyC4uxx2HW",
+      "venue": "",
+      "year": "",
+      "score": 2,
+      "objects": [
+        "参数(Weights)"
+      ],
+      "methods": [
+        "剪枝(Prune)"
+      ]
+    },
+    {
+      "paper_id": "b334e7142d5892f5",
+      "title": "H-QLoRA: Enhancing Quantized LLMs with Hierarchical Residual Learning",
+      "url": "",
+      "venue": "",
+      "year": "",
+      "score": 2,
+      "objects": [],
+      "methods": [
+        "量化(Quant)",
+        "低秩(LowRank)"
+      ]
+    },
+    {
+      "paper_id": "c0b70534d4e7dbf2",
+      "title": "FISTAPruner: Layer-wise Post-training Pruning for Large Language Models",
+      "url": "",
+      "venue": "",
+      "year": "",
+      "score": 2,
+      "objects": [],
+      "methods": [
+        "剪枝(Prune)",
+        "稀疏(Sparse)"
+      ]
+    },
+    {
+      "paper_id": "ea2c19d75a7aad9c",
+      "title": "DiRaGNN: Attention-Enhanced Entity Ranking for Sparse Graph Networks",
+      "url": "",
+      "venue": "",
+      "year": "",
+      "score": 2,
+      "objects": [],
+      "methods": [
+        "稀疏(Sparse)",
+        "低秩(LowRank)"
+      ]
+    },
+    {
+      "paper_id": "d0b2127c9a6424be",
+      "title": "CDQuant: Accurate Post-training Weight Quantization of LLMs using Greedy Coordinate Descent",
+      "url": "",
+      "venue": "",
+      "year": "",
+      "score": 2,
+      "objects": [
+        "参数(Weights)"
+      ],
+      "methods": [
+        "量化(Quant)"
+      ]
+    },
+    {
+      "paper_id": "79d9205cc51628f8",
+      "title": "Tensor-GaLore: Memory-Efficient Training via Gradient Tensor Decomposition",
+      "url": "",
+      "venue": "",
+      "year": "",
+      "score": 2,
+      "objects": [
+        "状态(State/KV)"
+      ],
+      "methods": [
+        "低秩(LowRank)"
+      ]
+    },
+    {
+      "paper_id": "fbbd216934ccf05a",
+      "title": "ME-Switch: A Memory-Efficient Expert Switching Framework for Large Language Models",
+      "url": "",
+      "venue": "",
+      "year": "",
+      "score": 2,
+      "objects": [
+        "状态(State/KV)",
+        "通信(Comm)"
+      ],
+      "methods": []
+    },
+    {
+      "paper_id": "9779b268a52b8427",
+      "title": "Locret: Enhancing Eviction in Long-Context LLM Inference with Trained Retaining Heads",
+      "url": "",
+      "venue": "",
+      "year": "",
+      "score": 2,
+      "objects": [
+        "状态(State/KV)"
+      ],
+      "methods": [
+        "剪枝(Prune)"
+      ]
+    },
+    {
+      "paper_id": "5c28c375caf84ee5",
+      "title": "SOLOS: Sparse Optimization For Long Sequence In Context Compression Enhanced LLMs",
+      "url": "",
+      "venue": "",
+      "year": "",
+      "score": 2,
+      "objects": [
+        "状态(State/KV)"
+      ],
+      "methods": [
+        "稀疏(Sparse)"
+      ]
+    },
+    {
+      "paper_id": "6b9b8f18b99c9a3e",
+      "title": "Communication-Efficient Federated Low-Rank Update Algorithm and its Connection to Implicit Regularization",
+      "url": "",
+      "venue": "",
+      "year": "",
+      "score": 2,
+      "objects": [
+        "通信(Comm)"
+      ],
+      "methods": [
+        "低秩(LowRank)"
+      ]
+    },
+    {
+      "paper_id": "6ddcef5c4d05991f",
+      "title": "GEPCode: A Context-Aware 1M-Parameters Graph-Based Language Model for Source Code",
+      "url": "",
+      "venue": "",
+      "year": "",
+      "score": 2,
+      "objects": [
+        "参数(Weights)",
+        "状态(State/KV)"
+      ],
+      "methods": []
+    },
+    {
+      "paper_id": "df2519bd08f35ae9",
+      "title": "Low-Rank Correction for Quantized LLMs",
+      "url": "",
+      "venue": "",
+      "year": "",
+      "score": 2,
+      "objects": [],
+      "methods": [
+        "量化(Quant)",
+        "低秩(LowRank)"
+      ]
+    },
+    {
+      "paper_id": "2f1d422e765223fc",
+      "title": "SV-RAG: LoRA-Contextualizing Adaptation of MLLMs for Long Document Understanding",
+      "url": "https://openreview.net/pdf?id=FDaHjwInXO",
+      "venue": "",
+      "year": "",
+      "score": 2,
+      "objects": [
+        "状态(State/KV)"
+      ],
+      "methods": [
+        "低秩(LowRank)"
+      ]
+    },
+    {
+      "paper_id": "fd055a53a174a59b",
+      "title": "Advancing Text-to-3D Generation with Linearized Lookahead Variational Score Distillation",
+      "url": "",
+      "venue": "",
+      "year": "",
+      "score": 2,
+      "objects": [],
+      "methods": [
+        "剪枝(Prune)",
+        "蒸馏(Distill)"
+      ]
+    },
+    {
+      "paper_id": "5b5992dafcd805ac",
+      "title": "Beyond-Expert Performance with Limited Demonstrations: Efficient Imitation Learning with Double Exploration",
+      "url": "https://openreview.net/pdf?id=FviefuxmeW",
+      "venue": "",
+      "year": "",
+      "score": 2,
+      "objects": [
+        "通信(Comm)"
+      ],
+      "methods": [
+        "低秩(LowRank)"
+      ]
+    },
+    {
+      "paper_id": "f0aa5154f9b88831",
+      "title": "FeDeRA: Efficient Fine-tuning of Language Models in Federated Learning Leveraging Weight Decomposition",
+      "url": "",
+      "venue": "",
+      "year": "",
+      "score": 2,
+      "objects": [
+        "参数(Weights)"
+      ],
+      "methods": [
+        "低秩(LowRank)"
+      ]
+    },
+    {
+      "paper_id": "c180de139355bb63",
+      "title": "Accelerating Inference of Retrieval-Augmented Generation via Sparse Context Selection",
+      "url": "https://openreview.net/pdf?id=HE6pJoNnFp",
+      "venue": "",
+      "year": "",
+      "score": 2,
+      "objects": [
+        "状态(State/KV)"
+      ],
+      "methods": [
+        "稀疏(Sparse)"
+      ]
+    },
+    {
+      "paper_id": "9ca5177be77abed6",
+      "title": "VL-Cache: Sparsity and Modality-Aware KV Cache Compression for Vision-Language Model Inference Acceleration",
+      "url": "https://openreview.net/pdf?id=HMrcv7Q4Ub",
+      "venue": "",
+      "year": "",
+      "score": 2,
+      "objects": [
+        "状态(State/KV)"
+      ],
+      "methods": [
+        "稀疏(Sparse)"
+      ]
+    },
+    {
+      "paper_id": "f93f36bf7a61092e",
+      "title": "Moirai-MoE: Empowering Time Series Foundation Models with Sparse Mixture of Experts",
+      "url": "",
+      "venue": "",
+      "year": "",
+      "score": 2,
+      "objects": [
+        "通信(Comm)"
+      ],
+      "methods": [
+        "稀疏(Sparse)"
+      ]
+    },
+    {
+      "paper_id": "badbcfc984bc1a59",
+      "title": "RandLoRA: Full rank parameter-efficient fine-tuning of large models",
+      "url": "https://openreview.net/pdf?id=Hn5eoTunHN",
+      "venue": "",
+      "year": "",
+      "score": 2,
+      "objects": [
+        "参数(Weights)"
+      ],
+      "methods": [
+        "低秩(LowRank)"
+      ]
+    },
+    {
+      "paper_id": "e870bc93934d91f0",
+      "title": "DLP-LoRA: Efficient Task-Specific LoRA Fusion with a Dynamic, Lightweight Plugin for Large Language Models",
+      "url": "",
+      "venue": "",
+      "year": "",
+      "score": 2,
+      "objects": [
+        "参数(Weights)"
+      ],
+      "methods": [
+        "低秩(LowRank)"
+      ]
+    },
+    {
+      "paper_id": "4dea8b4b06107a73",
+      "title": "Memory-Efficient Fine-Tuning via Structured Neural Network Pruning",
+      "url": "",
+      "venue": "",
+      "year": "",
+      "score": 2,
+      "objects": [
+        "状态(State/KV)"
+      ],
+      "methods": [
+        "剪枝(Prune)"
+      ]
+    },
+    {
+      "paper_id": "c0c323f1dbe14e30",
+      "title": "L4Q: Parameter Efficient Quantization-Aware Fine-Tuning on Large Language Models",
+      "url": "",
+      "venue": "",
+      "year": "",
+      "score": 2,
+      "objects": [
+        "参数(Weights)"
+      ],
+      "methods": [
+        "量化(Quant)"
+      ]
+    },
+    {
+      "paper_id": "775acc36ce37d5a0",
+      "title": "Which Attention Heads Matter for In-Context Learning?",
+      "url": "",
+      "venue": "",
+      "year": "",
+      "score": 2,
+      "objects": [
+        "状态(State/KV)"
+      ],
+      "methods": [
+        "剪枝(Prune)"
+      ]
+    },
+    {
+      "paper_id": "ad9c8ba45e7be58c",
+      "title": "SVD-LLM: Truncation-aware Singular Value Decomposition for Large Language Model Compression",
+      "url": "https://openreview.net/pdf?id=LNYIUouhdt",
+      "venue": "",
+      "year": "",
+      "score": 2,
+      "objects": [
+        "参数(Weights)"
+      ],
+      "methods": [
+        "低秩(LowRank)"
+      ]
+    },
+    {
+      "paper_id": "ecbb39dd180e0ab7",
+      "title": "Policy optimization can be memory-efficient: LLM Alignment Through Successive Policy Re-weighting (SPR)",
+      "url": "",
+      "venue": "",
+      "year": "",
+      "score": 2,
+      "objects": [
+        "参数(Weights)",
+        "状态(State/KV)"
+      ],
+      "methods": []
+    },
+    {
+      "paper_id": "1a5e86949b21433e",
+      "title": "AdaRankGrad: Adaptive Gradient Rank and Moments for Memory-Efficient LLMs Training and Fine-Tuning",
+      "url": "https://openreview.net/pdf?id=LvNROciCne",
+      "venue": "",
+      "year": "",
+      "score": 2,
+      "objects": [
+        "状态(State/KV)"
+      ],
+      "methods": [
+        "低秩(LowRank)"
+      ]
+    },
+    {
+      "paper_id": "0f104c7d8b926e6c",
+      "title": "Channel-Wise Mixed-Precision Quantization for Large Language Models",
+      "url": "",
+      "venue": "",
+      "year": "",
+      "score": 2,
+      "objects": [],
+      "methods": [
+        "量化(Quant)",
+        "剪枝(Prune)"
+      ]
+    },
+    {
+      "paper_id": "8dcda2a552c94d76",
+      "title": "PASER: Post-Training Data Selection for Efficient Pruned Large Language Model Recovery",
+      "url": "",
+      "venue": "",
+      "year": "",
+      "score": 2,
+      "objects": [],
+      "methods": [
+        "剪枝(Prune)",
+        "稀疏(Sparse)"
+      ]
+    },
+    {
+      "paper_id": "c58e7e912084b030",
+      "title": "Weighted Multi-Prompt Learning with Description-free Large Language Model Distillation",
+      "url": "https://openreview.net/pdf?id=NDLmZZWATc",
+      "venue": "",
+      "year": "",
+      "score": 2,
+      "objects": [
+        "参数(Weights)"
+      ],
+      "methods": [
+        "蒸馏(Distill)"
+      ]
+    },
+    {
+      "paper_id": "10a435c5cf186732",
+      "title": "On the Learn-to-Optimize Capabilities of Transformers in In-Context Sparse Recovery",
+      "url": "https://openreview.net/pdf?id=NHhjczmJjo",
+      "venue": "",
+      "year": "",
+      "score": 2,
+      "objects": [
+        "状态(State/KV)"
+      ],
+      "methods": [
+        "稀疏(Sparse)"
+      ]
+    },
+    {
+      "paper_id": "c6fb2fef45a101c8",
+      "title": "LoRC: Low-Rank Compression for LLMs KV Cache with a Progressive Compression Strategy",
+      "url": "",
+      "venue": "",
+      "year": "",
+      "score": 2,
+      "objects": [
+        "状态(State/KV)"
+      ],
+      "methods": [
+        "低秩(LowRank)"
+      ]
+    },
+    {
+      "paper_id": "584ea561ade8e13f",
+      "title": "FlexPrefill: A Context-Aware Sparse Attention Mechanism for Efficient Long-Sequence Inference",
+      "url": "https://openreview.net/pdf?id=OfjIlbelrT",
+      "venue": "",
+      "year": "",
+      "score": 2,
+      "objects": [
+        "状态(State/KV)"
+      ],
+      "methods": [
+        "稀疏(Sparse)"
+      ]
+    },
+    {
+      "paper_id": "6a90853e555afb51",
+      "title": "S2-Attention: Hardware-Aware Context Sharding Among Attention Heads",
+      "url": "",
+      "venue": "",
+      "year": "",
+      "score": 2,
+      "objects": [
+        "状态(State/KV)"
+      ],
+      "methods": [
+        "剪枝(Prune)"
+      ]
+    },
+    {
+      "paper_id": "dc91fc0f4c592555",
+      "title": "PERFT: Parameter-Efficient Routed Fine-Tuning for Mixture-of-Expert Model",
+      "url": "",
+      "venue": "",
+      "year": "",
+      "score": 2,
+      "objects": [
+        "参数(Weights)",
+        "通信(Comm)"
+      ],
+      "methods": []
+    },
+    {
+      "paper_id": "33bc37db9e4d8ab9",
+      "title": "A Training-Free Sub-quadratic Cost Transformer Model Serving Framework with Hierarchically Pruned Attention",
+      "url": "https://openreview.net/pdf?id=PTcMzQgKmn",
+      "venue": "",
+      "year": "",
+      "score": 2,
+      "objects": [],
+      "methods": [
+        "剪枝(Prune)",
+        "稀疏(Sparse)"
+      ]
+    },
+    {
+      "paper_id": "1685adc5bf22324b",
+      "title": "Optimizing Knowledge Distillation in Transformers: Enabling Power of Multi-Head Attention without Alignment Barriers",
+      "url": "",
+      "venue": "",
+      "year": "",
+      "score": 2,
+      "objects": [],
+      "methods": [
+        "剪枝(Prune)",
+        "蒸馏(Distill)"
+      ]
+    },
+    {
+      "paper_id": "4f66a54da53b52b7",
+      "title": "On the Effectiveness of Discrete Representations in Sparse Mixture of Experts",
+      "url": "",
+      "venue": "",
+      "year": "",
+      "score": 2,
+      "objects": [
+        "通信(Comm)"
+      ],
+      "methods": [
+        "稀疏(Sparse)"
+      ]
+    },
+    {
+      "paper_id": "a606d1f72fc2001b",
+      "title": "Adapprox: Memory Efficient Optimization via Adaptive Randomized Low-Rank Approximation",
+      "url": "",
+      "venue": "",
+      "year": "",
+      "score": 2,
+      "objects": [
+        "状态(State/KV)"
+      ],
+      "methods": [
+        "低秩(LowRank)"
+      ]
+    },
+    {
+      "paper_id": "416316e2d5ff701f",
+      "title": "Unleashing the Information Flow: Graph Neural Networks are Noisy Communication Channels",
+      "url": "",
+      "venue": "",
+      "year": "",
+      "score": 2,
+      "objects": [
+        "通信(Comm)"
+      ],
+      "methods": [
+        "剪枝(Prune)"
+      ]
+    },
+    {
+      "paper_id": "64c7e43646585311",
+      "title": "MoRA: High-Rank Updating for Parameter-Efficient Fine-Tuning",
+      "url": "",
+      "venue": "",
+      "year": "",
+      "score": 2,
+      "objects": [
+        "参数(Weights)"
+      ],
+      "methods": [
+        "低秩(LowRank)"
+      ]
+    },
+    {
+      "paper_id": "e579108e7ecc21ba",
+      "title": "Provence: efficient and robust context pruning for retrieval-augmented generation",
+      "url": "https://openreview.net/pdf?id=TDy5Ih78b4",
+      "venue": "",
+      "year": "",
+      "score": 2,
+      "objects": [
+        "状态(State/KV)"
+      ],
+      "methods": [
+        "剪枝(Prune)"
+      ]
+    },
+    {
+      "paper_id": "d01914eec65d1602",
+      "title": "HiRA: Parameter-Efficient Hadamard High-Rank Adaptation for Large Language Models",
+      "url": "https://openreview.net/pdf?id=TwJrTz9cRS",
+      "venue": "",
+      "year": "",
+      "score": 2,
+      "objects": [
+        "参数(Weights)"
+      ],
+      "methods": [
+        "低秩(LowRank)"
+      ]
+    },
+    {
+      "paper_id": "c2ce013d088fa8ea",
+      "title": "Preserving Large Activations: The Key to KV Cache Pruning",
+      "url": "",
+      "venue": "",
+      "year": "",
+      "score": 2,
+      "objects": [
+        "状态(State/KV)"
+      ],
+      "methods": [
+        "剪枝(Prune)"
+      ]
+    },
+    {
+      "paper_id": "ba7bd59c5d0b227e",
+      "title": "Efficient Personalized Federated Learning via Adaptive Weight Clustering Pruning",
+      "url": "",
+      "venue": "",
+      "year": "",
+      "score": 2,
+      "objects": [
+        "参数(Weights)"
+      ],
+      "methods": [
+        "剪枝(Prune)"
+      ]
+    },
+    {
+      "paper_id": "c98befa1d85c3d53",
+      "title": "Contextually Guided Transformers via Low-Rank Adaptation",
+      "url": "",
+      "venue": "",
+      "year": "",
+      "score": 2,
+      "objects": [
+        "状态(State/KV)"
+      ],
+      "methods": [
+        "低秩(LowRank)"
+      ]
+    },
+    {
+      "paper_id": "3e909be694ecda26",
+      "title": "Relaxed Recursive Transformers: Effective Parameter Sharing with Layer-wise LoRA",
+      "url": "https://openreview.net/pdf?id=WwpYSOkkCt",
+      "venue": "",
+      "year": "",
+      "score": 2,
+      "objects": [
+        "参数(Weights)"
+      ],
+      "methods": [
+        "低秩(LowRank)"
+      ]
+    },
+    {
+      "paper_id": "0eff404c76fa2066",
+      "title": "DOCS: Quantifying Weight Similarity for Deeper Insights into Large Language Models",
+      "url": "https://openreview.net/pdf?id=XBHoaHlGQM",
+      "venue": "",
+      "year": "",
+      "score": 2,
+      "objects": [
+        "参数(Weights)"
+      ],
+      "methods": [
+        "量化(Quant)"
+      ]
+    },
+    {
+      "paper_id": "c70c70c50e6fe81e",
+      "title": "COAT: Compressing Optimizer states and Activations for Memory-Efficient FP8 Training",
+      "url": "https://openreview.net/pdf?id=XfKSDgqIRj",
+      "venue": "",
+      "year": "",
+      "score": 2,
+      "objects": [
+        "状态(State/KV)"
+      ],
+      "methods": [
+        "量化(Quant)"
+      ]
+    },
+    {
+      "paper_id": "d440346980387cfc",
+      "title": "PEAR: Position-Embedding-Agnostic Attention Re-weighting Enhances Retrieval-Augmented Generation with Zero Inference Overhead",
+      "url": "",
+      "venue": "",
+      "year": "",
+      "score": 2,
+      "objects": [
+        "参数(Weights)"
+      ],
+      "methods": [
+        "剪枝(Prune)"
+      ]
+    },
+    {
+      "paper_id": "8bf6aa94f0c29d0c",
+      "title": "TimeStep Master: Asymmetrical Mixture of Timestep LoRA Experts for Versatile and Efficient Diffusion Models in Vision",
+      "url": "",
+      "venue": "",
+      "year": "",
+      "score": 2,
+      "objects": [
+        "通信(Comm)"
+      ],
+      "methods": [
+        "低秩(LowRank)"
+      ]
+    },
+    {
+      "paper_id": "97caf61bfa87bf0e",
+      "title": "Image Generation with Channel-wise Quantization",
+      "url": "",
+      "venue": "",
+      "year": "",
+      "score": 2,
+      "objects": [],
+      "methods": [
+        "量化(Quant)",
+        "剪枝(Prune)"
+      ]
+    },
+    {
+      "paper_id": "3e1c160103a0ccdf",
+      "title": "CoPruning: Exploring the Parameter-Gradient Nonlinear Correlation for Neural Network Pruning Using Copula Function",
+      "url": "",
+      "venue": "",
+      "year": "",
+      "score": 2,
+      "objects": [
+        "参数(Weights)"
+      ],
+      "methods": [
+        "剪枝(Prune)"
+      ]
+    },
+    {
+      "paper_id": "64f9e7faf04fbdfa",
+      "title": "The Critic as an Explorer: Lightweight and Provably Efficient Exploration for Deep Reinforcement Learning",
+      "url": "",
+      "venue": "",
+      "year": "",
+      "score": 2,
+      "objects": [
+        "参数(Weights)"
+      ],
+      "methods": [
+        "低秩(LowRank)"
+      ]
+    },
+    {
+      "paper_id": "4e578b2723a644d8",
+      "title": "BLIMEY: Towards Better Routing Methods in Sparse Mixture of Experts",
+      "url": "",
+      "venue": "",
+      "year": "",
+      "score": 2,
+      "objects": [
+        "通信(Comm)"
+      ],
+      "methods": [
+        "稀疏(Sparse)"
+      ]
+    },
+    {
+      "paper_id": "4002b3a7969f0b34",
+      "title": "Communication-Efficient Federated Learning via Model Update Distillation",
+      "url": "",
+      "venue": "",
+      "year": "",
+      "score": 2,
+      "objects": [
+        "通信(Comm)"
+      ],
+      "methods": [
+        "蒸馏(Distill)"
+      ]
+    },
+    {
+      "paper_id": "b933bfabd056b2ea",
+      "title": "Self-Updatable Large Language Models by Integrating Context into Model Parameters",
+      "url": "https://openreview.net/pdf?id=aCPFCDL9QY",
+      "venue": "",
+      "year": "",
+      "score": 2,
+      "objects": [
+        "参数(Weights)",
+        "状态(State/KV)"
+      ],
+      "methods": []
+    },
+    {
+      "paper_id": "d5175a412ee3d70a",
+      "title": "Low Rank Quantization Adaptation for Large Language Model",
+      "url": "",
+      "venue": "",
+      "year": "",
+      "score": 2,
+      "objects": [],
+      "methods": [
+        "量化(Quant)",
+        "低秩(LowRank)"
+      ]
+    },
+    {
+      "paper_id": "9b5cce68c9aa211e",
+      "title": "LazyLLM: DYNAMIC TOKEN PRUNING FOR EFFICIENT LONG CONTEXT LLM INFERENCE",
+      "url": "",
+      "venue": "",
+      "year": "",
+      "score": 2,
+      "objects": [
+        "状态(State/KV)"
+      ],
+      "methods": [
+        "剪枝(Prune)"
+      ]
+    },
+    {
+      "paper_id": "5c0e775af9ea7e70",
+      "title": "Beyond Parameter Count: Implicit Bias in Soft Mixture of Experts",
+      "url": "",
+      "venue": "",
+      "year": "",
+      "score": 2,
+      "objects": [
+        "参数(Weights)",
+        "通信(Comm)"
+      ],
+      "methods": []
+    }
+  ]
+}

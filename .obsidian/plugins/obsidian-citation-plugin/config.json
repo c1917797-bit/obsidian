@@ -1,0 +1,20 @@
+{
+  "itemTypes": {
+    "journalArticle": "article",
+    "conferencePaper": "inproceedings",
+    "book": "book",
+    "report": "techreport"
+  },
+  "fields": {
+    "title": "title",
+    "author": "author",
+    "year": "year",
+    "publicationTitle": "journal",
+    "DOI": "doi",
+    "url": "url",
+    "abstractNote": "abstract",
+    "volume": "volume",
+    "issue": "number",
+    "pages": "pages"
+  }
+}

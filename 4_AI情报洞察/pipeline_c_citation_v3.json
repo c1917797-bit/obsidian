@@ -1,0 +1,540 @@
+{
+  "version": "3.0",
+  "collected_date": "2026-06-29",
+  "pipeline": "C",
+  "method": "citation_tracking_from_seeds",
+  "seed_papers": [
+    "H2O Heavy-Hitter KV cache",
+    "KIVI 2-bit KV cache quantization",
+    "SnapKV KV cache compression",
+    "StreamingLLM attention sinks",
+    "PyramidKV pyramidal information",
+    "ThinK query-driven channel pruning KV",
+    "DuoAttention retrieval streaming heads",
+    "ShadowKV low-rank key offload",
+    "FlashAttention IO-aware exact attention",
+    "PagedAttention vLLM efficient memory",
+    "GPTQ accurate post-training quantization",
+    "AWQ activation-aware weight quantization",
+    "Medusa speculative decoding multiple heads",
+    "EAGLE speculative decoding",
+    "Native Sparse Attention NSA DeepSeek",
+    "RocketKV two-stage KV compression"
+  ],
+  "new_papers": 57,
+  "papers": [
+    {
+      "title": "A Reproducible Pipeline for Symmetry-Respecting Excited States on Near-Term Quantum Computers: The H2O/STO-3G Case",
+      "arxiv_id": "2606.28130",
+      "url": "http://arxiv.org/abs/2606.28130v1",
+      "abstract": "Variational excited-state quantum algorithms fail for reasons usually studied in isolation: barren plateaus, symmetry contamination, finite-sampling instability, and hardware cost. Using one small but complete system -- H$_2$O in the STO-3G basis (12 qubits, Jordan--Wigner) -- we assemble these into a single reproducible pipeline, checking every claim against exact diagonalization. The bare qubit Hamiltonian interleaves cation ($N{=}7$) states below the neutral manifold; hardware-efficient and n",
+      "published": "2026-06-26T14:30:39Z",
+      "source": "citation_tracking",
+      "seed_paper": "H2O Heavy-Hitter KV cache"
+    },
+    {
+      "title": "The ARDoCo Tool Landscape: REST API, TraceView, and TraceViz for Architecture Traceability",
+      "arxiv_id": "2606.28064",
+      "url": "http://arxiv.org/abs/2606.28064v1",
+      "abstract": "Context and Problem. Software development produces interrelated artifacts like software architecture documentation (SAD), software architecture models (SAMs), and source code, whose relationships are essential for maintenance and consistency checking. However, automatically recovering links between these artifacts (traceability link recovery (TLR)) remains difficult to deploy in practice. Method and Aim. We present an accessible tool landscape for ARDoCo's TLR approaches: the ARDoCo REST API exp",
+      "published": "2026-06-26T13:10:11Z",
+      "source": "citation_tracking",
+      "seed_paper": "H2O Heavy-Hitter KV cache"
+    },
+    {
+      "title": "Evolution-Aware Regression Test Prioritization of ML-Enabled Systems Using Gradient-Based Behavior Vectors",
+      "arxiv_id": "2606.28037",
+      "url": "http://arxiv.org/abs/2606.28037v1",
+      "abstract": "The machine learning(ML) component of an ML-enabled system evolves through retraining, fine-tuning, and optimization, so previously valid test results may no longer hold. A single evolution step can worsen performance on some test cases while improving others, making regression test prioritization inherently directional. We present Gradient-based Behavior Vector-Parameter Delta(GBV-PD), the first approach to operationalize the behavior vector space for evolution-aware regression test prioritizat",
+      "published": "2026-06-26T12:43:20Z",
+      "source": "citation_tracking",
+      "seed_paper": "H2O Heavy-Hitter KV cache"
+    },
+    {
+      "title": "Phase Matters: Characterizing Heterogeneous Vision-Language Inference on a Mobile SoC",
+      "arxiv_id": "2606.27906",
+      "url": "http://arxiv.org/abs/2606.27906v1",
+      "abstract": "Recent phone-class mobile SoCs expose practical NPU execution paths for on-device vision-language model (VLM) inference, but developers still lack phase-level guidance for mapping VLM pipelines across heterogeneous backends. We present a hardware-in-the-loop characterization of VLM inference on the Qualcomm SM8750 (Snapdragon 8 Elite), covering phase throughput, cache-state effects, 100-run thermal stability, energy, heterogeneous CPU/NPU pipeline configurations, and visual-token-budget sensitiv",
+      "published": "2026-06-26T09:54:33Z",
+      "source": "citation_tracking",
+      "seed_paper": "H2O Heavy-Hitter KV cache"
+    },
+    {
+      "title": "Electrons with Anomalous Energy Generated in Gas-Filled and Vacuum Diodes",
+      "arxiv_id": "2606.27889",
+      "url": "http://arxiv.org/abs/2606.27889v1",
+      "abstract": "It is shown that, when high-voltage pulses (with a voltage amplitude exceeding 100 kV in centimeter gaps) with a leading edge duration of 1 ns or shorter are applied to gas-filled and vacuum electric discharge diodes, electrons with kinetic energies nominally exceeding the amplitude of the applied voltage are detected. In the experiments, electron beam attenuation curves were measured in absorbers consisting of Al foil of varying thicknesses. These curves were used to reconstruct the electron be",
+      "published": "2026-06-26T09:33:16Z",
+      "source": "citation_tracking",
+      "seed_paper": "H2O Heavy-Hitter KV cache"
+    },
+    {
+      "title": "Entropy engineering of BF-BT-based high-entropy ceramics for ultra-high energy storage performance",
+      "arxiv_id": "2606.27621",
+      "url": "http://arxiv.org/abs/2606.27621v1",
+      "abstract": "Dielectric capacitors are promising for pulsed power applications, but the energy storage performance of lead-free bulk ceramics is often limited by low breakdown strength and large ferroelectric hysteresis. Herein, a high entropy perovskite oxide BaTi0.2Zr0.2Sn0.2Hf0.2Nb0.1Sc0.1O3 was introduced into the BF-BT matrix to develop lead free high entropy ferroelectric ceramics. Multicomponent B-site substitution induces lattice distortion, enhanced pseudocubic characteristics, relaxor behavior, and",
+      "published": "2026-06-26T00:36:45Z",
+      "source": "citation_tracking",
+      "seed_paper": "H2O Heavy-Hitter KV cache"
+    },
+    {
+      "title": "Exact and Deterministic Patch Descriptor Retrieval via Hierarchical Normalization",
+      "arxiv_id": "2606.27280",
+      "url": "http://arxiv.org/abs/2606.27280v1",
+      "abstract": "We present a patch descriptor retrieval method that returns the exact nearest neighbour -- provably identical to exhaustive full-vector search -- while evaluating only a small fraction of the database, and does so deterministically: the same (database, query) pair always produces the same result, independent of run order, thread count, or hardware. This contrasts with approximate nearest-neighbour (ANN) approaches such as HNSW and IVF-PQ, which trade exactness for speed and may return different ",
+      "published": "2026-06-25T16:56:25Z",
+      "source": "citation_tracking",
+      "seed_paper": "H2O Heavy-Hitter KV cache"
+    },
+    {
+      "title": "A possible approach to overcome the saturation of the neutron yield in a Plasma Focus and to achieve breakeven",
+      "arxiv_id": "2606.27108",
+      "url": "http://arxiv.org/abs/2606.27108v1",
+      "abstract": "Saturation of the neutron yield with increasing energy of the condenser bank in a Plasma Focus led to the shutdown of PF research focussed on controlled nuclear fusion in the past. We review available models of saturation and develop further the model of Lee S., Applied Phys. Lett. 95, 151503, 2009. This model relies on the well-known and generally accepted model of Lee S., J. Fusion Energy 2014, 33, 319 of Plasma Focus discharges and describes saturation in terms of the dynamic resistance, i.e.",
+      "published": "2026-06-25T14:44:09Z",
+      "source": "citation_tracking",
+      "seed_paper": "H2O Heavy-Hitter KV cache"
+    },
+    {
+      "title": "Residual GPU Cache State on Apple M4 Pro",
+      "arxiv_id": "2606.27098",
+      "url": "http://arxiv.org/abs/2606.27098v1",
+      "abstract": "Apple silicon exposes unified CPU-GPU memory, but the cache state left after a completed GPU command is not documented. This paper characterizes that phase boundary on a 14-core Apple M4 Pro. We validate the measurement pipeline against unmodified STREAM 5.10 and BabelStream 5.0, then adapt an 8192-byte system-level-cache occupancy pattern to a synchronized Metal experiment. A GPU kernel touches 0 to 512 MiB and finishes before a 16 MiB CPU probe begins. The first CPU traversal is slower after l",
+      "published": "2026-06-25T14:35:28Z",
+      "source": "citation_tracking",
+      "seed_paper": "H2O Heavy-Hitter KV cache"
+    },
+    {
+      "title": "Room-temperature magnon-phonon transduction in high-damping Co/Pt structures",
+      "arxiv_id": "2606.28073",
+      "url": "http://arxiv.org/abs/2606.28073v1",
+      "abstract": "Quantum communication and information processing strongly benefit from the coupling between different quasi-particles, offering complementary advantages. Magnetoelastic materials inherently allow for direct coupling between magnetization dynamics and quantized lattice vibrations, called phonons. Near the ferromagnetic resonances, phonons may thus trade energy and angular momentum with uniformly precessing magnetization, called magnons, and enable transduction of information from magnetic to phon",
+      "published": "2026-06-26T13:39:13Z",
+      "source": "citation_tracking",
+      "seed_paper": "KIVI 2-bit KV cache quantization"
+    },
+    {
+      "title": "Self-Verifying Measurement Records: Hash-Linked Evidence Graphs for Hardware Benchmarking",
+      "arxiv_id": "2606.27934",
+      "url": "http://arxiv.org/abs/2606.27934v1",
+      "abstract": "Performance numbers reported for hardware are accepted on trust: the reader cannot recompute them, the apparatus is gone, and the silicon itself can be silently wrong, with fleet studies reporting on the order of one core in a thousand returning incorrect arithmetic with no error raised. We make a reported hardware measurement a tamper-evident, independently checkable record. Every quantity in the text, a table, or a figure is bound, by its content hash, to the observation and the verification b",
+      "published": "2026-06-26T10:26:50Z",
+      "source": "citation_tracking",
+      "seed_paper": "KIVI 2-bit KV cache quantization"
+    },
+    {
+      "title": "LocalNav: Distilling Frontier VLMs and Embodied RL for On-Device Object Goal Navigation",
+      "arxiv_id": "2606.27871",
+      "url": "http://arxiv.org/abs/2606.27871v1",
+      "abstract": "Vision Language Models (VLMs) have emerged in the robotic domain as a powerful tool that enables environmental perception with language context, serving as a catalyst for open-vocabulary tasks like ObjectNav. Yet, their computational footprint typically confines them to cloud execution, hindering low-latency inference with local deployment on resource-constrained robots. To address this challenge, we present a distillation strategy that transfers complex spatial-semantic reasoning from large fro",
+      "published": "2026-06-26T09:11:59Z",
+      "source": "citation_tracking",
+      "seed_paper": "KIVI 2-bit KV cache quantization"
+    },
+    {
+      "title": "Exceptional Points as Manifestations of Topological-Charge Breakdown in a Non-Hermitian Skyrmion",
+      "arxiv_id": "2606.27810",
+      "url": "http://arxiv.org/abs/2606.27810v1",
+      "abstract": "The integer topological charge of a magnetic skyrmion is the standard emblem of topological protection. We ask what happens to that protection when the magnet is made non-Hermitian, with balanced gain and loss or a PT-symmetric anisotropy. A non-Hermitian skyrmion turns out to carry two charges that coincide in the Hermitian limit but part ways under deformation. The charge built from the right state alone is homotopy-protected: the PT flow reduces exactly to a Gilbert-type relaxation on the tar",
+      "published": "2026-06-26T07:47:29Z",
+      "source": "citation_tracking",
+      "seed_paper": "KIVI 2-bit KV cache quantization"
+    },
+    {
+      "title": "Uniaxial compression of crystalline HCP titanium: an atomistic modelling study of size effects",
+      "arxiv_id": "2606.28155",
+      "url": "http://arxiv.org/abs/2606.28155v1",
+      "abstract": "Understanding the deformation behaviour of titanium is important not only for technological advances associated with industrially-relevant applications, but also essential to achieve a fundamental understanding of the mechanical properties of the relevant alloys. In this computational study, molecular-dynamics simulations are employed to ascertain the impact of model size on the mechanical response of alpha-titanium under compression. The deformation behaviour of the crystalline models is invest",
+      "published": "2026-06-26T14:51:41Z",
+      "source": "citation_tracking",
+      "seed_paper": "SnapKV KV cache compression"
+    },
+    {
+      "title": "A robust mixed finite element formulation for third medium contact",
+      "arxiv_id": "2606.28036",
+      "url": "http://arxiv.org/abs/2606.28036v1",
+      "abstract": "Third medium contact provides a smooth continuum alternative to classical contact algorithms by replacing explicit contact constraints with a highly compliant fictitious medium. In this work, an auxiliary-field stabilization is introduced in which a deformation-gradient-like field is treated as an independent unknown in the third medium and coupled to the physical deformation gradient by a penalty term. A gradient contribution acting on the auxiliary field provides the regularization mechanism w",
+      "published": "2026-06-26T12:42:55Z",
+      "source": "citation_tracking",
+      "seed_paper": "SnapKV KV cache compression"
+    },
+    {
+      "title": "A Structure-Preserving Neural-Spectral Method for Reconstructing Controls of Wave Equations",
+      "arxiv_id": "2606.28029",
+      "url": "http://arxiv.org/abs/2606.28029v1",
+      "abstract": "The numerical reconstruction of controls for partial differential equations remains comparatively underdeveloped, despite the extensive analytical literature on controllability. This difficulty is particularly pronounced for wave equations, whose conservative structure, oscillatory dynamics, and high-frequency behavior make direct discretization and optimization challenging. In this work, we introduce a Neural-Spectral method for approximating controls of wave equations. The method represents bo",
+      "published": "2026-06-26T12:35:06Z",
+      "source": "citation_tracking",
+      "seed_paper": "SnapKV KV cache compression"
+    },
+    {
+      "title": "Simulating megaparsec-scale jets of radio galaxies: Magneto-hydrodynamics of jets reaching 5 Mpc",
+      "arxiv_id": "2606.28019",
+      "url": "http://arxiv.org/abs/2606.28019v1",
+      "abstract": "Extragalactic jets have long prompted the question of how far relativistic outflows can extend, with some radio sources reaching 5 - 7 Mpc in length. These great extents motivate investigations into their ages, propagation dynamics, stability, and impact on the environment. We perform 3D high-resolution numerical simulations of two jet configurations involving continuous injection at different powers propagating in low-density regions of the cosmos (static and laminar), investigating the conditi",
+      "published": "2026-06-26T12:22:42Z",
+      "source": "citation_tracking",
+      "seed_paper": "SnapKV KV cache compression"
+    },
+    {
+      "title": "AB-Sync: Attention-Based Slot-Level Clock Synchronization Method for UWB-TDOA Localization Networks",
+      "arxiv_id": "2606.28087",
+      "url": "http://arxiv.org/abs/2606.28087v1",
+      "abstract": "Ultra-wideband (UWB) time-difference-of-arrival (TDOA) localization networks provide high-update-rate indoor location services for IoT and cyber-physical applications, but their accuracy depends on nanosecond-level clock synchronization among anchors. Existing wireless clock synchronization (WCS) methods typically estimate clock states at the synchronization-stage or interval level, whereas TDMA-based UWB-TDOA systems localize tags from blinks transmitted in discrete short slots inside each sync",
+      "published": "2026-06-26T13:49:51Z",
+      "source": "citation_tracking",
+      "seed_paper": "StreamingLLM attention sinks"
+    },
+    {
+      "title": "SimPol: Simulating polarisation in political belief networks in European countries",
+      "arxiv_id": "2606.27968",
+      "url": "http://arxiv.org/abs/2606.27968v1",
+      "abstract": "Here we combine empirical network analysis with agent-based modelling to understand how different ways of structuring belief systems may affect the polarisation drive, and how the diversity of belief systems in Europe may result in different polarisation trajectories. Using the 2016 European Social Survey, we infer belief networks across 23 European countries via a Bayesian algorithm, revealing that belief systems are predominantly organised around immigration, LGBT rights, and economic interven",
+      "published": "2026-06-26T11:16:59Z",
+      "source": "citation_tracking",
+      "seed_paper": "StreamingLLM attention sinks"
+    },
+    {
+      "title": "The impact of stellar binaries and star cluster dynamics on pair-instability supernovae",
+      "arxiv_id": "2606.28299",
+      "url": "http://arxiv.org/abs/2606.28299v1",
+      "abstract": "Pair-instability supernovae (PISNe) are among the most luminous transients in the Universe. However, they have never been confidently observed. Solving this puzzle would have key implications for several astrophysical topics, including galaxy chemical enrichment, the interpretation of gravitational waves from binary black hole mergers, and the nature of red dropout sources seen by JWST. With this aim, we present the first in-depth study of PISN occurrence in binary stars, both in isolation and i",
+      "published": "2026-06-26T17:46:58Z",
+      "source": "citation_tracking",
+      "seed_paper": "ThinK query-driven channel pruning KV"
+    },
+    {
+      "title": "Coexisting Regular and Chaotic Dynamics in the Dysprosium Feshbach Spectrum",
+      "arxiv_id": "2606.28233",
+      "url": "http://arxiv.org/abs/2606.28233v1",
+      "abstract": "Strongly dipolar gases, such as dysprosium, erbium and thulium, exhibit dense Feshbach spectra whose level statistics have been associated with quantum chaos arising from couplings among many molecular channels. Here, we combine a precise calibration of the Feshbach spectrum of $^{162}$Dy with spectroscopic measurements of the differential magnetic moments of bound states associated with more than 80 resonances between 0 and 30 G. These magnetic moments provide an eigenstate-sensitive probe of t",
+      "published": "2026-06-26T16:21:29Z",
+      "source": "citation_tracking",
+      "seed_paper": "ThinK query-driven channel pruning KV"
+    },
+    {
+      "title": "The Reciprocal Impact of Science and Software: A Cross-Corpus Analysis of How Research Shapes Software and Software Enables Research",
+      "arxiv_id": "2606.28120",
+      "url": "http://arxiv.org/abs/2606.28120v1",
+      "abstract": "Software and scientific knowledge co-evolve, yet they are catalogued in separate corpora that rarely speak to one another. We bridge them at global scale by linking World of Code (a near-complete mirror of public version-control history) to Semantic Scholar and OpenAlex through a typed cross-corpus graph of 69.8M edges over eight relation types (paper-to-software mentions, software-to-paper citations, software dependencies, authorship, affiliation, and identity bridges). Anchoring on 18,247 cura",
+      "published": "2026-06-26T14:20:33Z",
+      "source": "citation_tracking",
+      "seed_paper": "ThinK query-driven channel pruning KV"
+    },
+    {
+      "title": "MMAO: A Metabolic Multi-Agent Optimizer with Endogenous Resource Allocation for Continuous and Discrete Optimization",
+      "arxiv_id": "2606.28109",
+      "url": "http://arxiv.org/abs/2606.28109v1",
+      "abstract": "Traditional meta-heuristics often rely on fixed population sizes, manually chosen search scales, and externally attached parameter-control modules. This paper presents the \\textit{Metabolic Multi-Agent Optimizer} (MMAO), a cross-domain optimization framework in which adaptation is derived endogenously from a private-public metabolic resource loop. Each agent carries internal energy, a continuous role state, motion or structural memory, and local search history, while the population shares a comm",
+      "published": "2026-06-26T14:10:34Z",
+      "source": "citation_tracking",
+      "seed_paper": "ThinK query-driven channel pruning KV"
+    },
+    {
+      "title": "Population-Dominated Ergotropy in a Capacitively Coupled Double-Quantum-Dot Battery under 1/f Charge Noise",
+      "arxiv_id": "2606.28082",
+      "url": "http://arxiv.org/abs/2606.28082v1",
+      "abstract": "We investigate extractable work storage in a capacitively coupled double quantum dot (DQD) quantum battery (QB) subjected to experimentally motivated detuning charge noise. The battery is modeled as two interacting charge qubits with an Ising-type capacitive coupling and is charged by resonant microwave modulation of the tunnel coupling channel. Detuning fluctuations are introduced as classical stochastic processes generated from a band-limited 1/f noise spectrum. For each noise realization, the",
+      "published": "2026-06-26T13:46:41Z",
+      "source": "citation_tracking",
+      "seed_paper": "ThinK query-driven channel pruning KV"
+    },
+    {
+      "title": "Construction of Sensitivity Curves for Dynamic LISA and Taiji",
+      "arxiv_id": "2606.28071",
+      "url": "http://arxiv.org/abs/2606.28071v1",
+      "abstract": "Space-based gravitational-wave (GW) laser interferometers, including LISA and Taiji, are designed to observe gravitational waves in the millihertz band and are expected to open up a frequency range that is otherwise inaccessible. The sensitivity and response of these instruments are central to their scientific goals, mission design and parameter estimation capabilities. However, they are commonly modeled as static, equilateral triangular constellations, an approximation that neglects both orbita",
+      "published": "2026-06-26T13:36:03Z",
+      "source": "citation_tracking",
+      "seed_paper": "ThinK query-driven channel pruning KV"
+    },
+    {
+      "title": "Measuring High-Energy Cosmic Particles with the SKA",
+      "arxiv_id": "2606.28068",
+      "url": "http://arxiv.org/abs/2606.28068v1",
+      "abstract": "The origin of high-energy cosmic rays remain one of astrophysics' greatest unsolved mysteries. SKA-Low will be able to measure air showers initiated by cosmic rays with unprecedented precision in the PeV - EeV energy range, covering the critical transition region between Galactic and extragalactic sources. SKA-Low's densely instrumented core and broad bandwidth will allow for measurements of individual air showers with a level of detail unmatched by any existing or planned detector. The depth of",
+      "published": "2026-06-26T13:23:55Z",
+      "source": "citation_tracking",
+      "seed_paper": "ThinK query-driven channel pruning KV"
+    },
+    {
+      "title": "Buffered control for opacity in timed automata",
+      "arxiv_id": "2606.28170",
+      "url": "http://arxiv.org/abs/2606.28170v1",
+      "abstract": "Timed automata are an extension of finite automata that can measure and react to the passage of time, handling real-time constraints by using clocks. The timed opacity problem, where an attacker attempts to infer from observed actions and timestamps whether a secret location was visited, was shown undecidable for timed automata. Execution-time opacity is a decidable though limited setting in which the attacker attempts to detect whether the secret location was visited, by only relying on the run",
+      "published": "2026-06-26T15:03:31Z",
+      "source": "citation_tracking",
+      "seed_paper": "DuoAttention retrieval streaming heads"
+    },
+    {
+      "title": "Context-Aware Explanations for Spatialized Document Layouts",
+      "arxiv_id": "2606.28081",
+      "url": "http://arxiv.org/abs/2606.28081v1",
+      "abstract": "Spatialized document layouts are widely used for exploratory analysis of text corpora, but interpreting the spatial organization of documents and the relationships between regions remains challenging. Existing approaches primarily summarize document content or explain how layouts are generated, providing limited support for understanding spatial relationships within the layout itself. We present CAPE, a context-aware explanation framework that generates natural-language explanations grounded in ",
+      "published": "2026-06-26T13:45:54Z",
+      "source": "citation_tracking",
+      "seed_paper": "DuoAttention retrieval streaming heads"
+    },
+    {
+      "title": "Dark energy perturbations and the robustness of cosmological neutrino-mass constraints",
+      "arxiv_id": "2606.28074",
+      "url": "http://arxiv.org/abs/2606.28074v1",
+      "abstract": "Cosmological observations are placing increasingly stringent bounds on the sum of neutrino masses, approaching the lower limits implied by neutrino oscillation experiments. Recent studies have suggested that dynamical dark energy may alleviate this apparent tension. However, these conclusions generally rely on the assumption that dark energy remains smooth, neglecting its perturbations. In this work we investigate the robustness of cosmological neutrino-mass constraints by consistently incorpora",
+      "published": "2026-06-26T13:39:40Z",
+      "source": "citation_tracking",
+      "seed_paper": "DuoAttention retrieval streaming heads"
+    },
+    {
+      "title": "Fast and Feasible: Permutation-based Constrained Reranking for Revenue Maximization",
+      "arxiv_id": "2606.28059",
+      "url": "http://arxiv.org/abs/2606.28059v1",
+      "abstract": "Search and recommender systems have produced highly relevant search results. A natural next step in the development of such systems in e-commerce is to rerank these results to increase the platform's revenue from paid promotion products. However, maximizing revenue alone may degrade the user experience by reducing relevance or increasing fraud risk. To avoid this, we state the reranking problem as an integer linear program ($ILP$) that maximizes revenue subject to per-query constraints on other ",
+      "published": "2026-06-26T13:04:00Z",
+      "source": "citation_tracking",
+      "seed_paper": "DuoAttention retrieval streaming heads"
+    },
+    {
+      "title": "Efficient calculation of two-neutrino double-beta-decay nuclear matrix elements",
+      "arxiv_id": "2606.28224",
+      "url": "http://arxiv.org/abs/2606.28224v1",
+      "abstract": "Reliable nuclear matrix elements (NMEs) are essential for interpreting double-beta-decay experiments and for connecting measured or constrained half-lives to the underlying weak-interaction physics. The two-neutrino mode ($2νββ$) is allowed by the Standard Model and has been observed in several nuclei, whereas the neutrinoless mode ($0νββ$) remains the key experimental signature of lepton-number violation and Majorana neutrino masses. Recent statistical shell-model studies indicate a strong corr",
+      "published": "2026-06-26T16:13:44Z",
+      "source": "citation_tracking",
+      "seed_paper": "ShadowKV low-rank key offload"
+    },
+    {
+      "title": "Hybrid Quantum-Classical Neural Networks for Recognizing Quantum Phases",
+      "arxiv_id": "2606.28201",
+      "url": "http://arxiv.org/abs/2606.28201v1",
+      "abstract": "Identifying quantum phases of matter is key to understanding strongly correlated materials, but remains a challenging task for both conventional computers and current quantum processors. Here, we introduce and implement a hybrid quantum-classical neural network for quantum phase recognition by combining a hardware-efficient parameterized quantum circuit and a feedforward neural network. We jointly train both components with superconducting quantum hardware in the optimization loop, to experiment",
+      "published": "2026-06-26T15:49:45Z",
+      "source": "citation_tracking",
+      "seed_paper": "ShadowKV low-rank key offload"
+    },
+    {
+      "title": "An Adjoint Projection Formulation for Enforcing the divergence-free Constraint in Smoothed Particle Magnetohydrodynamics",
+      "arxiv_id": "2606.28197",
+      "url": "http://arxiv.org/abs/2606.28197v1",
+      "abstract": "We present a projection method for controlling numerical \\(\\nabla\\cdot\\B\\) errors in smoothed particle magnetohydrodynamics (SPMHD). The method corrects the magnetic field after an MHD update by solving an elliptic projection problem constructed from the same discrete divergence operator used to measure the error. A key ingredient is to use the adjoint gradient associated with a volume-weighted metric. With this choice, the projection gives an energy-minimizing correction, does not increase the ",
+      "published": "2026-06-26T15:44:18Z",
+      "source": "citation_tracking",
+      "seed_paper": "ShadowKV low-rank key offload"
+    },
+    {
+      "title": "Entropy density functional theory for inhomogeneous fluids",
+      "arxiv_id": "2606.28240",
+      "url": "http://arxiv.org/abs/2606.28240v1",
+      "abstract": "We present an exact variational scheme for the physics of inhomogeneous classical fluids in thermal equilibrium. A joint metadensity minimization principle is proven for the one-body density and the global interparticle distance distribution. The theory bypasses the inhomogeneous two-body density and thus remains computationally simple. A universal excess entropy functional accounts for all many-body correlations in arbitrary pairwise interacting systems. The framework is relevant for neural fun",
+      "published": "2026-06-26T16:25:23Z",
+      "source": "citation_tracking",
+      "seed_paper": "FlashAttention IO-aware exact attention"
+    },
+    {
+      "title": "Multi--black holes in Bertotti--Robinson spacetime",
+      "arxiv_id": "2606.28232",
+      "url": "http://arxiv.org/abs/2606.28232v1",
+      "abstract": "We construct a new class of exact solutions describing multi-black holes in the Bertotti--Robinson spacetime, using the monodromy-matrix formalism associated with integrable sigma models. Starting from the extremal Reissner--Nordström black hole in the Bertotti--Robinson background, we derive the corresponding coset and monodromy matrices and show that they are governed by nilpotent algebraic structures. This property enables an explicit factorization of the monodromy matrix, allowing for a syst",
+      "published": "2026-06-26T16:20:42Z",
+      "source": "citation_tracking",
+      "seed_paper": "FlashAttention IO-aware exact attention"
+    },
+    {
+      "title": "Fano Geometry and Slow Coupon Collecting",
+      "arxiv_id": "2606.28216",
+      "url": "http://arxiv.org/abs/2606.28216v1",
+      "abstract": "We study the coupon collector's problem in a generalized setting where each draw reveals a fixed number of coupons and the sampling mechanism is required to be \\emph{fair}, meaning that every coupon appears with the same frequency among the admissible draws. Grunbaum and Yaakobi conjectured that, among all fair mechanisms with fixed parameters, the fully random model maximizes the expected time to complete coverage. We disprove this conjecture by exhibiting explicit counterexamples arising from ",
+      "published": "2026-06-26T16:06:11Z",
+      "source": "citation_tracking",
+      "seed_paper": "FlashAttention IO-aware exact attention"
+    },
+    {
+      "title": "Configurational Temperature in Matrix Models and Random Matrix Ensembles",
+      "arxiv_id": "2606.28148",
+      "url": "http://arxiv.org/abs/2606.28148v1",
+      "abstract": "We investigate the configurational temperature estimator in interacting matrix models and Gaussian random-matrix ensembles. The estimator follows from an exact Schwinger--Dyson identity and may be expressed in terms of the gradient and Hessian of the action. We study the Gross--Witten--Wadia model, a quartic double-well matrix model, and the Gaussian Orthogonal, Unitary, and Symplectic Ensembles. In all cases, the estimator satisfies the exact Schwinger--Dyson identity, $β_{\\rm config} = 1$, wit",
+      "published": "2026-06-26T14:46:14Z",
+      "source": "citation_tracking",
+      "seed_paper": "FlashAttention IO-aware exact attention"
+    },
+    {
+      "title": "Efficient targeting of arbitrary excited states with quantum inverse power iteration through filtering polynomials",
+      "arxiv_id": "2606.28255",
+      "url": "http://arxiv.org/abs/2606.28255v1",
+      "abstract": "In this work, we introduce a quantum inverse power iteration (QIPI) algorithm based on the quantum singular value transformation (QSVT) to target arbitrary excited states. Given an energy shift $ω$, QIPI prepares the target excited state by iteratively applying an approximation of the shifted inverse Hamiltonian $(H-ωI)^{-1}$ to a trial state. Prior quantum inverse power approaches typically relied on Fourier decompositions of the inverse Hamiltonian, with numerical quadrature used to reconstruc",
+      "published": "2026-06-26T16:41:00Z",
+      "source": "citation_tracking",
+      "seed_paper": "PagedAttention vLLM efficient memory"
+    },
+    {
+      "title": "Noise-Directed Adaptive Remapping for Integer Optimization: from qubits to (encoded) qudits",
+      "arxiv_id": "2606.28234",
+      "url": "http://arxiv.org/abs/2606.28234v1",
+      "abstract": "We extend Noise-Directed Adaptive Remapping (NDAR), a recently proposed heuristic meta-algorithm that leverages device noise as a computational resource, to optimization problems over discrete (integer) domains. While originally introduced for unconstrained binary optimization, the proposed generalization introduces additional gauge degrees of freedom at the logical level, such that the gauge transformation applied at each iteration is no longer unique, allowing tailoring to particular encodings",
+      "published": "2026-06-26T16:21:57Z",
+      "source": "citation_tracking",
+      "seed_paper": "PagedAttention vLLM efficient memory"
+    },
+    {
+      "title": "Learning Stable In-Grasp Manipulation in a Non-Dropping Action Space",
+      "arxiv_id": "2606.28196",
+      "url": "http://arxiv.org/abs/2606.28196v1",
+      "abstract": "Traditionally, dexterous manipulation controllers are designed using analytic models constrained by strong assumptions about the hand and the objects being manipulated. Reinforcement learning (RL) has become another common approach in which skills are explored openly in an end-to-end manner but is inefficient because of unnoticeable instability and conflicts in learning objectives. This paper attempts to efficiently explore stable and accurate manipulation skills by decomposing dexterous skills ",
+      "published": "2026-06-26T15:43:55Z",
+      "source": "citation_tracking",
+      "seed_paper": "GPTQ accurate post-training quantization"
+    },
+    {
+      "title": "Universal EOS-Radius Inverse Mappings Govern Precision-Dependent Inference of the Neutron Star Equation of State",
+      "arxiv_id": "2606.28183",
+      "url": "http://arxiv.org/abs/2606.28183v1",
+      "abstract": "Bayesian inference of the neutron star (NS) equation of state (EOS) generally assumes that improved observations primarily reduce posterior uncertainties while leaving inferred EOS parameters unchanged. Using mock measurements of the radius of a canonical $1.4\\,M_\\odot$ NS with identical central values but varying observational precisions, we show that the inferred posterior means of EOS parameters can shift systematically as the measurement uncertainty changes. We demonstrate that this behavior",
+      "published": "2026-06-26T15:26:15Z",
+      "source": "citation_tracking",
+      "seed_paper": "GPTQ accurate post-training quantization"
+    },
+    {
+      "title": "Observations and empirical functions for the ocean surface wave spectrum",
+      "arxiv_id": "2606.28165",
+      "url": "http://arxiv.org/abs/2606.28165v1",
+      "abstract": "Accurate parameterizations of ocean wave spectra are necessary in a wide array of disciplines including coastal, ocean, and naval engineering as well as in the study of wave interactions and ocean-atmosphere momentum flux. Many such applications use spectrum parameterizations based on temporal data collected well over a half century ago. The development of spatial wave measurement techniques that can accurately capture a larger range of scales allows us to revisit the question of how best to rep",
+      "published": "2026-06-26T14:59:26Z",
+      "source": "citation_tracking",
+      "seed_paper": "GPTQ accurate post-training quantization"
+    },
+    {
+      "title": "A single platform with van der Pauw geometry for measurement of Seebeck coefficient, resistivity, and Hall effect of thin films",
+      "arxiv_id": "2606.28137",
+      "url": "http://arxiv.org/abs/2606.28137v1",
+      "abstract": "A modular thermoelectric properties measurement setup in van der Pauw configuration was developed for a straightforward and simultaneous measurement of electrical resistivity and Seebeck coefficient in an extensive temperature range of 25°C - 600°C and can also perform Hall measurements at room temperature. The setup is optimized for accurate measurement of voltages and temperatures gradients by minimizing possible errors from offset voltages, wire contributions and thermal contact resistances w",
+      "published": "2026-06-26T14:37:33Z",
+      "source": "citation_tracking",
+      "seed_paper": "GPTQ accurate post-training quantization"
+    },
+    {
+      "title": "An Exponential Lower Bound for Spectral Density Estimation on Unweighted Graphs",
+      "arxiv_id": "2606.28188",
+      "url": "http://arxiv.org/abs/2606.28188v1",
+      "abstract": "We study lower bounds for estimating the spectral density of the normalized adjacency matrix of a graph. Previously, Cohen-Steiner et al. [KDD 2018] proposed an algorithm for $\\varepsilon$-approximate spectral density estimation in the Wasserstein-1 distance, using $2^{O(1/\\varepsilon)}$ random walks initiated from uniformly random nodes in the graph. Later, Jin et al. [COLT 2023] established a nearly matching exponential lower bound for \\emph{weighted} graphs, assuming the algorithm has access ",
+      "published": "2026-06-26T15:33:54Z",
+      "source": "citation_tracking",
+      "seed_paper": "AWQ activation-aware weight quantization"
+    },
+    {
+      "title": "A DESI Calibration of the [O II]--[S II] Electron-density Offset in Integrated Star-forming Galaxies",
+      "arxiv_id": "2606.28129",
+      "url": "http://arxiv.org/abs/2606.28129v1",
+      "abstract": "The [O II]$λ\\lambda3726,3729$ and [S II]$λ\\lambda6716,6731$ doublets are widely used as low-ionization electron-density diagnostics in galaxy spectra and are often treated as interchangeable when only one of them is accessible. We test this assumption using the DESI DR1 Emission Line Catalog. For star-forming galaxies with fiducial emission lines, [O II] yields systematically higher electron densities than [S II], with a median offset of 0.228 dex. The binned median calibration is $\\log n_e({\\rm",
+      "published": "2026-06-26T14:30:20Z",
+      "source": "citation_tracking",
+      "seed_paper": "AWQ activation-aware weight quantization"
+    },
+    {
+      "title": "Which Saddles Contribute? The South-East Rule for Multidimensional Integrals",
+      "arxiv_id": "2606.28271",
+      "url": "http://arxiv.org/abs/2606.28271v1",
+      "abstract": "In this paper, we introduce and demonstrate a simple geometric algorithm to determine which critical points, both complex as well as real, contribute to the asymptotic evaluation of multiple integrals with exponential integrands of the form $e^{ikf(\\boldsymbol{x})}$ over $\\mathbb R^d$, for finite $d\\ge 1$ and $f$ is analytic. In so doing, the algorithm removes the need to compute the flows of $-\\text{Re} (i\\nabla f)$ in $\\mathbb C^d$ that is required to identify such relevant critical points in ",
+      "published": "2026-06-26T17:12:39Z",
+      "source": "citation_tracking",
+      "seed_paper": "Medusa speculative decoding multiple heads"
+    },
+    {
+      "title": "Experimental Design When N Equals One",
+      "arxiv_id": "2606.28200",
+      "url": "http://arxiv.org/abs/2606.28200v1",
+      "abstract": "N-of-1 trials, or time-series experiments, are widely used in clinical research and online platforms. Yet the theoretically optimal design for estimating many treatment effects remains unclear. We propose a simple Markovian framework for experimental design in which the treatment assignment process is governed by possibly time-varying transition matrices. This formulation encompasses many existing N-of-1 designs and provides a principled way to control temporal dependence in treatment assignment",
+      "published": "2026-06-26T15:49:39Z",
+      "source": "citation_tracking",
+      "seed_paper": "Medusa speculative decoding multiple heads"
+    },
+    {
+      "title": "Performance Analysis and Optimal Design of ORB-Type GRAND Algorithms",
+      "arxiv_id": "2606.28030",
+      "url": "http://arxiv.org/abs/2606.28030v1",
+      "abstract": "Guessing Random Additive Noise Decoding (GRAND) performs decoding by sequentially guessing channel error patterns (EPs). Ordered Reliability Bits GRAND (ORBGRAND) is a notable instance suitable for efficient implementation, as it schedules EPs solely according to the ranking of soft channel outputs. In this paper, we generalize this principle to a broader class of GRAND algorithms whose testing order depends only on reliability ranking, referred to as ORB-type GRAND. We develop a unified analyti",
+      "published": "2026-06-26T12:36:16Z",
+      "source": "citation_tracking",
+      "seed_paper": "EAGLE speculative decoding"
+    },
+    {
+      "title": "Grammar-Guided Hierarchical Parsing for Long-form Audio Activity Recognition",
+      "arxiv_id": "2606.27965",
+      "url": "http://arxiv.org/abs/2606.27965v1",
+      "abstract": "Long-form audio exhibits an inherent hierarchy: fine-grained events form sub-activities, which in turn constitute higher-level activities. Prior work often models these levels separately, leading to cross-level inconsistencies and requiring supervision at multiple levels. We formulate the problem as hierarchical parsing from event-level evidence: given detected event segments with class posteriors, we infer an order-consistent Act-Sub-Event parse tree. We propose Hierarchical Activity Grammar, e",
+      "published": "2026-06-26T11:10:23Z",
+      "source": "citation_tracking",
+      "seed_paper": "EAGLE speculative decoding"
+    },
+    {
+      "title": "Swarm sign language: motion-based communication between drones",
+      "arxiv_id": "2606.27883",
+      "url": "http://arxiv.org/abs/2606.27883v1",
+      "abstract": "In stealth-constrained swarm robotics, visual communication provides a critical alternative to active radio transmissions, which might be jammed. This research investigates motion-based communication for non-active information exchange, utilizing modular, dynamically feasible planar trajectories as visual cues. On the receiver drone end, a pose estimator tracks the transmitting drone's pose, feeding it into our custom 3DTrajDecoder. The decoder is designed to classify and segment the spatiotempo",
+      "published": "2026-06-26T09:25:22Z",
+      "source": "citation_tracking",
+      "seed_paper": "EAGLE speculative decoding"
+    },
+    {
+      "title": "Comparing accretion disk profiles of Bogush-Galt'sov naked singularity and Kerr black hole",
+      "arxiv_id": "2606.27877",
+      "url": "http://arxiv.org/abs/2606.27877v1",
+      "abstract": "It is well known that the Einstein-scalar system of general relativity can in principle yield non-unique exact spinning naked singularities, which lead to unique Kerr black hole when the scalar field is switched off. It is a challenging task to observationally distinguish these two types of objects. Since accretion process could be a viable diagnostic for this distinction, the purpose of the present work is to explore whether there could be features in the accretion profiles distinguishing the s",
+      "published": "2026-06-26T09:18:25Z",
+      "source": "citation_tracking",
+      "seed_paper": "EAGLE speculative decoding"
+    },
+    {
+      "title": "Differential Privacy over Hamming Codes",
+      "arxiv_id": "2606.27849",
+      "url": "http://arxiv.org/abs/2606.27849v1",
+      "abstract": "We consider the transmission of the outputs of counting queries over a binary symmetric channel (BSC), where Hamming codes are employed as the channel encoder. Since the channel is inherently noisy, this transmission already provides a degree of privacy protection ``for free'', albeit at the cost of reduced utility in the form of decoding errors. A natural question is whether this privacy can be further improved (i) without any additional real-time obfuscation of the data, such as injecting arti",
+      "published": "2026-06-26T08:42:34Z",
+      "source": "citation_tracking",
+      "seed_paper": "EAGLE speculative decoding"
+    },
+    {
+      "title": "A Two-Step Ensemble Score Filter for Data Assimilation in Partially Observed Systems",
+      "arxiv_id": "2606.28264",
+      "url": "http://arxiv.org/abs/2606.28264v1",
+      "abstract": "Data assimilation blends model forecasts with observations to estimate the evolving state of complex dynamical systems, but sparse observing networks remain challenging because unobserved state variables are not directly constrained by observations. In this work, we introduce the Ensemble Score Filter with Linear Regression (EnSF-LR), a two-step filtering method for partially observed nonlinear systems. At each analysis time, EnSF-LR first applies the Ensemble Score Filter (EnSF) to update the o",
+      "published": "2026-06-26T16:55:42Z",
+      "source": "citation_tracking",
+      "seed_paper": "Native Sparse Attention NSA DeepSeek"
+    },
+    {
+      "title": "Reservoir Zero-Coordinatewise Projected Subspace Search for Minimization Over Sparse Symmetric Sets in Machine Learning",
+      "arxiv_id": "2606.28124",
+      "url": "http://arxiv.org/abs/2606.28124v1",
+      "abstract": "We study a class of nonconvex cardinality-constrained optimization problems arising in sparse learning. These problems are NP-hard due to the combinatorial nature of sparsity constraints. We introduce a Reservoir Zero-Coordinatewise Projected Subspace Search (RZCW-PSS) algorithm, a simplex-style method on sparse manifolds that integrates coordinatewise search, symmetry-aware swap-based support updates, randomized low-dimensional subspace exploration, and zero-coordinatewise reservoir injection. ",
+      "published": "2026-06-26T14:26:00Z",
+      "source": "citation_tracking",
+      "seed_paper": "Native Sparse Attention NSA DeepSeek"
+    },
+    {
+      "title": "HIcosmo: a differentiable JAX-based framework for cosmology inference",
+      "arxiv_id": "2606.28175",
+      "url": "http://arxiv.org/abs/2606.28175v1",
+      "abstract": "The Stage IV cosmological surveys, such as Euclid, LSST, DESI, and SKA, will deliver observational data of unprecedented volume, calling for efficient and reliable inference tools. This paper presents HIcosmo (High-performance Inference for Cosmology), an open-source JAX-based framework for cosmology inference. In HIcosmo, the forward model, distance integrals, likelihood evaluations, posterior sampling, and Fisher forecasts are all built from JAX primitives, so that gradients and Hessians of th",
+      "published": "2026-06-26T15:10:43Z",
+      "source": "citation_tracking",
+      "seed_paper": "RocketKV two-stage KV compression"
+    },
+    {
+      "title": "Improved Energy Stable Symmetric Gauss-Seidel Projection Method for Micromagnetics Simulations",
+      "arxiv_id": "2606.28113",
+      "url": "http://arxiv.org/abs/2606.28113v1",
+      "abstract": "The Gauss-Seidel projection method (GSPM) constitutes an efficient and numerically stable numerical framework for micromagnetic simulations of ferromagnetic media. This scheme attains first-order temporal accuracy and second-order spatial accuracy. Fast Fourier transform (FFT) techniques can be incorporated to accelerate both the solution of the arising linear algebraic systems and the evaluation of stray magnetic fields. The conventional GSPM relies on a single-sided Gauss-Seidel iteration, whi",
+      "published": "2026-06-26T14:14:34Z",
+      "source": "citation_tracking",
+      "seed_paper": "RocketKV two-stage KV compression"
+    },
+    {
+      "title": "In situ synchrotron X-ray diffraction study of flash austenitization and process design insights in medium-Manganese steels for energy applications",
+      "arxiv_id": "2606.28072",
+      "url": "http://arxiv.org/abs/2606.28072v1",
+      "abstract": "Medium Mn steels (MMnSs) are promising candidates for energy-related infrastructure because their multiphase microstructures and austenite stability can be tailored to improve failure resistance under demanding service conditions. Flash austenitization (FA) provides a rapid route to form austenite while limiting prior austenite grain coarsening and substitutional solute homogenization, but the related short-time transformation kinetics remain insufficiently quantified. In the present work, the e",
+      "published": "2026-06-26T13:38:50Z",
+      "source": "citation_tracking",
+      "seed_paper": "RocketKV two-stage KV compression"
+    }
+  ]
+}

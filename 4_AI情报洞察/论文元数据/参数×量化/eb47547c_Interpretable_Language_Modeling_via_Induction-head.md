@@ -1,0 +1,87 @@
+---
+type: literature-corpus-entry
+citekey: anonndinterpretable
+title: "Interpretable Language Modeling via Induction-head Ngram Models"
+authors: []
+year: ""
+venue: iclr2025
+venue_type: conference
+arxiv_id: ""
+doi: ""
+url: ""
+pdf_url: ""
+object: 参数
+method: 量化
+cell: "参数×量化"
+all_objects: []
+all_methods: []
+abstract: |
+  Recent large language models (LLMs) have excelled across a wide range of tasks, but their use in high-stakes and compute-limited settings has intensified the demand for interpretability and efficiency. We address this need by proposing Induction-head ngram models (Induction-Gram), a method that builds an efficient, interpretable LM by bolstering modern ngram models with a hand-engineered ``induction head''. This induction head uses a custom neural similarity metric to efficiently search the mode
+key_innovation: "待精读后填写"
+performance: "待精读后填写"
+code_url: ""
+hf_model: ""
+status: unread
+priority: P2
+date_added: 2026-07-06
+obtained_via: "arxiv"
+obtained_at: 2026-07-06
+tags:
+  - inference-compression
+  - 参数
+  - 量化
+---
+
+# Interpretable Language Modeling via Induction-head Ngram Models
+
+## 基本信息
+
+| 字段 | 值 |
+|------|------|
+| **Citekey** | `anonndinterpretable` |
+| **年份** | N/A |
+| **会议/期刊** | iclr2025 |
+| **arXiv** | N/A |
+| **4×5分类** | 参数×量化 |
+| **来源** | arXiv |
+| **作者** | N/A |
+
+## 摘要
+
+Recent large language models (LLMs) have excelled across a wide range of tasks, but their use in high-stakes and compute-limited settings has intensified the demand for interpretability and efficiency. We address this need by proposing Induction-head ngram models (Induction-Gram), a method that builds an efficient, interpretable LM by bolstering modern ngram models with a hand-engineered ``induction head''. This induction head uses a custom neural similarity metric to efficiently search the mode
+
+## 关键创新
+
+*待精读后在此填写 1-3 个方法核心创新点*
+
+> 提示：
+> - 这个方法解决什么问题？
+> - 相比已有方法的本质区别？
+> - 实验中验证了什么关键指标？
+
+## 性能数据
+
+| 模型/场景 | 压缩率 | 精度 | 加速比 | 显存 |
+|-----------|--------|------|--------|------|
+| 待填 | | | | |
+
+> 精读时把论文表格中的关键数字搬过来
+
+## 代码与资源
+
+
+- **代码**: （精读时查找GitHub链接）
+- **HuggingFace模型**: （如适用）
+
+## 我的笔记
+
+*精读笔记在此写，或链接到 [[专题笔记名]]*
+
+## 相关论文
+
+*精读时用Obsidian双链 `[[arxiv_id]]` 连接相关工作*
+
+---
+
+*基于 ARS v3.6.4 literature_corpus_entry schema*  
+*生成日期: 2026-07-06 | 来源: arXiv*

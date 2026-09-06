@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>通信压缩8大方向详解 — 论文级深度</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#080c14;--s1:#0f1623;--s2:#182234;--bd:#243044;--t:#dce6f0;--td:#7a8699;--blue:#3b82f6;--green:#22c55e;--yellow:#eab308;--orange:#f97316;--red:#ef4444;--purple:#a78bfa;--cyan:#06b6d4;--pink:#ec4899}
+body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--t);font-size:13px;line-height:1.6}
+.wrap{max-width:1500px;margin:0 auto;padding:16px 20px 60px}
+.hdr{background:linear-gradient(135deg,#0a0a1a,#101028);border-radius:14px;padding:24px;text-align:center;margin-bottom:16px}
+.hdr h1{font-size:22px;color:#fff;margin-bottom:6px}
+.hdr .sub{font-size:12px;color:var(--td)}
+
+.dir-card{background:var(--s1);border:1px solid var(--bd);border-radius:14px;padding:20px;margin-bottom:16px}
+.dir-card h2{font-size:17px;margin-bottom:10px;display:flex;align-items:center;gap:8px}
+.dir-card .num{width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:800;color:#fff;flex-shrink:0}
+.dir-card .essence{font-size:12px;background:rgba(59,130,246,0.06);border:1px solid rgba(59,130,246,0.15);border-radius:8px;padding:10px 14px;margin-bottom:12px;color:var(--td);line-height:1.7}
+.dir-card .essence strong{color:var(--blue)}
+.dir-card .problem{font-size:12px;color:var(--red);margin-bottom:10px;line-height:1.7}
+.dir-card .problem strong{color:var(--red)}
+
+.paper-box{background:var(--s2);border:1px solid var(--bd);border-radius:10px;padding:14px;margin-bottom:10px}
+.paper-box .ph{display:flex;align-items:center;justify-content:space-between;margin-bottom:6px}
+.paper-box .pt{font-size:14px;font-weight:700}
+.paper-box .pm{font-size:10px;color:var(--td);font-family:monospace}
+.tag{font-size:9px;padding:1px 6px;border-radius:3px;font-weight:700}
+.t-ind{background:rgba(34,197,94,0.15);color:var(--green)}.t-aca{background:rgba(59,130,246,0.15);color:var(--blue)}.t-brk{background:rgba(249,115,22,0.15);color:var(--orange)}.t-blk{background:rgba(167,139,250,0.15);color:var(--purple)}
+.paper-box .pd{font-size:12px;color:var(--td);line-height:1.7;margin-bottom:6px}
+.paper-box .pd strong{color:var(--t)}
+.metric-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:6px;margin:6px 0}
+.metric-card{background:var(--s1);border-radius:6px;padding:6px 10px;text-align:center}
+.metric-card .mv{font-size:16px;font-weight:800;color:var(--green);font-family:monospace}
+.metric-card .ml{font-size:9px;color:var(--td)}
+.code-box{background:rgba(0,0,0,0.3);border:1px solid var(--bd);border-radius:6px;padding:10px;font-family:monospace;font-size:11px;line-height:1.7;color:var(--cyan);white-space:pre;overflow-x:auto;margin:8px 0}
+.note{background:rgba(59,130,246,0.05);border:1px solid rgba(59,130,246,0.15);border-radius:8px;padding:10px;font-size:11px;color:var(--td);line-height:1.7;margin:8px 0}
+.note strong{color:var(--blue)}
+</style>
+</head>
+<body>
+<div class="wrap">
+<div class="hdr">
+  <h1>📡 通信压缩8大方向详解</h1>
+  <div class="sub">每个方向 × 问题本质 × 典型论文 × 关键数据 × 本质区别</div>
+</div>
+
+<!-- 方向1 -->
+<div class="dir-card">
+  <h2><div class="num" style="background:var(--blue)">1</div> 低比特量化</h2>
+  <div class="essence"><strong>本质：减少每次传输的比特数</strong> BF16→FP8→INT4→INT2。通信量 = 数据量 × bit数，量化降低的是bit数。</div>
+  <div class="problem"><strong>核心矛盾：</strong>bit越低通信越少但精度越差。<4bit时对齐崩塌15-30%（AlignCollapse）。</div>
+
+  <div class="paper-box">
+    <div class="ph"><span class="pt">DeepEP V2</span><span><span class="tag t-ind">业界</span> <span class="pm">DeepSeek · 9.8k★ · 2025</span></span></div>
+    <div class="pd">MoE All-to-All通信库。FP8 dispatch（use_fp8_dispatch参数），JIT编译，NCCL Gin后端。</div>
+    <div class="code-box">dispatch(x, use_fp8_dispatch=True)  # FP8传输，通信↓50%
+# V2: SM从24降到4-6，性能↑1.3x
+# NVLink EP8: 726 GB/s dispatch</div>
+    <div class="metric-grid">
+      <div class="metric-card"><div class="mv">↓50%</div><div class="ml">FP8通信量</div></div>
+      <div class="metric-card"><div class="mv">EP2048</div><div class="ml">最大规模</div></div>
+      <div class="metric-card"><div class="mv">4-6 SM</div><div class="ml">V2 SM占用</div></div>
+    </div>
+  </div>
+
+  <div class="paper-box">
+    <div class="ph"><span class="pt">ExpertQuant</span><span><span class="tag t-brk">突破</span> <span class="pm">arXiv 2025 · 💎首个MoE INT4</span></span></div>
+    <div class="pd">首个对MoE Expert参数做INT4量化减少All-to-All通信。精度损失&lt;1%。</div>
+    <div class="metric-grid">
+      <div class="metric-card"><div class="mv">↓75%</div><div class="ml">通信量(INT4)</div></div>
+      <div class="metric-card"><div class="mv">&lt;1%</div><div class="ml">精度损失</div></div>
+    </div>
+    <div class="note"><strong>关键问题：</strong>仅小模型验证，671B MoE上未验证。热冷Expert差异化精度（热FP8/冷INT4）无人实现。</div>
+  </div>
+</div>
+
+<!-- 方向2 -->
+<div class="dir-card">
+  <h2><div class="num" style="background:var(--green)">2</div> 路由感知专家协作</h2>
+  <div class="essence"><strong>本质：减少跨节点通信次数</strong> 高频共激活的Expert放同一GPU节点，跨节点通信→节点内NVLink通信。</div>
+
+  <div class="paper-box">
+    <div class="ph"><span class="pt">Occult</span><span><span class="tag t-aca">学术</span> <span class="pm">ICML 2025 · arXiv:2505.13345</span></span></div>
+    <div class="pd">定义"协作Expert对"：Intra-collaboration（同GPU，零通信）vs Inter-collaboration（跨GPU，需通信）。策略：最大化Intra比例。</div>
+    <div class="code-box"># 协作通信
+Intra-collaboration: Expert A,B在同一GPU → 无需All-to-All
+Inter-collaboration: Expert A在GPU0, B在GPU1 → 需要通信
+→ 重新放置Expert使高频共激活对变成Intra</div>
+    <div class="metric-grid">
+      <div class="metric-card"><div class="mv">&gt;1.5x</div><div class="ml">加速</div></div>
+      <div class="metric-card"><div class="mv">精确+剪枝</div><div class="ml">两种模式</div></div>
+    </div>
+  </div>
+
+  <div class="paper-box">
+    <div class="ph"><span class="pt">C2R</span><span><span class="tag t-aca">学术</span> <span class="pm">NAACL 2025</span></span></div>
+    <div class="pd">Collaborative-Constrained Routing——路由约束让Token尽量路由到本地Expert。</div>
+    <div class="metric-grid">
+      <div class="metric-card"><div class="mv">↓20-30%</div><div class="ml">通信量</div></div>
+    </div>
+  </div>
+
+  <div class="paper-box">
+    <div class="ph"><span class="pt">Gimbal</span><span><span class="tag t-aca">学术</span> <span class="pm">ACM ATC 2026 · arXiv:2606.15177</span></span></div>
+    <div class="pd">前端细粒度DP调度器 + 后端来源感知Expert放置。MINLP联合优化。关键创新：调度器感知"哪个请求路由到哪个Expert"→源头减少跨GPU流量。</div>
+    <div class="metric-grid">
+      <div class="metric-card"><div class="mv">↓42.9%</div><div class="ml">TTFT</div></div>
+      <div class="metric-card"><div class="mv">↓33.3%</div><div class="ml">TPOT</div></div>
+      <div class="metric-card"><div class="mv">↓44.3%</div><div class="ml">P99 TTFT</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- 方向3 -->
+<div class="dir-card">
+  <h2><div class="num" style="background:var(--orange)">3</div> 单Kernel通信计算融合</h2>
+  <div class="essence"><strong>本质：消除通信等待</strong> 不减少通信量，而是让dispatch→compute→combine在一个Kernel内流水线执行，零launch开销。</div>
+  <div class="problem"><strong>传统问题：</strong>三步串行（dispatch→等→compute→等→combine），GPU大部分时间在等通信完成。</div>
+
+  <div class="paper-box">
+    <div class="ph"><span class="pt">FlashMoE</span><span><span class="tag t-brk">突破</span> <span class="pm">NeurIPS 2025 · arXiv:2506.04667</span></span></div>
+    <div class="pd">1个持久GPU Kernel完成全部dispatch→compute→combine。GPU端直接发起RDMA绕过CPU。细粒度流水线重叠通信与计算。</div>
+    <div class="code-box"># 传统（bulk-synchronous）：
+Dispatch(CPU launch) → 等待 → Compute(GPU) → 等待 → Combine(CPU launch)
+  # 大量时间在CPU launch overhead和等待
+
+# FlashMoE（single persistent kernel）：
+Kernel {
+  Block 0: Dispatch(RDMA, GPU-initiated)
+  Block 1: Compute(expert forward)
+  Block 2: Combine(RDMA, GPU-initiated)
+  → 细粒度重叠，零launch开销
+}</div>
+    <div class="metric-grid">
+      <div class="metric-card"><div class="mv">9x</div><div class="ml">GPU利用率</div></div>
+      <div class="metric-card"><div class="mv">6x↓</div><div class="ml">延迟</div></div>
+      <div class="metric-card"><div class="mv">5.7x</div><div class="ml">吞吐</div></div>
+      <div class="metric-card"><div class="mv">4x</div><div class="ml">通信重叠效率</div></div>
+    </div>
+    <div class="note"><strong>关键数据：</strong>128 experts, 16K tokens, 8×H100。即使FP32也优于FP16基线。通信占MoE训练>40%运行时间——FlashMoE直击最大瓶颈。</div>
+  </div>
+
+  <div class="paper-box">
+    <div class="ph"><span class="pt">FoldMoE</span><span><span class="tag t-aca">学术</span> <span class="pm">ACL 2025</span></span></div>
+    <div class="pd">Attention-MoE流水线：跨Transformer block的token级重叠。解决长序列All-to-All瓶颈。</div>
+  </div>
+</div>
+
+<!-- 方向4 -->
+<div class="dir-card">
+  <h2><div class="num" style="background:var(--yellow)">4</div> 压缩上下文跨GPU传递</h2>
+  <div class="essence"><strong>本质：减少传输的数据维度</strong> 长上下文分布式推理中，跨GPU传的不是完整KV而是压缩后的KV表示。</div>
+  <div class="problem"><strong>问题：</strong>128K上下文×70B模型 = 每对GPU需传10GB KV（25Gbps RDMA需3.2s）→ TTFT被KV传输主导。</div>
+
+  <div class="paper-box">
+    <div class="ph"><span class="pt">APB</span><span><span class="tag t-aca">学术</span> <span class="pm">ACL 2025 · arXiv:2502.12085</span></span></div>
+    <div class="pd">序列并行 + 近似注意力 + 压缩KV传递。GPU0处理chunk0→压缩KV→GPU1用本地KV+远程压缩KV做近似注意力。</div>
+    <div class="code-box"># APB方案
+GPU 0: 处理chunk 0 → 压缩KV → 传压缩KV给GPU 1
+GPU 1: 处理chunk 1 → 接收压缩KV → 本地KV + 远程压缩KV注意力
+# 同时减少计算量（近似注意力）和通信量（压缩KV）</div>
+    <div class="metric-grid">
+      <div class="metric-card"><div class="mv">9.2x</div><div class="ml">vs FlashAttn</div></div>
+      <div class="metric-card"><div class="mv">4.2x</div><div class="ml">vs RingAttn</div></div>
+      <div class="metric-card"><div class="mv">1.6x</div><div class="ml">vs StarAttn</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- 方向5 -->
+<div class="dir-card">
+  <h2><div class="num" style="background:var(--red)">5</div> 同步点丢弃</h2>
+  <div class="essence"><strong>本质：直接跳过某些通信</strong> 张量并行中每个attention block后都要AllReduce同步，但某些同步点可以安全跳过。</div>
+  <div class="problem"><strong>问题：</strong>LLM-70B张量并行8卡，每层2次AllReduce（attention+FFN），80层=320次AllReduce/token。</div>
+
+  <div class="paper-box">
+    <div class="ph"><span class="pt">SPD (Sync-Point Drop)</span><span><span class="tag t-aca">学术</span> <span class="pm">arXiv:2502.20727</span></span></div>
+    <div class="pd">测量每个block的同步敏感度→低敏感block跳过AllReduce→高敏感block保留。Block设计允许跳过。</div>
+    <div class="code-box"># 传统：每层都AllReduce
+Block 0 → AllReduce → Block 1 → AllReduce → Block 2 → ...
+
+# SPD：选择性丢弃
+Block 0 → AllReduce → Block 1 → [跳过] → Block 2 → AllReduce
+  ↑ 低敏感度：跳过后误差可被后续block吸收</div>
+    <div class="metric-grid">
+      <div class="metric-card"><div class="mv">↓20%</div><div class="ml">推理延迟</div></div>
+      <div class="metric-card"><div class="mv">&lt;1%</div><div class="ml">精度回退</div></div>
+      <div class="metric-card"><div class="mv">LLaMA2-70B</div><div class="ml">8×GPU验证</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- 方向6 -->
+<div class="dir-card">
+  <h2><div class="num" style="background:var(--purple)">6</div> PD分离KV传输优化</h2>
+  <div class="essence"><strong>本质：传什么、传多少、传给谁</strong> 分离式推理中Prefill节点生成KV→传给Decode节点。优化这个跨设备KV传输。</div>
+  <div class="problem"><strong>问题：</strong>128K Llama-70B的KV ≈ 40GB，25Gbps RDMA需3.2s传输→TTFT被传输主导。</div>
+
+  <div class="paper-box">
+    <div class="ph"><span class="pt">SCD (Semantic Cache Distillation)</span><span><span class="tag t-brk">突破</span> <span class="pm">ICML 2026 · 华为+北大 · arXiv:2606.07684</span></span></div>
+    <div class="pd">跨<strong>异构模型</strong>（基础模型→微调模型）KV传输。低秩投影Reuse + 选择性Patch修正语义漂移。</div>
+    <div class="code-box"># SCD两机制
+Reuse: 大部分层用低秩投影从Producer KV重建Consumer KV（省带宽）
+Patch: 少数transition layers全量传输修正语义漂移（保精度）
+
+# vs DroidSpeak（二元：重算vs复用）
+# SCD：选择→变换（更细粒度的tradeoff）</div>
+    <div class="metric-grid">
+      <div class="metric-card"><div class="mv">2.65x</div><div class="ml">TTFT提升</div></div>
+      <div class="metric-card"><div class="mv">&lt;5% F1</div><div class="ml">质量损失</div></div>
+    </div>
+    <div class="note"><strong>产业意义：</strong>首个解决跨模型KV传输的论文。对应场景：shared-prefill + specialist-decode服务架构。</div>
+  </div>
+
+  <div class="paper-box">
+    <div class="ph"><span class="pt">NetKV</span><span><span class="tag t-aca">学术</span> <span class="pm">arXiv:2606.03910</span></span></div>
+    <div class="pd">网络拓扑感知选择Decode实例。证明：忽略网络项的cache-only调度在上下文增长时<strong>任意次优</strong>。</div>
+    <div class="code-box"># Tier模型
+Tier 0: 同节点 (NVLink 100-600 GB/s)
+Tier 1: 同rack (RoCE 25-100 Gbps)
+Tier 2: 同pod (10-25 Gbps)
+Tier 3: 跨pod (5-12 Gbps)
+# 选择最近的Decode实例 = 最少KV传输时间</div>
+    <div class="metric-grid">
+      <div class="metric-card"><div class="mv">↓21.2%</div><div class="ml">TTFT</div></div>
+      <div class="metric-card"><div class="mv">+20.1pt</div><div class="ml">SLO达成</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- 方向7 -->
+<div class="dir-card">
+  <h2><div class="num" style="background:var(--cyan)">7</div> 通信-计算重叠调度</h2>
+  <div class="essence"><strong>本质：隐藏通信延迟</strong> 不减少通信量，而是让通信和计算同时进行——通信时间被计算时间"吸收"。</div>
+
+  <div class="paper-box">
+    <div class="ph"><span class="pt">DeepSeek DualPipe</span><span><span class="tag t-ind">业界</span> <span class="pm">DeepSeek-V3生产部署</span></span></div>
+    <div class="pd">计算和通信反向流水线执行。Prefill的前向计算与上一层的通信重叠。</div>
+    <div class="code-box"># DualPipe核心思路
+正向：Attention计算 ←重叠→ 下一层MoE dispatch通信
+反向：梯度计算 ←重叠→ 上一层通信
+→ 通信时间被计算时间完全吸收</div>
+    <div class="note"><strong>生产验证：</strong>DeepSeek-V3实际部署，通信开销从>40%降至接近0%（被计算完全隐藏）。</div>
+  </div>
+
+  <div class="paper-box">
+    <div class="ph"><span class="pt">CloudMoE</span><span><span class="tag t-brk">突破</span> <span class="pm">OSDI 2026 · arXiv:2606.10493</span></span></div>
+    <div class="pd">CPU-GPU混合MoE推理。节点内PD分离零拷贝共享权重 + Attention-MoE双batch重叠。</div>
+    <div class="code-box"># CloudMoE五大方案
+① SLP: Stream-Loading Prefill (GPU+CPU协同)
+② DSLP: 分布式SLP + SmallEP
+③ 节点内PD分离: 零拷贝 + 双batch重叠
+④ AVX-512 FP8 GEMV: 原生CPU FP8 MoE
+⑤ 细粒度CPU并行: 融合量化操作</div>
+    <div class="metric-grid">
+      <div class="metric-card"><div class="mv">28 tok/s</div><div class="ml">INT4 DeepSeek-R1</div></div>
+      <div class="metric-card"><div class="mv">1200 tok/s</div><div class="ml">Prefill吞吐</div></div>
+      <div class="metric-card"><div class="mv">&lt;30s</div><div class="ml">32K TTFT</div></div>
+      <div class="metric-card"><div class="mv">&lt;15%</div><div class="ml">并发延迟增加</div></div>
+    </div>
+    <div class="note"><strong>关键：</strong>双RTX 5090本地运行DeepSeek-R1达到云级SLO。</div>
+  </div>
+</div>
+
+<!-- 方向8 -->
+<div class="dir-card">
+  <h2><div class="num" style="background:var(--pink)">8</div> 全复制打破</h2>
+  <div class="essence"><strong>本质：改变通信范式</strong> 从"每个GPU全复制所有Expert"（用空间换通信）到"按拓扑分区放置"（减少通信总量）。</div>
+  <div class="problem"><strong>问题：</strong>DeepSeek-V3有256 Expert，全复制=每GPU 128GB Expert参数→显存浪费巨大。</div>
+
+  <div class="paper-box">
+    <div class="ph"><span class="pt">FoMoE</span><span><span class="tag t-brk">突破</span> <span class="pm">ICLR 2026</span></span></div>
+    <div class="pd">打破全复制范式。Expert分区放置 + skip-token机制。通信↓1.42~45.44x。</div>
+    <div class="code-box"># 传统全复制
+GPU 0: Expert[0-255] 全部复制
+GPU 1: Expert[0-255] 全部复制
+→ 每个Token路由到任意Expert都local（但显存巨大）
+
+# FoMoE分区
+GPU 0: Expert[0-63]
+GPU 1: Expert[64-127]
+→ Token路由到非本地Expert才通信
+→ skip-token: 某些Token直接跳过（不路由到任何Expert）</div>
+    <div class="metric-grid">
+      <div class="metric-card"><div class="mv">↓1.42-45.44x</div><div class="ml">通信量</div></div>
+      <div class="metric-card"><div class="mv">1.4x</div><div class="ml">吞吐提升</div></div>
+    </div>
+  </div>
+
+  <div class="paper-box">
+    <div class="ph"><span class="pt">Shortcut-connected Expert Parallelism</span><span><span class="tag t-aca">学术</span> <span class="pm">ICML 2025</span></span></div>
+    <div class="pd">快捷连接绕过部分All-to-All。消除通信-计算串行依赖。</div>
+  </div>
+</div>
+
+<!-- 总结 -->
+<div class="note" style="border-color:var(--cyan);background:rgba(6,182,212,0.05)">
+  <strong style="color:var(--cyan)">8个方向的本质区别：</strong><br><br>
+  <strong>减少通信数据量：</strong>①量化(bit↓) + ④压缩KV传递(维度↓) + ⑥PD传输(内容↓)<br>
+  <strong>减少通信次数：</strong>⑤同步点丢弃(某些不做) + ⑧全复制打破(改范式)<br>
+  <strong>隐藏通信延迟：</strong>③单Kernel融合(零等待) + ⑦通信计算重叠(被吸收)<br>
+  <strong>减少跨节点通信：</strong>②路由感知协作(共激活放同节点)<br><br>
+  <strong>方向间正交性：</strong>8个方向可以任意组合。例如：①(INT4量化) + ②(共激活配对) + ③(单Kernel) = 理论极限。
+</div>
+
+</div>
+</body>
+</html>

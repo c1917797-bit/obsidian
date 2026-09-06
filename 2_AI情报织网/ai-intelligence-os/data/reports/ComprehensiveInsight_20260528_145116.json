@@ -1,0 +1,1830 @@
+{
+  "stats": {
+    "total_sources": 220,
+    "successful": 220,
+    "failed": 0,
+    "signals_found": 78,
+    "by_category": {
+      "academic": 62,
+      "inference": 0,
+      "industry": 0,
+      "tech_blog": 5,
+      "agent": 0,
+      "training": 2,
+      "benchmark": 0,
+      "news_cn": 1,
+      "news": 8,
+      "runtime": 0,
+      "observability": 0,
+      "agent_protocol": 0,
+      "kernel": 0,
+      "storage": 0,
+      "agent_industry": 0,
+      "economics": 0,
+      "reliability": 0,
+      "hardware": 0,
+      "data": 0,
+      "case_study": 0,
+      "safety": 0
+    },
+    "by_priority": {
+      "P0": 70,
+      "P1": 8,
+      "P2": 0
+    }
+  },
+  "signals": [
+    {
+      "id": "4c589ee79cbb5beb",
+      "title": "AnySkill: Learning Open-Vocabulary Physical Skill for Interactive Agents",
+      "url": "https://openaccess.thecvf.com/content/CVPR2024/papers/Cui_AnySkill_Learning_Open-Vocabulary_Physical_Skill_for_Interactive_Agents_CVPR_2024_paper.pdf",
+      "source": "CVPR 2024 Papers",
+      "source_id": "cvpr_2024",
+      "source_type": "paperlists_json",
+      "category": "academic",
+      "priority": "P0",
+      "published": "2024-01-01",
+      "summary": "Traditional approaches in physics-based motion generation centered around imitation learning and reward shaping often struggle to adapt to new scenarios. To tackle this limitation we propose AnySkill a novel hierarchical method that learns physically plausible interactions following open-vocabulary instructions. Our approach begins by developing a set of atomic actions via a low-level controller trained via imitation learning. Upon receiving an open-vocabulary textual instruction AnySkill employ",
+      "content": "",
+      "authors": [],
+      "tags": [
+        ""
+      ],
+      "fetched_at": "2026-05-28T14:47:43.690066",
+      "language": "en",
+      "metadata": {
+        "venue": "",
+        "year": 2024,
+        "citation_count": 0,
+        "primary_area": ""
+      }
+    },
+    {
+      "id": "78096cc775844b32",
+      "title": "CogAgent: A Visual Language Model for GUI Agents",
+      "url": "https://openaccess.thecvf.com/content/CVPR2024/papers/Hong_CogAgent_A_Visual_Language_Model_for_GUI_Agents_CVPR_2024_paper.pdf",
+      "source": "CVPR 2024 Papers",
+      "source_id": "cvpr_2024",
+      "source_type": "paperlists_json",
+      "category": "academic",
+      "priority": "P0",
+      "published": "2024-01-01",
+      "summary": "People are spending an enormous amount of time on digital devices through graphical user interfaces (GUIs) e.g. computer or smartphone screens. Large language models (LLMs) such as ChatGPT can assist people in tasks like writing emails but struggle to understand and interact with GUIs thus limiting their potential to increase automation levels. In this paper we introduce CogAgent an 18-billion-parameter visual language model (VLM) specializing in GUI understanding and navigation. By utilizing bo",
+      "content": "",
+      "authors": [],
+      "tags": [
+        ""
+      ],
+      "fetched_at": "2026-05-28T14:47:43.690066",
+      "language": "en",
+      "metadata": {
+        "venue": "",
+        "year": 2024,
+        "citation_count": 0,
+        "primary_area": ""
+      }
+    },
+    {
+      "id": "8fb5046e52f84c6f",
+      "title": "Density-Adaptive Model Based on Motif Matrix for Multi-Agent Trajectory Prediction",
+      "url": "https://openaccess.thecvf.com/content/CVPR2024/papers/Wen_Density-Adaptive_Model_Based_on_Motif_Matrix_for_Multi-Agent_Trajectory_Prediction_CVPR_2024_paper.pdf",
+      "source": "CVPR 2024 Papers",
+      "source_id": "cvpr_2024",
+      "source_type": "paperlists_json",
+      "category": "academic",
+      "priority": "P0",
+      "published": "2024-01-01",
+      "summary": "Multi-agent trajectory prediction is essential in autonomous driving risk avoidance and traffic flow control. However the heterogeneous traffic density on interactions which caused by physical laws social norms and so on is often overlooked in existing methods. When the density varies the number of agents involved in interactions and the corresponding interaction probability change dynamically. To tackle this issue we propose a new method called \\underline D ensity-\\underline A daptive Model bas",
+      "content": "",
+      "authors": [],
+      "tags": [
+        ""
+      ],
+      "fetched_at": "2026-05-28T14:47:43.690066",
+      "language": "en",
+      "metadata": {
+        "venue": "",
+        "year": 2024,
+        "citation_count": 0,
+        "primary_area": ""
+      }
+    },
+    {
+      "id": "6497ad2dc7d1a7e1",
+      "title": "DiffAgent: Fast and Accurate Text-to-Image API Selection with Large Language Model",
+      "url": "https://openaccess.thecvf.com/content/CVPR2024/papers/Zhao_DiffAgent_Fast_and_Accurate_Text-to-Image_API_Selection_with_Large_Language_CVPR_2024_paper.pdf",
+      "source": "CVPR 2024 Papers",
+      "source_id": "cvpr_2024",
+      "source_type": "paperlists_json",
+      "category": "academic",
+      "priority": "P0",
+      "published": "2024-01-01",
+      "summary": "Text-to-image (T2I) generative models have attracted significant attention and found extensive applications within and beyond academic research. For example the Civitai community a platform for T2I innovation currently hosts an impressive array of 74492 distinct models. However this diversity presents a formidable challenge in selecting the most appropriate model and parameters a process that typically requires numerous trials. Drawing inspiration from the tool usage research of large language m",
+      "content": "",
+      "authors": [],
+      "tags": [
+        ""
+      ],
+      "fetched_at": "2026-05-28T14:47:43.690066",
+      "language": "en",
+      "metadata": {
+        "venue": "",
+        "year": 2024,
+        "citation_count": 0,
+        "primary_area": ""
+      }
+    },
+    {
+      "id": "4903e1bdf37450cb",
+      "title": "Editable Scene Simulation for Autonomous Driving via Collaborative LLM-Agents",
+      "url": "https://openaccess.thecvf.com/content/CVPR2024/papers/Wei_Editable_Scene_Simulation_for_Autonomous_Driving_via_Collaborative_LLM-Agents_CVPR_2024_paper.pdf",
+      "source": "CVPR 2024 Papers",
+      "source_id": "cvpr_2024",
+      "source_type": "paperlists_json",
+      "category": "academic",
+      "priority": "P0",
+      "published": "2024-01-01",
+      "summary": "Scene simulation in autonomous driving has gained significant attention because of its huge potential for generating customized data. However existing editable scene simulation approaches face limitations in terms of user interaction efficiency multi-camera photo-realistic rendering and external digital assets integration. To address these challenges this paper introduces ChatSim the first system that enables editable photo-realistic 3D driving scene simulations via natural language commands wit",
+      "content": "",
+      "authors": [],
+      "tags": [
+        ""
+      ],
+      "fetched_at": "2026-05-28T14:47:43.690066",
+      "language": "en",
+      "metadata": {
+        "venue": "",
+        "year": 2024,
+        "citation_count": 0,
+        "primary_area": ""
+      }
+    },
+    {
+      "id": "4321a6595d230823",
+      "title": "Embodied Multi-Modal Agent trained by an LLM from a Parallel TextWorld",
+      "url": "https://openaccess.thecvf.com/content/CVPR2024/papers/Yang_Embodied_Multi-Modal_Agent_trained_by_an_LLM_from_a_Parallel_CVPR_2024_paper.pdf",
+      "source": "CVPR 2024 Papers",
+      "source_id": "cvpr_2024",
+      "source_type": "paperlists_json",
+      "category": "academic",
+      "priority": "P0",
+      "published": "2024-01-01",
+      "summary": "While large language models (LLMs) excel in a simulated world of texts they struggle to interact with the more realistic world without perceptions of other modalities such as visual or audio signals. Although vision-language models (VLMs) integrate LLM modules (1) aligned with static image features and (2) may possess prior knowledge of world dynamics (as demonstrated in the text world) they have not been trained in an embodied visual world and thus cannot align with its dynamics. On the other h",
+      "content": "",
+      "authors": [],
+      "tags": [
+        ""
+      ],
+      "fetched_at": "2026-05-28T14:47:43.690066",
+      "language": "en",
+      "metadata": {
+        "venue": "",
+        "year": 2024,
+        "citation_count": 0,
+        "primary_area": ""
+      }
+    },
+    {
+      "id": "a66035c1ebe8c92e",
+      "title": "Jointly Training and Pruning CNNs via Learnable Agent Guidance and Alignment",
+      "url": "https://openaccess.thecvf.com/content/CVPR2024/papers/Ganjdanesh_Jointly_Training_and_Pruning_CNNs_via_Learnable_Agent_Guidance_and_CVPR_2024_paper.pdf",
+      "source": "CVPR 2024 Papers",
+      "source_id": "cvpr_2024",
+      "source_type": "paperlists_json",
+      "category": "academic",
+      "priority": "P0",
+      "published": "2024-01-01",
+      "summary": "Structural model pruning is a prominent approach used for reducing the computational cost of Convolutional Neural Networks (CNNs) before their deployment on resource-constrained devices. Yet the majority of proposed ideas require a pretrained model before pruning which is costly to secure. In this paper we propose a novel structural pruning approach to jointly learn the weights and structurally prune architectures of CNN models. The core element of our method is a Reinforcement Learning (RL) age",
+      "content": "",
+      "authors": [],
+      "tags": [
+        ""
+      ],
+      "fetched_at": "2026-05-28T14:47:43.690066",
+      "language": "en",
+      "metadata": {
+        "venue": "",
+        "year": 2024,
+        "citation_count": 0,
+        "primary_area": ""
+      }
+    },
+    {
+      "id": "1021436d6bb244da",
+      "title": "Multi-agent Collaborative Perception via Motion-aware Robust Communication Network",
+      "url": "https://openaccess.thecvf.com/content/CVPR2024/papers/Hong_Multi-agent_Collaborative_Perception_via_Motion-aware_Robust_Communication_Network_CVPR_2024_paper.pdf",
+      "source": "CVPR 2024 Papers",
+      "source_id": "cvpr_2024",
+      "source_type": "paperlists_json",
+      "category": "academic",
+      "priority": "P0",
+      "published": "2024-01-01",
+      "summary": "Collaborative perception allows for information sharing between multiple agents such as vehicles and infrastructure to obtain a comprehensive view of the environment through communication and fusion. Current research on multi-agent collaborative perception systems often assumes ideal communication and perception environments and neglects the effect of real-world noise such as pose noise motion blur and perception noise. To address this gap in this paper we propose a novel motion-aware robust com",
+      "content": "",
+      "authors": [],
+      "tags": [
+        ""
+      ],
+      "fetched_at": "2026-05-28T14:47:43.690066",
+      "language": "en",
+      "metadata": {
+        "venue": "",
+        "year": 2024,
+        "citation_count": 0,
+        "primary_area": ""
+      }
+    },
+    {
+      "id": "47a9f2fff00cbdc8",
+      "title": "Multi-agent Long-term 3D Human Pose Forecasting via Interaction-aware Trajectory Conditioning",
+      "url": "https://openaccess.thecvf.com/content/CVPR2024/papers/Jeong_Multi-agent_Long-term_3D_Human_Pose_Forecasting_via_Interaction-aware_Trajectory_Conditioning_CVPR_2024_paper.pdf",
+      "source": "CVPR 2024 Papers",
+      "source_id": "cvpr_2024",
+      "source_type": "paperlists_json",
+      "category": "academic",
+      "priority": "P0",
+      "published": "2024-01-01",
+      "summary": "Human pose forecasting garners attention for its diverse applications. However challenges in modeling the multi-modal nature of human motion and intricate interactions among agents persist particularly with longer timescales and more agents. In this paper we propose an interaction-aware trajectory-conditioned long-term multi-agent human pose forecasting model utilizing a coarse-to-fine prediction approach: multi-modal global trajectories are initially forecasted followed by respective local pose",
+      "content": "",
+      "authors": [],
+      "tags": [
+        ""
+      ],
+      "fetched_at": "2026-05-28T14:47:43.690066",
+      "language": "en",
+      "metadata": {
+        "venue": "",
+        "year": 2024,
+        "citation_count": 0,
+        "primary_area": ""
+      }
+    },
+    {
+      "id": "a5312829b7524440",
+      "title": "Multiagent Multitraversal Multimodal Self-Driving: Open MARS Dataset",
+      "url": "https://openaccess.thecvf.com/content/CVPR2024/papers/Li_Multiagent_Multitraversal_Multimodal_Self-Driving_Open_MARS_Dataset_CVPR_2024_paper.pdf",
+      "source": "CVPR 2024 Papers",
+      "source_id": "cvpr_2024",
+      "source_type": "paperlists_json",
+      "category": "academic",
+      "priority": "P0",
+      "published": "2024-01-01",
+      "summary": "Large-scale datasets have fueled recent advancements in AI-based autonomous vehicle research. However these datasets are usually collected from a single vehicle's one-time pass of a certain location lacking multiagent interactions or repeated traversals of the same place. Such information could lead to transformative enhancements in autonomous vehicles' perception prediction and planning capabilities. To bridge this gap in collaboration with the self-driving company May Mobility we present the M",
+      "content": "",
+      "authors": [],
+      "tags": [
+        ""
+      ],
+      "fetched_at": "2026-05-28T14:47:43.690066",
+      "language": "en",
+      "metadata": {
+        "venue": "",
+        "year": 2024,
+        "citation_count": 0,
+        "primary_area": ""
+      }
+    },
+    {
+      "id": "e212d7950a2776e2",
+      "title": "RILA: Reflective and Imaginative Language Agent for Zero-Shot Semantic Audio-Visual Navigation",
+      "url": "https://openaccess.thecvf.com/content/CVPR2024/papers/Yang_RILA_Reflective_and_Imaginative_Language_Agent_for_Zero-Shot_Semantic_Audio-Visual_CVPR_2024_paper.pdf",
+      "source": "CVPR 2024 Papers",
+      "source_id": "cvpr_2024",
+      "source_type": "paperlists_json",
+      "category": "academic",
+      "priority": "P0",
+      "published": "2024-01-01",
+      "summary": "We leverage Large Language Models (LLM) for zeroshot Semantic Audio Visual Navigation (SAVN). Existing methods utilize extensive training demonstrations for reinforcement learning yet achieve relatively low success rates and lack generalizability. The intermittent nature of auditory signals further poses additional obstacles to inferring the goal information. To address this challenge we present the Reflective and Imaginative Language Agent (RILA). By employing multi-modal models to process sens",
+      "content": "",
+      "authors": [],
+      "tags": [
+        ""
+      ],
+      "fetched_at": "2026-05-28T14:47:43.690066",
+      "language": "en",
+      "metadata": {
+        "venue": "",
+        "year": 2024,
+        "citation_count": 0,
+        "primary_area": ""
+      }
+    },
+    {
+      "id": "eed17f2e6d29cc0c",
+      "title": "Retrieval-Augmented Embodied Agents",
+      "url": "https://openaccess.thecvf.com/content/CVPR2024/papers/Zhu_Retrieval-Augmented_Embodied_Agents_CVPR_2024_paper.pdf",
+      "source": "CVPR 2024 Papers",
+      "source_id": "cvpr_2024",
+      "source_type": "paperlists_json",
+      "category": "academic",
+      "priority": "P0",
+      "published": "2024-01-01",
+      "summary": "Embodied agents operating in complex and uncertain environments face considerable challenges. While some advanced agents handle complex manipulation tasks with proficiency their success often hinges on extensive training data to develop their capabilities. In contrast humans typically rely on recalling past experiences and analogous situations to solve new problems. Aiming to emulate this human approach in robotics we introduce the Retrieval-Augmented Embodied Agent (RAEA). This innovative syste",
+      "content": "",
+      "authors": [],
+      "tags": [
+        ""
+      ],
+      "fetched_at": "2026-05-28T14:47:43.690066",
+      "language": "en",
+      "metadata": {
+        "venue": "",
+        "year": 2024,
+        "citation_count": 0,
+        "primary_area": ""
+      }
+    },
+    {
+      "id": "3f2bddfddbf3d081",
+      "title": "ABSEval: An Agent-based Framework for Script Evaluation",
+      "url": "https://aclanthology.org/2024.emnlp-main.691.pdf",
+      "source": "EMNLP 2024 Papers",
+      "source_id": "emnlp_2024",
+      "source_type": "paperlists_json",
+      "category": "academic",
+      "priority": "P0",
+      "published": "2024-01-01",
+      "summary": "Recent research indicates that large language models (LLMs) possess a certain degree of script planning capability. However, there is still a lack of focused work on evaluating scripts generated by LLMs. The evaluation of scripts poses challenges due to their logical structure, sequential organization, adherence to commonsense constraints, and open-endedness. In this work, We introduced a novel script evaluation dataset, MCScript, consisting of more than 1,500 script evaluation tasks and steps, ",
+      "content": "",
+      "authors": [],
+      "tags": [
+        ""
+      ],
+      "fetched_at": "2026-05-28T14:47:44.775485",
+      "language": "en",
+      "metadata": {
+        "venue": "",
+        "year": 2024,
+        "citation_count": 0,
+        "primary_area": ""
+      }
+    },
+    {
+      "id": "6128e9228f67b783",
+      "title": "ATM: Adversarial Tuning Multi-agent System Makes a Robust Retrieval-Augmented Generator",
+      "url": "https://aclanthology.org/2024.emnlp-main.610.pdf",
+      "source": "EMNLP 2024 Papers",
+      "source_id": "emnlp_2024",
+      "source_type": "paperlists_json",
+      "category": "academic",
+      "priority": "P0",
+      "published": "2024-01-01",
+      "summary": "Large language models (LLMs) are proven to benefit a lot from retrieval-augmented generation (RAG) in alleviating hallucinations confronted with knowledge-intensive questions. RAG adopts information retrieval techniques to inject external knowledge from semantic-relevant documents as input contexts. However, due to today’s Internet being flooded with numerous noisy and fabricating content, it is inevitable that RAG systems are vulnerable to these noises and prone to respond incorrectly. To this ",
+      "content": "",
+      "authors": [],
+      "tags": [
+        ""
+      ],
+      "fetched_at": "2026-05-28T14:47:44.775485",
+      "language": "en",
+      "metadata": {
+        "venue": "",
+        "year": 2024,
+        "citation_count": 0,
+        "primary_area": ""
+      }
+    },
+    {
+      "id": "ad38f05e9304aa9f",
+      "title": "AUTOGEN STUDIO: A No-Code Developer Tool for Building and Debugging Multi-Agent Systems",
+      "url": "https://aclanthology.org/2024.emnlp-demo.8.pdf",
+      "source": "EMNLP 2024 Papers",
+      "source_id": "emnlp_2024",
+      "source_type": "paperlists_json",
+      "category": "academic",
+      "priority": "P0",
+      "published": "2024-01-01",
+      "summary": "Multi-agent systems, where multiple agents (generative AI models + tools) collaborate, are emerging as an effective pattern for solving long-running, complex tasks in numerous do- mains. However, specifying their parameters (such as models, tools, and orchestration mechanisms etc,.) and debugging them remains challenging for most developers. To address this challenge, we present AUTOGEN STUDIO, a no-code developer tool for rapidly prototyping, debugging, and evaluating multi-agent work- flows bu",
+      "content": "",
+      "authors": [],
+      "tags": [
+        ""
+      ],
+      "fetched_at": "2026-05-28T14:47:44.775485",
+      "language": "en",
+      "metadata": {
+        "venue": "",
+        "year": 2024,
+        "citation_count": 0,
+        "primary_area": ""
+      }
+    },
+    {
+      "id": "d644dc87a311d591",
+      "title": "AdaSwitch: Adaptive Switching between Small and Large Agents for Effective Cloud-Local Collaborative Learning",
+      "url": "https://aclanthology.org/2024.emnlp-main.458.pdf",
+      "source": "EMNLP 2024 Papers",
+      "source_id": "emnlp_2024",
+      "source_type": "paperlists_json",
+      "category": "academic",
+      "priority": "P0",
+      "published": "2024-01-01",
+      "summary": "Recent advancements in large language models (LLMs) have been remarkable. Users face a choice between using cloud-based LLMs for generation quality and deploying local-based LLMs for lower computational cost. The former option is typically costly and inefficient, while the latter usually fails to deliver satisfactory performance for reasoning steps requiring deliberate thought processes. In this work, we propose a novel LLM utilization paradigm that facilitates the collaborative operation of lar",
+      "content": "",
+      "authors": [],
+      "tags": [
+        ""
+      ],
+      "fetched_at": "2026-05-28T14:47:44.775485",
+      "language": "en",
+      "metadata": {
+        "venue": "",
+        "year": 2024,
+        "citation_count": 0,
+        "primary_area": ""
+      }
+    },
+    {
+      "id": "30d2a168e7723417",
+      "title": "Advancing Social Intelligence in AI Agents: Technical Challenges and Open Questions",
+      "url": "https://aclanthology.org/2024.emnlp-main.1143.pdf",
+      "source": "EMNLP 2024 Papers",
+      "source_id": "emnlp_2024",
+      "source_type": "paperlists_json",
+      "category": "academic",
+      "priority": "P0",
+      "published": "2024-01-01",
+      "summary": "Building socially-intelligent AI agents (Social-AI) is a multidisciplinary, multimodal research goal that involves creating agents that can sense, perceive, reason about, learn from, and respond to affect, behavior, and cognition of other agents (human or artificial). Progress towards Social-AI has accelerated in the past decade across several computing communities, including natural language processing, machine learning, robotics, human-machine interaction, computer vision, and speech. Natural ",
+      "content": "",
+      "authors": [],
+      "tags": [
+        ""
+      ],
+      "fetched_at": "2026-05-28T14:47:44.775485",
+      "language": "en",
+      "metadata": {
+        "venue": "",
+        "year": 2024,
+        "citation_count": 0,
+        "primary_area": ""
+      }
+    },
+    {
+      "id": "16303937dd120362",
+      "title": "Aegis:An Advanced LLM-Based Multi-Agent for Intelligent Functional Safety Engineering",
+      "url": "https://aclanthology.org/2024.emnlp-industry.115.pdf",
+      "source": "EMNLP 2024 Papers",
+      "source_id": "emnlp_2024",
+      "source_type": "paperlists_json",
+      "category": "academic",
+      "priority": "P0",
+      "published": "2024-01-01",
+      "summary": "Functional safety is a critical aspect of automotive engineering, encompassing all phases of a vehicle’s lifecycle, including design, development, production, operation, and decommissioning. This domain involves highly knowledge-intensive tasks. This paper introduces Aegis: An Advanced LLM-Based Multi-Agent for Intelligent Functional Safety Engineering. Aegis is specifically designed to support complex functional safety tasks within the automotive sector. It is tailored to perform Hazard Analysi",
+      "content": "",
+      "authors": [],
+      "tags": [
+        ""
+      ],
+      "fetched_at": "2026-05-28T14:47:44.775485",
+      "language": "en",
+      "metadata": {
+        "venue": "",
+        "year": 2024,
+        "citation_count": 0,
+        "primary_area": ""
+      }
+    },
+    {
+      "id": "3c0e21adc8e72e87",
+      "title": "AgentBank: Towards Generalized LLM Agents via Fine-Tuning on 50000+ Interaction Trajectories",
+      "url": "https://aclanthology.org/2024.findings-emnlp.116.pdf",
+      "source": "EMNLP 2024 Papers",
+      "source_id": "emnlp_2024",
+      "source_type": "paperlists_json",
+      "category": "academic",
+      "priority": "P0",
+      "published": "2024-01-01",
+      "summary": "Fine-tuning on agent-environment interaction trajectory data holds significant promise for surfacing generalized agent capabilities in open-source large language models (LLMs). In this work, we introduce AgentBank, by far the largest trajectory tuning data collection featuring more than 50k diverse high-quality interaction trajectories which comprises 16 tasks covering five distinct agent skill dimensions. Leveraging a novel annotation pipeline, we are able to scale the annotated trajectories an",
+      "content": "",
+      "authors": [],
+      "tags": [
+        ""
+      ],
+      "fetched_at": "2026-05-28T14:47:44.775485",
+      "language": "en",
+      "metadata": {
+        "venue": "",
+        "year": 2024,
+        "citation_count": 0,
+        "primary_area": ""
+      }
+    },
+    {
+      "id": "b53a2c7e09691432",
+      "title": "AgentReview: Exploring Peer Review Dynamics with LLM Agents",
+      "url": "https://aclanthology.org/2024.emnlp-main.70.pdf",
+      "source": "EMNLP 2024 Papers",
+      "source_id": "emnlp_2024",
+      "source_type": "paperlists_json",
+      "category": "academic",
+      "priority": "P0",
+      "published": "2024-01-01",
+      "summary": "Peer review is fundamental to the integrity and advancement of scientific publication. Traditional methods of peer review analyses often rely on exploration and statistics of existing peer review data, which do not adequately address the multivariate nature of the process, account for the latent variables, and are further constrained by privacy concerns due to the sensitive nature of the data. We introduce AgentReview, the first large language model (LLM) based peer review simulation framework, ",
+      "content": "",
+      "authors": [],
+      "tags": [
+        ""
+      ],
+      "fetched_at": "2026-05-28T14:47:44.775485",
+      "language": "en",
+      "metadata": {
+        "venue": "",
+        "year": 2024,
+        "citation_count": 0,
+        "primary_area": ""
+      }
+    },
+    {
+      "id": "05e4af3422729ea1",
+      "title": "AgentsCourt: Building Judicial Decision-Making Agents with Court Debate Simulation and Legal Knowledge Augmentation",
+      "url": "https://aclanthology.org/2024.findings-emnlp.549.pdf",
+      "source": "EMNLP 2024 Papers",
+      "source_id": "emnlp_2024",
+      "source_type": "paperlists_json",
+      "category": "academic",
+      "priority": "P0",
+      "published": "2024-01-01",
+      "summary": "With the development of deep learning, natural language processing technology has effectively improved the efficiency of various aspects of the traditional judicial industry. However, most current efforts focus on tasks within individual judicial stages, making it difficult to handle complex tasks that span multiple stages. As the autonomous agents powered by large language models are becoming increasingly smart and able to make complex decisions in real-world settings, offering new insights for",
+      "content": "",
+      "authors": [],
+      "tags": [
+        ""
+      ],
+      "fetched_at": "2026-05-28T14:47:44.775485",
+      "language": "en",
+      "metadata": {
+        "venue": "",
+        "year": 2024,
+        "citation_count": 0,
+        "primary_area": ""
+      }
+    },
+    {
+      "id": "b3dd0589d7f935cb",
+      "title": "An Electoral Approach to Diversify LLM-based Multi-Agent Collective Decision-Making",
+      "url": "https://aclanthology.org/2024.emnlp-main.158.pdf",
+      "source": "EMNLP 2024 Papers",
+      "source_id": "emnlp_2024",
+      "source_type": "paperlists_json",
+      "category": "academic",
+      "priority": "P0",
+      "published": "2024-01-01",
+      "summary": "Modern large language models (LLMs) have exhibited cooperative synergy on complex task-solving, and collective decision-making (CDM) is a pivotal component in LLM-based multi-agent collaboration frameworks. Our survey on 52 recent such systems uncovers a severe lack of diversity, with a heavy reliance on dictatorial and plurality voting for CDM. Through the lens of social choice theory, we scrutinize widely-adopted CDM methods and identify their limitations. To enrich current landscape of LLM-ba",
+      "content": "",
+      "authors": [],
+      "tags": [
+        ""
+      ],
+      "fetched_at": "2026-05-28T14:47:44.775485",
+      "language": "en",
+      "metadata": {
+        "venue": "",
+        "year": 2024,
+        "citation_count": 0,
+        "primary_area": ""
+      }
+    },
+    {
+      "id": "532d8679b10200cd",
+      "title": "An Evaluation Mechanism of LLM-based Agents on Manipulating APIs",
+      "url": "https://aclanthology.org/2024.findings-emnlp.267.pdf",
+      "source": "EMNLP 2024 Papers",
+      "source_id": "emnlp_2024",
+      "source_type": "paperlists_json",
+      "category": "academic",
+      "priority": "P0",
+      "published": "2024-01-01",
+      "summary": "LLM-based agents can greatly extend the abilities of LLMs and thus attract sharply increased studies. An ambitious vision – serving users by manipulating massive API-based tools – has been proposed and explored. However, we find a widely accepted evaluation mechanism for generic agents is still missing. This work aims to fill this gap. We decompose tool use capability into seven aspects and form a thorough evaluation schema. In addition, we design and release an instruction dataset and a toolset",
+      "content": "",
+      "authors": [],
+      "tags": [
+        ""
+      ],
+      "fetched_at": "2026-05-28T14:47:44.775485",
+      "language": "en",
+      "metadata": {
+        "venue": "",
+        "year": 2024,
+        "citation_count": 0,
+        "primary_area": ""
+      }
+    },
+    {
+      "id": "a72d8c2224d77d45",
+      "title": "Android in the Zoo: Chain-of-Action-Thought for GUI Agents",
+      "url": "https://aclanthology.org/2024.findings-emnlp.702.pdf",
+      "source": "EMNLP 2024 Papers",
+      "source_id": "emnlp_2024",
+      "source_type": "paperlists_json",
+      "category": "academic",
+      "priority": "P0",
+      "published": "2024-01-01",
+      "summary": "Large language model (LLM) leads to a surge of autonomous GUI agents for smartphone, which completes a task triggered by natural language through predicting a sequence of actions of API. Even though the task highly relies on past actions and visual observations, existing studies typically consider little semantic information carried out by intermediate screenshots and screen operations. To address this, this work presents Chain-of-Action-Thought (dubbed CoAT), which takes the description of the ",
+      "content": "",
+      "authors": [],
+      "tags": [
+        ""
+      ],
+      "fetched_at": "2026-05-28T14:47:44.775485",
+      "language": "en",
+      "metadata": {
+        "venue": "",
+        "year": 2024,
+        "citation_count": 0,
+        "primary_area": ""
+      }
+    },
+    {
+      "id": "3401d904a02c74dd",
+      "title": "AssistantBench: Can Web Agents Solve Realistic and Time-Consuming Tasks?",
+      "url": "https://aclanthology.org/2024.emnlp-main.505.pdf",
+      "source": "EMNLP 2024 Papers",
+      "source_id": "emnlp_2024",
+      "source_type": "paperlists_json",
+      "category": "academic",
+      "priority": "P0",
+      "published": "2024-01-01",
+      "summary": "Language agents, built on top of language models (LMs), are systems that can interact with complex environments, such as the open web. In this work, we examine whether such agents can perform realistic and time-consuming tasks on the web, e.g., monitoring real-estate markets or locating relevant nearby businesses. We introduce AssistantBench, a challenging new benchmark consisting of 214 realistic tasks that can be automatically evaluated, covering different scenarios and domains. We find that A",
+      "content": "",
+      "authors": [],
+      "tags": [
+        ""
+      ],
+      "fetched_at": "2026-05-28T14:47:44.775485",
+      "language": "en",
+      "metadata": {
+        "venue": "",
+        "year": 2024,
+        "citation_count": 0,
+        "primary_area": ""
+      }
+    },
+    {
+      "id": "5a55898def11eb3e",
+      "title": "Assistive Large Language Model Agents for Socially-Aware Negotiation Dialogues",
+      "url": "https://aclanthology.org/2024.findings-emnlp.473.pdf",
+      "source": "EMNLP 2024 Papers",
+      "source_id": "emnlp_2024",
+      "source_type": "paperlists_json",
+      "category": "academic",
+      "priority": "P0",
+      "published": "2024-01-01",
+      "summary": "We develop assistive agents based on Large Language Models (LLMs) that aid interlocutors in business negotiations.Specifically, we simulate business negotiations by letting two LLM-based agents engage in role play. A third LLM acts as a remediator agent to rewrite utterances violating norms for improving negotiation outcomes.We introduce a simple tuning-free and label-free In-Context Learning (ICL) method to identify high-quality ICL exemplars for the remediator, where we propose a novel select ",
+      "content": "",
+      "authors": [],
+      "tags": [
+        ""
+      ],
+      "fetched_at": "2026-05-28T14:47:44.775485",
+      "language": "en",
+      "metadata": {
+        "venue": "",
+        "year": 2024,
+        "citation_count": 0,
+        "primary_area": ""
+      }
+    },
+    {
+      "id": "372be2bf38e690b9",
+      "title": "Athena: Safe Autonomous Agents with Verbal Contrastive Learning",
+      "url": "https://aclanthology.org/2024.emnlp-industry.84.pdf",
+      "source": "EMNLP 2024 Papers",
+      "source_id": "emnlp_2024",
+      "source_type": "paperlists_json",
+      "category": "academic",
+      "priority": "P0",
+      "published": "2024-01-01",
+      "summary": "Due to emergent capabilities, large language models (LLMs) have been utilized as language-based agents to perform a variety of tasks and make decisions with an increasing degree of autonomy. These autonomous agents can understand high-level instructions, interact with their environments, and execute complex tasks using a selection of tools available to them. As the capabilities of the agents expand, ensuring their safety and trustworthiness becomes more imperative. In this study, we introduce th",
+      "content": "",
+      "authors": [],
+      "tags": [
+        ""
+      ],
+      "fetched_at": "2026-05-28T14:47:44.775485",
+      "language": "en",
+      "metadata": {
+        "venue": "",
+        "year": 2024,
+        "citation_count": 0,
+        "primary_area": ""
+      }
+    },
+    {
+      "id": "ee92eb0ac8f323b9",
+      "title": "Auto-Intent: Automated Intent Discovery and Self-Exploration for Large Language Model Web Agents",
+      "url": "https://aclanthology.org/2024.findings-emnlp.964.pdf",
+      "source": "EMNLP 2024 Papers",
+      "source_id": "emnlp_2024",
+      "source_type": "paperlists_json",
+      "category": "academic",
+      "priority": "P0",
+      "published": "2024-01-01",
+      "summary": "In this paper, we introduce Auto-Intent, a method to adapt a pre-trained large language model (LLM) as an agent for a target domain without direct fine-tuning, where we empirically focus on web navigation tasks. Our approach first discovers the underlying intents from target domain demonstrations unsupervisedly, in a highly compact form (up to three words). With the extracted intents, we train our intent predictor to predict the next intent given the agent’s past observations and actions. In par",
+      "content": "",
+      "authors": [],
+      "tags": [
+        ""
+      ],
+      "fetched_at": "2026-05-28T14:47:44.775485",
+      "language": "en",
+      "metadata": {
+        "venue": "",
+        "year": 2024,
+        "citation_count": 0,
+        "primary_area": ""
+      }
+    },
+    {
+      "id": "a6f89ace070ec6ac",
+      "title": "AutoScraper: A Progressive Understanding Web Agent for Web Scraper Generation",
+      "url": "https://aclanthology.org/2024.emnlp-main.141.pdf",
+      "source": "EMNLP 2024 Papers",
+      "source_id": "emnlp_2024",
+      "source_type": "paperlists_json",
+      "category": "academic",
+      "priority": "P0",
+      "published": "2024-01-01",
+      "summary": "Web scraping is a powerful technique that extracts data from websites, enabling automated data collection, enhancing data analysis capabilities, and minimizing manual data entry efforts. Existing methods, wrappers-based methods suffer from limited adaptability and scalability when faced with a new website, while language agents, empowered by large language models (LLMs), exhibit poor reusability in diverse web environments. In this work, we introduce the paradigm of generating web scrapers with ",
+      "content": "",
+      "authors": [],
+      "tags": [
+        ""
+      ],
+      "fetched_at": "2026-05-28T14:47:44.775485",
+      "language": "en",
+      "metadata": {
+        "venue": "",
+        "year": 2024,
+        "citation_count": 0,
+        "primary_area": ""
+      }
+    },
+    {
+      "id": "bbade4aea539ed9b",
+      "title": "BASES: Large-scale Web Search User Simulation with Large Language Model based Agents",
+      "url": "https://aclanthology.org/2024.findings-emnlp.50.pdf",
+      "source": "EMNLP 2024 Papers",
+      "source_id": "emnlp_2024",
+      "source_type": "paperlists_json",
+      "category": "academic",
+      "priority": "P0",
+      "published": "2024-01-01",
+      "summary": "Due to the excellent capacities of large language models (LLMs), it becomes feasible to develop LLM-based agents for reliable user simulation. Considering the scarcity and limit (e.g., privacy issues) of real user data, in this paper, we conduct large-scale user simulations for the web search scenario to improve the analysis and modeling of user search behavior. Specially, we propose BASES, a novel user simulation framework with LLM-based agents, designed to facilitate comprehensive simulations ",
+      "content": "",
+      "authors": [],
+      "tags": [
+        ""
+      ],
+      "fetched_at": "2026-05-28T14:47:44.775485",
+      "language": "en",
+      "metadata": {
+        "venue": "",
+        "year": 2024,
+        "citation_count": 0,
+        "primary_area": ""
+      }
+    },
+    {
+      "id": "bb3e1f5c95e50dbc",
+      "title": "BLADE: Benchmarking Language Model Agents for Data-Driven Science",
+      "url": "https://aclanthology.org/2024.findings-emnlp.815.pdf",
+      "source": "EMNLP 2024 Papers",
+      "source_id": "emnlp_2024",
+      "source_type": "paperlists_json",
+      "category": "academic",
+      "priority": "P0",
+      "published": "2024-01-01",
+      "summary": "Data-driven scientific discovery requires the iterative integration of scientific domain knowledge, statistical expertise, and an understanding of data semantics to make nuanced analytical decisions, e.g., about which variables, transformations, and statistical models to consider. LM-based agents equipped with planning, memory, and code execution capabilities have the potential to support data-driven science. However, evaluating agents on such open-ended tasks is challenging due to multiple vali",
+      "content": "",
+      "authors": [],
+      "tags": [
+        ""
+      ],
+      "fetched_at": "2026-05-28T14:47:44.775485",
+      "language": "en",
+      "metadata": {
+        "venue": "",
+        "year": 2024,
+        "citation_count": 0,
+        "primary_area": ""
+      }
+    },
+    {
+      "id": "43cff88537913e82",
+      "title": "BattleAgent: Multi-modal Dynamic Emulation on Historical Battles to Complement Historical Analysis",
+      "url": "https://aclanthology.org/2024.emnlp-demo.18.pdf",
+      "source": "EMNLP 2024 Papers",
+      "source_id": "emnlp_2024",
+      "source_type": "paperlists_json",
+      "category": "academic",
+      "priority": "P0",
+      "published": "2024-01-01",
+      "summary": "This paper presents BattleAgent, a detailed emulation demonstration system that combines the Large Vision-Language Model (VLM) and Multi-Agent System (MAS). This novel system aims to emulate complex dynamic interactions among multiple agents, as well as between agents and their environments, over a period of time. The emulation showcases the current capabilities of agents, featuring fine-grained multi-modal interactions between agents and landscapes. It develops customizable agent structures to ",
+      "content": "",
+      "authors": [],
+      "tags": [
+        ""
+      ],
+      "fetched_at": "2026-05-28T14:47:44.775485",
+      "language": "en",
+      "metadata": {
+        "venue": "",
+        "year": 2024,
+        "citation_count": 0,
+        "primary_area": ""
+      }
+    },
+    {
+      "id": "9f11eda81d941075",
+      "title": "A Two-Agent Game for Zero-shot Relation Triplet Extraction",
+      "url": "https://aclanthology.org/2024.findings-acl.446.pdf",
+      "source": "ACL 2024 Papers",
+      "source_id": "acl_2024",
+      "source_type": "paperlists_json",
+      "category": "academic",
+      "priority": "P0",
+      "published": "2024-01-01",
+      "summary": "Relation triplet extraction is a fundamental task in natural language processing that aims to identify semantic relationships between entities in text. It is particularly challenging in the zero-shot setting, i.e., zero-shot relation triplet extraction (ZeroRTE), where the relation sets between training and test are disjoint. Existing methods deal with this task by integrating relations into prompts, which may lack sufficient understanding of the unseen relations. To address these limitations, t",
+      "content": "",
+      "authors": [],
+      "tags": [
+        ""
+      ],
+      "fetched_at": "2026-05-28T14:47:46.158245",
+      "language": "en",
+      "metadata": {
+        "venue": "",
+        "year": 2024,
+        "citation_count": 0,
+        "primary_area": ""
+      }
+    },
+    {
+      "id": "2abc78dac8a67f82",
+      "title": "AGR: Reinforced Causal Agent-Guided Self-explaining Rationalization",
+      "url": "https://aclanthology.org/2024.acl-short.47.pdf",
+      "source": "ACL 2024 Papers",
+      "source_id": "acl_2024",
+      "source_type": "paperlists_json",
+      "category": "academic",
+      "priority": "P0",
+      "published": "2024-01-01",
+      "summary": "Most existing rationalization approaches are susceptible to degeneration accumulation due to a lack of effective control over the learning direction of the model during training. To address this issue, we propose a novel approach AGR (Agent-Guided Rationalization), guiding the next action of the model based on its current training state. Specifically, we introduce causal intervention calculus to quantify the causal effects inherent during rationale training, and utilize reinforcement learning pr",
+      "content": "",
+      "authors": [],
+      "tags": [
+        ""
+      ],
+      "fetched_at": "2026-05-28T14:47:46.158245",
+      "language": "en",
+      "metadata": {
+        "venue": "",
+        "year": 2024,
+        "citation_count": 0,
+        "primary_area": ""
+      }
+    },
+    {
+      "id": "eb84b89464331f17",
+      "title": "Agent Lumos: Unified and Modular Training for Open-Source Language Agents",
+      "url": "https://aclanthology.org/2024.acl-long.670.pdf",
+      "source": "ACL 2024 Papers",
+      "source_id": "acl_2024",
+      "source_type": "paperlists_json",
+      "category": "academic",
+      "priority": "P0",
+      "published": "2024-01-01",
+      "summary": "Closed-source agents suffer from several issues such as a lack of affordability, transparency, and reproducibility, particularly on complex interactive tasks. This motivates the development of open-source alternatives. We introduce Lumos, one of the first frameworks for training open-source LLM-based agents. Lumos features a learnable, unified and modular architecture with a planning module that learns high-level subgoal generation, and a grounding module trained to translate these into the acti",
+      "content": "",
+      "authors": [],
+      "tags": [
+        ""
+      ],
+      "fetched_at": "2026-05-28T14:47:46.158245",
+      "language": "en",
+      "metadata": {
+        "venue": "",
+        "year": 2024,
+        "citation_count": 0,
+        "primary_area": ""
+      }
+    },
+    {
+      "id": "ed8ac98f5ece6068",
+      "title": "Agent-FLAN: Designing Data and Methods of Effective Agent Tuning for Large Language Models",
+      "url": "https://aclanthology.org/2024.findings-acl.557.pdf",
+      "source": "ACL 2024 Papers",
+      "source_id": "acl_2024",
+      "source_type": "paperlists_json",
+      "category": "academic",
+      "priority": "P0",
+      "published": "2024-01-01",
+      "summary": "Open-sourced Large Language Models (LLMs) have achieved great success in various NLP tasks, however, they are still far inferior to API-based models when acting as agents. How to integrate agent ability into general LLMs becomes a crucial and urgent problem.This paper first delivers three key observations: (1) the current agent training corpus is entangled with both formats following and agent reasoning, which significantly shifts from the distribution of its pre-training data; (2) LLMs exhibit ",
+      "content": "",
+      "authors": [],
+      "tags": [
+        ""
+      ],
+      "fetched_at": "2026-05-28T14:47:46.158245",
+      "language": "en",
+      "metadata": {
+        "venue": "",
+        "year": 2024,
+        "citation_count": 0,
+        "primary_area": ""
+      }
+    },
+    {
+      "id": "b915c41ecfe97f01",
+      "title": "Agent-Pro: Learning to Evolve via Policy-Level Reflection and Optimization",
+      "url": "https://aclanthology.org/2024.acl-long.292.pdf",
+      "source": "ACL 2024 Papers",
+      "source_id": "acl_2024",
+      "source_type": "paperlists_json",
+      "category": "academic",
+      "priority": "P0",
+      "published": "2024-01-01",
+      "summary": "Large Language Models (LLMs) exhibit robust problem-solving capabilities for diverse tasks. However, most LLM-based agents are designed as specific task solvers with sophisticated prompt engineering, rather than agents capable of learning and evolving through interactions. These task solvers necessitate manually crafted prompts to inform task rules and regulate LLM behaviors, inherently incapacitating to address complex dynamic scenarios e.g., large interactive games. In light of this, we propos",
+      "content": "",
+      "authors": [],
+      "tags": [
+        ""
+      ],
+      "fetched_at": "2026-05-28T14:47:46.158245",
+      "language": "en",
+      "metadata": {
+        "venue": "",
+        "year": 2024,
+        "citation_count": 0,
+        "primary_area": ""
+      }
+    },
+    {
+      "id": "9516cb8d12d38868",
+      "title": "AgentTuning: Enabling Generalized Agent Abilities for LLMs",
+      "url": "https://aclanthology.org/2024.findings-acl.181.pdf",
+      "source": "ACL 2024 Papers",
+      "source_id": "acl_2024",
+      "source_type": "paperlists_json",
+      "category": "academic",
+      "priority": "P0",
+      "published": "2024-01-01",
+      "summary": "Open large language models (LLMs) with great performance in various tasks have significantly advanced the development of LLMs. However, they are far inferior to commercial models such as ChatGPT and GPT-4 when acting as agents to tackle complex tasks in the real world. These agent tasks employ LLMs as the central controller responsible for planning, memorization, and tool utilization, necessitating both fine-grained prompting methods and robust LLMs to achieve satisfactory performance. Though ma",
+      "content": "",
+      "authors": [],
+      "tags": [
+        ""
+      ],
+      "fetched_at": "2026-05-28T14:47:46.158245",
+      "language": "en",
+      "metadata": {
+        "venue": "",
+        "year": 2024,
+        "citation_count": 0,
+        "primary_area": ""
+      }
+    },
+    {
+      "id": "ecf9a8f24e68a54c",
+      "title": "AppWorld: A Controllable World of Apps and People for Benchmarking Interactive Coding Agents",
+      "url": "https://aclanthology.org/2024.acl-long.850.pdf",
+      "source": "ACL 2024 Papers",
+      "source_id": "acl_2024",
+      "source_type": "paperlists_json",
+      "category": "academic",
+      "priority": "P0",
+      "published": "2024-01-01",
+      "summary": "Autonomous agents that address day-to-day digital tasks (e.g., ordering groceries for a household), must not only operate multiple apps (e.g., notes, messaging, shopping app) via APIs, but also generate rich code with complex control flow in an iterative manner based on their interaction with the environment. However, existing benchmarks for tool use are inadequate, as they only cover tasks that require a simple sequence of API calls. To remedy this gap, we built AppWorld Engine, a high-quality ",
+      "content": "",
+      "authors": [],
+      "tags": [
+        ""
+      ],
+      "fetched_at": "2026-05-28T14:47:46.158245",
+      "language": "en",
+      "metadata": {
+        "venue": "",
+        "year": 2024,
+        "citation_count": 0,
+        "primary_area": ""
+      }
+    },
+    {
+      "id": "be0aef8ca656a845",
+      "title": "AutoAct: Automatic Agent Learning from Scratch for QA via Self-Planning",
+      "url": "https://aclanthology.org/2024.acl-long.165.pdf",
+      "source": "ACL 2024 Papers",
+      "source_id": "acl_2024",
+      "source_type": "paperlists_json",
+      "category": "academic",
+      "priority": "P0",
+      "published": "2024-01-01",
+      "summary": "Language agents have achieved considerable performance on various complex question-answering tasks by planning with external tools. Despite the incessant exploration in this field, existing language agent systems still struggle with costly, non-reproducible data reliance and face the challenge of compelling a single model for multiple functions. To this end, we introduce AutoAct, an automatic agent learning framework for QA that does not rely on large-scale annotated data and synthetic planning ",
+      "content": "",
+      "authors": [],
+      "tags": [
+        ""
+      ],
+      "fetched_at": "2026-05-28T14:47:46.158245",
+      "language": "en",
+      "metadata": {
+        "venue": "",
+        "year": 2024,
+        "citation_count": 0,
+        "primary_area": ""
+      }
+    },
+    {
+      "id": "9551fcb55bf1352f",
+      "title": "BadAgent: Inserting and Activating Backdoor Attacks in LLM Agents",
+      "url": "https://aclanthology.org/2024.acl-long.530.pdf",
+      "source": "ACL 2024 Papers",
+      "source_id": "acl_2024",
+      "source_type": "paperlists_json",
+      "category": "academic",
+      "priority": "P0",
+      "published": "2024-01-01",
+      "summary": "With the prosperity of large language models (LLMs), powerful LLM-based intelligent agents have been developed to provide customized services with a set of user-defined tools. State-of-the-art methods for constructing LLM agents adopt trained LLMs and further fine-tune them on data for the agent task. However, we show that such methods are vulnerable to our proposed backdoor attacks named BadAgent on various agent tasks, where a backdoor can be embedded by fine-tuning on the backdoor data. At te",
+      "content": "",
+      "authors": [],
+      "tags": [
+        ""
+      ],
+      "fetched_at": "2026-05-28T14:47:46.158245",
+      "language": "en",
+      "metadata": {
+        "venue": "",
+        "year": 2024,
+        "citation_count": 0,
+        "primary_area": ""
+      }
+    },
+    {
+      "id": "4498c21dea628224",
+      "title": "Benchmarking Data Science Agents",
+      "url": "https://aclanthology.org/2024.acl-long.308.pdf",
+      "source": "ACL 2024 Papers",
+      "source_id": "acl_2024",
+      "source_type": "paperlists_json",
+      "category": "academic",
+      "priority": "P0",
+      "published": "2024-01-01",
+      "summary": "In the era of data-driven decision-making, the complexity of data analysis necessitates advanced expertise and tools of data science, presenting significant challenges even for specialists. Large Language Models (LLMs) have emerged as promising aids as data science agents, assisting humans in data analysis and processing. Yet their practical efficacy remains constrained by the varied demands of real-world applications and complicated analytical process. In this paper, we introduce DSEval – a nov",
+      "content": "",
+      "authors": [],
+      "tags": [
+        ""
+      ],
+      "fetched_at": "2026-05-28T14:47:46.158245",
+      "language": "en",
+      "metadata": {
+        "venue": "",
+        "year": 2024,
+        "citation_count": 0,
+        "primary_area": ""
+      }
+    },
+    {
+      "id": "42d2635f4e4de2d2",
+      "title": "Boosting LLM Agents with Recursive Contemplation for Effective Deception Handling",
+      "url": "https://aclanthology.org/2024.findings-acl.591.pdf",
+      "source": "ACL 2024 Papers",
+      "source_id": "acl_2024",
+      "source_type": "paperlists_json",
+      "category": "academic",
+      "priority": "P0",
+      "published": "2024-01-01",
+      "summary": "Recent advances in large language models (LLMs) have led to significant success in using LLMs as agents. Nevertheless, a common assumption that LLMs always process honest information neglects the widespread deceptive or misleading content in human and AI-generated material. This oversight might expose LLMs to malicious manipulations. To enhance LLMs’ ability to identify and counteract deceptive information, in this paper, inspired by humans’ recursive thinking and perspective-taking, we introduc",
+      "content": "",
+      "authors": [],
+      "tags": [
+        ""
+      ],
+      "fetched_at": "2026-05-28T14:47:46.158245",
+      "language": "en",
+      "metadata": {
+        "venue": "",
+        "year": 2024,
+        "citation_count": 0,
+        "primary_area": ""
+      }
+    },
+    {
+      "id": "a173e1adce43f6c2",
+      "title": "Bootstrapping LLM-based Task-Oriented Dialogue Agents via Self-Talk",
+      "url": "https://aclanthology.org/2024.findings-acl.566.pdf",
+      "source": "ACL 2024 Papers",
+      "source_id": "acl_2024",
+      "source_type": "paperlists_json",
+      "category": "academic",
+      "priority": "P0",
+      "published": "2024-01-01",
+      "summary": "Large language models (LLMs) are powerful dialogue agents, but specializing them towards fulfilling a specific function can be challenging. Instructing tuning, i.e. tuning models on instruction and sample responses generated by humans (Ouyang et al., 2022), has proven as an effective method to do so, yet requires a number of data samples that a) might not be available or b) costly to generate. Furthermore, this cost increases when the goal is to make the LLM follow a specific workflow within a d",
+      "content": "",
+      "authors": [],
+      "tags": [
+        ""
+      ],
+      "fetched_at": "2026-05-28T14:47:46.158245",
+      "language": "en",
+      "metadata": {
+        "venue": "",
+        "year": 2024,
+        "citation_count": 0,
+        "primary_area": ""
+      }
+    },
+    {
+      "id": "07cc626310a0c847",
+      "title": "CToolEval: A Chinese Benchmark for LLM-Powered Agent Evaluation in Real-World API Interactions",
+      "url": "https://aclanthology.org/2024.findings-acl.928.pdf",
+      "source": "ACL 2024 Papers",
+      "source_id": "acl_2024",
+      "source_type": "paperlists_json",
+      "category": "academic",
+      "priority": "P0",
+      "published": "2024-01-01",
+      "summary": "Assessing the capabilities of large language models (LLMs) as agents in decision making and operational tasks is crucial for the development of LLM-as-agent service. We propose CToolEval, a benchmark designed to evaluate LLMs in the context of Chinese societal applications, featuring 398 APIs across 27 widely-used Apps (e.g., Apps for shopping, map, music, travel, etc.) that cover 14 domains. We further present an evaluation framework that simulates real-life scenarios, to facilitate the assessm",
+      "content": "",
+      "authors": [],
+      "tags": [
+        ""
+      ],
+      "fetched_at": "2026-05-28T14:47:46.158245",
+      "language": "en",
+      "metadata": {
+        "venue": "",
+        "year": 2024,
+        "citation_count": 0,
+        "primary_area": ""
+      }
+    },
+    {
+      "id": "7f2fcf26aa398a56",
+      "title": "Can Large Language Models Mine Interpretable Financial Factors More Effectively? A Neural-Symbolic Factor Mining Agent Model",
+      "url": "https://aclanthology.org/2024.findings-acl.233.pdf",
+      "source": "ACL 2024 Papers",
+      "source_id": "acl_2024",
+      "source_type": "paperlists_json",
+      "category": "academic",
+      "priority": "P0",
+      "published": "2024-01-01",
+      "summary": "Finding interpretable factors for stock returns is the most vital issue in the empirical asset pricing domain. As data-driven methods, existing factor mining models can be categorized into symbol-based and neural-based models. Symbol-based models are interpretable but inefficient, while neural-based approaches are efficient but lack interpretability. Hence, mining interpretable factors effectively presents a significant challenge. Inspired by the success of Large Language Models (LLMs) in variou",
+      "content": "",
+      "authors": [],
+      "tags": [
+        ""
+      ],
+      "fetched_at": "2026-05-28T14:47:46.158245",
+      "language": "en",
+      "metadata": {
+        "venue": "",
+        "year": 2024,
+        "citation_count": 0,
+        "primary_area": ""
+      }
+    },
+    {
+      "id": "7db719483b32c9d8",
+      "title": "CharacterEval: A Chinese Benchmark for Role-Playing Conversational Agent Evaluation",
+      "url": "https://aclanthology.org/2024.acl-long.638.pdf",
+      "source": "ACL 2024 Papers",
+      "source_id": "acl_2024",
+      "source_type": "paperlists_json",
+      "category": "academic",
+      "priority": "P0",
+      "published": "2024-01-01",
+      "summary": "Recently, the advent of large language models (LLMs) has revolutionized generative agents. Among them, Role-Playing Conversational Agents (RPCAs) attract considerable attention due to their ability to emotionally engage users. However, the absence of a comprehensive benchmark impedes progress in this field. To bridge this gap, we introduce CharacterEval, a Chinese benchmark for comprehensive RPCA assessment, complemented by a tailored high-quality dataset. The dataset comprises 1,785 multi-turn ",
+      "content": "",
+      "authors": [],
+      "tags": [
+        ""
+      ],
+      "fetched_at": "2026-05-28T14:47:46.158245",
+      "language": "en",
+      "metadata": {
+        "venue": "",
+        "year": 2024,
+        "citation_count": 0,
+        "primary_area": ""
+      }
+    },
+    {
+      "id": "46601b8f638b301c",
+      "title": "ChatDev: Communicative Agents for Software Development",
+      "url": "https://aclanthology.org/2024.acl-long.810.pdf",
+      "source": "ACL 2024 Papers",
+      "source_id": "acl_2024",
+      "source_type": "paperlists_json",
+      "category": "academic",
+      "priority": "P0",
+      "published": "2024-01-01",
+      "summary": "Software development is a complex task that necessitates cooperation among multiple members with diverse skills. Numerous studies used deep learning to improve specific phases in a waterfall model, such as design, coding, and testing. However, the deep learning model in each phase requires unique designs, leading to technical inconsistencies across various phases, which results in a fragmented and ineffective development process. In this paper, we introduce ChatDev, a chat-powered software devel",
+      "content": "",
+      "authors": [],
+      "tags": [
+        ""
+      ],
+      "fetched_at": "2026-05-28T14:47:46.158245",
+      "language": "en",
+      "metadata": {
+        "venue": "",
+        "year": 2024,
+        "citation_count": 0,
+        "primary_area": ""
+      }
+    },
+    {
+      "id": "a3624e7f4f23385f",
+      "title": "CoCo-Agent: A Comprehensive Cognitive MLLM Agent for Smartphone GUI Automation",
+      "url": "https://aclanthology.org/2024.findings-acl.539.pdf",
+      "source": "ACL 2024 Papers",
+      "source_id": "acl_2024",
+      "source_type": "paperlists_json",
+      "category": "academic",
+      "priority": "P0",
+      "published": "2024-01-01",
+      "summary": "Multimodal large language models (MLLMs) have shown remarkable potential as human-like autonomous language agents to interact with real-world environments, especially for graphical user interface (GUI) automation.However, those GUI agents require comprehensive cognition including exhaustive perception and reliable action response.We propose a Comprehensive Cognitive LLM Agent, CoCo-Agent, with two novel approaches, comprehensive environment perception (CEP) and conditional action prediction (CAP",
+      "content": "",
+      "authors": [],
+      "tags": [
+        ""
+      ],
+      "fetched_at": "2026-05-28T14:47:46.158245",
+      "language": "en",
+      "metadata": {
+        "venue": "",
+        "year": 2024,
+        "citation_count": 0,
+        "primary_area": ""
+      }
+    },
+    {
+      "id": "3bb88a55f6e62894",
+      "title": "CodeAgent: Enhancing Code Generation with Tool-Integrated Agent Systems for Real-World Repo-level Coding Challenges",
+      "url": "https://aclanthology.org/2024.acl-long.737.pdf",
+      "source": "ACL 2024 Papers",
+      "source_id": "acl_2024",
+      "source_type": "paperlists_json",
+      "category": "academic",
+      "priority": "P0",
+      "published": "2024-01-01",
+      "summary": "Large Language Models (LLMs) have shown promise in automated code generation but typically excel only in simpler tasks such as generating standalone code units. However, real-world software development often involves complex code repositories with complex dependencies and extensive documentation. To enable LLMs to handle these realworld repo-level code generation, we present CodeAgent, a novel LLM-based agent framework that employs external tools for effective repo-level code generation. CodeAge",
+      "content": "",
+      "authors": [],
+      "tags": [
+        ""
+      ],
+      "fetched_at": "2026-05-28T14:47:46.158245",
+      "language": "en",
+      "metadata": {
+        "venue": "",
+        "year": 2024,
+        "citation_count": 0,
+        "primary_area": ""
+      }
+    },
+    {
+      "id": "c9d8067bafb22270",
+      "title": "CorNav: Autonomous Agent with Self-Corrected Planning for Zero-Shot Vision-and-Language Navigation",
+      "url": "https://aclanthology.org/2024.findings-acl.745.pdf",
+      "source": "ACL 2024 Papers",
+      "source_id": "acl_2024",
+      "source_type": "paperlists_json",
+      "category": "academic",
+      "priority": "P0",
+      "published": "2024-01-01",
+      "summary": "Understanding and following natural language instructions while navigating through complex, real-world environments poses a significant challenge for general-purpose robots. These environments often include obstacles and pedestrians, making it essential for autonomous agents to possess the capability of self-corrected planning to adjust their actions based on feedback from the surroundings. However, the majority of existing vision-and-language navigation (VLN) methods primarily operate in less r",
+      "content": "",
+      "authors": [],
+      "tags": [
+        ""
+      ],
+      "fetched_at": "2026-05-28T14:47:46.158245",
+      "language": "en",
+      "metadata": {
+        "venue": "",
+        "year": 2024,
+        "citation_count": 0,
+        "primary_area": ""
+      }
+    },
+    {
+      "id": "cfb296e8667f07c6",
+      "title": "DARA: Decomposition-Alignment-Reasoning Autonomous Language Agent for Question Answering over Knowledge Graphs",
+      "url": "https://aclanthology.org/2024.findings-acl.203.pdf",
+      "source": "ACL 2024 Papers",
+      "source_id": "acl_2024",
+      "source_type": "paperlists_json",
+      "category": "academic",
+      "priority": "P0",
+      "published": "2024-01-01",
+      "summary": "Answering Questions over Knowledge Graphs (KGQA) is key to well-functioning autonomous language agents in various real-life applications. To improve the neural-symbolic reasoning capabilities of language agents powered by Large Language Models (LLMs) in KGQA, we propose the Decomposition-Alignment-Reasoning Agent (DARA) framework. DARA effectively parses questions into formal queries through a dual mechanism: high-level iterative task decomposition and low-level task grounding. Importantly, DARA",
+      "content": "",
+      "authors": [],
+      "tags": [
+        ""
+      ],
+      "fetched_at": "2026-05-28T14:47:46.158245",
+      "language": "en",
+      "metadata": {
+        "venue": "",
+        "year": 2024,
+        "citation_count": 0,
+        "primary_area": ""
+      }
+    },
+    {
+      "id": "f54b5551e316872c",
+      "title": "Do Agents Need Semantic Metadata? A Comparative Study in Agentic Data Retrieval",
+      "url": "https://arxiv.org/abs/2605.28787v1",
+      "source": "arXiv cs.AI",
+      "source_id": "arxiv_cs_AI",
+      "source_type": "atom",
+      "category": "academic",
+      "priority": "P0",
+      "published": "2026-05-27T17:46:43Z",
+      "summary": "In the era of autonomous agents, machine-actionable data is critical for data-driven workflows. For more than a decade, semantic metadata like schema.org has anchored the FAIR principles (Findable, Accessible, Interoperable, and Reusable) for machine-actionable data and enabled discovery tools like Google Dataset Search. However, the rise of Large Language Models (LLMs) capable of navigating the unstructured web raises a fundamental question: Is semantic metadata still necessary for agentic data",
+      "content": "",
+      "authors": [],
+      "tags": [],
+      "fetched_at": "2026-05-28T14:47:47.000229",
+      "language": "en",
+      "metadata": {}
+    },
+    {
+      "id": "000c3b971d1156a8",
+      "title": "Learn from Weaknesses: Automated Domain Specialization for Small Computer-Use Agents",
+      "url": "https://arxiv.org/abs/2605.28775v1",
+      "source": "arXiv cs.AI",
+      "source_id": "arxiv_cs_AI",
+      "source_type": "atom",
+      "category": "academic",
+      "priority": "P0",
+      "published": "2026-05-27T17:37:00Z",
+      "summary": "Computer-use agents (CUAs) have recently made substantial progress, but deploying a separate large expert for each software domain remains expensive. Small open computer-use agents are more practical specialization targets, but they remain substantially weaker and exhibit uneven domain-specific failures. A straightforward remedy is to synthesize large-scale training data for the target domain, yet we find that this naive approach yields only marginal improvements. Building on this observation, w",
+      "content": "",
+      "authors": [],
+      "tags": [],
+      "fetched_at": "2026-05-28T14:47:47.000229",
+      "language": "en",
+      "metadata": {}
+    },
+    {
+      "id": "e4f73d9439dbfd63",
+      "title": "SwarmHarness: Skill-Based Task Routing via Decentralized Incentive-Aligned AI Agent Networks",
+      "url": "https://arxiv.org/abs/2605.28764v1",
+      "source": "arXiv cs.AI",
+      "source_id": "arxiv_cs_AI",
+      "source_type": "atom",
+      "category": "academic",
+      "priority": "P0",
+      "published": "2026-05-27T17:23:00Z",
+      "summary": "Vast quantities of compute (GPU cycles on personal workstations, idle inference servers, and edge devices between jobs) go unused because no incentive-aligned protocol exists for their owners to share them safely and profitably. Existing approaches either require a trusted central coordinator (cloud marketplaces), demand heavy blockchain infrastructure (Golem, BrokerChain), or lack an incentive layer entirely (BOINC, Petals). We propose SwarmHarness, a decentralised protocol in which HarnessAPI ",
+      "content": "",
+      "authors": [],
+      "tags": [],
+      "fetched_at": "2026-05-28T14:47:47.000229",
+      "language": "en",
+      "metadata": {}
+    },
+    {
+      "id": "cfeab0efd659bf15",
+      "title": "LiveBrowseComp: Are Search Agents Searching, or Just Verifying What They Already Know?",
+      "url": "https://arxiv.org/abs/2605.28721v1",
+      "source": "arXiv cs.AI",
+      "source_id": "arxiv_cs_AI",
+      "source_type": "atom",
+      "category": "academic",
+      "priority": "P0",
+      "published": "2026-05-27T16:39:57Z",
+      "summary": "Are LLM-based search agents genuinely searching, or using the web to verify what they already know? We study this question on BrowseComp with three diagnostics. Our analysis reveals Intrinsic Knowledge Dependence (IKD): even with tool access, agents often rely on intrinsic knowledge -- information encoded in the model before retrieval -- rather than on external evidence. Agents answer up to 44.5% of BrowseComp questions without tools, generate more than half of their search queries from internal",
+      "content": "",
+      "authors": [],
+      "tags": [],
+      "fetched_at": "2026-05-28T14:47:47.000229",
+      "language": "en",
+      "metadata": {}
+    },
+    {
+      "id": "dc37f27a83d3a67c",
+      "title": "Gamma-World: Generative Multi-Agent World Modeling Beyond Two Players",
+      "url": "",
+      "source": "HuggingFace Daily Papers",
+      "source_id": "hf_daily_papers",
+      "source_type": "hf_api",
+      "category": "academic",
+      "priority": "P0",
+      "published": "",
+      "summary": "World models for interactive video generation have largely focused on single-agent settings, where future observations are generated from a single control signal. However, many generated environments require multi-agent interaction: multiple players, robots, or embodied agents act simultaneously within a shared space. Scaling world models to such settings requires a principled multi-agent design: agents should remain independently controllable, permutation-symmetric, and support efficient infere",
+      "content": "",
+      "authors": [
+        "Fangfu Liu",
+        "Kai He",
+        "Tianchang Shen"
+      ],
+      "tags": [],
+      "fetched_at": "2026-05-28T14:48:33.266156",
+      "language": "en",
+      "metadata": {}
+    },
+    {
+      "id": "9329440b930e7330",
+      "title": "Learn from Weaknesses: Automated Domain Specialization for Small Computer-Use Agents",
+      "url": "",
+      "source": "HuggingFace Daily Papers",
+      "source_id": "hf_daily_papers",
+      "source_type": "hf_api",
+      "category": "academic",
+      "priority": "P0",
+      "published": "",
+      "summary": "Computer-use agents (CUAs) have recently made substantial progress, but deploying a separate large expert for each software domain remains expensive. Small open computer-use agents are more practical specialization targets, but they remain substantially weaker and exhibit uneven domain-specific failures. A straightforward remedy is to synthesize large-scale training data for the target domain, yet we find that this naive approach yields only marginal improvements. Building on this observation, w",
+      "content": "",
+      "authors": [
+        "Suji Kim",
+        "Kangsan Kim",
+        "Sung Ju Hwang"
+      ],
+      "tags": [],
+      "fetched_at": "2026-05-28T14:48:33.266156",
+      "language": "en",
+      "metadata": {}
+    },
+    {
+      "id": "e9c35a3395c0f43e",
+      "title": "Agent Explorative Policy Optimization for Multimodal Agentic Reasoning",
+      "url": "",
+      "source": "HuggingFace Daily Papers",
+      "source_id": "hf_daily_papers",
+      "source_type": "hf_api",
+      "category": "academic",
+      "priority": "P0",
+      "published": "",
+      "summary": "Vision-language models with extended reasoning succeed on complex problems, but many real-world problems require external tools that internal reasoning alone often cannot resolve. Agentic reasoning therefore interleaves two behaviors with a structural asymmetry: thinking (the self-contained default) and tool use (a high-variance auxiliary acting). We refer to this asymmetry as the Thinking-Acting Gap. Under standard RL recipes like GRPO, the gap manifests as two diagnostic symptoms during traini",
+      "content": "",
+      "authors": [
+        "Minki Kang",
+        "Shizhe Diao",
+        "Ryo Hachiuma"
+      ],
+      "tags": [],
+      "fetched_at": "2026-05-28T14:48:33.266156",
+      "language": "en",
+      "metadata": {}
+    },
+    {
+      "id": "d4f7b61d2e7c47f7",
+      "title": "LiveBrowseComp: Are Search Agents Searching, or Just Verifying What They Already Know?",
+      "url": "",
+      "source": "HuggingFace Daily Papers",
+      "source_id": "hf_daily_papers",
+      "source_type": "hf_api",
+      "category": "academic",
+      "priority": "P0",
+      "published": "",
+      "summary": "Are LLM-based search agents genuinely searching, or using the web to verify what they already know? We study this question on BrowseComp with three diagnostics. Our analysis reveals Intrinsic Knowledge Dependence (IKD): even with tool access, agents often rely on intrinsic knowledge -- information encoded in the model before retrieval -- rather than on external evidence. Agents answer up to 44.5% of BrowseComp questions without tools, generate more than half of their search queries from internal",
+      "content": "",
+      "authors": [
+        "HuiMing Fan",
+        "Xiao Wang",
+        "Zheng Chu"
+      ],
+      "tags": [],
+      "fetched_at": "2026-05-28T14:48:33.266156",
+      "language": "en",
+      "metadata": {}
+    },
+    {
+      "id": "eed40242f83dc884",
+      "title": "AutoScientists: Self-Organizing Agent Teams for Long-Running Scientific Experimentation",
+      "url": "",
+      "source": "HuggingFace Daily Papers",
+      "source_id": "hf_daily_papers",
+      "source_type": "hf_api",
+      "category": "academic",
+      "priority": "P0",
+      "published": "",
+      "summary": "Scientific research proceeds through iterative cycles of hypothesis generation, experiment design, execution, and revision. AI agents can automate parts of this process, but existing approaches typically follow a single research trajectory or coordinate through a central planner with fixed objectives. As a result, they struggle to sustain parallel exploration, adapt as experimental evidence changes, or preserve knowledge of failed directions over long-running experiments. We introduce AutoScient",
+      "content": "",
+      "authors": [
+        "Shanghua Gao",
+        "Ada Fang",
+        "Marinka Zitnik"
+      ],
+      "tags": [],
+      "fetched_at": "2026-05-28T14:48:33.266156",
+      "language": "en",
+      "metadata": {}
+    },
+    {
+      "id": "a42b248f83198dd3",
+      "title": "GUI-CIDER: Mid-training GUI Agents via Causal Internalization and Density-aware Exemplar Reselection",
+      "url": "",
+      "source": "HuggingFace Daily Papers",
+      "source_id": "hf_daily_papers",
+      "source_type": "hf_api",
+      "category": "academic",
+      "priority": "P0",
+      "published": "",
+      "summary": "Despite the rapid progress of multimodal large language models in building Graphical User Interface (GUI) agents, their real-world task completion is fundamentally bottlenecked by a lack of world knowledge about GUI operations. Existing solutions typically rely on expensive multi-agent scaffolding or conventional post-training paradigms, such as Supervised Fine-Tuning (SFT) and Reinforcement Learning (RL). However, post-training only allows agents to implicitly absorb world knowledge through act",
+      "content": "",
+      "authors": [
+        "Zheng Wu",
+        "Chengcheng Han",
+        "Zhengxi Lu"
+      ],
+      "tags": [],
+      "fetched_at": "2026-05-28T14:48:33.266156",
+      "language": "en",
+      "metadata": {}
+    },
+    {
+      "id": "e72a44868d01cc9e",
+      "title": "Co-Scientist: A multi-agent AI partner to accelerate research",
+      "url": "https://deepmind.google/blog/co-scientist-a-multi-agent-ai-partner-to-accelerate-research/",
+      "source": "Google DeepMind Blog",
+      "source_id": "deepmind_blog",
+      "source_type": "rss",
+      "category": "tech_blog",
+      "priority": "P0",
+      "published": "Tue, 12 May 2026 14:40:07 +0000",
+      "summary": "Introducing Co-Scientist, a collaborative AI partner built with Gemini to help researchers accelerate scientific breakthroughs.",
+      "content": "",
+      "authors": [],
+      "tags": [],
+      "fetched_at": "2026-05-28T14:49:01.957820",
+      "language": "en",
+      "metadata": {}
+    },
+    {
+      "id": "871372c74ab401e5",
+      "title": "AlphaEvolve: How our Gemini-powered coding agent is scaling impact across fields",
+      "url": "https://deepmind.google/blog/alphaevolve-impact/",
+      "source": "Google DeepMind Blog",
+      "source_id": "deepmind_blog",
+      "source_type": "rss",
+      "category": "tech_blog",
+      "priority": "P0",
+      "published": "Wed, 06 May 2026 10:43:49 +0000",
+      "summary": "Explore how AlphaEvolve's Gemini-powered algorithms are driving impact across business, infrastructure, and science.",
+      "content": "",
+      "authors": [],
+      "tags": [],
+      "fetched_at": "2026-05-28T14:49:01.957820",
+      "language": "en",
+      "metadata": {}
+    },
+    {
+      "id": "8ae2b205b6f5e09a",
+      "title": "Building self-improving tax agents with Codex",
+      "url": "https://openai.com/index/building-self-improving-tax-agents-with-codex",
+      "source": "OpenAI Blog",
+      "source_id": "openai_blog",
+      "source_type": "rss",
+      "category": "tech_blog",
+      "priority": "P0",
+      "published": "Wed, 27 May 2026 07:00:00 GMT",
+      "summary": "See how OpenAI, Thrive, and Crete built a self-improving tax agent with Codex, automating filings, improving accuracy, and accelerating workflows.",
+      "content": "",
+      "authors": [],
+      "tags": [],
+      "fetched_at": "2026-05-28T14:49:03.396364",
+      "language": "en",
+      "metadata": {}
+    },
+    {
+      "id": "7f0b667e0027ccf7",
+      "title": "OpenAI named a Leader in enterprise coding agents by Gartner",
+      "url": "https://openai.com/index/gartner-2026-agentic-coding-leader",
+      "source": "OpenAI Blog",
+      "source_id": "openai_blog",
+      "source_type": "rss",
+      "category": "tech_blog",
+      "priority": "P0",
+      "published": "Fri, 22 May 2026 00:00:00 GMT",
+      "summary": "OpenAI is named a leader in the 2026 Gartner Magic Quadrant for Enterprise AI Coding Agents, with Codex recognized for innovation and enterprise-scale deployment.",
+      "content": "",
+      "authors": [],
+      "tags": [],
+      "fetched_at": "2026-05-28T14:49:03.396364",
+      "language": "en",
+      "metadata": {}
+    },
+    {
+      "id": "df5b190d11f1b3af",
+      "title": "Databricks brings GPT-5.5 to enterprise agent workflows",
+      "url": "https://openai.com/index/databricks",
+      "source": "OpenAI Blog",
+      "source_id": "openai_blog",
+      "source_type": "rss",
+      "category": "tech_blog",
+      "priority": "P0",
+      "published": "Fri, 15 May 2026 00:00:00 GMT",
+      "summary": "Databricks uses GPT-5.5 for enterprise agent workflows after the model set a new state of the art on the OfficeQA Pro benchmark.",
+      "content": "",
+      "authors": [],
+      "tags": [],
+      "fetched_at": "2026-05-28T14:49:03.396364",
+      "language": "en",
+      "metadata": {}
+    },
+    {
+      "id": "c6eb3ff72c079dc7",
+      "title": "1400亿Agent入场，“流量”这条护城河要塌了",
+      "url": "https://www.qbitai.com/2026/05/425881.html",
+      "source": "量子位",
+      "source_id": "liangzibit",
+      "source_type": "rss",
+      "category": "news_cn",
+      "priority": "P0",
+      "published": "Wed, 27 May 2026 09:31:05 +0000",
+      "summary": "看到大厂押注Agent生态的新方向",
+      "content": "",
+      "authors": [],
+      "tags": [],
+      "fetched_at": "2026-05-28T14:49:38.567840",
+      "language": "zh",
+      "metadata": {}
+    },
+    {
+      "id": "47800270104295cc",
+      "title": "Robinhood now lets your AI agents trade stocks",
+      "url": "https://techcrunch.com/2026/05/27/robinhood-now-lets-your-ai-agents-trade-stocks/",
+      "source": "TechCrunch AI",
+      "source_id": "techcrunch_ai",
+      "source_type": "rss",
+      "category": "news",
+      "priority": "P1",
+      "published": "Wed, 27 May 2026 12:30:00 +0000",
+      "summary": "While these agents would be able to read and analyze users' portfolios to come up with trading strategies and suggest investments, they'll only be able to access the pre-loaded balance in the dedicated wallet to place orders.",
+      "content": "",
+      "authors": [],
+      "tags": [],
+      "fetched_at": "2026-05-28T14:49:42.102037",
+      "language": "en",
+      "metadata": {}
+    },
+    {
+      "id": "0a83ca12168720e2",
+      "title": "Salesforce rolls out new Slackbot AI agent as it battles Microsoft and Google in workplace AI",
+      "url": "https://venturebeat.com/technology/salesforce-rolls-out-new-slackbot-ai-agent-as-it-battles-microsoft-and",
+      "source": "VentureBeat AI",
+      "source_id": "venturebeat_ai",
+      "source_type": "rss",
+      "category": "news",
+      "priority": "P1",
+      "published": "Tue, 13 Jan 2026 13:00:00 GMT",
+      "summary": "<p><a href=\"https://www.salesforce.com/\">Salesforce</a> on Tuesday launched an entirely rebuilt version of <a href=\"https://slack.com/help/articles/202026038-An-introduction-to-Slackbot\">Slackbot</a>, the company&#x27;s workplace assistant, transforming it from a simple notification tool into what executives describe as a fully powered AI agent capable of searching enterprise data, drafting documents, and taking action on behalf of employees.</p><p>The new Slackbot, now generally available to <a",
+      "content": "",
+      "authors": [],
+      "tags": [],
+      "fetched_at": "2026-05-28T14:49:42.332471",
+      "language": "en",
+      "metadata": {}
+    },
+    {
+      "id": "eb814b5ecbac88f6",
+      "title": "Anthropic launches Cowork, a Claude Desktop agent that works in your files — no coding required",
+      "url": "https://venturebeat.com/technology/anthropic-launches-cowork-a-claude-desktop-agent-that-works-in-your-files-no",
+      "source": "VentureBeat AI",
+      "source_id": "venturebeat_ai",
+      "source_type": "rss",
+      "category": "news",
+      "priority": "P1",
+      "published": "Mon, 12 Jan 2026 11:30:00 GMT",
+      "summary": "<p><a href=\"https://www.anthropic.com/\">Anthropic</a> released <a href=\"https://claude.com/blog/cowork-research-preview\">Cowork</a> on Monday, a new AI agent capability that extends the power of its wildly successful <a href=\"https://claude.com/product/claude-code\">Claude Code</a> tool to non-technical users — and according to company insiders, the team built the entire feature in approximately a week and a half, largely using Claude Code itself.</p><p>The launch marks a major inflection point i",
+      "content": "",
+      "authors": [],
+      "tags": [],
+      "fetched_at": "2026-05-28T14:49:42.332471",
+      "language": "en",
+      "metadata": {}
+    },
+    {
+      "id": "3183cf586fb61a3d",
+      "title": "Import AI 453: Breaking AI agents; MirrorCode; and ten views on gradual disempowerment",
+      "url": "https://importai.substack.com/p/import-ai-453-breaking-ai-agents",
+      "source": "Import AI Newsletter",
+      "source_id": "import_ai",
+      "source_type": "rss",
+      "category": "news",
+      "priority": "P1",
+      "published": "Mon, 13 Apr 2026 10:02:22 GMT",
+      "summary": "Was fire equivalent to a singularity for people at the time?",
+      "content": "",
+      "authors": [],
+      "tags": [],
+      "fetched_at": "2026-05-28T14:49:42.598754",
+      "language": "en",
+      "metadata": {}
+    },
+    {
+      "id": "28788ddf9819b0ca",
+      "title": "Import AI 448: AI R&D; Bytedance's CUDA-writing agent; on-device satellite AI",
+      "url": "https://importai.substack.com/p/import-ai-448-ai-r-and-d-bytedances",
+      "source": "Import AI Newsletter",
+      "source_id": "import_ai",
+      "source_type": "rss",
+      "category": "news",
+      "priority": "P1",
+      "published": "Mon, 09 Mar 2026 12:45:54 GMT",
+      "summary": "If Ukraine is the first major drone war, when will there be the first major AI war?",
+      "content": "",
+      "authors": [],
+      "tags": [],
+      "fetched_at": "2026-05-28T14:49:42.598754",
+      "language": "en",
+      "metadata": {}
+    },
+    {
+      "id": "7c363581fc9c6533",
+      "title": "Import AI 447: The AGI economy; testing AIs with generated games; and agent ecologies",
+      "url": "https://importai.substack.com/p/import-ai-447-the-agi-economy-testing",
+      "source": "Import AI Newsletter",
+      "source_id": "import_ai",
+      "source_type": "rss",
+      "category": "news",
+      "priority": "P1",
+      "published": "Mon, 02 Mar 2026 13:45:27 GMT",
+      "summary": "What might a superintelligence arcology be like?",
+      "content": "",
+      "authors": [],
+      "tags": [],
+      "fetched_at": "2026-05-28T14:49:42.598754",
+      "language": "en",
+      "metadata": {}
+    },
+    {
+      "id": "82fb2fbbf26b2828",
+      "title": "Import AI 443: Into the mist: Moltbook, agent ecologies, and the internet in transition",
+      "url": "https://importai.substack.com/p/import-ai-443-into-the-mist-moltbook",
+      "source": "Import AI Newsletter",
+      "source_id": "import_ai",
+      "source_type": "rss",
+      "category": "news",
+      "priority": "P1",
+      "published": "Mon, 02 Feb 2026 13:31:18 GMT",
+      "summary": "Plus, a story about agents corrupting other agents",
+      "content": "",
+      "authors": [],
+      "tags": [],
+      "fetched_at": "2026-05-28T14:49:42.598754",
+      "language": "en",
+      "metadata": {}
+    },
+    {
+      "id": "082e30d81faa37cc",
+      "title": "Import AI 441: My agents are working. Are yours?",
+      "url": "https://importai.substack.com/p/import-ai-441-my-agents-are-working",
+      "source": "Import AI Newsletter",
+      "source_id": "import_ai",
+      "source_type": "rss",
+      "category": "news",
+      "priority": "P1",
+      "published": "Mon, 19 Jan 2026 14:03:24 GMT",
+      "summary": "Plus: Corrupting AI systems with a poison fountain",
+      "content": "",
+      "authors": [],
+      "tags": [],
+      "fetched_at": "2026-05-28T14:49:42.598754",
+      "language": "en",
+      "metadata": {}
+    },
+    {
+      "id": "6859da77687a0242",
+      "title": "v0.5.0: agentic RL rollout, prototypes for disaggregated async training & GenerativeRM, better rollout load balance & improved sglang+megatron/vlm support",
+      "url": "https://github.com/verl-project/verl/releases/tag/v0.5.0",
+      "source": "verl Releases",
+      "source_id": "verl_releases",
+      "source_type": "atom",
+      "category": "training",
+      "priority": "P0",
+      "published": "2026-05-28T14:50:28.632978",
+      "summary": "<h1>Highlights</h1>\n<h2>Agentic RL rollout interface [beta]</h2>\n<p>verl v0.5 introduces the <a href=\"https://verl.readthedocs.io/en/latest/start/agentic_rl.html\" rel=\"nofollow\">AgentLoop</a> abstraction that allows easy extension to custom rollout with tool/agent interactions. Server-based asynchronous rollout is adopted to efficiently utilize GPUs. verl provides a few example agent loop implementations including:</p>\n<ul>\n<li>Multi-turn conversations and tool calls</li>\n<li><a href=\"https://gi",
+      "content": "",
+      "authors": [],
+      "tags": [],
+      "fetched_at": "2026-05-28T14:50:28.632978",
+      "language": "en",
+      "metadata": {}
+    },
+    {
+      "id": "1edeef957d6d60bd",
+      "title": "v0.5.0: agentic RL rollout, prototypes for disaggregated async training & GenerativeRM, better rollout load balance & improved sglang+megatron/vlm support",
+      "url": "https://github.com/verl-project/verl/releases/tag/v0.5.0",
+      "source": "verl",
+      "source_id": "verl",
+      "source_type": "atom",
+      "category": "training",
+      "priority": "P0",
+      "published": "2026-05-28T14:51:13.081189",
+      "summary": "<h1>Highlights</h1>\n<h2>Agentic RL rollout interface [beta]</h2>\n<p>verl v0.5 introduces the <a href=\"https://verl.readthedocs.io/en/latest/start/agentic_rl.html\" rel=\"nofollow\">AgentLoop</a> abstraction that allows easy extension to custom rollout with tool/agent interactions. Server-based asynchronous rollout is adopted to efficiently utilize GPUs. verl provides a few example agent loop implementations including:</p>\n<ul>\n<li>Multi-turn conversations and tool calls</li>\n<li><a href=\"https://gi",
+      "content": "",
+      "authors": [],
+      "tags": [],
+      "fetched_at": "2026-05-28T14:51:13.081189",
+      "language": "en",
+      "metadata": {}
+    }
+  ]
+}

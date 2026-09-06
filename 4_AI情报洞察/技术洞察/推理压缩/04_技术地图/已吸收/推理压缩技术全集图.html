@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>推理压缩技术全集图 v1.0 — 4对象×5技术矩阵</title>
+<style>
+  :root {
+    --bg: #0a0e1a;
+    --surface: #131927;
+    --surface2: #1c2333;
+    --border: #2d3748;
+    --text: #e2e8f0;
+    --text-dim: #8b95a8;
+    --accent: #60a5fa;
+
+    /* 成熟度 */
+    --c-mature: #22c55e;
+    --c-rising: #eab308;
+    --c-new: #f97316;
+    --c-blank: #a78bfa;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    font-size: 14px;
+  }
+  header {
+    background: linear-gradient(135deg, #0c1f14 0%, #1f1908 50%, #1a0c20 100%);
+    padding: 32px 28px;
+  }
+  header h1 { font-size: 24px; color: #fff; margin-bottom: 6px; }
+  header .sub { font-size: 13px; color: rgba(255,255,255,0.7); margin-bottom: 16px; }
+  header .legend { display: flex; gap: 18px; flex-wrap: wrap; font-size: 12px; }
+  header .legend span { display: flex; align-items: center; gap: 5px; color: rgba(255,255,255,0.85); }
+  header .legend .dot { width: 11px; height: 11px; border-radius: 3px; }
+
+  .content { max-width: 1500px; margin: 0 auto; padding: 24px 28px 80px; }
+
+  .section-h2 {
+    font-size: 19px; font-weight: 700; color: var(--accent);
+    margin: 36px 0 14px; padding-bottom: 8px; border-bottom: 2px solid var(--border);
+  }
+
+  .note {
+    background: rgba(96,165,250,0.05); border: 1px solid rgba(96,165,250,0.15);
+    border-radius: 10px; padding: 14px 18px; margin-bottom: 18px;
+    font-size: 13px; color: var(--text-dim); line-height: 1.8;
+  }
+  .note strong { color: var(--accent); }
+
+  /* === 核心矩阵 === */
+  .matrix-wrap { overflow-x: auto; margin: 16px 0; }
+  .matrix {
+    display: grid;
+    grid-template-columns: 160px repeat(5, 1fr);
+    gap: 6px;
+    min-width: 1000px;
+  }
+
+  /* 表头 */
+  .mx-corner {
+    background: var(--surface2);
+    border-radius: 8px;
+    padding: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    color: var(--text-dim);
+    text-align: center;
+    line-height: 1.5;
+  }
+  .mx-corner strong { color: var(--accent); display: block; }
+
+  .mx-col-hdr {
+    background: var(--surface2);
+    border-radius: 8px;
+    padding: 12px 10px;
+    text-align: center;
+    border-bottom: 3px solid;
+  }
+  .mx-col-hdr .name { font-size: 15px; font-weight: 700; }
+  .mx-col-hdr .en { font-size: 10px; color: var(--text-dim); margin-top: 2px; }
+  .mx-col-hdr .trend { font-size: 10px; margin-top: 4px; color: var(--text-dim); }
+
+  /* 行头（对象） */
+  .mx-row-hdr {
+    background: var(--surface2);
+    border-radius: 8px;
+    padding: 14px;
+    border-left: 4px solid;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .mx-row-hdr .obj-name { font-size: 15px; font-weight: 700; }
+  .mx-row-hdr .obj-en { font-size: 10px; color: var(--text-dim); margin-top: 2px; }
+  .mx-row-hdr .obj-scene { font-size: 11px; margin-top: 8px; padding: 3px 8px; border-radius: 5px; display: inline-block; }
+  .mx-row-hdr .obj-count { font-size: 10px; color: var(--text-dim); margin-top: 4px; }
+
+  /* 格子 */
+  .cell {
+    border-radius: 10px;
+    padding: 12px;
+    border: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    transition: all 0.15s;
+    cursor: pointer;
+    position: relative;
+    min-height: 120px;
+  }
+  .cell:hover {
+    transform: scale(1.03);
+    z-index: 5;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+  }
+  .cell-mature { background: rgba(34,197,94,0.06); border-color: rgba(34,197,94,0.2); }
+  .cell-rising  { background: rgba(234,179,8,0.06); border-color: rgba(234,179,8,0.25); }
+  .cell-new     { background: rgba(249,115,22,0.06); border-color: rgba(249,115,22,0.25); }
+  .cell-blank   { background: rgba(167,139,250,0.06); border-color: rgba(167,139,250,0.25); }
+
+  .cell-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+  .cell-count {
+    font-size: 22px;
+    font-weight: 900;
+    line-height: 1;
+  }
+  .cell-trl {
+    font-size: 9px;
+    font-weight: 700;
+    padding: 2px 6px;
+    border-radius: 4px;
+  }
+  .trl-mature { background: rgba(34,197,94,0.2); color: var(--c-mature); }
+  .trl-rising  { background: rgba(234,179,8,0.2); color: var(--c-rising); }
+  .trl-new     { background: rgba(249,115,22,0.2); color: var(--c-new); }
+  .trl-blank   { background: rgba(167,139,250,0.2); color: var(--c-blank); }
+
+  .cell-techs {
+    font-size: 11px;
+    color: var(--text-dim);
+    line-height: 1.6;
+    flex: 1;
+  }
+  .cell-techs strong { color: var(--text); font-size: 12px; }
+
+  .cell-arrow {
+    font-size: 16px;
+    font-weight: 700;
+    text-align: right;
+  }
+
+  /* === 趋势演进 === */
+  .trend-section {
+    margin: 24px 0;
+  }
+  .trend-row {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 16px 20px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .trend-label {
+    font-size: 15px;
+    font-weight: 700;
+    min-width: 80px;
+    flex-shrink: 0;
+  }
+  .trend-label .en { font-size: 10px; color: var(--text-dim); font-weight: 400; }
+  .trend-flow {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    flex-wrap: wrap;
+  }
+  .trend-node {
+    padding: 6px 12px;
+    border-radius: 8px;
+    font-size: 12px;
+    border: 1px solid;
+    text-align: center;
+    min-width: 80px;
+  }
+  .trend-node .stage { font-size: 10px; color: var(--text-dim); display: block; }
+  .trend-node .name { font-weight: 600; }
+  .trend-arrow {
+    color: var(--text-dim);
+    font-size: 14px;
+  }
+
+  /* === 机会 === */
+  .opp-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 12px;
+    margin: 16px 0;
+  }
+  .opp-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 16px;
+    border-left: 4px solid;
+  }
+  .opp-card .rank { font-size: 20px; font-weight: 900; margin-bottom: 4px; }
+  .opp-card .name { font-size: 14px; font-weight: 700; margin-bottom: 6px; }
+  .opp-card .desc { font-size: 12px; color: var(--text-dim); line-height: 1.7; }
+  .opp-card .stat {
+    display: inline-block;
+    font-size: 11px;
+    padding: 2px 8px;
+    border-radius: 5px;
+    margin-top: 8px;
+    margin-right: 6px;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>🗺️ 推理压缩技术全集图</h1>
+  <div class="sub">4对象 × 5技术 = 20格 · 纯压缩技术（不含系统优化）· v1.0 / 2026-06</div>
+  <div class="legend">
+    <span><div class="dot" style="background:var(--c-mature)"></div>已成熟(红海)</span>
+    <span><div class="dot" style="background:var(--c-rising)"></div>上升期(窗口)</span>
+    <span><div class="dot" style="background:var(--c-new)"></div>新兴(机会)</span>
+    <span><div class="dot" style="background:var(--c-blank)"></div>空白(最高机会)</span>
+    <span>→ 箭头=趋势方向</span>
+  </div>
+</header>
+
+<div class="content">
+
+<div class="note">
+  <strong>范围界定：</strong>本图只包含<strong>压缩技术</strong>（量化/剪枝/稀疏/蒸馏/低秩），<strong>不含系统优化</strong>（PagedAttention/FlashAttention/投机解码/批处理等不减少数据量的技术）。<br>
+  <strong>四个对象：</strong>参数(权重)、激活值、KV Cache、通信数据。每行标注该对象的核心应用场景。<br>
+  <strong>读法：</strong>看颜色找成熟度，看箭头找趋势，看紫色找机会空白。
+</div>
+
+<!-- ================================================================ -->
+<div class="section-h2">📊 核心矩阵：4对象 × 5技术</div>
+
+<div class="matrix-wrap">
+<div class="matrix">
+
+  <!-- 表头行 -->
+  <div class="mx-corner">
+    <strong>对象 ↓ / 技术 →</strong>
+    压缩什么 / 怎么压缩
+  </div>
+
+  <div class="mx-col-hdr" style="border-color:var(--c-mature)">
+    <div class="name">量化</div>
+    <div class="en">Quantization</div>
+    <div class="trend">FP16→INT4→INT2</div>
+  </div>
+  <div class="mx-col-hdr" style="border-color:var(--c-mature)">
+    <div class="name">剪枝</div>
+    <div class="en">Pruning</div>
+    <div class="trend">移除冗余结构</div>
+  </div>
+  <div class="mx-col-hdr" style="border-color:var(--c-mature)">
+    <div class="name">稀疏化</div>
+    <div class="en">Sparsification</div>
+    <div class="trend">置零/选择性保留</div>
+  </div>
+  <div class="mx-col-hdr" style="border-color:var(--c-mature)">
+    <div class="name">蒸馏</div>
+    <div class="en">Distillation</div>
+    <div class="trend">大→小知识迁移</div>
+  </div>
+  <div class="mx-col-hdr" style="border-color:var(--c-mature)">
+    <div class="name">低秩分解</div>
+    <div class="en">Low-Rank</div>
+    <div class="trend">高维→低秩空间</div>
+  </div>
+
+  <!-- ===== 参数行 ===== -->
+  <div class="mx-row-hdr" style="border-left-color:var(--c-mature)">
+    <div class="obj-name">参数</div>
+    <div class="obj-en">Weights</div>
+    <div class="obj-scene" style="background:rgba(34,197,94,0.15);color:var(--c-mature)">📱 端侧/部署</div>
+    <div class="obj-count">1,624篇 · 红海</div>
+  </div>
+
+  <!-- 参数×量化 -->
+  <div class="cell cell-mature">
+    <div class="cell-top">
+      <div class="cell-count" style="color:var(--c-mature)">376</div>
+      <span class="cell-trl trl-mature">TRL5</span>
+    </div>
+    <div class="cell-techs"><strong>GPTQ / AWQ / GGUF</strong><br>PTQ INT4，工业标准</div>
+    <div class="cell-arrow" style="color:var(--c-mature)">→ 平稳</div>
+  </div>
+  <!-- 参数×剪枝 -->
+  <div class="cell cell-mature">
+    <div class="cell-top">
+      <div class="cell-count" style="color:var(--c-mature)">509</div>
+      <span class="cell-trl trl-mature">TRL5</span>
+    </div>
+    <div class="cell-techs"><strong>SparseGPT / Wanda</strong><br>50%稀疏无需重训</div>
+    <div class="cell-arrow" style="color:var(--c-mature)">→ 平稳</div>
+  </div>
+  <!-- 参数×稀疏 -->
+  <div class="cell cell-mature">
+    <div class="cell-top">
+      <div class="cell-count" style="color:var(--c-mature)">311</div>
+      <span class="cell-trl trl-mature">TRL5</span>
+    </div>
+    <div class="cell-techs"><strong>2:4 Sparse</strong><br>NVIDIA硬件原生</div>
+    <div class="cell-arrow" style="color:var(--c-mature)">→ 平稳</div>
+  </div>
+  <!-- 参数×蒸馏 -->
+  <div class="cell cell-mature">
+    <div class="cell-top">
+      <div class="cell-count" style="color:var(--c-mature)">231</div>
+      <span class="cell-trl trl-mature">TRL5</span>
+    </div>
+    <div class="cell-techs"><strong>MiniLLM / DistilBERT</strong><br>层数压缩蒸馏</div>
+    <div class="cell-arrow" style="color:var(--c-mature)">→ 平稳</div>
+  </div>
+  <!-- 参数×低秩 -->
+  <div class="cell cell-mature">
+    <div class="cell-top">
+      <div class="cell-count" style="color:var(--c-mature)">575</div>
+      <span class="cell-trl trl-mature">TRL5</span>
+    </div>
+    <div class="cell-techs"><strong>LoRA / QLoRA / AdaLoRA</strong><br>适配器微调标配</div>
+    <div class="cell-arrow" style="color:var(--c-mature)">→ 平稳</div>
+  </div>
+
+  <!-- ===== 激活行 ===== -->
+  <div class="mx-row-hdr" style="border-left-color:var(--c-rising)">
+    <div class="obj-name">激活值</div>
+    <div class="obj-en">Activations</div>
+    <div class="obj-scene" style="background:rgba(234,179,8,0.15);color:var(--c-rising)">📸 多模态/高并发</div>
+    <div class="obj-count">756篇 · 热点</div>
+  </div>
+
+  <!-- 激活×量化 -->
+  <div class="cell cell-mature">
+    <div class="cell-top">
+      <div class="cell-count" style="color:var(--c-mature)">201</div>
+      <span class="cell-trl trl-mature">TRL4-5</span>
+    </div>
+    <div class="cell-techs"><strong>SmoothQuant / ZeroQuant</strong><br>W8A8，outlier平滑</div>
+    <div class="cell-arrow" style="color:var(--c-mature)">→ 平稳</div>
+  </div>
+  <!-- 激活×剪枝 -->
+  <div class="cell cell-mature">
+    <div class="cell-top">
+      <div class="cell-count" style="color:var(--c-mature)">199</div>
+      <span class="cell-trl trl-mature">TRL4-5</span>
+    </div>
+    <div class="cell-techs"><strong>通道剪枝 / GQA/MQA</strong><br>注意力头剪枝</div>
+    <div class="cell-arrow" style="color:var(--c-mature)">→ 平稳</div>
+  </div>
+  <!-- 激活×稀疏 -->
+  <div class="cell cell-rising">
+    <div class="cell-top">
+      <div class="cell-count" style="color:var(--c-rising)">396</div>
+      <span class="cell-trl trl-rising">TRL4</span>
+    </div>
+    <div class="cell-techs"><strong>动态稀疏 / MoE激活</strong><br>推理时跳过，无精度损失</div>
+    <div class="cell-arrow" style="color:var(--c-rising)">↑ 上升</div>
+  </div>
+  <!-- 激活×蒸馏 -->
+  <div class="cell cell-mature">
+    <div class="cell-top">
+      <div class="cell-count" style="color:var(--c-mature)">68</div>
+      <span class="cell-trl trl-mature">TRL4</span>
+    </div>
+    <div class="cell-techs"><strong>激活分布蒸馏</strong><br>中间层匹配</div>
+    <div class="cell-arrow" style="color:var(--c-mature)">→ 平稳</div>
+  </div>
+  <!-- 激活×低秩 -->
+  <div class="cell cell-rising">
+    <div class="cell-top">
+      <div class="cell-count" style="color:var(--c-rising)">174</div>
+      <span class="cell-trl trl-rising">TRL3</span>
+    </div>
+    <div class="cell-techs"><strong>线性注意力 / ActSVD</strong><br>注意力低秩近似</div>
+    <div class="cell-arrow" style="color:var(--c-rising)">↑ 上升</div>
+  </div>
+
+  <!-- ===== KV行 ===== -->
+  <div class="mx-row-hdr" style="border-left-color:var(--c-rising)">
+    <div class="obj-name">KV Cache</div>
+    <div class="obj-en">KV Cache</div>
+    <div class="obj-scene" style="background:rgba(234,179,8,0.15);color:var(--c-rising)">🤖 Agent/长上下文</div>
+    <div class="obj-count">310篇 · 核心热点</div>
+  </div>
+
+  <!-- KV×量化 -->
+  <div class="cell cell-rising">
+    <div class="cell-top">
+      <div class="cell-count" style="color:var(--c-rising)">46</div>
+      <span class="cell-trl trl-rising">TRL3</span>
+    </div>
+    <div class="cell-techs"><strong>KIVI(2bit) / Block-GTQ(4bit)</strong><br>RoPE-aware，256K可行</div>
+    <div class="cell-arrow" style="color:var(--c-rising)">↑↑ 快速上升</div>
+  </div>
+  <!-- KV×剪枝 -->
+  <div class="cell cell-rising">
+    <div class="cell-top">
+      <div class="cell-count" style="color:var(--c-rising)">37</div>
+      <span class="cell-trl trl-rising">TRL3</span>
+    </div>
+    <div class="cell-techs"><strong>Token剪枝</strong><br>移除不重要token的KV</div>
+    <div class="cell-arrow" style="color:var(--c-rising)">↑ 上升</div>
+  </div>
+  <!-- KV×稀疏 -->
+  <div class="cell cell-rising">
+    <div class="cell-top">
+      <div class="cell-count" style="color:var(--c-rising)">69</div>
+      <span class="cell-trl trl-rising">TRL4-5</span>
+    </div>
+    <div class="cell-techs"><strong>H2O / SnapKV / R-KV</strong><br>选择性淘汰，8x内存↓</div>
+    <div class="cell-arrow" style="color:var(--c-rising)">↑ 上升</div>
+  </div>
+  <!-- KV×蒸馏 -->
+  <div class="cell cell-blank">
+    <div class="cell-top">
+      <div class="cell-count" style="color:var(--c-blank)">10</div>
+      <span class="cell-trl trl-blank">TRL1-2</span>
+    </div>
+    <div class="cell-techs"><strong>SwiftKV（仅Prefill）</strong><br>Decoding阶段 = 0篇</div>
+    <div class="cell-arrow" style="color:var(--c-blank)">↑↑ 空白爆发</div>
+  </div>
+  <!-- KV×低秩 -->
+  <div class="cell cell-rising">
+    <div class="cell-top">
+      <div class="cell-count" style="color:var(--c-rising)">37</div>
+      <span class="cell-trl trl-rising">TRL3-5</span>
+    </div>
+    <div class="cell-techs"><strong>MLA / STAR-KV</strong><br>DeepSeek-V2架构级</div>
+    <div class="cell-arrow" style="color:var(--c-rising)">↑ 上升</div>
+  </div>
+
+  <!-- ===== 通行行 ===== -->
+  <div class="mx-row-hdr" style="border-left-color:var(--c-new)">
+    <div class="obj-name">通信数据</div>
+    <div class="obj-en">Communication</div>
+    <div class="obj-scene" style="background:rgba(249,115,22,0.15);color:var(--c-new)">🧩 MoE分布式</div>
+    <div class="obj-count">265篇 · 新兴</div>
+  </div>
+
+  <!-- 通信×量化 -->
+  <div class="cell cell-new">
+    <div class="cell-top">
+      <div class="cell-count" style="color:var(--c-new)">44</div>
+      <span class="cell-trl trl-new">TRL2-3</span>
+    </div>
+    <div class="cell-techs"><strong>ExpertQuant / FP8通信</strong><br>MoE All-to-All量化</div>
+    <div class="cell-arrow" style="color:var(--c-new)">↑↑ 新兴</div>
+  </div>
+  <!-- 通信×剪枝 -->
+  <div class="cell cell-rising">
+    <div class="cell-top">
+      <div class="cell-count" style="color:var(--c-rising)">45</div>
+      <span class="cell-trl trl-rising">TRL3</span>
+    </div>
+    <div class="cell-techs"><strong>MosaicPrune</strong><br>Expert层级剪枝</div>
+    <div class="cell-arrow" style="color:var(--c-rising)">↑ 上升</div>
+  </div>
+  <!-- 通信×稀疏 -->
+  <div class="cell cell-rising">
+    <div class="cell-top">
+      <div class="cell-count" style="color:var(--c-rising)">82</div>
+      <span class="cell-trl trl-rising">TRL4</span>
+    </div>
+    <div class="cell-techs"><strong>Top-K路由 / DeepEP</strong><br>All-to-All稀疏通信</div>
+    <div class="cell-arrow" style="color:var(--c-rising)">↑ 上升</div>
+  </div>
+  <!-- 通信×蒸馏 -->
+  <div class="cell cell-blank">
+    <div class="cell-top">
+      <div class="cell-count" style="color:var(--c-blank)">18</div>
+      <span class="cell-trl trl-blank">TRL1</span>
+    </div>
+    <div class="cell-techs"><strong>— 几乎空白</strong><br>跨领域人才稀缺</div>
+    <div class="cell-arrow" style="color:var(--c-blank)">↑↑ 空白</div>
+  </div>
+  <!-- 通信×低秩 -->
+  <div class="cell cell-mature">
+    <div class="cell-top">
+      <div class="cell-count" style="color:var(--c-mature)">57</div>
+      <span class="cell-trl trl-mature">TRL3-4</span>
+    </div>
+    <div class="cell-techs"><strong>PowerSGD式</strong><br>低秩梯度/通信压缩</div>
+    <div class="cell-arrow" style="color:var(--c-mature)">→ 平稳</div>
+  </div>
+
+</div>
+</div>
+
+<div class="note" style="margin-top:16px">
+  <strong>矩阵规律：</strong><br>
+  • <strong>参数行全绿</strong> = 5个技术全成熟，红海，不值得再投入<br>
+  • <strong>对角线效应</strong> = 从左上(参数×量化)到右下(通信×蒸馏)，成熟度递减<br>
+  • <strong>蒸馏列底部紫色</strong> = KV×蒸馏(10篇)和通信×蒸馏(18篇)是最大空白<br>
+  • <strong>KV行最活跃</strong> = 5个技术都在上升，是当前核心战场
+</div>
+
+<!-- ================================================================ -->
+<div class="section-h2">📈 5个技术点的发展趋势</div>
+
+<div class="trend-section">
+
+  <!-- 量化趋势 -->
+  <div class="trend-row">
+    <div class="trend-label">量化<span class="en"><br>Quantization</span></div>
+    <div class="trend-flow">
+      <div class="trend-node" style="border-color:var(--c-mature);background:rgba(34,197,94,0.08)">
+        <span class="stage">已成熟</span><span class="name">参数GPTQ/AWQ</span>
+      </div>
+      <span class="trend-arrow">→</span>
+      <div class="trend-node" style="border-color:var(--c-mature);background:rgba(34,197,94,0.08)">
+        <span class="stage">已成熟</span><span class="name">激活SmoothQuant</span>
+      </div>
+      <span class="trend-arrow">→</span>
+      <div class="trend-node" style="border-color:var(--c-rising);background:rgba(234,179,8,0.08)">
+        <span class="stage">↑窗口期</span><span class="name">KV KIVI/GTQ</span>
+      </div>
+      <span class="trend-arrow">→</span>
+      <div class="trend-node" style="border-color:var(--c-new);background:rgba(249,115,22,0.08)">
+        <span class="stage">↑新兴</span><span class="name">通信 ExpertQuant</span>
+      </div>
+      <span class="trend-arrow">→</span>
+      <div class="trend-node" style="border-color:var(--c-blank);background:rgba(167,139,250,0.08)">
+        <span class="stage">探索</span><span class="name">≤2bit 极端</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 剪枝趋势 -->
+  <div class="trend-row">
+    <div class="trend-label">剪枝<span class="en"><br>Pruning</span></div>
+    <div class="trend-flow">
+      <div class="trend-node" style="border-color:var(--c-mature);background:rgba(34,197,94,0.08)">
+        <span class="stage">已成熟</span><span class="name">参数SparseGPT</span>
+      </div>
+      <span class="trend-arrow">→</span>
+      <div class="trend-node" style="border-color:var(--c-mature);background:rgba(34,197,94,0.08)">
+        <span class="stage">已成熟</span><span class="name">激活GQA/MQA</span>
+      </div>
+      <span class="trend-arrow">→</span>
+      <div class="trend-node" style="border-color:var(--c-rising);background:rgba(234,179,8,0.08)">
+        <span class="stage">↑上升</span><span class="name">KV Token剪枝</span>
+      </div>
+      <span class="trend-arrow">→</span>
+      <div class="trend-node" style="border-color:var(--c-new);background:rgba(249,115,22,0.08)">
+        <span class="stage">↑新兴</span><span class="name">通信 Expert剪枝</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 稀疏趋势 -->
+  <div class="trend-row">
+    <div class="trend-label">稀疏化<span class="en"><br>Sparsification</span></div>
+    <div class="trend-flow">
+      <div class="trend-node" style="border-color:var(--c-mature);background:rgba(34,197,94,0.08)">
+        <span class="stage">已成熟</span><span class="name">参数 2:4</span>
+      </div>
+      <span class="trend-arrow">→</span>
+      <div class="trend-node" style="border-color:var(--c-rising);background:rgba(234,179,8,0.08)">
+        <span class="stage">↑热点</span><span class="name">激活 MoE稀疏</span>
+      </div>
+      <span class="trend-arrow">→</span>
+      <div class="trend-node" style="border-color:var(--c-rising);background:rgba(234,179,8,0.08)">
+        <span class="stage">↑热点</span><span class="name">KV SnapKV/H2O</span>
+      </div>
+      <span class="trend-arrow">→</span>
+      <div class="trend-node" style="border-color:var(--c-new);background:rgba(249,115,22,0.08)">
+        <span class="stage">↑新兴</span><span class="name">通信 Top-K路由</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 蒸馏趋势 -->
+  <div class="trend-row">
+    <div class="trend-label">蒸馏<span class="en"><br>Distillation</span></div>
+    <div class="trend-flow">
+      <div class="trend-node" style="border-color:var(--c-mature);background:rgba(34,197,94,0.08)">
+        <span class="stage">已成熟</span><span class="name">参数 MiniLLM</span>
+      </div>
+      <span class="trend-arrow">→</span>
+      <div class="trend-node" style="border-color:var(--c-mature);background:rgba(34,197,94,0.08)">
+        <span class="stage">平稳</span><span class="name">激活 分布蒸馏</span>
+      </div>
+      <span class="trend-arrow">→</span>
+      <div class="trend-node" style="border-color:var(--c-blank);background:rgba(167,139,250,0.08)">
+        <span class="stage">💎空白!</span><span class="name">KV蒸馏(10篇)</span>
+      </div>
+      <span class="trend-arrow">→</span>
+      <div class="trend-node" style="border-color:var(--c-blank);background:rgba(167,139,250,0.08)">
+        <span class="stage">💎空白!</span><span class="name">通信蒸馏(18篇)</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 低秩趋势 -->
+  <div class="trend-row">
+    <div class="trend-label">低秩<span class="en"><br>Low-Rank</span></div>
+    <div class="trend-flow">
+      <div class="trend-node" style="border-color:var(--c-mature);background:rgba(34,197,94,0.08)">
+        <span class="stage">已成熟</span><span class="name">参数 LoRA</span>
+      </div>
+      <span class="trend-arrow">→</span>
+      <div class="trend-node" style="border-color:var(--c-rising);background:rgba(234,179,8,0.08)">
+        <span class="stage">↑上升</span><span class="name">激活 线性注意力</span>
+      </div>
+      <span class="trend-arrow">→</span>
+      <div class="trend-node" style="border-color:var(--c-rising);background:rgba(234,179,8,0.08)">
+        <span class="stage">↑上升</span><span class="name">KV MLA/STAR-KV</span>
+      </div>
+      <span class="trend-arrow">→</span>
+      <div class="trend-node" style="border-color:var(--c-mature);background:rgba(34,197,94,0.08)">
+        <span class="stage">平稳</span><span class="name">通信 PowerSGD</span>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ================================================================ -->
+<div class="section-h2">⭐ 机会识别（空白格 + 上升格）</div>
+
+<div class="opp-grid">
+
+  <div class="opp-card" style="border-left-color:var(--c-blank)">
+    <div class="rank" style="color:var(--c-blank)">🥇 P0</div>
+    <div class="name">KV × 蒸馏</div>
+    <div class="desc">Decoding阶段KV蒸馏 = 0篇。KV累积最严重的阶段，却完全没有蒸馏方案。最高风险/最高回报。</div>
+    <span class="stat" style="background:rgba(167,139,250,0.15);color:var(--c-blank)">10篇</span>
+    <span class="stat" style="background:rgba(167,139,250,0.15);color:var(--c-blank)">TRL1</span>
+  </div>
+
+  <div class="opp-card" style="border-left-color:var(--c-blank)">
+    <div class="rank" style="color:var(--c-blank)">🥈 P0</div>
+    <div class="name">通信 × 蒸馏</div>
+    <div class="desc">MoE通信蒸馏几乎空白(18篇)。需要同时懂分布式系统+模型蒸馏，跨领域人才稀缺。</div>
+    <span class="stat" style="background:rgba(167,139,250,0.15);color:var(--c-blank)">18篇</span>
+    <span class="stat" style="background:rgba(167,139,250,0.15);color:var(--c-blank)">TRL1</span>
+  </div>
+
+  <div class="opp-card" style="border-left-color:var(--c-new)">
+    <div class="rank" style="color:var(--c-new)">🥉 P1</div>
+    <div class="name">通信 × 量化</div>
+    <div class="desc">ExpertQuant(2025)是首个MoE通信量化。MoE时代All-to-All通信是核心瓶颈，工业空白。</div>
+    <span class="stat" style="background:rgba(249,115,22,0.15);color:var(--c-new)">44篇</span>
+    <span class="stat" style="background:rgba(249,115,22,0.15);color:var(--c-new)">TRL2</span>
+  </div>
+
+  <div class="opp-card" style="border-left-color:var(--c-rising)">
+    <div class="rank" style="color:var(--c-rising)">4</div>
+    <div class="name">KV × 量化</div>
+    <div class="desc">KIVI/Block-GTQ证明可行，但框架集成度低。工程化是最大机会。</div>
+    <span class="stat" style="background:rgba(234,179,8,0.15);color:var(--c-rising)">46篇</span>
+    <span class="stat" style="background:rgba(234,179,8,0.15);color:var(--c-rising)">TRL3</span>
+  </div>
+
+  <div class="opp-card" style="border-left-color:var(--c-rising)">
+    <div class="rank" style="color:var(--c-rising)">5</div>
+    <div class="name">KV × 稀疏化</div>
+    <div class="desc">SnapKV/H2O学术验证充分，工业落地仍蓝海。框架集成是突破口。</div>
+    <span class="stat" style="background:rgba(234,179,8,0.15);color:var(--c-rising)">69篇</span>
+    <span class="stat" style="background:rgba(234,179,8,0.15);color:var(--c-rising)">TRL4</span>
+  </div>
+
+  <div class="opp-card" style="border-left-color:var(--c-rising)">
+    <div class="rank" style="color:var(--c-rising)">6</div>
+    <div class="name">激活 × 稀疏化</div>
+    <div class="desc">动态激活稀疏+MoE是最大子方向(396篇)。多模态场景特别需要。</div>
+    <span class="stat" style="background:rgba(234,179,8,0.15);color:var(--c-rising)">396篇</span>
+    <span class="stat" style="background:rgba(234,179,8,0.15);color:var(--c-rising)">TRL4</span>
+  </div>
+
+</div>
+
+<!-- ================================================================ -->
+<div class="section-h2">📋 总结</div>
+
+<div class="note">
+  <strong>全集图的三个核心洞察：</strong><br><br>
+  <strong>1. 压缩的成熟度沿"对象"递减：</strong>参数(全绿) → 激活(半绿半黄) → KV(全黄) → 通信(黄+橙+紫)<br>
+  → 意味着：越靠近"数据流动末端"的对象，压缩技术越不成熟，机会越大<br><br>
+  <strong>2. 蒸馏是最落后的技术：</strong>在KV和通信上几乎空白(紫色)，因为蒸馏需要同时懂两个领域<br>
+  → 意味着：蒸馏×KV、蒸馏×通信是最高风险/回报的研究方向<br><br>
+  <strong>3. 参数压缩已死（红海）：</strong>5个技术全TRL5，再做增量改进极难出彩<br>
+  → 意味着：不要再投参数压缩，把资源转向KV和通信
+</div>
+
+</div>
+
+</body>
+</html>

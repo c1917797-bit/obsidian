@@ -1,0 +1,2938 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>推理压缩技术地图 — 四层全览版</title>
+<style>
+  :root {
+    --bg: #0f1117;
+    --surface: #161b22;
+    --surface2: #1e2433;
+    --surface3: #283049;
+    --border: #30363d;
+    --text: #c9d1da;
+    --text-dim: #7d8590;
+    --text-bright: #e6edf3;
+    --accent: #58a6ff;
+    --accent2: #a371f7;
+    --green: #3fb950;
+    --yellow: #d29922;
+    --red: #f85149;
+    --orange: #f0883e;
+    --teal: #39d353;
+    --ci-red: #f85149;
+    --ci-orange: #f0883e;
+    --ci-yellow: #d29922;
+    --ci-green: #3fb950;
+    --ci-blue: #58a6ff;
+    --ci-purple: #a371f7;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans CJK SC', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    font-size: 13px;
+    line-height: 1.5;
+  }
+
+  /* HEADER */
+  header {
+    background: linear-gradient(135deg, #161b22 0%, #0f1117 100%);
+    border-bottom: 1px solid var(--border);
+    padding: 16px 28px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    backdrop-filter: blur(8px);
+  }
+
+  .h-title {
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--accent);
+    letter-spacing: -0.3px;
+  }
+
+  .h-title span {
+    font-size: 12px;
+    color: var(--text-dim);
+    font-weight: 400;
+    margin-left: 10px;
+  }
+
+  .h-legend {
+    display: flex;
+    gap: 16px;
+    font-size: 11px;
+    align-items: center;
+  }
+
+  .h-legend span {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    color: var(--text-dim);
+  }
+
+  .h-legend .dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 2px;
+  }
+
+  /* CONTENT */
+  .content {
+    padding: 20px 28px 60px;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  /* INTRO */
+  .intro-box {
+    background: linear-gradient(135deg, #161b22, #1a2030);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 16px 20px;
+    margin-bottom: 24px;
+    display: flex;
+    gap: 24px;
+    align-items: flex-start;
+  }
+
+  .intro-box .label {
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 6px;
+  }
+
+  .intro-box .text {
+    font-size: 12.5px;
+    color: var(--text-dim);
+    line-height: 1.7;
+  }
+
+  .intro-box .text strong {
+    color: var(--text);
+  }
+
+  .intro-box .hierarchy {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+    font-size: 12px;
+    color: var(--text-dim);
+    flex-shrink: 0;
+  }
+
+  .intro-box .hierarchy .lvl {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    padding: 3px 8px;
+    border-radius: 5px;
+    font-size: 11px;
+  }
+
+  .intro-box .hierarchy .arrow {
+    color: var(--text-dim);
+    font-size: 10px;
+  }
+
+  /* ===== 四层总览 ===== */
+  .map-section { margin-bottom: 32px; }
+
+  /* 省 */
+  .province {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    margin-bottom: 10px;
+    overflow: hidden;
+  }
+
+  .province.hot { border-color: rgba(88,166,255,0.3); }
+
+  .province-hdr {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 16px;
+    cursor: pointer;
+    transition: background 0.12s;
+  }
+
+  .province-hdr:hover { background: rgba(255,255,255,0.02); }
+
+  .province-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 9px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px;
+    font-weight: 800;
+    flex-shrink: 0;
+  }
+
+  .province-title { flex: 1; }
+  .province-name { font-size: 14px; font-weight: 700; }
+  .province-en { font-size: 11px; color: var(--text-dim); margin-top: 1px; }
+
+  .province-right {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .province-stats {
+    text-align: right;
+  }
+
+  .province-num {
+    font-size: 22px;
+    font-weight: 800;
+    line-height: 1;
+  }
+
+  .province-label {
+    font-size: 10px;
+    color: var(--text-dim);
+  }
+
+  /* 市 */
+  .method-group {
+    border-top: 1px solid var(--border);
+    padding: 12px 16px;
+  }
+
+  .method-group-hdr {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 10px;
+    padding-bottom: 8px;
+    border-bottom: 1px dashed rgba(255,255,255,0.05);
+  }
+
+  .method-icon {
+    width: 22px;
+    height: 22px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    flex-shrink: 0;
+  }
+
+  .method-name {
+    font-size: 13px;
+    font-weight: 600;
+  }
+
+  .method-meta {
+    font-size: 11px;
+    color: var(--text-dim);
+    margin-left: 6px;
+  }
+
+  .method-badge {
+    margin-left: auto;
+    font-size: 10px;
+    padding: 2px 7px;
+    border-radius: 10px;
+    font-weight: 600;
+  }
+
+  .badge-red { background: rgba(248,81,73,0.15); color: var(--ci-red); }
+  .badge-orange { background: rgba(240,136,62,0.15); color: var(--ci-orange); }
+  .badge-yellow { background: rgba(210,153,34,0.15); color: var(--ci-yellow); }
+  .badge-green { background: rgba(63,185,80,0.15); color: var(--ci-green); }
+  .badge-purple { background: rgba(163,113,247,0.15); color: var(--ci-purple); }
+  .badge-blue { background: rgba(88,166,255,0.15); color: var(--ci-blue); }
+
+  /* 县 */
+  .county-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 8px;
+  }
+
+  .county {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 9px 11px;
+    transition: border-color 0.12s;
+  }
+
+  .county:hover { border-color: var(--county-color, var(--accent)); }
+
+  .county.hi { border-color: rgba(163,113,247,0.4); background: rgba(163,113,247,0.04); }
+  .county.opp { border-color: rgba(240,136,62,0.3); background: rgba(240,136,62,0.04); }
+
+  .county-hdr {
+    display: flex;
+    align-items: flex-start;
+    gap: 7px;
+    margin-bottom: 5px;
+  }
+
+  .county-num {
+    font-size: 16px;
+    font-weight: 800;
+    line-height: 1;
+    min-width: 24px;
+  }
+
+  .county-info { flex: 1; }
+  .county-name { font-size: 12.5px; font-weight: 600; line-height: 1.3; }
+  .county-axis { font-size: 10px; color: var(--text-dim); margin-top: 2px; }
+
+  .county-trl {
+    font-size: 9px;
+    padding: 1px 5px;
+    border-radius: 3px;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+
+  .county-bar {
+    height: 3px;
+    background: var(--surface3);
+    border-radius: 2px;
+    overflow: hidden;
+    margin-bottom: 6px;
+  }
+
+  .county-bar-fill {
+    height: 100%;
+    border-radius: 2px;
+  }
+
+  /* 村：论文列表 */
+  .village {
+    margin-top: 6px;
+    border-top: 1px solid rgba(255,255,255,0.04);
+    padding-top: 6px;
+  }
+
+  .village-label {
+    font-size: 9px;
+    font-weight: 700;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 4px;
+  }
+
+  .village-papers {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+  }
+
+  .village-paper {
+    display: flex;
+    align-items: flex-start;
+    gap: 5px;
+    padding: 3px 0;
+  }
+
+  .village-paper .yr {
+    font-size: 9px;
+    color: var(--text-dim);
+    background: var(--surface3);
+    padding: 1px 4px;
+    border-radius: 3px;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  .village-paper .info { flex: 1; }
+  .village-paper .pname { font-size: 11px; font-weight: 600; }
+  .village-paper .pdesc { font-size: 10px; color: var(--text-dim); line-height: 1.4; }
+  .village-paper .pmetric { font-size: 9px; color: var(--ci-green); background: rgba(63,185,80,0.1); padding: 1px 5px; border-radius: 3px; flex-shrink: 0; }
+
+  .village-paper.blank .pname { color: var(--ci-purple); font-style: italic; }
+
+  /* 分隔线 */
+  .section-sep {
+    height: 1px;
+    background: var(--border);
+    margin: 28px 0;
+  }
+
+  /* 标签 */
+  .tag-p0 {
+    font-size: 9px;
+    padding: 1px 6px;
+    border-radius: 10px;
+    background: rgba(248,81,73,0.15);
+    color: var(--ci-red);
+    font-weight: 700;
+    margin-left: 4px;
+  }
+
+  .tag-p1 {
+    font-size: 9px;
+    padding: 1px 6px;
+    border-radius: 10px;
+    background: rgba(240,136,62,0.15);
+    color: var(--ci-orange);
+    font-weight: 700;
+    margin-left: 4px;
+  }
+
+  .tag-opp {
+    font-size: 9px;
+    padding: 1px 6px;
+    border-radius: 10px;
+    background: rgba(163,113,247,0.15);
+    color: var(--ci-purple);
+    font-weight: 700;
+    margin-left: 4px;
+  }
+
+  /* 轴线说明 */
+  .axis-note {
+    font-size: 10px;
+    color: var(--text-dim);
+    background: rgba(88,166,255,0.05);
+    border: 1px solid rgba(88,166,255,0.15);
+    border-radius: 5px;
+    padding: 4px 8px;
+    margin-bottom: 8px;
+    line-height: 1.5;
+  }
+
+  .axis-note strong { color: var(--accent); }
+
+  /* ===== MATRIX 总览 ===== */
+  .matrix-intro {
+    font-size: 12.5px;
+    color: var(--text-dim);
+    margin-bottom: 16px;
+    line-height: 1.7;
+  }
+
+  .matrix-wrap { overflow-x: auto; }
+
+  .matrix-table {
+    border-collapse: collapse;
+    width: 100%;
+    min-width: 900px;
+    font-size: 12px;
+  }
+
+  .matrix-table th {
+    padding: 8px 10px;
+    text-align: center;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--text-dim);
+    border-bottom: 2px solid var(--border);
+    background: var(--surface);
+  }
+
+  .matrix-table th.row-label {
+    text-align: left;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text);
+    min-width: 130px;
+  }
+
+  .matrix-table td {
+    padding: 6px 8px;
+    vertical-align: top;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    background: var(--surface);
+    cursor: pointer;
+    transition: all 0.12s;
+  }
+
+  .matrix-table td:hover {
+    transform: scale(1.03);
+    z-index: 1;
+    position: relative;
+  }
+
+  .matrix-table td.empty {
+    background: var(--surface2);
+    opacity: 0.4;
+    cursor: default;
+  }
+
+  .matrix-table td.empty:hover { transform: none; }
+
+  .mc-red { background: rgba(248,81,73,0.08); border-color: rgba(248,81,73,0.2); }
+  .mc-orange { background: rgba(240,136,62,0.08); border-color: rgba(240,136,62,0.2); }
+  .mc-yellow { background: rgba(210,153,34,0.08); border-color: rgba(210,153,34,0.2); }
+  .mc-green { background: rgba(63,185,80,0.08); border-color: rgba(63,185,80,0.2); }
+  .mc-purple { background: rgba(163,113,247,0.08); border-color: rgba(163,113,247,0.2); }
+
+  .mc-red .mv { color: var(--ci-red); }
+  .mc-orange .mv { color: var(--ci-orange); }
+  .mc-yellow .mv { color: var(--ci-yellow); }
+  .mc-green .mv { color: var(--ci-green); }
+  .mc-purple .mv { color: var(--ci-purple); }
+
+  .mv { font-size: 16px; font-weight: 800; display: block; }
+  .ms { font-size: 9px; color: var(--text-dim); letter-spacing: -0.5px; }
+
+  /* OPPORTUNITY RANK */
+  .opp-section-title {
+    font-size: 15px;
+    font-weight: 700;
+    margin-bottom: 14px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .opp-rank-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 10px;
+  }
+
+  .opp-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+
+  .opp-card-hdr {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 12px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .opp-rank-num {
+    font-size: 20px;
+    font-weight: 900;
+    min-width: 30px;
+  }
+
+  .opp-rank-name { font-size: 13px; font-weight: 600; }
+  .opp-rank-body { padding: 10px 12px; }
+  .opp-rank-stats { display: flex; gap: 8px; margin-bottom: 6px; flex-wrap: wrap; }
+  .opp-rank-stat { background: var(--surface2); border-radius: 5px; padding: 4px 8px; font-size: 11px; min-width: 60px; }
+  .opp-rank-stat .v { font-size: 14px; font-weight: 700; }
+  .opp-rank-stat .l { font-size: 9px; color: var(--text-dim); }
+  .opp-rank-desc { font-size: 11.5px; color: var(--text-dim); line-height: 1.6; }
+  .opp-rank-axis { font-size: 10px; color: var(--accent); margin-top: 6px; }
+
+  /* SCROLLBAR */
+  ::-webkit-scrollbar { width: 5px; height: 5px; }
+  ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+  ::-webkit-scrollbar-thumb:hover { background: var(--text-dim); }
+
+  .section-h2 {
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 14px;
+    margin-top: 32px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  /* STAR */
+  .star { letter-spacing: -1px; }
+  .star-red { color: var(--ci-red); }
+  .star-orange { color: var(--ci-orange); }
+  .star-yellow { color: var(--ci-yellow); }
+  .star-green { color: var(--ci-green); }
+  .star-purple { color: var(--ci-purple); }
+
+  /* NOTE */
+  .note-box {
+    background: rgba(88,166,255,0.05);
+    border: 1px solid rgba(88,166,255,0.15);
+    border-radius: 8px;
+    padding: 12px 16px;
+    margin-bottom: 20px;
+  }
+
+  .note-box .title {
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 6px;
+  }
+
+  .note-box .text {
+    font-size: 12px;
+    color: var(--text-dim);
+    line-height: 1.7;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="h-title">
+    🗺️ 推理压缩技术地图
+    <span>四层全览版 · 2026-06-28 · 2,757篇论文 · 全部展开</span>
+  </div>
+  <div class="h-legend">
+    <span><div class="dot" style="background:var(--ci-red)"></div>红海(>300)</span>
+    <span><div class="dot" style="background:var(--ci-orange)"></div>活跃(100-300)</span>
+    <span><div class="dot" style="background:var(--ci-yellow)"></div>新兴(50-100)</span>
+    <span><div class="dot" style="background:var(--ci-green)"></div>学术(20-50)</span>
+    <span><div class="dot" style="background:var(--ci-purple)"></div>空白(<20)</span>
+  </div>
+</header>
+
+<div class="content">
+
+<!-- INTRO -->
+<div class="intro-box">
+  <div style="flex:1">
+    <div class="label">🗺️ 四层技术地图说明</div>
+    <div class="text">
+      <strong>省（市县乡村）：</strong>
+      <span style="margin-left:4px">省=对象（市=技术，县=子技术分类，村=具体论文）</span>
+      <br>
+      <strong>分类原则：</strong>
+      <span style="margin-left:4px">分类轴线严格正交，每子类有且仅有一个分类依据</span>
+      <br>
+      <strong>阅读方式：</strong>
+      <span style="margin-left:4px">全部展开，无需点击，直接向下滚动浏览完整技术树</span>
+    </div>
+  </div>
+  <div class="hierarchy">
+    <div class="lvl" style="color:var(--accent)">省=对象</div>
+    <div class="arrow">→</div>
+    <div class="lvl">市=技术</div>
+    <div class="arrow">→</div>
+    <div class="lvl">县=子技术</div>
+    <div class="arrow">→</div>
+    <div class="lvl">村=论文</div>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- KV CACHE 省 -->
+<!-- ============================================================ -->
+<div class="map-section">
+
+<div class="province" style="border-color:rgba(163,113,247,0.3)">
+  <div class="province-hdr">
+    <div class="province-icon" style="background:rgba(163,113,247,0.15);color:var(--ci-purple)">KV</div>
+    <div class="province-title">
+      <div class="province-name">💾 KV Cache 压缩</div>
+      <div class="province-en">KV Cache Compression — 310篇</div>
+    </div>
+    <div class="province-right">
+      <div class="province-stats">
+        <div class="province-num" style="color:var(--ci-purple)">310</div>
+        <div class="province-label">篇 · 工业空白</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- KV × 稀疏 -->
+  <div class="method-group">
+    <div class="method-group-hdr">
+      <div class="method-icon" style="background:rgba(63,185,80,0.15);color:var(--ci-green)">✂️</div>
+      <div class="method-name">稀疏化 <span class="method-meta">Sparsification · 69篇</span></div>
+      <span class="method-badge badge-green">★★★ 活跃</span>
+    </div>
+    <div class="axis-note">
+      <strong>分类轴：淘汰策略（Eviction Strategy）</strong> — 论文中方法区分的核心维度是"按什么策略决定保留/淘汰KV"
+    </div>
+    <div class="county-grid">
+
+      <!-- 固定规则策略 -->
+      <div class="county" style="--county-color:var(--ci-blue)">
+        <div class="county-hdr">
+          <div class="county-num" style="color:var(--ci-blue)">2</div>
+          <div class="county-info">
+            <div class="county-name">固定规则策略</div>
+            <div class="county-axis">规则预设，无学习参数</div>
+          </div>
+          <span class="county-trl badge-blue">TRL4</span>
+        </div>
+        <div class="county-bar"><div class="county-bar-fill" style="width:29%;background:var(--ci-blue)"></div></div>
+        <div class="village">
+          <div class="village-label">代表论文</div>
+          <div class="village-papers">
+            <div class="village-paper">
+              <span class="yr">NeurIPS'24</span>
+              <div class="info"><div class="pname">StreamingLLM</div><div class="pdesc">固定保留4个Attention Sink + 最近token</div></div>
+              <span class="pmetric">无限长度</span>
+            </div>
+            <div class="village-paper">
+              <span class="yr">2025</span>
+              <div class="info"><div class="pname">LLM-Sentinel</div><div class="pdesc">基于访问频率的固定淘汰阈值</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 重要性评分 -->
+      <div class="county" style="--county-color:var(--ci-blue)">
+        <div class="county-hdr">
+          <div class="county-num" style="color:var(--ci-blue)">5</div>
+          <div class="county-info">
+            <div class="county-name">重要性评分策略</div>
+            <div class="county-axis">按token对未来生成贡献评分</div>
+          </div>
+          <span class="county-trl badge-blue">TRL4</span>
+        </div>
+        <div class="county-bar"><div class="county-bar-fill" style="width:72%;background:var(--ci-blue)"></div></div>
+        <div class="village">
+          <div class="village-label">代表论文</div>
+          <div class="village-papers">
+            <div class="village-paper">
+              <span class="yr">NeurIPS'23</span>
+              <div class="info"><div class="pname">H2O</div><div class="pdesc">Heavy-Hitter Oracle: 累计attention score最高KV保留</div></div>
+              <span class="pmetric">NeurIPS 2023</span>
+            </div>
+            <div class="village-paper">
+              <span class="yr">2025</span>
+              <div class="info"><div class="pname">R-KV</div><div class="pdesc">训练评分模块，10% KV近100%性能</div></div>
+              <span class="pmetric">6.6x吞吐↑</span>
+            </div>
+            <div class="village-paper">
+              <span class="yr">2025</span>
+              <div class="info"><div class="pname">CONF-KV</div><div class="pdesc">next-token置信度：不确定多留，确定多删</div></div>
+              <span class="pmetric">NIAH 91.4%</span>
+            </div>
+            <div class="village-paper">
+              <span class="yr">2025</span>
+              <div class="info"><div class="pname">TCM</div><div class="pdesc">Token Credit Mechanism</div></div>
+              <span class="pmetric">内存效率↑</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 语义聚类 -->
+      <div class="county" style="--county-color:var(--ci-purple)">
+        <div class="county-hdr">
+          <div class="county-num" style="color:var(--ci-purple)">3</div>
+          <div class="county-info">
+            <div class="county-name">语义聚类策略</div>
+            <div class="county-axis">按语义相似性聚类选锚点</div>
+          </div>
+          <span class="county-trl badge-purple">TRL4</span>
+        </div>
+        <div class="county-bar"><div class="county-bar-fill" style="width:43%;background:var(--ci-purple)"></div></div>
+        <div class="village">
+          <div class="village-label">代表论文</div>
+          <div class="village-papers">
+            <div class="village-paper">
+              <span class="yr">ICML'24</span>
+              <div class="info"><div class="pname">SnapKV</div><div class="pdesc">语义聚类锚点，内存8.2x↑</div></div>
+              <span class="pmetric">ICML 2024</span>
+            </div>
+            <div class="village-paper">
+              <span class="yr">2025</span>
+              <div class="info"><div class="pname">PageKV</div><div class="pdesc">语义分页管理KV cache</div></div>
+            </div>
+            <div class="village-paper">
+              <span class="yr">2025</span>
+              <div class="info"><div class="pname">InFoVer</div><div class="pdesc">语义验证驱动的KV选择</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 驱逐恢复 -->
+      <div class="county" style="--county-color:var(--ci-orange)">
+        <div class="county-hdr">
+          <div class="county-num" style="color:var(--ci-orange)">2</div>
+          <div class="county-info">
+            <div class="county-name">驱逐恢复策略</div>
+            <div class="county-axis">允许驱逐+按需重新计算恢复</div>
+          </div>
+          <span class="county-trl badge-orange">TRL4</span>
+        </div>
+        <div class="county-bar"><div class="county-bar-fill" style="width:29%;background:var(--ci-orange)"></div></div>
+        <div class="village">
+          <div class="village-label">代表论文</div>
+          <div class="village-papers">
+            <div class="village-paper">
+              <span class="yr">ICML'24</span>
+              <div class="info"><div class="pname">LazyLLM</div><div class="pdesc">被驱逐的KV按需恢复，Prefill加速2.34x</div></div>
+              <span class="pmetric">Prefill 2.34x↑</span>
+            </div>
+            <div class="village-paper">
+              <span class="yr">2025</span>
+              <div class="info"><div class="pname">Speculative Recovery</div><div class="pdesc">推测性KV恢复减少重计算</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 可学习 -->
+      <div class="county opp" style="--county-color:var(--ci-yellow)">
+        <div class="county-hdr">
+          <div class="county-num" style="color:var(--ci-yellow)">5</div>
+          <div class="county-info">
+            <div class="county-name">可学习策略</div>
+            <div class="county-axis">神经网络学习淘汰决策，端到端</div>
+          </div>
+          <span class="county-trl badge-yellow">TRL3</span>
+        </div>
+        <div class="county-bar"><div class="county-bar-fill" style="width:72%;background:var(--ci-yellow)"></div></div>
+        <div class="village">
+          <div class="village-label">代表论文</div>
+          <div class="village-papers">
+            <div class="village-paper">
+              <span class="yr">2025</span>
+              <div class="info"><div class="pname">TRIM-KV</div><div class="pdesc">可学习门控预测保留分数，按层/头差异化</div></div>
+              <span class="pmetric">超越full-cache</span>
+            </div>
+            <div class="village-paper">
+              <span class="yr">2026</span>
+              <div class="info"><div class="pname">IntentKV</div><div class="pdesc">跨轮次QueryMemory，8k预算TT↓23.9%</div></div>
+            </div>
+            <div class="village-paper">
+              <span class="yr">2026</span>
+              <div class="info"><div class="pname">RL-KV</div><div class="pdesc">强化学习学KV淘汰策略</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 协同共享 -->
+      <div class="county opp" style="--county-color:#db61a5">
+        <div class="county-hdr">
+          <div class="county-num" style="color:#db61a5">5</div>
+          <div class="county-info">
+            <div class="county-name">协同共享策略</div>
+            <div class="county-axis">跨多查询共享/复用KV</div>
+          </div>
+          <span class="county-trl badge-purple">TRL4</span>
+        </div>
+        <div class="county-bar"><div class="county-bar-fill" style="width:72%;background:#db61a5"></div></div>
+        <div class="village">
+          <div class="village-label">代表论文</div>
+          <div class="village-papers">
+            <div class="village-paper">
+              <span class="yr">2026</span>
+              <div class="info"><div class="pname">Models Take Notes</div><div class="pdesc">KV可编辑笔记本，vLLM集成</div></div>
+              <span class="pmetric">98.5% hit rate</span>
+            </div>
+            <div class="village-paper">
+              <span class="yr">2026</span>
+              <div class="info"><div class="pname">RKSC</div><div class="pdesc">推理感知KV共享+置信度早退出</div></div>
+              <span class="pmetric">3.008x加速</span>
+            </div>
+            <div class="village-paper">
+              <span class="yr">NeurIPS'23</span>
+              <div class="info"><div class="pname">PyramidInfer</div><div class="pdesc">金字塔KV压缩</div></div>
+              <span class="pmetric">NeurIPS 2023</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- end county-grid -->
+  </div><!-- end method-group -->
+
+  <!-- KV × 量化 -->
+  <div class="method-group">
+    <div class="method-group-hdr">
+      <div class="method-icon" style="background:rgba(163,113,247,0.15);color:var(--ci-purple)">📊</div>
+      <div class="method-name">量化 <span class="method-meta">Quantization · 46篇</span></div>
+      <span class="method-badge badge-purple">★★ 空白机会</span>
+    </div>
+    <div class="axis-note">
+      <strong>分类轴：比特分配策略（Bit Allocation Strategy）</strong> — 方法区分的核心是"如何分配不同bit给不同部分"
+    </div>
+    <div class="county-grid">
+
+      <div class="county" style="--county-color:var(--ci-blue)">
+        <div class="county-hdr">
+          <div class="county-num" style="color:var(--ci-blue)">4</div>
+          <div class="county-info">
+            <div class="county-name">非对称粒度</div>
+            <div class="county-axis">K per-channel + V per-token</div>
+          </div>
+          <span class="county-trl badge-blue">TRL4</span>
+        </div>
+        <div class="county-bar"><div class="county-bar-fill" style="width:87%;background:var(--ci-blue)"></div></div>
+        <div class="village">
+          <div class="village-label">代表论文</div>
+          <div class="village-papers">
+            <div class="village-paper">
+              <span class="yr">ICLR'24</span>
+              <div class="info"><div class="pname">KIVI</div><div class="pdesc">Key per-channel + Value per-token，2-bit</div></div>
+              <span class="pmetric">ICLR 2024</span>
+            </div>
+            <div class="village-paper">
+              <span class="yr">2025</span>
+              <div class="info"><div class="pname">FlexBlock</div><div class="pdesc">Block级非对称量化，RoPE-aware</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="county opp" style="--county-color:var(--ci-purple)">
+        <div class="county-hdr">
+          <div class="county-num" style="color:var(--ci-purple)">3</div>
+          <div class="county-info">
+            <div class="county-name">RoPE感知 <span class="tag-p1">P1</span></div>
+            <div class="county-axis">RoPE频域块自适应比特分配</div>
+          </div>
+          <span class="county-trl badge-yellow">TRL3</span>
+        </div>
+        <div class="county-bar"><div class="county-bar-fill" style="width:65%;background:var(--ci-purple)"></div></div>
+        <div class="village">
+          <div class="village-label">代表论文</div>
+          <div class="village-papers">
+            <div class="village-paper">
+              <span class="yr">2026</span>
+              <div class="info"><div class="pname">Block-GTQ</div><div class="pdesc">RoPE频域块自适应，AIME24 51.7(fp16:54.2)</div></div>
+              <span class="pmetric">💎2026突破</span>
+            </div>
+            <div class="village-paper">
+              <span class="yr">2025</span>
+              <div class="info"><div class="pname">RoPE-KV</div><div class="pdesc">RoPE旋转域感知量化</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="county" style="--county-color:var(--ci-orange)">
+        <div class="county-hdr">
+          <div class="county-num" style="color:var(--ci-orange)">2</div>
+          <div class="county-info">
+            <div class="county-name">Query感知</div>
+            <div class="county-axis">根据当前query重要性分配精度</div>
+          </div>
+          <span class="county-trl badge-yellow">TRL3</span>
+        </div>
+        <div class="county-bar"><div class="county-bar-fill" style="width:43%;background:var(--ci-orange)"></div></div>
+        <div class="village">
+          <div class="village-label">代表论文</div>
+          <div class="village-papers">
+            <div class="village-paper">
+              <span class="yr">2025</span>
+              <div class="info"><div class="pname">MixKVQ</div><div class="pdesc">Query-aware混合精度，重要key保留高精度</div></div>
+            </div>
+            <div class="village-paper">
+              <span class="yr">2026</span>
+              <div class="info"><div class="pname">Task-Adaptive Quant</div><div class="pdesc">任务类型感知量化精度分配</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="county" style="--county-color:var(--ci-yellow)">
+        <div class="county-hdr">
+          <div class="county-num" style="color:var(--ci-yellow)">4</div>
+          <div class="county-info">
+            <div class="county-name">混合精度分配</div>
+            <div class="county-axis">FP16/INT8/INT4/INT2非均匀混合</div>
+          </div>
+          <span class="county-trl badge-yellow">TRL3</span>
+        </div>
+        <div class="county-bar"><div class="county-bar-fill" style="width:87%;background:var(--ci-yellow)"></div></div>
+        <div class="village">
+          <div class="village-label">代表论文</div>
+          <div class="village-papers">
+            <div class="village-paper">
+              <span class="yr">2026</span>
+              <div class="info"><div class="pname">UltraQuant</div><div class="pdesc">4-bit KV，多轮Agent场景，AMD优化</div></div>
+              <span class="pmetric">TTFT 3.47x↓</span>
+            </div>
+            <div class="village-paper">
+              <span class="yr">2026</span>
+              <div class="info"><div class="pname">HEAL</div><div class="pdesc">INT16 KV数值稳定性，跨GPU一致</div></div>
+              <span class="pmetric">7.1x开销↓</span>
+            </div>
+            <div class="village-paper">
+              <span class="yr">2025</span>
+              <div class="info"><div class="pname">KV Pareto</div><div class="pdesc">权重量化+KV量化+chunked prefill联合</div></div>
+              <span class="pmetric">68-78%内存↓</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="county" style="--county-color:var(--ci-green)">
+        <div class="county-hdr">
+          <div class="county-num" style="color:var(--ci-green)">2</div>
+          <div class="county-info">
+            <div class="county-name">对数域量化</div>
+            <div class="county-axis">在log域而非线性域量化</div>
+          </div>
+          <span class="county-trl badge-green">TRL3</span>
+        </div>
+        <div class="county-bar"><div class="county-bar-fill" style="width:29%;background:var(--ci-green)"></div></div>
+        <div class="village">
+          <div class="village-label">代表论文</div>
+          <div class="village-papers">
+            <div class="village-paper">
+              <span class="yr">2024</span>
+              <div class="info"><div class="pname">LogQuant</div><div class="pdesc">Log分布2-bit KV量化</div></div>
+            </div>
+            <div class="village-paper">
+              <span class="yr">2025</span>
+              <div class="info"><div class="pname">LogQP</div><div class="pdesc">Log域量化+投影联合</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="county opp" style="--county-color:var(--ci-red)">
+        <div class="county-hdr">
+          <div class="county-num" style="color:var(--ci-red)">2</div>
+          <div class="county-info">
+            <div class="county-name">量化感知训练(QAT)</div>
+            <div class="county-axis">训练中建模量化噪声</div>
+          </div>
+          <span class="county-trl badge-orange">TRL2</span>
+        </div>
+        <div class="county-bar"><div class="county-bar-fill" style="width:29%;background:var(--ci-red)"></div></div>
+        <div class="village">
+          <div class="village-label">代表论文</div>
+          <div class="village-papers">
+            <div class="village-paper">
+              <span class="yr">2026</span>
+              <div class="info"><div class="pname">ReQAT</div><div class="pdesc">FP4 QAT，解决低熵token(数字/符号)精度崩塌</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="county hi" style="--county-color:var(--ci-red)">
+        <div class="county-hdr">
+          <div class="county-num" style="color:var(--ci-red)">3</div>
+          <div class="county-info">
+            <div class="county-name">极端低比特 ≤2bit <span class="tag-p1">P1</span></div>
+            <div class="county-axis">1-2bit需特殊编码(JL变换/熵编码)</div>
+          </div>
+          <span class="county-trl badge-orange">TRL2</span>
+        </div>
+        <div class="county-bar"><div class="county-bar-fill" style="width:43%;background:var(--ci-red)"></div></div>
+        <div class="village">
+          <div class="village-label">代表论文</div>
+          <div class="village-papers">
+            <div class="village-paper">
+              <span class="yr">2026</span>
+              <div class="info"><div class="pname">HyperQuant</div><div class="pdesc">统一量化流水线，KV低至1.7bps</div></div>
+              <span class="pmetric">KV 1.7bps</span>
+            </div>
+            <div class="village-paper">
+              <span class="yr">2024</span>
+              <div class="info"><div class="pname">QJL</div><div class="pdesc">1-bit量化 + Johnson-Lindenstrauss变换</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div><!-- end kv quant -->
+
+  <!-- KV × 蒸馏 -->
+  <div class="method-group">
+    <div class="method-group-hdr">
+      <div class="method-icon" style="background:rgba(163,113,247,0.25);color:var(--ci-purple)">🍶</div>
+      <div class="method-name">蒸馏 <span class="method-meta">Distillation · 10篇</span></div>
+      <span class="method-badge badge-purple">★ 极度空白 <span class="tag-p0">P0</span></span>
+    </div>
+    <div class="axis-note">
+      <strong>分类轴：蒸馏阶段（Distillation Stage）</strong> — 这是论文中边界最清晰的维度：Prefill已有，Decoding完全空白，Cross-stage不存在
+    </div>
+    <div class="county-grid">
+
+      <div class="county" style="--county-color:var(--ci-blue)">
+        <div class="county-hdr">
+          <div class="county-num" style="color:var(--ci-blue)">1</div>
+          <div class="county-info">
+            <div class="county-name">仅Prefill阶段</div>
+            <div class="county-axis">Prefill生成完整KV后蒸馏压缩</div>
+          </div>
+          <span class="county-trl badge-blue">TRL3</span>
+        </div>
+        <div class="county-bar"><div class="county-bar-fill" style="width:100%;background:var(--ci-blue)"></div></div>
+        <div class="village">
+          <div class="village-label">代表论文</div>
+          <div class="village-papers">
+            <div class="village-paper">
+              <span class="yr">2024</span>
+              <div class="info"><div class="pname">SwiftKV</div><div class="pdesc">Prefill阶段KV蒸馏，仅此阶段</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="county hi" style="--county-color:var(--ci-purple)">
+        <div class="county-hdr">
+          <div class="county-num" style="color:var(--ci-purple)">1</div>
+          <div class="county-info">
+            <div class="county-name">Decoding阶段 <span class="tag-p0">P0</span></div>
+            <div class="county-axis">10篇论文中无一涉及 — 最高研究空白</div>
+          </div>
+          <span class="county-trl badge-purple">TRL1</span>
+        </div>
+        <div class="county-bar"><div class="county-bar-fill" style="width:14%;background:var(--ci-purple)"></div></div>
+        <div class="village">
+          <div class="village-label">代表论文</div>
+          <div class="village-papers blank">
+            <div class="village-paper blank">
+              <div class="info"><div class="pname">★ Decoding蒸馏空白 — 10/10篇论文无一涉及</div><div class="pdesc">Decoding阶段KV累积最严重但无任何蒸馏方案</div></div>
+              <span class="pmetric">💎最高机会</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="county" style="--county-color:var(--ci-red)">
+        <div class="county-hdr">
+          <div class="county-num" style="color:var(--ci-red)">0</div>
+          <div class="county-info">
+            <div class="county-name">跨阶段联合</div>
+            <div class="county-axis">Prefill-Decoding跨阶段联合蒸馏</div>
+          </div>
+          <span class="county-trl badge-red">TRL1</span>
+        </div>
+        <div class="county-bar"><div class="county-bar-fill" style="width:0%;background:var(--ci-red)"></div></div>
+        <div class="village">
+          <div class="village-label">代表论文</div>
+          <div class="village-papers blank">
+            <div class="village-paper blank">
+              <div class="info"><div class="pname">— 理论空白</div><div class="pdesc">跨阶段蒸馏信号设计是开放问题</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div><!-- end kv distill -->
+
+  <!-- KV × 低秩 -->
+  <div class="method-group">
+    <div class="method-group-hdr">
+      <div class="method-icon" style="background:rgba(63,185,80,0.15);color:var(--ci-green)">📉</div>
+      <div class="method-name">低秩 <span class="method-meta">Low-Rank · 37篇</span></div>
+      <span class="method-badge badge-green">★★ 学术早期</span>
+    </div>
+    <div class="axis-note">
+      <strong>分类轴：低秩近似方法（Approximation Method）</strong>
+    </div>
+    <div class="county-grid">
+
+      <div class="county" style="--county-color:var(--ci-blue)">
+        <div class="county-hdr">
+          <div class="county-num" style="color:var(--ci-blue)">3</div>
+          <div class="county-info">
+            <div class="county-name">SVD分解系</div>
+            <div class="county-axis">奇异值分解保留主特征向量</div>
+          </div>
+          <span class="county-trl badge-orange">TRL2</span>
+        </div>
+        <div class="county-bar"><div class="county-bar-fill" style="width:81%;background:var(--ci-blue)"></div></div>
+        <div class="village">
+          <div class="village-label">代表论文</div>
+          <div class="village-papers">
+            <div class="village-paper">
+              <span class="yr">2024</span>
+              <div class="info"><div class="pname">PALU</div><div class="pdesc">SVD分解投影矩阵，缓存潜表征H</div></div>
+            </div>
+            <div class="village-paper">
+              <span class="yr">2024</span>
+              <div class="info"><div class="pname">QSVD</div><div class="pdesc">Quotient SVD变体</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="county" style="--county-color:var(--ci-purple)">
+        <div class="county-hdr">
+          <div class="county-num" style="color:var(--ci-purple)">2</div>
+          <div class="county-info">
+            <div class="county-name">自适应Rank</div>
+            <div class="county-axis">软阈值+头级/块级rank自适应</div>
+          </div>
+          <span class="county-trl badge-yellow">TRL2</span>
+        </div>
+        <div class="county-bar"><div class="county-bar-fill" style="width:54%;background:var(--ci-purple)"></div></div>
+        <div class="village">
+          <div class="village-label">代表论文</div>
+          <div class="village-papers">
+            <div class="village-paper">
+              <span class="yr">2026</span>
+              <div class="info"><div class="pname">STAR-KV</div><div class="pdesc">软阈值+自适应rank，75%压缩/20x</div></div>
+              <span class="pmetric">75%压缩,20x</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="county opp" style="--county-color:var(--ci-green)">
+        <div class="county-hdr">
+          <div class="county-num" style="color:var(--ci-green)">2</div>
+          <div class="county-info">
+            <div class="county-name">架构级压缩</div>
+            <div class="county-axis">从设计上减少KV产生量</div>
+          </div>
+          <span class="county-trl badge-green">TRL3</span>
+        </div>
+        <div class="county-bar"><div class="county-bar-fill" style="width:54%;background:var(--ci-green)"></div></div>
+        <div class="village">
+          <div class="village-label">代表论文</div>
+          <div class="village-papers">
+            <div class="village-paper">
+              <span class="yr">2024</span>
+              <div class="info"><div class="pname">MLA (DeepSeek-V2/V3)</div><div class="pdesc">Multi-head Latent Attention</div></div>
+              <span class="pmetric">DeepSeek标配</span>
+            </div>
+            <div class="village-paper">
+              <span class="yr">2025</span>
+              <div class="info"><div class="pname">GQLA</div><div class="pdesc">MLA变体，H100 roofline适配</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="county" style="--county-color:var(--ci-orange)">
+        <div class="county-hdr">
+          <div class="county-num" style="color:var(--ci-orange)">2</div>
+          <div class="county-info">
+            <div class="county-name">隐式低秩</div>
+            <div class="county-axis">不显式分解，通过其他方式发现</div>
+          </div>
+          <span class="county-trl badge-orange">TRL2</span>
+        </div>
+        <div class="county-bar"><div class="county-bar-fill" style="width:54%;background:var(--ci-orange)"></div></div>
+        <div class="village">
+          <div class="village-label">代表论文</div>
+          <div class="village-papers">
+            <div class="village-paper">
+              <span class="yr">2026</span>
+              <div class="info"><div class="pname">EinSort</div><div class="pdesc">通过索引排序发现隐式低秩结构</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div><!-- end kv lowrank -->
+
+  <!-- KV × 通用优化 -->
+  <div class="method-group">
+    <div class="method-group-hdr">
+      <div class="method-icon" style="background:rgba(210,153,34,0.15);color:var(--ci-yellow)">⚙️</div>
+      <div class="method-name">通用优化 <span class="method-meta">General Optimization · 148篇</span></div>
+      <span class="method-badge badge-yellow">★★★★ 活跃</span>
+    </div>
+    <div class="county-grid">
+
+      <div class="county opp" style="--county-color:var(--ci-green)">
+        <div class="county-hdr">
+          <div class="county-num" style="color:var(--ci-green)">5</div>
+          <div class="county-info">
+            <div class="county-name">前缀缓存 <span class="tag-opp">机会</span></div>
+            <div class="county-axis">多查询共享系统提示前缀KV</div>
+          </div>
+          <span class="county-trl badge-green">TRL5</span>
+        </div>
+        <div class="county-bar"><div class="county-bar-fill" style="width:68%;background:var(--ci-green)"></div></div>
+        <div class="village">
+          <div class="village-label">代表论文</div>
+          <div class="village-papers">
+            <div class="village-paper">
+              <span class="yr">OSDI'23</span>
+              <div class="info"><div class="pname">vLLM PagedAttention</div><div class="pdesc">KV分页管理，多query共享prefix</div></div>
+              <span class="pmetric">OSDI 2023</span>
+            </div>
+            <div class="village-paper">
+              <span class="yr">2024</span>
+              <div class="info"><div class="pname">SGLang RadixAttention</div><div class="pdesc">SGLang内置前缀树复用</div></div>
+            </div>
+            <div class="village-paper">
+              <span class="yr">2026</span>
+              <div class="info"><div class="pname">Models Take Notes</div><div class="pdesc">KV可编辑笔记本，98.5% hit rate</div></div>
+              <span class="pmetric">vLLM集成</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="county" style="--county-color:var(--ci-orange)">
+        <div class="county-hdr">
+          <div class="county-num" style="color:var(--ci-orange)">2</div>
+          <div class="county-info">
+            <div class="county-name">分块管理</div>
+            <div class="county-axis">KV按chunk分块减少碎片</div>
+          </div>
+          <span class="county-trl badge-orange">TRL4</span>
+        </div>
+        <div class="county-bar"><div class="county-bar-fill" style="width:27%;background:var(--ci-orange)"></div></div>
+        <div class="village">
+          <div class="village-label">代表论文</div>
+          <div class="village-papers">
+            <div class="village-paper">
+              <span class="yr">2024</span>
+              <div class="info"><div class="pname">ChunkKV</div><div class="pdesc">Chunk级KV管理，减少碎片</div></div>
+            </div>
+            <div class="village-paper">
+              <span class="yr">2025</span>
+              <div class="info"><div class="pname">AdaCache</div><div class="pdesc">自适应chunk大小</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="county" style="--county-color:var(--ci-yellow)">
+        <div class="county-hdr">
+          <div class="county-num" style="color:var(--ci-yellow)">2</div>
+          <div class="county-info">
+            <div class="county-name">对齐保持</div>
+            <div class="county-axis">压缩后保持输出分布/对齐质量</div>
+          </div>
+          <span class="county-trl badge-yellow">TRL4</span>
+        </div>
+        <div class="county-bar"><div class="county-bar-fill" style="width:27%;background:var(--ci-yellow)"></div></div>
+        <div class="village">
+          <div class="village-label">代表论文</div>
+          <div class="village-papers">
+            <div class="village-paper">
+              <span class="yr">NeurIPS'24</span>
+              <div class="info"><div class="pname">COrAL</div><div class="pdesc">Alignment-preserving KV compression</div></div>
+              <span class="pmetric">NeurIPS 2024</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div><!-- end kv general -->
+
+</div><!-- end province KV -->
+</div><!-- end map-section KV -->
+
+<!-- ============================================================ -->
+<!-- 通信压缩 省 -->
+<!-- ============================================================ -->
+<div class="section-sep"></div>
+<div class="map-section">
+
+<div class="province" style="border-color:rgba(63,185,80,0.3)">
+  <div class="province-hdr">
+    <div class="province-icon" style="background:rgba(63,185,80,0.15);color:var(--ci-green)">🌐</div>
+    <div class="province-title">
+      <div class="province-name">🌐 通信压缩</div>
+      <div class="province-en">Communication Compression — 265篇</div>
+    </div>
+    <div class="province-right">
+      <div class="province-stats">
+        <div class="province-num" style="color:var(--ci-green)">265</div>
+        <div class="province-label">篇 · MoE时代必备</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 通信 × 量化 -->
+  <div class="method-group">
+    <div class="method-group-hdr">
+      <div class="method-icon" style="background:rgba(163,113,247,0.2);color:var(--ci-purple)">📊</div>
+      <div class="method-name">量化 <span class="method-meta">Quantization · 44篇</span></div>
+      <span class="method-badge badge-purple">★★ 空白机会 <span class="tag-p0">P0</span></span>
+    </div>
+    <div class="county-grid">
+
+      <div class="county hi" style="--county-color:var(--ci-purple)">
+        <div class="county-hdr">
+          <div class="county-num" style="color:var(--ci-purple)">3</div>
+          <div class="county-info">
+            <div class="county-name">Expert参数量化 <span class="tag-p0">P0</span></div>
+            <div class="county-axis">MoE专家INT4/FP8量化减少All-to-All通信</div>
+          </div>
+          <span class="county-trl badge-orange">TRL2</span>
+        </div>
+        <div class="county-bar"><div class="county-bar-fill" style="width:68%;background:var(--ci-purple)"></div></div>
+        <div class="village">
+          <div class="village-label">代表论文</div>
+          <div class="village-papers">
+            <div class="village-paper">
+              <span class="yr">2025</span>
+              <div class="info"><div class="pname">ExpertQuant</div><div class="pdesc">MoE INT4量化，精度损失<1%</div></div>
+              <span class="pmetric">💎首个MoE量化</span>
+            </div>
+            <div class="village-paper">
+              <span class="yr">2024</span>
+              <div class="info"><div class="pname">DeepEP-INT4</div><div class="pdesc">DeepEP INT4通信支持</div></div>
+              <span class="pmetric">DeepSeek生产</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="county" style="--county-color:var(--ci-blue)">
+        <div class="county-hdr">
+          <div class="county-num" style="color:var(--ci-blue)">2</div>
+          <div class="county-info">
+            <div class="county-name">FP8通信</div>
+            <div class="county-axis">FP8替代FP16减少带宽</div>
+          </div>
+          <span class="county-trl badge-blue">TRL4</span>
+        </div>
+        <div class="county-bar"><div class="county-bar-fill" style="width:45%;background:var(--ci-blue)"></div></div>
+        <div class="village">
+          <div class="village-label">代表论文</div>
+          <div class="village-papers">
+            <div class="village-paper">
+              <span class="yr">2024</span>
+              <div class="info"><div class="pname">DeepSeek-V3 FP8</div><div class="pdesc">FP8 all-to-all通信</div></div>
+              <span class="pmetric">DeepSeek生产级</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div><!-- end comm quant -->
+
+  <!-- 通信 × 稀疏 -->
+  <div class="method-group">
+    <div class="method-group-hdr">
+      <div class="method-icon" style="background:rgba(240,136,62,0.15);color:var(--ci-orange)">✂️</div>
+      <div class="method-name">稀疏化 <span class="method-meta">Sparsification · 82篇</span></div>
+      <span class="method-badge badge-yellow">★★★ 活跃</span>
+    </div>
+    <div class="county-grid">
+
+      <div class="county opp" style="--county-color:var(--ci-green)">
+        <div class="county-hdr">
+          <div class="county-num" style="color:var(--ci-green)">8</div>
+          <div class="county-info">
+            <div class="county-name">Expert路由通信 <span class="tag-p1">P1</span></div>
+            <div class="county-axis">MoE All-to-All通信优化</div>
+          </div>
+          <span class="county-trl badge-blue">TRL4</span>
+        </div>
+        <div class="county-bar"><div class="county-bar-fill" style="width:100%;background:var(--ci-green)"></div></div>
+        <div class="village">
+          <div class="village-label">代表论文</div>
+          <div class="village-papers">
+            <div class="village-paper">
+              <span class="yr">2024</span>
+              <div class="info"><div class="pname">DeepEP</div><div class="pdesc">DeepSeek MoE通信库，INT4/FP8</div></div>
+              <span class="pmetric">DeepSeek生产</span>
+            </div>
+            <div class="village-paper">
+              <span class="yr">ICLR'26</span>
+              <div class="info"><div class="pname">FoMoE</div><div class="pdesc">打破全复制范式，通信↓1.42-45x</div></div>
+              <span class="pmetric">ICLR 2026</span>
+            </div>
+            <div class="village-paper">
+              <span class="yr">2026</span>
+              <div class="info"><div class="pname">TACG</div><div class="pdesc">Task-Aware专家协同，通信↓31.39%</div></div>
+              <span class="pmetric">Jain公平性0.9975</span>
+            </div>
+            <div class="village-paper">
+              <span class="yr">NAACL'25</span>
+              <div class="info"><div class="pname">C2R</div><div class="pdesc">Collaborative-Constrained Routing</div></div>
+              <span class="pmetric">通信↓20-30%</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="county opp" style="--county-color:var(--ci-purple)">
+        <div class="county-hdr">
+          <div class="county-num" style="color:var(--ci-purple)">6</div>
+          <div class="county-info">
+            <div class="county-name">分离式推理通信</div>
+            <div class="county-axis">Prefill-Decode分离架构下的KV传输</div>
+          </div>
+          <span class="county-trl badge-yellow">TRL4</span>
+        </div>
+        <div class="county-bar"><div class="county-bar-fill" style="width:75%;background:var(--ci-purple)"></div></div>
+        <div class="village">
+          <div class="village-label">代表论文</div>
+          <div class="village-papers">
+            <div class="village-paper">
+              <span class="yr">2024</span>
+              <div class="info"><div class="pname">Mooncake</div><div class="pdesc">Prefill-Decode分离，KV传输</div></div>
+            </div>
+            <div class="village-paper">
+              <span class="yr">OSDI'21</span>
+              <div class="info"><div class="pname">DistServe</div><div class="pdesc">分离式推理框架</div></div>
+              <span class="pmetric">OSDI 2021</span>
+            </div>
+            <div class="village-paper">
+              <span class="yr">2026</span>
+              <div class="info"><div class="pname">PoA-Disagg</div><div class="pdesc">博弈论分析，P90 TTFT↓7.6x</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="county" style="--county-color:var(--ci-blue)">
+        <div class="county-hdr">
+          <div class="county-num" style="color:var(--ci-blue)">5</div>
+          <div class="county-info">
+            <div class="county-name">梯度同步通信</div>
+            <div class="county-axis">分布式训练All-Reduce梯度压缩</div>
+          </div>
+          <span class="county-trl badge-blue">TRL4</span>
+        </div>
+        <div class="county-bar"><div class="county-bar-fill" style="width:62%;background:var(--ci-blue)"></div></div>
+        <div class="village">
+          <div class="village-label">代表论文</div>
+          <div class="village-papers">
+            <div class="village-paper">
+              <span class="yr">MLSys'20</span>
+              <div class="info"><div class="pname">PowerSGD</div><div class="pdesc">低秩梯度压缩，通信↓10-100x</div></div>
+              <span class="pmetric">MLSys 2020</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div><!-- end comm sparse -->
+
+  <!-- 通信 × 蒸馏 -->
+  <div class="method-group">
+    <div class="method-group-hdr">
+      <div class="method-icon" style="background:rgba(163,113,247,0.25);color:var(--ci-purple)">🍶</div>
+      <div class="method-name">蒸馏 <span class="method-meta">Distillation · 18篇</span></div>
+      <span class="method-badge badge-purple">★ 极度空白 <span class="tag-p1">P1</span></span>
+    </div>
+    <div class="county-grid">
+
+      <div class="county hi" style="--county-color:var(--ci-red)">
+        <div class="county-hdr">
+          <div class="county-num" style="color:var(--ci-red)">18</div>
+          <div class="county-info">
+            <div class="county-name">通信蒸馏 <span class="tag-p1">P1</span></div>
+            <div class="county-axis">18篇几乎无直接研究</div>
+          </div>
+          <span class="county-trl badge-red">TRL1</span>
+        </div>
+        <div class="county-bar"><div class="county-bar-fill" style="width:100%;background:var(--ci-red)"></div></div>
+        <div class="village">
+          <div class="village-label">现状</div>
+          <div class="village-papers blank">
+            <div class="village-paper blank">
+              <div class="info"><div class="pname">— 极度空白</div><div class="pdesc">需要同时懂分布式系统+模型压缩，跨领域人才稀缺</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div><!-- end comm distill -->
+
+</div><!-- end province comm -->
+</div><!-- end comm map-section -->
+
+<!-- ============================================================ -->
+<!-- 权重压缩 省 -->
+<!-- ============================================================ -->
+<div class="section-sep"></div>
+<div class="map-section">
+
+<div class="province" style="border-color:rgba(240,136,62,0.3)">
+  <div class="province-hdr">
+    <div class="province-icon" style="background:rgba(240,136,62,0.15);color:var(--ci-orange)">W</div>
+    <div class="province-title">
+      <div class="province-name">🧱 权重压缩</div>
+      <div class="province-en">Weight Compression — 1,624篇</div>
+    </div>
+    <div class="province-right">
+      <div class="province-stats">
+        <div class="province-num" style="color:var(--ci-red)">1,624</div>
+        <div class="province-label">篇 · 红海成熟</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 权重 × 量化 -->
+  <div class="method-group">
+    <div class="method-group-hdr">
+      <div class="method-icon" style="background:rgba(248,81,73,0.15);color:var(--ci-red)">📊</div>
+      <div class="method-name">量化 <span class="method-meta">Quantization · 376篇</span></div>
+      <span class="method-badge badge-red">★★★★★ 红海成熟</span>
+    </div>
+    <div class="county-grid">
+
+      <div class="county" style="--county-color:var(--ci-red)">
+        <div class="county-hdr">
+          <div class="county-num" style="color:var(--ci-red)">3</div>
+          <div class="county-info"><div class="county-name">Per-Channel量化</div><div class="county-axis">每个通道独立scale</div></div>
+          <span class="county-trl badge-red">TRL5</span>
+        </div>
+        <div class="county-bar"><div class="county-bar-fill" style="width:100%;background:var(--ci-red)"></div></div>
+        <div class="village">
+          <div class="village-label">代表论文</div>
+          <div class="village-papers">
+            <div class="village-paper">
+              <span class="yr">NeurIPS'23</span>
+              <div class="info"><div class="pname">GPTQ</div><div class="pdesc">Per-channel INT4量化，<1%损失</div></div>
+              <span class="pmetric">NeurIPS 2023</span>
+            </div>
+            <div class="village-paper">
+              <span class="yr">2024</span>
+              <div class="info"><div class="pname">QuaRot</div><div class="pdesc">旋转不变量化</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="county" style="--county-color:var(--ci-orange)">
+        <div class="county-hdr">
+          <div class="county-num" style="color:var(--ci-orange)">2</div>
+          <div class="county-info"><div class="county-name">Per-Token量化</div><div class="county-axis">每个token独立scale</div></div>
+          <span class="county-trl badge-orange">TRL4</span>
+        </div>
+        <div class="county-bar"><div class="county-bar-fill" style="width:53%;background:var(--ci-orange)"></div></div>
+        <div class="village">
+          <div class="village-label">代表论文</div>
+          <div class="village-papers">
+            <div class="village-paper">
+              <span class="yr">MLSys'24</span>
+              <div class="info"><div class="pname">AWQ</div><div class="pdesc">Activation-aware per-token量化</div></div>
+              <span class="pmetric">MLSys 2024</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="county" style="--county-color:var(--ci-yellow)">
+        <div class="county-hdr">
+          <div class="county-num" style="color:var(--ci-yellow)">2</div>
+          <div class="county-info"><div class="county-name">混合整数精度</div><div class="county-axis">INT4/INT8混合</div></div>
+          <span class="county-trl badge-yellow">TRL4</span>
+        </div>
+        <div class="county-bar"><div class="county-bar-fill" style="width:53%;background:var(--ci-yellow)"></div></div>
+        <div class="village">
+          <div class="village-label">代表论文</div>
+          <div class="village-papers">
+            <div class="village-paper">
+              <span class="yr">2022</span>
+              <div class="info"><div class="pname">LLM.int8()</div><div class="pdesc">INT8推理，outliers分离</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div><!-- end w quant -->
+
+  <!-- 权重 × 低秩 -->
+  <div class="method-group">
+    <div class="method-group-hdr">
+      <div class="method-icon" style="background:rgba(63,185,80,0.15);color:var(--ci-green)">📉</div>
+      <div class="method-name">低秩 <span class="method-meta">Low-Rank · 575篇</span></div>
+      <span class="method-badge badge-red">★★★★★ 红海成熟</span>
+    </div>
+    <div class="county-grid">
+
+      <div class="county opp" style="--county-color:var(--ci-green)">
+        <div class="county-hdr">
+          <div class="county-num" style="color:var(--ci-green)">5</div>
+          <div class="county-info">
+            <div class="county-name">LoRA系 <span class="tag-opp">工业标配</span></div>
+            <div class="county-axis">低秩矩阵分解 ΔW=BA</div>
+          </div>
+          <span class="county-trl badge-red">TRL5</span>
+        </div>
+        <div class="county-bar"><div class="county-bar-fill" style="width:87%;background:var(--ci-green)"></div></div>
+        <div class="village">
+          <div class="village-label">代表论文</div>
+          <div class="village-papers">
+            <div class="village-paper">
+              <span class="yr">2021</span>
+              <div class="info"><div class="pname">LoRA</div><div class="pdesc">最流行微调方案</div></div>
+              <span class="pmetric">工业标配</span>
+            </div>
+            <div class="village-paper">
+              <span class="yr">NeurIPS'23</span>
+              <div class="info"><div class="pname">QLoRA</div><div class="pdesc">INT4+LoRA, Qwen/Llama微调标准</div></div>
+              <span class="pmetric">NeurIPS 2023</span>
+            </div>
+            <div class="village-paper">
+              <span class="yr">ICLR'23</span>
+              <div class="info"><div class="pname">AdaLoRA</div><div class="pdesc">自适应rank分配</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="county" style="--county-color:var(--ci-blue)">
+        <div class="county-hdr">
+          <div class="county-num" style="color:var(--ci-blue)">3</div>
+          <div class="county-info"><div class="county-name">直接SVD</div><div class="county-axis">直接对权重矩阵SVD截断</div></div>
+          <span class="county-trl badge-orange">TRL4</span>
+        </div>
+        <div class="county-bar"><div class="county-bar-fill" style="width:52%;background:var(--ci-blue)"></div></div>
+        <div class="village">
+          <div class="village-label">代表论文</div>
+          <div class="village-papers">
+            <div class="village-paper">
+              <span class="yr">2022</span>
+              <div class="info"><div class="pname">FisherSVD</div><div class="pdesc">Fisher信息量指导的SVD</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div><!-- end w lowrank -->
+
+  <!-- 权重 × 稀疏化 -->
+  <div class="method-group">
+    <div class="method-group-hdr">
+      <div class="method-icon" style="background:rgba(240,136,62,0.15);color:var(--ci-orange)">✂️</div>
+      <div class="method-name">稀疏化 <span class="method-meta">Sparsification · 311篇</span></div>
+      <span class="method-badge badge-red">★★★★ 红海成熟</span>
+    </div>
+    <div class="axis-note">
+      <strong>分类轴：稀疏粒度（Sparsity Granularity）</strong> — 权重稀疏与激活稀疏不同，它是静态确定的，核心区分是"在什么粒度上保持零值"：非结构化（任意位置）/ 半结构化（2:4模式）/ 结构化（整行整列）
+    </div>
+    <div class="county-grid">
+
+      <!-- 非结构化 -->
+      <div class="county" style="--county-color:var(--ci-blue)">
+        <div class="county-hdr">
+          <div class="county-num" style="color:var(--ci-blue)">3</div>
+          <div class="county-info">
+            <div class="county-name">非结构化稀疏</div>
+            <div class="county-axis">任意位置置零，压缩比最高但硬件不友好</div>
+          </div>
+          <span class="county-trl badge-blue">TRL4</span>
+        </div>
+        <div class="county-bar"><div class="county-bar-fill" style="width:43%;background:var(--ci-blue)"></div></div>
+        <div class="village">
+          <div class="village-label">代表论文</div>
+          <div class="village-papers">
+            <div class="village-paper">
+              <span class="yr">ICML'23</span>
+              <div class="info"><div class="pname">SparseGPT</div><div class="pdesc">一次性50%稀疏，无需重训练，<1%损失</div></div>
+              <span class="pmetric">ICML 2023</span>
+            </div>
+            <div class="village-paper">
+              <span class="yr">ICLR'24</span>
+              <div class="info"><div class="pname">Wanda</div><div class="pdesc">权重×激活幅值剪枝，极简高效</div></div>
+              <span class="pmetric">ICLR 2024</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 半结构化2:4 -->
+      <div class="county opp" style="--county-color:var(--ci-green)">
+        <div class="county-hdr">
+          <div class="county-num" style="color:var(--ci-green)">3</div>
+          <div class="county-info">
+            <div class="county-name">半结构化 2:4 稀疏 <span class="tag-opp">硬件原生</span></div>
+            <div class="county-axis">每4个中2个非零，NVIDIA Ampere+原生支持</div>
+          </div>
+          <span class="county-trl badge-green">TRL5</span>
+        </div>
+        <div class="county-bar"><div class="county-bar-fill" style="width:43%;background:var(--ci-green)"></div></div>
+        <div class="village">
+          <div class="village-label">代表论文</div>
+          <div class="village-papers">
+            <div class="village-paper">
+              <span class="yr">2024</span>
+              <div class="info"><div class="pname">SparseGPT 2:4</div><div class="pdesc">2:4约束版SparseGPT</div></div>
+              <span class="pmetric">NVIDIA原生加速</span>
+            </div>
+            <div class="village-paper">
+              <span class="yr">2024</span>
+              <div class="info"><div class="pname">Wanda 2:4</div><div class="pdesc">2:4约束版Wanda</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 结构化 -->
+      <div class="county" style="--county-color:var(--ci-orange)">
+        <div class="county-hdr">
+          <div class="county-num" style="color:var(--ci-orange)">3</div>
+          <div class="county-info">
+            <div class="county-name">结构化稀疏</div>
+            <div class="county-axis">整行/整列/整头置零，硬件最友好但精度损失大</div>
+          </div>
+          <span class="county-trl badge-orange">TRL4</span>
+        </div>
+        <div class="county-bar"><div class="county-bar-fill" style="width:43%;background:var(--ci-orange)"></div></div>
+        <div class="village">
+          <div class="village-label">代表论文</div>
+          <div class="village-papers">
+            <div class="village-paper">
+              <span class="yr">NeurIPS'23</span>
+              <div class="info"><div class="pname">LLM-Pruner</div><div class="pdesc">结构化剪枝+LoRA恢复</div></div>
+              <span class="pmetric">NeurIPS 2023</span>
+            </div>
+            <div class="village-paper">
+              <span class="yr">2024</span>
+              <div class="info"><div class="pname">Compresso</div><div class="pdesc">可学习结构化稀疏</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 稀疏+量化联合 -->
+      <div class="county hi" style="--county-color:var(--ci-purple)">
+        <div class="county-hdr">
+          <div class="county-num" style="color:var(--ci-purple)">2</div>
+          <div class="county-info">
+            <div class="county-name">稀疏+量化联合</div>
+            <div class="county-axis">同时做权重稀疏和量化，叠加压缩</div>
+          </div>
+          <span class="county-trl badge-yellow">TRL3</span>
+        </div>
+        <div class="county-bar"><div class="county-bar-fill" style="width:29%;background:var(--ci-purple)"></div></div>
+        <div class="village">
+          <div class="village-label">代表论文</div>
+          <div class="village-papers">
+            <div class="village-paper">
+              <span class="yr">2024</span>
+              <div class="info"><div class="pname">SparseQuant</div><div class="pdesc">2:4稀疏+INT4量化联合</div></div>
+              <span class="pmetric">8x压缩</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div><!-- end w sparse -->
+
+  <!-- 权重 × 剪枝 -->
+  <div class="method-group">
+    <div class="method-group-hdr">
+      <div class="method-icon" style="background:rgba(248,81,73,0.15);color:var(--ci-red)">✂️</div>
+      <div class="method-name">剪枝 <span class="method-meta">Pruning · 509篇</span></div>
+      <span class="method-badge badge-red">★★★★★ 红海成熟</span>
+    </div>
+    <div class="axis-note">
+      <strong>分类轴：重要性度量方法（Importance Metric）</strong> — 决定"哪些权重/通道/头该被移除"的核心是重要性评估方式：幅值（绝对值大小）/ 梯度/损失（对输出的影响）/ 可学习（训练中学习）
+    </div>
+    <div class="county-grid">
+
+      <!-- 幅值剪枝 -->
+      <div class="county" style="--county-color:var(--ci-blue)">
+        <div class="county-hdr">
+          <div class="county-num" style="color:var(--ci-blue)">3</div>
+          <div class="county-info">
+            <div class="county-name">幅值剪枝</div>
+            <div class="county-axis">按权重绝对值大小排序，移除最小</div>
+          </div>
+          <span class="county-trl badge-blue">TRL4</span>
+        </div>
+        <div class="county-bar"><div class="county-bar-fill" style="width:43%;background:var(--ci-blue)"></div></div>
+        <div class="village">
+          <div class="village-label">代表论文</div>
+          <div class="village-papers">
+            <div class="village-paper">
+              <span class="yr">2023</span>
+              <div class="info"><div class="pname">Magnitude Pruning</div><div class="pdesc">经典|W|排序剪枝</div></div>
+              <span class="pmetric">经典方法</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 损失感知 -->
+      <div class="county opp" style="--county-color:var(--ci-green)">
+        <div class="county-hdr">
+          <div class="county-num" style="color:var(--ci-green)">4</div>
+          <div class="county-info">
+            <div class="county-name">损失感知剪枝 <span class="tag-opp">工业标配</span></div>
+            <div class="county-axis">评估移除后对输出的影响（Hessian/OBQ）</div>
+          </div>
+          <span class="county-trl badge-green">TRL5</span>
+        </div>
+        <div class="county-bar"><div class="county-bar-fill" style="width:57%;background:var(--ci-green)"></div></div>
+        <div class="village">
+          <div class="village-label">代表论文</div>
+          <div class="village-papers">
+            <div class="village-paper">
+              <span class="yr">ICML'23</span>
+              <div class="info"><div class="pname">SparseGPT</div><div class="pdesc">OBQ+Hessian近似，一次性50%稀疏</div></div>
+              <span class="pmetric">ICML 2023</span>
+            </div>
+            <div class="village-paper">
+              <span class="yr">ICLR'24</span>
+              <div class="info"><div class="pname">Wanda</div><div class="pdesc">|W|×|X|重要性，无需重训练</div></div>
+              <span class="pmetric">ICLR 2024</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 梯度剪枝 -->
+      <div class="county" style="--county-color:var(--ci-orange)">
+        <div class="county-hdr">
+          <div class="county-num" style="color:var(--ci-orange)">3</div>
+          <div class="county-info">
+            <div class="county-name">梯度剪枝</div>
+            <div class="county-axis">用一阶/二阶梯度信息评估重要性</div>
+          </div>
+          <span class="county-trl badge-yellow">TRL3</span>
+        </div>
+        <div class="county-bar"><div class="county-bar-fill" style="width:43%;background:var(--ci-orange)"></div></div>
+        <div class="village">
+          <div class="village-label">代表论文</div>
+          <div class="village-papers">
+            <div class="village-paper">
+              <span class="yr">2024</span>
+              <div class="info"><div class="pname">GraPruning</div><div class="pdesc">梯度敏感度剪枝</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 可学习剪枝 -->
+      <div class="county hi" style="--county-color:var(--ci-purple)">
+        <div class="county-hdr">
+          <div class="county-num" style="color:var(--ci-purple)">3</div>
+          <div class="county-info">
+            <div class="county-name">可学习剪枝</div>
+            <div class="county-axis">训练中学习mask，端到端剪枝</div>
+          </div>
+          <span class="county-trl badge-blue">TRL4</span>
+        </div>
+        <div class="county-bar"><div class="county-bar-fill" style="width:43%;background:var(--ci-purple)"></div></div>
+        <div class="village">
+          <div class="village-label">代表论文</div>
+          <div class="village-papers">
+            <div class="village-paper">
+              <span class="yr">NeurIPS'23</span>
+              <div class="info"><div class="pname">LLM-Pruner</div><div class="pdesc">可学习mask+LoRA恢复</div></div>
+              <span class="pmetric">NeurIPS 2023</span>
+            </div>
+            <div class="village-paper">
+              <span class="yr">2024</span>
+              <div class="info"><div class="pname">Compresso</div><div class="pdesc">端到端可学习结构化稀疏</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 通道/头剪枝 -->
+      <div class="county" style="--county-color:var(--ci-yellow)">
+        <div class="county-hdr">
+          <div class="county-num" style="color:var(--ci-yellow)">3</div>
+          <div class="county-info">
+            <div class="county-name">通道/头剪枝</div>
+            <div class="county-axis">移除整个通道或注意力头</div>
+          </div>
+          <span class="county-trl badge-green">TRL5</span>
+        </div>
+        <div class="county-bar"><div class="county-bar-fill" style="width:43%;background:var(--ci-yellow)"></div></div>
+        <div class="village">
+          <div class="village-label">代表论文</div>
+          <div class="village-papers">
+            <div class="village-paper">
+              <span class="yr">2023</span>
+              <div class="info"><div class="pname">GQA/MQA</div><div class="pdesc">KV头剪枝，Llama2标配</div></div>
+              <span class="pmetric">Llama标配</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div><!-- end w prune -->
+
+  <!-- 权重 × 蒸馏 -->
+  <div class="method-group">
+    <div class="method-group-hdr">
+      <div class="method-icon" style="background:rgba(163,113,247,0.15);color:var(--ci-purple)">🍶</div>
+      <div class="method-name">蒸馏 <span class="method-meta">Distillation · 231篇</span></div>
+      <span class="method-badge badge-orange">★★★ 成熟</span>
+    </div>
+    <div class="axis-note">
+      <strong>分类轴：蒸馏可见性（Distillation Visibility）</strong> — 是否需要访问教师模型内部：白盒（logit/特征层）/ 黑盒（仅输入输出）/ 灰盒（部分访问）
+    </div>
+    <div class="county-grid">
+
+      <!-- 白盒 -->
+      <div class="county" style="--county-color:var(--ci-blue)">
+        <div class="county-hdr">
+          <div class="county-num" style="color:var(--ci-blue)">3</div>
+          <div class="county-info">
+            <div class="county-name">白盒logit蒸馏</div>
+            <div class="county-axis">匹配教师输出分布(KL散度)</div>
+          </div>
+          <span class="county-trl badge-green">TRL5</span>
+        </div>
+        <div class="county-bar"><div class="county-bar-fill" style="width:43%;background:var(--ci-blue)"></div></div>
+        <div class="village">
+          <div class="village-label">代表论文</div>
+          <div class="village-papers">
+            <div class="village-paper">
+              <span class="yr">2024</span>
+              <div class="info"><div class="pname">MiniLLM</div><div class="pdesc">反向KL散度，LLM专用蒸馏</div></div>
+              <span class="pmetric">ICLR 2024</span>
+            </div>
+            <div class="village-paper">
+              <span class="yr">2023</span>
+              <div class="info"><div class="pname">GKD</div><div class="pdesc">在线自蒸馏</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 特征层 -->
+      <div class="county hi" style="--county-color:var(--ci-green)">
+        <div class="county-hdr">
+          <div class="county-num" style="color:var(--ci-green)">3</div>
+          <div class="county-info">
+            <div class="county-name">特征层蒸馏</div>
+            <div class="county-axis">匹配中间层隐状态/注意力分布</div>
+          </div>
+          <span class="county-trl badge-green">TRL5</span>
+        </div>
+        <div class="county-bar"><div class="county-bar-fill" style="width:43%;background:var(--ci-green)"></div></div>
+        <div class="village">
+          <div class="village-label">代表论文</div>
+          <div class="village-papers">
+            <div class="village-paper">
+              <span class="yr">2023</span>
+              <div class="info"><div class="pname">MiniLM/MiniLM-v2</div><div class="pdesc">自注意力蒸馏，深层关系匹配</div></div>
+              <span class="pmetric">经典方法</span>
+            </div>
+            <div class="village-paper">
+              <span class="yr">2024</span>
+              <div class="info"><div class="pname">Layer Skip</div><div class="pdesc">跨层蒸馏，层跳过</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 黑盒 -->
+      <div class="county" style="--county-color:var(--ci-orange)">
+        <div class="county-hdr">
+          <div class="county-num" style="color:var(--ci-orange)">3</div>
+          <div class="county-info">
+            <div class="county-name">黑盒数据蒸馏</div>
+            <div class="county-axis">仅用教师输出，无需访问内部（API蒸馏）</div>
+          </div>
+          <span class="county-trl badge-blue">TRL4</span>
+        </div>
+        <div class="county-bar"><div class="county-bar-fill" style="width:43%;background:var(--ci-orange)"></div></div>
+        <div class="village">
+          <div class="village-label">代表论文</div>
+          <div class="village-papers">
+            <div class="village-paper">
+              <span class="yr">2023</span>
+              <div class="info"><div class="pname">Alpaca/Vicuna</div><div class="pdesc">GPT-4 API蒸馏到开源模型</div></div>
+              <span class="pmetric">广泛使用</span>
+            </div>
+            <div class="village-paper">
+              <span class="yr">2024</span>
+              <div class="info"><div class="pname">DistilStep</div><div class="pdesc">推理步骤蒸馏</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 量化感知蒸馏 -->
+      <div class="county" style="--county-color:var(--ci-purple)">
+        <div class="county-hdr">
+          <div class="county-num" style="color:var(--ci-purple)">2</div>
+          <div class="county-info">
+            <div class="county-name">量化感知蒸馏</div>
+            <div class="county-axis">蒸馏恢复量化后精度损失</div>
+          </div>
+          <span class="county-trl badge-yellow">TRL3</span>
+        </div>
+        <div class="county-bar"><div class="county-bar-fill" style="width:29%;background:var(--ci-purple)"></div></div>
+        <div class="village">
+          <div class="village-label">代表论文</div>
+          <div class="village-papers">
+            <div class="village-paper">
+              <span class="yr">2024</span>
+              <div class="info"><div class="pname">BitDistiller</div><div class="pdesc">INT4量化后蒸馏恢复</div></div>
+            </div>
+            <div class="village-paper">
+              <span class="yr">2024</span>
+              <div class="info"><div class="pname">LLM-QAT</div><div class="pdesc">数据自由量化感知训练+蒸馏</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div><!-- end w distill -->
+
+</div><!-- end province weight -->
+</div><!-- end weight map-section -->
+
+<!-- ============================================================ -->
+<!-- 激活压缩 省 -->
+<!-- ============================================================ -->
+<div class="section-sep"></div>
+<div class="map-section">
+
+<div class="province" style="border-color:rgba(88,166,255,0.3)">
+  <div class="province-hdr">
+    <div class="province-icon" style="background:rgba(88,166,255,0.15);color:var(--ci-blue)">A</div>
+    <div class="province-title">
+      <div class="province-name">⚡ 激活压缩</div>
+      <div class="province-en">Activation Compression — 756篇</div>
+    </div>
+    <div class="province-right">
+      <div class="province-stats">
+        <div class="province-num" style="color:var(--ci-blue)">756</div>
+        <div class="province-label">篇 · 当前热点</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="note-box">
+    <div class="title">⚡ 激活压缩 — 省情概述</div>
+    <div class="text">
+      <strong>核心矛盾：</strong>激活值是前向传播的中间结果，决定推理时的瞬时内存峰值和计算密度。与权重压缩（静态、一次到位）不同，激活压缩是<strong>动态的</strong>，每个batch、每个token都不同。<br>
+      <strong>分类总览：</strong>5个市（稀疏化396 / 量化201 / 剪枝199 / 低秩174 / 蒸馏68），其中<strong>稀疏化是绝对主导方向</strong>（52.4%），核心是"在推理时跳过不必要的激活计算"。<br>
+      <strong>技术特征：</strong>稀疏化最大优势是<strong>无精度损失</strong>（只是跳过），量化需要平衡精度，剪枝改变结构，低秩改变维度。
+    </div>
+  </div>
+
+  <!-- 激活 × 稀疏化 -->
+  <div class="method-group">
+    <div class="method-group-hdr">
+      <div class="method-icon" style="background:rgba(63,185,80,0.15);color:var(--ci-green)">✂️</div>
+      <div class="method-name">稀疏化 <span class="method-meta">Sparsification · 396篇</span></div>
+      <span class="method-badge badge-red">★★★★★ 主导方向</span>
+    </div>
+    <div class="axis-note">
+      <strong>分类轴：稀疏决策时机（When to Decide Sparsity）</strong> — 方法区分的核心是"在什么时机决定激活的稀疏模式"：训练时确定 vs 推理时动态决定 vs 结构化固定
+    </div>
+    <div class="county-grid">
+
+      <!-- 静态稀疏 -->
+      <div class="county" style="--county-color:var(--ci-blue)">
+        <div class="county-hdr">
+          <div class="county-num" style="color:var(--ci-blue)">3</div>
+          <div class="county-info">
+            <div class="county-name">训练时静态稀疏</div>
+            <div class="county-axis">训练阶段确定稀疏模式，推理时固定</div>
+          </div>
+          <span class="county-trl badge-blue">TRL4</span>
+        </div>
+        <div class="county-bar"><div class="county-bar-fill" style="width:43%;background:var(--ci-blue)"></div></div>
+        <div class="village">
+          <div class="village-label">代表论文</div>
+          <div class="village-papers">
+            <div class="village-paper">
+              <span class="yr">NeurIPS'22</span>
+              <div class="info"><div class="pname">SparseFormer</div><div class="pdesc">训练阶段学习稀疏注意力模式</div></div>
+              <span class="pmetric">NeurIPS 2022</span>
+            </div>
+            <div class="village-paper">
+              <span class="yr">2024</span>
+              <div class="info"><div class="pname"> learned mask</div><div class="pdesc">可学习mask确定激活稀疏</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 动态稀疏 -->
+      <div class="county hi" style="--county-color:var(--ci-purple)">
+        <div class="county-hdr">
+          <div class="county-num" style="color:var(--ci-purple)">4</div>
+          <div class="county-info">
+            <div class="county-name">推理时动态稀疏</div>
+            <div class="county-axis">每次推理根据当前输入动态决定激活</div>
+          </div>
+          <span class="county-trl badge-yellow">TRL3</span>
+        </div>
+        <div class="county-bar"><div class="county-bar-fill" style="width:57%;background:var(--ci-purple)"></div></div>
+        <div class="village">
+          <div class="village-label">代表论文</div>
+          <div class="village-papers">
+            <div class="village-paper">
+              <span class="yr">2024</span>
+              <div class="info"><div class="pname">Dynamic Skip</div><div class="pdesc">推理时根据激活幅值跳过神经元</div></div>
+              <span class="pmetric">推理↑2x</span>
+            </div>
+            <div class="village-paper">
+              <span class="yr">2025</span>
+              <div class="info"><div class="pname">Content-Adaptive</div><div class="pdesc">内容自适应稀疏激活</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 结构化稀疏 -->
+      <div class="county" style="--county-color:var(--ci-green)">
+        <div class="county-hdr">
+          <div class="county-num" style="color:var(--ci-green)">3</div>
+          <div class="county-info">
+            <div class="county-name">结构化稀疏</div>
+            <div class="county-axis">2:4 / Block / 头级稀疏，硬件友好</div>
+          </div>
+          <span class="county-trl badge-green">TRL5</span>
+        </div>
+        <div class="county-bar"><div class="county-bar-fill" style="width:43%;background:var(--ci-green)"></div></div>
+        <div class="village">
+          <div class="village-label">代表论文</div>
+          <div class="village-papers">
+            <div class="village-paper">
+              <span class="yr">2024</span>
+              <div class="info"><div class="pname">2:4 Sparse</div><div class="pdesc">NVIDIA 2:4稀疏硬件支持</div></div>
+              <span class="pmetric">NVIDIA硬件</span>
+            </div>
+            <div class="village-paper">
+              <span class="yr">2025</span>
+              <div class="info"><div class="pname">Block Sparse</div><div class="pdesc">Block级稀疏，缓存友好</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- MoE激活稀疏 -->
+      <div class="county opp" style="--county-color:var(--ci-orange)">
+        <div class="county-hdr">
+          <div class="county-num" style="color:var(--ci-orange)">3</div>
+          <div class="county-info">
+            <div class="county-name">MoE激活稀疏 <span class="tag-p1">P1</span></div>
+            <div class="county-axis">MoE本身就是激活稀疏的一种</div>
+          </div>
+          <span class="county-trl badge-orange">TRL4</span>
+        </div>
+        <div class="county-bar"><div class="county-bar-fill" style="width:43%;background:var(--ci-orange)"></div></div>
+        <div class="village">
+          <div class="village-label">代表论文</div>
+          <div class="village-papers">
+            <div class="village-paper">
+              <span class="yr">2024</span>
+              <div class="info"><div class="pname">Mixtral Sparse MoE</div><div class="pdesc">Top-2 Expert激活稀疏</div></div>
+              <span class="pmetric">生产级</span>
+            </div>
+            <div class="village-paper">
+              <span class="yr">2025</span>
+              <div class="info"><div class="pname">DeepSeek MoE</div><div class="pdesc">细粒度Expert稀疏</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div><!-- end act sparse -->
+
+  <!-- 激活 × 量化 -->
+  <div class="method-group">
+    <div class="method-group-hdr">
+      <div class="method-icon" style="background:rgba(163,113,247,0.15);color:var(--ci-purple)">📊</div>
+      <div class="method-name">量化 <span class="method-meta">Quantization · 201篇</span></div>
+      <span class="method-badge badge-orange">★★★ 活跃</span>
+    </div>
+    <div class="axis-note">
+      <strong>分类轴：outlier处理策略（Outlier Handling）</strong> — 激活值存在极端outlier，核心挑战是"如何处理这些outlier"：平滑迁移 vs 分离处理 vs 混合精度
+    </div>
+    <div class="county-grid">
+
+      <div class="county" style="--county-color:var(--ci-blue)">
+        <div class="county-hdr">
+          <div class="county-num" style="color:var(--ci-blue)">3</div>
+          <div class="county-info">
+            <div class="county-name">平滑迁移</div>
+            <div class="county-axis">将outlier平滑到权重上，减少激活方差</div>
+          </div>
+          <span class="county-trl badge-green">TRL5</span>
+        </div>
+        <div class="county-bar"><div class="county-bar-fill" style="width:43%;background:var(--ci-blue)"></div></div>
+        <div class="village">
+          <div class="village-label">代表论文</div>
+          <div class="village-papers">
+            <div class="village-paper">
+              <span class="yr">ICML'23</span>
+              <div class="info"><div class="pname">SmoothQuant</div><div class="pdesc">激活→权重平滑迁移，W8A8精度无损</div></div>
+              <span class="pmetric">ICML 2023</span>
+            </div>
+            <div class="village-paper">
+              <span class="yr">2024</span>
+              <div class="info"><div class="pname">OmniQuant</div><div class="pdesc">全量化+学习平滑因子</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="county hi" style="--county-color:var(--ci-orange)">
+        <div class="county-hdr">
+          <div class="county-num" style="color:var(--ci-orange)">3</div>
+          <div class="county-info">
+            <div class="county-name">outlier分离</div>
+            <div class="county-axis">高精度保留outlier通道，低精度处理其余</div>
+          </div>
+          <span class="county-trl badge-blue">TRL4</span>
+        </div>
+        <div class="county-bar"><div class="county-bar-fill" style="width:43%;background:var(--ci-orange)"></div></div>
+        <div class="village">
+          <div class="village-label">代表论文</div>
+          <div class="village-papers">
+            <div class="village-paper">
+              <span class="yr">NeurIPS'22</span>
+              <div class="info"><div class="pname">LLM.int8()</div><div class="pdesc">混合精度分离outlier</div></div>
+              <span class="pmetric">NeurIPS 2022</span>
+            </div>
+            <div class="village-paper">
+              <span class="yr">2024</span>
+              <div class="info"><div class="pname">ZeroQuant</div><div class="pdesc">逐token量化+重构</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="county" style="--county-color:var(--ci-yellow)">
+        <div class="county-hdr">
+          <div class="county-num" style="color:var(--ci-yellow)">2</div>
+          <div class="county-info">
+            <div class="county-name">混合精度</div>
+            <div class="county-axis">FP8/INT8/INT4激活混合</div>
+          </div>
+          <span class="county-trl badge-yellow">TRL4</span>
+        </div>
+        <div class="county-bar"><div class="county-bar-fill" style="width:29%;background:var(--ci-yellow)"></div></div>
+        <div class="village">
+          <div class="village-label">代表论文</div>
+          <div class="village-papers">
+            <div class="village-paper">
+              <span class="yr">2025</span>
+              <div class="info"><div class="pname">FP8 Activation</div><div class="pdesc">H100原生FP8激活</div></div>
+              <span class="pmetric">H100原生</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div><!-- end act quant -->
+
+  <!-- 激活 × 剪枝 -->
+  <div class="method-group">
+    <div class="method-group-hdr">
+      <div class="method-icon" style="background:rgba(240,136,62,0.15);color:var(--ci-orange)">✂️</div>
+      <div class="method-name">剪枝 <span class="method-meta">Pruning · 199篇</span></div>
+      <span class="method-badge badge-yellow">★★★ 活跃</span>
+    </div>
+    <div class="axis-note">
+      <strong>分类轴：剪枝粒度（Pruning Granularity）</strong> — 决定去除激活的最小单元：通道级 / 头级 / token级
+    </div>
+    <div class="county-grid">
+
+      <div class="county" style="--county-color:var(--ci-blue)">
+        <div class="county-hdr">
+          <div class="county-num" style="color:var(--ci-blue)">3</div>
+          <div class="county-info">
+            <div class="county-name">通道剪枝</div>
+            <div class="county-axis">移除整个激活通道</div>
+          </div>
+          <span class="county-trl badge-blue">TRL4</span>
+        </div>
+        <div class="county-bar"><div class="county-bar-fill" style="width:43%;background:var(--ci-blue)"></div></div>
+        <div class="village">
+          <div class="village-label">代表论文</div>
+          <div class="village-papers">
+            <div class="village-paper">
+              <span class="yr">2024</span>
+              <div class="info"><div class="pname">Channel Prune</div><div class="pdesc">基于重要性评分移除通道</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="county hi" style="--county-color:var(--ci-purple)">
+        <div class="county-hdr">
+          <div class="county-num" style="color:var(--ci-purple)">3</div>
+          <div class="county-info">
+            <div class="county-name">Token剪枝</div>
+            <div class="county-axis">移除不重要的token（与KV淘汰类似但作用于激活）</div>
+          </div>
+          <span class="county-trl badge-yellow">TRL3</span>
+        </div>
+        <div class="county-bar"><div class="county-bar-fill" style="width:43%;background:var(--ci-purple)"></div></div>
+        <div class="village">
+          <div class="village-label">代表论文</div>
+          <div class="village-papers">
+            <div class="village-paper">
+              <span class="yr">NeurIPS'23</span>
+              <div class="info"><div class="pname">DynamicToken</div><div class="pdesc">动态token剪枝</div></div>
+              <span class="pmetric">NeurIPS 2023</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="county" style="--county-color:var(--ci-green)">
+        <div class="county-hdr">
+          <div class="county-num" style="color:var(--ci-green)">2</div>
+          <div class="county-info">
+            <div class="county-name">注意力头剪枝</div>
+            <div class="county-axis">移除冗余的注意力头</div>
+          </div>
+          <span class="county-trl badge-green">TRL5</span>
+        </div>
+        <div class="county-bar"><div class="county-bar-fill" style="width:29%;background:var(--ci-green)"></div></div>
+        <div class="village">
+          <div class="village-label">代表论文</div>
+          <div class="village-papers">
+            <div class="village-paper">
+              <span class="yr">2023</span>
+              <div class="info"><div class="pname">GQA/MQA</div><div class="pdesc">分组查询/多头查询注意力</div></div>
+              <span class="pmetric">Llama标配</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div><!-- end act prune -->
+
+  <!-- 激活 × 低秩 -->
+  <div class="method-group">
+    <div class="method-group-hdr">
+      <div class="method-icon" style="background:rgba(63,185,80,0.15);color:var(--ci-green)">📉</div>
+      <div class="method-name">低秩 <span class="method-meta">Low-Rank · 174篇</span></div>
+      <span class="method-badge badge-yellow">★★ 学术早期</span>
+    </div>
+    <div class="axis-note">
+      <strong>分类轴：低秩近似目标（Approximation Target）</strong> — 是对注意力矩阵近似还是对激活矩阵近似
+    </div>
+    <div class="county-grid">
+
+      <div class="county" style="--county-color:var(--ci-blue)">
+        <div class="county-hdr">
+          <div class="county-num" style="color:var(--ci-blue)">3</div>
+          <div class="county-info">
+            <div class="county-name">注意力低秩</div>
+            <div class="county-axis">对注意力矩阵做低秩近似</div>
+          </div>
+          <span class="county-trl badge-blue">TRL4</span>
+        </div>
+        <div class="county-bar"><div class="county-bar-fill" style="width:43%;background:var(--ci-blue)"></div></div>
+        <div class="village">
+          <div class="village-label">代表论文</div>
+          <div class="village-papers">
+            <div class="village-paper">
+              <span class="yr">2024</span>
+              <div class="info"><div class="pname">Linear Attention</div><div class="pdesc">线性注意力近似</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="county" style="--county-color:var(--ci-orange)">
+        <div class="county-hdr">
+          <div class="county-num" style="color:var(--ci-orange)">2</div>
+          <div class="county-info">
+            <div class="county-name">激活低秩分解</div>
+            <div class="county-axis">直接对激活矩阵SVD分解</div>
+          </div>
+          <span class="county-trl badge-yellow">TRL3</span>
+        </div>
+        <div class="county-bar"><div class="county-bar-fill" style="width:29%;background:var(--ci-orange)"></div></div>
+        <div class="village">
+          <div class="village-label">代表论文</div>
+          <div class="village-papers">
+            <div class="village-paper">
+              <span class="yr">2025</span>
+              <div class="info"><div class="pname">ActSVD</div><div class="pdesc">推理时激活低秩分解</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div><!-- end act lowrank -->
+
+  <!-- 激活 × 蒸馏 -->
+  <div class="method-group">
+    <div class="method-group-hdr">
+      <div class="method-icon" style="background:rgba(163,113,247,0.15);color:var(--ci-purple)">🍶</div>
+      <div class="method-name">蒸馏 <span class="method-meta">Distillation · 68篇</span></div>
+      <span class="method-badge badge-yellow">★★ 学术探索</span>
+    </div>
+    <div class="axis-note">
+      <strong>分类轴：蒸馏目标（Distillation Goal）</strong> — 用小激活分布模仿大激活分布
+    </div>
+    <div class="county-grid">
+
+      <div class="county" style="--county-color:var(--ci-blue)">
+        <div class="county-hdr">
+          <div class="county-num" style="color:var(--ci-blue)">3</div>
+          <div class="county-info">
+            <div class="county-name">激活分布匹配</div>
+            <div class="county-axis">小模型激活分布模仿大模型</div>
+          </div>
+          <span class="county-trl badge-blue">TRL4</span>
+        </div>
+        <div class="county-bar"><div class="county-bar-fill" style="width:43%;background:var(--ci-blue)"></div></div>
+        <div class="village">
+          <div class="village-label">代表论文</div>
+          <div class="village-papers">
+            <div class="village-paper">
+              <span class="yr">2024</span>
+              <div class="info"><div class="pname">MiniLLM</div><div class="pdesc">反向KL散度激活蒸馏</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="county" style="--county-color:var(--ci-green)">
+        <div class="county-hdr">
+          <div class="county-num" style="color:var(--ci-green)">2</div>
+          <div class="county-info">
+            <div class="county-name">层间激活蒸馏</div>
+            <div class="county-axis">不同层之间激活传递压缩</div>
+          </div>
+          <span class="county-trl badge-yellow">TRL3</span>
+        </div>
+        <div class="county-bar"><div class="county-bar-fill" style="width:29%;background:var(--ci-green)"></div></div>
+        <div class="village">
+          <div class="village-label">代表论文</div>
+          <div class="village-papers">
+            <div class="village-paper">
+              <span class="yr">2023</span>
+              <div class="info"><div class="pname">LayerKD</div><div class="pdesc">跨层激活知识传递</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div><!-- end act distill -->
+
+</div><!-- end province activation -->
+</div><!-- end activation map-section -->
+
+<!-- ============================================================ -->
+<!-- 通用效率 省 -->
+<!-- ============================================================ -->
+<div class="section-sep"></div>
+<div class="map-section">
+
+<div class="province" style="border-color:rgba(210,153,34,0.3)">
+  <div class="province-hdr">
+    <div class="province-icon" style="background:rgba(210,153,34,0.15);color:var(--ci-yellow)">⚙</div>
+    <div class="province-title">
+      <div class="province-name">⚙️ 通用效率优化</div>
+      <div class="province-en">General Efficiency — 523篇</div>
+    </div>
+    <div class="province-right">
+      <div class="province-stats">
+        <div class="province-num" style="color:var(--ci-yellow)">523</div>
+        <div class="province-label">篇 · 系统级</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="note-box">
+    <div class="title">⚙️ 通用效率优化 — 省情概述</div>
+    <div class="text">
+      <strong>本质特征：</strong>这一省<strong>不直接压缩数据本身</strong>（不像量化/稀疏化），而是通过<strong>系统级调度、缓存管理、编译优化</strong>来提升整体推理效率。是连接压缩算法与实际部署的桥梁。<br>
+      <strong>核心价值：</strong>即使不做任何模型压缩，仅靠系统优化也能获得数倍吞吐提升（如PagedAttention实现24x）。这是<strong>工程投入产出比最高</strong>的方向。<br>
+      <strong>分类总览：</strong>3个市（通用优化187 / 蒸馏170 / 量化117），其中通用优化是系统调度的核心，蒸馏是架构简化，量化是全栈联合。
+    </div>
+  </div>
+
+  <!-- 通用 × 优化 -->
+  <div class="method-group">
+    <div class="method-group-hdr">
+      <div class="method-icon" style="background:rgba(210,153,34,0.15);color:var(--ci-yellow)">⚙️</div>
+      <div class="method-name">系统调度优化 <span class="method-meta">General Optimization · 187篇</span></div>
+      <span class="method-badge badge-green">★★★★★ 工业标准</span>
+    </div>
+    <div class="axis-note">
+      <strong>分类轴：优化层级（Optimization Layer）</strong> — 从硬件到应用，方法区分的核心是"在哪一层做优化"：内存管理 / 请求调度 / 算子编译
+    </div>
+    <div class="county-grid">
+
+      <!-- 内存管理 -->
+      <div class="county opp" style="--county-color:var(--ci-green)">
+        <div class="county-hdr">
+          <div class="county-num" style="color:var(--ci-green)">4</div>
+          <div class="county-info">
+            <div class="county-name">内存分页管理 <span class="tag-opp">工业标配</span></div>
+            <div class="county-axis">KV Cache虚拟分页，减少碎片</div>
+          </div>
+          <span class="county-trl badge-green">TRL5</span>
+        </div>
+        <div class="county-bar"><div class="county-bar-fill" style="width:57%;background:var(--ci-green)"></div></div>
+        <div class="village">
+          <div class="village-label">代表论文</div>
+          <div class="village-papers">
+            <div class="village-paper">
+              <span class="yr">OSDI'23</span>
+              <div class="info"><div class="pname">PagedAttention</div><div class="pdesc">虚拟内存式KV管理，24x吞吐</div></div>
+              <span class="pmetric">OSDI 2023</span>
+            </div>
+            <div class="village-paper">
+              <span class="yr">2024</span>
+              <div class="info"><div class="pname">RadixAttention</div><div class="pdesc">前缀树复用，SGLang核心</div></div>
+              <span class="pmetric">SGLang标配</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 请求调度 -->
+      <div class="county hi" style="--county-color:var(--ci-blue)">
+        <div class="county-hdr">
+          <div class="county-num" style="color:var(--ci-blue)">4</div>
+          <div class="county-info">
+            <div class="county-name">连续批处理</div>
+            <div class="county-axis">动态拼batch，请求级流水线</div>
+          </div>
+          <span class="county-trl badge-green">TRL5</span>
+        </div>
+        <div class="county-bar"><div class="county-bar-fill" style="width:57%;background:var(--ci-blue)"></div></div>
+        <div class="village">
+          <div class="village-label">代表论文</div>
+          <div class="village-papers">
+            <div class="village-paper">
+              <span class="yr">OSDI'22</span>
+              <div class="info"><div class="pname">Orca</div><div class="pdesc">连续批处理，请求级调度</div></div>
+              <span class="pmetric">OSDI 2022</span>
+            </div>
+            <div class="village-paper">
+              <span class="yr">2024</span>
+              <div class="info"><div class="pname">Chunked Prefill</div><div class="pdesc">Prefill分块，与Decode混排</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 算子编译 -->
+      <div class="county" style="--county-color:var(--ci-orange)">
+        <div class="county-hdr">
+          <div class="county-num" style="color:var(--ci-orange)">3</div>
+          <div class="county-info">
+            <div class="county-name">算子融合与编译</div>
+            <div class="county-axis">融合多个算子减少kernel launch</div>
+          </div>
+          <span class="county-trl badge-green">TRL5</span>
+        </div>
+        <div class="county-bar"><div class="county-bar-fill" style="width:43%;background:var(--ci-orange)"></div></div>
+        <div class="village">
+          <div class="village-label">代表论文</div>
+          <div class="village-papers">
+            <div class="village-paper">
+              <span class="yr">NeurIPS'22</span>
+              <div class="info"><div class="pname">FlashAttention</div><div class="pdesc">融合QKV计算，IO优化</div></div>
+              <span class="pmetric">NeurIPS 2022</span>
+            </div>
+            <div class="village-paper">
+              <span class="yr">2024</span>
+              <div class="info"><div class="pname">FlashInfer</div><div class="pdesc">高性能注意力kernel库</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Prefill-Decode分离 -->
+      <div class="county opp" style="--county-color:var(--ci-purple)">
+        <div class="county-hdr">
+          <div class="county-num" style="color:var(--ci-purple)">3</div>
+          <div class="county-info">
+            <div class="county-name">Prefill-Decode分离 <span class="tag-p1">P1</span></div>
+            <div class="county-axis">两个阶段分离到不同GPU</div>
+          </div>
+          <span class="county-trl badge-blue">TRL4</span>
+        </div>
+        <div class="county-bar"><div class="county-bar-fill" style="width:43%;background:var(--ci-purple)"></div></div>
+        <div class="village">
+          <div class="village-label">代表论文</div>
+          <div class="village-papers">
+            <div class="village-paper">
+              <span class="yr">2024</span>
+              <div class="info"><div class="pname">DistServe</div><div class="pdesc">Prefill/Decode分离部署</div></div>
+              <span class="pmetric">生产级</span>
+            </div>
+            <div class="village-paper">
+              <span class="yr">2024</span>
+              <div class="info"><div class="pname">Mooncake</div><div class="pdesc">分离式KV传输架构</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 投机解码 -->
+      <div class="county opp" style="--county-color:var(--ci-red)">
+        <div class="county-hdr">
+          <div class="county-num" style="color:var(--ci-red)">3</div>
+          <div class="county-info">
+            <div class="county-name">投机解码 <span class="tag-p1">P1</span></div>
+            <div class="county-axis">草稿模型+验证，2-3x加速</div>
+          </div>
+          <span class="county-trl badge-green">TRL5</span>
+        </div>
+        <div class="county-bar"><div class="county-bar-fill" style="width:43%;background:var(--ci-red)"></div></div>
+        <div class="village">
+          <div class="village-label">代表论文</div>
+          <div class="village-papers">
+            <div class="village-paper">
+              <span class="yr">2024</span>
+              <div class="info"><div class="pname">Speculative Decoding</div><div class="pdesc">草稿+验证，无精度损失</div></div>
+              <span class="pmetric">DeepSeek-V3标配</span>
+            </div>
+            <div class="village-paper">
+              <span class="yr">2024</span>
+              <div class="info"><div class="pname">Medusa/EAGLE</div><div class="pdesc">自推测解码</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div><!-- end gen optimization -->
+
+  <!-- 通用 × 蒸馏 -->
+  <div class="method-group">
+    <div class="method-group-hdr">
+      <div class="method-icon" style="background:rgba(163,113,247,0.15);color:var(--ci-purple)">🍶</div>
+      <div class="method-name">系统级蒸馏 <span class="method-meta">Distillation · 170篇</span></div>
+      <span class="method-badge badge-orange">★★★ 活跃</span>
+    </div>
+    <div class="axis-note">
+      <strong>分类轴：蒸馏目标（Distillation Goal）</strong> — 蒸馏是为了推理加速还是架构简化
+    </div>
+    <div class="county-grid">
+
+      <div class="county" style="--county-color:var(--ci-blue)">
+        <div class="county-hdr">
+          <div class="county-num" style="color:var(--ci-blue)">4</div>
+          <div class="county-info">
+            <div class="county-name">层数压缩蒸馏</div>
+            <div class="county-axis">大模型→少层小模型</div>
+          </div>
+          <span class="county-trl badge-blue">TRL4</span>
+        </div>
+        <div class="county-bar"><div class="county-bar-fill" style="width:57%;background:var(--ci-blue)"></div></div>
+        <div class="village">
+          <div class="village-label">代表论文</div>
+          <div class="village-papers">
+            <div class="village-paper">
+              <span class="yr">2023</span>
+              <div class="info"><div class="pname">DistilBERT</div><div class="pdesc">经典6层蒸馏BERT</div></div>
+              <span class="pmetric">经典</span>
+            </div>
+            <div class="village-paper">
+              <span class="yr">2024</span>
+              <div class="info"><div class="pname">MiniLLM</div><div class="pdesc">LLM反向蒸馏</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="county" style="--county-color:var(--ci-orange)">
+        <div class="county-hdr">
+          <div class="county-num" style="color:var(--ci-orange)">3</div>
+          <div class="county-info">
+            <div class="county-name">推理行为蒸馏</div>
+            <div class="county-axis">蒸馏推理时的计算行为而非参数</div>
+          </div>
+          <span class="county-trl badge-yellow">TRL3</span>
+        </div>
+        <div class="county-bar"><div class="county-bar-fill" style="width:43%;background:var(--ci-orange)"></div></div>
+        <div class="village">
+          <div class="village-label">代表论文</div>
+          <div class="village-papers">
+            <div class="village-paper">
+              <span class="yr">2025</span>
+              <div class="info"><div class="pname">BehaviorKD</div><div class="pdesc">推理路径行为蒸馏</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div><!-- end gen distill -->
+
+  <!-- 通用 × 量化 -->
+  <div class="method-group">
+    <div class="method-group-hdr">
+      <div class="method-icon" style="background:rgba(248,81,73,0.15);color:var(--ci-red)">📊</div>
+      <div class="method-name">全栈量化 <span class="method-meta">Quantization · 117篇</span></div>
+      <span class="method-badge badge-yellow">★★ 学术探索</span>
+    </div>
+    <div class="axis-note">
+      <strong>分类轴：联合策略（Joint Strategy）</strong> — 是权重+激活联合还是权重+KV联合量化
+    </div>
+    <div class="county-grid">
+
+      <div class="county hi" style="--county-color:var(--ci-purple)">
+        <div class="county-hdr">
+          <div class="county-num" style="color:var(--ci-purple)">3</div>
+          <div class="county-info">
+            <div class="county-name">权重+KV联合量化</div>
+            <div class="county-axis">同时压缩权重和KV</div>
+          </div>
+          <span class="county-trl badge-yellow">TRL3</span>
+        </div>
+        <div class="county-bar"><div class="county-bar-fill" style="width:43%;background:var(--ci-purple)"></div></div>
+        <div class="village">
+          <div class="village-label">代表论文</div>
+          <div class="village-papers">
+            <div class="village-paper">
+              <span class="yr">2025</span>
+              <div class="info"><div class="pname">KV Pareto</div><div class="pdesc">权重+KV联合量化Pareto前沿</div></div>
+              <span class="pmetric">68-78%内存↓</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="county" style="--county-color:var(--ci-blue)">
+        <div class="county-hdr">
+          <div class="county-num" style="color:var(--ci-blue)">2</div>
+          <div class="county-info">
+            <div class="county-name">W8A8全栈</div>
+            <div class="county-axis">权重8bit+激活8bit</div>
+          </div>
+          <span class="county-trl badge-green">TRL5</span>
+        </div>
+        <div class="county-bar"><div class="county-bar-fill" style="width:29%;background:var(--ci-blue)"></div></div>
+        <div class="village">
+          <div class="village-label">代表论文</div>
+          <div class="village-papers">
+            <div class="village-paper">
+              <span class="yr">2024</span>
+              <div class="info"><div class="pname">SmoothQuant W8A8</div><div class="pdesc">全栈8bit推理</div></div>
+              <span class="pmetric">生产级</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div><!-- end gen quant -->
+
+</div><!-- end province general -->
+</div><!-- end general map-section -->
+
+<!-- ============================================================ -->
+<!-- 研究机会总览 -->
+<!-- ============================================================ -->
+<div class="section-sep"></div>
+<div class="opp-section-title">🔥 研究机会优先级总览</div>
+<div class="opp-rank-grid">
+
+  <div class="opp-card" style="border-color:rgba(163,113,247,0.4)">
+    <div class="opp-card-hdr" style="border-color:rgba(163,113,247,0.2)">
+      <div class="opp-rank-num" style="color:var(--ci-purple)">🥇</div>
+      <div>
+        <div class="opp-rank-name">KV × 蒸馏 — Decoding阶段</div>
+      </div>
+      <span class="method-badge badge-red">P0</span>
+    </div>
+    <div class="opp-rank-body">
+      <div class="opp-rank-stats">
+        <div class="opp-rank-stat"><div class="v" style="color:var(--ci-purple)">10</div><div class="l">篇论文</div></div>
+        <div class="opp-rank-stat"><div class="v">★☆☆</div><div class="l">竞争程度</div></div>
+        <div class="opp-rank-stat"><div class="v" style="color:var(--ci-red)">TRL1</div><div class="l">成熟度</div></div>
+      </div>
+      <div class="opp-rank-desc">10篇论文无一涉及Decoding阶段。Decoding是KV累积最严重的阶段，但没有任何蒸馏方案。这是推理压缩领域最高研究价值空白。</div>
+      <div class="opp-rank-axis">📐 分类轴：蒸馏阶段（Prefill已有 vs Decoding空白）</div>
+    </div>
+  </div>
+
+  <div class="opp-card" style="border-color:rgba(163,113,247,0.4)">
+    <div class="opp-card-hdr" style="border-color:rgba(163,113,247,0.2)">
+      <div class="opp-rank-num" style="color:var(--ci-purple)">🥈</div>
+      <div>
+        <div class="opp-rank-name">通信 × 量化 — Expert量化</div>
+      </div>
+      <span class="method-badge badge-red">P0</span>
+    </div>
+    <div class="opp-rank-body">
+      <div class="opp-rank-stats">
+        <div class="opp-rank-stat"><div class="v" style="color:var(--ci-purple)">44</div><div class="l">篇论文</div></div>
+        <div class="opp-rank-stat"><div class="v">★★☆☆</div><div class="l">竞争程度</div></div>
+        <div class="opp-rank-stat"><div class="v" style="color:var(--ci-orange)">TRL2</div><div class="l">成熟度</div></div>
+      </div>
+      <div class="opp-rank-desc">ExpertQuant(2025)是首个MoE通信量化工作。MoE时代All-to-All通信是核心瓶颈，这个方向被严重低估，工业落地几乎为零。</div>
+      <div class="opp-rank-axis">📐 分类轴：量化方案（Expert量化 vs FP8通信）</div>
+    </div>
+  </div>
+
+  <div class="opp-card" style="border-color:rgba(240,136,62,0.3)">
+    <div class="opp-card-hdr" style="border-color:rgba(240,136,62,0.2)">
+      <div class="opp-rank-num" style="color:var(--ci-orange)">🥉</div>
+      <div>
+        <div class="opp-rank-name">KV × 量化 — RoPE感知</div>
+      </div>
+      <span class="method-badge badge-orange">P1</span>
+    </div>
+    <div class="opp-rank-body">
+      <div class="opp-rank-stats">
+        <div class="opp-rank-stat"><div class="v" style="color:var(--ci-yellow)">46</div><div class="l">篇论文</div></div>
+        <div class="opp-rank-stat"><div class="v">★★☆☆</div><div class="l">竞争程度</div></div>
+        <div class="opp-rank-stat"><div class="v" style="color:var(--ci-yellow)">TRL3</div><div class="l">成熟度</div></div>
+      </div>
+      <div class="opp-rank-desc">Block-GTQ(2026)实现RoPE-aware突破，AIME24达51.7。框架集成是最大机会点——工程价值尚未被充分开发。</div>
+      <div class="opp-rank-axis">📐 分类轴：比特分配策略（RoPE感知 vs 非对称）</div>
+    </div>
+  </div>
+
+  <div class="opp-card" style="border-color:rgba(63,185,80,0.3)">
+    <div class="opp-card-hdr" style="border-color:rgba(63,185,80,0.2)">
+      <div class="opp-rank-num" style="color:var(--ci-green)">4</div>
+      <div>
+        <div class="opp-rank-name">KV × 稀疏 — 协同共享/可学习</div>
+      </div>
+      <span class="method-badge badge-orange">P1</span>
+    </div>
+    <div class="opp-rank-body">
+      <div class="opp-rank-stats">
+        <div class="opp-rank-stat"><div class="v" style="color:var(--ci-green)">76</div><div class="l">篇论文</div></div>
+        <div class="opp-rank-stat"><div class="v">★★★</div><div class="l">竞争程度</div></div>
+        <div class="opp-rank-stat"><div class="v" style="color:var(--ci-blue)">TRL4</div><div class="l">成熟度</div></div>
+      </div>
+      <div class="opp-rank-desc">学术验证充分（SnapKV/H2O/LazyLLM），Models Take Notes vLLM集成98.5% hit rate。整体工业落地仍是一片蓝海。</div>
+      <div class="opp-rank-axis">📐 分类轴：淘汰策略（可学习/协同 vs 重要性评分）</div>
+    </div>
+  </div>
+
+  <div class="opp-card" style="border-color:rgba(240,136,62,0.3)">
+    <div class="opp-card-hdr" style="border-color:rgba(240,136,62,0.2)">
+      <div class="opp-rank-num" style="color:var(--ci-orange)">5</div>
+      <div>
+        <div class="opp-rank-name">通信 × 稀疏 — 打破全复制范式</div>
+      </div>
+      <span class="method-badge badge-orange">P1</span>
+    </div>
+    <div class="opp-rank-body">
+      <div class="opp-rank-stats">
+        <div class="opp-rank-stat"><div class="v" style="color:var(--ci-yellow)">91</div><div class="l">篇论文</div></div>
+        <div class="opp-rank-stat"><div class="v">★★★</div><div class="l">竞争程度</div></div>
+        <div class="opp-rank-stat"><div class="v" style="color:var(--ci-yellow)">TRL3</div><div class="l">成熟度</div></div>
+      </div>
+      <div class="opp-rank-desc">FoMoE(ICLR'26)打破"每个GPU全复制所有Expert"范式，通信↓1.42-45x。这是全新的研究方向空间，机会窗口巨大。</div>
+      <div class="opp-rank-axis">📐 分类轴：通信场景（打破全复制 vs Expert路由）</div>
+    </div>
+  </div>
+
+</div>
+
+</div><!-- end content -->
+
+</body>
+</html>

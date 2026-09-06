@@ -1,0 +1,1035 @@
+{
+  "total": 27784,
+  "filtered": 1249,
+  "matrix": {
+    "参数(Weights) x 高效推理(Efficient)": 645,
+    "通信(Comm) x 高效推理(Efficient)": 21,
+    "参数(Weights) x 低秩(LowRank)": 155,
+    "参数(Weights) x 量化(Quant)": 174,
+    "参数(Weights) x 蒸馏(Distill)": 136,
+    "通信(Comm) x 量化(Quant)": 2,
+    "通信(Comm) x 稀疏(Sparse)": 9,
+    "参数(Weights) x 稀疏(Sparse)": 143,
+    "状态(State/KV) x 高效推理(Efficient)": 22,
+    "参数(Weights) x 剪枝(Prune)": 116,
+    "状态(State/KV) x 稀疏(Sparse)": 14,
+    "状态(State/KV) x 剪枝(Prune)": 6,
+    "状态(State/KV) x 低秩(LowRank)": 4,
+    "状态(State/KV) x 量化(Quant)": 6,
+    "通信(Comm) x 剪枝(Prune)": 8,
+    "通信(Comm) x 低秩(LowRank)": 11,
+    "通信(Comm) x 蒸馏(Distill)": 1
+  },
+  "top_100": [
+    {
+      "title": "TranSpa: Towards Efficient Structured Sparse Training for Transformers",
+      "objects": [
+        "参数(Weights)"
+      ],
+      "methods": [
+        "剪枝(Prune)",
+        "稀疏(Sparse)",
+        "高效推理(Efficient)"
+      ]
+    },
+    {
+      "title": "Efficient Expert Pruning for Sparse Mixture-of-Experts Language Models: Enhancing Performance and Reducing Inference Costs",
+      "objects": [
+        "通信(Comm)"
+      ],
+      "methods": [
+        "剪枝(Prune)",
+        "稀疏(Sparse)",
+        "高效推理(Efficient)"
+      ]
+    },
+    {
+      "title": "SLiM: One-shot Quantized Sparse Plus Low-rank Approximation of LLMs",
+      "objects": [
+        "参数(Weights)"
+      ],
+      "methods": [
+        "量化(Quant)",
+        "稀疏(Sparse)",
+        "低秩(LowRank)"
+      ]
+    },
+    {
+      "title": "SLoPe: Double-Pruned Sparse Plus Lazy Low-Rank Adapter Pretraining of LLMs",
+      "objects": [
+        "参数(Weights)"
+      ],
+      "methods": [
+        "剪枝(Prune)",
+        "稀疏(Sparse)",
+        "低秩(LowRank)"
+      ]
+    },
+    {
+      "title": "SaRA: High-Efficient Diffusion Model Fine-tuning with Progressive Sparse Low-Rank Adaptation",
+      "objects": [
+        "参数(Weights)"
+      ],
+      "methods": [
+        "稀疏(Sparse)",
+        "低秩(LowRank)",
+        "高效推理(Efficient)"
+      ]
+    },
+    {
+      "title": "SparsitySolver: Efficient Reinforcement Learning-based Pruning for LLMs",
+      "objects": [
+        "参数(Weights)"
+      ],
+      "methods": [
+        "剪枝(Prune)",
+        "稀疏(Sparse)",
+        "高效推理(Efficient)"
+      ]
+    },
+    {
+      "title": "PAROAttention: Pattern-Aware ReOrdering for Efficient Sparse and Quantized Attention in Visual Generation Models",
+      "objects": [
+        "参数(Weights)"
+      ],
+      "methods": [
+        "量化(Quant)",
+        "稀疏(Sparse)",
+        "高效推理(Efficient)"
+      ]
+    },
+    {
+      "title": "$\\text{S}^2$Q-VDiT: Accurate Quantized Video Diffusion Transformer with Salient Data and Sparse Token Distillation",
+      "objects": [
+        "参数(Weights)"
+      ],
+      "methods": [
+        "量化(Quant)",
+        "稀疏(Sparse)",
+        "蒸馏(Distill)"
+      ]
+    },
+    {
+      "title": "QDyLoRA: Quantized Dynamic Low-Rank Adaptation for Efficient Large Language Model Tuning",
+      "objects": [
+        "参数(Weights)"
+      ],
+      "methods": [
+        "量化(Quant)",
+        "低秩(LowRank)",
+        "高效推理(Efficient)"
+      ]
+    },
+    {
+      "title": "RA-LoRA: Rank-Adaptive Parameter-Efficient Fine-Tuning for Accurate 2-bit Quantized Large Language Models",
+      "objects": [
+        "参数(Weights)"
+      ],
+      "methods": [
+        "量化(Quant)",
+        "低秩(LowRank)",
+        "高效推理(Efficient)"
+      ]
+    },
+    {
+      "title": "ME-LORA: MEMORY-EFFICIENT BAYESIAN LOW- RANK ADAPTATION FOR LARGE LANGUAGE MODELS",
+      "objects": [
+        "参数(Weights)"
+      ],
+      "methods": [
+        "低秩(LowRank)",
+        "高效推理(Efficient)"
+      ]
+    },
+    {
+      "title": "Replicate and Quantize: A Plug-and-Play Strategy for Load Balancing in Sparse Mixture-of-Experts LLMs",
+      "objects": [
+        "通信(Comm)"
+      ],
+      "methods": [
+        "量化(Quant)",
+        "稀疏(Sparse)"
+      ]
+    },
+    {
+      "title": "LLM Distillation for Efficient Few-Shot Multiple Choice Question Answering",
+      "objects": [
+        "参数(Weights)"
+      ],
+      "methods": [
+        "蒸馏(Distill)",
+        "高效推理(Efficient)"
+      ]
+    },
+    {
+      "title": "SparseVLM: Visual Token Sparsification for Efficient Vision Language Models Inference",
+      "objects": [
+        "参数(Weights)"
+      ],
+      "methods": [
+        "稀疏(Sparse)",
+        "高效推理(Efficient)"
+      ]
+    },
+    {
+      "title": "DeFT: Decoding with Flash Tree-attention for Efficient Tree-structured LLM Inference",
+      "objects": [
+        "参数(Weights)"
+      ],
+      "methods": [
+        "剪枝(Prune)",
+        "高效推理(Efficient)"
+      ]
+    },
+    {
+      "title": "CtrLoRA: An Extensible and Efficient Framework for Controllable Image Generation",
+      "objects": [
+        "参数(Weights)"
+      ],
+      "methods": [
+        "低秩(LowRank)",
+        "高效推理(Efficient)"
+      ]
+    },
+    {
+      "title": "SparseDM: Toward Sparse Efficient Diffusion Models",
+      "objects": [
+        "参数(Weights)"
+      ],
+      "methods": [
+        "稀疏(Sparse)",
+        "高效推理(Efficient)"
+      ]
+    },
+    {
+      "title": "Efficient Automated Circuit Discovery in Transformers using Contextual Decomposition",
+      "objects": [
+        "参数(Weights)"
+      ],
+      "methods": [
+        "低秩(LowRank)",
+        "高效推理(Efficient)"
+      ]
+    },
+    {
+      "title": "I-LLM: Efficient Integer-Only Inference for Fully-Quantized Low-Bit Large Language Models",
+      "objects": [
+        "参数(Weights)"
+      ],
+      "methods": [
+        "量化(Quant)",
+        "高效推理(Efficient)"
+      ]
+    },
+    {
+      "title": "Mitigating Gradient Interference for Efficient Sparse Fine-Tuning of Large Language Models",
+      "objects": [
+        "参数(Weights)"
+      ],
+      "methods": [
+        "稀疏(Sparse)",
+        "高效推理(Efficient)"
+      ]
+    },
+    {
+      "title": "ExPLoRA: Parameter-Efficient Extended Pre-Training to Adapt Vision Transformers under Domain Shifts",
+      "objects": [
+        "参数(Weights)"
+      ],
+      "methods": [
+        "低秩(LowRank)",
+        "高效推理(Efficient)"
+      ]
+    },
+    {
+      "title": "EfficientQAT: Efficient Quantization-Aware Training for Large Language Models",
+      "objects": [
+        "参数(Weights)"
+      ],
+      "methods": [
+        "量化(Quant)",
+        "高效推理(Efficient)"
+      ]
+    },
+    {
+      "title": "EfficientSkip: Efficiently Transforming Dense LLMs into Sparse Variants",
+      "objects": [
+        "参数(Weights)"
+      ],
+      "methods": [
+        "稀疏(Sparse)",
+        "高效推理(Efficient)"
+      ]
+    },
+    {
+      "title": "R-Sparse: Rank-Aware Activation Sparsity for Efficient LLM Inference",
+      "objects": [
+        "参数(Weights)"
+      ],
+      "methods": [
+        "稀疏(Sparse)",
+        "高效推理(Efficient)"
+      ]
+    },
+    {
+      "title": "Sparse Attention Decomposition Applied to Circuit Tracing",
+      "objects": [
+        "参数(Weights)"
+      ],
+      "methods": [
+        "稀疏(Sparse)",
+        "低秩(LowRank)"
+      ]
+    },
+    {
+      "title": "OwLore: Outlier-weighed Layerwise Sampled Low-Rank Projection for Memory-Efficient LLM Fine-tuning",
+      "objects": [
+        "参数(Weights)"
+      ],
+      "methods": [
+        "低秩(LowRank)",
+        "高效推理(Efficient)"
+      ]
+    },
+    {
+      "title": "SHIELD: Multi-task Multi-distribution Vehicle Routing Solver with Sparsity & Hierarchy in Efficiently Layered Decoder",
+      "objects": [
+        "参数(Weights)"
+      ],
+      "methods": [
+        "稀疏(Sparse)",
+        "高效推理(Efficient)"
+      ]
+    },
+    {
+      "title": "LLM-VTP: LLM-Reasoned Visual Token Pruning for Efficient Multi-Modal Video Understanding",
+      "objects": [
+        "参数(Weights)"
+      ],
+      "methods": [
+        "剪枝(Prune)",
+        "高效推理(Efficient)"
+      ]
+    },
+    {
+      "title": "Rapfi: Distilling Efficient Neural Network for the Game of Gomoku",
+      "objects": [
+        "参数(Weights)"
+      ],
+      "methods": [
+        "蒸馏(Distill)",
+        "高效推理(Efficient)"
+      ]
+    },
+    {
+      "title": "H-QLoRA: Enhancing Quantized LLMs with Hierarchical Residual Learning",
+      "objects": [
+        "参数(Weights)"
+      ],
+      "methods": [
+        "量化(Quant)",
+        "低秩(LowRank)"
+      ]
+    },
+    {
+      "title": "Efficient Controlled Language Generation with Low-Rank Autoregressive Reward Models",
+      "objects": [
+        "参数(Weights)"
+      ],
+      "methods": [
+        "低秩(LowRank)",
+        "高效推理(Efficient)"
+      ]
+    },
+    {
+      "title": "Locret: Enhancing Eviction in Long-Context LLM Inference with Trained Retaining Heads",
+      "objects": [
+        "参数(Weights)"
+      ],
+      "methods": [
+        "剪枝(Prune)",
+        "稀疏(Sparse)"
+      ]
+    },
+    {
+      "title": "CoSeC-LCD: Controllable Self-Contrastive Latent Consistency Distillation for Better and Faster Human Animation Generation",
+      "objects": [
+        "参数(Weights)"
+      ],
+      "methods": [
+        "蒸馏(Distill)",
+        "高效推理(Efficient)"
+      ]
+    },
+    {
+      "title": "ViDiT-Q: Efficient and Accurate Quantization of Diffusion Transformers for Image and Video Generation",
+      "objects": [
+        "参数(Weights)"
+      ],
+      "methods": [
+        "量化(Quant)",
+        "高效推理(Efficient)"
+      ]
+    },
+    {
+      "title": "TidalDecode: Fast and Accurate LLM Decoding with Position Persistent Sparse Attention",
+      "objects": [
+        "参数(Weights)"
+      ],
+      "methods": [
+        "稀疏(Sparse)",
+        "高效推理(Efficient)"
+      ]
+    },
+    {
+      "title": "Low-Rank Correction for Quantized LLMs",
+      "objects": [
+        "参数(Weights)"
+      ],
+      "methods": [
+        "量化(Quant)",
+        "低秩(LowRank)"
+      ]
+    },
+    {
+      "title": "TensorGPT: Efficient Compression of Large Language Models based on Tensor-Train Decomposition",
+      "objects": [
+        "参数(Weights)"
+      ],
+      "methods": [
+        "低秩(LowRank)",
+        "高效推理(Efficient)"
+      ]
+    },
+    {
+      "title": "Advancing Text-to-3D Generation with Linearized Lookahead Variational Score Distillation",
+      "objects": [
+        "参数(Weights)"
+      ],
+      "methods": [
+        "剪枝(Prune)",
+        "蒸馏(Distill)"
+      ]
+    },
+    {
+      "title": "FeDeRA: Efficient Fine-tuning of Language Models in Federated Learning Leveraging Weight Decomposition",
+      "objects": [
+        "参数(Weights)"
+      ],
+      "methods": [
+        "低秩(LowRank)",
+        "高效推理(Efficient)"
+      ]
+    },
+    {
+      "title": "VL-Cache: Sparsity and Modality-Aware KV Cache Compression for Vision-Language Model Inference Acceleration",
+      "objects": [
+        "状态(State/KV)"
+      ],
+      "methods": [
+        "稀疏(Sparse)",
+        "高效推理(Efficient)"
+      ]
+    },
+    {
+      "title": "Hierarchy-Aided Sparse Attention For Fast LLMs Prefilling Inference",
+      "objects": [
+        "参数(Weights)"
+      ],
+      "methods": [
+        "稀疏(Sparse)",
+        "高效推理(Efficient)"
+      ]
+    },
+    {
+      "title": "DLP-LoRA: Efficient Task-Specific LoRA Fusion with a Dynamic, Lightweight Plugin for Large Language Models",
+      "objects": [
+        "参数(Weights)"
+      ],
+      "methods": [
+        "低秩(LowRank)",
+        "高效推理(Efficient)"
+      ]
+    },
+    {
+      "title": "Towards Efficient Automatic Self-Pruning of Large Language Models",
+      "objects": [
+        "参数(Weights)"
+      ],
+      "methods": [
+        "剪枝(Prune)",
+        "高效推理(Efficient)"
+      ]
+    },
+    {
+      "title": "Memory-Efficient Fine-Tuning via Structured Neural Network Pruning",
+      "objects": [
+        "参数(Weights)"
+      ],
+      "methods": [
+        "剪枝(Prune)",
+        "高效推理(Efficient)"
+      ]
+    },
+    {
+      "title": "L4Q: Parameter Efficient Quantization-Aware Fine-Tuning on Large Language Models",
+      "objects": [
+        "参数(Weights)"
+      ],
+      "methods": [
+        "量化(Quant)",
+        "高效推理(Efficient)"
+      ]
+    },
+    {
+      "title": "EigenLoRA: Recycle trained Adapters for Resource Efficient Adaptation and Inference",
+      "objects": [
+        "参数(Weights)"
+      ],
+      "methods": [
+        "低秩(LowRank)",
+        "高效推理(Efficient)"
+      ]
+    },
+    {
+      "title": "Towards Efficient Adaptation of Pruning Strategy in Large Language Models",
+      "objects": [
+        "参数(Weights)"
+      ],
+      "methods": [
+        "剪枝(Prune)",
+        "高效推理(Efficient)"
+      ]
+    },
+    {
+      "title": "HESSO: Towards Automatic Efficient and User Friendly Any Neural Network Training and Pruning",
+      "objects": [
+        "参数(Weights)"
+      ],
+      "methods": [
+        "剪枝(Prune)",
+        "高效推理(Efficient)"
+      ]
+    },
+    {
+      "title": "Rate/Distortion Constrained Model Quantization for Efficient Storage and Inference",
+      "objects": [
+        "参数(Weights)"
+      ],
+      "methods": [
+        "量化(Quant)",
+        "高效推理(Efficient)"
+      ]
+    },
+    {
+      "title": "Channel-Wise Mixed-Precision Quantization for Large Language Models",
+      "objects": [
+        "参数(Weights)"
+      ],
+      "methods": [
+        "量化(Quant)",
+        "剪枝(Prune)"
+      ]
+    },
+    {
+      "title": "PASER: Post-Training Data Selection for Efficient Pruned Large Language Model Recovery",
+      "objects": [
+        "参数(Weights)"
+      ],
+      "methods": [
+        "剪枝(Prune)",
+        "高效推理(Efficient)"
+      ]
+    },
+    {
+      "title": "QP-SNN: Quantized and Pruned Spiking Neural Networks",
+      "objects": [
+        "参数(Weights)"
+      ],
+      "methods": [
+        "量化(Quant)",
+        "剪枝(Prune)"
+      ]
+    },
+    {
+      "title": "Higher Order Transformers: Efficient Attention Mechanism for Tensor Structured Data",
+      "objects": [
+        "参数(Weights)"
+      ],
+      "methods": [
+        "剪枝(Prune)",
+        "高效推理(Efficient)"
+      ]
+    },
+    {
+      "title": "Deployment Efficient Reward-Free Exploration with Linear Function Approximation",
+      "objects": [
+        "参数(Weights)"
+      ],
+      "methods": [
+        "低秩(LowRank)",
+        "高效推理(Efficient)"
+      ]
+    },
+    {
+      "title": "Choices are More Important than Efforts: LLM Enables Efficient Multi-Agent Exploration",
+      "objects": [
+        "参数(Weights)"
+      ],
+      "methods": [
+        "低秩(LowRank)",
+        "高效推理(Efficient)"
+      ]
+    },
+    {
+      "title": "FlexPrefill: A Context-Aware Sparse Attention Mechanism for Efficient Long-Sequence Inference",
+      "objects": [
+        "参数(Weights)"
+      ],
+      "methods": [
+        "稀疏(Sparse)",
+        "高效推理(Efficient)"
+      ]
+    },
+    {
+      "title": "LogQuant: Log-Distributed 2-Bit Quantization of KV Cache with Superior Accuracy Preservation",
+      "objects": [
+        "状态(State/KV)",
+        "通信(Comm)"
+      ],
+      "methods": [
+        "量化(Quant)"
+      ]
+    },
+    {
+      "title": "Fast Multi-Mode Adaptive Generative Distillation for Continually Learning Diffusion Models",
+      "objects": [
+        "参数(Weights)"
+      ],
+      "methods": [
+        "蒸馏(Distill)",
+        "高效推理(Efficient)"
+      ]
+    },
+    {
+      "title": "Optimizing Knowledge Distillation in Transformers: Enabling Power of Multi-Head Attention without Alignment Barriers",
+      "objects": [
+        "参数(Weights)"
+      ],
+      "methods": [
+        "剪枝(Prune)",
+        "蒸馏(Distill)"
+      ]
+    },
+    {
+      "title": "MPCache: MPC-Friendly KV Cache Eviction for Efficient Private LLM Inference",
+      "objects": [
+        "状态(State/KV)"
+      ],
+      "methods": [
+        "稀疏(Sparse)",
+        "高效推理(Efficient)"
+      ]
+    },
+    {
+      "title": "Brain Bandit: A Biologically Grounded Neural Network for Efficient Control of Exploration",
+      "objects": [
+        "参数(Weights)"
+      ],
+      "methods": [
+        "低秩(LowRank)",
+        "高效推理(Efficient)"
+      ]
+    },
+    {
+      "title": "One QuantLLM for ALL: Fine-tuning Quantized LLMs Once for Efficient Deployments",
+      "objects": [
+        "参数(Weights)"
+      ],
+      "methods": [
+        "量化(Quant)",
+        "高效推理(Efficient)"
+      ]
+    },
+    {
+      "title": "Differentiation and Specialization of Attention Heads via the Refined Local Learning Coefficient",
+      "objects": [
+        "参数(Weights)"
+      ],
+      "methods": [
+        "剪枝(Prune)",
+        "高效推理(Efficient)"
+      ]
+    },
+    {
+      "title": "Provence: efficient and robust context pruning for retrieval-augmented generation",
+      "objects": [
+        "参数(Weights)"
+      ],
+      "methods": [
+        "剪枝(Prune)",
+        "高效推理(Efficient)"
+      ]
+    },
+    {
+      "title": "Integer Scale: A Free Lunch for Faster Fine-grained Quantization of LLMs",
+      "objects": [
+        "参数(Weights)"
+      ],
+      "methods": [
+        "量化(Quant)",
+        "高效推理(Efficient)"
+      ]
+    },
+    {
+      "title": "TimeStep Master: Asymmetrical Mixture of Timestep LoRA Experts for Versatile and Efficient Diffusion Models in Vision",
+      "objects": [
+        "通信(Comm)"
+      ],
+      "methods": [
+        "低秩(LowRank)",
+        "高效推理(Efficient)"
+      ]
+    },
+    {
+      "title": "Image Generation with Channel-wise Quantization",
+      "objects": [
+        "参数(Weights)"
+      ],
+      "methods": [
+        "量化(Quant)",
+        "剪枝(Prune)"
+      ]
+    },
+    {
+      "title": "Low Rank Quantization Adaptation for Large Language Model",
+      "objects": [
+        "参数(Weights)"
+      ],
+      "methods": [
+        "量化(Quant)",
+        "低秩(LowRank)"
+      ]
+    },
+    {
+      "title": "LazyLLM: DYNAMIC TOKEN PRUNING FOR EFFICIENT LONG CONTEXT LLM INFERENCE",
+      "objects": [
+        "参数(Weights)"
+      ],
+      "methods": [
+        "剪枝(Prune)",
+        "高效推理(Efficient)"
+      ]
+    },
+    {
+      "title": "HSR-Enhanced Sparse Attention Acceleration",
+      "objects": [
+        "参数(Weights)"
+      ],
+      "methods": [
+        "稀疏(Sparse)",
+        "高效推理(Efficient)"
+      ]
+    },
+    {
+      "title": "ZipVL: Efficient Large Vision-Language Models with Dynamic Token Sparsification and KV Cache Compression",
+      "objects": [
+        "状态(State/KV)"
+      ],
+      "methods": [
+        "稀疏(Sparse)",
+        "高效推理(Efficient)"
+      ]
+    },
+    {
+      "title": "DuoAttention: Efficient Long-Context LLM Inference with Retrieval and Streaming Heads",
+      "objects": [
+        "参数(Weights)"
+      ],
+      "methods": [
+        "剪枝(Prune)",
+        "高效推理(Efficient)"
+      ]
+    },
+    {
+      "title": "TAID: Temporally Adaptive Interpolated Distillation for Efficient Knowledge Transfer in Language Models",
+      "objects": [
+        "参数(Weights)"
+      ],
+      "methods": [
+        "蒸馏(Distill)",
+        "高效推理(Efficient)"
+      ]
+    },
+    {
+      "title": "Low-Rank Quantization-Aware Training for LLMs",
+      "objects": [
+        "参数(Weights)"
+      ],
+      "methods": [
+        "量化(Quant)",
+        "低秩(LowRank)"
+      ]
+    },
+    {
+      "title": "FASP: Fast and Accurate Structured Pruning of Large Language Models",
+      "objects": [
+        "参数(Weights)"
+      ],
+      "methods": [
+        "剪枝(Prune)",
+        "高效推理(Efficient)"
+      ]
+    },
+    {
+      "title": "IntLoRA: Integral Low-rank Adaptation of Quantized Diffusion Models",
+      "objects": [
+        "参数(Weights)"
+      ],
+      "methods": [
+        "量化(Quant)",
+        "低秩(LowRank)"
+      ]
+    },
+    {
+      "title": "FTP: Efficient Prefilling for Long-Context LLM Inference via FFN Token Pruning",
+      "objects": [
+        "参数(Weights)"
+      ],
+      "methods": [
+        "剪枝(Prune)",
+        "高效推理(Efficient)"
+      ]
+    },
+    {
+      "title": "Secure Diffusion Model Unlocked: Efficient Inference via Score Distillation",
+      "objects": [
+        "参数(Weights)"
+      ],
+      "methods": [
+        "蒸馏(Distill)",
+        "高效推理(Efficient)"
+      ]
+    },
+    {
+      "title": "Quantifying Emergence in Neural Networks: Insights from Pruning and Training Dynamics",
+      "objects": [
+        "参数(Weights)"
+      ],
+      "methods": [
+        "量化(Quant)",
+        "剪枝(Prune)"
+      ]
+    },
+    {
+      "title": "Beyond 2:4: Exploring V:N:M Sparsity for Efficient Transformer Inference on GPUs",
+      "objects": [
+        "参数(Weights)"
+      ],
+      "methods": [
+        "稀疏(Sparse)",
+        "高效推理(Efficient)"
+      ]
+    },
+    {
+      "title": "Compress then Serve: Serving Thousands of LoRA Adapters with Little Overhead",
+      "objects": [
+        "参数(Weights)"
+      ],
+      "methods": [
+        "剪枝(Prune)",
+        "低秩(LowRank)"
+      ]
+    },
+    {
+      "title": "Structured Mixture-of-Experts LLMs Compression via Singular Value Decomposition",
+      "objects": [
+        "通信(Comm)"
+      ],
+      "methods": [
+        "剪枝(Prune)",
+        "低秩(LowRank)"
+      ]
+    },
+    {
+      "title": "Dynamic-LLaVA: Efficient Multimodal Large Language Models via Dynamic Vision-language Context Sparsification",
+      "objects": [
+        "参数(Weights)"
+      ],
+      "methods": [
+        "稀疏(Sparse)",
+        "高效推理(Efficient)"
+      ]
+    },
+    {
+      "title": "Language Model-Driven Data Pruning Enables Efficient Active Learning",
+      "objects": [
+        "参数(Weights)"
+      ],
+      "methods": [
+        "剪枝(Prune)",
+        "高效推理(Efficient)"
+      ]
+    },
+    {
+      "title": "LoRA-Ensemble: Efficient Uncertainty Modelling for Self-attention Networks",
+      "objects": [
+        "参数(Weights)"
+      ],
+      "methods": [
+        "低秩(LowRank)",
+        "高效推理(Efficient)"
+      ]
+    },
+    {
+      "title": "SeedLoRA: A Fusion Approach to Efficient LLM Fine-Tuning",
+      "objects": [
+        "参数(Weights)"
+      ],
+      "methods": [
+        "低秩(LowRank)",
+        "高效推理(Efficient)"
+      ]
+    },
+    {
+      "title": "Exploring Data Distillation for efficient generation of Tabular Data",
+      "objects": [
+        "参数(Weights)"
+      ],
+      "methods": [
+        "蒸馏(Distill)",
+        "高效推理(Efficient)"
+      ]
+    },
+    {
+      "title": "LLM Pruning and Distillation in Practice",
+      "objects": [
+        "参数(Weights)"
+      ],
+      "methods": [
+        "剪枝(Prune)",
+        "蒸馏(Distill)"
+      ]
+    },
+    {
+      "title": "CipherPrune: Efficient and Scalable Private Transformer Inference",
+      "objects": [
+        "参数(Weights)"
+      ],
+      "methods": [
+        "剪枝(Prune)",
+        "高效推理(Efficient)"
+      ]
+    },
+    {
+      "title": "CASAK-V: Dynamic Sparse Attention and Adaptive KV-Cache Compression for Memory-Efficient Long-Context LLM Inference",
+      "objects": [
+        "状态(State/KV)"
+      ],
+      "methods": [
+        "稀疏(Sparse)",
+        "高效推理(Efficient)"
+      ]
+    },
+    {
+      "title": "GaLore$+$: Boosting Low-Rank Adaptation for LLMs with Cross-Head Projection",
+      "objects": [
+        "参数(Weights)"
+      ],
+      "methods": [
+        "剪枝(Prune)",
+        "低秩(LowRank)"
+      ]
+    },
+    {
+      "title": "Dynamic Low-Rank Sparse Adaptation for Large Language Models",
+      "objects": [
+        "参数(Weights)"
+      ],
+      "methods": [
+        "稀疏(Sparse)",
+        "低秩(LowRank)"
+      ]
+    },
+    {
+      "title": "SP-LoRA: Sparsity-Preserved Low-Rank Adaptation for Sparse Large Language Model",
+      "objects": [
+        "参数(Weights)"
+      ],
+      "methods": [
+        "稀疏(Sparse)",
+        "低秩(LowRank)"
+      ]
+    },
+    {
+      "title": "Targeted Low-rank Refinement: Enhancing Sparse Neural Networks with Precision",
+      "objects": [
+        "参数(Weights)"
+      ],
+      "methods": [
+        "稀疏(Sparse)",
+        "低秩(LowRank)"
+      ]
+    },
+    {
+      "title": "Train Small, Infer Large: Memory-Efficient LoRA Training for Large Language Models",
+      "objects": [
+        "参数(Weights)"
+      ],
+      "methods": [
+        "低秩(LowRank)",
+        "高效推理(Efficient)"
+      ]
+    },
+    {
+      "title": "RazorAttention: Efficient KV Cache Compression Through Retrieval Heads",
+      "objects": [
+        "状态(State/KV)"
+      ],
+      "methods": [
+        "剪枝(Prune)",
+        "高效推理(Efficient)"
+      ]
+    },
+    {
+      "title": "FedQLoRA: Federated Quantization-Aware LoRA for Large Language Models",
+      "objects": [
+        "参数(Weights)"
+      ],
+      "methods": [
+        "量化(Quant)",
+        "低秩(LowRank)"
+      ]
+    },
+    {
+      "title": "Beyond Autoregression: Fast LLMs via Self-Distillation Through Time",
+      "objects": [
+        "参数(Weights)"
+      ],
+      "methods": [
+        "蒸馏(Distill)",
+        "高效推理(Efficient)"
+      ]
+    },
+    {
+      "title": "Hybrid Fourier Score Distillation for Efficient One Image to 3D Object Generation",
+      "objects": [
+        "参数(Weights)"
+      ],
+      "methods": [
+        "蒸馏(Distill)",
+        "高效推理(Efficient)"
+      ]
+    },
+    {
+      "title": "Efficient Training of Sparse Autoencoders for Large Language Models via Layer Clustering",
+      "objects": [
+        "参数(Weights)"
+      ],
+      "methods": [
+        "稀疏(Sparse)",
+        "高效推理(Efficient)"
+      ]
+    }
+  ]
+}

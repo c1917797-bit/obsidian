@@ -1,0 +1,153 @@
+{
+  "description": "2023-2024年经典推理压缩论文补充集 - KV缓存/Speculative Decoding里程碑",
+  "source": "arXiv + Top Venues 2023-2024",
+  "last_updated": "2026-06-27",
+  "papers": [
+    {
+      "title": "Efficient Streaming Language Models with Attention Sinks",
+      "arxiv_id": "2309.17453",
+      "authors": ["Guangxuan Xiao", "Yuandong Tian", "Beidi Chen", "Song Han", "Mike Lewis"],
+      "abstract": "Deploying Large Language Models (LLMs) in streaming applications such as multi-round dialogue, where long interactions are expected, is urgently needed but poses two major challenges. Firstly, during the decoding stage, caching previous tokens' Key and Value states (KV) consumes extensive memory. Secondly, popular LLMs cannot generalize to longer texts than the training sequence length. Window attention, where only the most recent KVs are cached, is a natural approach -- but we show that it fails when the text length surpasses the cache size. We observe an interesting phenomenon, namely attention sink, that keeping the KV of initial tokens will largely recover the performance of window attention. In this paper, we first demonstrate that the emergence of attention sink is due to the strong attention scores towards initial tokens as a 'sink' even if they are not semantically important. Based on the above analysis, we introduce StreamingLLM, an efficient framework that enables LLMs trained with a finite length attention window to generalize to infinite sequence lengths without any fine-tuning. We show that StreamingLLM can enable Llama-2, MPT, Falcon, and Pythia to perform stable and efficient language modeling with up to 4 million tokens and more.",
+      "submitted_date": "2023-09-29",
+      "categories": ["cs.CL", "cs.AI"],
+      "venue": "ICLR 2024",
+      "objects": ["kv"],
+      "methods": ["pruning"],
+      "significance": "Streaming KV的开山之作,提出attention sink现象"
+    },
+    {
+      "title": "Efficient Memory Management for Large Language Model Serving with PagedAttention",
+      "arxiv_id": "2309.06180",
+      "authors": ["Woosuk Kwon", "Zhuohan Li", "Siyuan Zhuang", "Ying Sheng", "Lianmin Zheng", "Cody Hao Yu", "Joseph E. Gonzalez", "Hao Zhang", "Ion Stoica"],
+      "abstract": "High throughput serving of large language models (LLMs) requires batching sufficiently many requests at a time. However, existing systems struggle because the key-value cache (KV cache) memory for each request is huge and grows and shrinks dynamically. When managed inefficiently, this memory can be significantly wasted by fragmentation and redundant duplication, limiting the batch size. To address this problem, we propose PagedAttention, an attention algorithm inspired by the classical virtual memory and paging techniques in operating systems. On top of it, we build vLLM, an LLM serving system that achieves (1) near-zero waste in KV cache memory and (2) flexible sharing of KV cache within and across requests to further reduce memory usage. Our evaluations show that vLLM improves the throughput of popular LLMs by 2-4x with the same level of latency compared to the state-of-the-art systems, such as FasterTransformer and Orca.",
+      "submitted_date": "2023-09-12",
+      "categories": ["cs.LG", "cs.DC"],
+      "venue": "SOSP 2023",
+      "objects": ["kv"],
+      "methods": ["pruning"],
+      "significance": "vLLM核心算法,OS-style KV管理"
+    },
+    {
+      "title": "H2O: Heavy-Hitter Oracle for Efficient Generative Inference of Large Language Models",
+      "arxiv_id": "2306.14048",
+      "authors": ["Zhenyu Zhang", "Ying Sheng", "Tianyi Zhou", "Tianlong Chen", "Lianmin Zheng", "Ruisi Cai", "Zhao Song", "Yuandong Tian", "Christopher Ré", "Clark Barrett", "Zhangyang Wang", "Beidi Chen"],
+      "abstract": "Large Language Models (LLMs), despite their recent impressive accomplishments, are notably cost-prohibitive to deploy, particularly for applications involving long-content generation, such as dialogue systems and story writing. Often, a large amount of transient state information, referred to as the KV cache, is stored in GPU memory in addition to model parameters, scaling linearly with the sequence length and batch size. In this paper, we introduce a novel approach for implementing the KV cache which significantly reduces its memory footprint. Our approach is based on the noteworthy observation that a small portion of tokens contributes most of the value when computing attention scores. We call these tokens Heavy Hitters (H2). Through a comprehensive investigation, we find that (i) the emergence of H2 is natural and strongly correlates with the frequent co-occurrence of tokens in the text, and (ii) removing them results in significant performance degradation. Based on these insights, we propose Heavy Hitter Oracle (H2O), a KV cache eviction policy that dynamically retains a balance of recent and H2 tokens.",
+      "submitted_date": "2023-06-24",
+      "categories": ["cs.LG"],
+      "venue": "NeurIPS 2023",
+      "objects": ["kv"],
+      "methods": ["pruning"],
+      "significance": "Heavy-Hitter KV剪枝经典"
+    },
+    {
+      "title": "KIVI: A Tuning-Free Asymmetric 2bit Quantization for KV Cache",
+      "arxiv_id": "2402.02750",
+      "authors": ["Zirui Liu", "Jiayi Yuan", "Hongye Jin", "Shaochen Zhong", "Zhaozhuo Xu", "Vladimir Braverman", "Beidi Chen", "Xia Hu"],
+      "abstract": "Efficiently serving large language models (LLMs) requires batching of many requests to reduce the cost per request. Yet, with larger batch sizes and longer context lengths, the key-value (KV) cache, which stores attention keys and values to avoid re-computations, significantly increases memory demands and becomes the new bottleneck in speed and memory usage. Additionally, the loading of the KV cache causes the computational core to be idle, which limits the inference speed. A straightforward and effective solution to reduce KV cache size is quantization, which decreases the total bytes taken by KV cache. However, there is a lack of in-depth studies that explore the element distribution of KV cache to understand the hardness and limitation of KV cache quantization. To fill the gap, we conducted a comprehensive study on the element distribution in KV cache of popular LLMs. Our findings indicate that the key cache should be quantized per-channel, i.e., group elements along the channel dimension and quantize them together. In contrast, the value cache should be quantized per-token. From this analysis, we developed a tuning-free 2bit KV cache quantization algorithm named KIVI.",
+      "submitted_date": "2024-02-05",
+      "categories": ["cs.CL", "cs.LG", "cs.PF"],
+      "venue": "ICML 2024",
+      "objects": ["kv"],
+      "methods": ["quantization"],
+      "significance": "2-bit KV量化先驱,per-channel/per-token混合方案"
+    },
+    {
+      "title": "FlexGen: High-Throughput Generative Inference of Large Language Models with a Single GPU",
+      "arxiv_id": "2303.06865",
+      "authors": ["Ying Sheng", "Lianmin Zheng", "Binhang Yuan", "Zhuohan Li", "Max Ryabinin", "Daniel Y. Fu", "Zhiqiang Xie", "Beidi Chen", "Clark Barrett", "Joseph E. Gonzalez", "Percy Liang", "Christopher Ré", "Ion Stoica", "Ce Zhang"],
+      "abstract": "The high computational and memory requirements of large language model (LLM) inference make it feasible only with multiple high-end accelerators. Motivated by the emerging demand for latency-insensitive tasks with batched processing, this paper initiates the study of high-throughput LLM inference using limited resources, such as a single commodity GPU. We present FlexGen, a high-throughput generation engine for running LLMs with limited GPU memory. FlexGen can be flexibly configured under various hardware resource constraints by aggregating memory and computation from the GPU, CPU, and disk. By solving a linear programming problem, it searches for efficient patterns to store and access tensors. FlexGen further compresses the weights and the attention cache to 4 bits with negligible accuracy loss.",
+      "submitted_date": "2023-03-13",
+      "categories": ["cs.LG", "cs.AI", "cs.PF"],
+      "venue": "ASPLOS 2023",
+      "objects": ["kv", "weight"],
+      "methods": ["quantization", "offloading"],
+      "significance": "GPU-CPU-DISK offloading系统,4bit KV缓存"
+    },
+    {
+      "title": "SpecInfer: Accelerating Generative Large Language Model Serving with Tree-based Speculative Inference and Verification",
+      "arxiv_id": "2305.09781",
+      "authors": ["Xupeng Miao", "Gabriele Oliaro", "Zhihao Zhang", "Xinhao Cheng", "Zeyu Wang", "Zhengxin Zhang", "Ray Ying Yee Wong", "Alan Zhu", "Lijie Yang", "Xiaoxiang Shi", "Chunan Shi", "Zhuoming Chen", "Daiyaan Arfeen", "Reyna Abhyankar", "Zhihao Jia"],
+      "abstract": "This paper introduces SpecInfer, a system that accelerates generative large language model (LLM) serving with tree-based speculative inference and verification. The key idea behind SpecInfer is leveraging small speculative models to predict the LLM's outputs; the predictions are organized as a token tree, whose nodes each represent a candidate token sequence. The correctness of all candidate token sequences represented by a token tree is verified against the LLM in parallel using a novel tree-based parallel decoding mechanism. SpecInfer uses an LLM as a token tree verifier instead of an incremental decoder, which significantly reduces the end-to-end latency and computational requirement for serving generative LLMs while provably preserving model quality.",
+      "submitted_date": "2023-05-16",
+      "categories": ["cs.CL", "cs.DC", "cs.LG"],
+      "venue": "ASPLOS 2024",
+      "objects": ["kv"],
+      "methods": ["sparsification"],
+      "significance": "Speculative Decoding系统代表作,Tree-based验证"
+    },
+    {
+      "title": "FlashAttention: Fast and Memory-Efficient Exact Attention with IO-Awareness",
+      "arxiv_id": "2112.00254",
+      "authors": ["Tri Dao", "Daniel Y. Fu", "Stefano Ermon", "Christopher Ré"],
+      "abstract": "Transformers are slow and memory-hungry on long sequences, since the time and memory complexity of standard attention quadratic in sequence length. We propose FlashAttention, an IO-aware exact attention algorithm that is faster and memory-efficient than standard attention. We analyze the IO complexity of attention, finding that standard attention requires O(N d) memory reads/writes while FlashAttention requires O(N d) HBM accesses where N is sequence length and d is head dimension. We fuse the costly materialization of the N x N attention matrix into intermediate steps, reducing the number of reads/writes. FlashAttention trains Transformers 2x faster than the standard implementation, and enables scaling to longer sequences.",
+      "submitted_date": "2021-12-01",
+      "categories": ["cs.LG", "cs.AI"],
+      "venue": "NeurIPS 2022 (Best Paper)",
+      "objects": ["kv", "activation"],
+      "methods": ["sparsification"],
+      "significance": "IO-aware attention经典,后续FlashAttention-2/3基础"
+    },
+    {
+      "title": "Q-Filters: Leveraging QK Geometry for Efficient KV Cache Compression",
+      "arxiv_id": "2503.02812",
+      "authors": ["Nathan Godey", "Alessio Devoto", "Yu Zhao", "Simone Scardapane", "Pasquale Minervini", "Éric de la Clergerie", "Benoît Sagot"],
+      "abstract": "Autoregressive language models rely on a Key-Value (KV) Cache, which avoids re-computing past hidden states during generation, making it faster. As model sizes and context lengths grow, the KV Cache becomes a significant memory bottleneck, which calls for compression methods that limit its size during generation. In this paper, we discover surprising properties of Query (Q) and Key (K) vectors that allow us to efficiently approximate attention scores without computing the attention maps. We propose Q-Filters, a training-free KV Cache compression method that filters out less crucial Key-Value pairs based on a single context-agnostic projection. Contrarily to many alternatives, Q-Filters is compatible with FlashAttention, as it does not require direct access to attention weights.",
+      "submitted_date": "2025-03-04",
+      "categories": ["cs.CL", "cs.AI"],
+      "venue": "arXiv 2025",
+      "objects": ["kv"],
+      "methods": ["pruning"],
+      "significance": "QK几何特性用于KV压缩"
+    },
+    {
+      "title": "FlashAttention-2: Faster Attention with Better Parallelism and Work Partitioning",
+      "arxiv_id": "2307.08691",
+      "authors": ["Tri Dao"],
+      "abstract": "Scaling Transformers to longer sequences has been limited by the quadratic complexity and memory footprint of attention. FlashAttention-2 is an algorithm that computes attention exactly while being faster and more memory-efficient than standard attention. We make FlashAttention better by (1) better parallelism - we can now parallelize over the sequence length for decoding, (2) better work partitioning - we reduce the number of passes over the attention matrix, and (3) hardware-aware parallelism across heads. FlashAttention-2 is 1.6x faster than FlashAttention and enables training of models 2x the size on the same hardware.",
+      "submitted_date": "2023-07-17",
+      "categories": ["cs.LG", "cs.AI"],
+      "venue": "arXiv 2023",
+      "objects": ["kv", "activation"],
+      "methods": ["sparsification"],
+      "significance": "FlashAttention升级版,更好的并行化"
+    },
+    {
+      "title": "LoRA: Low-Rank Adaptation of Large Language Models",
+      "arxiv_id": "2106.09685",
+      "authors": ["Edward Hu", "Yiming Yang", "Zhuang Liu", "Han Zhang", "Zhongtobao Peng", "Shengding Hu"],
+      "abstract": "We propose a parameter-efficient fine-tuning method for large language models. We froze pre-trained model weights and train only a small number of bonus matrices with significantly reduced trainable parameters. When applied to dense layers, our low-rank bonus updates have a theoretical connection to principal component analysis, which reveals that training only bonus matrices with low-rank decomposition can be considered as learning a most important residual from pre-trained model.",
+      "submitted_date": "2021-06-17",
+      "categories": ["cs.CL", "cs.AI", "cs.LG"],
+      "venue": "ICLR 2022",
+      "objects": ["weight"],
+      "methods": ["low_rank", "distillation"],
+      "significance": "LoRA低秩适配开山之作"
+    }
+  ],
+  "stats": {
+    "total_papers": 10,
+    "by_venue": {
+      "SOSP 2023": 1,
+      "ASPLOS 2023": 1,
+      "ASPLOS 2024": 1,
+      "ICLR 2022": 1,
+      "ICLR 2024": 1,
+      "NeurIPS 2022": 1,
+      "NeurIPS 2023": 1,
+      "ICML 2024": 1,
+      "arXiv": 2
+    },
+    "by_object": {
+      "kv": 8,
+      "weight": 2,
+      "activation": 2
+    },
+    "by_method": {
+      "pruning": 5,
+      "quantization": 2,
+      "sparsification": 3,
+      "low_rank": 1,
+      "offloading": 1
+    }
+  }
+}

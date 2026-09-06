@@ -1,0 +1,2334 @@
+{
+  "rss_feeds": [
+    {
+      "id": "raw_githubusercontent_com_Papercopilot_paperlists_",
+      "name": "ICLR 2025 Papers",
+      "url": "https://raw.githubusercontent.com/Papercopilot/paperlists/main/iclr/iclr2025.json",
+      "type": "paperlists_json",
+      "category": "academic",
+      "priority": "P0",
+      "language": "en",
+      "enabled": true
+    },
+    {
+      "id": "raw_githubusercontent_com_Papercopilot_paperlists__1",
+      "name": "NeurIPS 2024 Papers",
+      "url": "https://raw.githubusercontent.com/Papercopilot/paperlists/main/nips/nips2024.json",
+      "type": "paperlists_json",
+      "category": "academic",
+      "priority": "P0",
+      "language": "en",
+      "enabled": true
+    },
+    {
+      "id": "raw_githubusercontent_com_Papercopilot_paperlists__2",
+      "name": "ICML 2024 Papers",
+      "url": "https://raw.githubusercontent.com/Papercopilot/paperlists/main/icml/icml2024.json",
+      "type": "paperlists_json",
+      "category": "academic",
+      "priority": "P0",
+      "language": "en",
+      "enabled": true
+    },
+    {
+      "id": "raw_githubusercontent_com_Papercopilot_paperlists__3",
+      "name": "CVPR 2024 Papers",
+      "url": "https://raw.githubusercontent.com/Papercopilot/paperlists/main/cvpr/cvpr2024.json",
+      "type": "paperlists_json",
+      "category": "academic",
+      "priority": "P0",
+      "language": "en",
+      "enabled": true
+    },
+    {
+      "id": "raw_githubusercontent_com_Papercopilot_paperlists__4",
+      "name": "EMNLP 2024 Papers",
+      "url": "https://raw.githubusercontent.com/Papercopilot/paperlists/main/emnlp/emnlp2024.json",
+      "type": "paperlists_json",
+      "category": "academic",
+      "priority": "P0",
+      "language": "en",
+      "enabled": true
+    },
+    {
+      "id": "raw_githubusercontent_com_Papercopilot_paperlists__5",
+      "name": "ACL 2024 Papers",
+      "url": "https://raw.githubusercontent.com/Papercopilot/paperlists/main/acl/acl2024.json",
+      "type": "paperlists_json",
+      "category": "academic",
+      "priority": "P0",
+      "language": "en",
+      "enabled": true
+    },
+    {
+      "id": "raw_githubusercontent_com_Papercopilot_paperlists__6",
+      "name": "CoRL 2024 Papers",
+      "url": "https://raw.githubusercontent.com/Papercopilot/paperlists/main/corl/corl2024.json",
+      "type": "paperlists_json",
+      "category": "academic",
+      "priority": "P0",
+      "language": "en",
+      "enabled": true
+    },
+    {
+      "id": "export_arxiv_org_api_query",
+      "name": "arXiv cs.AI",
+      "url": "http://export.arxiv.org/api/query?search_query=cat:cs.AI&max_results=50&sortBy=submittedDate&sortOrder=descending",
+      "type": "atom",
+      "category": "academic",
+      "priority": "P0",
+      "language": "en",
+      "enabled": true
+    },
+    {
+      "id": "huggingface_co_api_papers",
+      "name": "HuggingFace Daily Papers",
+      "url": "https://huggingface.co/api/papers?sort=trending&limit=50",
+      "type": "hf_api",
+      "category": "academic",
+      "priority": "P0",
+      "language": "en",
+      "enabled": true
+    },
+    {
+      "id": "github_com_vllm_project_vllm_releases_atom",
+      "name": "vLLM Releases",
+      "url": "https://github.com/vllm-project/vllm/releases.atom",
+      "type": "atom",
+      "category": "inference",
+      "priority": "P0",
+      "language": "en",
+      "enabled": true
+    },
+    {
+      "id": "github_com_sgl_project_sglang_releases_atom",
+      "name": "SGLang Releases",
+      "url": "https://github.com/sgl-project/sglang/releases.atom",
+      "type": "atom",
+      "category": "inference",
+      "priority": "P0",
+      "language": "en",
+      "enabled": true
+    },
+    {
+      "id": "github_com_NVIDIA_TensorRT_LLM_releases_atom",
+      "name": "TensorRT-LLM Releases",
+      "url": "https://github.com/NVIDIA/TensorRT-LLM/releases.atom",
+      "type": "atom",
+      "category": "inference",
+      "priority": "P0",
+      "language": "en",
+      "enabled": true
+    },
+    {
+      "id": "github_com_ggerganov_llama_cpp_releases_atom",
+      "name": "llama.cpp Releases",
+      "url": "https://github.com/ggerganov/llama.cpp/releases.atom",
+      "type": "atom",
+      "category": "inference",
+      "priority": "P0",
+      "language": "en",
+      "enabled": true
+    },
+    {
+      "id": "github_com_FlashAttention_FlashAttention_releases_",
+      "name": "FlashAttention Releases",
+      "url": "https://github.com/FlashAttention/FlashAttention/releases.atom",
+      "type": "atom",
+      "category": "inference",
+      "priority": "P0",
+      "language": "en",
+      "enabled": true
+    },
+    {
+      "id": "github_com_deepseek_ai_DeepSeek_V3_releases_atom",
+      "name": "DeepSeek Releases",
+      "url": "https://github.com/deepseek-ai/DeepSeek-V3/releases.atom",
+      "type": "atom",
+      "category": "industry",
+      "priority": "P0",
+      "language": "en",
+      "enabled": true
+    },
+    {
+      "id": "github_com_QwenLM_Qwen1_5_releases_atom",
+      "name": "Qwen Releases",
+      "url": "https://github.com/QwenLM/Qwen1.5/releases.atom",
+      "type": "atom",
+      "category": "industry",
+      "priority": "P0",
+      "language": "en",
+      "enabled": true
+    },
+    {
+      "id": "pytorch_org_blog_feed_xml",
+      "name": "PyTorch Blog",
+      "url": "https://pytorch.org/blog/feed.xml",
+      "type": "rss",
+      "category": "tech_blog",
+      "priority": "P0",
+      "language": "en",
+      "enabled": true
+    },
+    {
+      "id": "deepmind_google_blog_rss_xml",
+      "name": "Google DeepMind Blog",
+      "url": "https://deepmind.google/blog/rss.xml",
+      "type": "rss",
+      "category": "tech_blog",
+      "priority": "P0",
+      "language": "en",
+      "enabled": true
+    },
+    {
+      "id": "openai_com_blog_rss_xml",
+      "name": "OpenAI Blog",
+      "url": "https://openai.com/blog/rss.xml",
+      "type": "rss",
+      "category": "tech_blog",
+      "priority": "P0",
+      "language": "en",
+      "enabled": true
+    },
+    {
+      "id": "anthropic_com_news_rss",
+      "name": "Anthropic News",
+      "url": "https://www.anthropic.com/news.rss",
+      "type": "rss",
+      "category": "tech_blog",
+      "priority": "P0",
+      "language": "en",
+      "enabled": true
+    },
+    {
+      "id": "github_com_microsoft_autogen_releases_atom",
+      "name": "AutoGen Releases",
+      "url": "https://github.com/microsoft/autogen/releases.atom",
+      "type": "atom",
+      "category": "agent",
+      "priority": "P0",
+      "language": "en",
+      "enabled": true
+    },
+    {
+      "id": "github_com_langchain_ai_langchain_releases_atom",
+      "name": "LangChain Releases",
+      "url": "https://github.com/langchain-ai/langchain/releases.atom",
+      "type": "atom",
+      "category": "agent",
+      "priority": "P0",
+      "language": "en",
+      "enabled": true
+    },
+    {
+      "id": "github_com_run_llama_llama_index_releases_atom",
+      "name": "LlamaIndex Releases",
+      "url": "https://github.com/run-llama/llama_index/releases.atom",
+      "type": "atom",
+      "category": "agent",
+      "priority": "P0",
+      "language": "en",
+      "enabled": true
+    },
+    {
+      "id": "github_com_stanfordnlp_dspy_releases_atom",
+      "name": "DSPy Releases",
+      "url": "https://github.com/stanfordnlp/dspy/releases.atom",
+      "type": "atom",
+      "category": "agent",
+      "priority": "P0",
+      "language": "en",
+      "enabled": true
+    },
+    {
+      "id": "github_com_crewAI_crewai_releases_atom",
+      "name": "CrewAI Releases",
+      "url": "https://github.com/crewAI/crewai/releases.atom",
+      "type": "atom",
+      "category": "agent",
+      "priority": "P1",
+      "language": "en",
+      "enabled": true
+    },
+    {
+      "id": "github_com_geekan_MetaGPT_releases_atom",
+      "name": "MetaGPT Releases",
+      "url": "https://github.com/geekan/MetaGPT/releases.atom",
+      "type": "atom",
+      "category": "agent",
+      "priority": "P1",
+      "language": "en",
+      "enabled": true
+    },
+    {
+      "id": "github_com_browser_use_browser_use_releases_atom",
+      "name": "Browser Use Releases",
+      "url": "https://github.com/browser-use/browser-use/releases.atom",
+      "type": "atom",
+      "category": "agent",
+      "priority": "P1",
+      "language": "en",
+      "enabled": true
+    },
+    {
+      "id": "github_com_MemGPT_MemGPT_releases_atom",
+      "name": "MemGPT Releases",
+      "url": "https://github.com/MemGPT/MemGPT/releases.atom",
+      "type": "atom",
+      "category": "agent",
+      "priority": "P0",
+      "language": "en",
+      "enabled": true
+    },
+    {
+      "id": "github_com_letta_ai_letta_releases_atom",
+      "name": "Letta Releases",
+      "url": "https://github.com/letta-ai/letta/releases.atom",
+      "type": "atom",
+      "category": "agent",
+      "priority": "P0",
+      "language": "en",
+      "enabled": true
+    },
+    {
+      "id": "github_com_mem0ai_mem0_releases_atom",
+      "name": "Mem0 Releases",
+      "url": "https://github.com/mem0ai/mem0/releases.atom",
+      "type": "atom",
+      "category": "agent",
+      "priority": "P0",
+      "language": "en",
+      "enabled": true
+    },
+    {
+      "id": "github_com_OpenInterpreter_open_interpreter_releas",
+      "name": "Open Interpreter Releases",
+      "url": "https://github.com/OpenInterpreter/open-interpreter/releases.atom",
+      "type": "atom",
+      "category": "agent",
+      "priority": "P1",
+      "language": "en",
+      "enabled": true
+    },
+    {
+      "id": "github_com_microsoft_DeepSpeed_releases_atom",
+      "name": "DeepSpeed Releases",
+      "url": "https://github.com/microsoft/DeepSpeed/releases.atom",
+      "type": "atom",
+      "category": "training",
+      "priority": "P0",
+      "language": "en",
+      "enabled": true
+    },
+    {
+      "id": "github_com_lm_sys_FastChat_releases_atom",
+      "name": "LMSYS Releases",
+      "url": "https://github.com/lm-sys/FastChat/releases.atom",
+      "type": "atom",
+      "category": "benchmark",
+      "priority": "P0",
+      "language": "en",
+      "enabled": true
+    },
+    {
+      "id": "github_com_princeton_nlp_SWE_bench_releases_atom",
+      "name": "SWE-Bench Releases",
+      "url": "https://github.com/princeton-nlp/SWE-bench/releases.atom",
+      "type": "atom",
+      "category": "benchmark",
+      "priority": "P0",
+      "language": "en",
+      "enabled": true
+    },
+    {
+      "id": "qbitai_com_rss",
+      "name": "量子位",
+      "url": "https://www.qbitai.com/rss",
+      "type": "rss",
+      "category": "news_cn",
+      "priority": "P0",
+      "language": "zh",
+      "enabled": true
+    },
+    {
+      "id": "jiqizhixin_com_rss",
+      "name": "机器之心",
+      "url": "https://www.jiqizhixin.com/rss",
+      "type": "rss",
+      "category": "news_cn",
+      "priority": "P0",
+      "language": "zh",
+      "enabled": true
+    },
+    {
+      "id": "techcrunch_com_category_artificial_intelligence_fe",
+      "name": "TechCrunch AI",
+      "url": "https://techcrunch.com/category/artificial-intelligence/feed/",
+      "type": "rss",
+      "category": "news",
+      "priority": "P1",
+      "language": "en",
+      "enabled": true
+    },
+    {
+      "id": "venturebeat_com_category_ai_feed",
+      "name": "VentureBeat AI",
+      "url": "https://venturebeat.com/category/ai/feed/",
+      "type": "rss",
+      "category": "news",
+      "priority": "P1",
+      "language": "en",
+      "enabled": true
+    },
+    {
+      "id": "importai_substack_com_feed",
+      "name": "Import AI Newsletter",
+      "url": "https://importai.substack.com/feed",
+      "type": "rss",
+      "category": "news",
+      "priority": "P1",
+      "language": "en",
+      "enabled": true
+    },
+    {
+      "id": "therundown_ai_feed",
+      "name": "The Rundown AI",
+      "url": "https://therundown.ai/feed",
+      "type": "rss",
+      "category": "news",
+      "priority": "P1",
+      "language": "en",
+      "enabled": true
+    },
+    {
+      "id": "developer_nvidia_com_blog",
+      "name": "NVIDIA Developer Blog",
+      "url": "https://developer.nvidia.com/blog/",
+      "type": "web",
+      "category": "industry",
+      "priority": "P0",
+      "language": "en",
+      "enabled": true
+    },
+    {
+      "id": "nvidia_com_gtc",
+      "name": "NVIDIA GTC",
+      "url": "https://www.nvidia.com/gtc/",
+      "type": "web",
+      "category": "industry",
+      "priority": "P0",
+      "language": "en",
+      "enabled": true
+    },
+    {
+      "id": "together_ai_blog",
+      "name": "Together AI Blog",
+      "url": "https://www.together.ai/blog",
+      "type": "web",
+      "category": "industry",
+      "priority": "P0",
+      "language": "en",
+      "enabled": true
+    },
+    {
+      "id": "fireworks_ai_blog",
+      "name": "Fireworks AI Blog",
+      "url": "https://fireworks.ai/blog",
+      "type": "web",
+      "category": "industry",
+      "priority": "P0",
+      "language": "en",
+      "enabled": true
+    },
+    {
+      "id": "temporal_io_blog",
+      "name": "Temporal Blog",
+      "url": "https://temporal.io/blog",
+      "type": "web",
+      "category": "runtime",
+      "priority": "P0",
+      "language": "en",
+      "enabled": true
+    },
+    {
+      "id": "ray_io_blog",
+      "name": "Ray Blog",
+      "url": "https://www.ray.io/blog",
+      "type": "web",
+      "category": "runtime",
+      "priority": "P0",
+      "language": "en",
+      "enabled": true
+    },
+    {
+      "id": "langfuse_com_blog",
+      "name": "Langfuse Blog",
+      "url": "https://langfuse.com/blog",
+      "type": "web",
+      "category": "observability",
+      "priority": "P0",
+      "language": "en",
+      "enabled": true
+    },
+    {
+      "id": "blog_langchain_dev_",
+      "name": "LangChain Blog",
+      "url": "https://blog.langchain.dev/",
+      "type": "rss",
+      "category": "agent",
+      "priority": "P0",
+      "language": "en",
+      "enabled": true
+    },
+    {
+      "id": "blog_llamaindex_ai_",
+      "name": "LlamaIndex Blog",
+      "url": "https://blog.llamaindex.ai/",
+      "type": "rss",
+      "category": "agent",
+      "priority": "P0",
+      "language": "en",
+      "enabled": true
+    },
+    {
+      "id": "github_com_openai_openai_agents_releases_atom",
+      "name": "OpenAI Agents SDK",
+      "url": "https://github.com/openai/openai-agents/releases.atom",
+      "type": "atom",
+      "category": "agent",
+      "priority": "P0",
+      "language": "en",
+      "enabled": true
+    },
+    {
+      "id": "modelcontextprotocol_io_",
+      "name": "MCP Protocol",
+      "url": "https://modelcontextprotocol.io/",
+      "type": "web",
+      "category": "agent_protocol",
+      "priority": "P0",
+      "language": "en",
+      "enabled": true
+    },
+    {
+      "id": "cloud_google_com_blog_products_application_develop",
+      "name": "Google A2A Protocol",
+      "url": "https://cloud.google.com/blog/products/application-development/agent-to-agent-a2a-protocol",
+      "type": "web",
+      "category": "agent_protocol",
+      "priority": "P0",
+      "language": "en",
+      "enabled": true
+    },
+    {
+      "id": "github_com_langchain_ai_langgraph_releases_atom",
+      "name": "LangGraph Releases",
+      "url": "https://github.com/langchain-ai/langgraph/releases.atom",
+      "type": "atom",
+      "category": "agent",
+      "priority": "P0",
+      "language": "en",
+      "enabled": true
+    },
+    {
+      "id": "github_com_microsoft_semantic_kernel_releases_atom",
+      "name": "Semantic Kernel Releases",
+      "url": "https://github.com/microsoft/semantic-kernel/releases.atom",
+      "type": "atom",
+      "category": "agent",
+      "priority": "P0",
+      "language": "en",
+      "enabled": true
+    },
+    {
+      "id": "triton_lang_org_",
+      "name": "Triton Language",
+      "url": "https://triton-lang.org/",
+      "type": "web",
+      "category": "kernel",
+      "priority": "P0",
+      "language": "en",
+      "enabled": true
+    },
+    {
+      "id": "github_com_nvidia_cutlass_releases_atom",
+      "name": "CUTLASS",
+      "url": "https://github.com/nvidia/cutlass/releases.atom",
+      "type": "atom",
+      "category": "kernel",
+      "priority": "P0",
+      "language": "en",
+      "enabled": true
+    },
+    {
+      "id": "github_com_flashinfer_flashinfer_releases_atom",
+      "name": "FlashInfer",
+      "url": "https://github.com/flashinfer/flashinfer/releases.atom",
+      "type": "atom",
+      "category": "inference",
+      "priority": "P0",
+      "language": "en",
+      "enabled": true
+    },
+    {
+      "id": "github_com_deepseek_ai_DeepGEMM_releases_atom",
+      "name": "DeepGEMM",
+      "url": "https://github.com/deepseek-ai/DeepGEMM/releases.atom",
+      "type": "atom",
+      "category": "inference",
+      "priority": "P0",
+      "language": "en",
+      "enabled": true
+    },
+    {
+      "id": "github_com_MoonshotAI_Mooncake_releases_atom",
+      "name": "Mooncake",
+      "url": "https://github.com/MoonshotAI/Mooncake/releases.atom",
+      "type": "atom",
+      "category": "inference",
+      "priority": "P0",
+      "language": "en",
+      "enabled": true
+    },
+    {
+      "id": "github_com_getzep_zep_releases_atom",
+      "name": "Zep Releases",
+      "url": "https://github.com/getzep/zep/releases.atom",
+      "type": "atom",
+      "category": "agent",
+      "priority": "P0",
+      "language": "en",
+      "enabled": true
+    },
+    {
+      "id": "github_com_microsoft_graphrag_releases_atom",
+      "name": "GraphRAG",
+      "url": "https://github.com/microsoft/graphrag/releases.atom",
+      "type": "atom",
+      "category": "agent",
+      "priority": "P1",
+      "language": "en",
+      "enabled": true
+    },
+    {
+      "id": "github_com_milvus_io_milvus_releases_atom",
+      "name": "Milvus Releases",
+      "url": "https://github.com/milvus-io/milvus/releases.atom",
+      "type": "atom",
+      "category": "storage",
+      "priority": "P0",
+      "language": "en",
+      "enabled": true
+    },
+    {
+      "id": "github_com_qdrant_qdrant_releases_atom",
+      "name": "Qdrant Releases",
+      "url": "https://github.com/qdrant/qdrant/releases.atom",
+      "type": "atom",
+      "category": "storage",
+      "priority": "P0",
+      "language": "en",
+      "enabled": true
+    },
+    {
+      "id": "github_com_camel_ai_camel_releases_atom",
+      "name": "CAMEL AI",
+      "url": "https://github.com/camel-ai/camel/releases.atom",
+      "type": "atom",
+      "category": "agent",
+      "priority": "P0",
+      "language": "en",
+      "enabled": true
+    },
+    {
+      "id": "github_com_MineDojo_Voyager_releases_atom",
+      "name": "Voyager",
+      "url": "https://github.com/MineDojo/Voyager/releases.atom",
+      "type": "atom",
+      "category": "agent",
+      "priority": "P1",
+      "language": "en",
+      "enabled": true
+    },
+    {
+      "id": "github_com_volcengine_verl_releases_atom",
+      "name": "verl Releases",
+      "url": "https://github.com/volcengine/verl/releases.atom",
+      "type": "atom",
+      "category": "training",
+      "priority": "P0",
+      "language": "en",
+      "enabled": true
+    },
+    {
+      "id": "github_com_huggingface_trl_releases_atom",
+      "name": "TRL Releases",
+      "url": "https://github.com/huggingface/trl/releases.atom",
+      "type": "atom",
+      "category": "training",
+      "priority": "P0",
+      "language": "en",
+      "enabled": true
+    },
+    {
+      "id": "github_com_OpenRLHF_OpenRLHF_releases_atom",
+      "name": "OpenRLHF Releases",
+      "url": "https://github.com/OpenRLHF/OpenRLHF/releases.atom",
+      "type": "atom",
+      "category": "training",
+      "priority": "P0",
+      "language": "en",
+      "enabled": true
+    },
+    {
+      "id": "github_com_argmaxinc_distilabel_releases_atom",
+      "name": "distilabel Releases",
+      "url": "https://github.com/argmaxinc/distilabel/releases.atom",
+      "type": "atom",
+      "category": "training",
+      "priority": "P0",
+      "language": "en",
+      "enabled": true
+    },
+    {
+      "id": "aws_amazon_com_blogs_machine_learning",
+      "name": "AWS ML Blog",
+      "url": "https://aws.amazon.com/blogs/machine-learning/",
+      "type": "web",
+      "category": "industry",
+      "priority": "P0",
+      "language": "en",
+      "enabled": true
+    },
+    {
+      "id": "azure_microsoft_com_en_us_blog_machine_learning",
+      "name": "Azure ML Blog",
+      "url": "https://azure.microsoft.com/en-us/blog/machine-learning/",
+      "type": "web",
+      "category": "industry",
+      "priority": "P0",
+      "language": "en",
+      "enabled": true
+    },
+    {
+      "id": "cloud_google_com_blog_products_ai_machine_learning",
+      "name": "Google Cloud AI Blog",
+      "url": "https://cloud.google.com/blog/products/ai-machine-learning",
+      "type": "web",
+      "category": "industry",
+      "priority": "P0",
+      "language": "en",
+      "enabled": true
+    },
+    {
+      "id": "mistral_ai_news",
+      "name": "Mistral News",
+      "url": "https://mistral.ai/news/",
+      "type": "web",
+      "category": "industry",
+      "priority": "P0",
+      "language": "en",
+      "enabled": true
+    },
+    {
+      "id": "cohere_com_blog",
+      "name": "Cohere Blog",
+      "url": "https://cohere.com/blog",
+      "type": "web",
+      "category": "industry",
+      "priority": "P1",
+      "language": "en",
+      "enabled": true
+    },
+    {
+      "id": "groq_com_blog",
+      "name": "Groq Blog",
+      "url": "https://groq.com/blog/",
+      "type": "web",
+      "category": "industry",
+      "priority": "P1",
+      "language": "en",
+      "enabled": true
+    },
+    {
+      "id": "cerebras_net_blog",
+      "name": "Cerebras Blog",
+      "url": "https://www.cerebras.net/blog/",
+      "type": "web",
+      "category": "industry",
+      "priority": "P1",
+      "language": "en",
+      "enabled": true
+    },
+    {
+      "id": "sambanova_ai_blog",
+      "name": "SambaNova Blog",
+      "url": "https://sambanova.ai/blog",
+      "type": "web",
+      "category": "industry",
+      "priority": "P1",
+      "language": "en",
+      "enabled": true
+    },
+    {
+      "id": "tenstorrent_com_blog",
+      "name": "Tenstorrent Blog",
+      "url": "https://tenstorrent.com/blog/",
+      "type": "web",
+      "category": "industry",
+      "priority": "P1",
+      "language": "en",
+      "enabled": true
+    },
+    {
+      "id": "hiascend_com_",
+      "name": "昇腾社区",
+      "url": "https://www.hiascend.com/",
+      "type": "web",
+      "category": "industry",
+      "priority": "P0",
+      "language": "zh",
+      "enabled": true
+    },
+    {
+      "id": "github_com_firecracker_microvm_firecracker_release",
+      "name": "Firecracker Releases",
+      "url": "https://github.com/firecracker-microvm/firecracker/releases.atom",
+      "type": "atom",
+      "category": "runtime",
+      "priority": "P0",
+      "language": "en",
+      "enabled": true
+    },
+    {
+      "id": "github_com_modal_labs_modal_client_releases_atom",
+      "name": "Modal Releases",
+      "url": "https://github.com/modal-labs/modal-client/releases.atom",
+      "type": "atom",
+      "category": "runtime",
+      "priority": "P0",
+      "language": "en",
+      "enabled": true
+    },
+    {
+      "id": "github_com_e2b_dev_e2b_releases_atom",
+      "name": "E2B Releases",
+      "url": "https://github.com/e2b-dev/e2b/releases.atom",
+      "type": "atom",
+      "category": "runtime",
+      "priority": "P0",
+      "language": "en",
+      "enabled": true
+    },
+    {
+      "id": "github_com_daytonaio_daytona_releases_atom",
+      "name": "Daytona Releases",
+      "url": "https://github.com/daytonaio/daytona/releases.atom",
+      "type": "atom",
+      "category": "runtime",
+      "priority": "P0",
+      "language": "en",
+      "enabled": true
+    },
+    {
+      "id": "github_com_dapr_dapr_releases_atom",
+      "name": "Dapr Releases",
+      "url": "https://github.com/dapr/dapr/releases.atom",
+      "type": "atom",
+      "category": "runtime",
+      "priority": "P0",
+      "language": "en",
+      "enabled": true
+    },
+    {
+      "id": "kubernetes_io_feed_xml",
+      "name": "Kubernetes",
+      "url": "https://kubernetes.io/feed.xml",
+      "type": "rss",
+      "category": "runtime",
+      "priority": "P0",
+      "language": "en",
+      "enabled": true
+    },
+    {
+      "id": "github_com_kubeflow_kubeflow_releases_atom",
+      "name": "Kubeflow",
+      "url": "https://github.com/kubeflow/kubeflow/releases.atom",
+      "type": "atom",
+      "category": "runtime",
+      "priority": "P0",
+      "language": "en",
+      "enabled": true
+    },
+    {
+      "id": "github_com_ray_project_kuberay_releases_atom",
+      "name": "KubeRay",
+      "url": "https://github.com/ray-project/kuberay/releases.atom",
+      "type": "atom",
+      "category": "runtime",
+      "priority": "P0",
+      "language": "en",
+      "enabled": true
+    },
+    {
+      "id": "mlcommons_org_inference",
+      "name": "MLPerf Inference",
+      "url": "https://mlcommons.org/inference/",
+      "type": "web",
+      "category": "benchmark",
+      "priority": "P0",
+      "language": "en",
+      "enabled": true
+    },
+    {
+      "id": "openrouter_ai_rankings",
+      "name": "OpenRouter Rankings",
+      "url": "https://openrouter.ai/rankings",
+      "type": "web",
+      "category": "benchmark",
+      "priority": "P0",
+      "language": "en",
+      "enabled": true
+    },
+    {
+      "id": "lmarena_ai_",
+      "name": "LMSYS Arena",
+      "url": "https://lmarena.ai",
+      "type": "web",
+      "category": "benchmark",
+      "priority": "P0",
+      "language": "en",
+      "enabled": true
+    },
+    {
+      "id": "cognition_ai_",
+      "name": "Cognition AI",
+      "url": "https://www.cognition.ai/",
+      "type": "web",
+      "category": "agent_industry",
+      "priority": "P0",
+      "language": "en",
+      "enabled": true
+    },
+    {
+      "id": "glean_com_",
+      "name": "Glean",
+      "url": "https://www.glean.com/",
+      "type": "web",
+      "category": "agent_industry",
+      "priority": "P1",
+      "language": "en",
+      "enabled": true
+    },
+    {
+      "id": "harvey_ai_",
+      "name": "Harvey AI",
+      "url": "https://harvey.ai/",
+      "type": "web",
+      "category": "agent_industry",
+      "priority": "P1",
+      "language": "en",
+      "enabled": true
+    },
+    {
+      "id": "servicenow_com_products_ai_html",
+      "name": "ServiceNow AI",
+      "url": "https://www.servicenow.com/products/ai.html",
+      "type": "web",
+      "category": "agent_industry",
+      "priority": "P1",
+      "language": "en",
+      "enabled": true
+    },
+    {
+      "id": "uipath_com_product_ai",
+      "name": "UiPath AI",
+      "url": "https://www.uipath.com/product/ai",
+      "type": "web",
+      "category": "agent_industry",
+      "priority": "P1",
+      "language": "en",
+      "enabled": true
+    },
+    {
+      "id": "bailian_console_aliyun_com_",
+      "name": "阿里云百炼",
+      "url": "https://bailian.console.aliyun.com/",
+      "type": "web",
+      "category": "agent_industry",
+      "priority": "P1",
+      "language": "zh",
+      "enabled": false
+    },
+    {
+      "id": "huaweicloud_com_product_pangu_html",
+      "name": "华为云盘古",
+      "url": "https://www.huaweicloud.com/product/pangu.html",
+      "type": "web",
+      "category": "agent_industry",
+      "priority": "P1",
+      "language": "zh",
+      "enabled": false
+    },
+    {
+      "id": "cloud_tencent_com_product_hunyuan",
+      "name": "腾讯云混元",
+      "url": "https://cloud.tencent.com/product/hunyuan",
+      "type": "web",
+      "category": "agent_industry",
+      "priority": "P1",
+      "language": "zh",
+      "enabled": false
+    },
+    {
+      "id": "cloud_baidu_com_product_wenxin_html",
+      "name": "百度文心",
+      "url": "https://cloud.baidu.com/product/wenxin.html",
+      "type": "web",
+      "category": "agent_industry",
+      "priority": "P1",
+      "language": "zh",
+      "enabled": true
+    },
+    {
+      "id": "artificialanalysis_ai_",
+      "name": "Artificial Analysis",
+      "url": "https://artificialanalysis.ai/",
+      "type": "web",
+      "category": "economics",
+      "priority": "P0",
+      "language": "en",
+      "enabled": true
+    },
+    {
+      "id": "semianalysis_com_",
+      "name": "SemiAnalysis",
+      "url": "https://semianalysis.com/",
+      "type": "web",
+      "category": "economics",
+      "priority": "P1",
+      "language": "en",
+      "enabled": true
+    },
+    {
+      "id": "latent_space_",
+      "name": "Latent Space",
+      "url": "https://www.latent.space/",
+      "type": "web",
+      "category": "economics",
+      "priority": "P1",
+      "language": "en",
+      "enabled": true
+    },
+    {
+      "id": "epochai_org_",
+      "name": "Epoch AI",
+      "url": "https://epochai.org/",
+      "type": "web",
+      "category": "economics",
+      "priority": "P1",
+      "language": "en",
+      "enabled": true
+    },
+    {
+      "id": "boundaryml_com_",
+      "name": "BoundaryML",
+      "url": "https://boundaryml.com/",
+      "type": "web",
+      "category": "reliability",
+      "priority": "P1",
+      "language": "en",
+      "enabled": true
+    },
+    {
+      "id": "arize_com_",
+      "name": "Arize AI",
+      "url": "https://arize.com/",
+      "type": "web",
+      "category": "reliability",
+      "priority": "P1",
+      "language": "en",
+      "enabled": true
+    },
+    {
+      "id": "whylabs_ai_",
+      "name": "WhyLabs",
+      "url": "https://whylabs.ai/",
+      "type": "web",
+      "category": "reliability",
+      "priority": "P1",
+      "language": "en",
+      "enabled": true
+    },
+    {
+      "id": "opentelemetry_io_",
+      "name": "OpenTelemetry",
+      "url": "https://opentelemetry.io/",
+      "type": "web",
+      "category": "observability",
+      "priority": "P0",
+      "language": "en",
+      "enabled": true
+    },
+    {
+      "id": "trulens_org_",
+      "name": "TruLens",
+      "url": "https://trulens.org/",
+      "type": "web",
+      "category": "reliability",
+      "priority": "P1",
+      "language": "en",
+      "enabled": true
+    },
+    {
+      "id": "braintrust_dev_",
+      "name": "Braintrust",
+      "url": "https://www.braintrust.dev/",
+      "type": "web",
+      "category": "reliability",
+      "priority": "P1",
+      "language": "en",
+      "enabled": true
+    },
+    {
+      "id": "patronus_ai_",
+      "name": "Patronus AI",
+      "url": "https://www.patronus.ai/",
+      "type": "web",
+      "category": "reliability",
+      "priority": "P1",
+      "language": "en",
+      "enabled": true
+    },
+    {
+      "id": "github_com_NVIDIA_nccl_releases_atom",
+      "name": "NCCL",
+      "url": "https://github.com/NVIDIA/nccl/releases.atom",
+      "type": "atom",
+      "category": "hardware",
+      "priority": "P0",
+      "language": "en",
+      "enabled": true
+    },
+    {
+      "id": "github_com_ROCm_ROCm_releases_atom",
+      "name": "AMD ROCm",
+      "url": "https://github.com/ROCm/ROCm/releases.atom",
+      "type": "atom",
+      "category": "hardware",
+      "priority": "P1",
+      "language": "en",
+      "enabled": true
+    },
+    {
+      "id": "github_com_apache_tvm_releases_atom",
+      "name": "TVM Releases",
+      "url": "https://github.com/apache/tvm/releases.atom",
+      "type": "atom",
+      "category": "kernel",
+      "priority": "P0",
+      "language": "en",
+      "enabled": true
+    },
+    {
+      "id": "huggingface_co_datasets",
+      "name": "HuggingFace Datasets",
+      "url": "https://huggingface.co/datasets",
+      "type": "web",
+      "category": "data",
+      "priority": "P0",
+      "language": "en",
+      "enabled": false
+    },
+    {
+      "id": "wandb_ai_site_articles",
+      "name": "Weights & Biases",
+      "url": "https://wandb.ai/site/articles",
+      "type": "web",
+      "category": "data",
+      "priority": "P0",
+      "language": "en",
+      "enabled": false
+    },
+    {
+      "id": "scale_com_",
+      "name": "Scale AI",
+      "url": "https://scale.com/",
+      "type": "web",
+      "category": "data",
+      "priority": "P1",
+      "language": "en",
+      "enabled": true
+    },
+    {
+      "id": "snorkel_ai_",
+      "name": "Snorkel AI",
+      "url": "https://snorkel.ai/",
+      "type": "web",
+      "category": "data",
+      "priority": "P1",
+      "language": "en",
+      "enabled": false
+    },
+    {
+      "id": "gretel_ai_",
+      "name": "Gretel AI",
+      "url": "https://gretel.ai/",
+      "type": "web",
+      "category": "data",
+      "priority": "P1",
+      "language": "en",
+      "enabled": false
+    },
+    {
+      "id": "github_com_bytedance_lightseq_releases_atom",
+      "name": "LightSeq",
+      "url": "https://github.com/bytedance/lightseq/releases.atom",
+      "type": "atom",
+      "category": "inference",
+      "priority": "P1",
+      "language": "en",
+      "enabled": true
+    },
+    {
+      "id": "github_com_hpcaitech_ColossalAI_releases_atom",
+      "name": "ColossalAI",
+      "url": "https://github.com/hpcaitech/ColossalAI/releases.atom",
+      "type": "atom",
+      "category": "training",
+      "priority": "P1",
+      "language": "en",
+      "enabled": true
+    },
+    {
+      "id": "github_com_NVIDIA_Megatron_LM_releases_atom",
+      "name": "Megatron-LM",
+      "url": "https://github.com/NVIDIA/Megatron-LM/releases.atom",
+      "type": "atom",
+      "category": "training",
+      "priority": "P0",
+      "language": "en",
+      "enabled": true
+    },
+    {
+      "id": "github_com_OAID_Tengine_releases_atom",
+      "name": "Tengine",
+      "url": "https://github.com/OAID/Tengine/releases.atom",
+      "type": "atom",
+      "category": "inference",
+      "priority": "P1",
+      "language": "en",
+      "enabled": true
+    },
+    {
+      "id": "github_com_Tencent_ncnn_releases_atom",
+      "name": "NCNN",
+      "url": "https://github.com/Tencent/ncnn/releases.atom",
+      "type": "atom",
+      "category": "inference",
+      "priority": "P1",
+      "language": "en",
+      "enabled": true
+    },
+    {
+      "id": "arxiv_org_abs_2310_11702",
+      "name": "vAttention",
+      "url": "https://arxiv.org/abs/2310.11702",
+      "type": "paper",
+      "category": "inference",
+      "priority": "P0",
+      "language": "en",
+      "enabled": true
+    },
+    {
+      "id": "github_com_hao_ai_lab_CacheBlend_releases_atom",
+      "name": "CacheBlend",
+      "url": "https://github.com/hao-ai-lab/CacheBlend/releases.atom",
+      "type": "atom",
+      "category": "inference",
+      "priority": "P1",
+      "language": "en",
+      "enabled": true
+    },
+    {
+      "id": "github_com_hao_ai_lab_LMCache_releases_atom",
+      "name": "LMCache",
+      "url": "https://github.com/hao-ai-lab/LMCache/releases.atom",
+      "type": "atom",
+      "category": "inference",
+      "priority": "P1",
+      "language": "en",
+      "enabled": true
+    },
+    {
+      "id": "github_com_langchain_ai_langmem_releases_atom",
+      "name": "LangMem",
+      "url": "https://github.com/langchain-ai/langmem/releases.atom",
+      "type": "atom",
+      "category": "agent",
+      "priority": "P0",
+      "language": "en",
+      "enabled": true
+    },
+    {
+      "id": "github_com_frameworksai_graphiti_releases_atom",
+      "name": "Graphiti",
+      "url": "https://github.com/frameworksai/graphiti/releases.atom",
+      "type": "atom",
+      "category": "agent",
+      "priority": "P1",
+      "language": "en",
+      "enabled": true
+    },
+    {
+      "id": "arxiv_org_abs_2402_09523",
+      "name": "LongMem",
+      "url": "https://arxiv.org/abs/2402.09523",
+      "type": "paper",
+      "category": "agent",
+      "priority": "P1",
+      "language": "en",
+      "enabled": true
+    },
+    {
+      "id": "github_com_michael_wzhu_HippoRAG_releases_atom",
+      "name": "HippoRAG",
+      "url": "https://github.com/michael-wzhu/HippoRAG/releases.atom",
+      "type": "atom",
+      "category": "agent",
+      "priority": "P1",
+      "language": "en",
+      "enabled": true
+    },
+    {
+      "id": "github_com_openai_swarm_releases_atom",
+      "name": "OpenAI Swarm",
+      "url": "https://github.com/openai/swarm/releases.atom",
+      "type": "atom",
+      "category": "agent",
+      "priority": "P0",
+      "language": "en",
+      "enabled": true
+    },
+    {
+      "id": "github_com_PrefectHQ_prefect_releases_atom",
+      "name": "Prefect",
+      "url": "https://github.com/PrefectHQ/prefect/releases.atom",
+      "type": "atom",
+      "category": "runtime",
+      "priority": "P1",
+      "language": "en",
+      "enabled": false
+    },
+    {
+      "id": "github_com_dagster_io_dagster_releases_atom",
+      "name": "Dagster",
+      "url": "https://github.com/dagster-io/dagster/releases.atom",
+      "type": "atom",
+      "category": "runtime",
+      "priority": "P1",
+      "language": "en",
+      "enabled": false
+    },
+    {
+      "id": "github_com_argoproj_argo_workflows_releases_atom",
+      "name": "Argo Workflows",
+      "url": "https://github.com/argoproj/argo-workflows/releases.atom",
+      "type": "atom",
+      "category": "runtime",
+      "priority": "P1",
+      "language": "en",
+      "enabled": false
+    },
+    {
+      "id": "github_com_redpanda_data_redpanda_releases_atom",
+      "name": "Redpanda",
+      "url": "https://github.com/redpanda-data/redpanda/releases.atom",
+      "type": "atom",
+      "category": "runtime",
+      "priority": "P0",
+      "language": "en",
+      "enabled": false
+    },
+    {
+      "id": "github_com_nats_io_nats_server_releases_atom",
+      "name": "NATS",
+      "url": "https://github.com/nats-io/nats-server/releases.atom",
+      "type": "atom",
+      "category": "runtime",
+      "priority": "P1",
+      "language": "en",
+      "enabled": false
+    },
+    {
+      "id": "github_com_wasmCloud_wasmcloud_releases_atom",
+      "name": "wasmCloud",
+      "url": "https://github.com/wasmCloud/wasmcloud/releases.atom",
+      "type": "atom",
+      "category": "runtime",
+      "priority": "P1",
+      "language": "en",
+      "enabled": false
+    },
+    {
+      "id": "github_com_apache_incubator_pekko_releases_atom",
+      "name": "Apache Pekko",
+      "url": "https://github.com/apache/incubator-pekko/releases.atom",
+      "type": "atom",
+      "category": "runtime",
+      "priority": "P1",
+      "language": "en",
+      "enabled": false
+    },
+    {
+      "id": "github_com_dotnet_orleans_releases_atom",
+      "name": "Orleans",
+      "url": "https://github.com/dotnet/orleans/releases.atom",
+      "type": "atom",
+      "category": "runtime",
+      "priority": "P1",
+      "language": "en",
+      "enabled": false
+    },
+    {
+      "id": "github_com_google_gvisor_releases_atom",
+      "name": "gVisor",
+      "url": "https://github.com/google/gvisor/releases.atom",
+      "type": "atom",
+      "category": "runtime",
+      "priority": "P0",
+      "language": "en",
+      "enabled": false
+    },
+    {
+      "id": "github_com_vesoft_inc_nebula_releases_atom",
+      "name": "NebulaGraph",
+      "url": "https://github.com/vesoft-inc/nebula/releases.atom",
+      "type": "atom",
+      "category": "storage",
+      "priority": "P1",
+      "language": "en",
+      "enabled": false
+    },
+    {
+      "id": "github_com_weaviate_weaviate_releases_atom",
+      "name": "Weaviate",
+      "url": "https://github.com/weaviate/weaviate/releases.atom",
+      "type": "atom",
+      "category": "storage",
+      "priority": "P1",
+      "language": "en",
+      "enabled": false
+    },
+    {
+      "id": "github_com_pgvector_pgvector_releases_atom",
+      "name": "pgvector",
+      "url": "https://github.com/pgvector/pgvector/releases.atom",
+      "type": "atom",
+      "category": "storage",
+      "priority": "P1",
+      "language": "en",
+      "enabled": false
+    },
+    {
+      "id": "github_com_neo4j_neo4j_releases_atom",
+      "name": "Neo4j",
+      "url": "https://github.com/neo4j/neo4j/releases.atom",
+      "type": "atom",
+      "category": "storage",
+      "priority": "P1",
+      "language": "en",
+      "enabled": false
+    },
+    {
+      "id": "github_com_kuzudb_kuzu_releases_atom",
+      "name": "Kuzu",
+      "url": "https://github.com/kuzudb/kuzu/releases.atom",
+      "type": "atom",
+      "category": "storage",
+      "priority": "P2",
+      "language": "en",
+      "enabled": false
+    },
+    {
+      "id": "github_com_redis_redis_releases_atom",
+      "name": "Redis",
+      "url": "https://github.com/redis/redis/releases.atom",
+      "type": "atom",
+      "category": "storage",
+      "priority": "P1",
+      "language": "en",
+      "enabled": false
+    },
+    {
+      "id": "github_com_facebookresearch_DistServe_releases_ato",
+      "name": "DistServe",
+      "url": "https://github.com/facebookresearch/DistServe/releases.atom",
+      "type": "atom",
+      "category": "inference",
+      "priority": "P1",
+      "language": "en",
+      "enabled": true
+    },
+    {
+      "id": "github_com_DefiniteSoftware_llm_d_releases_atom",
+      "name": "llm-d",
+      "url": "https://github.com/DefiniteSoftware/llm-d/releases.atom",
+      "type": "atom",
+      "category": "inference",
+      "priority": "P1",
+      "language": "en",
+      "enabled": true
+    },
+    {
+      "id": "arxiv_org_abs_2401_10774",
+      "name": "Medusa",
+      "url": "https://arxiv.org/abs/2401.10774",
+      "type": "paper",
+      "category": "inference",
+      "priority": "P0",
+      "language": "en",
+      "enabled": true
+    },
+    {
+      "id": "arxiv_org_abs_2401_15077",
+      "name": "EAGLE",
+      "url": "https://arxiv.org/abs/2401.15077",
+      "type": "paper",
+      "category": "inference",
+      "priority": "P0",
+      "language": "en",
+      "enabled": true
+    },
+    {
+      "id": "arxiv_org_abs_2310_15123",
+      "name": "Lookahead Decoding",
+      "url": "https://arxiv.org/abs/2310.15123",
+      "type": "paper",
+      "category": "inference",
+      "priority": "P0",
+      "language": "en",
+      "enabled": true
+    },
+    {
+      "id": "arxiv_org_abs_2308_16381",
+      "name": "Sarathi",
+      "url": "https://arxiv.org/abs/2308.16381",
+      "type": "paper",
+      "category": "inference",
+      "priority": "P0",
+      "language": "en",
+      "enabled": true
+    },
+    {
+      "id": "arxiv_org_abs_2405_11129",
+      "name": "LongRoPE",
+      "url": "https://arxiv.org/abs/2405.11129",
+      "type": "paper",
+      "category": "inference",
+      "priority": "P0",
+      "language": "en",
+      "enabled": true
+    },
+    {
+      "id": "arxiv_org_abs_2403_00024",
+      "name": "ChatQA / RULER",
+      "url": "https://arxiv.org/abs/2403.00024",
+      "type": "paper",
+      "category": "inference",
+      "priority": "P0",
+      "language": "en",
+      "enabled": true
+    },
+    {
+      "id": "github_com_InfiniAI_InfiniGen_releases_atom",
+      "name": "InfiniGen",
+      "url": "https://github.com/InfiniAI/InfiniGen/releases.atom",
+      "type": "atom",
+      "category": "inference",
+      "priority": "P1",
+      "language": "en",
+      "enabled": true
+    },
+    {
+      "id": "huggingface_co_datasets_gaia_benchmark_GAIA",
+      "name": "GAIA Benchmark",
+      "url": "https://huggingface.co/datasets/gaia-benchmark/GAIA",
+      "type": "web",
+      "category": "benchmark",
+      "priority": "P0",
+      "language": "en",
+      "enabled": true
+    },
+    {
+      "id": "github_com_tau_bench_tau_bench_releases_atom",
+      "name": "TAU Bench",
+      "url": "https://github.com/tau-bench/tau-bench/releases.atom",
+      "type": "atom",
+      "category": "benchmark",
+      "priority": "P1",
+      "language": "en",
+      "enabled": true
+    },
+    {
+      "id": "arxiv_org_abs_2307_14769",
+      "name": "WebArena",
+      "url": "https://arxiv.org/abs/2307.14769",
+      "type": "paper",
+      "category": "benchmark",
+      "priority": "P0",
+      "language": "en",
+      "enabled": false
+    },
+    {
+      "id": "arxiv_org_abs_2308_03688",
+      "name": "AgentBench",
+      "url": "https://arxiv.org/abs/2308.03688",
+      "type": "paper",
+      "category": "benchmark",
+      "priority": "P0",
+      "language": "en",
+      "enabled": true
+    },
+    {
+      "id": "github_com_openai_human_eval",
+      "name": "HumanEval",
+      "url": "https://github.com/openai/human-eval",
+      "type": "web",
+      "category": "benchmark",
+      "priority": "P0",
+      "language": "en",
+      "enabled": true
+    },
+    {
+      "id": "github_com_THUDM_LongBench_releases_atom",
+      "name": "LongBench",
+      "url": "https://github.com/THUDM/LongBench/releases.atom",
+      "type": "atom",
+      "category": "benchmark",
+      "priority": "P1",
+      "language": "en",
+      "enabled": true
+    },
+    {
+      "id": "arxiv_org_abs_2305_16291",
+      "name": "ToolBench",
+      "url": "https://arxiv.org/abs/2305.16291",
+      "type": "paper",
+      "category": "benchmark",
+      "priority": "P0",
+      "language": "en",
+      "enabled": false
+    },
+    {
+      "id": "arxiv_org_abs_2308_03263",
+      "name": "PRM Paper",
+      "url": "https://arxiv.org/abs/2308.03263",
+      "type": "paper",
+      "category": "benchmark",
+      "priority": "P0",
+      "language": "en",
+      "enabled": true
+    },
+    {
+      "id": "arxiv_org_abs_2501_11223",
+      "name": "MCTS + LLM",
+      "url": "https://arxiv.org/abs/2501.11223",
+      "type": "paper",
+      "category": "benchmark",
+      "priority": "P1",
+      "language": "en",
+      "enabled": false
+    },
+    {
+      "id": "arxiv_org_abs_2109_07958",
+      "name": "TruthfulQA",
+      "url": "https://arxiv.org/abs/2109.07958",
+      "type": "paper",
+      "category": "benchmark",
+      "priority": "P1",
+      "language": "en",
+      "enabled": true
+    },
+    {
+      "id": "arxiv_org_abs_2204_05856",
+      "name": "HH-RLHF",
+      "url": "https://arxiv.org/abs/2204.05856",
+      "type": "paper",
+      "category": "benchmark",
+      "priority": "P1",
+      "language": "en",
+      "enabled": true
+    },
+    {
+      "id": "incidentdatabase_ai_",
+      "name": "AI Incident Database",
+      "url": "https://incidentdatabase.ai/",
+      "type": "web",
+      "category": "benchmark",
+      "priority": "P1",
+      "language": "en",
+      "enabled": false
+    },
+    {
+      "id": "browser_use_com_",
+      "name": "Browser Use",
+      "url": "https://browser-use.com/",
+      "type": "web",
+      "category": "agent",
+      "priority": "P0",
+      "language": "en",
+      "enabled": true
+    },
+    {
+      "id": "github_com_bytedance_UI_TARS_desktop_releases_atom",
+      "name": "UI-TARS Desktop",
+      "url": "https://github.com/bytedance/UI-TARS-desktop/releases.atom",
+      "type": "atom",
+      "category": "agent",
+      "priority": "P1",
+      "language": "en",
+      "enabled": true
+    },
+    {
+      "id": "aios_foundation_",
+      "name": "AIOS Foundation",
+      "url": "https://www.aios.foundation/",
+      "type": "web",
+      "category": "agent",
+      "priority": "P1",
+      "language": "en",
+      "enabled": true
+    },
+    {
+      "id": "github_com_mastra_ai_mastra_releases_atom",
+      "name": "Mastra",
+      "url": "https://github.com/mastra-ai/mastra/releases.atom",
+      "type": "atom",
+      "category": "agent",
+      "priority": "P1",
+      "language": "en",
+      "enabled": true
+    },
+    {
+      "id": "humanloop_com_",
+      "name": "HumanLoop",
+      "url": "https://humanloop.com/",
+      "type": "web",
+      "category": "training",
+      "priority": "P1",
+      "language": "en",
+      "enabled": true
+    },
+    {
+      "id": "github_com_axolotl_ai_cloud_axolotl_releases_atom",
+      "name": "Axolotl",
+      "url": "https://github.com/axolotl-ai-cloud/axolotl/releases.atom",
+      "type": "atom",
+      "category": "training",
+      "priority": "P1",
+      "language": "en",
+      "enabled": true
+    },
+    {
+      "id": "github_com_Istanbul",
+      "name": "Istanbul",
+      "url": "https://github.com/Istanbul",
+      "type": "web",
+      "category": "runtime",
+      "priority": "P1",
+      "language": "en",
+      "enabled": false
+    },
+    {
+      "id": "redis_io_docs_data_streams",
+      "name": "Redis Streams",
+      "url": "https://redis.io/docs/data-streams/",
+      "type": "web",
+      "category": "storage",
+      "priority": "P1",
+      "language": "en",
+      "enabled": false
+    },
+    {
+      "id": "jaegertracing_io_",
+      "name": "Jaeger",
+      "url": "https://www.jaegertracing.io/",
+      "type": "web",
+      "category": "observability",
+      "priority": "P1",
+      "language": "en",
+      "enabled": false
+    },
+    {
+      "id": "grafana_com_docs_tempo",
+      "name": "Grafana Tempo",
+      "url": "https://grafana.com/docs/tempo/",
+      "type": "web",
+      "category": "observability",
+      "priority": "P1",
+      "language": "en",
+      "enabled": false
+    },
+    {
+      "id": "developer_nvidia_com_nsight",
+      "name": "NVIDIA Nsight",
+      "url": "https://developer.nvidia.com/nsight",
+      "type": "web",
+      "category": "observability",
+      "priority": "P0",
+      "language": "en",
+      "enabled": false
+    },
+    {
+      "id": "pytorch_org_tutorials_recipes_recipes_profiler_rec",
+      "name": "PyTorch Profiler",
+      "url": "https://pytorch.org/tutorials/recipes/recipes/profiler_recipe.html",
+      "type": "web",
+      "category": "observability",
+      "priority": "P0",
+      "language": "en",
+      "enabled": false
+    },
+    {
+      "id": "perfetto_dev_",
+      "name": "Perfetto",
+      "url": "https://perfetto.dev/",
+      "type": "web",
+      "category": "observability",
+      "priority": "P1",
+      "language": "en",
+      "enabled": false
+    },
+    {
+      "id": "ebpf_io_",
+      "name": "eBPF",
+      "url": "https://ebpf.io/",
+      "type": "web",
+      "category": "observability",
+      "priority": "P1",
+      "language": "en",
+      "enabled": false
+    },
+    {
+      "id": "eng_uber_com_",
+      "name": "Uber Engineering",
+      "url": "https://eng.uber.com/",
+      "type": "web",
+      "category": "case_study",
+      "priority": "P1",
+      "language": "en",
+      "enabled": true
+    },
+    {
+      "id": "netflixtechblog_com_",
+      "name": "Netflix TechBlog",
+      "url": "https://netflixtechblog.com/",
+      "type": "web",
+      "category": "case_study",
+      "priority": "P1",
+      "language": "en",
+      "enabled": true
+    },
+    {
+      "id": "blog_cloudflare_com_",
+      "name": "Cloudflare Blog",
+      "url": "https://blog.cloudflare.com/",
+      "type": "web",
+      "category": "case_study",
+      "priority": "P1",
+      "language": "en",
+      "enabled": true
+    },
+    {
+      "id": "databricks_com_blog",
+      "name": "Databricks Blog",
+      "url": "https://www.databricks.com/blog",
+      "type": "web",
+      "category": "case_study",
+      "priority": "P1",
+      "language": "en",
+      "enabled": true
+    },
+    {
+      "id": "engineering_fb_com_",
+      "name": "Meta Engineering",
+      "url": "https://engineering.fb.com/",
+      "type": "web",
+      "category": "case_study",
+      "priority": "P1",
+      "language": "en",
+      "enabled": true
+    },
+    {
+      "id": "incident_io_blog",
+      "name": "incident.io",
+      "url": "https://incident.io/blog",
+      "type": "web",
+      "category": "case_study",
+      "priority": "P1",
+      "language": "en",
+      "enabled": false
+    },
+    {
+      "id": "honeycomb_io_blog",
+      "name": "Honeycomb",
+      "url": "https://www.honeycomb.io/blog",
+      "type": "web",
+      "category": "case_study",
+      "priority": "P1",
+      "language": "en",
+      "enabled": false
+    },
+    {
+      "id": "sentry_io_blog",
+      "name": "Sentry",
+      "url": "https://sentry.io/blog",
+      "type": "web",
+      "category": "case_study",
+      "priority": "P1",
+      "language": "en",
+      "enabled": false
+    },
+    {
+      "id": "status_openai_com_",
+      "name": "OpenAI Status",
+      "url": "https://status.openai.com/",
+      "type": "web",
+      "category": "reliability",
+      "priority": "P0",
+      "language": "en",
+      "enabled": true
+    },
+    {
+      "id": "menlovc_com_ai",
+      "name": "Menlo Ventures AI",
+      "url": "https://menlovc.com/ai",
+      "type": "web",
+      "category": "economics",
+      "priority": "P1",
+      "language": "en",
+      "enabled": true
+    },
+    {
+      "id": "sequoiacap_com_ai",
+      "name": "Sequoia AI",
+      "url": "https://www.sequoiacap.com/ai",
+      "type": "web",
+      "category": "economics",
+      "priority": "P1",
+      "language": "en",
+      "enabled": true
+    },
+    {
+      "id": "developer_nvidia_com_nvshmem",
+      "name": "NVSHMEM",
+      "url": "https://developer.nvidia.com/nvshmem",
+      "type": "web",
+      "category": "hardware",
+      "priority": "P0",
+      "language": "en",
+      "enabled": true
+    },
+    {
+      "id": "openucx_org_",
+      "name": "UCX",
+      "url": "https://www.openucx.org/",
+      "type": "web",
+      "category": "hardware",
+      "priority": "P1",
+      "language": "en",
+      "enabled": false
+    },
+    {
+      "id": "github_com_linux_rdma_rdma_core_releases_atom",
+      "name": "RDMA Core",
+      "url": "https://github.com/linux-rdma/rdma-core/releases.atom",
+      "type": "atom",
+      "category": "hardware",
+      "priority": "P1",
+      "language": "en",
+      "enabled": false
+    },
+    {
+      "id": "github_com_HazyResearch_ThunderKittens_releases_at",
+      "name": "ThunderKittens",
+      "url": "https://github.com/HazyResearch/ThunderKittens/releases.atom",
+      "type": "atom",
+      "category": "kernel",
+      "priority": "P0",
+      "language": "en",
+      "enabled": true
+    },
+    {
+      "id": "github_com_PaddlePaddle_Paddle_releases_atom",
+      "name": "Paddle Inference",
+      "url": "https://github.com/PaddlePaddle/Paddle/releases.atom",
+      "type": "atom",
+      "category": "inference",
+      "priority": "P0",
+      "language": "en",
+      "enabled": true
+    },
+    {
+      "id": "mindspore_cn_",
+      "name": "MindSpore",
+      "url": "https://www.mindspore.cn/",
+      "type": "web",
+      "category": "inference",
+      "priority": "P0",
+      "language": "zh",
+      "enabled": true
+    },
+    {
+      "id": "github_com_THUDM",
+      "name": "智谱AI (THUDM)",
+      "url": "https://github.com/THUDM",
+      "type": "web",
+      "category": "industry",
+      "priority": "P0",
+      "language": "zh",
+      "enabled": true
+    },
+    {
+      "id": "github_com_bytedance",
+      "name": "ByteDance Engineering",
+      "url": "https://github.com/bytedance",
+      "type": "web",
+      "category": "case_study",
+      "priority": "P1",
+      "language": "en",
+      "enabled": false
+    },
+    {
+      "id": "github_com_QwenLM",
+      "name": "通义千问",
+      "url": "https://github.com/QwenLM",
+      "type": "web",
+      "category": "industry",
+      "priority": "P0",
+      "language": "zh",
+      "enabled": true
+    },
+    {
+      "id": "volcengine_com_product_doubao",
+      "name": "豆包大模型",
+      "url": "https://www.volcengine.com/product/doubao",
+      "type": "web",
+      "category": "industry",
+      "priority": "P0",
+      "language": "zh",
+      "enabled": true
+    },
+    {
+      "id": "machinelearning_apple_com_",
+      "name": "Apple ML Blog",
+      "url": "https://machinelearning.apple.com/",
+      "type": "web",
+      "category": "industry",
+      "priority": "P1",
+      "language": "en",
+      "enabled": true
+    },
+    {
+      "id": "developer_apple_com_machine_learning",
+      "name": "Apple Core ML",
+      "url": "https://developer.apple.com/machine-learning/",
+      "type": "web",
+      "category": "industry",
+      "priority": "P1",
+      "language": "en",
+      "enabled": false
+    },
+    {
+      "id": "aistudio_baidu_com_",
+      "name": "百度AI Studio",
+      "url": "https://aistudio.baidu.com/",
+      "type": "web",
+      "category": "industry",
+      "priority": "P1",
+      "language": "zh",
+      "enabled": true
+    },
+    {
+      "id": "developer_nvidia_com_triton_inference_server",
+      "name": "NVIDIA Triton",
+      "url": "https://developer.nvidia.com/triton-inference-server",
+      "type": "web",
+      "category": "inference",
+      "priority": "P0",
+      "language": "en",
+      "enabled": true
+    },
+    {
+      "id": "github_com_deepseek_ai",
+      "name": "DeepSeek GitHub",
+      "url": "https://github.com/deepseek-ai",
+      "type": "web",
+      "category": "industry",
+      "priority": "P0",
+      "language": "en",
+      "enabled": true
+    },
+    {
+      "id": "anthropic_com_research",
+      "name": "Anthropic Safety Research",
+      "url": "https://www.anthropic.com/research",
+      "type": "web",
+      "category": "safety",
+      "priority": "P0",
+      "language": "en",
+      "enabled": true
+    },
+    {
+      "id": "openai_com_security",
+      "name": "OpenAI Security",
+      "url": "https://openai.com/security",
+      "type": "web",
+      "category": "safety",
+      "priority": "P0",
+      "language": "en",
+      "enabled": false
+    },
+    {
+      "id": "lesswrong_com_",
+      "name": "LessWrong",
+      "url": "https://www.lesswrong.com/",
+      "type": "web",
+      "category": "safety",
+      "priority": "P0",
+      "language": "en",
+      "enabled": true
+    },
+    {
+      "id": "ieee_security_org_",
+      "name": "IEEE S&P",
+      "url": "https://www.ieee-security.org/",
+      "type": "web",
+      "category": "safety",
+      "priority": "P0",
+      "language": "en",
+      "enabled": true
+    },
+    {
+      "id": "usenix_org_security",
+      "name": "USENIX Security",
+      "url": "https://www.usenix.org/security/",
+      "type": "web",
+      "category": "safety",
+      "priority": "P0",
+      "language": "en",
+      "enabled": true
+    },
+    {
+      "id": "sigsac_org_ccs",
+      "name": "CCS",
+      "url": "https://www.sigsac.org/ccs/",
+      "type": "web",
+      "category": "safety",
+      "priority": "P0",
+      "language": "en",
+      "enabled": true
+    },
+    {
+      "id": "ndss_symposium_org_",
+      "name": "NDSS",
+      "url": "https://www.ndss-symposium.org/",
+      "type": "web",
+      "category": "safety",
+      "priority": "P0",
+      "language": "en",
+      "enabled": true
+    },
+    {
+      "id": "ithome_com_rss",
+      "name": "IT之家",
+      "url": "https://www.ithome.com/rss/",
+      "type": "rss",
+      "category": "industry_cn",
+      "priority": "P1",
+      "language": "zh",
+      "enabled": true
+    },
+    {
+      "id": "ithome_com_rss_ai",
+      "name": "IT之家 AI",
+      "url": "https://www.ithome.com/rss/ai",
+      "type": "rss",
+      "category": "ai_agent",
+      "priority": "P1",
+      "language": "zh",
+      "enabled": true
+    },
+    {
+      "id": "36kr_com_feed",
+      "name": "36kr",
+      "url": "https://www.36kr.com/feed",
+      "type": "rss",
+      "category": "industry_cn",
+      "priority": "P1",
+      "language": "zh",
+      "enabled": true
+    },
+    {
+      "id": "alternatives_ai_news_feed",
+      "name": "AI Startups",
+      "url": "https://alternatives.ai/news/feed",
+      "type": "rss",
+      "category": "ai_agent",
+      "priority": "P1",
+      "language": "en",
+      "enabled": true
+    },
+    {
+      "id": "hnrss_org_newest",
+      "name": "Hacker News AI",
+      "url": "https://hnrss.org/newest?q=AI+OR+artificial+intelligence+OR+LLM+OR+machine+learning",
+      "type": "rss",
+      "category": "ai_agent",
+      "priority": "P2",
+      "language": "en",
+      "enabled": true
+    },
+    {
+      "id": "wired_com_feed_category_artificial_intelligence_la",
+      "name": "Wired AI",
+      "url": "https://www.wired.com/feed/category/artificial-intelligence/latest",
+      "type": "rss",
+      "category": "ai_agent",
+      "priority": "P2",
+      "language": "en",
+      "enabled": true
+    },
+    {
+      "id": "theverge_com_rss_ai_artificial_intelligence_index_",
+      "name": "The Verge AI",
+      "url": "https://www.theverge.com/rss/ai-artificial-intelligence/index.xml",
+      "type": "rss",
+      "category": "ai_agent",
+      "priority": "P2",
+      "language": "en",
+      "enabled": true
+    },
+    {
+      "id": "zhihu_com_rss",
+      "name": "知乎AI",
+      "url": "https://www.zhihu.com/rss",
+      "type": "rss",
+      "category": "ai_agent",
+      "priority": "P1",
+      "language": "zh",
+      "enabled": true
+    },
+    {
+      "id": "blog_csdn_net_rssAICategory_xml",
+      "name": "CSDN AI",
+      "url": "https://blog.csdn.net/rssAICategory.xml",
+      "type": "web",
+      "category": "tech_blog",
+      "priority": "P2",
+      "language": "zh",
+      "enabled": false
+    },
+    {
+      "id": "cloud_tencent_com_activity_ai_rss",
+      "name": "腾讯云 AI 博客",
+      "url": "https://cloud.tencent.com/activity/ai/rss",
+      "type": "web",
+      "category": "industry_cn",
+      "priority": "P1",
+      "language": "zh",
+      "enabled": false
+    },
+    {
+      "id": "infoq_cn_topic_ai",
+      "name": "InfoQ 中文 AI",
+      "url": "https://www.infoq.cn/topic/ai",
+      "type": "web",
+      "category": "tech_blog",
+      "priority": "P1",
+      "language": "zh",
+      "enabled": false
+    },
+    {
+      "id": "deepseek_com_",
+      "name": "DeepSeek Official",
+      "url": "https://www.deepseek.com",
+      "type": "web",
+      "category": "industry",
+      "priority": "P0",
+      "language": "en",
+      "enabled": true
+    },
+    {
+      "id": "aider_chat_docs_releases_xml",
+      "name": "Aider (LLM Coding)",
+      "url": "https://aider.chat/docs/releases.xml",
+      "type": "rss",
+      "category": "agent",
+      "priority": "P1",
+      "language": "en",
+      "enabled": true
+    },
+    {
+      "id": "huggingface_co_api_papers_1",
+      "name": "HuggingFace Daily Papers",
+      "url": "https://huggingface.co/api/papers?sort=trending&limit=20",
+      "type": "hf_api",
+      "category": "tech_papers",
+      "priority": "P0",
+      "language": "en",
+      "enabled": true
+    },
+    {
+      "id": "export_arxiv_org_api_query_1",
+      "name": "arXiv cs.LG",
+      "url": "http://export.arxiv.org/api/query?search_query=cat:cs.LG&max_results=20&sortBy=submittedDate&sortOrder=descending",
+      "type": "atom",
+      "category": "tech_papers",
+      "priority": "P0",
+      "language": "en",
+      "enabled": true
+    },
+    {
+      "id": "export_arxiv_org_api_query_2",
+      "name": "arXiv cs.CL",
+      "url": "http://export.arxiv.org/api/query?search_query=cat:cs.CL&max_results=20&sortBy=submittedDate&sortOrder=descending",
+      "type": "atom",
+      "category": "tech_papers",
+      "priority": "P0",
+      "language": "en",
+      "enabled": true
+    },
+    {
+      "id": "export_arxiv_org_api_query_3",
+      "name": "arXiv cs.AI",
+      "url": "http://export.arxiv.org/api/query?search_query=cat:cs.AI&max_results=20&sortBy=submittedDate&sortOrder=descending",
+      "type": "atom",
+      "category": "tech_papers",
+      "priority": "P0",
+      "language": "en",
+      "enabled": true
+    },
+    {
+      "id": "export_arxiv_org_api_query_4",
+      "name": "arXiv cs.DC (Distributed Computing)",
+      "url": "http://export.arxiv.org/api/query?search_query=cat:cs.DC&max_results=20&sortBy=submittedDate&sortOrder=descending",
+      "type": "atom",
+      "category": "tech_papers",
+      "priority": "P1",
+      "language": "en",
+      "enabled": true
+    },
+    {
+      "id": "export_arxiv_org_api_query_5",
+      "name": "arXiv cs.MA (Multiagent Systems)",
+      "url": "http://export.arxiv.org/api/query?search_query=cat:cs.MA&max_results=20&sortBy=submittedDate&sortOrder=descending",
+      "type": "atom",
+      "category": "tech_papers",
+      "priority": "P1",
+      "language": "en",
+      "enabled": true
+    }
+  ]
+}

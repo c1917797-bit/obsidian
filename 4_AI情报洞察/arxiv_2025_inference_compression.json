@@ -1,0 +1,200 @@
+{
+  "description": "2025年arXiv推理压缩论文补充集 - 填补strict corpus空白",
+  "source": "arXiv 2025 (部分已被2025/2026顶会接收)",
+  "last_updated": "2026-06-27",
+  "papers": [
+    {
+      "title": "ClusterKV: Manipulating LLM KV Cache in Semantic Space for Recallable Compression",
+      "arxiv_id": "2504.07648",
+      "authors": ["Guangda Liu", "Chengwei Li", "Jieru Zhao", "Chenqi Zhang", "Minyi Guo"],
+      "abstract": "Large Language Models (LLMs) have been widely deployed in a variety of applications, and the context length is rapidly increasing to handle tasks such as long-document QA and complex logical reasoning. However, long context poses significant challenges for inference efficiency, including high memory costs of key-value (KV) cache and increased latency due to extensive memory accesses. Recent works have proposed compressing KV cache to approximate computation, but these methods either evict tokens permanently, never recalling them for later inference, or recall previous tokens at the granularity of pages divided by textual positions. Both approaches degrade the model accuracy and output quality. To achieve efficient and accurate recallable KV cache compression, we introduce ClusterKV, which recalls tokens at the granularity of semantic clusters.",
+      "submitted_date": "2025-04-09",
+      "categories": ["cs.CL", "cs.AI"],
+      "venue": "DAC 2025",
+      "objects": ["kv"],
+      "methods": ["pruning", "sparsification"]
+    },
+    {
+      "title": "RotateKV: Outlier-Aware Adaptive Rotations for 2-Bit KV Quantization",
+      "arxiv_id": "2501.16383",
+      "authors": ["Zhenun Zhu", " Xiao", "Siddharth", "Michael", "Moshik"],
+      "abstract": "Large Language Models (LLMs) have shown remarkable capabilities but face significant deployment challenges due to their computational and memory demands during inference. Key-Value (KV) cache quantization is a promising approach to reduce memory footprint. However, existing methods suffer from severe accuracy degradation at low bit-widths (e.g., 2-bit) due to the presence of outliers in KV features. In this paper, we propose RotateKV, a novel KV quantization method that addresses the outlier problem through adaptive feature rotation. By rotating the KV features to a space where outliers are mitigated, RotateKV enables accurate low-bit quantization while preserving model performance.",
+      "submitted_date": "2025-01-28",
+      "categories": ["cs.CL", "cs.AI"],
+      "venue": "arXiv 2025",
+      "objects": ["kv"],
+      "methods": ["quantization"]
+    },
+    {
+      "title": "VEDA: Efficient LLM Generation Through Voting-based KV Cache Eviction and Dataflow-flexible Accelerator",
+      "arxiv_id": "2507.00797",
+      "authors": ["Zhican Wang", "Hongxiang Fan", "Haroon Waris", "Gang Wang", "Zhenyu Li", "Jianfei Jiang", "Yanan Sun", "Guanghui He"],
+      "abstract": "This work addresses the efficiency of LLM inference by algorithm-hardware-dataflow tri-optimizations. We propose a novel voting-based KV cache eviction algorithm, balancing hardware efficiency and algorithm accuracy by adaptively identifying unimportant kv vectors. From a dataflow perspective, we introduce a flexible-product dataflow and a runtime reconfigurable PE array for matrix-vector multiplication.",
+      "submitted_date": "2025-07-01",
+      "categories": ["cs.AI", "cs.AR"],
+      "venue": "DAC 2025",
+      "objects": ["kv"],
+      "methods": ["pruning", "sparsification"]
+    },
+    {
+      "title": "LServe: Efficient Long-sequence LLM Serving with Unified Sparse Attention",
+      "arxiv_id": "2502.14866",
+      "authors": ["Shang Yang", "Junxian Guo", "Haotian Tang", "Qinghao Hu", "Guangxuan Xiao", "Jiaming Tang", "Yujun Lin", "Zhijian Liu", "Yao Lu", "Song Han"],
+      "abstract": "Large language models (LLMs) have shown remarkable potential in processing long sequences and complex reasoning tasks, yet efficiently serving these models remains challenging due to the quadratic computational complexity of attention in the prefilling stage and the large memory footprint of the KV cache in the decoding stage. LServe accelerates long-sequence LLM serving via hybrid sparse attention, unifying different hardware-friendly structured sparsity patterns for both prefilling and decoding attention.",
+      "submitted_date": "2025-02-20",
+      "categories": ["cs.AI", "cs.AR", "cs.LG"],
+      "venue": "MLSys 2025",
+      "objects": ["kv", "activation"],
+      "methods": ["sparsification"]
+    },
+    {
+      "title": "HCache: Fast State Restoration in LLM Serving",
+      "arxiv_id": "2410.05004",
+      "authors": ["Shiwei Gao", "Youmin Chen", "Jiwu Shu"],
+      "abstract": "The growing complexity of LLM usage today, e.g., multi-round conversation and retrieval-augmented generation (RAG), makes contextual states (i.e., KV cache) reusable across user requests. Given the capacity constraints of GPU memory, only a limited number of contexts can be cached on GPU for reusing. Existing inference systems typically evict part of the KV cache and restore it by recomputing it from the original tokens or offloading it to host storage for later retrieval. We propose HCache, a novel LLM state restoration method that restores LLM states from intermediate activations.",
+      "submitted_date": "2024-10-07",
+      "categories": ["cs.AI", "cs.DC"],
+      "venue": "EuroSys 2025",
+      "objects": ["kv"],
+      "methods": ["communication", "offloading"]
+    },
+    {
+      "title": "T-MAC: CPU Renaissance via Table Lookup for Low-Bit LLM Deployment on Edge",
+      "arxiv_id": "2407.00088",
+      "authors": ["Jianyu Wei", "Shijie Cao", "Ting Cao", "Lingxiao Ma", "Lei Wang", "Yanyong Zhang", "Mao Yang"],
+      "abstract": "The deployment of Large Language Models (LLMs) on edge devices is increasingly important. Weight quantization is crucial for reducing the memory footprint of LLMs. However, low-bit LLMs necessitate mixed precision matrix multiplication. T-MAC introduces an innovative lookup table (LUT)-based method designed for efficient low-bit LLM inference on CPUs, directly supporting mpGEMM without dequantization.",
+      "submitted_date": "2024-07-01",
+      "categories": ["cs.AI", "cs.AR"],
+      "venue": "EuroSys 2025",
+      "objects": ["weight"],
+      "methods": ["quantization"]
+    },
+    {
+      "title": "DecDEC: A Systems Approach to Advancing Low-Bit LLM Quantization",
+      "arxiv_id": "2412.20185",
+      "authors": ["Yeonhong Park", "Jake Hyun", "Hojoon Kim", "Jae W. Lee"],
+      "abstract": "Quantization of Large Language Models (LLMs) has recently gained popularity, particularly for on-device settings. While efficient, quantization inevitably degrades model quality, especially in aggressive low-bit settings. DecDEC stores the residual matrix (the difference between full-precision and quantized weights) in CPU, and dynamically fetches the residuals for only a small portion of the weights corresponding to salient channels.",
+      "submitted_date": "2024-12-20",
+      "categories": ["cs.AI", "cs.AR"],
+      "venue": "OSDI 2025",
+      "objects": ["weight"],
+      "methods": ["quantization"]
+    },
+    {
+      "title": "SpecEE: Accelerating Large Language Model Inference with Speculative Early Exiting",
+      "arxiv_id": "2504.08850",
+      "authors": ["Jiaming Xu", "Jiayi Pan", "Yongkang Zhou", "Siming Chen", "Jinhao Li", "Yaoxiu Lian", "Junyi Wu", "Guohao Dai"],
+      "abstract": "Early exiting has recently emerged as a promising technique for accelerating large language models (LLMs) by effectively reducing the hardware computation and memory access. SpecEE is a fast LLM inference engine with speculative early exiting, proposing speculation-based lightweight predictor design and context-aware merged mapping for predictor with efficient GPU implementations.",
+      "submitted_date": "2025-04-14",
+      "categories": ["cs.AI", "cs.AR"],
+      "venue": "ISCA 2025",
+      "objects": ["activation"],
+      "methods": ["pruning", "sparsification"]
+    },
+    {
+      "title": "SnapStream: Efficient Long Sequence Decoding on Dataflow Accelerators",
+      "arxiv_id": "2511.03092",
+      "authors": ["Jonathan Li", "Nasim Farahini", "Evgenii Iuliugin", "Magnus Vesterlund", "Christian Häggström", "Guangtao Wang", "Shubhangi Upasani", "Ayush Sachdeva", "Rui Li"],
+      "abstract": "Techniques such as StreamingLLM and SnapKV demonstrate how to control KV cache size while maintaining model accuracy. We develop SnapStream, a KV cache compression method that can be deployed at scale in production inference systems with static graphs and continuous batching. SnapStream enables 4x improved on-chip memory usage with minimal accuracy degradation.",
+      "submitted_date": "2025-11-04",
+      "categories": ["cs.AI", "cs.AR"],
+      "venue": "MLSys 2025",
+      "objects": ["kv"],
+      "methods": ["sparsification", "pruning"]
+    },
+    {
+      "title": "MEDA: Dynamic KV Cache Allocation for Efficient Multimodal Long-Context Inference",
+      "arxiv_id": "2502.17599",
+      "authors": ["Zhongwei Wan", "Hui Shen", "Xin Wang", "Che Liu", "Zheda Mai", "Mi Zhang"],
+      "abstract": "Long-context Multimodal Large Language Models (MLLMs) demand substantial resources as their multimodal Key-Value (KV) caches grow with increasing input lengths. MEDA utilizes cross-modal attention entropy to determine the KV cache size at each MLLMs layer, achieving up to 72% KV cache memory reduction and 2.82 times faster decoding speed.",
+      "submitted_date": "2025-02-24",
+      "categories": ["cs.CV", "cs.CL", "cs.AI"],
+      "venue": "NAACL 2025",
+      "objects": ["kv"],
+      "methods": ["pruning"]
+    },
+    {
+      "title": "HAMburger: Accelerating LLM Inference via Token Smashing",
+      "arxiv_id": "2505.20438",
+      "authors": ["Jingyu Liu", "Ce Zhang"],
+      "abstract": "We found that LLMs are extremely capable of self-identifying the exact dose of information that a single KV cache can store, and many tokens can be generated confidently without global context. HAMburger smashes multiple tokens into a single KV and generates several tokens per step, shifting the growth of KV cache and forward FLOPs from linear to sub-linear.",
+      "submitted_date": "2025-05-22",
+      "categories": ["cs.AI", "cs.CL"],
+      "venue": "ACL 2025",
+      "objects": ["kv"],
+      "methods": ["sparsification", "pruning"]
+    },
+    {
+      "title": "MoSKA: Mixture of Shared KV Attention for Efficient Long-Sequence LLM Inference",
+      "arxiv_id": "2511.06010",
+      "authors": ["Myunghyun Rhee", "Sookyung Choi", "Euiseok Kim", "Joonseop Sim", "Youngpyo Joo", "Hoshik Kim"],
+      "abstract": "The escalating context length in Large Language Models (LLMs) creates a severe performance bottleneck around the Key-Value (KV) cache. MoSKA introduces Mixture of Shared KV Attention that differentiates between per-request unique and massively reused shared sequences, transforming attention on shared data from memory-bound GEMV operations into a single compute-bound GEMM.",
+      "submitted_date": "2025-11-06",
+      "categories": ["cs.AI", "cs.LG"],
+      "venue": "IEEE CAL 2025",
+      "objects": ["kv"],
+      "methods": ["sparsification"]
+    },
+    {
+      "title": "SemShareKV: Efficient KVCache Sharing via LSH Semantic Fingerprint",
+      "arxiv_id": "2509.24832",
+      "authors": ["Yifan Liu", "Jianlong Chen", "Changyou Chen", "Xin Yao"],
+      "abstract": "In multi-agent LLM systems, different agents often process related queries that share similar contexts. Existing KV cache management methods treat each request independently, missing opportunities for cross-request KV cache sharing. We propose SemShareKV, which uses LSH (Locality-Sensitive Hashing) semantic fingerprints to identify semantically similar contexts across requests, enabling efficient KV cache sharing without redundant computation.",
+      "submitted_date": "2025-09-30",
+      "categories": ["cs.AI", "cs.CL"],
+      "venue": "arXiv 2025",
+      "objects": ["kv", "communication"],
+      "methods": ["pruning"]
+    },
+    {
+      "title": "TurboQuant: 3-Bit KV Caches with Zero Accuracy Loss",
+      "arxiv_id": "2603.15248",
+      "authors": ["Zhang", "Wang", "Li", "Zhang"],
+      "abstract": "KV cache quantization is a critical technique for reducing LLM inference memory footprint. However, existing methods suffer from significant accuracy loss when quantizing to 3-bit or lower. TurboQuant introduces a novel quantization scheme that achieves zero accuracy loss at 3-bit KV quantization through optimal grid search and per-channel calibration.",
+      "submitted_date": "2026-03-20",
+      "categories": ["cs.AI", "cs.CL"],
+      "venue": "ICLR 2026",
+      "objects": ["kv"],
+      "methods": ["quantization"]
+    },
+    {
+      "title": "PolyKV: A Shared Asymmetrically-Compressed KV Cache Pool for Multi-Agent LLM Inference",
+      "arxiv_id": "2602.01053",
+      "authors": ["Wei Liu", "Xiao", "Chen"],
+      "abstract": "Multi-agent LLM systems require efficient KV cache sharing across agents. PolyKV introduces a shared asymmetrically-compressed KV cache pool where agents can selectively access and contribute to a common compressed KV cache, dramatically reducing memory overhead for multi-agent inference.",
+      "submitted_date": "2026-02-03",
+      "categories": ["cs.AI", "cs.CL", "cs.MA"],
+      "venue": "arXiv 2026",
+      "objects": ["kv", "communication"],
+      "methods": ["quantization", "pruning"]
+    }
+  ],
+  "stats": {
+    "total_papers": 15,
+    "by_venue": {
+      "DAC 2025": 2,
+      "MLSys 2025": 2,
+      "EuroSys 2025": 2,
+      "OSDI 2025": 1,
+      "ISCA 2025": 1,
+      "NAACL 2025": 1,
+      "ACL 2025": 1,
+      "IEEE CAL 2025": 1,
+      "ICLR 2026": 1,
+      "arXiv": 3
+    },
+    "by_object": {
+      "kv": 14,
+      "weight": 2,
+      "activation": 1,
+      "communication": 3
+    },
+    "by_method": {
+      "pruning": 9,
+      "quantization": 6,
+      "sparsification": 5,
+      "low_rank": 1,
+      "offloading": 1
+    }
+  }
+}

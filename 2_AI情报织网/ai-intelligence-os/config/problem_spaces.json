@@ -1,0 +1,146 @@
+{
+    "problem_spaces": [
+        {
+            "id": "PS1",
+            "name": "推理吞吐与延迟优化",
+            "description": "如何解决Decode瓶颈、提升全链路推理吞吐？",
+            "related_tech": [
+                "speculative decoding", "MTP", "KV cache", "FlashAttention",
+                "disaggregated serving", "量化", "批处理", "PagedAttention",
+                "Sarathi", "Mooncake", "llm-d", "Medusa", "EAGLE"
+            ],
+            "key_questions": [
+                "Decode阶段的瓶颈在哪里？",
+                "投机解码 vs MTP 各适合什么场景？",
+                "Prefill-Decode分离的代价是什么？"
+            ]
+        },
+        {
+            "id": "PS2",
+            "name": "Agent Runtime 稳定性与调度",
+            "description": "如何解决Runtime资源抢占、任务颠簸、会话状态管理？",
+            "related_tech": [
+                "Session Runtime", "Actor model", "调度算法", "内存隔离",
+                "异步运行时", "沙箱虚拟化", "Temporal", "Ray",
+                "Apache Pekko", "Orleans", "Dapr"
+            ],
+            "key_questions": [
+                "多Agent并发时的资源隔离怎么做？",
+                "Actor模型 vs 传统微服务的取舍？",
+                "Session状态持久化的最佳实践？"
+            ]
+        },
+        {
+            "id": "PS3",
+            "name": "系统成本与ROI优化",
+            "description": "如何持续降低单Token/单请求综合成本，提升算力利用效率？",
+            "related_tech": [
+                "量化", "MoE", "路由优化", "KV压缩", "内存复用",
+                "算力经济学", "分层缓存", "AWQ", "GPTQ", "llama.cpp",
+                "TensorRT-LLM", "vLLM", "DeepSpeed"
+            ],
+            "key_questions": [
+                "量化精度损失如何量化评估？",
+                "MoE的通信开销 vs 专家并行的收益？",
+                "Token经济学如何指导定价策略？"
+            ]
+        },
+        {
+            "id": "PS4",
+            "name": "多Agent协同与互联",
+            "description": "如何实现跨智能体通信、身份权限、任务协同？",
+            "related_tech": [
+                "A2A协议", "MCP", "Agent身份认证", "可验证凭证",
+                "多智能体编排", "AutoGen", "CAMEL", "Swarm", "LangGraph",
+                "OAuth for Agents"
+            ],
+            "key_questions": [
+                "Agent间协议标准化走到哪一步了？",
+                "多Agent协作的通信开销如何优化？",
+                "Agent身份与权限的未来标准？"
+            ]
+        },
+        {
+            "id": "PS5",
+            "name": "持久化记忆与存储体系",
+            "description": "如何构建长上下文、分布式、高可靠的Agent记忆系统？",
+            "related_tech": [
+                "向量库", "图数据库", "事件存储", "PagedAttention",
+                "长记忆算法", "GraphRAG", "MemGPT", "Zep", "Letta",
+                "Mem0", "Milvus", "Qdrant", "Neo4j", "Redis Streams"
+            ],
+            "key_questions": [
+                "短期记忆 vs 长期记忆的边界在哪里？",
+                "GraphRAG 何时优于向量检索？",
+                "多Agent共享记忆的 Consistency 问题？"
+            ]
+        }
+    ],
+    "scoring_rules": {
+        "formula": "综合得分 = 技术深度(1~3) × 工程影响(1~3) × 趋势强度(1~2) × 行业影响(1~2)",
+        "levels": {
+            "top": {"range": [8, 10], "action": "进入Knowledge Agent全链路分析"},
+            "weak": {"range": [4, 7], "action": "存入观测信号池，每周批量复盘"},
+            "noise": {"range": [1, 3], "action": "直接归档，不再处理"}
+        },
+        "dimensions": {
+            "技术深度": {
+                "1": "概念介绍/一般性讨论",
+                "2": "有代码/实验数据的技术分析",
+                "3": "深入原理/源码级别的深度解读"
+            },
+            "工程影响": {
+                "1": "个人项目/学术研究",
+                "2": "有实际应用场景/企业采用",
+                "3": "大规模生产验证/行业标杆"
+            },
+            "趋势强度": {
+                "1": "平稳发展/渐进改进",
+                "2": "快速增长/重大突破"
+            },
+            "行业影响": {
+                "1": "小众领域/特定场景",
+                "2": "跨领域影响/通用性突破"
+            }
+        }
+    },
+    "report_templates": {
+        "daily": {
+            "name": "AI Runtime Daily",
+            "time": "每日 08:30",
+            "sections": [
+                "今日Top 10 核心信号",
+                "Runtime领域动态",
+                "推理优化领域动态",
+                "GitHub开源项目热度变化",
+                "头部厂商最新动作",
+                "异常信号预警",
+                "新增/迭代问题空间"
+            ]
+        },
+        "weekly": {
+            "name": "Agent Infra Weekly",
+            "time": "每周日 20:00",
+            "sections": [
+                "本周核心技术主线",
+                "Runtime整体演化态势",
+                "Agent框架/协议/生态变化",
+                "推理优化技术迭代",
+                "AI系统经济学（成本、定价、算力格局）",
+                "短期（1-4周）趋势预判"
+            ]
+        },
+        "monthly": {
+            "name": "AI Infra Strategic Report",
+            "time": "每月最后一天 21:00",
+            "sections": [
+                "月度长周期技术趋势总结",
+                "技术范式迁移判断",
+                "Agent OS / AI Runtime OS整体进展",
+                "基础设施重构动向",
+                "中长期（3-12个月）战略预测",
+                "潜在风险与布局建议"
+            ]
+        }
+    }
+}

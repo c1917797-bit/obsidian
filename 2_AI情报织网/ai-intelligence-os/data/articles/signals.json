@@ -1,0 +1,5 @@
+{
+  "_comment": "DEPRECATED - This file is no longer used. Signals are now stored in SQLite at db/intelligence.db",
+  "_reason": "UnifiedStore uses SQLite for all signal/event storage. This JSON file was an obsolete intermediate format.",
+  "signals": []
+}

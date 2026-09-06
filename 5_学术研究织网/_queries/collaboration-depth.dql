@@ -1,0 +1,45 @@
+# Collaboration Depth Query
+# 基于 Wang & Zhang (2026) IJETHE 23:11
+
+```dataview
+TABLE project, checkpoint, delegation_intensity, cognitive_vigilance, cognitive_reallocation, zone, date
+FROM "5_学术研究织网/研究项目"
+WHERE type = "collaboration_record"
+SORT project ASC, date DESC
+```
+
+## 区域分布
+
+```dataview
+TABLE WITHOUT ID
+  zone AS "Collaboration Zone",
+  length(rows) AS "Count",
+  round(length(rows) / length(filter(row.zone, (z) => z != null)) * 100, 1) AS "Percentage"
+FROM "5_学术研究织网/研究项目"
+WHERE type = "collaboration_record"
+WHERE zone != null
+GROUP BY zone
+```
+
+## Zone 3 深度协作项目
+
+```dataview
+TABLE project, checkpoint, delegation_intensity, cognitive_vigilance, cognitive_reallocation
+FROM "5_学术研究织网/研究项目"
+WHERE type = "collaboration_record"
+WHERE zone = "Zone 3"
+SORT project ASC, date DESC
+```
+
+## 平均评分
+
+```dataview
+TABLE WITHOUT ID
+  project AS "Project",
+  round(mean(rows.delegation_intensity), 1) AS "Avg Delegation",
+  round(mean(rows.cognitive_vigilance), 1) AS "Avg Vigilance",
+  round(mean(rows.cognitive_reallocation), 1) AS "Avg Reallocation"
+FROM "5_学术研究织网/研究项目"
+WHERE type = "collaboration_record"
+GROUP BY project
+```

@@ -1,0 +1,62 @@
+# Stage Progress Query
+# 研究项目阶段追踪仪表板
+
+```dataview
+TABLE project_name, stage, verification_status, ars_mode, updated
+FROM "5_学术研究织网/研究项目"
+WHERE type = "material-passport"
+SORT updated DESC
+```
+
+## 阶段分布统计
+
+```dataview
+TABLE WITHOUT ID
+  stage AS "Current Stage",
+  length(rows) AS "Project Count"
+FROM "5_学术研究织网/研究项目"
+WHERE type = "material-passport"
+GROUP BY stage
+```
+
+## 各阶段项目详情
+
+### Research 阶段
+
+```dataview
+TABLE project_name, ars_mode, verification_status, created
+FROM "5_学术研究织网/研究项目"
+WHERE type = "material-passport"
+WHERE stage = "1-RESEARCH"
+SORT updated DESC
+```
+
+### Writing 阶段
+
+```dataview
+TABLE project_name, ars_mode, verification_status, created
+FROM "5_学术研究织网/研究项目"
+WHERE type = "material-passport"
+WHERE stage = "2-WRITE"
+SORT updated DESC
+```
+
+### Review 阶段
+
+```dataview
+TABLE project_name, ars_mode, verification_status, created
+FROM "5_学术研究织网/研究项目"
+WHERE type = "material-passport"
+WHERE stage = "3-REVIEW"
+SORT updated DESC
+```
+
+## 停滞项目检测
+
+```dataview
+TABLE project_name, stage, updated
+FROM "5_学术研究织网/研究项目"
+WHERE type = "material-passport"
+WHERE date(updated) < (date(today) - dur(7 days))
+SORT updated ASC
+```

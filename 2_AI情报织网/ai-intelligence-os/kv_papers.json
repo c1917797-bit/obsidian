@@ -1,0 +1,264 @@
+{
+  "total_kv": 42,
+  "kv_papers": [
+    {
+      "title": "VL-Cache: Sparsity and Modality-Aware KV Cache Compression for Vision-Language Model Inference Acceleration",
+      "methods": [
+        "稀疏(Sparse)",
+        "高效推理(Efficient)"
+      ]
+    },
+    {
+      "title": "LogQuant: Log-Distributed 2-Bit Quantization of KV Cache with Superior Accuracy Preservation",
+      "methods": [
+        "量化(Quant)"
+      ]
+    },
+    {
+      "title": "ZipVL: Efficient Large Vision-Language Models with Dynamic Token Sparsification and KV Cache Compression",
+      "methods": [
+        "稀疏(Sparse)",
+        "高效推理(Efficient)"
+      ]
+    },
+    {
+      "title": "RazorAttention: Efficient KV Cache Compression Through Retrieval Heads",
+      "methods": [
+        "剪枝(Prune)",
+        "高效推理(Efficient)"
+      ]
+    },
+    {
+      "title": "QJL: 1-Bit Quantized JL Transform for KV Cache Quantization with Zero Overhead",
+      "methods": [
+        "量化(Quant)",
+        "剪枝(Prune)"
+      ]
+    },
+    {
+      "title": "MUSTAFAR: Promoting Unstructured Sparsity for KV Cache Pruning in LLM Inference",
+      "methods": [
+        "剪枝(Prune)",
+        "稀疏(Sparse)"
+      ]
+    },
+    {
+      "title": "QSVD: Efficient Low-rank Approximation for Unified Query-Key-Value Weight Compression in Low-Precision Vision-Language Models",
+      "methods": [
+        "低秩(LowRank)",
+        "高效推理(Efficient)"
+      ]
+    },
+    {
+      "title": "Unlocking Data-free Low-bit Quantization with Matrix Decomposition for KV Cache Compression",
+      "methods": [
+        "量化(Quant)",
+        "低秩(LowRank)"
+      ]
+    },
+    {
+      "title": "KVSharer: Efficient Inference via Layer-Wise Dissimilar KV Cache Sharing",
+      "methods": [
+        "高效推理(Efficient)"
+      ]
+    },
+    {
+      "title": "ChunkKV: Semantic-Preserving KV Cache Compression for Efficient Long-Context LLM Inference",
+      "methods": [
+        "高效推理(Efficient)"
+      ]
+    },
+    {
+      "title": "CAKE: Cascading and Adaptive KV Cache Eviction with Layer Preferences",
+      "methods": [
+        "高效推理(Efficient)"
+      ]
+    },
+    {
+      "title": "Not All Heads Matter: A Head-Level KV Cache Compression Method with Integrated Retrieval and Reasoning",
+      "methods": [
+        "剪枝(Prune)"
+      ]
+    },
+    {
+      "title": "KV-Dict: Sparse KV Cache Compression with Universal Dictionaries",
+      "methods": [
+        "稀疏(Sparse)"
+      ]
+    },
+    {
+      "title": "LoRC: Low-Rank Compression for LLMs KV Cache with a Progressive Compression Strategy",
+      "methods": [
+        "低秩(LowRank)"
+      ]
+    },
+    {
+      "title": "MPCache: MPC-Friendly KV Cache Eviction for Efficient Private LLM Inference",
+      "methods": [
+        "高效推理(Efficient)"
+      ]
+    },
+    {
+      "title": "HShare: Fast LLM Decoding by Hierarchical Key-Value Sharing",
+      "methods": [
+        "高效推理(Efficient)"
+      ]
+    },
+    {
+      "title": "Preserving Large Activations: The Key to KV Cache Pruning",
+      "methods": [
+        "剪枝(Prune)"
+      ]
+    },
+    {
+      "title": "SinkQ: Accurate 2-bit KV Cache Quantization with Dynamic Sink Tracking",
+      "methods": [
+        "量化(Quant)"
+      ]
+    },
+    {
+      "title": "EMS: Adaptive Evict-then-Merge Strategy for Head-wise KV Cache Compression Based on Global-Local Importance",
+      "methods": [
+        "剪枝(Prune)"
+      ]
+    },
+    {
+      "title": "In-context KV-Cache Eviction for LLMs via Attention-Gate",
+      "methods": [
+        "高效推理(Efficient)"
+      ]
+    },
+    {
+      "title": "ShadowKV: KV Cache in Shadows for High-Throughput Long-Context LLM Inference",
+      "methods": [
+        "高效推理(Efficient)"
+      ]
+    },
+    {
+      "title": "SmallKV: Small Model Assisted Compensation of KV Cache Compression for Efficient LLM Inference",
+      "methods": [
+        "高效推理(Efficient)"
+      ]
+    },
+    {
+      "title": "ChunkKV: Semantic-Preserving KV Cache Compression for Efficient Long-Context LLM Inference",
+      "methods": [
+        "高效推理(Efficient)"
+      ]
+    },
+    {
+      "title": "Transformer Key-Value Memories Are Nearly as Interpretable as Sparse Autoencoders",
+      "methods": [
+        "稀疏(Sparse)"
+      ]
+    },
+    {
+      "title": "Memory-Efficient Visual Autoregressive Modeling with Scale-Aware KV Cache Compression",
+      "methods": [
+        "高效推理(Efficient)"
+      ]
+    },
+    {
+      "title": "Accurate KV Cache Eviction via Anchor Direction Projection for Efficient LLM Inference",
+      "methods": [
+        "高效推理(Efficient)"
+      ]
+    },
+    {
+      "title": "NSNQuant: A Double Normalization Approach for Calibration-Free Low-Bit Vector Quantization of KV Cache",
+      "methods": [
+        "量化(Quant)"
+      ]
+    },
+    {
+      "title": "MPCache: MPC-Friendly KV Cache Eviction for Efficient Private LLM Inference",
+      "methods": [
+        "高效推理(Efficient)"
+      ]
+    },
+    {
+      "title": "KVLink: Accelerating Large Language Models via Efficient KV Cache Reuse",
+      "methods": [
+        "高效推理(Efficient)"
+      ]
+    },
+    {
+      "title": "Spotlight Attention: Towards Efficient LLM Generation via Non-linear Hashing-based KV Cache Retrieval",
+      "methods": [
+        "高效推理(Efficient)"
+      ]
+    },
+    {
+      "title": "PrefixKV: Adaptive Prefix KV Cache is What Vision Instruction-Following Models Need for Efficient Generation",
+      "methods": [
+        "高效推理(Efficient)"
+      ]
+    },
+    {
+      "title": "Ada-KV: Optimizing KV Cache Eviction by Adaptive Budget Allocation for Efficient LLM Inference",
+      "methods": [
+        "高效推理(Efficient)"
+      ]
+    },
+    {
+      "title": "KeyDiff: Key Similarity-Based KV Cache Eviction for Long-Context LLM Inference in Resource-Constrained Environments",
+      "methods": [
+        "高效推理(Efficient)"
+      ]
+    },
+    {
+      "title": "SALS: Sparse Attention in Latent Space for KV Cache Compression",
+      "methods": [
+        "稀疏(Sparse)"
+      ]
+    },
+    {
+      "title": "KIVI: A Tuning-Free Asymmetric 2bit Quantization for KV Cache",
+      "methods": [
+        "量化(Quant)"
+      ]
+    },
+    {
+      "title": "Get More with LESS: Synthesizing Recurrence with KV Cache Compression for Efficient LLM Inference",
+      "methods": [
+        "高效推理(Efficient)"
+      ]
+    },
+    {
+      "title": "Eigen Attention: Attention in Low-Rank Space for KV Cache Compression",
+      "methods": [
+        "低秩(LowRank)"
+      ]
+    },
+    {
+      "title": "LOOK-M: Look-Once Optimization in KV Cache for Efficient Multimodal Long-Context Inference",
+      "methods": [
+        "高效推理(Efficient)"
+      ]
+    },
+    {
+      "title": "ChunkAttention: Efficient Self-Attention with Prefix-Aware KV Cache and Two-Phase Partition",
+      "methods": [
+        "高效推理(Efficient)"
+      ]
+    },
+    {
+      "title": "Layer-Condensed KV Cache for Efficient Inference of Large Language Models",
+      "methods": [
+        "高效推理(Efficient)"
+      ]
+    },
+    {
+      "title": "NACL: A General and Effective KV Cache Eviction Framework for LLM at Inference Time",
+      "methods": [
+        "高效推理(Efficient)"
+      ]
+    },
+    {
+      "title": "PyramidInfer: Pyramid KV Cache Compression for High-throughput LLM Inference",
+      "methods": [
+        "高效推理(Efficient)"
+      ]
+    }
+  ]
+}

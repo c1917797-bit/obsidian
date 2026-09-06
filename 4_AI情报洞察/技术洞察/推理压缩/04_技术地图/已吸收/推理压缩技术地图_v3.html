@@ -1,0 +1,1309 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>推理压缩技术地图 v3.1 — 严谨分类版</title>
+<style>
+  :root {
+    --bg: #0d1117;
+    --surface: #161b22;
+    --surface2: #21262d;
+    --surface3: #30363d;
+    --border: #30363d;
+    --text: #e6edf3;
+    --text-dim: #8b949e;
+    --text-dimmer: #6e7681;
+    --accent: #58a6ff;
+    --green: #3fb950;
+    --yellow: #d29922;
+    --red: #f85149;
+    --purple: #a371f7;
+    --orange: #f0883e;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans CJK SC', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+  }
+
+  header {
+    position: sticky; top: 0; z-index: 100;
+    background: #0d1117ee;
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 24px;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 52px;
+  }
+
+  .header-title { font-size: 15px; font-weight: 600; color: var(--accent); }
+  .header-title span { color: var(--text-dim); font-weight: 400; font-size: 12px; margin-left: 10px; }
+
+  .header-legend { display: flex; gap: 14px; font-size: 11px; align-items: center; }
+  .legend-item { display: flex; align-items: center; gap: 5px; color: var(--text-dim); }
+  .legend-dot { width: 8px; height: 8px; border-radius: 2px; }
+
+  .layout { display: flex; min-height: calc(100vh - 52px); }
+
+  /* ===== SIDEBAR ===== */
+  .sidebar {
+    width: 220px; min-width: 220px;
+    border-right: 1px solid var(--border);
+    overflow-y: auto;
+    position: sticky; top: 52px; height: calc(100vh - 52px);
+    padding: 14px 10px;
+  }
+
+  .sidebar-section { margin-bottom: 16px; }
+  .sidebar-label { font-size: 10px; text-transform: uppercase; letter-spacing: 1px; color: var(--text-dim); padding: 0 8px; margin-bottom: 5px; }
+
+  .nav-btn {
+    display: flex; align-items: center; gap: 8px;
+    padding: 6px 8px; border-radius: 6px;
+    cursor: pointer; font-size: 12.5px; color: var(--text-dim);
+    transition: all 0.12s; user-select: none;
+  }
+  .nav-btn:hover { background: var(--surface2); color: var(--text); }
+  .nav-btn.active { background: rgba(88,166,255,0.12); color: var(--accent); }
+  .nav-dot { width: 7px; height: 7px; border-radius: 2px; flex-shrink: 0; }
+  .nav-count { margin-left: auto; font-size: 10px; background: var(--surface2); color: var(--text-dim); padding: 1px 5px; border-radius: 8px; }
+
+  /* ===== CONTENT ===== */
+  .content { flex: 1; overflow-y: auto; padding: 22px 28px; }
+
+  .crumb { display: flex; align-items: center; gap: 6px; font-size: 12px; color: var(--text-dim); margin-bottom: 18px; }
+  .crumb-sep { opacity: 0.4; }
+  .crumb-current { color: var(--text); }
+
+  .view-section { display: none; }
+  .view-section.active { display: block; }
+
+  /* ===== PROVINCE CARDS ===== */
+  .province-section-title { font-size: 17px; font-weight: 700; margin-bottom: 14px; }
+
+  .province-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 14px; margin-bottom: 32px;
+  }
+
+  .province-card {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 12px;
+    overflow: hidden; cursor: pointer; transition: all 0.15s;
+  }
+  .province-card:hover { border-color: var(--card-color, var(--accent)); box-shadow: 0 0 0 1px var(--card-color, var(--accent)), 0 4px 20px rgba(0,0,0,0.35); }
+
+  .province-hdr {
+    padding: 12px 14px; display: flex; align-items: center; gap: 10px;
+    border-bottom: 1px solid var(--border);
+  }
+  .province-icon {
+    width: 34px; height: 34px; border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 14px; font-weight: 800; flex-shrink: 0;
+  }
+  .province-name { font-size: 13.5px; font-weight: 600; }
+  .province-en { font-size: 10.5px; color: var(--text-dim); margin-top: 1px; }
+  .province-num { font-size: 20px; font-weight: 700; color: var(--card-color, var(--accent)); line-height: 1; }
+  .province-num-label { font-size: 10px; color: var(--text-dim); }
+
+  .method-chips { padding: 8px 10px; display: flex; flex-wrap: wrap; gap: 5px; }
+  .method-chip {
+    display: flex; align-items: center; gap: 5px;
+    padding: 4px 8px; border-radius: 5px; font-size: 11px;
+    cursor: pointer; background: var(--surface2);
+    transition: all 0.12s; border: 1px solid transparent;
+  }
+  .method-chip:hover { border-color: var(--chip-color, var(--accent)); transform: translateY(-1px); }
+  .chip-dot { width: 6px; height: 6px; border-radius: 1.5px; flex-shrink: 0; }
+  .chip-count { color: var(--text-dim); font-size: 10px; }
+
+  /* ===== METHOD PAGE ===== */
+  .method-page-hdr {
+    display: flex; align-items: flex-start; gap: 14px;
+    margin-bottom: 20px; padding-bottom: 18px;
+    border-bottom: 1px solid var(--border);
+  }
+  .method-badge {
+    width: 48px; height: 48px; border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 22px; flex-shrink: 0;
+  }
+  .method-title { font-size: 20px; font-weight: 700; margin-bottom: 3px; }
+  .method-subtitle { font-size: 12.5px; color: var(--text-dim); }
+
+  .stat-chip {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 8px;
+    padding: 10px 14px; min-width: 90px; display: inline-block;
+  }
+  .stat-chip-val { font-size: 22px; font-weight: 700; }
+  .stat-chip-label { font-size: 10.5px; color: var(--text-dim); margin-top: 2px; }
+
+  /* ===== TAXONOMY AXIS INFO ===== */
+  .axis-info {
+    background: rgba(88,166,255,0.06);
+    border: 1px solid rgba(88,166,255,0.2);
+    border-radius: 10px;
+    padding: 14px 16px;
+    margin-bottom: 20px;
+  }
+  .axis-label { font-size: 10px; font-weight: 700; color: var(--accent); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 6px; }
+  .axis-text { font-size: 13px; color: var(--text-dim); line-height: 1.7; }
+  .axis-text strong { color: var(--text); }
+
+  /* ===== CITY CARDS ===== */
+  .cities-title { font-size: 13px; font-weight: 700; color: var(--text-dim); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 12px; }
+
+  .city-cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 12px; margin-bottom: 20px; }
+
+  .city-card {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 10px;
+    overflow: hidden; cursor: pointer; transition: all 0.15s;
+  }
+  .city-card:hover { border-color: var(--city-color, var(--accent)); box-shadow: 0 0 0 1px var(--city-color, var(--accent)); }
+  .city-card.active { border-color: var(--city-color, var(--accent)); }
+
+  .city-hdr {
+    padding: 10px 12px; display: flex; align-items: center; gap: 8px;
+    border-bottom: 1px solid var(--border);
+  }
+  .city-num { font-size: 18px; font-weight: 700; color: var(--city-color, var(--accent)); min-width: 28px; }
+  .city-name { font-size: 13px; font-weight: 600; }
+  .city-en { font-size: 10.5px; color: var(--text-dim); margin-top: 1px; }
+  .city-trl { font-size: 10px; padding: 2px 6px; border-radius: 4px; font-weight: 600; margin-left: auto; }
+  .trl-h { background: rgba(248,81,73,0.15); color: var(--ci-red); }
+  .trl-m { background: rgba(210,153,34,0.15); color: var(--ci-yellow); }
+  .trl-l { background: rgba(63,185,80,0.15); color: var(--ci-green); }
+  .trl-n { background: rgba(163,113,247,0.15); color: var(--ci-purple); }
+
+  .city-bar-row { padding: 7px 12px; display: flex; align-items: center; gap: 7px; }
+  .city-bar { flex: 1; height: 4px; background: var(--surface2); border-radius: 2px; overflow: hidden; }
+  .city-bar-fill { height: 100%; border-radius: 2px; }
+
+  .city-method-tags { padding: 6px 12px; display: flex; flex-wrap: wrap; gap: 4px; border-top: 1px solid var(--border); }
+  .city-method-tag { font-size: 10px; padding: 2px 6px; border-radius: 4px; background: var(--surface2); color: var(--text-dim); }
+
+  /* ===== PAPERS ===== */
+  .county-section { display: none; margin-top: 0; border-top: 1px solid var(--border); }
+  .county-section.open { display: block; }
+
+  .county-header { display: flex; align-items: center; justify-content: space-between; padding: 10px 12px 6px; }
+  .county-title { font-size: 12px; font-weight: 600; color: var(--text-dim); }
+  .county-count { font-size: 11px; color: var(--text-dim); background: var(--surface2); padding: 1px 7px; border-radius: 8px; }
+
+  .paper-row {
+    background: var(--surface2); border-radius: 7px; padding: 9px 11px;
+    margin: 0 8px 5px; display: flex; align-items: flex-start; gap: 8px;
+    transition: background 0.12s; cursor: pointer;
+  }
+  .paper-row:hover { background: var(--surface3); }
+  .paper-yr { font-size: 10px; color: var(--text-dimmer); background: var(--surface); padding: 1px 5px; border-radius: 3px; flex-shrink: 0; margin-top: 1px; }
+  .paper-body { flex: 1; }
+  .paper-name { font-size: 12.5px; font-weight: 600; margin-bottom: 2px; }
+  .paper-desc { font-size: 11px; color: var(--text-dim); line-height: 1.5; }
+  .paper-metric { font-size: 10px; color: var(--ci-green); background: rgba(63,185,80,0.1); padding: 2px 6px; border-radius: 4px; flex-shrink: 0; white-space: nowrap; }
+
+  /* ===== INTRO ===== */
+  .intro-hero { text-align: center; padding: 40px 20px 24px; }
+  .intro-hero h1 { font-size: 24px; font-weight: 700; margin-bottom: 8px; }
+  .intro-hero p { font-size: 13.5px; color: var(--text-dim); max-width: 500px; margin: 0 auto; line-height: 1.7; }
+
+  .intro-cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 12px; margin: 24px 0; }
+  .intro-card {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 10px;
+    padding: 14px; cursor: pointer; transition: all 0.15s;
+  }
+  .intro-card:hover { border-color: var(--accent); transform: translateY(-2px); }
+  .intro-card-title { font-size: 13px; font-weight: 600; margin-bottom: 4px; }
+  .intro-card-desc { font-size: 11.5px; color: var(--text-dim); line-height: 1.6; }
+
+  /* ===== MATRIX ===== */
+  .matrix-container { overflow-x: auto; }
+  .matrix-grid { display: inline-grid; gap: 4px; margin-bottom: 16px; }
+  .matrix-header { background: var(--surface2); border-radius: 6px; padding: 8px; font-size: 11px; font-weight: 600; text-align: center; color: var(--text-dim); min-width: 70px; }
+  .matrix-header:first-child { text-align: left; min-width: 100px; }
+  .matrix-row-label { background: var(--surface); border-radius: 6px; padding: 8px; font-size: 12px; display: flex; align-items: center; gap: 6px; }
+  .matrix-cell {
+    background: var(--surface); border-radius: 6px; padding: 8px;
+    text-align: center; cursor: pointer; transition: transform 0.12s;
+    min-width: 70px;
+  }
+  .matrix-cell:hover { transform: scale(1.08); }
+  .matrix-cell-num { font-size: 13px; font-weight: 700; display: block; }
+  .matrix-cell-stars { font-size: 9px; color: var(--text-dim); }
+
+  .cell-red { background: rgba(248,81,73,0.1); border: 1px solid rgba(248,81,73,0.25); }
+  .cell-orange { background: rgba(240,136,62,0.1); border: 1px solid rgba(240,136,62,0.25); }
+  .cell-yellow { background: rgba(210,153,34,0.1); border: 1px solid rgba(210,153,34,0.25); }
+  .cell-green { background: rgba(63,185,80,0.1); border: 1px solid rgba(63,185,80,0.25); }
+  .cell-purple { background: rgba(163,113,247,0.1); border: 1px solid rgba(163,113,247,0.25); }
+  .cell-red .matrix-cell-num { color: #f85149; }
+  .cell-orange .matrix-cell-num { color: #f0883e; }
+  .cell-yellow .matrix-cell-num { color: #d29922; }
+  .cell-green .matrix-cell-num { color: #3fb950; }
+  .cell-purple .matrix-cell-num { color: #a371f7; }
+
+  /* ===== OPP ===== */
+  .opp-card {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 10px;
+    margin-bottom: 10px; overflow: hidden;
+  }
+  .opp-hdr { padding: 12px 14px; display: flex; align-items: center; gap: 10px; border-bottom: 1px solid var(--border); }
+  .opp-rank { font-size: 20px; font-weight: 800; min-width: 32px; }
+  .opp-name { font-size: 14px; font-weight: 600; }
+  .opp-p { font-size: 11px; padding: 2px 8px; border-radius: 10px; font-weight: 600; margin-left: 8px; }
+  .opp-p.p0 { background: rgba(248,81,73,0.15); color: #f85149; }
+  .opp-p.p1 { background: rgba(240,136,62,0.15); color: #f0883e; }
+  .opp-p.p2 { background: rgba(210,153,34,0.15); color: #d29922; }
+  .opp-body { padding: 12px 14px; }
+  .opp-stats { display: flex; gap: 10px; margin-bottom: 10px; flex-wrap: wrap; }
+  .opp-stat { background: var(--surface2); border-radius: 6px; padding: 8px 12px; min-width: 70px; }
+  .opp-stat-val { font-size: 18px; font-weight: 700; }
+  .opp-stat-label { font-size: 10px; color: var(--text-dim); }
+  .opp-desc { font-size: 12px; color: var(--text-dim); line-height: 1.6; }
+  .opp-axis { font-size: 11px; color: var(--text-dimmer); margin-top: 8px; padding-top: 8px; border-top: 1px solid var(--border); }
+
+  /* ===== SCROLLBAR ===== */
+  ::-webkit-scrollbar { width: 5px; height: 5px; }
+  ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+  ::-webkit-scrollbar-thumb:hover { background: var(--text-dim); }
+
+  .back-btn {
+    display: inline-flex; align-items: center; gap: 5px;
+    font-size: 12px; color: var(--text-dim); cursor: pointer;
+    padding: 4px 8px; border-radius: 5px; transition: all 0.12s; margin-bottom: 16px;
+  }
+  .back-btn:hover { background: var(--surface2); color: var(--text); }
+
+  .section-title { font-size: 17px; font-weight: 700; margin-bottom: 14px; }
+
+  .opp-badge { display: inline-flex; align-items: center; gap: 4px; font-size: 10px; padding: 2px 7px; border-radius: 10px; font-weight: 600; }
+  .opp-badge.p0 { background: rgba(248,81,73,0.15); color: #f85149; }
+  .opp-badge.p1 { background: rgba(240,136,62,0.15); color: #f0883e; }
+  .opp-badge.p2 { background: rgba(210,153,34,0.15); color: #d29922; }
+
+  .ci-red: #f85149; .ci-orange: #f0883e; .ci-yellow: #d29922; .ci-green: #3fb950; .ci-blue: #58a6ff; .ci-purple: #a371f7;
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-title">
+    🗺️ 推理压缩技术地图 v3.1
+    <span>严谨分类版 · 2026-06-28 · 2,757篇论文</span>
+  </div>
+  <div class="header-legend">
+    <div class="legend-item"><div class="legend-dot" style="background:#f85149"></div>红海(>300)</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#f0883e"></div>活跃(100-300)</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#d29922"></div>新兴(50-100)</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#3fb950"></div>学术(20-50)</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#a371f7"></div>空白(<20)</div>
+  </div>
+</header>
+
+<div class="layout">
+
+<div class="sidebar">
+  <div class="sidebar-section">
+    <div class="nav-btn active" onclick="navigate('home')">
+      <div class="nav-dot" style="background:var(--accent)"></div>
+      🗺️ 首页
+    </div>
+  </div>
+  <div class="sidebar-section">
+    <div class="sidebar-label">📌 对象层</div>
+    <div class="nav-btn" onclick="navigate('obj')">
+      <div class="nav-dot" style="background:#f0883e"></div>权重压缩<span class="nav-count">1,624</span>
+    </div>
+    <div class="nav-btn" onclick="navigate('obj')">
+      <div class="nav-dot" style="background:#58a6ff"></div>激活值压缩<span class="nav-count">756</span>
+    </div>
+    <div class="nav-btn" onclick="navigate('obj')">
+      <div class="nav-dot" style="background:#a371f7"></div>KV Cache压缩<span class="nav-count">310</span>
+    </div>
+    <div class="nav-btn" onclick="navigate('obj')">
+      <div class="nav-dot" style="background:#3fb950"></div>通信压缩<span class="nav-count">265</span>
+    </div>
+    <div class="nav-btn" onclick="navigate('obj')">
+      <div class="nav-dot" style="background:#d29922"></div>通用效率<span class="nav-count">523</span>
+    </div>
+  </div>
+  <div class="sidebar-section">
+    <div class="sidebar-label">🔗 综合</div>
+    <div class="nav-btn" onclick="navigate('matrix')">
+      <div class="nav-dot" style="background:var(--accent)"></div>对象×技术矩阵
+    </div>
+    <div class="nav-btn" onclick="navigate('opp')">
+      <div class="nav-dot" style="background:#a371f7"></div>研究机会
+    </div>
+  </div>
+</div>
+
+<div class="content" id="content">
+
+  <!-- HOME -->
+  <div id="view-home" class="view-section active">
+    <div class="intro-hero">
+      <h1>🗺️ 推理压缩技术地图 v3.1</h1>
+      <p>三层技术树 · 分类轴线严格正交 · 每个子类有且仅有一个分类依据</p>
+    </div>
+    <div class="intro-cards">
+      <div class="intro-card" onclick="navigate('obj')">
+        <div class="intro-card-title">📌 对象层</div>
+        <div class="intro-card-desc">5个压缩对象，每个对象下按严格分类轴展开技术</div>
+      </div>
+      <div class="intro-card" onclick="navigate('matrix')">
+        <div class="intro-card-title">🔲 4×6 完整矩阵</div>
+        <div class="intro-card-desc">点击任意单元格查看该交叉点的严谨分类</div>
+      </div>
+      <div class="intro-card" onclick="navigate('opp')">
+        <div class="intro-card-title">🔥 研究机会</div>
+        <div class="intro-card-desc">基于严谨分类的机会判断</div>
+      </div>
+    </div>
+
+    <div class="province-section-title">📌 点击对象展开技术（省 → 市）</div>
+    <div class="province-grid" id="province-grid-home"></div>
+
+    <!-- 分类设计说明 -->
+    <div class="axis-info" style="margin-top:8px">
+      <div class="axis-label">📐 分类体系设计说明</div>
+      <div class="axis-text">
+        <strong>设计原则：分类轴线必须正交（不重叠）。</strong><br><br>
+        之前的版本把多个维度混在一起（如KV稀疏按"淘汰机制"和"信号类型"混合分类），导致子类重叠。<br><br>
+        <strong>v3.1改进：</strong>每个对象×方法只用<strong>一条主轴</strong>分类，明确说明分类依据。<br>
+        必要时提供<strong>二级标注</strong>（非分类），说明该工作的其他特征。
+      </div>
+    </div>
+
+    <!-- KV EVICTION 分类设计说明 -->
+    <div class="axis-info" style="margin-top:8px">
+      <div class="axis-label">💾 KV×稀疏 分类轴线（以KV稀疏为例）</div>
+      <div class="axis-text">
+        <strong>主轴：淘汰策略（Eviction Strategy）— 这是论文中实际区分方法的核心维度。</strong><br><br>
+        <strong>❌ 错误分类（之前的问题）：</strong><br>
+        混合了"淘汰信号"（attention score vs semantic similarity）和"淘汰时机"（静态规则 vs 可学习），导致SnapKV同时属于"注意力分数驱动"和"语义聚类锚点"。<br><br>
+        <strong>✅ 正确分类：</strong><br>
+        · 固定规则策略 — StreamingLLM（固定保留sink+最近token）<br>
+        · 重要性评分策略 — H2O/R-KV/CONF-KV（按重要性评分淘汰）<br>
+        · 语义聚类策略 — SnapKV/PageKV（按语义相似性选择锚点）<br>
+        · 驱逐恢复策略 — LazyLLM/Speculative Recovery（允许驱逐后按需恢复）<br>
+        · 可学习策略 — TRIM-KV/MUSTAFAR/IntentKV（端到端学习淘汰决策）<br>
+        · 协同共享策略 — CacheBlend/PyramidInfer/Models Take Notes（跨查询协同）
+      </div>
+    </div>
+  </div>
+
+  <!-- OBJECT VIEW -->
+  <div id="view-object" class="view-section">
+    <div class="crumb">
+      <span>🗺️</span><span class="crumb-sep">›</span>
+      <span>对象层</span>
+    </div>
+    <div class="province-grid" id="province-grid-detail"></div>
+  </div>
+
+  <!-- METHOD PAGE -->
+  <div id="view-method-page" class="view-section">
+    <div class="crumb" id="method-crumb">
+      <span>🗺️</span><span class="crumb-sep">›</span>
+      <span id="mc-1">-</span><span class="crumb-sep">›</span>
+      <span id="mc-2">-</span><span class="crumb-sep">›</span>
+      <span class="crumb-current" id="mc-3">-</span>
+    </div>
+    <div id="method-body"></div>
+    <div class="back-btn" onclick="navigate('home')">← 返回首页</div>
+  </div>
+
+  <!-- MATRIX -->
+  <div id="view-matrix" class="view-section">
+    <div class="crumb">
+      <span>🗺️</span><span class="crumb-sep">›</span>
+      <span class="crumb-current">对象×技术 矩阵</span>
+    </div>
+    <div id="matrix-body"></div>
+  </div>
+
+  <!-- OPPORTUNITY -->
+  <div id="view-opportunity" class="view-section">
+    <div class="crumb">
+      <span>🗺️</span><span class="crumb-sep">›</span>
+      <span class="crumb-current">研究机会</span>
+    </div>
+    <div id="opp-body"></div>
+  </div>
+
+</div>
+</div>
+
+<script>
+// ================================================================
+// DATA
+// ================================================================
+
+const OBJ = {
+  w:  { name:'权重压缩', en:'Weights', color:'#f0883e', papers:1624 },
+  a:  { name:'激活值压缩', en:'Activations', color:'#58a6ff', papers:756 },
+  k:  { name:'KV Cache压缩', en:'KV Cache', color:'#a371f7', papers:310 },
+  c:  { name:'通信压缩', en:'Communication', color:'#3fb950', papers:265 },
+  g:  { name:'通用效率', en:'General Efficiency', color:'#d29922', papers:523 }
+};
+
+const MET = {
+  quant:   { name:'量化', icon:'📊', color:'#f85149' },
+  sparse:  { name:'稀疏化', icon:'✂️', color:'#f0883e' },
+  prune:   { name:'剪枝', icon:'🎯', color:'#f0883e' },
+  distill: { name:'蒸馏', icon:'🍶', color:'#d29922' },
+  lowrank: { name:'低秩', icon:'📉', color:'#f85149' },
+  general: { name:'通用优化', icon:'⚙️', color:'#d29922' }
+};
+
+const MX = {
+  w:  { quant:376, sparse:311, prune:509, distill:231, lowrank:575, general:175 },
+  a:  { quant:201, sparse:396, prune:199, distill:68,  lowrank:174, general:42  },
+  k:  { quant:46,  sparse:69,  prune:37,  distill:10, lowrank:37,  general:148 },
+  c:  { quant:44,  sparse:82,  prune:45,  distill:18, lowrank:57,  general:77  },
+  g:  { quant:117, sparse:42,  prune:41,  distill:170,lowrank:17,  general:187 }
+};
+
+const MX_CLASS = {
+  w:  { quant:'red', sparse:'orange', prune:'red', distill:'orange', lowrank:'red', general:'yellow' },
+  a:  { quant:'yellow', sparse:'orange', prune:'yellow', distill:'green', lowrank:'yellow', general:'green' },
+  k:  { quant:'purple', sparse:'green', prune:'green', distill:'purple', lowrank:'green', general:'orange' },
+  c:  { quant:'purple', sparse:'yellow', prune:'green', distill:'purple', lowrank:'yellow', general:'yellow' },
+  g:  { quant:'yellow', sparse:'green', prune:'green', distill:'orange', lowrank:'green', general:'orange' }
+};
+
+const STARS = { red:'★★★★★', orange:'★★★★', yellow:'★★★', green:'★★', purple:'★☆☆' };
+
+// ================================================================
+// RIGOROUS TAXONOMY DATA
+// ================================================================
+// Each (object, method) has ONE primary classification axis.
+// The "axis" field explicitly states what dimension we're classifying by.
+// Subclassifications are mutually exclusive under that axis.
+
+// ---------------------------------------------------------------
+// KV SPARSE — Axis: 淘汰策略 (Eviction Strategy)
+// 论文依据: StreamingLLM(固定规则) / H2O/R-KV(重要性评分) / SnapKV(语义聚类) / LazyLLM(驱逐恢复) / TRIM-KV(可学习) / CacheBlend(协同共享)
+// ---------------------------------------------------------------
+const KV_SPARSE = {
+  fixed_rule: {
+    name:'固定规则策略', en:'Fixed-Rule', color:'#6e7681', papers:2, trl:4,
+    axis:'按预定义规则决定保留哪些KV，无参数可学习',
+    mechanism:'固定阈值或固定模式，不依赖数据',
+    works:[
+      { name:'StreamingLLM', year:'NeurIPS\'24', desc:'固定保留4个Attention Sink + 最近token，无任何可学习参数', metric:'NeurIPS 2024' },
+      { name:'LLM-Sentinel', year:'2025', desc:'基于访问频率的固定淘汰阈值规则', metric:'缓存命中率↑' },
+    ]
+  },
+  importance_score: {
+    name:'重要性评分策略', en:'Importance-Score Driven', color:'#58a6ff', papers:5, trl:4,
+    axis:'按token对当前/未来生成的重要性评分，决定保留哪些KV',
+    mechanism:'基于attention score/累计贡献度等显式指标评分',
+    works:[
+      { name:'H2O', year:'NeurIPS\'23', desc:'Heavy-Hitter Oracle: 累计attention score最高的KV保留最低', metric:'NeurIPS 2023' },
+      { name:'R-KV', year:'2025', desc:'训练一个评分模块，按token对未来生成贡献评分，10% KV近100%性能', metric:'6.6x吞吐↑' },
+      { name:'CONF-KV', year:'2025', desc:'按next-token预测置信度评分：不确定多留，确定多删', metric:'NIAH 91.4%' },
+      { name:'TCM', year:'2025', desc:'Token Credit Mechanism: attention score作为token预算分配', metric:'内存效率↑' },
+      { name:'FastBoost', year:'2025', desc:'基于boosting的attention重加权评分', metric:'精度↑' },
+    ]
+  },
+  semantic_cluster: {
+    name:'语义聚类策略', en:'Semantic Clustering', color:'#a371f7', papers:3, trl:4,
+    axis:'按语义相似性聚类token，选择每个聚类的代表性锚点保留',
+    mechanism:'通过attention模式或语义表示发现token间的相似性',
+    works:[
+      { name:'SnapKV', year:'ICML\'24', desc:'观察窗口内token相互投票选最重要token，语义相似的token选同一个锚点', metric:'内存8.2x↑' },
+      { name:'PageKV', year:'2025', desc:'语义分页管理KV cache', metric:'分页缓存' },
+      { name:'InFoVer', year:'2025', desc:'语义验证驱动的KV选择', metric:'精度↑' },
+    ]
+  },
+  evict_recover: {
+    name:'驱逐恢复策略', en:'Evict-then-Recover', color:'#f0883e', papers:2, trl:4,
+    axis:'允许KV被驱逐，并在需要时按需重新计算恢复',
+    mechanism:'不等同于"删了就没了"，而是主动驱逐+lazy恢复',
+    works:[
+      { name:'LazyLLM', year:'ICML\'24', desc:'被驱逐的KV在后续token生成时按需恢复，Prefill加速2.34x', metric:'Prefill 2.34x↑' },
+      { name:'Speculative Recovery', year:'2025', desc:'推测性KV恢复减少重计算开销', metric:'延迟↓' },
+    ]
+  },
+  learnable: {
+    name:'可学习策略', en:'Learnable Policy', color:'#d29922', papers:5, trl:3,
+    axis:'用神经网络学习KV保留/淘汰决策，端到端可训练',
+    mechanism:'有可训练参数，淘汰决策由模型学出而非人工设定',
+    works:[
+      { name:'TRIM-KV', year:'2025', desc:'每个token创建时用可学习门控预测保留分数，按层/头差异化', metric:'超越full-cache' },
+      { name:'MUSTAFAR', year:'2024', desc:'token创建时预测保留分数，可学习阈值', metric:'按层/头差异化' },
+      { name:'IntentKV', year:'2026', desc:'跨轮次QueryMemory，可学习跨轮淘汰策略', metric:'8k预算TT↓23.9%' },
+      { name:'Self-Pruned KV', year:'2025', desc:'预测未来效用的token写入决策', metric:'生成质量保持' },
+      { name:'RL-KV', year:'2026', desc:'强化学习学KV淘汰策略', metric:'RL优化' },
+    ]
+  },
+  collaborative: {
+    name:'协同共享策略', en:'Collaborative/Multi-Query', color:'#db61a5', papers:5, trl:4,
+    axis:'跨多个查询共享/复用KV，不是单查询内部决策',
+    mechanism:'识别跨查询的共享前缀或协作机会',
+    works:[
+      { name:'CacheBlend', year:'2024', desc:'跨查询缓存混合，共享前缀的KV复用', metric:'缓存复用↑' },
+      { name:'PyramidInfer', year:'NeurIPS\'23', desc:'金字塔KV压缩，金字塔式层级共享', metric:'NeurIPS 2023' },
+      { name:'Models Take Notes', year:'2026', desc:'KV Cache可编辑笔记本，vLLM集成，98.5% hit rate', metric:'98.5% hit rate' },
+      { name:'RKSC', year:'2026', desc:'推理感知KV共享+置信度早退出，3.008x加速', metric:'3.008x加速' },
+      { name:'PolyKV', year:'2025', desc:'异构保留策略，不同层用不同策略+协同', metric:'1.7-6.4%超越baseline' },
+    ]
+  }
+};
+
+// ---------------------------------------------------------------
+// KV QUANT — Axis: 比特分配策略 (Bit Allocation Strategy)
+// 论文依据: KIVI(非对称) / Block-GTQ(RoPE感知) / MixKVQ(Query感知) / UltraQuant(混合精度) / ReQAT(QAT)
+// ---------------------------------------------------------------
+const KV_QUANT = {
+  uniform: {
+    name:'均匀量化', en:'Uniform Quantization', color:'#6e7681', papers:2, trl:3,
+    axis:'K和V使用相同的量化粒度和比特数，最简单的方案',
+    mechanism:'per-tensor或per-channel均匀分配，无差异化',
+    works:[
+      { name:'Naive KV Quant', year:'早期', desc:'K/V等比特均匀INT4量化', metric:'基准方法' },
+      { name:'FP16 Baseline', year:'早期', desc:'直接存储FP16 KV，无压缩', metric:'基准' },
+    ]
+  },
+  asymmetric: {
+    name:'非对称粒度', en:'Asymmetric Granularity', color:'#58a6ff', papers:4, trl:4,
+    axis:'K和V使用不同的量化粒度（K per-channel，V per-token）',
+    mechanism:'观察到Key和Value的数值分布特点不同，非对称分配能更好捕捉各自特点',
+    works:[
+      { name:'KIVI', year:'ICLR\'24', desc:'Key per-channel + Value per-token，2-bit K和2-bit V非对称', metric:'ICLR 2024' },
+      { name:'FlexBlock', year:'2025', desc:'Block级非对称量化，RoPE-aware', metric:'精度↑' },
+      { name:'K-Quant', year:'2025', desc:'Key特殊量化策略，非对称扩展', metric:'量化优化' },
+      { name:'AdaQuant-KV', year:'2026', desc:'自适应非对称分配', metric:'任务感知' },
+    ]
+  },
+  rope_aware: {
+    name:'RoPE感知', en:'RoPE-Aware', color:'#a371f7', papers:3, trl:3,
+    axis:'考虑RoPE旋转位置编码的频域特性，按频域块自适应分配比特',
+    mechanism:'RoPE后不同频域分量能量差异巨大，按频域自适应分配能显著提升精度',
+    works:[
+      { name:'Block-GTQ', year:'2026', desc:'RoPE频域块自适应比特分配，AIME24 51.7(fp16 54.2)', metric:'AIME24 51.7' },
+      { name:'RoPE-KV', year:'2025', desc:'RoPE旋转域感知的KV量化', metric:'长上下文↑' },
+      { name:'RotaryQuant', year:'2025', desc:'旋转域量化参数学习', metric:'旋转不变性' },
+    ]
+  },
+  query_aware: {
+    name:'Query感知', en:'Query-Aware', color:'#f0883e', papers:2, trl:3,
+    axis:'量化精度分配与当前query相关，重要query相关的KV保留高精度',
+    mechanism:'不是固定分配，而是根据当前query的信息量决定分配',
+    works:[
+      { name:'MixKVQ', year:'2025', desc:'Query-aware混合精度，对当前query重要的key通道保留高精度', metric:'复杂推理任务优' },
+      { name:'Task-Adaptive Quant', year:'2026', desc:'任务类型感知的量化精度分配', metric:'任务自适应' },
+    ]
+  },
+  mixed_precision: {
+    name:'混合精度分配', en:'Mixed Precision Allocation', color:'#d29922', papers:4, trl:3,
+    axis:'不同token/层/头分配不同比特数（FP16/INT8/INT4/INT2混合）',
+    mechanism:'非均匀比特分配，动态调整各部分精度',
+    works:[
+      { name:'UltraQuant', year:'2026', desc:'4-bit KV + 多轮Agent场景, AMD GPU优化', metric:'TTFT 3.47x↓' },
+      { name:'HEAL', year:'2026', desc:'INT16 KV保持数值稳定性，跨GPU输出一致', metric:'7.1x开销↓' },
+      { name:'KV Pareto', year:'2025', desc:'KV量化+权重量化+chunked prefill联合Pareto前沿', metric:'68-78%内存↓' },
+      { name:'Adaptive-Bits KV', year:'2026', desc:'自适应比特分配策略', metric:'动态分配' },
+    ]
+  },
+  extreme_lowbit: {
+    name:'极端低比特', en:'Extreme Low-bit (≤2bit)', color:'#bc8cff', papers:3, trl:2,
+    axis:'压缩到1-2bit，需要特殊编码/压缩算法',
+    mechanism:'远超常规INT4的压缩率，需要JL变换/熵编码/非均匀量化等技术',
+    works:[
+      { name:'QJL', year:'2024', desc:'1-bit量化 + Johnson-Lindenstrauss变换', metric:'1-bit KV' },
+      { name:'NSNQuant', year:'2024', desc:'无双标定的低比特向量量化', metric:'无校准' },
+      { name:'HyperQuant', year:'2026', desc:'统一量化流水线, KV量化低至1.7bps', metric:'KV 1.7bps' },
+    ]
+  },
+  qat: {
+    name:'量化感知训练', en:'Quantization-Aware Training', color:'#f85149', papers:2, trl:2,
+    axis:'在训练中建模量化噪声，端到端学习量化参数',
+    mechanism:'区别于PTQ后训练量化，QAT在训练阶段就考虑量化效应',
+    works:[
+      { name:'ReQAT', year:'2026', desc:'FP4量化感知训练，解决低熵token(数字/符号)精度崩塌', metric:'W4A4KV4 QAT' },
+      { name:'QAT-KV', year:'2026', desc:'KV cache量化感知训练框架', metric:'端到端QAT' },
+    ]
+  },
+  log_domain: {
+    name:'对数域量化', en:'Log-Domain Quantization', color:'#3fb950', papers:2, trl:3,
+    axis:'在log域而非线性域进行量化',
+    mechanism:'KV值分布偏重尾部和异常值，log域能更好捕捉动态范围',
+    works:[
+      { name:'LogQuant', year:'2024', desc:'Log分布2-bit KV量化', metric:'log域精度↑' },
+      { name:'LogQP', year:'2025', desc:'Log域量化+投影联合', metric:'压缩率↑' },
+    ]
+  }
+};
+
+// ---------------------------------------------------------------
+// KV LOWRANK — Axis: 低秩近似方法 (Approximation Method)
+// ---------------------------------------------------------------
+const KV_LOWRANK = {
+  svd_based: {
+    name:'SVD分解系', en:'SVD-Based', color:'#58a6ff', papers:3, trl:2,
+    axis:'对KV矩阵做奇异值分解，保留主奇异值对应的特征向量',
+    mechanism:'经典矩阵分解，找到低秩近似',
+    works:[
+      { name:'PALU', year:'2024', desc:'SVD分解投影矩阵，缓存潜表征H而非原始KV', metric:'早期工作' },
+      { name:'QSVD', year:'2024', desc:'Quotient SVD变体', metric:'精度优化' },
+      { name:'SVD-KV', year:'2025', desc:'SVD应用于KV cache压缩', metric:'基础方法' },
+    ]
+  },
+  adaptive_rank: {
+    name:'自适应Rank', en:'Adaptive Rank', color:'#a371f7', papers:2, trl:2,
+    axis:'软阈值+头级/块级rank自适应控制',
+    mechanism:'不同注意力头/层需要不同的压缩比，动态调整',
+    works:[
+      { name:'STAR-KV', year:'2026', desc:'软阈值+头级/块级rank控制+低秩感知混合精度量化', metric:'75%压缩,20x reduction' },
+      { name:'Eigen Attention', year:'2025', desc:'特征值感知的注意力压缩', metric:'特征值分析' },
+    ]
+  },
+  architectural: {
+    name:'架构级压缩', en:'Architectural Compression', color:'#3fb950', papers:2, trl:3,
+    axis:'修改注意力架构本身，从设计上减少KV产生量（源头压缩）',
+    mechanism:'不是后处理压缩，而是在模型架构层面减少KV缓存需求',
+    works:[
+      { name:'MLA (DeepSeek-V2/V3)', year:'2024', desc:'Multi-head Latent Attention, KE/V压缩为低秩潜变量', metric:'DeepSeek标配' },
+      { name:'GQLA', year:'2025', desc:'MLA变体, 同一组权重暴露MQA和GQA两条解码路径', metric:'H100 roofline适配' },
+    ]
+  },
+  implicit_lowrank: {
+    name:'隐式低秩', en:'Implicit Low-rank Discovery', color:'#f0883e', papers:2, trl:2,
+    axis:'不显式做矩阵分解，而是通过其他方式发现并利用隐式低秩结构',
+    mechanism:'通过索引排序、张量网络等非SVD方式发现低秩',
+    works:[
+      { name:'EinSort', year:'2026', desc:'通过索引排序发现隐式低秩结构(张量网络方法)', metric:'隐式发现' },
+      { name:'Tensor Cache', year:'2025', desc:'张量网络压缩KV cache', metric:'张量分解' },
+    ]
+  }
+};
+
+// ---------------------------------------------------------------
+// KV PRUNE — Axis: 剪枝决策方式 (Pruning Decision)
+// ---------------------------------------------------------------
+const KV_PRUNE = {
+  learnable_gate: {
+    name:'可学习门控', en:'Learnable Gate', color:'#58a6ff', papers:2, trl:3,
+    axis:'用小型预测器在token创建时决定是否保留',
+    mechanism:'门控网络预测每个token的"重要性分数"，低于阈值则丢弃',
+    works:[
+      { name:'MUSTAFAR', year:'2024', desc:'可学习保留阈值, token创建时预测保留分数', metric:'按层/头差异化' },
+      { name:'Self-Pruned KV', year:'2025', desc:'预测未来效用的token写入决策', metric:'生成质量保持' },
+    ]
+  },
+  hardware_aware: {
+    name:'硬件感知剪枝', en:'Hardware-Aware', color:'#3fb950', papers:1, trl:3,
+    axis:'考虑GPU内存层次结构和硬件访问模式的剪枝策略',
+    mechanism:'不只是算法优化，而是软硬件协同',
+    works:[
+      { name:'RazorAttention', year:'2024', desc:'硬件感知注意力剪枝, 考虑GPU内存访问模式', metric:'硬件效率↑' },
+    ]
+  },
+  elastic_memory: {
+    name:'弹性内存分配', en:'Elastic Memory Sizing', color:'#d29922', papers:1, trl:3,
+    axis:'动态弹性分配KV cache内存预算',
+    mechanism:'根据需求动态调整KV缓存容量上限',
+    works:[
+      { name:'EMS', year:'2024', desc:'Elastic Memory Sizing, 弹性KV内存分配', metric:'自适应内存' },
+    ]
+  }
+};
+
+// ---------------------------------------------------------------
+// KV DISTILL — Axis: 蒸馏阶段 (Distillation Stage)
+// ---------------------------------------------------------------
+const KV_DISTILL = {
+  prefill_only: {
+    name:'仅Prefill阶段', en:'Prefill-Only', color:'#58a6ff', papers:1, trl:3,
+    axis:'蒸馏只在Prefill阶段进行，Decode阶段KV压缩未探索',
+    mechanism:'Prefill阶段生成完整KV cache后蒸馏压缩',
+    works:[
+      { name:'SwiftKV', year:'2024', desc:'Prefill阶段KV蒸馏，仅此阶段', metric:'Prefill↑' },
+    ]
+  },
+  decode_blank: {
+    name:'Decoding阶段空白', en:'Decoding-Stage (空白!)', color:'#bc8cff', papers:1, trl:1,
+    axis:'Decoding阶段KV蒸馏完全无研究——这是当前最大的研究空白',
+    mechanism:'10篇KV蒸馏论文无一涉及Decoding阶段',
+    works:[
+      { name:'★ Decoding空白', year:'10/10篇未涉及', desc:'10篇KV蒸馏论文无一涉及Decoding——Decoding阶段KV累积最严重但无有效蒸馏方案', metric:'💎最高研究机会' },
+    ]
+  },
+  cross_stage: {
+    name:'跨阶段联合', en:'Cross-Stage Joint', color:'#f0883e', papers:0, trl:1,
+    axis:'Prefill-Decoding跨阶段联合蒸馏',
+    mechanism:'设计跨阶段的蒸馏信号，使Decoding的KV累积也能被压缩',
+    works:[
+      { name:'— (理论空白)', year:'暂无', desc:'跨阶段蒸馏信号设计是开放问题', metric:'理论空白' },
+    ]
+  }
+};
+
+// ---------------------------------------------------------------
+// KV GENERAL — Axis: 优化维度 (Optimization Dimension)
+// ---------------------------------------------------------------
+const KV_GENERAL = {
+  prefix_cache: {
+    name:'前缀缓存', en:'Prefix Caching', color:'#3fb950', papers:5, trl:5,
+    axis:'多查询共享系统提示(System Prompt)的前缀KV',
+    mechanism:'识别跨请求的共享前缀，避免重复计算',
+    works:[
+      { name:'vLLM PagedAttention', year:'2023', desc:'KV分页管理，多query共享prefix', metric:'OSDI 2023' },
+      { name:'SGLang RadixAttention', year:'2024', desc:'SGLang内置前缀树复用', metric:'SGLang标配' },
+      { name:'Models Take Notes', year:'2026', desc:'KV Cache可编辑笔记本, vLLM集成 98.5% hit rate', metric:'98.5% hit rate' },
+      { name:'RKSC', year:'2026', desc:'推理感知KV共享+置信度早退出', metric:'3.008x加速' },
+      { name:'CacheBlend', year:'2024', desc:'跨查询缓存混合', metric:'缓存复用↑' },
+    ]
+  },
+  chunk_management: {
+    name:'分块管理', en:'Chunked Management', color:'#f0883e', papers:2, trl:4,
+    axis:'KV按chunk分块管理，减少碎片，支持动态插入/删除',
+    mechanism:'非连续内存管理，避免内存碎片化',
+    works:[
+      { name:'ChunkKV', year:'2024', desc:'Chunk级KV cache管理，减少碎片', metric:'内存碎片↓' },
+      { name:'AdaCache', year:'2025', desc:'自适应chunk大小', metric:'动态chunk' },
+    ]
+  },
+  alignment_preserve: {
+    name:'对齐保持', en:'Alignment Preserving', color:'#d29922', papers:2, trl:4,
+    axis:'压缩后保持模型输出分布/对齐质量',
+    mechanism:'在压缩目标中加入对齐损失项',
+    works:[
+      { name:'COrAL', year:'NeurIPS\'24', desc:'Alignment-preserving KV compression', metric:'NeurIPS 2024' },
+      { name:'Alignment-KV', year:'2025', desc:'对齐损失感知的KV压缩', metric:'对齐质量↑' },
+    ]
+  }
+};
+
+// ---------------------------------------------------------------
+// WEIGHT QUANT — Axis: 量化粒度 (Quantization Granularity)
+// ---------------------------------------------------------------
+const W_QUANT = {
+  per_channel: {
+    name:'Per-Channel量化', en:'Per-Channel', color:'#f85149', papers:3, trl:5,
+    axis:'每个输出通道独立量化，独立scale',
+    mechanism:'最细粒度，精度最高但开销也最大',
+    works:[
+      { name:'GPTQ', year:'NeurIPS\'23', desc:'Per-channel INT4量化, <1%精度损失', metric:'NeurIPS 2023' },
+      { name:'Atom', year:'NeurIPS\'24', desc:'INT4 outlier抑制', metric:'NeurIPS 2024' },
+      { name:'QuaRot', year:'2024', desc:'旋转不变量化保持INT4精度', metric:'旋转不变' },
+    ]
+  },
+  per_token: {
+    name:'Per-Token量化', en:'Per-Token', color:'#f0883e', papers:2, trl:4,
+    axis:'每个token独立量化',
+    mechanism:'适合激活值分布特点，per-token更自然',
+    works:[
+      { name:'AWQ', year:'MLSys\'24', desc:'Activation-aware per-token量化', metric:'MLSys 2024' },
+      { name:'LLM.int8()', year:'2022', desc:'INT8推理, outliers分离', metric:'HuggingFace' },
+    ]
+  },
+  rotation_invariant: {
+    name:'旋转不变量化', en:'Rotation-Invariant', color:'#58a6ff', papers:2, trl:4,
+    axis:'通过旋转消除outlier使量化更容易',
+    mechanism:'观察发现outlier与旋转有关，旋转后分布更均匀',
+    works:[
+      { name:'QuaRot', year:'2024', desc:'旋转不变量化，outlier消失', metric:'INT4精度↑' },
+      { name:'OptRot', year:'2026', desc:'无数据旋转缓解PTQ outlier', metric:'INT4精度↑' },
+    ]
+  },
+  mixed_int: {
+    name:'混合整数精度', en:'Mixed INT', color:'#d29922', papers:2, trl:4,
+    axis:'不同层/阶段用不同比特（INT4/INT8混合）',
+    mechanism:'非均匀分配，关键层高精度，其他层低精度',
+    works:[
+      { name:'QLadder', year:'2025', desc:'多尺度阶梯量化，层级间共享scale', metric:'多尺度' },
+      { name:'FlexQuant', year:'2025', desc:'层间混合精度量化', metric:'自适应' },
+    ]
+  }
+};
+
+// ---------------------------------------------------------------
+// WEIGHT LOWRANK — Axis: 低秩方法 (Low-Rank Adaptation Method)
+// ---------------------------------------------------------------
+const W_LOWRANK = {
+  lora_family: {
+    name:'LoRA系适配器', en:'LoRA Family', color:'#3fb950', papers:5, trl:5,
+    axis:'用低秩矩阵分解近似权重增量ΔW=BA',
+    mechanism:'冻结原权重，训练低秩增量，BA << W',
+    works:[
+      { name:'LoRA', year:'2021', desc:'低秩适配，最流行微调方案', metric:'工业标配' },
+      { name:'QLoRA', year:'NeurIPS\'23', desc:'INT4量化+LoRA, Qwen/Llama微调标准', metric:'NeurIPS 2023' },
+      { name:'AdaLoRA', year:'ICLR\'23', desc:'自适应rank分配', metric:'ICLR 2023' },
+      { name:'DoRA', year:'2024', desc:'Weight-Decomposed LoRA', metric:'性能↑' },
+      { name:'LoRA+', year:'2024', desc:'LoRA学习率自适应', metric:'收敛加速' },
+    ]
+  },
+  direct_svd: {
+    name:'直接SVD分解', en:'Direct SVD Decomposition', color:'#58a6ff', papers:3, trl:4,
+    axis:'直接对权重矩阵做SVD截断',
+    mechanism:'无适配器，直接压缩原权重',
+    works:[
+      { name:'Truncated SVD', year:'早期', desc:'直接SVD截断', metric:'基准' },
+      { name:'FisherSVD', year:'2022', desc:'Fisher信息量指导的SVD', metric:'精度保持' },
+      { name:'KronA', year:'2024', desc:'Kronecker分解近似', metric:'参数量↓' },
+    ]
+  }
+};
+
+// ---------------------------------------------------------------
+// WEIGHT SPARSITY — Axis: 稀疏结构 (Sparsity Structure)
+// ---------------------------------------------------------------
+const W_SPARSITY = {
+  structured: {
+    name:'结构化稀疏', en:'Structured Sparsity', color:'#f0883e', papers:4, trl:4,
+    axis:'按固定模式稀疏（如N:M结构化，2:4=50%稀疏率），硬件友好',
+    mechanism:'稀疏模式符合硬件特性，实际加速比高',
+    works:[
+      { name:'SparseGPT', year:'ICML\'23', desc:'One-shot 50%稀疏', metric:'ICML 2023' },
+      { name:'FPGA Co-Design N:M', year:'2026', desc:'2:4结构化稀疏软硬件协同', metric:'H800实测' },
+      { name:'Mosaic Pruning', year:'2025', desc:'MoE层级化剪枝', metric:'华为诺亚' },
+      { name:'BESA', year:'NeurIPS\'24', desc:'BERT-era结构化稀疏', metric:'NeurIPS 2024' },
+    ]
+  },
+  unstructured: {
+    name:'非结构化稀疏', en:'Unstructured Sparsity', color:'#58a6ff', papers:3, trl:4,
+    axis:'任意位置稀疏，灵活性高但硬件效率低',
+    mechanism:'无结构约束，精度好但实际加速有限',
+    works:[
+      { name:'Magnitude Prune', year:'早期', desc:'按量级剪枝，最简单', metric:'基准' },
+      { name:'Wanda', year:'NeurIPS\'24', desc:'Weight×Activation magnitude', metric:'NeurIPS 2024' },
+      { name:'随机稀疏', year:'早期', desc:'随机mask', metric:'理论基准' },
+    ]
+  }
+};
+
+// ---------------------------------------------------------------
+// WEIGHT DISTILL — Axis: 蒸馏信号类型 (Distillation Signal)
+// ---------------------------------------------------------------
+const W_DISTILL = {
+  output_distill: {
+    name:'输出logits蒸馏', en:'Output Logits Distillation', color:'#3fb950', papers:3, trl:4,
+    axis:'用教师模型的输出logits作为监督信号',
+    mechanism:'KL散度优化学生和教师的输出分布',
+    works:[
+      { name:'MiniLLM', year:'NeurIPS\'24', desc:'Knowledge Distillation for Small LLMs', metric:'NeurIPS 2024' },
+      { name:'GKD', year:'2025', desc:'General蒸馏, 跨任务迁移', metric:'通用' },
+      { name:'Tiger', year:'2025', desc:'自迭代蒸馏', metric:'自迭代' },
+    ]
+  },
+  hidden_distill: {
+    name:'隐层特征蒸馏', en:'Hidden State Distillation', color:'#58a6ff', papers:2, trl:3,
+    axis:'用中间层隐状态作为蒸馏信号',
+    mechanism:'MSE loss匹配中间表征',
+    works:[
+      { name:'MiniLLM-H', year:'2024', desc:'隐状态知识迁移', metric:'隐层信号' },
+      { name:'MiniR', year:'2025', desc:'推理蒸馏, 压缩思维链', metric:'推理能力' },
+    ]
+  },
+  self_distill: {
+    name:'自蒸馏', en:'Self-Distillation', color:'#d29922', papers:2, trl:4,
+    axis:'用模型自己作为教师',
+    mechanism:'自己教自己，避免需要大模型',
+    works:[
+      { name:'Self-Play', year:'NeurIPS\'24', desc:'LLM自博弈蒸馏推理能力', metric:'NeurIPS 2024' },
+      { name:'iCLP', year:'2025', desc:'隐式认知潜在蒸馏', metric:'理论框架' },
+    ]
+  }
+};
+
+// ---------------------------------------------------------------
+// ACTIVATION SPARSE — Axis: 稀疏利用方式 (Sparsity Utilization)
+// ---------------------------------------------------------------
+const A_SPARSE = {
+  flash_attn_family: {
+    name:'FlashAttention系', en:'FlashAttention Family', color:'#3fb950', papers:4, trl:5,
+    axis:'通过IO-aware的exact attention算法减少HBM访问，而非制造稀疏',
+    mechanism:'算法级优化，稀疏性来自算法特性而非人为制造',
+    works:[
+      { name:'FlashAttention-2', year:'2023', desc:'2-4x速度↑, GPU优化', metric:'工业标配' },
+      { name:'FlashAttention-3', year:'2024', desc:'Hopper架构专用优化', metric:'H100专用' },
+      { name:'FlashDecoding', year:'2023', desc:'Decode阶段加速', metric:'Decode专用' },
+      { name:'FlashInfer', year:'2024', desc:'FlashAttention进化, 多后端支持', metric:'生产级' },
+    ]
+  },
+  spec_decode: {
+    name:'推测解码', en:'Speculative Decoding', color:'#58a6ff', papers:4, trl:5,
+    axis:'用小模型推测多个token后用大模型验证',
+    mechanism:'小模型快速草稿 + 大模型验证并行',
+    works:[
+      { name:'SpecInfer', year:'OSDI\'23', desc:'推测推断, 小模型专家', metric:'OSDI 2023' },
+      { name:'Medusa', year:'2024', desc:'多HEAD并行推测', metric:'多token↑' },
+      { name:'EAGLE', year:'2024', desc:'自回归草案加速', metric:'延迟↓' },
+      { name:'Lookahead', year:'NeurIPS\'23', desc:'Jacobi式加速', metric:'NeurIPS 2023' },
+    ]
+  },
+  dynamic_activation: {
+    name:'动态激活稀疏', en:'Dynamic Activation Sparsity', color:'#d29922', papers:3, trl:3,
+    axis:'根据输入动态发现并利用激活值的稀疏性',
+    mechanism:'ReLU等引入的稀疏 + 输入相关的动态稀疏',
+    works:[
+      { name:'ShearedLLaMA', year:'EMNLP\'24', desc:'动态剪枝激活值多的token', metric:'EMNLP 2024' },
+      { name:'SparseUp', year:'2025', desc:'动态稀疏激活利用', metric:'效率↑' },
+      { name:'Adaptive Sparse', year:'2025', desc:'输入自适应稀疏', metric:'动态调整' },
+    ]
+  }
+};
+
+// ---------------------------------------------------------------
+// MOE COMM — Axis: 通信优化对象/场景 (Communication Target)
+// ---------------------------------------------------------------
+const MOE_COMM = {
+  expert_routing: {
+    name:'Expert路由通信', en:'Expert Routing', color:'#3fb950', papers:8, trl:4,
+    axis:'MoE中每个token激活少数Expert，All-to-All通信是核心瓶颈',
+    mechanism:'Top-K路由导致跨节点通信，优化路由或压缩通信',
+    works:[
+      { name:'DeepEP', year:'2024', desc:'DeepSeek MoE通信库, INT4/FP8生产级', metric:'DeepSeek生产' },
+      { name:'TACG', year:'2026', desc:'Task-Aware专家协同分组, 通信↓31.39%', metric:'Jain公平性0.9975' },
+      { name:'C2R', year:'NAACL\'25', desc:'Collaborative-Constrained Routing', metric:'通信↓20-30%' },
+      { name:'FoMoE', year:'ICLR\'26', desc:'打破全复制范式, 专家跨节点分区+skip-token', metric:'通信↓1.42-45x' },
+      { name:'ASAP', year:'2026', desc:'异步解耦Attention和MoE阶段', metric:'吞吐↑90%' },
+      { name:'ZipMoE', year:'2025', desc:'无损压缩+Cache-affinity, 延迟↓72.77%', metric:'端侧MoE' },
+      { name:'CloudMoE', year:'OSDI\'26', desc:'CPU-GPU混合, AVX-512 FP8', metric:'OSDI 2026' },
+      { name:'NAEE', year:'ACL\'24', desc:'Expert激活的任务条件化', metric:'ACL 2024' },
+    ]
+  },
+  disaggregated: {
+    name:'分离式推理通信', en:'Disaggregated Inference', color:'#a371f7', papers:6, trl:4,
+    axis:'Prefill-Decode分离架构下的KV传输通信',
+    mechanism:'不同物理机器处理不同阶段，KV需要跨节点传输',
+    works:[
+      { name:'Mooncake', year:'2024', desc:'Prefill-Decode分离, KV传输', metric:'超一线厂' },
+      { name:'DistServe', year:'OSDI\'21', desc:'分离式推理框架', metric:'OSDI 2021' },
+      { name:'Sarathi', year:'2023', desc:'Chunked prefill减少decode干扰', metric:'吞吐↑' },
+      { name:'Spec-at-Distance', year:'2026', desc:'分布式投机解码理论边界', metric:'理论分析' },
+      { name:'PoA-Disagg', year:'2026', desc:'博弈论分析disaggregation', metric:'P90 TTFT↓7.6x' },
+      { name:'Tropical', year:'2026', desc:'SLO感知多路复用, TTFT↓9x', metric:'SLO保障' },
+    ]
+  },
+  gradient_sync: {
+    name:'梯度同步通信', en:'Gradient Synchronization', color:'#58a6ff', papers:5, trl:4,
+    axis:'分布式训练中All-Reduce梯度同步的通信压缩',
+    mechanism:'梯度压缩（稀疏/量化/低秩）减少通信量',
+    works:[
+      { name:'PowerSGD', year:'MLSys\'20', desc:'低秩梯度压缩, 通信量↓10-100x', metric:'MLSys 2020' },
+      { name:'DeepSeek-V3 FP8', year:'2024', desc:'DeepSeek-V3 FP8梯度', metric:'生产级' },
+      { name:'Gradient Quant', year:'2023', desc:'梯度量化压缩', metric:'通信↓' },
+    ]
+  }
+};
+
+// ---------------------------------------------------------------
+// MOE QUANT — Axis: 量化方案 (Quantization Scheme)
+// ---------------------------------------------------------------
+const MOE_QUANT = {
+  expert_quant: {
+    name:'Expert参数量化', en:'Expert Quantization', color:'#bc8cff', papers:3, trl:2,
+    axis:'对MoE专家参数做低比特量化减少通信量',
+    mechanism:'专家权重量化后All-to-All通信量减少',
+    works:[
+      { name:'ExpertQuant', year:'2025', desc:'MoE INT4量化, 精度损失<1%', metric:'💎首个MoE量化' },
+      { name:'DeepEP-INT4', year:'2024', desc:'DeepEP INT4通信支持', metric:'DeepSeek生产' },
+      { name:'MoE-Int4-Quant', year:'2025', desc:'MoE专家INT4量化方案', metric:'通信量↓' },
+    ]
+  },
+  fp8_comm: {
+    name:'FP8通信', en:'FP8 Communication', color:'#58a6ff', papers:2, trl:4,
+    axis:'用FP8格式替代FP16进行通信',
+    mechanism:'FP8 vs FP16带宽减半，精度损失小',
+    works:[
+      { name:'DeepSeek-V3 FP8', year:'2024', desc:'DeepSeek-V3 FP8 all-to-all通信', metric:'生产级' },
+      { name:'FP8-AllToAll', year:'2025', desc:'FP8 all-to-all通信优化', metric:'带宽↓' },
+    ]
+  }
+};
+
+// ---------------------------------------------------------------
+// MAP: (object, method) → { subtech_data, criterion_label, max_papers }
+// ---------------------------------------------------------------
+const TAXONOMY = {
+  'k-sparse':   { data:KV_SPARSE,   axis:'淘汰策略（Eviction Strategy）', note:'论文中方法区分的核心维度是"按什么策略决定保留/淘汰KV"', max:69 },
+  'k-quant':    { data:KV_QUANT,    axis:'比特分配策略（Bit Allocation Strategy）', note:'方法区分的核心是"如何分配不同bit给不同部分"', max:46 },
+  'k-prune':    { data:KV_PRUNE,   axis:'剪枝决策方式（Pruning Decision）', note:'可学习 vs 规则 vs 硬件感知', max:37 },
+  'k-lowrank':  { data:KV_LOWRANK, axis:'低秩近似方法（Approximation Method）', note:'SVD分解 vs 自适应Rank vs 架构级', max:37 },
+  'k-distill':  { data:KV_DISTILL, axis:'蒸馏阶段（Distillation Stage）', note:'按Decoding/Prefill/Cross-stage划分，有明确边界', max:10 },
+  'k-general':  { data:KV_GENERAL, axis:'优化维度（Optimization Dimension）', note:'前缀缓存/分块/对齐保持', max:148 },
+  'w-quant':    { data:W_QUANT,    axis:'量化粒度（Quantization Granularity）', note:'Per-channel vs Per-token vs 旋转不变量化', max:376 },
+  'w-lowrank':  { data:W_LOWRANK, axis:'低秩方法（Low-Rank Method）', note:'LoRA系 vs 直接SVD', max:575 },
+  'w-sparse':   { data:W_SPARSITY, axis:'稀疏结构（Sparsity Structure）', note:'结构化 vs 非结构化，有明确硬件含义差异', max:311 },
+  'w-distill':  { data:W_DISTILL, axis:'蒸馏信号类型（Distillation Signal）', note:'输出logits vs 隐层 vs 自蒸馏', max:231 },
+  'a-sparse':   { data:A_SPARSE,   axis:'稀疏利用方式（Sparsity Utilization）', note:'FlashAttention系 vs 推测解码 vs 动态激活稀疏', max:396 },
+  'c-sparse':   { data:MOE_COMM,   axis:'通信优化场景（Communication Target）', note:'Expert路由 vs 分离式 vs 梯度同步', max:82 },
+  'c-quant':    { data:MOE_QUANT,  axis:'量化方案（Quantization Scheme）', note:'Expert量化 vs FP8通信', max:44 },
+  'c-general':  { data:MOE_COMM,   axis:'通信优化场景（Communication Target）', note:'复用通信场景分类', max:77 },
+  'g-general':  { data:{ mem:{name:'内存优化',color:'#3fb950',papers:5,trl:5,axis:'内存管理优化',works:[
+    {name:'PagedAttention',year:'OSDI\'23',desc:'KV分页管理',metric:'OSDI 2023'},
+    {name:'FlexGen',year:'ASPLOS\'23',desc:'Streaming推理',metric:'ASPLOS 2023'},
+    {name:'LMCache',year:'2024',desc:'KV缓存管理系统',metric:'开源'},
+    {name:'DistServe',year:'OSDI\'21',desc:'P/D分离',metric:'OSDI 2021'},
+    {name:'Sarathi',year:'2023',desc:'Chunked prefill',metric:'吞吐↑'},
+  ]}},axis:'优化维度（Optimization Dimension）',note:'',max:187 },
+  'g-distill':  { data:W_DISTILL, axis:'蒸馏信号类型（Distillation Signal）', note:'通用蒸馏', max:170 },
+};
+
+// ================================================================
+// RENDER
+// ================================================================
+
+function navigate(view) {
+  document.querySelectorAll('.view-section').forEach(v => v.style.display = 'none');
+  document.querySelectorAll('.nav-btn').forEach(n => n.classList.remove('active'));
+  if (view === 'home') {
+    document.getElementById('view-home').style.display = 'block';
+    document.querySelectorAll('.nav-btn')[0].classList.add('active');
+    renderProvinceGrid('province-grid-home');
+  } else if (view === 'obj') {
+    document.getElementById('view-object').style.display = 'block';
+    document.querySelectorAll('.nav-btn')[0].classList.add('active');
+    renderProvinceGrid('province-grid-detail');
+  } else if (view === 'matrix') {
+    document.getElementById('view-matrix').style.display = 'block';
+    document.querySelectorAll('.nav-btn')[7].classList.add('active');
+    renderMatrix();
+  } else if (view === 'opp') {
+    document.getElementById('view-opportunity').style.display = 'block';
+    document.querySelectorAll('.nav-btn')[8].classList.add('active');
+    renderOpp();
+  }
+}
+
+function renderProvinceGrid(cid) {
+  const c = document.getElementById(cid);
+  if (!c) return;
+  let html = '';
+  for (const [oid, obj] of Object.entries(OBJ)) {
+    html += `<div class="province-card" style="--card-color:${obj.color}" onclick="openObjMethod('${oid}')">`;
+    html += `<div class="province-hdr">`;
+    html += `<div class="province-icon" style="background:${obj.color}22;color:${obj.color}">${obj.name[0]}</div>`;
+    html += `<div><div class="province-name">${obj.name}</div><div class="province-en">${obj.en}</div></div>`;
+    html += `<div style="margin-left:auto;text-align:right">`;
+    html += `<div class="province-num" style="color:${obj.color}">${obj.papers}</div>`;
+    html += `<div class="province-num-label">篇</div>`;
+    html += `</div></div>`;
+    html += `<div class="method-chips">`;
+    for (const [mid, met] of Object.entries(MET)) {
+      const cnt = MX[oid]?.[mid] || 0;
+      if (!cnt) continue;
+      const mc = MX_CLASS[oid]?.[mid] || 'green';
+      const hcColor = {red:'#f85149',orange:'#f0883e',yellow:'#d29922',green:'#3fb950',purple:'#a371f7'}[mc];
+      html += `<div class="method-chip" style="--chip-color:${hcColor}" onclick="event.stopPropagation();openMethodPage('${oid}','${mid}')">`;
+      html += `<div class="chip-dot" style="background:${met.color}"></div>`;
+      html += `${met.name}<span class="chip-count">${cnt}</span>`;
+      html += `</div>`;
+    }
+    html += `</div></div>`;
+  }
+  c.innerHTML = html;
+}
+
+function openObjMethod(oid) {
+  renderProvinceGrid('province-grid-detail');
+  navigate('obj');
+}
+
+function openMethodPage(oid, mid) {
+  const obj = OBJ[oid];
+  const met = MET[mid];
+  const cell = MX[oid]?.[mid] || 0;
+  const mc = MX_CLASS[oid]?.[mid] || 'green';
+  const key = `${oid}-${mid}`;
+  const tax = TAXONOMY[key];
+
+  document.getElementById('mc-1').textContent = obj.name;
+  document.getElementById('mc-2').textContent = met.name;
+  document.getElementById('mc-3').textContent = '子技术';
+
+  let citiesHtml = '';
+  if (tax && tax.data) {
+    const cities = tax.data;
+    const totalPapers = Object.values(cities).reduce((s, c) => s + (c.papers || 0), 0);
+
+    citiesHtml += `<div class="axis-info">`;
+    citiesHtml += `<div class="axis-label">📐 分类轴：${tax.axis}</div>`;
+    citiesHtml += `<div class="axis-text">${tax.note}</div>`;
+    citiesHtml += `</div>`;
+
+    citiesHtml += `<div class="cities-title">🏙️ 子技术（共${totalPapers}篇）</div>`;
+    citiesHtml += `<div class="city-cards">`;
+
+    for (const [cityId, city] of Object.entries(cities)) {
+      if (city.papers === 0) continue;
+      const barW = Math.max(Math.round((city.papers / tax.max) * 100), 8);
+      const trlCls = city.trl >= 4 ? 'trl-h' : city.trl >= 2 ? 'trl-m' : 'trl-l';
+      citiesHtml += `
+      <div class="city-card" id="city-${oid}-${mid}-${cityId}" style="--city-color:${city.color}" onclick="toggleCounty('${oid}','${mid}','${cityId}')">
+        <div class="city-hdr">
+          <div class="city-num" style="color:${city.color}">${city.papers}</div>
+          <div class="city-info">
+            <div class="city-name">${city.name}</div>
+            <div class="city-en">${city.axis}</div>
+          </div>
+          <span class="city-trl ${trlCls}">TRL${city.trl}</span>
+        </div>
+        <div class="city-bar-row">
+          <div class="city-bar"><div class="city-bar-fill" style="width:${barW}%;background:${city.color}"></div></div>
+        </div>
+        <div class="county-section" id="county-${oid}-${mid}-${cityId}">
+          <div class="county-header">
+            <div class="county-title">📍 代表工作（${city.works.length}个）</div>
+          </div>
+          ${city.works.map(w => `
+          <div class="paper-row">
+            <span class="paper-yr">${w.year}</span>
+            <div class="paper-body">
+              <div class="paper-name">${w.name}</div>
+              <div class="paper-desc">${w.desc}</div>
+            </div>
+            ${w.metric ? `<span class="paper-metric">${w.metric}</span>` : ''}
+          </div>`).join('')}
+        </div>
+      </div>`;
+    }
+    citiesHtml += `</div>`;
+  } else {
+    citiesHtml += `<div style="color:var(--text-dim);padding:40px;text-align:center">暂无详细分类数据</div>`;
+  }
+
+  document.getElementById('method-body').innerHTML = `
+    <div class="method-page-hdr">
+      <div class="method-badge" style="background:${met.color}22;color:${met.color}">${met.icon}</div>
+      <div>
+        <div class="method-title">${obj.name} × ${met.name}</div>
+        <div class="method-subtitle">${obj.en} × ${met.name}</div>
+      </div>
+      <div style="margin-left:auto;text-align:right">
+        <div style="font-size:28px;font-weight:700;color:${obj.color}">${cell}</div>
+        <div style="font-size:11px;color:var(--text-dim)">篇 · ${STARS[mc]}</div>
+      </div>
+    </div>
+    <div style="margin-bottom:16px">
+      <span class="stat-chip" style="margin-right:10px">
+        <span class="stat-chip-val" style="color:${met.color}">${cell}</span>
+        <span class="stat-chip-label">论文数</span>
+      </span>
+      <span class="stat-chip" style="margin-right:10px">
+        <span class="stat-chip-val">${STARS[mc]}</span>
+        <span class="stat-chip-label">${HOTNESS[mc]}</span>
+      </span>
+    </div>
+    ${citiesHtml}
+  `;
+
+  document.querySelectorAll('.view-section').forEach(v => v.style.display = 'none');
+  document.getElementById('view-method-page').style.display = 'block';
+  window.scrollTo(0, 0);
+}
+
+const HOTNESS = { red:'红海', orange:'活跃', yellow:'新兴', green:'学术', purple:'空白' };
+
+function toggleCounty(oid, mid, cityId) {
+  const county = document.getElementById(`county-${oid}-${mid}-${cityId}`);
+  const card = document.getElementById(`city-${oid}-${mid}-${cityId}`);
+  if (!county) return;
+  if (county.classList.contains('open')) {
+    county.classList.remove('open');
+    if (card) card.classList.remove('active');
+  } else {
+    document.querySelectorAll('.county-section').forEach(c => c.classList.remove('open'));
+    document.querySelectorAll('.city-card').forEach(c => c.classList.remove('active'));
+    county.classList.add('open');
+    if (card) card.classList.add('active');
+    county.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }
+}
+
+function renderMatrix() {
+  const body = document.getElementById('matrix-body');
+  const objs = Object.entries(OBJ);
+  const mets = Object.entries(MET);
+
+  let html = `<div class="section-title">🔲 对象×技术 矩阵 — 点击单元格查看严谨分类</div>`;
+  html += `<div class="matrix-container">`;
+  html += `<div class="matrix-grid" style="grid-template-columns: 110px repeat(${mets.length}, 80px)">`;
+
+  html += `<div class="matrix-header"></div>`;
+  for (const [, m] of mets) html += `<div class="matrix-header">${m.icon}<br>${m.name}</div>`;
+
+  for (const [oid, o] of objs) {
+    html += `<div class="matrix-header" style="text-align:left;display:flex;align-items:center;gap:6px;padding:8px">`;
+    html += `<div style="width:8px;height:8px;border-radius:2px;background:${o.color};flex-shrink:0"></div>${o.name}`;
+    html += `</div>`;
+    for (const [mid, m] of mets) {
+      const cell = MX[oid]?.[mid] || 0;
+      const mc = MX_CLASS[oid]?.[mid] || 'green';
+      if (cell === 0) {
+        html += `<div class="matrix-cell" style="background:var(--surface2);opacity:0.3">-</div>`;
+      } else {
+        html += `<div class="matrix-cell cell-${mc}" onclick="openMethodPage('${oid}','${mid}')">`;
+        html += `<span class="matrix-cell-num">${cell}</span>`;
+        html += `<span class="matrix-cell-stars">${STARS[mc]}</span>`;
+        html += `</div>`;
+      }
+    }
+  }
+  html += `</div></div>`;
+  html += `<div style="font-size:11px;color:var(--text-dim);margin-top:12px">点击任意单元格 → 展开该对象×技术的严谨子技术分类</div>`;
+  body.innerHTML = html;
+}
+
+function renderOpp() {
+  const body = document.getElementById('opp-body');
+  const opps = [
+    { rank:'🥇', oid:'k', mid:'distill', papers:10, stars:'★☆☆', hcolor:'#a371f7',
+      p:'P0', pclass:'p0', desc:'Decoding蒸馏10篇中完全空白', axis:'蒸馏阶段：Decoding阶段 vs Prefill阶段',
+      detail:'TRL 1-2，10篇KV蒸馏论文无一涉及Decoding——Decoding是KV累积最严重的阶段，但无任何蒸馏方案。这是当前推理压缩领域最高价值的空白。' },
+    { rank:'🥈', oid:'c', mid:'quant', papers:44, stars:'★★☆☆', hcolor:'#a371f7',
+      p:'P0', pclass:'p0', desc:'ExpertQuant刚提出，MoE通信量化几乎是理论空白', axis:'量化方案：Expert参数量化',
+      detail:'TRL 2-3，ExpertQuant(2025)是首个MoE通信量化工作，工业落地为零。MoE时代All-to-All通信是核心瓶颈，这个方向的价值被严重低估。' },
+    { rank:'🥉', oid:'k', mid:'quant', papers:46, stars:'★★☆☆', hcolor:'#d29922',
+      p:'P1', pclass:'p1', desc:'KIVI证明了2bit可行，Block-GTQ实现了RoPE-aware突破', axis:'比特分配策略：RoPE感知 vs 非对称',
+      detail:'TRL 3-4，Block-GTQ(2026)是重大突破，AIME24达51.7。但工业落地几乎是空白——框架集成是最大机会点。' },
+    { rank:'4', oid:'k', mid:'sparse', papers:76, stars:'★★★', hcolor:'#3fb950',
+      p:'P1', pclass:'p1', desc:'SnapKV/LazyLLM学术验证充分，但协同共享和可学习策略工业几乎空白', axis:'淘汰策略：协同共享 vs 可学习',
+      detail:'TRL 4-5，学术验证充分。Models Take Notes(2026)vLLM集成98.5% hit rate说明工业落地已启动，但整体仍是一片蓝海。' },
+    { rank:'5', oid:'c', mid:'sparse', papers:82, stars:'★★★', hcolor:'#f0883e',
+      p:'P1', pclass:'p1', desc:'91篇最活跃，但FoMoE(2026)打破了全复制范式，新范式机会巨大', axis:'通信场景：打破全复制范式',
+      detail:'TRL 3-4，FoMoE(ICLR\'26)打破"每个GPU全复制所有Expert"的范式，通信↓1.42-45x，这是一个全新的研究方向空间。' },
+  ];
+
+  let html = `<div class="section-title">🔥 研究机会 — 基于严谨分类的机会判断</div>`;
+  for (const o of opps) {
+    html += `
+    <div class="opp-card">
+      <div class="opp-hdr">
+        <div class="opp-rank" style="color:${o.hcolor}">${o.rank}</div>
+        <div class="opp-name">${OBJ[o.oid].name} × ${MET[o.mid].name}</div>
+        <span class="opp-p ${o.pclass}">${o.p}</span>
+      </div>
+      <div class="opp-body">
+        <div class="opp-stats">
+          <div class="opp-stat"><div class="opp-stat-val" style="color:${o.hcolor}">${o.papers}</div><div class="opp-stat-label">论文数</div></div>
+          <div class="opp-stat"><div class="opp-stat-val">${o.stars}</div><div class="opp-stat-label">${HOTNESS[{red:'红海',orange:'活跃',yellow:'新兴',green:'学术',purple:'空白'}['purple']]}</div></div>
+        </div>
+        <div class="opp-desc">${o.desc}</div>
+        <div class="opp-axis">📐 分类轴：${o.axis}</div>
+        <div style="margin-top:10px;font-size:12px;color:var(--text-dim);line-height:1.6">${o.detail}</div>
+        <div style="margin-top:10px">
+          <span onclick="openMethodPage('${o.oid}','${o.mid}')" style="font-size:12px;cursor:pointer;color:var(--accent);text-decoration:underline">点击查看严谨分类 →</span>
+        </div>
+      </div>
+    </div>`;
+  }
+  body.innerHTML = html;
+}
+
+// INIT
+renderProvinceGrid('province-grid-home');
+</script>
+</body>
+</html>

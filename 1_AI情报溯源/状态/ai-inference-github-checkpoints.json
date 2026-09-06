@@ -1,0 +1,97 @@
+﻿{
+  "created_at": "2026-09-06T10:30:52",
+  "updated_at": "2026-09-06T11:05:01",
+  "schema_version": 1,
+  "projects": {
+    "deepseek-ai/DeepEP": {
+      "checked_at": "2026-09-06T11:05:01",
+      "prerelease": false,
+      "release_name": "Stable release v1.2.1",
+      "name": "DeepEP",
+      "published": "09/16/2025 01:48:40",
+      "tag": "v1.2.1",
+      "url": "https://github.com/deepseek-ai/DeepEP/releases/tag/v1.2.1"
+    },
+    "deepspeedai/DeepSpeed": {
+      "checked_at": "2026-09-06T11:05:00",
+      "prerelease": false,
+      "release_name": "v0.19.6 Patch Release",
+      "name": "DeepSpeed",
+      "published": "08/27/2026 19:08:33",
+      "tag": "v0.19.6",
+      "url": "https://github.com/deepspeedai/DeepSpeed/releases/tag/v0.19.6"
+    },
+    "NVIDIA/TensorRT-LLM": {
+      "checked_at": "2026-09-06T11:04:58",
+      "prerelease": false,
+      "release_name": "v1.2.1",
+      "name": "TensorRT-LLM",
+      "published": "04/20/2026 11:51:33",
+      "tag": "v1.2.1",
+      "url": "https://github.com/NVIDIA/TensorRT-LLM/releases/tag/v1.2.1"
+    },
+    "ggml-org/llama.cpp": {
+      "checked_at": "2026-09-06T11:04:59",
+      "prerelease": false,
+      "release_name": "v0.4.0",
+      "name": "llama.cpp",
+      "published": "09/04/2026 19:56:47",
+      "tag": "v0.4.0",
+      "url": "https://github.com/ggml-org/llama.cpp/releases/tag/v0.4.0"
+    },
+    "NVIDIA/Megatron-LM": {
+      "checked_at": "2026-09-06T11:05:00",
+      "prerelease": false,
+      "release_name": "NVIDIA Megatron Core 0.19.0",
+      "name": "Megatron-LM",
+      "published": "08/19/2026 19:02:15",
+      "tag": "core_v0.19.0",
+      "url": "https://github.com/NVIDIA/Megatron-LM/releases/tag/core_v0.19.0"
+    },
+    "sgl-project/sglang": {
+      "checked_at": "2026-09-06T11:04:57",
+      "prerelease": false,
+      "release_name": "v0.5.19",
+      "name": "SGLang",
+      "published": "09/05/2026 02:27:42",
+      "tag": "v0.5.19",
+      "url": "https://github.com/sgl-project/sglang/releases/tag/v0.5.19"
+    },
+    "Dao-AILab/flash-attention": {
+      "checked_at": "2026-09-06T11:04:59",
+      "prerelease": false,
+      "release_name": "v2.8.3.post1",
+      "name": "FlashAttention",
+      "published": "06/10/2026 13:32:08",
+      "tag": "v2.8.3.post1",
+      "url": "https://github.com/Dao-AILab/flash-attention/releases/tag/v2.8.3.post1"
+    },
+    "kvcache-ai/Mooncake": {
+      "checked_at": "2026-09-06T11:05:01",
+      "prerelease": false,
+      "release_name": "v0.3.13.post1",
+      "name": "Mooncake",
+      "published": "08/31/2026 09:52:42",
+      "tag": "v0.3.13.post1",
+      "url": "https://github.com/kvcache-ai/Mooncake/releases/tag/v0.3.13.post1"
+    },
+    "LMCache/LMCache": {
+      "checked_at": "2026-09-06T11:05:01",
+      "prerelease": false,
+      "release_name": "operator-v0.5.4",
+      "name": "LMCache",
+      "published": "08/28/2026 18:23:02",
+      "tag": "operator-v0.5.4",
+      "url": "https://github.com/LMCache/LMCache/releases/tag/operator-v0.5.4"
+    },
+    "vllm-project/vllm": {
+      "checked_at": "2026-09-06T11:04:56",
+      "prerelease": false,
+      "release_name": "v0.28.0",
+      "name": "vLLM",
+      "published": "08/26/2026 09:46:30",
+      "tag": "v0.28.0",
+      "url": "https://github.com/vllm-project/vllm/releases/tag/v0.28.0"
+    }
+  }
+}

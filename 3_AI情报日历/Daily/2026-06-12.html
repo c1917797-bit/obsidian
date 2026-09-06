@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Report</title>
+    
+<style>
+:root {
+    --bg-primary: #0d1117;
+    --bg-secondary: #161b22;
+    --bg-tertiary: #21262d;
+    --border: #30363d;
+    --text-primary: #e6edf3;
+    --text-secondary: #8b949e;
+    --text-muted: #6e7681;
+    --accent-blue: #58a6ff;
+    --accent-green: #3fb950;
+    --accent-orange: #d29922;
+    --accent-red: #f85149;
+    --accent-purple: #a371f7;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    line-height: 1.6;
+    padding: 2rem;
+}
+
+.container { max-width: 1200px; margin: 0 auto; }
+
+/* Header */
+.report-header {
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.report-title {
+    font-size: 2rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+}
+
+.report-meta {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+}
+
+.report-meta span { margin-right: 1.5rem; }
+
+/* Headings */
+h1 { font-size: 1.75rem; font-weight: 600; margin: 2rem 0 1rem; color: var(--text-primary); border-bottom: 1px solid var(--border); padding-bottom: 0.5rem; }
+h2 { font-size: 1.4rem; font-weight: 600; margin: 1.5rem 0 0.75rem; color: var(--accent-blue); }
+h3 { font-size: 1.15rem; font-weight: 600; margin: 1.25rem 0 0.5rem; color: var(--text-primary); }
+h4 { font-size: 1rem; font-weight: 600; margin: 1rem 0 0.5rem; color: var(--text-secondary); }
+
+/* Tables */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1rem 0;
+    font-size: 0.9rem;
+}
+
+th {
+    background: var(--bg-secondary);
+    color: var(--text-primary);
+    padding: 0.75rem;
+    text-align: left;
+    font-weight: 600;
+    border-bottom: 2px solid var(--border);
+}
+
+td {
+    padding: 0.75rem;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+}
+
+tr:hover { background: var(--bg-secondary); }
+
+/* Tags */
+.tag {
+    display: inline-block;
+    padding: 0.2rem 0.5rem;
+    background: var(--bg-tertiary);
+    border-radius: 4px;
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    margin: 0.2rem;
+}
+
+.tag-red { background: rgba(248, 81, 73, 0.15); color: var(--accent-red); }
+.tag-orange { background: rgba(210, 153, 34, 0.15); color: var(--accent-orange); }
+.tag-green { background: rgba(63, 185, 80, 0.15); color: var(--accent-green); }
+.tag-blue { background: rgba(88, 166, 255, 0.15); color: var(--accent-blue); }
+.tag-purple { background: rgba(163, 113, 247, 0.15); color: var(--accent-purple); }
+
+/* Cards */
+.card {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 1rem;
+    margin: 1rem 0;
+}
+
+.card-header {
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: var(--text-primary);
+}
+
+/* Lists */
+ul, ol { padding-left: 1.5rem; margin: 0.5rem 0; }
+li { margin: 0.3rem 0; }
+
+/* Code */
+code {
+    font-family: 'SF Mono', Consolas, monospace;
+    background: var(--bg-tertiary);
+    padding: 0.15rem 0.4rem;
+    border-radius: 3px;
+    font-size: 0.875rem;
+}
+
+pre {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 1rem;
+    overflow-x: auto;
+    margin: 1rem 0;
+}
+
+/* Blockquote */
+blockquote {
+    border-left: 3px solid var(--accent-blue);
+    padding-left: 1rem;
+    margin: 1rem 0;
+    color: var(--text-secondary);
+    font-style: italic;
+}
+
+/* Horizontal rule */
+hr {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 1.5rem 0;
+}
+
+/* Highlight */
+.highlight {
+    background: rgba(88, 166, 255, 0.1);
+    border-left: 3px solid var(--accent-blue);
+    padding: 0.75rem 1rem;
+    margin: 1rem 0;
+}
+
+/* Badges */
+.badge {
+    display: inline-block;
+    padding: 0.25rem 0.5rem;
+    border-radius: 50px;
+    font-size: 0.7rem;
+    font-weight: 600;
+}
+
+.badge-green { background: var(--accent-green); color: #000; }
+.badge-orange { background: var(--accent-orange); color: #000; }
+.badge-red { background: var(--accent-red); color: #fff; }
+
+/* Grid */
+.grid { display: grid; gap: 1rem; }
+.grid-2 { grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
+
+/* Print */
+@media print {
+    body { background: #fff; color: #000; }
+    .tag, .badge { border: 1px solid currentColor; }
+}
+</style>
+
+</head>
+<body>
+    <div class="container">
+        <div class="report-header">
+            <h1 class="report-title">Report</h1>
+            <div class="report-meta">
+                <span>生成时间: 2026-06-12</span>
+                <span class="tag">AI-Intelligence</span><span class="tag">Daily</span>
+            </div>
+        </div>
+        <div class="report-body">
+            
+<h1>AI Infra Daily - 2026-06-12</h1>
+
+<h2>今日概要</h2>
+
+<p>📡 前沿科技简报 · 2026-06-12</p>
+
+<h2>🔥 热点事件</h2>
+<p>[热点事件]：A股指数体系迈向精细化，年内新增374条指数@36kr</p>
+
+<p>[一句话总结]：A股年内新增374条指数，科技类主题指数成主流，聚焦机器人、半导体、人工智能、新型电力系统四大领域，推动市场表征准确性、风险控制能力及新质生产力引导作用的提升。</p>
+
+<p>[关键词]：A股指数、科技类主题、精细化、ESG负面剔除、市场表征准确性</p>
+
+<p>[业务启示]：</p>
+<p>【市场影响】：新增指数主要集中在科技领域，反映了市场对科技产业的高度关注和未来发展方向的预期，为投资者提供了更多元化的投资标的。</p>
+<p>【产品策略】：相关机构通过系统性规则修订，如引入ESG负面剔除、调整样本容量、优化选样流程等，提升了指数的市场表征准确性和风险控制能力，为产品布局提供了更精细化的指导。</p>
+<p>【产业引导】：指数的精细化趋势有助于引导资金流向产业链关键环节，推动新型电力系统等新兴产业的发展，促进新质生产力的形成。</p>
+
+<p>[背景介绍]：</p>
+<p>A股指数体系是Wind数据统计发布的金融工具，用于反映市场走势和提供投资参考。此前，A股指数体系已涵盖多个领域和行业，现在随着市场需求的增加和精细化管理的需求，年内新增374条指数，聚焦科技类主题，持续向产业链关键环节延伸。</p>
+
+<p>[技术和创新点]：</p>
+<p>ESG负面剔除: 通过引入ESG负面剔除机制，提升指数的市场表征准确性和风险控制能力。</p>
+<p>样本容量调整: 优化样本容量，使指数更能反映市场实际情况和投资需求。</p>
+<p>选样流程优化: 改进选样流程，提高指数的透明度和公正性。</p>
+<p>科技类主题聚焦: 新增指数主要集中在机器人、半导体、人工智能、新型电力系统四大领域，反映市场对科技产业的高度关注。</p>
+<p>产业链关键环节延伸: 指数体系向产业链关键环节延伸，推动新兴产业的发展。</p>
+
+<p>[效果总结]：</p>
+<p>A股指数体系在市场表征准确性、风险控制能力和新质生产力引导作用方面有显著提升。通过新增374条指数和系统性规则修订，A股指数体系为投资者提供了更多元化的投资标的，并推动了科技产业的精细化管理和新兴产业的发展。</p>
+
+<p>[热点事件]：Redesign Mixture-of-Experts Routers with Manifold Power Iteration@HuggingFace Papers</p>
+
+<p>[一句话总结]：HuggingFace Papers提出了一种基于流形幂迭代的新方法，用于重新设计混合专家模型中的路由器，提升了专家选择效率和模型性能。</p>
+
+<p>[关键词]：混合专家模型、路由器、流形幂迭代、专家选择、模型性能</p>
+
+<p>[业务启示]：</p>
+<p>【技术战略】：新方法通过改进路由器设计，提升了混合专家模型的专家选择效率和整体性能，为模型优化提供了新的技术路径。</p>
+<p>【市场影响】：该研究可能会推动混合专家模型在自然语言处理等领域的应用，进一步增强模型在实际场景中的竞争力。</p>
+<p>【创新潜力】：流形幂迭代的应用展示了在模型架构创新方面的潜力，提示未来可以探索更多数学工具在AI模型中的应用。</p>
+
+<p>[背景介绍]：</p>
+<p>混合专家模型（MoE）是一种通过多个专家网络来处理不同输入的技术，路由器是其核心组件，用于决定激活哪些专家。此前，路由器的设计主要关注专家矩阵的相似性计算，现在HuggingFace Papers提出了基于流形幂迭代的新方法，以提升路由器的效率和效果。</p>
+
+<p>[技术和创新点]：</p>
+<p>流形幂迭代应用: 将流形幂迭代应用于路由器设计，提升了专家选择的准确性。</p>
+<p>路由器矩阵优化: 通过优化路由器矩阵的构造，增强了模型对输入数据的适应性。</p>
+<p>专家选择效率: 新方法提高了选择激活专家的效率，减少了计算开销。</p>
+<p>模型性能提升: 改进后的路由器设计使模型在处理复杂任务时表现更佳。</p>
+
+<p>[效果总结]：</p>
+<p>该方法在提升混合专家模型的专家选择效率和整体性能方面有显著效果，特别是在处理复杂任务时，展示了更强的适应性和更高的效率。</p>
+
+<h2>💡 热点技术</h2>
+<p>[热点技术]：CCKS: Consensus-based Communication and Knowledge Sharing@arXiv cs.MA (Multiagent Systems)</p>
+
+<p>[一句话总结]：CCKS通过基于共识的通信和知识共享机制，实现了多智能体强化学习中智能体之间更高效、可解释的合作，提升了整体协作效果和系统可扩展性。</p>
+
+<p>[关键词]：多智能体系统、共识机制、知识共享、强化学习、协作学习</p>
+
+<p>[业务启示]：</p>
+<p>【模型设计】：CCKS引入了基于共识的通信机制，使智能体能够在决策过程中共享知识，从而优化模型设计，提升整体协作效率。</p>
+<p>【训练策略】：通过知识共享，CCKS改进了多智能体系统的训练策略，使得智能体能够更快地收敛到最优策略，减少训练时间。</p>
+<p>【部署优化】：该方法增强了系统的可扩展性，使得在复杂环境中部署多智能体系统时，能够更有效地进行资源分配和任务分配。</p>
+<p>【安全隐私】：基于共识的通信机制有助于在知识共享过程中保护智能体的隐私信息，确保信息交换的安全性。</p>
+
+<p>[背景介绍]：</p>
+<p>CCKS是由arXiv cs.MA (Multiagent Systems)推出的技术，用于解决多智能体强化学习中智能体之间知识共享和协作的问题。此前，多智能体系统在知识共享方面存在效率低下和可解释性不足的问题。现在，CCKS通过引入共识机制，显著提升了知识共享的效率和系统的可解释性。</p>
+
+<p>[技术和创新点]：</p>
+<p>共识机制：引入共识机制，使智能体在通信过程中达成一致，提升决策效率。</p>
+<p>知识共享：实现智能体之间的知识共享，促进协作学习。</p>
+<p>可解释性：提升系统决策过程的可解释性，便于理解和调试。</p>
+<p>效率提升：通过优化通信和知识共享机制，提升整体系统效率。</p>
+<p>可扩展性：增强系统在复杂环境中的可扩展性，适应更大规模的多智能体系统。</p>
+
+<p>[效果总结]：</p>
+<p>CCKS在多智能体强化学习中的知识共享和协作效率方面有显著提升。通过基于共识的通信机制，智能体之间的合作更加高效，系统的可解释性和可扩展性也得到了增强。</p>
+
+<p>[热点技术]：ITME: Inference Tiered Memory Expansion with Disaggregated CXL-Hybrid Memories@arXiv cs.DC (Distributed Computing)</p>
+
+<p>[一句话总结]：ITME通过解耦的CXL混合内存扩展推理分层内存，使大型语言模型能够处理TB级上下文状态，提升了内存容量和访问效率。</p>
+
+<p>[关键词]：CXL混合内存、推理分层内存、内存扩展、大语言模型、解耦架构</p>
+
+<p>[业务启示]：</p>
+<p>【内存架构】：ITME采用解耦的CXL混合内存架构，解决了传统单体服务器内存容量不足的问题，为大模型推理提供了更高效的内存解决方案。</p>
+<p>【性能优化】：通过分层内存管理，ITME优化了内存访问模式，减少了延迟，提升了大语言模型推理的总体性能。</p>
+<p>【扩展性】：该技术展示了在处理TB级上下文状态时的良好扩展性，为未来更大规模模型的部署提供了参考。</p>
+
+<p>[背景介绍]：</p>
+<p>ITME是arXiv cs.DC (Distributed Computing)推出的新型内存扩展技术，用于解决大型语言模型在推理过程中对大规模上下文状态的需求问题。此前，单体服务器的内存容量已成为大模型推理的瓶颈，现在ITME通过解耦的CXL混合内存架构，实现了内存容量的显著扩展和访问效率的提升。</p>
+
+<p>[技术和创新点]：</p>
+<p>解耦架构: 采用CXL技术实现内存的解耦和灵活扩展。</p>
+<p>分层内存管理: 通过分层内存管理优化内存访问模式，减少延迟。</p>
+<p>TB级内存支持: 实现了对TB级上下文状态的有效支持。</p>
+<p>混合内存策略: 结合不同类型的内存，优化成本和性能。</p>
+<p>大模型适配: 专门针对大语言模型的推理需求进行优化。</p>
+
+<p>[效果总结]：</p>
+<p>ITME在内存容量和访问效率方面有显著提升，使得大型语言模型能够更高效地处理TB级上下文状态，为大模型推理提供了更强大的硬件基础。</p>
+
+<hr>
+<li><strong></strong>: https://arxiv.org/abs/2606.12556v1</li>
+<li><strong></strong>: 中</li>
+<li><strong></strong>: 🟡关注</li>
+<li><strong></strong>: 深读</li>
+
+<p>[热点技术]：Smarter Saboteurs, Better Fixers: Scaling & Security in Linear Multi-Agent Workflows@arXiv cs.MA (Multiagent Systems)</p>
+
+<p>[一句话总结]：本文探讨了基于大语言模型的多智能体系统在面对对抗性攻击时的协作结构弹性问题，研究了如何通过改进的修复机制来应对智能破坏者的攻击，从而提高系统整体的安全性和可靠性。</p>
+
+<p>[关键词]：多智能体系统、对抗性攻击、协作结构、修复机制、安全性、LLM、prompt-injection</p>
+
+<p>[业务启示]：</p>
+<p>【安全隐私】：随着多智能体系统在现实世界中的广泛应用，确保其协作结构对对抗性攻击的弹性成为关键安全挑战。研究如何应对智能破坏者的攻击，有助于提升系统的整体安全性。</p>
+<p>【模型设计】：改进的修复机制设计可以有效应对智能破坏者的攻击，确保多智能体系统在遭受攻击后能够快速恢复并继续正常运行。</p>
+<p>【训练策略】：通过模拟对抗性攻击进行训练，可以增强多智能体系统在现实环境中应对复杂攻击场景的能力，提高其鲁棒性。</p>
+<p>【部署优化】：在系统部署过程中，应考虑引入实时监控和快速修复机制，以便在攻击发生时能够迅速响应并采取措施。</p>
+
+<p>[背景介绍]：</p>
+<p>多智能体系统（MAS）是arXiv cs.MA (Multiagent Systems)推出的研究类型，用于探讨多个智能体在协作完成任务时的行为和性能。此前，研究主要集中在MAS的协作效率和任务分配上，现在随着LLM（大规模语言模型）的引入，研究重点逐渐转向MAS在面对对抗性攻击时的安全性和弹性问题。</p>
+
+<p>[技术和创新点]：</p>
+<p>对抗性攻击分析: 详细描述了攻击者如何利用prompt-injection或jailbreaking技术破坏MAS中的个体智能体。</p>
+<p>协作结构弹性: 研究了MAS在面对攻击时的协作结构弹性，提出了改进的修复机制以应对智能破坏者的攻击。</p>
+<p>智能破坏者建模: 通过建模智能破坏者的行为，评估不同攻击策略对MAS的影响。</p>
+<p>修复机制设计: 提出了新的修复机制，能够在智能体被破坏后快速恢复其功能。</p>
+<p>多智能体协作优化: 探讨了如何在保证安全性的前提下，优化多智能体的协作效率。</p>
+
+<p>[效果总结]：</p>
+<p>本文提出的改进修复机制在应对智能破坏者攻击方面表现出显著优势，提升了多智能体系统在面对对抗性攻击时的整体安全性和可靠性。通过模拟对抗性攻击进行训练，MAS在现实环境中应对复杂攻击场景的能力也得到了增强。</p>
+
+<p>[热点技术]：The Internet of Agentic AI: Communication, Coordination, and Collective Intelligence at Scale@arXiv cs.MA (Multiagent Systems)</p>
+
+<p>[一句话总结]：本文提出了自主AI智能体互联网（IoAI）的愿景，描述了异构智能体在开放生态系统中进行大规模分布式推理、通信和行动的实现路径，推动AI从孤立模型推理向集体智能演进。</p>
+
+<p>[关键词]：自主AI智能体、分布式系统、集体智能、AI通信、AI协调、开放生态系统、推理与行动</p>
+
+<p>[业务启示]：</p>
+<p>【生态系统构建】：IoAI强调构建开放生态系统，促进异构智能体之间的互操作性，为AI服务提供更广泛的应用场景和市场空间。</p>
+<p>【智能体协作机制】：提出智能体间的通信与协调机制，为多智能体系统设计提供参考，有助于提升AI在复杂任务中的协同能力。</p>
+<p>【应用场景拓展】：IoAI框架可应用于智能城市、供应链管理、虚拟助手网络等场景，推动AI技术在各行业的深度融合。</p>
+<p>【安全与治理】：随着智能体网络规模的扩大，需关注AI治理问题，确保系统安全性和可控性。</p>
+
+<p>[背景介绍]：</p>
+<p>自主AI智能体是AI领域新兴方向，旨在让AI系统具备独立推理、决策和行动能力。此前，AI主要作为孤立模型执行特定任务，现在随着多智能体系统的发展，AI开始向分布式协作方向演进。本文提出的自主AI智能体互联网（IoAI）概念，是arXiv cs.MA (多智能体系统)领域的新进展，旨在构建一个开放的AI生态系统，实现智能体间大规模分布式推理、通信和行动。</p>
+
+<p>[技术和创新点]：</p>
+<p>开放生态系统架构: 描述了一个支持异构智能体互操作的开放架构。</p>
+<p>智能体通信协议: 制定了智能体间高效通信的标准和协议。</p>
+<p>协调与协作机制: 提出了多智能体系统中的协调策略和协作方法。</p>
+<p>分布式推理框架: 提供了在分布式环境中进行联合推理的框架。</p>
+<p>集体智能实现路径: 阐述了通过智能体协作实现集体智能的具体路径。</p>
+
+<p>[效果总结]：</p>
+<p>IoAI在智能体协作效率、分布式推理能力和系统整体智能水平方面有显著提升。该技术不仅增强了AI系统在复杂任务中的处理能力，还为构建更智能、更自主的AI应用奠定了基础，推动AI从单一智能向集体智能方向发展。</p>
+
+<h2>📊 行业趋势</h2>
+<p>【行业趋势】DeepSeek R1</p>
+
+<li><strong></strong>: https://github.com/deepseek-ai/DeepSeek-R1</li>
+<li><strong></strong>: 中</li>
+
+<h2>🤖 AI-Agent</h2>
+<p>【AI-Agent】🎉 DeepSeek-V4 预览版本发布，具备世界顶级推理性能，Agent 能力大幅提高，已在网页端、APP 和 API 上线，点击查看详情。</p>
+
+<li><strong></strong>: https://mp.weixin.qq.com/s/8bxXqS2R8Fx5-1TLDBiEDg</li>
+<li><strong></strong>: 中</li>
+
+<p>【AI-Agent】InternVideo3: Agentify Foundation Models with Multimodal Contextual Reasoning</p>
+
+<li><strong></strong>: https://huggingface.co/papers/2606.12195</li>
+<li><strong></strong>: 中</li>
+
+<p>【AI-Agent】Agentic Environment Engineering for Large Language Models: A Survey of Environment Modeling, Synthes</p>
+
+<li><strong></strong>: https://huggingface.co/papers/2606.12191</li>
+<li><strong></strong>: 中</li>
+
+<h2>⚡ LLM推理</h2>
+<p>【LLM推理】Reroute, Don't Remove: Recoverable Visual Token Routing for Vision-Language Models</p>
+
+<li><strong></strong>: https://huggingface.co/papers/2606.12412</li>
+<li><strong></strong>: 中</li>
+
+<hr>
+<p>📌 文末汇总</p>
+<li>今日最值得深读: CCKS: Consensus-based Communication and Knowledge ; ITME: Inference Tiered Memory Expansion with Disag</li>
+<li>今日可跳过: 无</li>
+<li>待观察趋势(跨条目): 推理优化技术持续迭代，Agent框架正在整合</li>
+
+<h2>反向链接</h2>
+
+<blockquote>[!info] 相关笔记</blockquote>
+<blockquote>- [[Weekly_2026-W24|本周周报]]</blockquote>
+<blockquote>- [[技术收敛_2026-06|本月技术收敛]]</blockquote>
+<blockquote>- [[4_AI情报洞察/技术洞察/多卡协同/多卡极致推理系统技术规划报告---以终为始版|多卡协同技术洞察]]</blockquote>
+
+
+
+<h2>分类统计</h2>
+
+<li>热点技术: 16 条</li>
+<li>热点事件: 2 条</li>
+<li>AI-Agent: 3 条</li>
+<li>行业趋势: 1 条</li>
+<li>LLM推理: 1 条</li>
+
+
+<h2>关联事件</h2>
+
+<li>bae4fa1511eca071</li>
+<li>734c861cfa8d3a10</li>
+<li>f798d389d3f77264</li>
+<li>e5a919698dd8e287</li>
+<li>7da6099673efc492</li>
+<li>602c5a2c0164a9b0</li>
+<li>1ad6f4710d37e55c</li>
+<li>e4702da3f6d4d8b7</li>
+<li>509304a0a76279ac</li>
+<li>9381c8e667220e27</li>
+
+
+<h2>反向链接</h2>
+
+<blockquote>[!info] 相关笔记</blockquote>
+<blockquote>- [[Weekly_2026-W24|本周周报]]</blockquote>
+<blockquote>- [[技术收敛_2026-06|本月技术收敛]]</blockquote>
+<blockquote>- [[4_AI情报洞察/技术洞察/多卡协同/多卡极致推理系统技术规划报告---以终为始版|多卡协同技术洞察]]</blockquote>
+
+<hr>
+
+<strong></strong>: 2026-06-12T04:11:53.405253
+<strong></strong>: 7483b527c0ce9c0f
+
+        </div>
+    </div>
+</body>
+</html>

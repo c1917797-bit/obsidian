@@ -1,0 +1,13 @@
+{
+  "pluginId": "obsidian-citation-plugin",
+  "enabled": true,
+  "data": {
+    "libraryPath": "library.json",
+    "insertCitationTemplate": "![[{{citeKey}}]]",
+    "bibliographyTemplate": "\n## References\n\n{{bibliography}}\n",
+    "defaultLibraryPath": "library.json",
+    "citationFormat": "authYear",
+    "searchFields": ["title", "authors", "year", "abstract"],
+    "showCitationPanel": true
+  }
+}

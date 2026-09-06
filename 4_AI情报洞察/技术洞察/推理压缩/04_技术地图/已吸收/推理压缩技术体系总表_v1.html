@@ -1,0 +1,1272 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>推理压缩技术体系总表 v1.0 - 完整结构化版本</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif;
+  background: linear-gradient(135deg, #0a0e1a 0%, #1a1f2e 100%);
+  color: #e2e8f0;
+  padding: 32px;
+  line-height: 1.75;
+  font-size: 15px;
+}
+.container { max-width: 1500px; margin: 0 auto; }
+h1 {
+  font-size: 2.6em;
+  text-align: center;
+  background: linear-gradient(90deg, #60a5fa, #a78bfa, #f472b6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 8px;
+  font-weight: 800;
+}
+h2 {
+  font-size: 1.9em;
+  color: #60a5fa;
+  border-bottom: 3px solid #334155;
+  padding: 24px 0 12px;
+  margin-top: 48px;
+  font-weight: 700;
+}
+h2 .num { color: #a78bfa; margin-right: 12px; }
+h3 {
+  font-size: 1.45em;
+  color: #a78bfa;
+  margin-top: 28px;
+  margin-bottom: 14px;
+  font-weight: 600;
+}
+h4 {
+  font-size: 1.18em;
+  color: #f472b6;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+.meta {
+  text-align: center;
+  color: #94a3b8;
+  font-size: 0.95em;
+  margin-bottom: 32px;
+}
+.meta span { margin: 0 8px; }
+
+.toc {
+  background: rgba(30, 41, 59, 0.6);
+  border: 1px solid #334155;
+  border-radius: 12px;
+  padding: 24px 28px;
+  margin: 24px 0;
+}
+.toc-title { font-size: 1.3em; color: #60a5fa; margin-bottom: 14px; font-weight: 600; }
+.toc-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px 24px;
+  font-size: 0.92em;
+}
+.toc-grid a {
+  color: #cbd5e1;
+  text-decoration: none;
+  padding: 4px 0;
+  transition: color 0.2s;
+}
+.toc-grid a:hover { color: #60a5fa; }
+
+.summary-box {
+  background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+  border-left: 5px solid #60a5fa;
+  padding: 20px 24px;
+  border-radius: 10px;
+  margin: 24px 0;
+}
+.summary-box h3 { color: #fbbf24; margin-top: 0; margin-bottom: 12px; }
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 16px 0;
+  background: rgba(30, 41, 59, 0.5);
+  border-radius: 10px;
+  overflow: hidden;
+  font-size: 0.94em;
+}
+th {
+  background: linear-gradient(135deg, #334155, #475569);
+  color: #f1f5f9;
+  padding: 12px 14px;
+  text-align: left;
+  font-weight: 700;
+  font-size: 0.95em;
+}
+td {
+  padding: 11px 14px;
+  border-top: 1px solid #334155;
+  vertical-align: top;
+}
+tr:hover td { background: rgba(96, 165, 250, 0.08); }
+
+.high { color: #fbbf24; font-weight: 600; }
+.mid { color: #60a5fa; font-weight: 500; }
+.low { color: #94a3b8; }
+.warn { color: #ef4444; font-weight: 600; }
+.good { color: #22c55e; font-weight: 600; }
+
+.tag {
+  display: inline-block;
+  background: #1e40af;
+  color: #dbeafe;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 0.85em;
+  margin-right: 4px;
+  font-weight: 500;
+}
+.tag.warn { background: #b91c1c; }
+.tag.good { background: #047857; }
+.tag.info { background: #6d28d9; }
+.tag.mature { background: #1e40af; }
+.tag.hot { background: #ea580c; }
+.tag.gap { background: #be185d; }
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 16px;
+  margin: 20px 0;
+}
+.card {
+  background: rgba(30, 41, 59, 0.7);
+  border: 1px solid #334155;
+  border-radius: 10px;
+  padding: 18px;
+  transition: all 0.2s;
+}
+.card:hover {
+  border-color: #60a5fa;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 20px rgba(96, 165, 250, 0.15);
+}
+.card h4 { margin-top: 0; }
+.card .meta { text-align: left; font-size: 0.85em; }
+
+.tree {
+  background: rgba(15, 23, 42, 0.7);
+  border: 1px solid #334155;
+  border-radius: 10px;
+  padding: 24px;
+  font-family: "Consolas", "Courier New", monospace;
+  font-size: 0.92em;
+  line-height: 1.9;
+  white-space: pre;
+  overflow-x: auto;
+  color: #cbd5e1;
+}
+.flow {
+  background: rgba(15, 23, 42, 0.7);
+  border: 1px solid #334155;
+  border-radius: 10px;
+  padding: 24px;
+  font-family: "Consolas", "Courier New", monospace;
+  font-size: 0.88em;
+  line-height: 1.7;
+  white-space: pre;
+  overflow-x: auto;
+  color: #cbd5e1;
+}
+.term {
+  background: rgba(96, 165, 250, 0.15);
+  border: 1px solid rgba(96, 165, 250, 0.4);
+  border-radius: 4px;
+  padding: 1px 8px;
+  font-family: "Consolas", monospace;
+  font-size: 0.88em;
+  color: #93c5fd;
+}
+.def-box {
+  background: rgba(30, 41, 59, 0.6);
+  border-left: 4px solid #a78bfa;
+  padding: 14px 20px;
+  border-radius: 6px;
+  margin: 12px 0;
+  font-size: 0.95em;
+}
+.def-box strong { color: #a78bfa; }
+.callout {
+  background: linear-gradient(90deg, rgba(220, 38, 38, 0.15), rgba(220, 38, 38, 0.05));
+  border-left: 4px solid #ef4444;
+  padding: 16px 20px;
+  border-radius: 6px;
+  margin: 16px 0;
+}
+.callout-success {
+  background: linear-gradient(90deg, rgba(34, 197, 94, 0.15), rgba(34, 197, 94, 0.05));
+  border-left: 4px solid #22c55e;
+}
+.callout-info {
+  background: linear-gradient(90deg, rgba(59, 130, 246, 0.15), rgba(59, 130, 246, 0.05));
+  border-left: 4px solid #3b82f6;
+}
+.callout-warn {
+  background: linear-gradient(90deg, rgba(234, 88, 12, 0.15), rgba(234, 88, 12, 0.05));
+  border-left: 4px solid #ea580c;
+}
+ul, ol { margin: 8px 0 8px 24px; }
+li { margin: 5px 0; }
+.heatmap { color: #fbbf24; }
+.subsection {
+  background: rgba(96, 165, 250, 0.06);
+  border: 1px solid rgba(96, 165, 250, 0.2);
+  border-radius: 8px;
+  padding: 16px 20px;
+  margin: 16px 0;
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+<h1>推理压缩技术体系总表</h1>
+<p class="meta">
+  <span class="tag mature">v1.0 体系化版本</span>
+  <span class="tag info">数据驱动归纳</span>
+  <span class="tag good">结构化</span>
+  <span>基于 2,757 篇顶会论文</span>
+  <span>·</span>
+  <span>2026-06</span>
+</p>
+
+<!-- 目录 -->
+<div class="toc">
+<div class="toc-title">📑 目录</div>
+<div class="toc-grid">
+<a href="#sec1">1. 总览：推理压缩的定义与边界</a>
+<a href="#sec2">2. 维度一：压缩对象（5大类）</a>
+<a href="#sec3">3. 维度二：压缩方法（6大类）</a>
+<a href="#sec4">4. 维度三：对象×方法完整矩阵</a>
+<a href="#sec5">5. 维度四：场景应用（3大场景）</a>
+<a href="#sec6">6. 维度五：技术成熟度（TRL分级）</a>
+<a href="#sec7">7. 维度六：硬件平台适配</a>
+<a href="#sec8">8. 维度七：评估指标体系</a>
+<a href="#sec9">9. 维度八：技术演进路径</a>
+<a href="#sec10">10. 维度九：工程落地工具链</a>
+<a href="#sec11">11. 维度十：研究机会图谱</a>
+<a href="#sec12">12. 完整技术树</a>
+<a href="#sec13">13. 决策矩阵：身份×场景×技术</a>
+<a href="#sec14">14. 商业价值矩阵</a>
+<a href="#sec15">15. 信源索引</a>
+<a href="#sec16">16. 版本与文件索引</a>
+</div>
+</div>
+
+<!-- 一、总览 -->
+<h2 id="sec1"><span class="num">1.</span>总览：推理压缩的定义与边界</h2>
+
+<div class="def-box">
+<strong>推理压缩 (Inference Compression)</strong> 是指在模型推理阶段，通过减少计算量、内存占用、通信开销或延迟，同时保持模型性能在可接受范围内的一系列技术。
+</div>
+
+<h3>1.1 推理压缩 vs 训练压缩</h3>
+<table>
+<tr><th>维度</th><th>推理压缩</th><th>训练压缩</th></tr>
+<tr><td>目标</td><td>降低推理延迟/内存/成本</td><td>降低训练成本/显存</td></tr>
+<tr><td>精度要求</td><td>高（需保持下游任务性能）</td><td>相对较低</td></tr>
+<tr><td>实时性</td><td>强（影响用户体验）</td><td>弱</td></tr>
+<tr><td>典型方法</td><td>量化、KV优化、投机解码</td><td>梯度压缩、激活检查点</td></tr>
+</table>
+
+<h3>1.2 推理压缩的两大核心约束</h3>
+<div class="card-grid">
+<div class="card">
+<h4>约束1: 内存墙 (Memory Wall)</h4>
+<p>大模型推理的瓶颈往往是<strong>内存带宽</strong>而非计算能力。KV Cache 在长上下文中可达数十GB。</p>
+<p class="meta">典型症状: 推理时延与batch size非线性增长</p>
+</div>
+<div class="card">
+<h4>约束2: 通信墙 (Communication Wall)</h4>
+<p>MoE / 分布式推理中，<strong>跨设备通信</strong>成为瓶颈，特别是 All-to-All 通信。</p>
+<p class="meta">典型症状: 多卡扩展性差，强弱卡性能差异大</p>
+</div>
+</div>
+
+<!-- 二、压缩对象 -->
+<h2 id="sec2"><span class="num">2.</span>维度一：压缩对象（5大类）</h2>
+
+<p>从数据归纳得出 <strong>5 大压缩对象</strong>，每类针对推理过程的不同环节：</p>
+
+<table>
+<tr>
+  <th>#</th>
+  <th>对象 (Object)</th>
+  <th>定义</th>
+  <th>论文数</th>
+  <th>占比</th>
+  <th>典型痛点</th>
+  <th>成熟度</th>
+</tr>
+<tr>
+  <td>1</td>
+  <td><strong>权重 (Weights)</strong></td>
+  <td>模型参数本身</td>
+  <td class="high">1,624</td>
+  <td>58.9%</td>
+  <td>模型存储体积大、加载慢</td>
+  <td><span class="tag mature">已成熟</span></td>
+</tr>
+<tr>
+  <td>2</td>
+  <td><strong>激活 (Activations)</strong></td>
+  <td>前向传播的中间结果</td>
+  <td class="high">756</td>
+  <td>27.4%</td>
+  <td>激活内存占用大、计算密集</td>
+  <td><span class="tag hot">热点</span></td>
+</tr>
+<tr>
+  <td>3</td>
+  <td><strong>KV Cache</strong></td>
+  <td>注意力机制的键值缓存</td>
+  <td class="mid">310</td>
+  <td>11.2%</td>
+  <td>长上下文/多轮对话显存爆炸</td>
+  <td><span class="tag hot">热点</span></td>
+</tr>
+<tr>
+  <td>4</td>
+  <td><strong>通信 (Communication)</strong></td>
+  <td>分布式/并行间的数据传输</td>
+  <td class="mid">265</td>
+  <td>9.6%</td>
+  <td>MoE/张量并行通信开销</td>
+  <td><span class="tag info">新兴</span></td>
+</tr>
+<tr>
+  <td>5</td>
+  <td><strong>通用效率 (General)</strong></td>
+  <td>系统级调度/资源管理</td>
+  <td class="mid">523</td>
+  <td>19.0%</td>
+  <td>调度不优、内存碎片</td>
+  <td><span class="tag mature">已成熟</span></td>
+</tr>
+</table>
+
+<div class="callout callout-info">
+<strong>关键洞察：</strong>同一篇论文可能作用于多个对象，因此总占比超过 100%。权重和激活是数据流的两大主载体，KV Cache 是 Transformer 特有对象，通信和通用效率是系统级问题。
+</div>
+
+<h3>2.1 各对象的压缩优先级</h3>
+<div class="flow">
+优先级判断逻辑：
+
+                    ┌──────────────────────┐
+                    │  我的瓶颈是什么？     │
+                    └──────────┬───────────┘
+                               │
+        ┌──────────────────────┼──────────────────────┐
+        ▼                      ▼                      ▼
+   存储/加载慢             推理时延高              显存OOM
+        │                      │                      │
+        ▼                      ▼                      ▼
+   优先压缩权重         优先压缩激活/KV        优先压缩KV/激活
+   (LoRA/AWQ)          (稀疏化/量化)          (SnapKV/KIVI)
+</div>
+
+<!-- 三、压缩方法 -->
+<h2 id="sec3"><span class="num">3.</span>维度二：压缩方法（6大类）</h2>
+
+<table>
+<tr>
+  <th>#</th>
+  <th>方法 (Method)</th>
+  <th>核心思想</th>
+  <th>论文数</th>
+  <th>代表工作</th>
+  <th>适用对象</th>
+  <th>技术阶段</th>
+</tr>
+<tr>
+  <td>1</td>
+  <td><strong>量化 (Quantization)</strong></td>
+  <td>降低数值精度 (FP32→INT8/INT4)</td>
+  <td class="high">624</td>
+  <td>GPTQ, AWQ, KIVI, Block-GTQ</td>
+  <td>权重/激活/KV</td>
+  <td><span class="tag mature">已成熟</span></td>
+</tr>
+<tr>
+  <td>2</td>
+  <td><strong>低秩 (Low-Rank)</strong></td>
+  <td>矩阵分解降维</td>
+  <td class="high">605</td>
+  <td>LoRA系列, AdaLoRA</td>
+  <td>权重/激活</td>
+  <td><span class="tag mature">已成熟</span></td>
+</tr>
+<tr>
+  <td>3</td>
+  <td><strong>剪枝 (Pruning)</strong></td>
+  <td>移除冗余参数/通道</td>
+  <td class="high">590</td>
+  <td>SparseGPT, Wanda</td>
+  <td>权重/激活</td>
+  <td><span class="tag mature">已成熟</span></td>
+</tr>
+<tr>
+  <td>4</td>
+  <td><strong>稀疏化 (Sparsification)</strong></td>
+  <td>动态稀疏激活</td>
+  <td class="high">570</td>
+  <td>2:4稀疏, Block稀疏</td>
+  <td>激活/通信</td>
+  <td><span class="tag hot">热点</span></td>
+</tr>
+<tr>
+  <td>5</td>
+  <td><strong>蒸馏 (Distillation)</strong></td>
+  <td>用小模型模仿大模型</td>
+  <td class="mid">517</td>
+  <td>经典KD, MiniLLM</td>
+  <td>通用</td>
+  <td><span class="tag mature">已成熟</span></td>
+</tr>
+<tr>
+  <td>6</td>
+  <td><strong>通用优化 (General)</strong></td>
+  <td>系统级调度/缓存/编译</td>
+  <td class="mid">522</td>
+  <td>PagedAttn, FlashAttn, DeepEP</td>
+  <td>KV/通信/通用</td>
+  <td><span class="tag mature">已成熟</span></td>
+</tr>
+</table>
+
+<h3>3.1 方法间的本质区别</h3>
+<table>
+<tr><th>方法</th><th>压缩的是什么</th><th>可逆性</th><th>训练需求</th><th>精度损失</th></tr>
+<tr><td>量化</td><td>数值精度</td><td>不可逆</td><td>PTQ/QAT</td><td>中（1-3%）</td></tr>
+<tr><td>低秩</td><td>参数维度</td><td>近似可逆</td><td>需要</td><td>低（&lt;1%）</td></tr>
+<tr><td>剪枝</td><td>冗余参数</td><td>不可逆</td><td>需要/不需要</td><td>低</td></tr>
+<tr><td>稀疏化</td><td>激活模式</td><td>运行时决策</td><td>需要</td><td>中</td></tr>
+<tr><td>蒸馏</td><td>整个模型</td><td>完全替换</td><td>需要</td><td>取决于小模型容量</td></tr>
+<tr><td>通用优化</td><td>调度/缓存</td><td>可逆</td><td>不需要</td><td>无</td></tr>
+</table>
+
+<!-- 四、完整矩阵 -->
+<h2 id="sec4"><span class="num">4.</span>维度三：对象×方法 完整矩阵</h2>
+
+<p>从 <span class="term">inference_compression_strict.json</span> 统计得出。数字表示论文数量。</p>
+
+<table>
+<tr>
+  <th>对象 ↓ / 方法 →</th>
+  <th>量化</th>
+  <th>低秩</th>
+  <th>剪枝</th>
+  <th>稀疏化</th>
+  <th>蒸馏</th>
+  <th>通用优化</th>
+  <th>合计</th>
+</tr>
+<tr>
+  <td><strong>权重</strong></td>
+  <td>376</td>
+  <td class="high">575</td>
+  <td class="high">509</td>
+  <td>311</td>
+  <td>231</td>
+  <td>175</td>
+  <td class="high">1,624</td>
+</tr>
+<tr>
+  <td><strong>激活</strong></td>
+  <td>201</td>
+  <td>174</td>
+  <td>199</td>
+  <td class="high">396</td>
+  <td>68</td>
+  <td>42</td>
+  <td class="high">756</td>
+</tr>
+<tr>
+  <td><strong>通用效率</strong></td>
+  <td>117</td>
+  <td>-</td>
+  <td>41</td>
+  <td>42</td>
+  <td>170</td>
+  <td class="mid">187</td>
+  <td class="mid">523</td>
+</tr>
+<tr>
+  <td><strong>KV Cache</strong></td>
+  <td>46</td>
+  <td>37</td>
+  <td>37</td>
+  <td>69</td>
+  <td class="warn">10</td>
+  <td class="mid">148</td>
+  <td class="mid">310</td>
+</tr>
+<tr>
+  <td><strong>通信</strong></td>
+  <td>44</td>
+  <td>57</td>
+  <td>45</td>
+  <td class="mid">82</td>
+  <td class="warn">18</td>
+  <td>77</td>
+  <td class="mid">265</td>
+</tr>
+</table>
+
+<div class="callout callout-warn">
+<strong>🔍 矩阵解读：</strong><br>
+• <strong>红海</strong>：权重×低秩(575)、权重×剪枝(509)、激活×稀疏化(396) — 高度饱和<br>
+• <strong>新兴</strong>：KV×通用优化(148)、激活×稀疏化(396) — 当前热点<br>
+• <strong>结构性空白</strong>：KV×蒸馏(10)、通信×蒸馏(18) — 论文机会窗口 ⭐⭐⭐
+</div>
+
+<!-- 五、场景应用 -->
+<h2 id="sec5"><span class="num">5.</span>维度四：场景应用（3大场景）</h2>
+
+<h3>5.1 场景对比总览</h3>
+<table>
+<tr>
+  <th>场景</th>
+  <th>核心瓶颈</th>
+  <th>关键压缩对象</th>
+  <th>推荐方法</th>
+  <th>代表工作</th>
+</tr>
+<tr>
+  <td>📜 <strong>长上下文</strong> (&gt;128K)</td>
+  <td>KV Cache 显存爆炸</td>
+  <td>KV Cache</td>
+  <td>稀疏化 + 量化</td>
+  <td>SnapKV, R-KV, KIVI, Block-GTQ</td>
+</tr>
+<tr>
+  <td>🤖 <strong>Agent多轮</strong></td>
+  <td>对话累积无上限</td>
+  <td>KV Cache + 通用效率</td>
+  <td>量化 + 选择性淘汰</td>
+  <td>UltraQuant, AnchorKV, CONF-KV</td>
+</tr>
+<tr>
+  <td>🧩 <strong>MoE分布式</strong></td>
+  <td>All-to-All通信密集</td>
+  <td>通信</td>
+  <td>稀疏化 + 量化</td>
+  <td>DeepEP, ExpertQuant</td>
+</tr>
+<tr>
+  <td>📱 <strong>端侧部署</strong></td>
+  <td>内存/算力受限</td>
+  <td>权重</td>
+  <td>权重量化(INT4)</td>
+  <td>AWQ, GGUF, llama.cpp</td>
+</tr>
+<tr>
+  <td>🏭 <strong>云端推理服务</strong></td>
+  <td>吞吐量/并发</td>
+  <td>通用效率 + 权重</td>
+  <td>PagedAttn + 投机解码</td>
+  <td>vLLM, SGLang, TensorRT-LLM</td>
+</tr>
+</table>
+
+<h3>5.2 场景技术路径详解</h3>
+
+<h4>📜 长上下文 (Long Context) - KV爆炸</h4>
+<table>
+<tr><th>上下文长度</th><th>首选方案</th><th>次选方案</th><th>说明</th></tr>
+<tr><td>&gt;1M (超长)</td><td>架构级压缩 (MLA/GQLA)</td><td>低秩近似 (STAR-KV)</td><td>需要修改模型</td></tr>
+<tr><td>128K-1M</td><td>选择性淘汰 (SnapKV/R-KV)</td><td>量化 (KIVI/Block-GTQ)</td><td>框架已集成</td></tr>
+<tr><td>32K-128K</td><td>vLLM PagedAttention</td><td>稀疏 (SnapKV)</td><td>基本够用</td></tr>
+</table>
+
+<h4>🤖 Agent多轮 (Multi-turn) - KV累积</h4>
+<table>
+<tr><th>对话轮数</th><th>推荐方案</th><th>关键工作</th></tr>
+<tr><td>&gt;20轮 ★★★</td><td>KV量化 + 选择性淘汰</td><td>KIVI / Block-GTQ + SnapKV</td></tr>
+<tr><td>10-20轮 ★★</td><td>选择性淘汰优先</td><td>CONF-KV / PolyKV</td></tr>
+<tr><td>&lt;10轮 ★</td><td>vLLM PagedAttention</td><td>无需额外优化</td></tr>
+</table>
+
+<h4>🧩 MoE分布式 (Distributed MoE) - 通信瓶颈</h4>
+<table>
+<tr><th>阶段</th><th>推荐方案</th><th>关键工作</th></tr>
+<tr><td>训练</td><td>DeepEP + INT4/FP8梯度压缩</td><td>DeepSeek生产级方案</td></tr>
+<tr><td>推理</td><td>ExpertQuant + Top-K路由压缩</td><td>2025新方向</td></tr>
+</table>
+
+<!-- 六、技术成熟度 -->
+<h2 id="sec6"><span class="num">6.</span>维度五：技术成熟度（TRL分级）</h2>
+
+<p><strong>TRL (Technology Readiness Level)</strong>：1=基础研究，9=完全产品化</p>
+
+<table>
+<tr>
+  <th>TRL</th>
+  <th>状态</th>
+  <th>对应技术</th>
+  <th>推荐行动</th>
+</tr>
+<tr>
+  <td><span class="tag mature">9</span></td>
+  <td>产品化</td>
+  <td>AWQ INT4 / GGUF / llama.cpp / vLLM PagedAttn</td>
+  <td>直接采用</td>
+</tr>
+<tr>
+  <td><span class="tag mature">7-8</span></td>
+  <td>生产可用</td>
+  <td>TensorRT-LLM / FlashAttention / DeepEP</td>
+  <td>评估后采用</td>
+</tr>
+<tr>
+  <td><span class="tag hot">5-6</span></td>
+  <td>试验验证</td>
+  <td>GPTQ / KIVI / SnapKV / Block-GTQ</td>
+  <td>POC试点</td>
+</tr>
+<tr>
+  <td><span class="tag info">3-4</span></td>
+  <td>实验室</td>
+  <td>ExpertQuant / AnchorKV / TRIM-KV</td>
+  <td>跟踪预研</td>
+</tr>
+<tr>
+  <td><span class="tag gap">1-2</span></td>
+  <td>理论探索</td>
+  <td>KV×蒸馏 / 跨模态压缩</td>
+  <td>前沿研究</td>
+</tr>
+</table>
+
+<!-- 七、硬件平台 -->
+<h2 id="sec7"><span class="num">7.</span>维度六：硬件平台适配</h2>
+
+<table>
+<tr>
+  <th>硬件平台</th>
+  <th>适用方法</th>
+  <th>注意事项</th>
+  <th>代表框架</th>
+</tr>
+<tr>
+  <td><strong>NVIDIA H100/H800</strong></td>
+  <td>FP8 / INT8 / FlashInfer</td>
+  <td>Tensor Core 支持度好</td>
+  <td>TensorRT-LLM, vLLM</td>
+</tr>
+<tr>
+  <td><strong>NVIDIA A100</strong></td>
+  <td>INT8 / INT4</td>
+  <td>无FP8支持</td>
+  <td>vLLM, SGLang</td>
+</tr>
+<tr>
+  <td><strong>AMD MI300/MI250</strong></td>
+  <td>FP4 / UltraQuant</td>
+  <td>ROCm生态</td>
+  <td>UltraQuant, AMD定制</td>
+</tr>
+<tr>
+  <td><strong>消费级GPU (4090/3090)</strong></td>
+  <td>INT4 / AWQ / GGUF</td>
+  <td>显存受限</td>
+  <td>llama.cpp, AutoGPTQ</td>
+</tr>
+<tr>
+  <td><strong>CPU服务器</strong></td>
+  <td>INT4 / GGUF / Q4_K_M</td>
+  <td>吞吐受限</td>
+  <td>llama.cpp, GGML</td>
+</tr>
+<tr>
+  <td><strong>端侧 (手机/嵌入式)</strong></td>
+  <td>INT4 / 权重量化</td>
+  <td>内存极度受限</td>
+  <td>llama.cpp, MNN, TFLite</td>
+</tr>
+<tr>
+  <td><strong>自研芯片 (昇腾/寒武纪)</strong></td>
+  <td>TVM / 编译优化</td>
+  <td>需要适配</td>
+  <td>TVM, MindSpore</td>
+</tr>
+</table>
+
+<!-- 八、评估指标 -->
+<h2 id="sec8"><span class="num">8.</span>维度七：评估指标体系</h2>
+
+<h3>8.1 三大类评估指标</h3>
+
+<div class="card-grid">
+<div class="card">
+<h4>性能指标 (Performance)</h4>
+<ul>
+<li><strong>延迟 (Latency)</strong>: 首token时延(TTFT) / 端到端时延</li>
+<li><strong>吞吐量 (Throughput)</strong>: tokens/s, requests/s</li>
+<li><strong>并发能力</strong>: max concurrent users</li>
+</ul>
+</div>
+<div class="card">
+<h4>效率指标 (Efficiency)</h4>
+<ul>
+<li><strong>显存占用</strong>: KV Cache size, peak memory</li>
+<li><strong>压缩比</strong>: 原始大小 / 压缩后大小</li>
+<li><strong>能耗</strong>: tokens/Joule</li>
+</ul>
+</div>
+<div class="card">
+<h4>质量指标 (Quality)</h4>
+<ul>
+<li><strong>精度保持</strong>: PPL / Accuracy drop</li>
+<li><strong>NIAH表现</strong>: Needle-in-Haystack</li>
+<li><strong>任务性能</strong>: MMLU / GSM8K / HumanEval</li>
+</ul>
+</div>
+</div>
+
+<h3>8.2 关键Benchmark对比</h3>
+<table>
+<tr><th>方法</th><th>压缩比</th><th>精度损失</th><th>NIAH (32K)</th><th>适用场景</th></tr>
+<tr><td>Full KV (baseline)</td><td>1x</td><td>0%</td><td>100%</td><td>所有场景</td></tr>
+<tr><td>SnapKV</td><td>8.2x</td><td>&lt;2%</td><td>~98%</td><td>长上下文</td></tr>
+<tr><td>R-KV</td><td>6.6x</td><td>&lt;1%</td><td>~99%</td><td>128K+</td></tr>
+<tr><td>KIVI (2bit)</td><td>4x</td><td>1-3%</td><td>~95%</td><td>极低bit KV</td></tr>
+<tr><td>Block-GTQ (4bit)</td><td>4x</td><td>~3%</td><td>~93%</td><td>256K+</td></tr>
+<tr><td>CONF-KV</td><td>2.8x</td><td>&lt;2%</td><td>91.4%</td><td>长对话</td></tr>
+<tr><td>H2O</td><td>3x</td><td>2-4%</td><td>80.6%</td><td>早期经典</td></tr>
+</table>
+
+<!-- 九、技术演进 -->
+<h2 id="sec9"><span class="num">9.</span>维度八：技术演进路径</h2>
+
+<h3>9.1 三阶段演进</h3>
+<div class="tree">技术演进时间线
+│
+├── 阶段1: 经典压缩 (2018-2023) ──── 已成熟
+│   ├── 权重量化: GPTQ (2022) → AWQ (2023)
+│   ├── 权重剪枝: SparseGPT (2023) → Wanda (2023)
+│   ├── 低秩分解: LoRA (2021) → QLoRA (2023)
+│   └── 系统优化: PagedAttention (2023)
+│
+├── 阶段2: 推理专用 (2023-2025) ──── 当前热点
+│   ├── KV稀疏化: H2O (2023) → SnapKV (2024) → R-KV (2024)
+│   ├── KV量化: KIVI (2024) → ZipCache (2024) → Block-GTQ (2025)
+│   ├── 高效注意力: FlashAttention (2022) → FlashInfer (2024)
+│   └── MoE通信: DeepEP (2024) → ExpertQuant (2025)
+│
+└── 阶段3: 新兴方向 (2025-2026+) ──── 未来机会
+    ├── KV×蒸馏: SwiftKV (2025) — Decoding阶段空白
+    ├── 通信×蒸馏: 几乎空白 ⭐⭐⭐
+    ├── 跨模态压缩: 文本/视觉/音频统一压缩
+    └── 端到端联合优化: 权重+激活+KV协同
+</div>
+
+<h3>9.2 技术依赖关系</h3>
+<div class="flow">
+依赖图：
+
+FlashAttention ──依赖──> 内存分块 (Tiling)
+       │
+       ├──支持──> PagedAttention
+       │              │
+       │              └──支持──> vLLM / SGLang
+       │
+       └──支持──> SnapKV / R-KV (基于分块的KV选择性保留)
+
+KIVI ──依赖──> 2bit量化技术
+       │
+       ├──改进──> Block-GTQ (RoPE-aware)
+       │
+       └──工业集成──> 待突破
+
+DeepEP ──依赖──> NCCL通信库
+       │
+       ├──扩展──> ExpertQuant (量化)
+       │
+       └──开源生态──> MoE推理标配
+</div>
+
+<!-- 十、工程落地 -->
+<h2 id="sec10"><span class="num">10.</span>维度九：工程落地工具链</h2>
+
+<h3>10.1 推理框架对比</h3>
+<table>
+<tr>
+  <th>框架</th>
+  <th>性能</th>
+  <th>易用性</th>
+  <th>特性</th>
+  <th>推荐场景</th>
+</tr>
+<tr>
+  <td><strong>TensorRT-LLM</strong></td>
+  <td>★★★★★</td>
+  <td>★★</td>
+  <td>NVIDIA官方，INT8/FP8</td>
+  <td>极致性能生产环境</td>
+</tr>
+<tr>
+  <td><strong>vLLM</strong></td>
+  <td>★★★★★</td>
+  <td>★★★★</td>
+  <td>PagedAttention，社区活跃</td>
+  <td>通用推理服务</td>
+</tr>
+<tr>
+  <td><strong>SGLang</strong></td>
+  <td>★★★★</td>
+  <td>★★★★</td>
+  <td>RadixAttention，长上下文</td>
+  <td>Agent/长文本场景</td>
+</tr>
+<tr>
+  <td><strong>llama.cpp</strong></td>
+  <td>★★★</td>
+  <td>★★★★★</td>
+  <td>GGUF，CPU/端侧</td>
+  <td>本地部署/移动端</td>
+</tr>
+<tr>
+  <td><strong>Ollama</strong></td>
+  <td>★★★</td>
+  <td>★★★★★</td>
+  <td>一键部署</td>
+  <td>个人测试</td>
+</tr>
+</table>
+
+<h3>10.2 量化工具链</h3>
+<table>
+<tr>
+  <th>类别</th>
+  <th>工具</th>
+  <th>精度</th>
+  <th>特点</th>
+  <th>代表格式</th>
+</tr>
+<tr>
+  <td rowspan="3">权重</td>
+  <td>AWQ</td>
+  <td>INT4</td>
+  <td>精度最优，激活感知</td>
+  <td>SafeTensor</td>
+</tr>
+<tr>
+  <td>GPTQ</td>
+  <td>INT4/INT8</td>
+  <td>速度快，工业标准</td>
+  <td>SafeTensor</td>
+</tr>
+<tr>
+  <td>GGUF</td>
+  <td>多bit</td>
+  <td>格式通用，CPU友好</td>
+  <td>GGUF</td>
+</tr>
+<tr>
+  <td rowspan="2">KV</td>
+  <td>KIVI</td>
+  <td>2bit</td>
+  <td>Per-channel量化</td>
+  <td>研究代码</td>
+</tr>
+<tr>
+  <td>Block-GTQ</td>
+  <td>4bit</td>
+  <td>RoPE-aware，工程化</td>
+  <td>研究代码</td>
+</tr>
+<tr>
+  <td>通信</td>
+  <td>DeepEP</td>
+  <td>FP8/INT4</td>
+  <td>MoE通信库</td>
+  <td>生产环境</td>
+</tr>
+</table>
+
+<h3>10.3 KV Cache优化路径选择</h3>
+<div class="flow">
+                        ┌─────────────────────────────────┐
+                        │   我的系统需要KV Cache优化吗？    │
+                        └─────────────────┬───────────────┘
+                                          │
+              ┌───────────────────────────┼───────────────────────────┐
+              ▼                           ▼                           ▼
+     ┌───────────────┐          ┌───────────────┐          ┌───────────────┐
+     │   极致压缩    │          │   极速推理    │          │   快速集成    │
+     │ (压缩比优先)  │          │ (吞吐优先)   │          │ (Minimal工程) │
+     └───────┬───────┘          └───────┬───────┘          └───────┬───────┘
+             ▼                          ▼                          ▼
+     ┌───────────────┐          ┌───────────────┐          ┌───────────────┐
+     │  📦 量化路线   │          │  🎯 稀疏路线   │          │  🔧 通用路线  │
+     │  KIVI (2bit) │          │  SnapKV        │          │  vLLM PagedAttn│
+     │  Block-GTQ   │          │  R-KV          │          │               │
+     │  UltraQuant  │          │  H2O           │          │  开箱即用    │
+     │  压缩3-5x   │          │  压缩2-8x     │          │  无额外依赖  │
+     │  精度损失   │          │  精度保持好   │          │               │
+     │  1-5%       │          │  <2%          │          │               │
+     └───────────────┘          └───────────────┘          └───────────────┘
+</div>
+
+<!-- 十一、研究机会 -->
+<h2 id="sec11"><span class="num">11.</span>维度十：研究机会图谱</h2>
+
+<h3>11.1 机会分级</h3>
+<table>
+<tr>
+  <th>等级</th>
+  <th>对象×方法</th>
+  <th>论文数</th>
+  <th>机会度</th>
+  <th>说明</th>
+</tr>
+<tr>
+  <td><span class="tag gap">⭐⭐⭐ P0</span></td>
+  <td>KV × 蒸馏</td>
+  <td class="warn">10</td>
+  <td>最高</td>
+  <td>Decoding阶段几乎空白，最高风险/回报</td>
+</tr>
+<tr>
+  <td><span class="tag gap">⭐⭐⭐ P0</span></td>
+  <td>通信 × 蒸馏</td>
+  <td class="warn">18</td>
+  <td>最高</td>
+  <td>MoE时代通信瓶颈，蒸馏方法几乎空白</td>
+</tr>
+<tr>
+  <td><span class="tag hot">⭐⭐ P1</span></td>
+  <td>通信 × 量化</td>
+  <td class="mid">44</td>
+  <td>高</td>
+  <td>ExpertQuant刚提出，MoE时代必备</td>
+</tr>
+<tr>
+  <td><span class="tag hot">⭐⭐ P1</span></td>
+  <td>KV × 量化</td>
+  <td>46</td>
+  <td>高</td>
+  <td>KIVI/Block-GTQ工程化进行中</td>
+</tr>
+<tr>
+  <td><span class="tag hot">⭐ P2</span></td>
+  <td>KV × 稀疏</td>
+  <td class="mid">69</td>
+  <td>中</td>
+  <td>SnapKV验证方向，工业落地是空白</td>
+</tr>
+<tr>
+  <td><span class="tag hot">⭐ P2</span></td>
+  <td>通信 × 稀疏</td>
+  <td class="mid">82</td>
+  <td>中</td>
+  <td>已有DeepEP等基础，但优化空间大</td>
+</tr>
+</table>
+
+<h3>11.2 红海警示</h3>
+<div class="callout">
+<strong>⚠️ 避免进入的高度饱和方向：</strong>
+<br>• 权重 × 低秩 (575篇) - LoRA系列几乎被做透
+<br>• 权重 × 剪枝 (509篇) - SparseGPT/Wanda等已经很成熟
+<br>• 激活 × 稀疏化 (396篇) - 主要方向已饱和
+<br>• 权重 × 量化 (376篇) - GPTQ/AWQ已成工业标准
+<br><br>
+<strong>差异化策略</strong>: 在红海方向做增量改进 (如特定硬件适配、极端量化、新场景) 较难出彩
+</div>
+
+<h3>11.3 跨方向融合机会</h3>
+<table>
+<tr>
+  <th>融合方向</th>
+  <th>说明</th>
+  <th>潜在收益</th>
+</tr>
+<tr>
+  <td>KV × 蒸馏 × 量化</td>
+  <td>三方法联合优化</td>
+  <td>极高</td>
+</tr>
+<tr>
+  <td>通信 × 蒸馏 × 稀疏</td>
+  <td>MoE高效推理</td>
+  <td>高</td>
+</tr>
+<tr>
+  <td>激活 × 稀疏 × 量化</td>
+  <td>低bit稀疏</td>
+  <td>高</td>
+</tr>
+</table>
+
+<!-- 十二、完整技术树 -->
+<h2 id="sec12"><span class="num">12.</span>完整技术树</h2>
+
+<div class="tree">推理压缩技术体系 (v1.0 数据驱动版)
+│
+├── I. 权重压缩 (1,624 papers, 58.9%) ──── 已成熟 / 红海
+│   │
+│   ├── I.1 量化 (376)
+│   │   ├── PTQ: GPTQ, AWQ, SmoothQuant
+│   │   ├── QAT: LLM-QAT, BitDistiller
+│   │   └── 极低bit: BinaryBERT, TernaryLLM
+│   │
+│   ├── I.2 剪枝 (509)
+│   │   ├── 非结构化: Magnitude, Wanda
+│   │   ├── 半结构化: 2:4 SparseGPT
+│   │   └── 结构化: LLM-Pruner
+│   │
+│   ├── I.3 低秩 (575) ★
+│   │   ├── 适配器: LoRA系列, AdaLoRA
+│   │   ├── 分解: TensorGPT, LoSparse
+│   │   └── 混合: QLoRA, LoftQ
+│   │
+│   ├── I.4 稀疏化 (311)
+│   │   └── 权重稀疏 + 激活稀疏协同
+│   │
+│   └── I.5 蒸馏 (231)
+│       ├── 白盒: MiniLLM, DistilBERT
+│       └── 黑盒: 数据蒸馏
+│
+├── II. 激活压缩 (756 papers, 27.4%) ──── 当前热点
+│   │
+│   ├── II.1 稀疏化 (396) ★
+│   │   ├── 静态: 训练时稀疏
+│   │   ├── 动态: 推理时激活
+│   │   └── 模式化: Block稀疏
+│   │
+│   ├── II.2 量化 (201)
+│   │   └── SmoothQuant, ZeroQuant
+│   │
+│   ├── II.3 剪枝 (199)
+│   │   └── 通道剪枝
+│   │
+│   ├── II.4 低秩 (174)
+│   │   └── 激活低秩近似
+│   │
+│   └── II.5 蒸馏 (68)
+│       └── 激活分布匹配
+│
+├── III. KV缓存优化 (310 papers, 11.2%) ──── 推理核心
+│   │
+│   ├── III.1 通用优化 (148) ★
+│   │   ├── PagedAttention (vLLM)
+│   │   ├── FlashAttention 系列
+│   │   └── RadixAttention (SGLang)
+│   │
+│   ├── III.2 稀疏化 (69)
+│   │   ├── H2O (Heavy-Hitter)
+│   │   ├── SnapKV (语义聚类)
+│   │   ├── R-KV (低秩冗余)
+│   │   └── CONF-KV (置信度)
+│   │
+│   ├── III.3 量化 (46)
+│   │   ├── KIVI (2bit)
+│   │   ├── Block-GTQ (RoPE-aware)
+│   │   └── UltraQuant (AMD)
+│   │
+│   ├── III.4 蒸馏 (10) ⚠️ 几乎空白
+│   │   └── SwiftKV等
+│   │
+│   ├── III.5 剪枝 (37)
+│   │   └── Token剪枝
+│   │
+│   └── III.6 低秩 (37)
+│       └── MLA (Multi-Latent Attention)
+│
+├── IV. 通信压缩 (265 papers, 9.6%) ──── MoE时代必备
+│   │
+│   ├── IV.1 稀疏化 (82) ★
+│   │   └── Expert剪枝
+│   │
+│   ├── IV.2 通用优化 (77)
+│   │   ├── DeepEP (生产级)
+│   │   ├── NCCL优化
+│   │   └── 流水线并行
+│   │
+│   ├── IV.3 量化 (44)
+│   │   ├── ExpertQuant
+│   │   └── 梯度量化
+│   │
+│   ├── IV.4 低秩 (57)
+│   │   └── 张量并行低秩
+│   │
+│   ├── IV.5 剪枝 (45)
+│   │   └── MosaicPrune
+│   │
+│   └── IV.6 蒸馏 (18) ⚠️ 新兴空白
+│       └── 知识传递压缩
+│
+└── V. 通用效率 (523 papers, 19.0%) ──── 系统级
+    │
+    ├── V.1 通用优化 (187) ★
+    │   ├── 调度: 连续批处理
+    │   ├── 缓存: PagedAttention
+    │   └── 编译: TVM, Triton
+    │
+    ├── V.2 蒸馏 (170)
+    │   └── 系统级蒸馏
+    │
+    └── V.3 量化 (117)
+        └── 全栈量化
+</div>
+
+<!-- 十三、决策矩阵 -->
+<h2 id="sec13"><span class="num">13.</span>决策矩阵：身份×场景×技术</h2>
+
+<table>
+<tr>
+  <th rowspan="2">身份</th>
+  <th colspan="5">场景</th>
+</tr>
+<tr>
+  <th>长上下文</th>
+  <th>Agent多轮</th>
+  <th>MoE分布式</th>
+  <th>端侧</th>
+  <th>云服务</th>
+</tr>
+<tr>
+  <td><strong>🎓 研究员</strong></td>
+  <td>KV×蒸馏<br>(SwiftKV)</td>
+  <td>KV×蒸馏+稀疏<br>(CONF-KV)</td>
+  <td>通信×蒸馏<br>⭐⭐⭐</td>
+  <td>权重×极低bit</td>
+  <td>联合优化</td>
+</tr>
+<tr>
+  <td><strong>🔧 工程师</strong></td>
+  <td>SnapKV + KIVI</td>
+  <td>UltraQuant</td>
+  <td>DeepEP + ExpertQuant</td>
+  <td>AWQ INT4 + GGUF</td>
+  <td>vLLM + PagedAttn</td>
+</tr>
+<tr>
+  <td><strong>📊 PM/规划</strong></td>
+  <td>中风险: SnapKV</td>
+  <td>中风险: KIVI</td>
+  <td>低风险: DeepEP</td>
+  <td>零风险: AWQ</td>
+  <td>零风险: vLLM</td>
+</tr>
+<tr>
+  <td><strong>🏢 企业决策</strong></td>
+  <td>中期布局</td>
+  <td>中期布局</td>
+  <td>高价值: 立刻评估</td>
+  <td>标配</td>
+  <td>标配</td>
+</tr>
+</table>
+
+<!-- 十四、商业价值 -->
+<h2 id="sec14"><span class="num">14.</span>商业价值矩阵</h2>
+
+<table>
+<tr>
+  <th>技术方向</th>
+  <th>云端推理</th>
+  <th>企业私有</th>
+  <th>端侧</th>
+  <th>市场规模</th>
+</tr>
+<tr>
+  <td>权重量化INT4</td>
+  <td>✅ 标配</td>
+  <td>✅ 标配</td>
+  <td>✅ 标配</td>
+  <td>成熟</td>
+</tr>
+<tr>
+  <td>投机解码</td>
+  <td>✅ 高价值</td>
+  <td>✅ 中等</td>
+  <td>❌ 不适用</td>
+  <td>高</td>
+</tr>
+<tr>
+  <td>KV稀疏/量化</td>
+  <td>✅ 高价值</td>
+  <td>✅ 高潜力</td>
+  <td>⚠️ 受限</td>
+  <td>$2B (2026)</td>
+</tr>
+<tr>
+  <td>通信量化(MoE)</td>
+  <td>✅ 超高价值</td>
+  <td>✅ 超高价值</td>
+  <td>❌ 不适用</td>
+  <td>爆发</td>
+</tr>
+<tr>
+  <td>KV×蒸馏</td>
+  <td>⚠️ 预研</td>
+  <td>⚠️ 预研</td>
+  <td>⚠️ 受限</td>
+  <td>未来</td>
+</tr>
+</table>
+
+<div class="callout callout-info">
+<strong>💡 市场规模估算:</strong>
+<br>• KV压缩技术: 2026年云端推理市场 ~$2B, 年增长率 40%
+<br>• MoE通信优化: 随着GPT-4/Gemini类MoE普及, 需求爆发
+<br>• 端侧量化: 2026年终端芯片出货量预估 500M+
+</div>
+
+<!-- 十五、信源索引 -->
+<h2 id="sec15"><span class="num">15.</span>信源索引</h2>
+
+<table>
+<tr><th>分类</th><th>信源</th><th>链接</th><th>优先级</th></tr>
+<tr><td rowspan="4">推理框架</td><td>vLLM</td><td>github.com/vllm-project/vllm</td><td>P0</td></tr>
+<tr><td>SGLang</td><td>github.com/sgl-project/sglang</td><td>P0</td></tr>
+<tr><td>llama.cpp</td><td>github.com/ggerganov/llama.cpp</td><td>P0</td></tr>
+<tr><td>TensorRT-LLM</td><td>nvidia.github.io/TRT-LLM</td><td>P0</td></tr>
+<tr><td rowspan="2">KV优化</td><td>FlashInfer</td><td>flashinfer.ai</td><td>P0</td></tr>
+<tr><td>PagedAttention</td><td>vllm.ai</td><td>P0</td></tr>
+<tr><td rowspan="2">通信库</td><td>DeepEP</td><td>github.com/deepseek-ai</td><td>P0</td></tr>
+<tr><td>NCCL</td><td>github.com/NVIDIA/nccl</td><td>P0</td></tr>
+<tr><td rowspan="2">量化</td><td>AWQ</td><td>github.com/panpt/awq</td><td>P0</td></tr>
+<tr><td>GGUF</td><td>llama.cpp/discussions</td><td>P0</td></tr>
+<tr><td rowspan="3">论文聚合</td><td>arXiv cs.DC/LG/CL</td><td>arxiv.org</td><td>P0</td></tr>
+<tr><td>MLSys</td><td>mlsys.org</td><td>P0</td></tr>
+<tr><td>OSDI/SOSP</td><td>usenix.org/osdi</td><td>P0</td></tr>
+</table>
+
+<!-- 十六、版本与文件索引 -->
+<h2 id="sec16"><span class="num">16.</span>版本与文件索引</h2>
+
+<table>
+<tr><th>文件</th><th>内容</th><th>位置</th></tr>
+<tr><td><strong>本文档</strong></td><td>推理压缩技术体系总表 v1.0</td><td><span class="term">04_技术洞察/推理压缩/推理压缩技术体系总表_v1.html</span></td></tr>
+<tr><td>方法论</td><td>技术全景图方法论</td><td><span class="term">04_AI情报洞察/方法论/输入/技术全景图方法论.md</span></td></tr>
+<tr><td>论文分析</td><td>3876篇论文分析</td><td><span class="term">03_技术分析/3876篇论文分析报告.md</span></td></tr>
+<tr><td>矩阵分析</td><td>对象×方法矩阵</td><td><span class="term">03_技术分析/推理压缩技术发展趋势与研究机会_综合版.md</span></td></tr>
+<tr><td>产业地图</td><td>学术vs工业</td><td><span class="term">05_产业动态/AI推理压缩技术全景_学术界vs工业界.md</span></td></tr>
+<tr><td>收敛标准</td><td>技术收敛判定</td><td><span class="term">06_评估标准/收敛标准.md</span></td></tr>
+</table>
+
+<div class="summary-box">
+<h3 style="margin-top:0; color:#fbbf24">📌 版本说明</h3>
+<p><strong>v1.0 (当前)</strong>: 16个章节完整体系化版本，整合数据驱动根技术+多维度分析+决策矩阵+商业价值+信源索引</p>
+<p style="margin-top:8px"><strong>数据来源</strong>: <span class="term">inference_compression_strict.json</span> (2,757篇顶会论文)</p>
+<p><strong>更新机制</strong>: 每季度重新聚类，识别新方向</p>
+<p><strong>核心特色</strong>: 数据驱动归纳、结构化展示、决策导向</p>
+</div>
+
+</div>
+</body>
+</html>

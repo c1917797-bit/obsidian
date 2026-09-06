@@ -1,0 +1,47 @@
+# Literature Corpus Search Query
+# 基于 ARS v3.6.4 corpus-first, search-fills-gap 协议
+
+```dataview
+TABLE WITHOUT ID
+  citekey AS "Citekey",
+  title AS "Title",
+  authors AS "Authors",
+  year AS "Year",
+  venue AS "Venue",
+  contamination_signals.preprint_post_llm_inflection AS "Preprint?",
+  contamination_signals.semantic_scholar_unmatched AS "S2 Unmatch?",
+  pre_screened_status AS "Status"
+FROM "4_AI情报洞察/论文洞察/_corpus"
+SORT year DESC, citekey ASC
+```
+
+## PRE-SCREENED 统计
+
+```dataview
+TABLE WITHOUT ID
+  pre_screened_status AS "Status",
+  length(rows) AS "Count"
+FROM "4_AI情报洞察/论文洞察/_corpus"
+GROUP BY pre_screened_status
+```
+
+## 污染信号过滤
+
+```dataview
+TABLE citekey, title, year, contamination_signals
+FROM "4_AI情报洞察/论文洞察/_corpus"
+WHERE contamination_signals.preprint_post_llm_inflection = true
+   OR contamination_signals.semantic_scholar_unmatched = true
+   OR contamination_signals.openalex_unmatched = true
+   OR contamination_signals.crossref_unmatched = true
+SORT citekey ASC
+```
+
+## 项目文献关联
+
+```dataview
+TABLE citekey, title, year, project, pre_screened_status
+FROM "4_AI情报洞察/论文洞察/_corpus"
+WHERE project = "your-project-name"
+SORT year DESC
+```

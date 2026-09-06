@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>推理压缩效能公式全景图 — 一公式串起所有技术</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#080c14;--s1:#0f1623;--s2:#182234;--s3:#1e2d44;--bd:#243044;--t:#dce6f0;--td:#7a8699;--blue:#3b82f6;--green:#22c55e;--yellow:#eab308;--orange:#f97316;--red:#ef4444;--purple:#a78bfa;--cyan:#06b6d4}
+body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--t);font-size:13px;line-height:1.5}
+.wrap{max-width:1600px;margin:0 auto;padding:16px 20px 60px}
+
+.hdr{background:linear-gradient(135deg,#0a1428,#102030 50%,#1a0a28);border-radius:14px;padding:24px 28px;margin-bottom:16px;text-align:center}
+.hdr h1{font-size:22px;color:#fff;margin-bottom:6px}
+.hdr .sub{font-size:13px;color:var(--td)}
+
+/* 核心公式 */
+.formula-box{background:linear-gradient(135deg,var(--s1),var(--s2));border:2px solid var(--blue);border-radius:14px;padding:24px;margin-bottom:20px;text-align:center}
+.formula-box .title{font-size:12px;color:var(--blue);font-weight:700;text-transform:uppercase;letter-spacing:2px;margin-bottom:12px}
+.formula{font-size:28px;font-weight:800;font-family:"Courier New",monospace;color:#fff;letter-spacing:2px}
+.formula .pf{color:var(--blue)}.formula .sf{color:var(--green)}.formula .rf{color:var(--yellow)}.formula .df{color:var(--purple)}.formula .af{color:var(--cyan)}
+.formula .op{color:var(--td);margin:0 6px}
+.formula-box .note{font-size:12px;color:var(--td);margin-top:10px;line-height:1.7}
+.formula-box .note strong{color:var(--t)}
+.formula-box .example{font-size:14px;color:var(--green);margin-top:8px;font-family:monospace}
+
+/* 效能因子列 */
+.factor-grid{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:10px;margin-bottom:16px}
+.factor-col{border-radius:14px;overflow:hidden;border:2px solid var(--bd)}
+.factor-hdr{text-align:center;padding:14px 10px;color:#fff}
+.factor-hdr .fname{font-size:16px;font-weight:800}
+.factor-hdr .fdef{font-size:10px;opacity:0.8;margin-top:4px}
+.factor-hdr .ftech{font-size:11px;opacity:0.9;margin-top:4px}
+.f-pf{background:linear-gradient(135deg,#1e3a5f,#1a4a6a);border-color:var(--blue)}
+.f-sf{background:linear-gradient(135deg,#1a3a1a,#2a5a2a);border-color:var(--green)}
+.f-rf{background:linear-gradient(135deg,#3a3a1a,#5a5a2a);border-color:var(--yellow)}
+.f-df{background:linear-gradient(135deg,#3a1a3a,#5a2a5a);border-color:var(--purple)}
+
+/* 对象格子 */
+.obj-cell{border-top:1px solid var(--bd);padding:8px 10px}
+.obj-cell .oh{display:flex;align-items:center;justify-content:space-between;margin-bottom:6px}
+.obj-cell .oh .on{font-size:11px;font-weight:700;display:flex;align-items:center;gap:4px}
+.obj-cell .oh .of{font-size:10px;font-weight:700;padding:2px 6px;border-radius:4px}
+.obj-cell .oh .of.pf{background:rgba(59,130,246,0.15);color:var(--blue)}
+.obj-cell .oh .of.sf{background:rgba(34,197,94,0.15);color:var(--green)}
+.obj-cell .oh .of.rf{background:rgba(234,179,8,0.15);color:var(--yellow)}
+.obj-cell .oh .of.df{background:rgba(167,139,250,0.15);color:var(--purple)}
+
+.tech-mini{background:var(--s1);border:1px solid var(--bd);border-radius:6px;padding:5px 8px;margin-bottom:3px;transition:all 0.12s}
+.tech-mini:hover{border-color:var(--blue);transform:translateX(2px)}
+.tech-mini .tn{font-size:10px;font-weight:600;display:flex;justify-content:space-between;align-items:center}
+.tech-mini .tn .val{font-size:10px;font-weight:800;font-family:monospace}
+.tech-mini .td{font-size:9px;color:var(--td);margin-top:1px}
+.tech-mini .ts{font-size:8px;font-weight:700;padding:1px 4px;border-radius:3px;flex-shrink:0}
+.ts-m{background:rgba(34,197,94,0.15);color:var(--green)}.ts-r{background:rgba(234,179,8,0.15);color:var(--yellow)}.ts-n{background:rgba(249,115,22,0.15);color:var(--orange)}.ts-b{background:rgba(167,139,250,0.15);color:var(--purple)}
+
+/* 叠加效果 */
+.stack-box{background:var(--s1);border:1px solid var(--bd);border-radius:14px;padding:20px;margin-bottom:16px}
+.stack-box h3{font-size:15px;color:var(--cyan);margin-bottom:12px}
+.stack-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:12px}
+.stack-card{background:var(--s2);border-radius:10px;padding:14px;border-left:3px solid}
+.stack-card .sn{font-size:13px;font-weight:700;margin-bottom:6px}
+.stack-card .sf{font-size:12px;font-family:monospace;color:var(--green);font-weight:700;margin-bottom:4px}
+.stack-card .sd{font-size:11px;color:var(--td);line-height:1.6}
+.stack-card .sr{font-size:12px;font-weight:800;margin-top:6px}
+
+.note{background:rgba(59,130,246,0.05);border:1px solid rgba(59,130,246,0.15);border-radius:10px;padding:14px;margin:12px 0;font-size:12px;color:var(--td);line-height:1.8}
+.note strong{color:var(--blue)}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<!-- Header -->
+<div class="hdr">
+  <h1>🧮 推理压缩效能公式全景图</h1>
+  <div class="sub">一个公式串起所有推理压缩技术 · 4个效能因子 × 4个对象 · 2,764篇论文驱动 · v1.0</div>
+</div>
+
+<!-- 核心公式 -->
+<div class="formula-box">
+  <div class="title">📐 推理压缩统一效能公式</div>
+  <div class="formula">
+    总压缩比 = <span class="pf">PF</span><span class="op">×</span><span class="sf">SF</span><span class="op">×</span><span class="rf">RF</span><span class="op">×</span><span class="df">DF</span><span class="op">(×AF)</span>
+  </div>
+  <div class="note">
+    <strong>PF</strong>(精度因子=量化) <span class="op">×</span> <strong>SF</strong>(选择因子=稀疏/剪枝) <span class="op">×</span> <strong>RF</strong>(降维因子=低秩) <span class="op">×</span> <strong>DF</strong>(密度因子=蒸馏)<br>
+    <strong>AF</strong>(架构因子=MLA/NSA)是可选乘数——⚠️避免产生而非压缩已有<br><br>
+    每个因子独立作用，乘法叠加。任何压缩技术的效果=它影响哪些因子×各因子值。
+  </div>
+  <div class="example">
+    KV Cache理论SOTA = PF(8) × SF(10) × RF(14) × DF(1) = 1,120x → 实际约束下≈300x
+  </div>
+</div>
+
+<!-- ===== 4个效能因子×4对象矩阵 ===== -->
+<div class="factor-grid">
+
+<!-- ① 精度因子 PF -->
+<div class="factor-col">
+  <div class="factor-hdr f-pf">
+    <div class="fname">① 精度因子 PF</div>
+    <div class="fdef">PF = B原始 / B压缩后</div>
+    <div class="ftech">精度压缩（量化）<br>用更少比特表示每个数值</div>
+  </div>
+
+  <div class="obj-cell">
+    <div class="oh"><div class="on">📦参数</div><div class="of pf">PF=4~8</div></div>
+    <div class="tech-mini"><div class="tn"><span>AWQ/GPTQ INT4</span><span class="ts ts-m">成熟</span></div><div class="td">PF=4 · FP16→INT4 · &lt;1%损失 · 工业标准</div></div>
+    <div class="tech-mini"><div class="tn"><span>SpinQuant 旋转量化</span><span class="ts ts-m">热点</span></div><div class="td">PF=4 · 学习旋转矩阵使分布更易量化 · 87引用</div></div>
+    <div class="tech-mini"><div class="tn"><span>GGUF 多bit</span><span class="ts ts-m">标配</span></div><div class="td">PF=2~8 · Q4_K_M/Q2_K · 端侧通用</div></div>
+    <div class="tech-mini"><div class="tn"><span>INT2 极端</span><span class="ts ts-n">探索</span></div><div class="td">PF=8 · 数学任务掉25% · 对齐崩塌风险</div></div>
+  </div>
+
+  <div class="obj-cell">
+    <div class="oh"><div class="on">⚡激活</div><div class="of pf">PF=2~4</div></div>
+    <div class="tech-mini"><div class="tn"><span>SmoothQuant W8A8</span><span class="ts ts-m">成熟</span></div><div class="td">PF=2 · outlier平滑到权重 · 精度无损</div></div>
+    <div class="tech-mini"><div class="tn"><span>Q-DiT 扩散量化</span><span class="ts ts-n">新兴</span></div><div class="td">PF=4 · DiT推理INT4 · 28引用</div></div>
+  </div>
+
+  <div class="obj-cell">
+    <div class="oh"><div class="on">💾KV</div><div class="of pf">PF=4~8 ↑↑</div></div>
+    <div class="tech-mini"><div class="tn"><span>KIVI 2bit</span><span class="ts ts-r">突破</span></div><div class="td">PF=8 · K per-channel+V per-token · 2bit可行</div></div>
+    <div class="tech-mini"><div class="tn"><span>Block-GTQ 4bit</span><span class="ts ts-r">2026突破</span></div><div class="td">PF=4 · RoPE频域感知 · AIME 51.7</div></div>
+    <div class="tech-mini"><div class="tn"><span>QJL 1-bit</span><span class="ts ts-n">前沿</span></div><div class="td">PF=16 · JL变换零开销 · 14引用</div></div>
+    <div class="tech-mini"><div class="tn"><span>HyperQuant</span><span class="ts ts-b">探索</span></div><div class="td">PF≈10 · 1.7bps统一流水线</div></div>
+  </div>
+
+  <div class="obj-cell">
+    <div class="oh"><div class="on">🌐通信</div><div class="of pf">PF=2~4 ↑↑</div></div>
+    <div class="tech-mini"><div class="tn"><span>FP8通信</span><span class="ts ts-m">生产</span></div><div class="td">PF=2 · DeepSeek-V3生产级</div></div>
+    <div class="tech-mini"><div class="tn"><span>ExpertQuant INT4</span><span class="ts ts-n">💎首个</span></div><div class="td">PF=4 · 💎首个MoE Expert量化</div></div>
+  </div>
+</div>
+
+<!-- ② 选择因子 SF -->
+<div class="factor-col">
+  <div class="factor-hdr f-sf">
+    <div class="fname">② 选择因子 SF</div>
+    <div class="fdef">SF = N总数 / N保留数</div>
+    <div class="ftech">维度压缩·选择<br>剪枝/稀疏/淘汰/跳过</div>
+  </div>
+
+  <div class="obj-cell">
+    <div class="oh"><div class="on">📦参数</div><div class="of sf">SF=2</div></div>
+    <div class="tech-mini"><div class="tn"><span>SparseGPT 50%</span><span class="ts ts-m">标配</span></div><div class="td">SF=2 · 一次性50%稀疏无重训 · ICML'23</div></div>
+    <div class="tech-mini"><div class="tn"><span>ShortGPT 层剪枝</span><span class="ts ts-m">热点</span></div><div class="td">SF=1.2~2 · 层冗余>权重冗余 · 139引用最高</div></div>
+    <div class="tech-mini"><div class="tn"><span>2:4半结构化</span><span class="ts ts-m">硬件</span></div><div class="td">SF=2 · NVIDIA原生 · 硬件标准</div></div>
+  </div>
+
+  <div class="obj-cell">
+    <div class="oh"><div class="on">⚡激活</div><div class="of sf">SF=5~10 ↑</div></div>
+    <div class="tech-mini"><div class="tn"><span>LLaVA-PruMerge</span><span class="ts ts-r">主导</span></div><div class="td">SF=5~10 · 多模态Token减少 · 117引用</div></div>
+    <div class="tech-mini"><div class="tn"><span>SparseVLM</span><span class="ts ts-r">活跃</span></div><div class="td">SF=5 · 视觉Token动态稀疏 · 43引用</div></div>
+    <div class="tech-mini"><div class="tn"><span>MoE激活稀疏</span><span class="ts ts-r">爆发</span></div><div class="td">SF=Top-K/Total · Mixtral Top-2/8</div></div>
+  </div>
+
+  <div class="obj-cell">
+    <div class="oh"><div class="on">💾KV</div><div class="of sf">SF=3~100 ↑↑</div></div>
+    <div class="tech-mini"><div class="tn"><span>SnapKV 语义聚类</span><span class="ts ts-r">活跃</span></div><div class="td">SF≈8 · 保留12.5% · 8.2x内存</div></div>
+    <div class="tech-mini"><div class="tn"><span>RocketKV 两阶段</span><span class="ts ts-n">💎2026</span></div><div class="td">SF≈100 · 💎400x! · ICML'25 NVIDIA</div></div>
+    <div class="tech-mini"><div class="tn"><span>DuoAttention 检索头</span><span class="ts ts-r">热点</span></div><div class="td">SF≈5 · 仅10-20%头是检索头 · 34引用</div></div>
+    <div class="tech-mini"><div class="tn"><span>ThinK Channel维度</span><span class="ts ts-r">新轴</span></div><div class="td">SF≈3 · Channel而非Token · 18引用</div></div>
+    <div class="tech-mini"><div class="tn"><span>R-KV 冗余感知</span><span class="ts ts-r">2026</span></div><div class="td">SF≈10 · 推理模型冗余 · 10%KV→100%</div></div>
+    <div class="tech-mini"><div class="tn"><span>CompressKV</span><span class="ts ts-n">2026</span></div><div class="td">SF≈30 · 3%KV→97% · 语义检索头</div></div>
+    <div class="tech-mini"><div class="tn"><span>H2O Heavy-Hitter</span><span class="ts ts-r">经典</span></div><div class="td">SF≈5 · 保留20% · 次模优化保证</div></div>
+  </div>
+
+  <div class="obj-cell">
+    <div class="oh"><div class="on">🌐通信</div><div class="of sf">SF=2~45 ↑</div></div>
+    <div class="tech-mini"><div class="tn"><span>DeepEP</span><span class="ts ts-m">生产</span></div><div class="td">SF≈2 · All-to-All优化 · DeepSeek</div></div>
+    <div class="tech-mini"><div class="tn"><span>FoMoE 打破全复制</span><span class="ts ts-n">💎新方向</span></div><div class="td">SF=1.4~45 · ICLR'26 · 不再全复制</div></div>
+    <div class="tech-mini"><div class="tn"><span>MosaicPrune</span><span class="ts ts-r">上升</span></div><div class="td">SF≈2 · Expert层级剪枝</div></div>
+  </div>
+</div>
+
+<!-- ③ 降维因子 RF -->
+<div class="factor-col">
+  <div class="factor-hdr f-rf">
+    <div class="fname">③ 降维因子 RF</div>
+    <div class="fdef">RF = D原始 / D压缩后</div>
+    <div class="ftech">维度压缩·降维<br>低秩/SVD/矩阵分解</div>
+  </div>
+
+  <div class="obj-cell">
+    <div class="oh"><div class="on">📦参数</div><div class="of rf">RF=4~10</div></div>
+    <div class="tech-mini"><div class="tn"><span>LoRA 低秩适配</span><span class="ts ts-m">标配</span></div><div class="td">RF=8~64 · ΔW=BA · 参数高效微调 · 工业标配</div></div>
+    <div class="tech-mini"><div class="tn"><span>ASVD 激活感知</span><span class="ts ts-r">上升</span></div><div class="td">RF≈10 · 用激活分布指导SVD截断 · 53引用</div></div>
+    <div class="tech-mini"><div class="tn"><span>SVD-LLM</span><span class="ts ts-r">上升</span></div><div class="td">RF≈8 · 截断感知SVD · 37引用</div></div>
+    <div class="tech-mini"><div class="tn"><span>MoRA 高秩更新</span><span class="ts ts-n">新兴</span></div><div class="td">RF≈4 · 突破LoRA低秩限制 · 38引用</div></div>
+  </div>
+
+  <div class="obj-cell">
+    <div class="oh"><div class="on">⚡激活</div><div class="of rf">RF=2~4</div></div>
+    <div class="tech-mini"><div class="tn"><span>线性注意力</span><span class="ts ts-r">上升</span></div><div class="td">RF≈4 · 注意力矩阵低秩近似</div></div>
+    <div class="tech-mini"><div class="tn"><span>SVDQuant</span><span class="ts ts-n">新兴</span></div><div class="td">RF≈4 · 扩散模型低秩+量化 · 18引用</div></div>
+  </div>
+
+  <div class="obj-cell">
+    <div class="oh"><div class="on">💾KV</div><div class="of rf">RF=2~14 ↑</div></div>
+    <div class="tech-mini"><div class="tn"><span>MLA(架构级⚠️)</span><span class="ts ts-m">标配</span></div><div class="td">RF=14 · 7168→512潜变量 · DeepSeek-V2 ⚠️避免产生</div></div>
+    <div class="tech-mini"><div class="tn"><span>ShadowKV 分层</span><span class="ts ts-n">新维度</span></div><div class="td">RF≈8 · 低秩Key GPU+Value CPU · 6x batch</div></div>
+    <div class="tech-mini"><div class="tn"><span>STAR-KV</span><span class="ts ts-n">前沿</span></div><div class="td">RF≈4 · 软阈值+自适应rank · 75%压缩</div></div>
+    <div class="tech-mini"><div class="tn"><span>LoRC 渐进式</span><span class="ts ts-r">上升</span></div><div class="td">RF≈4 · 渐进式低秩 · 5引用</div></div>
+  </div>
+
+  <div class="obj-cell">
+    <div class="oh"><div class="on">🌐通信</div><div class="of rf">RF=2~4</div></div>
+    <div class="tech-mini"><div class="tn"><span>PowerSGD</span><span class="ts ts-m">成熟</span></div><div class="td">RF≈10 · 低秩梯度压缩 · ↓100x · MLSys'20</div></div>
+  </div>
+</div>
+
+<!-- ④ 密度因子 DF -->
+<div class="factor-col">
+  <div class="factor-hdr f-df">
+    <div class="fname">④ 密度因子 DF</div>
+    <div class="fdef">DF = 参数原始/参数压缩<br>(同等性能下)</div>
+    <div class="ftech">知识压缩（蒸馏）<br>用更小载体传递同样信息</div>
+  </div>
+
+  <div class="obj-cell">
+    <div class="oh"><div class="on">📦参数</div><div class="of df">DF=3~10</div></div>
+    <div class="tech-mini"><div class="tn"><span>MiniLLM 反向KL</span><span class="ts ts-m">成熟</span></div><div class="td">DF≈4 · LLM专用蒸馏 · ICLR'24</div></div>
+    <div class="tech-mini"><div class="tn"><span>BitDistiller</span><span class="ts ts-r">热点</span></div><div class="td">DF≈2 · 量化后蒸馏恢复精度</div></div>
+    <div class="tech-mini"><div class="tn"><span>LLaVA-MoD</span><span class="ts ts-n">新兴</span></div><div class="td">DF≈3 · MoE知识蒸馏 · 11引用</div></div>
+  </div>
+
+  <div class="obj-cell">
+    <div class="oh"><div class="on">⚡激活</div><div class="of df">DF=2~4</div></div>
+    <div class="tech-mini"><div class="tn"><span>扩散步数蒸馏</span><span class="ts ts-r">活跃</span></div><div class="td">DF≈10 · 多步→少步 · Hash3D/Consistency</div></div>
+  </div>
+
+  <div class="obj-cell">
+    <div class="oh"><div class="on">💾KV</div><div class="of df">DF=未知 💎</div></div>
+    <div class="tech-mini"><div class="tn"><span>SwiftKV Prefill</span><span class="ts ts-b">仅1篇</span></div><div class="td">DF=? · 仅Prefill阶段蒸馏 · 1引用</div></div>
+    <div class="tech-mini"><div class="tn"><span>KVSculpt 连续空间</span><span class="ts ts-b">💎2026</span></div><div class="td">DF=? · L-BFGS+闭式解 · KL好3.5-4.1x</div></div>
+    <div class="tech-mini" style="border-color:rgba(167,139,250,0.4);background:rgba(167,139,250,0.05)"><div class="tn"><span style="color:var(--purple)">Decoding蒸馏</span><span class="ts ts-b">💎0篇</span></div><div class="td" style="color:var(--purple)">💎 全公式最大空白 — DF值未知</div></div>
+  </div>
+
+  <div class="obj-cell">
+    <div class="oh"><div class="on">🌐通信</div><div class="of df">DF=未知 💎</div></div>
+    <div class="tech-mini" style="border-color:rgba(167,139,250,0.4);background:rgba(167,139,250,0.05)"><div class="tn"><span style="color:var(--purple)">通信蒸馏</span><span class="ts ts-b">💎空白</span></div><div class="td" style="color:var(--purple)">💎 21篇中仅3-5篇真正相关 · DF值未知</div></div>
+    <div class="tech-mini"><div class="tn"><span>SCD 跨模型</span><span class="ts ts-n">新方向</span></div><div class="td">DF=? · 语义缓存蒸馏 · 华为 ICML'26</div></div>
+  </div>
+</div>
+
+</div><!-- end factor-grid -->
+
+<!-- ===== 叠加效果 ===== -->
+<div class="stack-box">
+  <h3>🔬 效能因子叠加效果（PF × SF × RF × DF）</h3>
+  <div class="stack-grid">
+
+    <div class="stack-card" style="border-left-color:var(--green)">
+      <div class="sn">📦 参数压缩栈</div>
+      <div class="sf">PF(4) × SF(2) × RF(8) × DF(3) = 192x</div>
+      <div class="sd">AWQ INT4(PF=4) + SparseGPT(SF=2) + LoRA(RF=8) + MiniLLM(DF=3)<br>实际：INT4+稀疏已成熟，叠加≈8-16x（DF和RF不叠加在推理阶段）</div>
+      <div class="sr" style="color:var(--green)">实际推理阶段：PF×SF ≈ 8x</div>
+    </div>
+
+    <div class="stack-card" style="border-left-color:var(--yellow)">
+      <div class="sn">💾 KV Cache压缩栈（核心战场）</div>
+      <div class="sf">PF(8) × SF(10) × RF(14) × DF(?) = 理论1120x</div>
+      <div class="sd">KIVI 2bit(PF=8) + SnapKV(SF=10) + MLA(RF=14/AF=14)<br>KVSculpt(DF=?) 刚突破尚未量化</div>
+      <div class="sr" style="color:var(--yellow)">实际SOTA ≈ 300x（H2O×ThinK×KIVI经典篇推导）</div>
+    </div>
+
+    <div class="stack-card" style="border-left-color:var(--orange)">
+      <div class="sn">🌐 通信压缩栈</div>
+      <div class="sf">PF(4) × SF(2) × RF(10) × DF(?) = 理论80x</div>
+      <div class="sd">ExpertQuant(PF=4) + FoMoE(SF=2) + PowerSGD(RF=10)<br>通信蒸馏(DF)几乎空白</div>
+      <div class="sr" style="color:var(--orange)">实际：PF×SF ≈ 8x（RF用于训练不在推理）</div>
+    </div>
+
+    <div class="stack-card" style="border-left-color:var(--cyan)">
+      <div class="sn">⚡ 激活压缩栈</div>
+      <div class="sf">PF(2) × SF(10) × RF(4) × DF(4) = 理论320x</div>
+      <div class="sd">SmoothQuant(PF=2) + LLaVA-PruMerge(SF=10) + 线性注意力(RF=4)<br>扩散步数蒸馏(DF=4)</div>
+      <div class="sr" style="color:var(--cyan)">实际：PF×SF ≈ 20x（多模态Token减少主导）</div>
+    </div>
+
+  </div>
+
+  <div class="note" style="margin-top:14px">
+    <strong>💡 公式的指导意义：</strong><br>
+    • <strong>单因子天花板：</strong>只用PF最多8x，只用SF最多100x(RocketKV)——单因子效果有限<br>
+    • <strong>多因子叠加：</strong>PF×SF×RF的乘法效应是突破瓶颈的唯一出路（经典篇300x推导）<br>
+    • <strong>DF是未知数：</strong>KV蒸馏和通信蒸馏的DF值未知——这是全公式最大的不确定性，也是最大的机会<br>
+    • <strong>AF是架构红利：</strong>MLA(14x)/NSA是"免费"的RF提升，但需要重新训练模型<br>
+    • <strong>RDKV理论统一：</strong>SF(淘汰)和PF(量化)在率失真理论下统一——淘汰=0bit量化
+  </div>
+</div>
+
+<!-- ===== 效能因子映射到根技术 ===== -->
+<div class="stack-box">
+  <h3>📐 效能因子 → 根技术 → 方法 → 论文的完整映射</h3>
+  <div class="note">
+    <strong>精度压缩 = PF（精度因子）</strong> → 量化 → GPTQ/AWQ/KIVI/Block-GTQ/ExpertQuant<br>
+    <strong>维度压缩 = SF（选择因子）+ RF（降维因子）</strong> → 剪枝/稀疏/低秩 → SparseGPT/SnapKV/LoRA/MLA<br>
+    <strong>知识压缩 = DF（密度因子）</strong> → 蒸馏 → MiniLLM/KVSculpt/SwiftKV<br><br>
+    <strong>统一公式：</strong>任何压缩技术的效果 = 它影响哪些因子 × 各因子值 × 精度损失约束<br>
+    <strong>创新方向：</strong>① 提升单因子值（如RocketKV把SF推到100） ② 多因子叠加（如KIVI×SnapKV） ③ 发现新因子（如存储分层/计算复用）
+  </div>
+</div>
+
+<!-- 最终说明 -->
+<div class="note">
+  <strong>📌 本图定位：</strong>用<strong>一个公式</strong>(总压缩比=PF×SF×RF×DF)把所有推理压缩技术串起来。每个技术点都标注它影响的因子和因子值。<br>
+  <strong>📌 与全景图的关系：</strong>全景图按"3根技术×4对象"组织；本图按"4个效能因子×4对象"组织——同一批技术，不同视角。<br>
+  <strong>📌 效能因子的价值：</strong>① 能量化每种技术的压缩贡献 ② 能推导叠加效果上限 ③ 能发现空白（DF=未知=机会） ④ 能指导组合优化<br>
+  <strong>📌 数据截止：2026-06-28</strong> · 基于inference_compression_unified.json (2,764篇清洁论文)
+</div>
+
+</div>
+</body>
+</html>

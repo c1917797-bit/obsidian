@@ -1,0 +1,24 @@
+{
+  "last_collected_date": "2026-09-03",
+  "last_run": "2026-09-03T20:42:52.922103",
+  "history": [
+    {
+      "run_at": "2026-07-05T12:28:48.004601",
+      "date_range": "2025-07-05 to 2026-07-05 (full retrospective v2)",
+      "new_papers": 4026
+    },
+    {
+      "run_at": "2026-08-11T11:31:00.073264",
+      "date_range": "2026-07-05 to 2026-08-11",
+      "new_papers": 1180
+    },
+    {
+      "run_at": "2026-09-03T20:42:52.922103",
+      "date_range": "2026-08-11 to 2026-09-03",
+      "new_papers": 778
+    }
+  ],
+  "total_collected": 5984,
+  "last_new_count": 778,
+  "note": "Full retrospective via deep_collect.py v2. Future runs via collect_incremental.py start from 2026-07-05."
+}

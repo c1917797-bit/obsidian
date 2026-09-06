@@ -1,0 +1,820 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>推理压缩技术能力地图 — 根技术构筑版 v1.0</title>
+<style>
+  :root {
+    --bg: #0a0e1a;
+    --surface: #131927;
+    --surface2: #1c2333;
+    --surface3: #283049;
+    --border: #2d3748;
+    --text: #e2e8f0;
+    --text-dim: #8b95a8;
+    --accent: #60a5fa;
+
+    /* 成熟度色系 - 从稳固到前沿 */
+    --c-core: #22c55e;     /* 已构筑 - 绿 */
+    --c-build: #eab308;    /* 建设中 - 黄 */
+    --c-layout: #f97316;   /* 需布局 - 橙 */
+    --c-explore: #a78bfa;  /* 探索 - 紫 */
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    font-size: 14px;
+  }
+
+  /* HEADER */
+  header {
+    background: linear-gradient(135deg, #0f2915 0%, #291a0f 35%, #1a0f29 70%, #290f1f 100%);
+    padding: 36px 28px;
+  }
+  header h1 {
+    font-size: 26px;
+    color: #fff;
+    margin-bottom: 8px;
+  }
+  header .sub {
+    font-size: 14px;
+    color: rgba(255,255,255,0.7);
+    margin-bottom: 20px;
+  }
+  header .legend {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    font-size: 12px;
+  }
+  header .legend span {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: rgba(255,255,255,0.85);
+  }
+  header .legend .dot {
+    width: 12px; height: 12px; border-radius: 3px;
+  }
+
+  /* LAYOUT */
+  .content {
+    max-width: 1500px;
+    margin: 0 auto;
+    padding: 24px 28px 80px;
+  }
+
+  /* SECTION */
+  .section-h2 {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--accent);
+    margin: 40px 0 16px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  /* PYRAMID */
+  .pyramid {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    margin: 28px 0;
+  }
+  .pyramid-layer {
+    border-radius: 10px;
+    padding: 14px 24px;
+    text-align: center;
+    transition: all 0.2s;
+    cursor: pointer;
+    position: relative;
+  }
+  .pyramid-layer:hover {
+    transform: scale(1.02);
+  }
+  .pyramid-layer .layer-label {
+    font-size: 11px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 6px;
+    opacity: 0.9;
+  }
+  .pyramid-layer .layer-name {
+    font-size: 15px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 6px;
+  }
+  .pyramid-layer .layer-techs {
+    font-size: 12px;
+    color: rgba(255,255,255,0.8);
+    line-height: 1.7;
+  }
+  .pyramid-layer .layer-action {
+    font-size: 11px;
+    margin-top: 8px;
+    padding: 3px 12px;
+    background: rgba(255,255,255,0.15);
+    border-radius: 12px;
+    display: inline-block;
+    font-weight: 600;
+  }
+
+  /* 金字塔宽度递减 */
+  .py-core { width: 100%; background: linear-gradient(135deg, #14532d, #166534); border: 1px solid var(--c-core); }
+  .py-build { width: 82%; background: linear-gradient(135deg, #713f12, #854d0e); border: 1px solid var(--c-build); }
+  .py-layout { width: 62%; background: linear-gradient(135deg, #7c2d12, #9a3412); border: 1px solid var(--c-layout); }
+  .py-explore { width: 42%; background: linear-gradient(135deg, #4c1d95, #5b21b6); border: 1px solid var(--c-explore); }
+
+  /* ROOT TECH CARDS */
+  .root-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+    gap: 16px;
+    margin: 20px 0;
+  }
+  .root-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    overflow: hidden;
+    transition: all 0.2s;
+  }
+  .root-card:hover {
+    border-color: var(--accent);
+    transform: translateY(-2px);
+  }
+  .root-card-hdr {
+    padding: 16px 20px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .root-card-num {
+    width: 36px; height: 36px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    font-weight: 900;
+    flex-shrink: 0;
+  }
+  .root-card-title {
+    flex: 1;
+  }
+  .root-card-title .name {
+    font-size: 15px;
+    font-weight: 700;
+  }
+  .root-card-title .principle {
+    font-size: 11px;
+    color: var(--text-dim);
+    margin-top: 2px;
+  }
+
+  .root-card-body {
+    padding: 14px 20px;
+  }
+
+  /* MATURITY ROW */
+  .maturity-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 10px 0;
+    border-top: 1px solid rgba(255,255,255,0.04);
+  }
+  .maturity-row:first-child { border-top: none; }
+  .maturity-badge {
+    font-size: 10px;
+    font-weight: 800;
+    padding: 3px 8px;
+    border-radius: 5px;
+    flex-shrink: 0;
+    min-width: 50px;
+    text-align: center;
+  }
+  .mb-core { background: rgba(34,197,94,0.15); color: var(--c-core); }
+  .mb-build { background: rgba(234,179,8,0.15); color: var(--c-build); }
+  .mb-layout { background: rgba(249,115,22,0.15); color: var(--c-layout); }
+  .mb-explore { background: rgba(167,139,250,0.15); color: var(--c-explore); }
+  .mb-empty { background: rgba(100,116,139,0.1); color: var(--text-dim); }
+
+  .maturity-content {
+    flex: 1;
+  }
+  .maturity-content .items {
+    font-size: 12px;
+    color: var(--text-dim);
+    line-height: 1.7;
+  }
+  .maturity-content .items strong {
+    color: var(--text);
+  }
+  .maturity-content .gap {
+    font-size: 11px;
+    color: var(--c-layout);
+    margin-top: 4px;
+    font-style: italic;
+  }
+  .maturity-content .blank {
+    font-size: 12px;
+    color: var(--c-explore);
+    font-style: italic;
+  }
+
+  /* STRATEGY SECTION */
+  .strategy-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 14px;
+    margin: 20px 0;
+  }
+  .strategy-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 20px;
+    border-left: 4px solid;
+  }
+  .strategy-card h3 {
+    font-size: 15px;
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+  .strategy-card .action {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 12px;
+  }
+  .strategy-card ul {
+    list-style: none;
+    padding: 0;
+  }
+  .strategy-card li {
+    font-size: 12px;
+    color: var(--text-dim);
+    padding: 4px 0;
+    padding-left: 16px;
+    position: relative;
+    line-height: 1.7;
+  }
+  .strategy-card li::before {
+    content: "▸";
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+  }
+  .strategy-card li strong {
+    color: var(--text);
+  }
+
+  /* NOTE */
+  .note {
+    background: rgba(96,165,250,0.05);
+    border: 1px solid rgba(96,165,250,0.15);
+    border-radius: 10px;
+    padding: 16px 20px;
+    margin-bottom: 20px;
+    font-size: 13px;
+    color: var(--text-dim);
+    line-height: 1.8;
+  }
+  .note strong { color: var(--accent); }
+
+  /* CAPABILITY COVERAGE */
+  .coverage-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 16px 0;
+    font-size: 12px;
+  }
+  .coverage-table th {
+    background: var(--surface2);
+    padding: 10px 12px;
+    text-align: center;
+    font-weight: 700;
+    font-size: 11px;
+    color: var(--text-dim);
+    border-bottom: 2px solid var(--border);
+  }
+  .coverage-table th:first-child {
+    text-align: left;
+    color: var(--text);
+    font-size: 13px;
+  }
+  .coverage-table td {
+    padding: 10px 12px;
+    text-align: center;
+    border-bottom: 1px solid var(--border);
+    vertical-align: middle;
+  }
+  .coverage-table td:first-child {
+    text-align: left;
+    font-weight: 600;
+  }
+  .cov-dot {
+    display: inline-block;
+    width: 20px; height: 20px;
+    border-radius: 50%;
+    line-height: 20px;
+    font-size: 10px;
+    font-weight: 700;
+  }
+  .cov-yes { background: rgba(34,197,94,0.2); color: var(--c-core); }
+  .cov-build { background: rgba(234,179,8,0.2); color: var(--c-build); }
+  .cov-layout { background: rgba(249,115,22,0.2); color: var(--c-layout); }
+  .cov-explore { background: rgba(167,139,250,0.2); color: var(--c-explore); }
+  .cov-no { background: rgba(100,116,139,0.1); color: var(--text-dim); }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>🏗️ 推理压缩技术能力地图</h1>
+  <div class="sub">根技术构筑版 · 从技术根基出发 · 当前构筑 + 提前布局 · v1.0 / 2026-06</div>
+  <div class="legend">
+    <span><div class="dot" style="background:var(--c-core)"></div>已构筑（核心地基）</span>
+    <span><div class="dot" style="background:var(--c-build)"></div>建设中（当前投入）</span>
+    <span><div class="dot" style="background:var(--c-layout)"></div>需提前布局（战略卡位）</span>
+    <span><div class="dot" style="background:var(--c-explore)"></div>探索前沿（技术储备）</span>
+  </div>
+</header>
+
+<div class="content">
+
+<!-- 说明 -->
+<div class="note">
+  <strong>这张地图的视角：</strong>不是"遇到什么问题怎么解决"（项目思维），而是<strong>"我们要构筑哪些技术根基，哪些已稳固，哪些要布局"</strong>（能力中心思维）。<br>
+  <strong>7个根技术</strong>是推理压缩的能力根基。每个根技术横跨4个成熟度阶段，从"已掌握"到"探索前沿"。<br>
+  <strong>核心问题：</strong>我们的地基稳不稳？当前该投入什么？未来该卡位什么？
+</div>
+
+<!-- ================================================================ -->
+<div class="section-h2">🔺 能力金字塔总览</div>
+
+<div class="pyramid">
+
+  <!-- 探索层 -->
+  <div class="pyramid-layer py-explore">
+    <div class="layer-label" style="color:var(--c-explore)">🟣 Layer 4 · 探索前沿</div>
+    <div class="layer-name">技术储备 · 保持关注</div>
+    <div class="layer-techs">跨阶段联合蒸馏 · 跨模态压缩 · 端到端联合优化 · ≤2bit极端量化</div>
+    <div class="layer-action">📉 投入：少量预研，保持学术跟踪</div>
+  </div>
+
+  <!-- 布局层 -->
+  <div class="pyramid-layer py-layout">
+    <div class="layer-label" style="color:var(--c-layout)">🟠 Layer 3 · 需提前布局</div>
+    <div class="layer-name">战略卡位 · 未来竞争壁垒</div>
+    <div class="layer-techs">分布式通信压缩(DeepEP/ExpertQuant) · KV×蒸馏(几乎空白) · 打破全复制范式(FoMoE)</div>
+    <div class="layer-action">📈 投入：战略级，组建专项小组</div>
+  </div>
+
+  <!-- 建设层 -->
+  <div class="pyramid-layer py-build">
+    <div class="layer-label" style="color:var(--c-build)">🟡 Layer 2 · 建设中</div>
+    <div class="layer-name">当前投入重点 · 窗口期</div>
+    <div class="layer-techs">KV生命周期管理(SnapKV/KIVI) · 推测计算(EAGLE) · 分离式推理(DistServe) · 注意力架构演进(MLA)</div>
+    <div class="layer-action">⚡ 投入：主力资源，工程化冲刺</div>
+  </div>
+
+  <!-- 核心层 -->
+  <div class="pyramid-layer py-core">
+    <div class="layer-label" style="color:var(--c-core)">🟢 Layer 1 · 已构筑核心能力</div>
+    <div class="layer-name">技术地基 · 护城河</div>
+    <div class="layer-techs">数值精度压缩(GPTQ/AWQ) · 结构冗余消除(SparseGPT) · 低秩映射(LoRA) · 知识迁移(MiniLLM) · 内存调度(PagedAttn) · 算子融合(FlashAttn)</div>
+    <div class="layer-action">✅ 投入：维持，不需额外投入</div>
+  </div>
+
+</div>
+
+<!-- ================================================================ -->
+<div class="section-h2">🌳 七大根技术详情</div>
+
+<div class="root-grid">
+
+  <!-- 根技术1: 数值精度压缩 -->
+  <div class="root-card">
+    <div class="root-card-hdr">
+      <div class="root-card-num" style="background:rgba(34,197,94,0.15);color:var(--c-core)">1</div>
+      <div class="root-card-title">
+        <div class="name">数值精度压缩</div>
+        <div class="principle">原理：降低数据表示的比特数 (FP16→INT4/INT2)</div>
+      </div>
+    </div>
+    <div class="root-card-body">
+      <div class="maturity-row">
+        <span class="maturity-badge mb-core">已构筑</span>
+        <div class="maturity-content">
+          <div class="items"><strong>权重量化：</strong>GPTQ, AWQ, GGUF, LLM.int8()</div>
+        </div>
+      </div>
+      <div class="maturity-row">
+        <span class="maturity-badge mb-build">建设中</span>
+        <div class="maturity-content">
+          <div class="items"><strong>KV量化：</strong>KIVI(2bit), Block-GTQ(4bit RoPE-aware), UltraQuant(FP4)</div>
+          <div class="gap">⚠ 缺口：框架集成度低，工程化不足</div>
+        </div>
+      </div>
+      <div class="maturity-row">
+        <span class="maturity-badge mb-layout">需布局</span>
+        <div class="maturity-content">
+          <div class="items"><strong>通信量化：</strong>ExpertQuant(MoE首个), FP8通信</div>
+          <div class="gap">⚠ 缺口：MoE通信量化刚起步，工业空白</div>
+        </div>
+      </div>
+      <div class="maturity-row">
+        <span class="maturity-badge mb-explore">探索</span>
+        <div class="maturity-content">
+          <div class="items"><strong>极端低比特：</strong>≤2bit, 1bit(JL变换)</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 根技术2: 结构冗余消除 -->
+  <div class="root-card">
+    <div class="root-card-hdr">
+      <div class="root-card-num" style="background:rgba(34,197,94,0.15);color:var(--c-core)">2</div>
+      <div class="root-card-title">
+        <div class="name">结构冗余消除</div>
+        <div class="principle">原理：发现并移除冗余结构（权重/通道/头/token）</div>
+      </div>
+    </div>
+    <div class="root-card-body">
+      <div class="maturity-row">
+        <span class="maturity-badge mb-core">已构筑</span>
+        <div class="maturity-content">
+          <div class="items"><strong>权重剪枝：</strong>SparseGPT(50%), Wanda, LLM-Pruner</div>
+          <div class="items"><strong>注意力头剪枝：</strong>GQA, MQA</div>
+        </div>
+      </div>
+      <div class="maturity-row">
+        <span class="maturity-badge mb-build">建设中</span>
+        <div class="maturity-content">
+          <div class="items"><strong>KV淘汰：</strong>H2O, SnapKV, R-KV, CONF-KV</div>
+          <div class="gap">⚠ 缺口：工业落地不足，框架集成少</div>
+        </div>
+      </div>
+      <div class="maturity-row">
+        <span class="maturity-badge mb-explore">探索</span>
+        <div class="maturity-content">
+          <div class="items"><strong>MoE Expert稀疏：</strong>MosaicPrune, 打破全复制</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 根技术3: 低秩空间映射 -->
+  <div class="root-card">
+    <div class="root-card-hdr">
+      <div class="root-card-num" style="background:rgba(34,197,94,0.15);color:var(--c-core)">3</div>
+      <div class="root-card-title">
+        <div class="name">低秩空间映射</div>
+        <div class="principle">原理：把高维数据映射到低秩子空间</div>
+      </div>
+    </div>
+    <div class="root-card-body">
+      <div class="maturity-row">
+        <span class="maturity-badge mb-core">已构筑</span>
+        <div class="maturity-content">
+          <div class="items"><strong>适配器：</strong>LoRA, QLoRA, AdaLoRA</div>
+        </div>
+      </div>
+      <div class="maturity-row">
+        <span class="maturity-badge mb-build">建设中</span>
+        <div class="maturity-content">
+          <div class="items"><strong>注意力低秩：</strong>MLA(DeepSeek-V2), STAR-KV</div>
+        </div>
+      </div>
+      <div class="maturity-row">
+        <span class="maturity-badge mb-explore">探索</span>
+        <div class="maturity-content">
+          <div class="items"><strong>动态低秩：</strong>推理时自适应rank分配</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 根技术4: 知识迁移 -->
+  <div class="root-card">
+    <div class="root-card-hdr">
+      <div class="root-card-num" style="background:rgba(34,197,94,0.15);color:var(--c-core)">4</div>
+      <div class="root-card-title">
+        <div class="name">知识迁移</div>
+        <div class="principle">原理：用强模型指导弱模型（蒸馏），保持压缩后性能</div>
+      </div>
+    </div>
+    <div class="root-card-body">
+      <div class="maturity-row">
+        <span class="maturity-badge mb-core">已构筑</span>
+        <div class="maturity-content">
+          <div class="items"><strong>经典蒸馏：</strong>MiniLLM, MiniLM, GKD</div>
+          <div class="items"><strong>API蒸馏：</strong>Alpaca, Vicuna</div>
+        </div>
+      </div>
+      <div class="maturity-row">
+        <span class="maturity-badge mb-build">建设中</span>
+        <div class="maturity-content">
+          <div class="items"><strong>量化恢复蒸馏：</strong>BitDistiller, LLM-QAT</div>
+        </div>
+      </div>
+      <div class="maturity-row">
+        <span class="maturity-badge mb-layout">需布局</span>
+        <div class="maturity-content">
+          <div class="items"><strong>KV蒸馏：</strong>SwiftKV(仅Prefill)</div>
+          <div class="gap">⚠ 缺口：Decoding阶段KV蒸馏 = 0篇，最高空白</div>
+          <div class="gap">⚠ 缺口：通信×蒸馏 = 18篇，几乎空白</div>
+        </div>
+      </div>
+      <div class="maturity-row">
+        <span class="maturity-badge mb-explore">探索</span>
+        <div class="maturity-content">
+          <div class="items"><strong>跨阶段联合蒸馏：</strong>Prefill-Decoding联合信号设计</div>
+          <div class="blank">💎 理论空白，开放问题</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 根技术5: 内存生命周期管理 -->
+  <div class="root-card">
+    <div class="root-card-hdr">
+      <div class="root-card-num" style="background:rgba(34,197,94,0.15);color:var(--c-core)">5</div>
+      <div class="root-card-title">
+        <div class="name">内存生命周期管理</div>
+        <div class="principle">原理：高效调度内存的分配/复用/回收</div>
+      </div>
+    </div>
+    <div class="root-card-body">
+      <div class="maturity-row">
+        <span class="maturity-badge mb-core">已构筑</span>
+        <div class="maturity-content">
+          <div class="items"><strong>分页管理：</strong>PagedAttention(vLLM)</div>
+          <div class="items"><strong>前缀复用：</strong>RadixAttention(SGLang)</div>
+        </div>
+      </div>
+      <div class="maturity-row">
+        <span class="maturity-badge mb-build">建设中</span>
+        <div class="maturity-content">
+          <div class="items"><strong>分离式推理：</strong>DistServe, Mooncake</div>
+          <div class="items"><strong>连续批处理：</strong>Orca, Chunked Prefill</div>
+        </div>
+      </div>
+      <div class="maturity-row">
+        <span class="maturity-badge mb-explore">探索</span>
+        <div class="maturity-content">
+          <div class="items"><strong>跨节点KV迁移：</strong>分布式KV池</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 根技术6: 分布式通信压缩 -->
+  <div class="root-card">
+    <div class="root-card-hdr">
+      <div class="root-card-num" style="background:rgba(249,115,22,0.15);color:var(--c-layout)">6</div>
+      <div class="root-card-title">
+        <div class="name">分布式通信压缩</div>
+        <div class="principle">原理：减少跨设备/跨节点的数据传输开销</div>
+      </div>
+    </div>
+    <div class="root-card-body">
+      <div class="maturity-row">
+        <span class="maturity-badge mb-layout">需布局</span>
+        <div class="maturity-content">
+          <div class="items"><strong>MoE通信库：</strong>DeepEP(生产级)</div>
+          <div class="items"><strong>通信量化：</strong>ExpertQuant(2025首个)</div>
+          <div class="gap">⚠ 缺口：通信×蒸馏几乎空白(18篇)</div>
+          <div class="gap">⚠ 缺口：工业落地几乎为零</div>
+        </div>
+      </div>
+      <div class="maturity-row">
+        <span class="maturity-badge mb-explore">探索</span>
+        <div class="maturity-content">
+          <div class="items"><strong>打破全复制：</strong>FoMoE(ICLR 2026), C2R</div>
+          <div class="blank">💎 全新研究方向空间</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 根技术7: 推测计算 -->
+  <div class="root-card">
+    <div class="root-card-hdr">
+      <div class="root-card-num" style="background:rgba(234,179,8,0.15);color:var(--c-build)">7</div>
+      <div class="root-card-title">
+        <div class="name">推测计算</div>
+        <div class="principle">原理：预测+验证替代精确计算，加速自回归生成</div>
+      </div>
+    </div>
+    <div class="root-card-body">
+      <div class="maturity-row">
+        <span class="maturity-badge mb-build">建设中</span>
+        <div class="maturity-content">
+          <div class="items"><strong>草稿+验证：</strong>Speculative Decoding</div>
+          <div class="items"><strong>自推测：</strong>Medusa, EAGLE</div>
+          <div class="items"><strong>原生MTP：</strong>DeepSeek-V3</div>
+        </div>
+      </div>
+      <div class="maturity-row">
+        <span class="maturity-badge mb-explore">探索</span>
+        <div class="maturity-content">
+          <div class="items"><strong>推测+KV压缩联合：</strong>推测解码与KV淘汰协同</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ================================================================ -->
+<div class="section-h2">📊 能力覆盖矩阵（根技术 × 成熟度）</div>
+
+<table class="coverage-table">
+<tr>
+  <th>根技术 ↓ / 成熟度 →</th>
+  <th style="color:var(--c-core)">已构筑</th>
+  <th style="color:var(--c-build)">建设中</th>
+  <th style="color:var(--c-layout)">需布局</th>
+  <th style="color:var(--c-explore)">探索</th>
+</tr>
+<tr>
+  <td>1. 数值精度压缩</td>
+  <td><span class="cov-dot cov-yes">✓</span> 权重GPTQ/AWQ</td>
+  <td><span class="cov-dot cov-build">◐</span> KV KIVI/GTQ</td>
+  <td><span class="cov-dot cov-layout">!</span> 通信 ExpertQuant</td>
+  <td><span class="cov-dot cov-explore">?</span> ≤2bit</td>
+</tr>
+<tr>
+  <td>2. 结构冗余消除</td>
+  <td><span class="cov-dot cov-yes">✓</span> 剪枝 SparseGPT</td>
+  <td><span class="cov-dot cov-build">◐</span> KV淘汰 SnapKV</td>
+  <td><span class="cov-dot cov-no">—</span></td>
+  <td><span class="cov-dot cov-explore">?</span> MoE Expert</td>
+</tr>
+<tr>
+  <td>3. 低秩空间映射</td>
+  <td><span class="cov-dot cov-yes">✓</span> LoRA/QLoRA</td>
+  <td><span class="cov-dot cov-build">◐</span> MLA/STAR-KV</td>
+  <td><span class="cov-dot cov-no">—</span></td>
+  <td><span class="cov-dot cov-explore">?</span> 动态低秩</td>
+</tr>
+<tr>
+  <td>4. 知识迁移</td>
+  <td><span class="cov-dot cov-yes">✓</span> 经典蒸馏</td>
+  <td><span class="cov-dot cov-build">◐</span> 量化恢复</td>
+  <td><span class="cov-dot cov-layout">!!</span> KV蒸馏(0篇)</td>
+  <td><span class="cov-dot cov-explore">?</span> 跨阶段联合</td>
+</tr>
+<tr>
+  <td>5. 内存生命周期</td>
+  <td><span class="cov-dot cov-yes">✓</span> PagedAttn/Radix</td>
+  <td><span class="cov-dot cov-build">◐</span> 分离式DistServe</td>
+  <td><span class="cov-dot cov-no">—</span></td>
+  <td><span class="cov-dot cov-explore">?</span> 跨节点KV</td>
+</tr>
+<tr>
+  <td>6. 分布式通信压缩</td>
+  <td><span class="cov-dot cov-no">—</span></td>
+  <td><span class="cov-dot cov-no">—</span></td>
+  <td><span class="cov-dot cov-layout">!!</span> DeepEP/ExpertQuant</td>
+  <td><span class="cov-dot cov-explore">?</span> FoMoE</td>
+</tr>
+<tr>
+  <td>7. 推测计算</td>
+  <td><span class="cov-dot cov-no">—</span></td>
+  <td><span class="cov-dot cov-build">◐</span> EAGLE/SpecDec</td>
+  <td><span class="cov-dot cov-no">—</span></td>
+  <td><span class="cov-dot cov-explore">?</span> 推测+KV联合</td>
+</tr>
+</table>
+
+<div class="note" style="margin-top:16px">
+  <strong>矩阵解读：</strong><br>
+  • <strong>绿色✓最多的行</strong> = 地基稳固的根技术（1/2/3/5）<br>
+  • <strong>橙色!!的格子</strong> = 最该布局的战略空白（根技术4的KV蒸馏、根技术6的通信压缩）<br>
+  • <strong>根技术6/7没有绿色</strong> = 这两个根技术是全新的，没有历史积累，需要从零建设
+</div>
+
+<!-- ================================================================ -->
+<div class="section-h2">📋 战略投入建议</div>
+
+<div class="strategy-grid">
+
+  <div class="strategy-card" style="border-left-color:var(--c-core)">
+    <div class="action" style="color:var(--c-core)">✅ 维持 · 不需额外投入</div>
+    <h3>已稳固的核心地基</h3>
+    <ul>
+      <li><strong>数值精度压缩（权重）</strong>：GPTQ/AWQ已成工业标准</li>
+      <li><strong>结构冗余消除（权重）</strong>：SparseGPT/Wanda成熟</li>
+      <li><strong>低秩映射</strong>：LoRA生态完善</li>
+      <li><strong>经典知识迁移</strong>：MiniLLM等够用</li>
+      <li><strong>内存调度</strong>：PagedAttn/RadixAttn标配</li>
+    </ul>
+  </div>
+
+  <div class="strategy-card" style="border-left-color:var(--c-build)">
+    <div class="action" style="color:var(--c-build)">⚡ 主力投入 · 工程化冲刺</div>
+    <h3>当前窗口期（建设中）</h3>
+    <ul>
+      <li><strong>KV生命周期管理</strong>：SnapKV→框架集成</li>
+      <li><strong>KV量化工程化</strong>：KIVI/Block-GTQ→vLLM插件</li>
+      <li><strong>推测计算</strong>：EAGLE→生产部署</li>
+      <li><strong>分离式推理</strong>：DistServe→产品化</li>
+      <li><strong>注意力架构</strong>：MLA→自有模型集成</li>
+    </ul>
+  </div>
+
+  <div class="strategy-card" style="border-left-color:var(--c-layout)">
+    <div class="action" style="color:var(--c-layout)">📈 战略卡位 · 组建专项</div>
+    <h3>需提前布局（未来壁垒）</h3>
+    <ul>
+      <li><strong>分布式通信压缩</strong>：MoE时代必备，DeepEP/ExpertQuant</li>
+      <li><strong>KV×蒸馏</strong>：Decoding阶段0篇，最高风险/回报</li>
+      <li><strong>通信×蒸馏</strong>：18篇，跨领域空白</li>
+      <li><strong>打破全复制范式</strong>：FoMoE级新方向</li>
+    </ul>
+  </div>
+
+  <div class="strategy-card" style="border-left-color:var(--c-explore)">
+    <div class="action" style="color:var(--c-explore)">🔬 少量预研 · 学术跟踪</div>
+    <h3>探索前沿（技术储备）</h3>
+    <ul>
+      <li><strong>跨阶段联合蒸馏</strong>：理论空白</li>
+      <li><strong>跨模态压缩</strong>：文本/视觉/音频统一</li>
+      <li><strong>端到端联合优化</strong>：权重+激活+KV协同</li>
+      <li><strong>≤2bit极端量化</strong>：1bit/熵编码</li>
+      <li><strong>推测+KV联合</strong>：两个方向协同</li>
+    </ul>
+  </div>
+
+</div>
+
+<!-- ================================================================ -->
+<div class="section-h2">🎯 能力建设路线图</div>
+
+<div class="note">
+  <strong>路线图核心逻辑：</strong>不要均匀投入，要<strong>分层建设</strong>。地基稳固的不投入，窗口期的全力冲刺，战略空白的提前卡位。
+</div>
+
+<table class="coverage-table">
+<tr>
+  <th>阶段</th>
+  <th>时间</th>
+  <th>建设目标</th>
+  <th>对应根技术</th>
+</tr>
+<tr>
+  <td><strong>Phase 1</strong></td>
+  <td>现在-3月</td>
+  <td>窗口期技术工程化（KV管理+推测）</td>
+  <td>根技术 2(KV淘汰) / 5(分离式) / 7(推测)</td>
+</tr>
+<tr>
+  <td><strong>Phase 2</strong></td>
+  <td>3-6月</td>
+  <td>通信压缩能力建设（MoE时代卡位）</td>
+  <td>根技术 6(通信压缩) + 1(通信量化)</td>
+</tr>
+<tr>
+  <td><strong>Phase 3</strong></td>
+  <td>6-12月</td>
+  <td>蒸馏×压缩联合（填补结构性空白）</td>
+  <td>根技术 4(KV蒸馏/通信蒸馏)</td>
+</tr>
+<tr>
+  <td><strong>Phase 4</strong></td>
+  <td>12月+</td>
+  <td>前沿探索（跨阶段/跨模态）</td>
+  <td>根技术 4(跨阶段) / 探索方向</td>
+</tr>
+</table>
+
+<!-- ================================================================ -->
+<div class="note" style="margin-top:32px">
+  <strong>📌 总结：</strong>这张地图回答三个核心问题：<br>
+  <strong>1. 我们的地基在哪？</strong> → 7大根技术中的5个已构筑（绿色）<br>
+  <strong>2. 现在该建设什么？</strong> → 根技术2/5/7的窗口期技术（黄色）<br>
+  <strong>3. 未来该卡位什么？</strong> → 根技术4/6的战略空白（橙色），特别是KV×蒸馏和通信压缩<br><br>
+  <strong>护城河：</strong>已构筑的5个根技术。 <strong>短板：</strong>根技术6(通信压缩)从零开始。 <strong>机会：</strong>根技术4的KV蒸馏是最高风险/回报方向。
+</div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,2288 @@
+{
+  "arxiv_total": 22637,
+  "in_v8": 3568,
+  "gap_total": 19069,
+  "gap_relevant": 570,
+  "gap_relevant_papers": [
+    {
+      "title": "low latency, high bandwidth streaming of experimental data with ejfat",
+      "arxiv_id": "2510.12597"
+    },
+    {
+      "title": "offline reinforcement learning for warehouse slam throughput control",
+      "arxiv_id": "2606.23978"
+    },
+    {
+      "title": "fbench: a flexible benchmark for cfg-based what-if exploration of hpc i/o patter",
+      "arxiv_id": "2606.30197"
+    },
+    {
+      "title": "decentralized stratified sampling for low-latency approximate geospatial data st",
+      "arxiv_id": "2605.01922"
+    },
+    {
+      "title": "olmoearth v1.2: a more efficient family of olmoearth models",
+      "arxiv_id": "2605.20804"
+    },
+    {
+      "title": "spaarsist: sparsified aasist for efficient and reliable anti-spoofing",
+      "arxiv_id": "2606.11674"
+    },
+    {
+      "title": "guidapa: privacy-preserving chatbot for public administration via federated lear",
+      "arxiv_id": "2606.01386"
+    },
+    {
+      "title": "ffcz: fast fourier correction for spectrum-preserving lossy compression of scien",
+      "arxiv_id": "2601.01596"
+    },
+    {
+      "title": "zk-x509: privacy-preserving on-chain identity from legacy pki via zero-knowledge",
+      "arxiv_id": "2603.25190"
+    },
+    {
+      "title": "practical framework for privacy-preserving and byzantine-robust federated learni",
+      "arxiv_id": "2512.17254"
+    },
+    {
+      "title": "hierarchical advantage weighting for online rl fine-tuning of vlas from sparse e",
+      "arxiv_id": "2606.17043"
+    },
+    {
+      "title": "evaluating and preserving lexical stress in english-to-chinese speech-to-speech ",
+      "arxiv_id": "2606.15266"
+    },
+    {
+      "title": "space-optimal, computation-optimal, topology-agnostic, throughput-scalable causa",
+      "arxiv_id": "2601.11487"
+    },
+    {
+      "title": "fmplex: model virtualization for serving extensible foundation models",
+      "arxiv_id": "2606.09643"
+    },
+    {
+      "title": "multi-fidelity sindy: sparse discovery of nonlinear dynamical systems with fidel",
+      "arxiv_id": "2606.15690"
+    },
+    {
+      "title": "a privacy-preserving machine learning framework for edge intelligence: an empiri",
+      "arxiv_id": "2605.05751"
+    },
+    {
+      "title": "cluster analysis with resampling for validation and exploration (carve)",
+      "arxiv_id": "2606.00327"
+    },
+    {
+      "title": "an experimental exploration of in-memory computing for multi-layer perceptrons",
+      "arxiv_id": "2508.07317"
+    },
+    {
+      "title": "randomized exploration for linear bandits via absolute perturbations",
+      "arxiv_id": "2606.28616"
+    },
+    {
+      "title": "hindsight-anchored policy optimization: turning failure into feedback in sparse ",
+      "arxiv_id": "2603.11321"
+    },
+    {
+      "title": "multi-dnn inference of sparse models on edge socs",
+      "arxiv_id": "2603.09642"
+    },
+    {
+      "title": "guiding llm post-training data engineering with model internals from sparse auto",
+      "arxiv_id": "2605.27354"
+    },
+    {
+      "title": "low-latency real-time audio game commentary system via llm-based parallel text g",
+      "arxiv_id": "2606.13322"
+    },
+    {
+      "title": "a high-throughput aes-gcm implementation on gpus for secure, policy-based access",
+      "arxiv_id": "2602.23067"
+    },
+    {
+      "title": "class-grouped normalized momentum and faster hyperparameter exploration to tackl",
+      "arxiv_id": "2607.01474"
+    },
+    {
+      "title": "toward systems foundations for agentic exploration",
+      "arxiv_id": "2510.05556"
+    },
+    {
+      "title": "privacy-preserving federated averaging with byzantine aggregators in asynchronou",
+      "arxiv_id": "2601.04930"
+    },
+    {
+      "title": "metadns: enhancing exploration in discrete neural samplers via well-tempered met",
+      "arxiv_id": "2605.21722"
+    },
+    {
+      "title": "the geometric wall: manifold structure predicts layerwise sparse autoencoder sca",
+      "arxiv_id": "2605.09887"
+    },
+    {
+      "title": "vehiclepassport: a gaia-x-aligned, blockchain-anchored privacy-preserving, zero-",
+      "arxiv_id": "2509.06133"
+    },
+    {
+      "title": "external experience serving in production llm systems: a deployment-oriented stu",
+      "arxiv_id": "2606.11806"
+    },
+    {
+      "title": "the art of mixology: mixup-based obfuscation for privacy-preserving split learni",
+      "arxiv_id": "2606.16801"
+    },
+    {
+      "title": "fcpo: federated continual policy optimization for real-time high-throughput edge",
+      "arxiv_id": "2507.18047"
+    },
+    {
+      "title": "secure aggregation with top-k sparsification in decentralized federated learning",
+      "arxiv_id": "2606.10780"
+    },
+    {
+      "title": "tight $l_\\infty$ sample complexity for low-degree and sparse boolean polynomials",
+      "arxiv_id": "2606.17319"
+    },
+    {
+      "title": "preserving plasticity in continual learning via dynamical isometry",
+      "arxiv_id": "2606.09762"
+    },
+    {
+      "title": "cornserve: a distributed serving system for any-to-any multimodal models",
+      "arxiv_id": "2603.12118"
+    },
+    {
+      "title": "opendc-steam: realistic modeling and systematic exploration of composable techni",
+      "arxiv_id": "2603.12381"
+    },
+    {
+      "title": "emlio: minimizing i/o latency and energy consumption for large-scale ai training",
+      "arxiv_id": "2508.11035"
+    },
+    {
+      "title": "m*: a modular, extensible, serving system for multimodal models",
+      "arxiv_id": "2606.12688"
+    },
+    {
+      "title": "tight bounds on window size and time for single-agent graph exploration under t-",
+      "arxiv_id": "2604.04619"
+    },
+    {
+      "title": "accelerating precise end-to-end simulation: latency-sensitive many-core system m",
+      "arxiv_id": "2605.07750"
+    },
+    {
+      "title": "sparse autoencoder decomposition of clinical sequence model representations: fea",
+      "arxiv_id": "2605.04072"
+    },
+    {
+      "title": "latency and cost of multi-agent intelligent tutoring at scale",
+      "arxiv_id": "2604.24110"
+    },
+    {
+      "title": "privacy-preserving data processing in cloud : from homomorphic encryption to fed",
+      "arxiv_id": "2601.06710"
+    },
+    {
+      "title": "privacy-preserving distributed learning in iot systems: a unified threat model a",
+      "arxiv_id": "2605.09232"
+    },
+    {
+      "title": "btrlog: low-latency logging for cloud database systems",
+      "arxiv_id": "2606.27051"
+    },
+    {
+      "title": "distributed-memory algorithms for sparse matrix permutation, extraction, and ass",
+      "arxiv_id": "2509.20776"
+    },
+    {
+      "title": "scalable fpga framework for real-time denoising in high-throughput imaging: a dr",
+      "arxiv_id": "2508.14917"
+    },
+    {
+      "title": "smaller abstract state spaces enable cross-scale generalization in reinforcement",
+      "arxiv_id": "2605.20272"
+    },
+    {
+      "title": "ai inference as relocatable electricity demand: a latency-constrained energy-geo",
+      "arxiv_id": "2604.27855"
+    },
+    {
+      "title": "shiro: near-optimal communication strategies for distributed sparse matrix multi",
+      "arxiv_id": "2512.20178"
+    },
+    {
+      "title": "interpreting brain responses to language with sparse features from language mode",
+      "arxiv_id": "2606.06857"
+    },
+    {
+      "title": "dynamics of stochastic momentum with sparse updates in high dimensions",
+      "arxiv_id": "2605.28961"
+    },
+    {
+      "title": "ocean: fast estimation-based sparse general matrix-matrix multiplication on gpu",
+      "arxiv_id": "2604.19004"
+    },
+    {
+      "title": "coding-free and privacy-preserving agentic framework for data-driven clinical re",
+      "arxiv_id": "2604.12258"
+    },
+    {
+      "title": "gc-moe: genomics-guided cell-type-specific mixture of experts for histology-base",
+      "arxiv_id": "2606.02424"
+    },
+    {
+      "title": "byzantine-robust distributed sparse learning revisited",
+      "arxiv_id": "2605.13283"
+    },
+    {
+      "title": "are sparse autoencoder benchmarks reliable?",
+      "arxiv_id": "2605.18229"
+    },
+    {
+      "title": "a tee-based approach for preserving data secrecy in process mining with decentra",
+      "arxiv_id": "2602.04697"
+    },
+    {
+      "title": "autopilot-preserving residual q-learning with hjb-inspired finite-action risk fi",
+      "arxiv_id": "2606.01397"
+    },
+    {
+      "title": "flexible personalized split federated learning for on-device fine-tuning of foun",
+      "arxiv_id": "2508.10349"
+    },
+    {
+      "title": "dp2guard: a lightweight and byzantine-robust privacy-preserving federated learni",
+      "arxiv_id": "2507.16134"
+    },
+    {
+      "title": "decision-focused sparse tangent portfolio optimization",
+      "arxiv_id": "2607.00581"
+    },
+    {
+      "title": "sparse autoencoders map brain-llm alignment onto cortical semantic topography",
+      "arxiv_id": "2605.23035"
+    },
+    {
+      "title": "pre-intervention prediction of sparse autoencoder steering side effects",
+      "arxiv_id": "2606.08365"
+    },
+    {
+      "title": "dezent: decentralized z-anonymity with privacy-preserving coordination",
+      "arxiv_id": "2603.08854"
+    },
+    {
+      "title": "grkv: global regression for training-free kv cache compression in long-context l",
+      "arxiv_id": "2605.31105"
+    },
+    {
+      "title": "can large language models self-correct in medical question answering? an explora",
+      "arxiv_id": "2604.00261"
+    },
+    {
+      "title": "steerrm: debiasing reward models via sparse autoencoders",
+      "arxiv_id": "2603.12795"
+    },
+    {
+      "title": "tetriserve: efficiently serving mixed dit workloads",
+      "arxiv_id": "2510.01565"
+    },
+    {
+      "title": "price of quality: sufficient conditions for sparse recovery using mixed-quality ",
+      "arxiv_id": "2605.10713"
+    },
+    {
+      "title": "the energy-throughput trade-off in lossless-compressed source code storage",
+      "arxiv_id": "2601.13220"
+    },
+    {
+      "title": "evolving robustness--exploration trade-off in online reinforcement learning via ",
+      "arxiv_id": "2605.24345"
+    },
+    {
+      "title": "heuristic search space partitioning for low-latency multi-tenant cloud queries",
+      "arxiv_id": "2604.19057"
+    },
+    {
+      "title": "reactionatlas: ab origine exploration of chemical reaction networks with machine",
+      "arxiv_id": "2606.30778"
+    },
+    {
+      "title": "throughput-optimized networks at scale",
+      "arxiv_id": "2605.27963"
+    },
+    {
+      "title": "sparse auto-encoders and holism about large language models",
+      "arxiv_id": "2603.26207"
+    },
+    {
+      "title": "voxserve: streaming-centric serving system for speech language models",
+      "arxiv_id": "2602.00269"
+    },
+    {
+      "title": "elasticity in parallel sparse triangular solve",
+      "arxiv_id": "2607.02324"
+    },
+    {
+      "title": "query lens: interpreting sparse key-value features with indirect effects",
+      "arxiv_id": "2606.07617"
+    },
+    {
+      "title": "which directions matter? sparse design for affine robust optimization",
+      "arxiv_id": "2606.14648"
+    },
+    {
+      "title": "simple-it: practical low-latency signature-free bft consensus",
+      "arxiv_id": "2606.14404"
+    },
+    {
+      "title": "enhancing spectral embedding through robust and flexible knowledge transfer in e",
+      "arxiv_id": "2606.11570"
+    },
+    {
+      "title": "from sparse features to trustworthy proxies: certifying sae-based interpretabili",
+      "arxiv_id": "2606.18383"
+    },
+    {
+      "title": "on the limits of token reduction for efficient unified vision language training",
+      "arxiv_id": "2606.01503"
+    },
+    {
+      "title": "sake: self-aware knowledge exploitation-exploration for grounded multimodal name",
+      "arxiv_id": "2604.20146"
+    },
+    {
+      "title": "scene-aware latency estimation for microservices via multi-scale graph fusion",
+      "arxiv_id": "2604.16409"
+    },
+    {
+      "title": "sparseopt: addressing normalization-induced gradient skew in sparse training",
+      "arxiv_id": "2605.27541"
+    },
+    {
+      "title": "joint sparse coding and temporal dynamics support context reconfiguration",
+      "arxiv_id": "2605.10178"
+    },
+    {
+      "title": "ai research agents narrow scientific exploration",
+      "arxiv_id": "2605.27905"
+    },
+    {
+      "title": "liveserve: interaction-aware serving for real-time omni-modal llms",
+      "arxiv_id": "2606.22983"
+    },
+    {
+      "title": "ca-sql: complexity-aware inference time reasoning for text-to-sql via exploratio",
+      "arxiv_id": "2605.08057"
+    },
+    {
+      "title": "latencyprism: online non-intrusive latency sculpting for slo-guaranteed llm infe",
+      "arxiv_id": "2601.09258"
+    },
+    {
+      "title": "rose: rollout on serving gpus via cooperative elasticity for agentic rl",
+      "arxiv_id": "2605.06534"
+    },
+    {
+      "title": "ta-sparsemg: trend-aware sparse forecasting via multi-scale gating for long-term",
+      "arxiv_id": "2606.27908"
+    },
+    {
+      "title": "descriptive collision in sparse autoencoder auto-interpretability: when one expl",
+      "arxiv_id": "2605.12874"
+    },
+    {
+      "title": "fast tetrabft: optimizing latency where it matters",
+      "arxiv_id": "2606.03754"
+    },
+    {
+      "title": "dag it off: latency prefers no common coins",
+      "arxiv_id": "2508.14716"
+    },
+    {
+      "title": "a lightweight high-throughput collective-capable noc for large-scale ml accelera",
+      "arxiv_id": "2603.26438"
+    },
+    {
+      "title": "infant spontaneous movement noise improves exploration in deep rl",
+      "arxiv_id": "2606.16590"
+    },
+    {
+      "title": "from physician expertise to clinical agents: preserving, standardizing, and scal",
+      "arxiv_id": "2603.23520"
+    },
+    {
+      "title": "sparser, faster, lighter transformer language models",
+      "arxiv_id": "2603.23198"
+    },
+    {
+      "title": "asyncsparse: accelerating sparse matrix-matrix multiplication on asynchronous gp",
+      "arxiv_id": "2604.17834"
+    },
+    {
+      "title": "hierarchical reinforcement learning for sparse-reward search in commutative alge",
+      "arxiv_id": "2606.22922"
+    },
+    {
+      "title": "selection of supervised learning-based sparse matrix reordering algorithms",
+      "arxiv_id": "2511.10180"
+    },
+    {
+      "title": "sparserl-sync: lossless weight synchronization with ~100x less communication",
+      "arxiv_id": "2605.07330"
+    },
+    {
+      "title": "irds: interpretable rlvr data selection via verifier-coupled sparse autoencoder ",
+      "arxiv_id": "2605.28247"
+    },
+    {
+      "title": "an efficient and scalable graph condensation with structure-preserving",
+      "arxiv_id": "2605.31016"
+    },
+    {
+      "title": "robust and sparse support vector machine via hybrid truncated loss for supervise",
+      "arxiv_id": "2606.05814"
+    },
+    {
+      "title": "accelerating sparse matrix-matrix multiplication on gpus with processing near hb",
+      "arxiv_id": "2512.12036"
+    },
+    {
+      "title": "samatnext v0.2-b: an exploratory study of rms-normalized hybrid decoders for cur",
+      "arxiv_id": "2606.22248"
+    },
+    {
+      "title": "gpu acceleration of sparse fully homomorphic encrypted dnns",
+      "arxiv_id": "2604.11659"
+    },
+    {
+      "title": "expander sparse autoencoders: parameter-efficient dictionaries for mechanistic i",
+      "arxiv_id": "2607.01799"
+    },
+    {
+      "title": "a systematic exploration of text decomposition and budget distribution in differ",
+      "arxiv_id": "2605.01065"
+    },
+    {
+      "title": "htpo: towards exploration-exploitation balanced policy optimization via hierarch",
+      "arxiv_id": "2605.08283"
+    },
+    {
+      "title": "learning individual dynamics from sparse cross-sectional snapshots",
+      "arxiv_id": "2605.23470"
+    },
+    {
+      "title": "cog-drift: exploration on adaptively reformulated instances enables learning fro",
+      "arxiv_id": "2604.04767"
+    },
+    {
+      "title": "csp-atlas: concept-specific neural circuits in a sparse python transformer",
+      "arxiv_id": "2605.24603"
+    },
+    {
+      "title": "on the energy efficiency of sparse matrix computations on multi-gpu clusters",
+      "arxiv_id": "2510.02878"
+    },
+    {
+      "title": "slim: sparse latent steering for interpretable and property-directed llm-based m",
+      "arxiv_id": "2605.10831"
+    },
+    {
+      "title": "dora explorer: improving the exploration ability of llms without training",
+      "arxiv_id": "2604.17244"
+    },
+    {
+      "title": "computefhe: a privacy-preserving general-purpose computation library",
+      "arxiv_id": "2606.24379"
+    },
+    {
+      "title": "sparsity-aware roofline models for sparse matrix-matrix multiplication",
+      "arxiv_id": "2604.06637"
+    },
+    {
+      "title": "multi-resolution end-to-end deep neural network for optimizing latency-accuracy ",
+      "arxiv_id": "2605.29138"
+    },
+    {
+      "title": "implicit bias of mirror flow in homogeneous neural networks: sparse and dense fe",
+      "arxiv_id": "2605.19458"
+    },
+    {
+      "title": "sparse growing transformer: training-time sparse depth allocation via progressiv",
+      "arxiv_id": "2603.23998"
+    },
+    {
+      "title": "conceptualizing embeddings: sparse disentanglement for vision-language models",
+      "arxiv_id": "2605.22679"
+    },
+    {
+      "title": "hylu: hybrid parallel sparse lu factorization",
+      "arxiv_id": "2509.07690"
+    },
+    {
+      "title": "efficient multi-round llm inference over disaggregated serving",
+      "arxiv_id": "2602.14516"
+    },
+    {
+      "title": "genserve: efficient co-serving of heterogeneous diffusion model workloads",
+      "arxiv_id": "2604.04335"
+    },
+    {
+      "title": "steered generation via gradient-based optimization on sparse query features",
+      "arxiv_id": "2605.23040"
+    },
+    {
+      "title": "horst: composing optimizer geometries for sparse transformer training",
+      "arxiv_id": "2605.21104"
+    },
+    {
+      "title": "smade-ie: sparse multi-agent framework with evidence-driven debate for zero-shot",
+      "arxiv_id": "2606.04691"
+    },
+    {
+      "title": "beyond sparse supervision: diffusion-guided learning for few-shot graph fraud de",
+      "arxiv_id": "2606.28134"
+    },
+    {
+      "title": "when evidence is sparse: weakly supervised early failure alerting in dialogs and",
+      "arxiv_id": "2606.05414"
+    },
+    {
+      "title": "exploration-driven optimization for test-time large language model reasoning",
+      "arxiv_id": "2605.09853"
+    },
+    {
+      "title": "learning doubly sparse explicitly conditioned transforms",
+      "arxiv_id": "2606.10975"
+    },
+    {
+      "title": "uncertainty-aware llm-guided policy shaping for sparse-reward reinforcement lear",
+      "arxiv_id": "2606.06673"
+    },
+    {
+      "title": "code2math: can your code agent effectively evolve math problems through explorat",
+      "arxiv_id": "2603.03202"
+    },
+    {
+      "title": "privacy-preserving federated temporal graph learning with digital twin--guided a",
+      "arxiv_id": "2606.21513"
+    },
+    {
+      "title": "learning dynamical systems from multiple sparse datasets: a hierarchical bayesia",
+      "arxiv_id": "2606.24966"
+    },
+    {
+      "title": "deepstack: scalable and accurate design space exploration for distributed 3d-sta",
+      "arxiv_id": "2604.04750"
+    },
+    {
+      "title": "paramspmm: adaptive and efficient sparse matrix-matrix multiplication on gpus fo",
+      "arxiv_id": "2605.15695"
+    },
+    {
+      "title": "guided flow matching for forward and inverse pde problems with sparse observatio",
+      "arxiv_id": "2605.25509"
+    },
+    {
+      "title": "sparse autoencoders for interpretable emotion control in text-to-speech",
+      "arxiv_id": "2606.01479"
+    },
+    {
+      "title": "lakeqa: an exploratory qa benchmark over a million-scale data lake",
+      "arxiv_id": "2606.10460"
+    },
+    {
+      "title": "pathweaver: a high-throughput multi-gpu system for graph-based approximate neare",
+      "arxiv_id": "2507.17094"
+    },
+    {
+      "title": "scaling up throughput-oriented llm inference applications on heterogeneous oppor",
+      "arxiv_id": "2509.13201"
+    },
+    {
+      "title": "synplanresearch-r1: encouraging tool exploration for deep research with syntheti",
+      "arxiv_id": "2603.07853"
+    },
+    {
+      "title": "lightweight latency prediction scheme for edge applications: a rational modellin",
+      "arxiv_id": "2511.02501"
+    },
+    {
+      "title": "preserving data privacy in learning causal structure with fully homomorphic encr",
+      "arxiv_id": "2606.05129"
+    },
+    {
+      "title": "rosa: a robotics foundation model serving system for robot factories",
+      "arxiv_id": "2607.01088"
+    },
+    {
+      "title": "sps: steering probability squeezing for better exploration in reinforcement lear",
+      "arxiv_id": "2604.16995"
+    },
+    {
+      "title": "a framework for directed hypergraph signal processing via tensor t-svd",
+      "arxiv_id": "2606.25112"
+    },
+    {
+      "title": "towards privacy-preserving machine translation at the inference stage: a new tas",
+      "arxiv_id": "2603.14756"
+    },
+    {
+      "title": "size doesn't matter: cosine-scored sparse autoencoders",
+      "arxiv_id": "2606.15054"
+    },
+    {
+      "title": "sparse subspace-to-expert sharing for task-agnostic continual learning",
+      "arxiv_id": "2606.07500"
+    },
+    {
+      "title": "convex distance operator transport: a convex and geometry-preserving formulation",
+      "arxiv_id": "2606.02047"
+    },
+    {
+      "title": "dma-latte: expanding the reach of dma offloads to latency-bound ml communication",
+      "arxiv_id": "2511.06605"
+    },
+    {
+      "title": "optimal oblivious load-balancing for sparse traffic in large-scale satellite net",
+      "arxiv_id": "2601.02537"
+    },
+    {
+      "title": "stride: training data attribution via sparse recovery from subset perturbations",
+      "arxiv_id": "2606.05165"
+    },
+    {
+      "title": "greening ai inference with accuracy and latency-aware user incentives",
+      "arxiv_id": "2605.27309"
+    },
+    {
+      "title": "quality-preserving imperceptible adversarial attack on skeleton-based human acti",
+      "arxiv_id": "2606.13022"
+    },
+    {
+      "title": "formal specification for fast acs: low-latency file-based ordered message delive",
+      "arxiv_id": "2512.04096"
+    },
+    {
+      "title": "dp-kfc: data-free preconditioning for privacy-preserving deep learning",
+      "arxiv_id": "2605.13418"
+    },
+    {
+      "title": "adaexplore: failure-driven adaptation and diversity-preserving search for effici",
+      "arxiv_id": "2604.16625"
+    },
+    {
+      "title": "uncertainty-aware prediction of lung tumor growth from sparse longitudinal ct da",
+      "arxiv_id": "2605.13560"
+    },
+    {
+      "title": "recis: sparse to dense, a unified training framework for recommendation models",
+      "arxiv_id": "2509.20883"
+    },
+    {
+      "title": "risk-aware and stable edge server selection under network latency slos",
+      "arxiv_id": "2604.21483"
+    },
+    {
+      "title": "flame: a serving system optimized for large-scale generative recommendation with",
+      "arxiv_id": "2509.22681"
+    },
+    {
+      "title": "clownfish: scaling dag-based bft consensus via sparse edges",
+      "arxiv_id": "2606.04687"
+    },
+    {
+      "title": "generation quality-latency tradeoff-aware inference offloading for multimodal ll",
+      "arxiv_id": "2606.15210"
+    },
+    {
+      "title": "query-based cross-modal projector bolstering mamba multimodal llm",
+      "arxiv_id": "2606.04719"
+    },
+    {
+      "title": "software-defined agentic serving",
+      "arxiv_id": "2601.03197"
+    },
+    {
+      "title": "probability-conserving flow guidance",
+      "arxiv_id": "2605.20079"
+    },
+    {
+      "title": "secure and privacy-preserving vertical federated learning",
+      "arxiv_id": "2604.13474"
+    },
+    {
+      "title": "langfir: discovering sparse language-specific features from monolingual data for",
+      "arxiv_id": "2604.03532"
+    },
+    {
+      "title": "a pilot benchmark for nl-to-fol translation in planetary exploration",
+      "arxiv_id": "2605.17911"
+    },
+    {
+      "title": "transformer-based sparse csi estimation for non-stationary channels",
+      "arxiv_id": "2511.01333"
+    },
+    {
+      "title": "d2m: a decentralized, privacy-preserving, incentive-compatible data marketplace ",
+      "arxiv_id": "2512.10372"
+    },
+    {
+      "title": "testing neural networks via bayesian-guided exploration of decision landscapes",
+      "arxiv_id": "2606.04314"
+    },
+    {
+      "title": "gf-dit: scheduling parallelism for diffusion transformer serving",
+      "arxiv_id": "2606.13501"
+    },
+    {
+      "title": "gradshield: alignment preserving finetuning",
+      "arxiv_id": "2605.14194"
+    },
+    {
+      "title": "trivance: latency-optimal allreduce by shortcutting multiport networks",
+      "arxiv_id": "2602.17254"
+    },
+    {
+      "title": "memprivacy: privacy-preserving personalized memory management for edge-cloud age",
+      "arxiv_id": "2605.09530"
+    },
+    {
+      "title": "energy-efficient on-device rag on a mobile npu: system design and benchmark on s",
+      "arxiv_id": "2606.11257"
+    },
+    {
+      "title": "placid: privacy-preserving large language models for acronym clinical inference ",
+      "arxiv_id": "2603.23678"
+    },
+    {
+      "title": "few tokens, big leverage: preserving safety alignment by constraining safety tok",
+      "arxiv_id": "2603.07445"
+    },
+    {
+      "title": "autonomous frontier-based exploration with vlm guidance",
+      "arxiv_id": "2605.23165"
+    },
+    {
+      "title": "agent jit compilation for latency-optimizing web agent planning and scheduling",
+      "arxiv_id": "2605.21470"
+    },
+    {
+      "title": "normguard: reward-preserving norm constraints in flow-matching reinforcement lea",
+      "arxiv_id": "2606.27771"
+    },
+    {
+      "title": "optimization in sparse 2d to dense 3d weakly supervised learning: application to",
+      "arxiv_id": "2605.12753"
+    },
+    {
+      "title": "online market making and the value of observing the order book",
+      "arxiv_id": "2605.19584"
+    },
+    {
+      "title": "hallusae: detecting hallucinations in large language models via sparse auto-enco",
+      "arxiv_id": "2604.16430"
+    },
+    {
+      "title": "do language models encode semantic relations? probing and sparse feature analysi",
+      "arxiv_id": "2603.17624"
+    },
+    {
+      "title": "orderdp: a theoretically guaranteed lossless dynamic data pruning framework",
+      "arxiv_id": "2606.08574"
+    },
+    {
+      "title": "privacy-preserving local language models for longitudinal data retrieval in chro",
+      "arxiv_id": "2605.25020"
+    },
+    {
+      "title": "convolutional sparse coding via the locally competitive algorithm on loihi 2",
+      "arxiv_id": "2606.08584"
+    },
+    {
+      "title": "timelens: on-device artifact recognition with retrieval-augmented question answe",
+      "arxiv_id": "2606.13267"
+    },
+    {
+      "title": "same concept, different directions: cross-modal feature heterogeneity in sparse ",
+      "arxiv_id": "2606.29888"
+    },
+    {
+      "title": "theoretical analysis of sparse optimization with reparameterization, weight deca",
+      "arxiv_id": "2605.25134"
+    },
+    {
+      "title": "morfi: monotonic sparse autoencoder feature identification",
+      "arxiv_id": "2604.26866"
+    },
+    {
+      "title": "the sample complexity of multiclass and sparse contextual bandits",
+      "arxiv_id": "2605.29645"
+    },
+    {
+      "title": "when context compensates for sparse event history: alphaearth for spatio-tempora",
+      "arxiv_id": "2607.01082"
+    },
+    {
+      "title": "an exploration-analysis-disambiguation reasoning framework for word sense disamb",
+      "arxiv_id": "2603.05400"
+    },
+    {
+      "title": "privacy-preserving coding schemes for multi-access distributed computing models",
+      "arxiv_id": "2602.07850"
+    },
+    {
+      "title": "babeldoc: better layout-preserving pdf translation via intermediate representati",
+      "arxiv_id": "2605.10845"
+    },
+    {
+      "title": "u-hno: a u-shaped hybrid neural operator with sparse-point adaptive routing for ",
+      "arxiv_id": "2605.12965"
+    },
+    {
+      "title": "muse: multi-tenant model serving with seamless model updates",
+      "arxiv_id": "2602.11776"
+    },
+    {
+      "title": "sdsl-solver: scalable distributed sparse linear solvers for large-scale interior",
+      "arxiv_id": "2604.23979"
+    },
+    {
+      "title": "mineexplorer: evaluating open-world exploration of mllm agents in minecraft",
+      "arxiv_id": "2605.30931"
+    },
+    {
+      "title": "privacy-preserving credit risk prediction with alternative data",
+      "arxiv_id": "2606.10333"
+    },
+    {
+      "title": "fluidsplat: reconstructing physical fields from sparse sensors via gaussian prim",
+      "arxiv_id": "2605.18866"
+    },
+    {
+      "title": "exploring sparse matrix multiplication kernels on the cerebras cs-3",
+      "arxiv_id": "2604.27985"
+    },
+    {
+      "title": "twings: thin plate splines warp-aligned initialization for sparse-view gaussian ",
+      "arxiv_id": "2605.22069"
+    },
+    {
+      "title": "mitigating context switching in densely packed linux clusters with latency-aware",
+      "arxiv_id": "2508.15703"
+    },
+    {
+      "title": "exploration of perceptual speech features for clinical decision-support in menta",
+      "arxiv_id": "2605.24678"
+    },
+    {
+      "title": "free energy estimation on any state space",
+      "arxiv_id": "2605.31063"
+    },
+    {
+      "title": "policy split: incentivizing dual-mode exploration in llm reinforcement with dual",
+      "arxiv_id": "2604.11510"
+    },
+    {
+      "title": "learning to sparsify stochastic linear bandits",
+      "arxiv_id": "2605.10151"
+    },
+    {
+      "title": "decoupling inference from state updates in low-latency feature engines via proba",
+      "arxiv_id": "2606.16981"
+    },
+    {
+      "title": "what changes after deployment? a survey on on-device learning in tinyml",
+      "arxiv_id": "2605.31226"
+    },
+    {
+      "title": "roles with rails: contract-preserving role evolution in multi-agent structured r",
+      "arxiv_id": "2605.28433"
+    },
+    {
+      "title": "argus: quality-aware high-throughput text-to-image inference serving system",
+      "arxiv_id": "2511.06724"
+    },
+    {
+      "title": "neuron-fabric: architecture-runtime co-design for controlled low-bit gradient co",
+      "arxiv_id": "2606.25759"
+    },
+    {
+      "title": "vanderer: map-free exploration using future-aware and visual-curiosity-guided di",
+      "arxiv_id": "2606.14879"
+    },
+    {
+      "title": "privacy-preserving text sanitization for distributed agents collaboration via di",
+      "arxiv_id": "2606.15335"
+    },
+    {
+      "title": "farther the shift, sparser the representation: analyzing ood mechanisms in llms",
+      "arxiv_id": "2603.03415"
+    },
+    {
+      "title": "benchmarking federated learning for throughput prediction in 5g live streaming a",
+      "arxiv_id": "2508.08479"
+    },
+    {
+      "title": "scalemap: preserving local density and neighborhood structure in low-dimensional",
+      "arxiv_id": "2605.30597"
+    },
+    {
+      "title": "haste: hardware-aware dynamic sparse training for large output spaces",
+      "arxiv_id": "2606.01117"
+    },
+    {
+      "title": "feature learning in wide neural networks under $μ$p: identifiability and sparse-",
+      "arxiv_id": "2605.24710"
+    },
+    {
+      "title": "discovering millions of interpretable features with sparse autoencoders",
+      "arxiv_id": "2606.26620"
+    },
+    {
+      "title": "disentangled sparse representations for concept-separated diffusion unlearning",
+      "arxiv_id": "2605.12122"
+    },
+    {
+      "title": "privacy-preserving iot in connected aircraft cabin",
+      "arxiv_id": "2511.15278"
+    },
+    {
+      "title": "on-device neural architecture search",
+      "arxiv_id": "2606.24900"
+    },
+    {
+      "title": "physics-preserving latent compression for zero-shot resolution transfer in 3d tu",
+      "arxiv_id": "2606.21781"
+    },
+    {
+      "title": "rsh-spmm: a row-structured hybrid kernel for sparse matrix-matrix multiplication",
+      "arxiv_id": "2603.08734"
+    },
+    {
+      "title": "torch-sla: differentiable sparse linear algebra with adjoint solvers and sparse ",
+      "arxiv_id": "2601.13994"
+    },
+    {
+      "title": "spacemoe: realizing distributed mixture-of-experts inference over space networks",
+      "arxiv_id": "2605.00515"
+    },
+    {
+      "title": "mpu: towards secure and privacy-preserving knowledge unlearning for large langua",
+      "arxiv_id": "2602.23798"
+    },
+    {
+      "title": "s2aligner: pair-efficient and transferable pre-training for sparse text-attribut",
+      "arxiv_id": "2605.18579"
+    },
+    {
+      "title": "lstm-based detection of structural breaks in property insurance loss reserving: ",
+      "arxiv_id": "2606.11463"
+    },
+    {
+      "title": "recovery thresholds for hidden weighted sparse graphs",
+      "arxiv_id": "2606.14335"
+    },
+    {
+      "title": "associative-state universal transformers: sparse retrieval meets structured recu",
+      "arxiv_id": "2604.25930"
+    },
+    {
+      "title": "dxpta: an architecture design space exploration with optical dataflow-guided str",
+      "arxiv_id": "2606.06515"
+    },
+    {
+      "title": "mechanistic interpretability of eeg foundation models via sparse autoencoders",
+      "arxiv_id": "2605.13930"
+    },
+    {
+      "title": "olfactory-inspired sparse combinatorial coding for low-resource named entity rec",
+      "arxiv_id": "2606.21895"
+    },
+    {
+      "title": "the reasoning bottleneck in graph-rag: structured prompting and context compress",
+      "arxiv_id": "2603.14045"
+    },
+    {
+      "title": "high-performance star-m svd for big data compression",
+      "arxiv_id": "2605.16058"
+    },
+    {
+      "title": "the ubiquitous sparse matrix-matrix products",
+      "arxiv_id": "2508.04077"
+    },
+    {
+      "title": "anomaly detection for sparse and irregular multivariate time series with latent ",
+      "arxiv_id": "2606.18898"
+    },
+    {
+      "title": "predictive autoscaling for node.js on kubernetes: lower latency, right-sized cap",
+      "arxiv_id": "2604.19705"
+    },
+    {
+      "title": "provably communication-efficient and privacy-preserving federated graph neural n",
+      "arxiv_id": "2605.26243"
+    },
+    {
+      "title": "privacy-preserving generation fraud detection for distributed photovoltaic syste",
+      "arxiv_id": "2605.17039"
+    },
+    {
+      "title": "privacy-preserving and incentive-driven relay-based framework for cross-domain b",
+      "arxiv_id": "2510.14151"
+    },
+    {
+      "title": "chop: chunkwise context-preserving framework for rag on multi documents",
+      "arxiv_id": "2604.15802"
+    },
+    {
+      "title": "efficient exploration for iterative nash preference optimization",
+      "arxiv_id": "2606.01382"
+    },
+    {
+      "title": "design space exploration of dma based finer-grain compute communication overlap",
+      "arxiv_id": "2512.10236"
+    },
+    {
+      "title": "data-augmented game starts for accelerating self-play exploration in imperfect i",
+      "arxiv_id": "2605.14379"
+    },
+    {
+      "title": "uncertainty-aware (un)supervised few-shot user adaptation for on-device personal",
+      "arxiv_id": "2606.04798"
+    },
+    {
+      "title": "learning fill-in reduction ordering via graph policy optimization for sparse mat",
+      "arxiv_id": "2605.17362"
+    },
+    {
+      "title": "toten: a knowledge-based system for structure-preserving representation of physi",
+      "arxiv_id": "2606.19626"
+    },
+    {
+      "title": "blossom: block-wise federated learning over shared and sparse observed modalitie",
+      "arxiv_id": "2603.27552"
+    },
+    {
+      "title": "optimal good-case latency for sleepy consensus",
+      "arxiv_id": "2510.06023"
+    },
+    {
+      "title": "multilingual steering by design: multilingual sparse autoencoders and principled",
+      "arxiv_id": "2605.23036"
+    },
+    {
+      "title": "streamwise: serving multi-modal generation in real-time at scale",
+      "arxiv_id": "2603.05800"
+    },
+    {
+      "title": "rational sparse autoencoder",
+      "arxiv_id": "2606.14990"
+    },
+    {
+      "title": "hadagent: harness-aware decentralized agentic ai serving with proof-of-inference",
+      "arxiv_id": "2604.18614"
+    },
+    {
+      "title": "agentserve: algorithm-system co-design for efficient agentic ai serving on a con",
+      "arxiv_id": "2603.10342"
+    },
+    {
+      "title": "self-supervised learning for sparse matrix reordering",
+      "arxiv_id": "2605.17403"
+    },
+    {
+      "title": "privacy preserving reinforcement learning with one-sided feedback",
+      "arxiv_id": "2605.18246"
+    },
+    {
+      "title": "pure exploration for a good policy in reinforcement learning with bandit feedbac",
+      "arxiv_id": "2605.23182"
+    },
+    {
+      "title": "selective token-level cryptographic redaction for privacy-preserving clinical de",
+      "arxiv_id": "2606.03399"
+    },
+    {
+      "title": "a structure-aware irregular blocking method for sparse lu factorization",
+      "arxiv_id": "2512.04389"
+    },
+    {
+      "title": "building a privacy-preserving federated recommender system for mobile devices",
+      "arxiv_id": "2605.22924"
+    },
+    {
+      "title": "reading task failure off the activations: a sparse-feature audit of gpt-2 small ",
+      "arxiv_id": "2605.22719"
+    },
+    {
+      "title": "verification challenges in sparse matrix vector multiplication in high performan",
+      "arxiv_id": "2510.13427"
+    },
+    {
+      "title": "on the curse of dimensionality in private sparse covariance estimation and pca",
+      "arxiv_id": "2606.21951"
+    },
+    {
+      "title": "the inference-compute frontier and a latency-efficient architecture for limit or",
+      "arxiv_id": "2606.25986"
+    },
+    {
+      "title": "reclaiming idle cpu cycles on kubernetes: sparse-domain multiplexing for concurr",
+      "arxiv_id": "2604.00377"
+    },
+    {
+      "title": "multilingual knowledge transfer under data constraints via lexical interventions",
+      "arxiv_id": "2605.23885"
+    },
+    {
+      "title": "zkp-fedeval: verifiable and privacy-preserving federated evaluation using zero-k",
+      "arxiv_id": "2507.11649"
+    },
+    {
+      "title": "tridentserve: a stage-level serving system for diffusion pipelines",
+      "arxiv_id": "2510.02838"
+    },
+    {
+      "title": "modularized reinforcement learning on llms: from mdp creation to exploration and",
+      "arxiv_id": "2606.21943"
+    },
+    {
+      "title": "a privacy-preserving framework using remote data science for inter-institutional",
+      "arxiv_id": "2606.12845"
+    },
+    {
+      "title": "structure-preserving document translation via multi-stage llm pipeline: a case s",
+      "arxiv_id": "2606.28796"
+    },
+    {
+      "title": "wattgpu: predicting inference power and latency on unseen gpus and llms",
+      "arxiv_id": "2607.02391"
+    },
+    {
+      "title": "serving compound inference systems on datacenter gpus",
+      "arxiv_id": "2603.08797"
+    },
+    {
+      "title": "sika-gp: accelerating gaussian process inference with sparse inducing kernel app",
+      "arxiv_id": "2605.26509"
+    },
+    {
+      "title": "posterior contraction rates for sparse kolmogorov-arnold networks in anisotropic",
+      "arxiv_id": "2605.11652"
+    },
+    {
+      "title": "annotation-informed block-sparse bayesian modeling for cis-expression prediction",
+      "arxiv_id": "2606.00483"
+    },
+    {
+      "title": "smartphonedemocracy: privacy-preserving e-voting on decentralized infrastructure",
+      "arxiv_id": "2507.09453"
+    },
+    {
+      "title": "hardware-aware low-latency quantum compilation with data-driven lightweight erro",
+      "arxiv_id": "2606.07666"
+    },
+    {
+      "title": "locally confident, globally stuck: the quality-exploration dilemma in diffusion ",
+      "arxiv_id": "2604.00375"
+    },
+    {
+      "title": "privacy-preserving federated learning: integrating zero-knowledge proofs in scal",
+      "arxiv_id": "2605.08152"
+    },
+    {
+      "title": "a robust optimization approach to sparse principal component analysis",
+      "arxiv_id": "2606.03553"
+    },
+    {
+      "title": "swarmx: agentic scheduling for low-latency agentic systems",
+      "arxiv_id": "2606.21401"
+    },
+    {
+      "title": "an efficient and privacy-preserving architecture for cross-institutional collabo",
+      "arxiv_id": "2605.25716"
+    },
+    {
+      "title": "jina-embeddings-v5-omni: geometry-preserving embeddings via locked aligned tower",
+      "arxiv_id": "2605.08384"
+    },
+    {
+      "title": "belief propagation converges to gaussian distributions in sparsely-connected fac",
+      "arxiv_id": "2601.21935"
+    },
+    {
+      "title": "latency prediction for llm inference on npu systems",
+      "arxiv_id": "2606.18042"
+    },
+    {
+      "title": "universal boosts, specific suppressors: sparse autoencoder steering of medical v",
+      "arxiv_id": "2605.24977"
+    },
+    {
+      "title": "ppipe: efficient video analytics serving on heterogeneous gpu clusters via pool-",
+      "arxiv_id": "2507.18748"
+    },
+    {
+      "title": "sparse probes and murky physics: a case study of interpretability challenges in ",
+      "arxiv_id": "2606.11657"
+    },
+    {
+      "title": "hierarchical projection for adaptive knowledge transfer",
+      "arxiv_id": "2606.08691"
+    },
+    {
+      "title": "pexa: parallel exploration agent for complex text-to-sql",
+      "arxiv_id": "2604.22934"
+    },
+    {
+      "title": "bodega: serving linearizable reads locally from anywhere at anytime via roster l",
+      "arxiv_id": "2509.07158"
+    },
+    {
+      "title": "modeling the impact of fiber latency on compute-communication overlap in geo-dis",
+      "arxiv_id": "2605.19169"
+    },
+    {
+      "title": "legodiffusion: micro-serving text-to-image diffusion workflows",
+      "arxiv_id": "2604.08123"
+    },
+    {
+      "title": "filark: a streaming-first software framework for end-to-end exploration, annotat",
+      "arxiv_id": "2605.20132"
+    },
+    {
+      "title": "nonsense helps: prompt space perturbation broadens reasoning exploration",
+      "arxiv_id": "2605.05566"
+    },
+    {
+      "title": "dissecting chronos: sparse autoencoders reveal causal feature hierarchies in tim",
+      "arxiv_id": "2603.10071"
+    },
+    {
+      "title": "datastorm: deep research on large-scale databases using exploratory data analysi",
+      "arxiv_id": "2604.06474"
+    },
+    {
+      "title": "functional graphs for predicting and explaining goal failure in sparse goal-cond",
+      "arxiv_id": "2605.09335"
+    },
+    {
+      "title": "feature rivalry in sparse autoencoder representations: a mechanistic study of un",
+      "arxiv_id": "2605.08149"
+    },
+    {
+      "title": "a reliability- and latency-driven task allocation framework for workflow applica",
+      "arxiv_id": "2602.18158"
+    },
+    {
+      "title": "ptopofl: privacy-preserving personalised federated learning via persistent homol",
+      "arxiv_id": "2603.04323"
+    },
+    {
+      "title": "no more k-means: single-stage sparse coding for efficient multi-vector retrieval",
+      "arxiv_id": "2605.30120"
+    },
+    {
+      "title": "extra: exploratory trajectory optimization for language model reinforcement lear",
+      "arxiv_id": "2606.24994"
+    },
+    {
+      "title": "sparsified kolmogorov-arnold networks for interpretable quantum state tomography",
+      "arxiv_id": "2606.11814"
+    },
+    {
+      "title": "interpreting and steering a text-to-speech language model with sparse autoencode",
+      "arxiv_id": "2606.10029"
+    },
+    {
+      "title": "kairos: low-latency multi-agent serving with shared llms and excessive loads in ",
+      "arxiv_id": "2508.06948"
+    },
+    {
+      "title": "vesta: visual exploration with statistical tool agents",
+      "arxiv_id": "2606.00384"
+    },
+    {
+      "title": "operator learning for reconstructing flow fields from sparse measurements: a lan",
+      "arxiv_id": "2605.23712"
+    },
+    {
+      "title": "subspace-aware sparse autoencoders for effective mechanistic interpretability",
+      "arxiv_id": "2606.06333"
+    },
+    {
+      "title": "sparse pod mode selection and manifold dimensionality reduction with neural netw",
+      "arxiv_id": "2605.27756"
+    },
+    {
+      "title": "sage: stochastic prompt optimization via agent-guided exploration",
+      "arxiv_id": "2606.18902"
+    },
+    {
+      "title": "causalmoe: a billion-scale multimodal foundation model for granger causal discov",
+      "arxiv_id": "2606.13024"
+    },
+    {
+      "title": "hyperquant: a rate-distortion-optimal quantization pipeline for large language a",
+      "arxiv_id": "2606.23406"
+    },
+    {
+      "title": "vessel traffic flow prediction on sparse data via spatio-temporal graph neural n",
+      "arxiv_id": "2606.07694"
+    },
+    {
+      "title": "on the benefits of free exploration for regret minimization in multi-armed bandi",
+      "arxiv_id": "2605.25789"
+    },
+    {
+      "title": "earthsight: a distributed framework for low-latency satellite intelligence",
+      "arxiv_id": "2511.10834"
+    },
+    {
+      "title": "experiences building enterprise-level privacy-preserving federated learning to p",
+      "arxiv_id": "2511.08998"
+    },
+    {
+      "title": "flowpie: test-time scientific idea evolution with flow-guided literature explora",
+      "arxiv_id": "2603.29557"
+    },
+    {
+      "title": "cram: centroid-routing and adaptive moe for multimodal continual instruction tun",
+      "arxiv_id": "2606.02502"
+    },
+    {
+      "title": "breaking the ice: analyzing cold start latency in vllm",
+      "arxiv_id": "2606.07362"
+    },
+    {
+      "title": "privacy preserving topic-wise sentiment analysis of the iran israel usa conflict",
+      "arxiv_id": "2603.13655"
+    },
+    {
+      "title": "spar: support-preserving action rectification",
+      "arxiv_id": "2605.27877"
+    },
+    {
+      "title": "a cross-layered multi-drone coordination for medical supply delivery during disa",
+      "arxiv_id": "2605.09342"
+    },
+    {
+      "title": "spader: step-wise peer advantage with diversity-aware exploration rewards for mu",
+      "arxiv_id": "2606.00593"
+    },
+    {
+      "title": "tangram: unlocking non-uniform kv cache compression for efficient multi-turn llm",
+      "arxiv_id": "2606.06302"
+    },
+    {
+      "title": "uncertainty-aware exploratory direct preference optimization for multimodal larg",
+      "arxiv_id": "2605.04874"
+    },
+    {
+      "title": "multi-objective exploration and preference optimization via mutual information",
+      "arxiv_id": "2607.01392"
+    },
+    {
+      "title": "cortex: achieving low-latency, cost-efficient remote data access for llm via sem",
+      "arxiv_id": "2509.17360"
+    },
+    {
+      "title": "the degeneracy distillery",
+      "arxiv_id": "2606.23838"
+    },
+    {
+      "title": "learning solution operators of pdes with sparse approximation methods",
+      "arxiv_id": "2606.06046"
+    },
+    {
+      "title": "mdforge: agentic molecular dynamics pipeline design under sparse simulator feedb",
+      "arxiv_id": "2606.12916"
+    },
+    {
+      "title": "short-circuiting rings for low-latency allreduce",
+      "arxiv_id": "2510.03491"
+    },
+    {
+      "title": "do sparse autoencoders learn meaningful concept hierarchies?",
+      "arxiv_id": "2606.22994"
+    },
+    {
+      "title": "on privacy-preserving image transmission in low-altitude networks: a swin transf",
+      "arxiv_id": "2605.12566"
+    },
+    {
+      "title": "simulation-free estimation of traffic flows from sparse count data",
+      "arxiv_id": "2606.23536"
+    },
+    {
+      "title": "psygentab: a privacy-preserving framework for synthetic clinical tabular data ge",
+      "arxiv_id": "2606.18518"
+    },
+    {
+      "title": "aragog: just-in-time model routing for scalable serving of agentic workflows",
+      "arxiv_id": "2511.20975"
+    },
+    {
+      "title": "passing the baton: high throughput distributed disk-based vector search with bat",
+      "arxiv_id": "2512.09331"
+    },
+    {
+      "title": "a privacy-preserving ecosystem for developing machine learning algorithms using ",
+      "arxiv_id": "2510.25277"
+    },
+    {
+      "title": "a low-latency semantic state estimator using latent predictive learning for dyna",
+      "arxiv_id": "2606.08869"
+    },
+    {
+      "title": "flashsketch: sketch-kernel co-design for fast sparse sketching on gpus",
+      "arxiv_id": "2602.06071"
+    },
+    {
+      "title": "delightful exploration",
+      "arxiv_id": "2605.13287"
+    },
+    {
+      "title": "flexsql: flexible exploration and execution make better text-to-sql agents",
+      "arxiv_id": "2605.02815"
+    },
+    {
+      "title": "a framework to reason about consistency and atomicity guarantees in a sparsely-c",
+      "arxiv_id": "2603.03899"
+    },
+    {
+      "title": "df-expense: diffusion filtered exploration for sample efficient finetuning",
+      "arxiv_id": "2606.19656"
+    },
+    {
+      "title": "jamming-resilient prb reservation for latency-critical o-ran network slicing",
+      "arxiv_id": "2605.30622"
+    },
+    {
+      "title": "perpetual exploration in anonymous synchronous networks with a byzantine black h",
+      "arxiv_id": "2508.07703"
+    },
+    {
+      "title": "spear++: scaling gradient inversion via sparsely-used dictionary learning",
+      "arxiv_id": "2510.24200"
+    },
+    {
+      "title": "intrashuffler: a privacy preserving framework for heterogeneous dp federated lea",
+      "arxiv_id": "2606.02563"
+    },
+    {
+      "title": "llmar: a tuning-free recommendation framework for sparse and text-rich industria",
+      "arxiv_id": "2604.16379"
+    },
+    {
+      "title": "privacy-preserving and verifiable approximate distributed coded computing",
+      "arxiv_id": "2607.02187"
+    },
+    {
+      "title": "predicting lakehouse performance in clouds: an empirical exploration of query ru",
+      "arxiv_id": "2606.03464"
+    },
+    {
+      "title": "preserving clusters in error-bounded lossy compression of particle data",
+      "arxiv_id": "2604.18801"
+    },
+    {
+      "title": "text-preserving lossy text compression: a study of strategic deletion and llm re",
+      "arxiv_id": "2605.29000"
+    },
+    {
+      "title": "backbone-equated diffusion ood via sparse internal snapshots",
+      "arxiv_id": "2605.11014"
+    },
+    {
+      "title": "cig: exploration via conditional information gain",
+      "arxiv_id": "2605.20878"
+    },
+    {
+      "title": "look before you leap: autonomous exploration for llm agents",
+      "arxiv_id": "2605.16143"
+    },
+    {
+      "title": "relate: learning efficient sparse encoding for high-performance tensor decomposi",
+      "arxiv_id": "2509.00280"
+    },
+    {
+      "title": "spotlight: synergizing seed exploration and spot gpus for dit rl post-training",
+      "arxiv_id": "2606.19004"
+    },
+    {
+      "title": "pdeinvbench: a comprehensive dataset and design space exploration of neural netw",
+      "arxiv_id": "2605.25353"
+    },
+    {
+      "title": "hyperion: low-latency ultra-hd video analytics via collaborative vision transfor",
+      "arxiv_id": "2512.21730"
+    },
+    {
+      "title": "privacy-preserving feature valuation in vertical federated learning using shaple",
+      "arxiv_id": "2512.14767"
+    },
+    {
+      "title": "remember to be curious: episodic context and persistent worlds for 3d exploratio",
+      "arxiv_id": "2605.22814"
+    },
+    {
+      "title": "federated cyber defense: privacy-preserving ransomware detection across distribu",
+      "arxiv_id": "2511.01583"
+    },
+    {
+      "title": "kernel-based safe exploration in deep reinforcement learning",
+      "arxiv_id": "2605.22207"
+    },
+    {
+      "title": "sok: attack and defense landscape of mobile on-device ai systems",
+      "arxiv_id": "2607.00362"
+    },
+    {
+      "title": "vectorized adaptive histograms for sparse oblique forests",
+      "arxiv_id": "2603.00326"
+    },
+    {
+      "title": "$v_{0.5}$: generalist value model as a prior for sparse rl rollouts",
+      "arxiv_id": "2603.10848"
+    },
+    {
+      "title": "cd-raft: reducing the latency of distributed consensus in cross-domain sites",
+      "arxiv_id": "2603.10555"
+    },
+    {
+      "title": "a lightweight federated learning approach for privacy-preserving botnet detectio",
+      "arxiv_id": "2510.03513"
+    },
+    {
+      "title": "on the relationship between activation outliers and feature death in sparse auto",
+      "arxiv_id": "2605.31518"
+    },
+    {
+      "title": "dual-attention convolution experts for sparse tensor completion",
+      "arxiv_id": "2606.21427"
+    },
+    {
+      "title": "correcting selection bias in sparse user feedback for large language model quali",
+      "arxiv_id": "2605.12177"
+    },
+    {
+      "title": "hadis: hybrid adaptive diffusion model serving for efficient text-to-image gener",
+      "arxiv_id": "2509.00642"
+    },
+    {
+      "title": "trace: trajectory correction from cross-layer evidence for hallucination reducti",
+      "arxiv_id": "2605.18163"
+    },
+    {
+      "title": "identifying and understanding human values in text: a tailorable llm-based archi",
+      "arxiv_id": "2605.27373"
+    },
+    {
+      "title": "mokus: leveraging cross-modal knowledge transfer for knowledge-aware concept cus",
+      "arxiv_id": "2603.12743"
+    },
+    {
+      "title": "low-cost yet high-performant sparse matrix-matrix multiplication on arm sme arch",
+      "arxiv_id": "2511.08158"
+    },
+    {
+      "title": "apex: autonomous policy exploration for self-evolving llm agents",
+      "arxiv_id": "2605.21240"
+    },
+    {
+      "title": "accelerating latency-critical applications with ai-powered semi-automatic fine-g",
+      "arxiv_id": "2509.00883"
+    },
+    {
+      "title": "snap-fm: sparse nonlinear accelerated projection for physics-constrained generat",
+      "arxiv_id": "2607.00095"
+    },
+    {
+      "title": "zero-shot size transfer for neural odes on sparse random graphs: graphon limits ",
+      "arxiv_id": "2606.26662"
+    },
+    {
+      "title": "pai: preserving amplitude information in representation-based time-series anomal",
+      "arxiv_id": "2606.08935"
+    },
+    {
+      "title": "sparse autoencoders as plug-and-play firewalls for adversarial attack detection ",
+      "arxiv_id": "2605.07447"
+    },
+    {
+      "title": "speculative policy orchestration: a latency-resilient framework for cloud-roboti",
+      "arxiv_id": "2603.19418"
+    },
+    {
+      "title": "creative quality alignment: expert tacit knowledge transfer via chain-of-thought",
+      "arxiv_id": "2605.25977"
+    },
+    {
+      "title": "neuron-fabric: cxl-side low-bit gradient aggregation for distributed training",
+      "arxiv_id": "2606.15045"
+    },
+    {
+      "title": "when data is scarce: scaling sparse language models with repeated training",
+      "arxiv_id": "2606.01155"
+    },
+    {
+      "title": "fork, explore, commit: os primitives for agentic exploration",
+      "arxiv_id": "2602.08199"
+    },
+    {
+      "title": "gated mlps as symmetry-broken rank-1 bilinear attention",
+      "arxiv_id": "2606.22172"
+    },
+    {
+      "title": "dash: deterministic attention scheduling for high-throughput reproducible llm tr",
+      "arxiv_id": "2601.21824"
+    },
+    {
+      "title": "symqnet: amortized acquisition for low-latency adaptive hamiltonian learning",
+      "arxiv_id": "2606.12808"
+    },
+    {
+      "title": "bootstrapping exploration with group-level natural language feedback in reinforc",
+      "arxiv_id": "2603.04597"
+    },
+    {
+      "title": "pion: a spectrum-preserving optimizer via orthogonal equivalence transformation",
+      "arxiv_id": "2605.12492"
+    },
+    {
+      "title": "p3sl: personalized privacy-preserving split learning on heterogeneous edge devic",
+      "arxiv_id": "2507.17228"
+    },
+    {
+      "title": "how optimality structures sparse dictionaries: a theory for understanding sae re",
+      "arxiv_id": "2606.02385"
+    },
+    {
+      "title": "moose-copilot: a web-based interactive assistant for unified exploratory and fin",
+      "arxiv_id": "2605.29475"
+    },
+    {
+      "title": "training a large language model for medical coding using privacy-preserving synt",
+      "arxiv_id": "2603.23515"
+    },
+    {
+      "title": "knowledgedebugger -- an exploration tool for knowledge localization and editing ",
+      "arxiv_id": "2607.01000"
+    },
+    {
+      "title": "sherpa.ai privacy-preserving multi-party entity alignment without intersection d",
+      "arxiv_id": "2604.19219"
+    },
+    {
+      "title": "toward efficient spmv in sparse llms via block extraction and compressed storage",
+      "arxiv_id": "2507.12205"
+    },
+    {
+      "title": "structure-preserving correction learning for sparse bayesian inference in brain ",
+      "arxiv_id": "2606.07196"
+    },
+    {
+      "title": "secure and low-latency iot analytics using an edge-based streaming architecture",
+      "arxiv_id": "2606.14712"
+    },
+    {
+      "title": "scalable distributed vector search via accuracy preserving index construction",
+      "arxiv_id": "2512.17264"
+    },
+    {
+      "title": "empowering gui agents via autonomous experience exploration and hindsight experi",
+      "arxiv_id": "2606.27330"
+    },
+    {
+      "title": "vllm-omni: fully disaggregated serving for any-to-any multimodal models",
+      "arxiv_id": "2602.02204"
+    },
+    {
+      "title": "permix-rlvr: preserving persona expressivity under verifiable-reward alignment",
+      "arxiv_id": "2604.08986"
+    },
+    {
+      "title": "romeva: geometry-preserving vocabulary expansion for roman urdu language models",
+      "arxiv_id": "2606.22478"
+    },
+    {
+      "title": "sparse functional singular value decomposition for biclustering and triclusterin",
+      "arxiv_id": "2606.05488"
+    },
+    {
+      "title": "flash-fusion: enabling expressive, low-latency queries on iot sensor streams wit",
+      "arxiv_id": "2511.11885"
+    },
+    {
+      "title": "sign-aware gated sparse autoencoders: modeling anticorrelated features with bi-j",
+      "arxiv_id": "2605.28149"
+    },
+    {
+      "title": "fast sparse matrix permutation for mesh-based direct solvers",
+      "arxiv_id": "2602.00898"
+    },
+    {
+      "title": "benchmarking on tasks that matter: dataset selection for preserving model rankin",
+      "arxiv_id": "2606.27997"
+    },
+    {
+      "title": "blazingaml: high-throughput anti-money laundering (aml) via multi-stage graph mi",
+      "arxiv_id": "2604.12241"
+    },
+    {
+      "title": "mechanistic interpretability of asr models using sparse autoencoders",
+      "arxiv_id": "2605.12225"
+    },
+    {
+      "title": "latency-aware service placement using neural combinatorial optimisers for edge--",
+      "arxiv_id": "2606.25553"
+    },
+    {
+      "title": "learning sparse compositional functions with norm-constrained neural networks",
+      "arxiv_id": "2605.25608"
+    },
+    {
+      "title": "orbit: preserving foundational language capabilities in genretrieval via origin-",
+      "arxiv_id": "2605.12419"
+    },
+    {
+      "title": "agent explorative policy optimization for multimodal agentic reasoning",
+      "arxiv_id": "2605.28774"
+    },
+    {
+      "title": "dpepo: diverse parallel exploration policy optimization for llm-based agents",
+      "arxiv_id": "2604.24320"
+    },
+    {
+      "title": "beyond rubrics: exploration-guided evaluation skills for reward modeling",
+      "arxiv_id": "2606.07040"
+    },
+    {
+      "title": "deciphering region-level signatures from latency measurements in leo satellite i",
+      "arxiv_id": "2606.29324"
+    },
+    {
+      "title": "packsell: a sparse matrix format for precision-agnostic high-performance spmv",
+      "arxiv_id": "2604.13433"
+    },
+    {
+      "title": "infoshield: privacy-preserving speech representations for mental health screenin",
+      "arxiv_id": "2606.05561"
+    },
+    {
+      "title": "cascaded sparse autoencoders learn multi-level visual concepts in multimodal llm",
+      "arxiv_id": "2606.16193"
+    },
+    {
+      "title": "exploratory experience shapes the geometry of predictive representations",
+      "arxiv_id": "2605.27929"
+    },
+    {
+      "title": "practical gpu choices for earth observation: resnet-50 training throughput on in",
+      "arxiv_id": "2508.18206"
+    },
+    {
+      "title": "efficient multi-objective prompt optimization via pure-exploration bandits",
+      "arxiv_id": "2605.14553"
+    },
+    {
+      "title": "deep embedded multiplicative dmd for algebra-preserving koopman learning",
+      "arxiv_id": "2606.05131"
+    },
+    {
+      "title": "tevi: text-conditioned editing of visual representations via sparse autoencoders",
+      "arxiv_id": "2606.07451"
+    },
+    {
+      "title": "kairos: a scalable serving system for physical ai",
+      "arxiv_id": "2605.11381"
+    },
+    {
+      "title": "local-minima-preserving continuous relaxation of ising problems",
+      "arxiv_id": "2606.30333"
+    },
+    {
+      "title": "exploration and online transfer with behavioral foundation models",
+      "arxiv_id": "2606.29980"
+    },
+    {
+      "title": "joint model and data sparsification via the marginal likelihood",
+      "arxiv_id": "2605.29908"
+    },
+    {
+      "title": "multi-timescale conductance spiking networks: a sparse, gradient-trainable frame",
+      "arxiv_id": "2605.11835"
+    },
+    {
+      "title": "sparse in-network learning via shortest-path backpropagation and finite-rate gat",
+      "arxiv_id": "2605.23424"
+    },
+    {
+      "title": "odyssey: constructing verifiable local truth-preserving foundation models",
+      "arxiv_id": "2606.27593"
+    },
+    {
+      "title": "surrogateshield: beyond redaction for high-utility, privacy-preserving llm inter",
+      "arxiv_id": "2606.29567"
+    },
+    {
+      "title": "privacy-preserving rag via multi-agent semantic rewriting: achieving confidentia",
+      "arxiv_id": "2606.24623"
+    },
+    {
+      "title": "goodserve: towards high-goodput serving of agentic llm inferences over heterogen",
+      "arxiv_id": "2605.16867"
+    },
+    {
+      "title": "craft: latency and cost-aware genetic-based framework for node placement in edge",
+      "arxiv_id": "2507.12445"
+    },
+    {
+      "title": "toward identifiable sparse autoencoders",
+      "arxiv_id": "2605.31245"
+    },
+    {
+      "title": "amped: accelerating mttkrp for billion-scale sparse tensor decomposition on mult",
+      "arxiv_id": "2507.15121"
+    },
+    {
+      "title": "bim information extraction through llm-based adaptive exploration",
+      "arxiv_id": "2605.01698"
+    },
+    {
+      "title": "aegisblock: a privacy-preserving medical research framework using blockchain",
+      "arxiv_id": "2508.11797"
+    },
+    {
+      "title": "design of a low-latency and parallelizable svd dataflow architecture on fpga",
+      "arxiv_id": "2511.12461"
+    },
+    {
+      "title": "gpusparse: gpu-accelerated learned sparse retrieval with parallel inverted indic",
+      "arxiv_id": "2606.26441"
+    },
+    {
+      "title": "asymmetric scaling laws from sparse features",
+      "arxiv_id": "2605.23591"
+    },
+    {
+      "title": "from volume to value: preference-aligned memory construction for on-device rag",
+      "arxiv_id": "2605.18271"
+    },
+    {
+      "title": "planner-admissible graph-pde value extensions for sparse goal-conditioned planni",
+      "arxiv_id": "2605.19185"
+    },
+    {
+      "title": "parallelizing tool execution and llm generation for low-latency agent serving",
+      "arxiv_id": "2603.18897"
+    },
+    {
+      "title": "shapo: sharpness-aware policy optimization for safe exploration",
+      "arxiv_id": "2606.10228"
+    },
+    {
+      "title": "glint: sparsely gated vision-language alignment for fine-grained radiology repre",
+      "arxiv_id": "2606.03180"
+    },
+    {
+      "title": "1.5 million messages per second on 3 machines: benchmarking and latency optimiza",
+      "arxiv_id": "2603.29113"
+    },
+    {
+      "title": "fast reconstruction of exact maxwell dynamics from sparse data",
+      "arxiv_id": "2605.20514"
+    },
+    {
+      "title": "analyzing visual aircraft representations with sparse autoencoders",
+      "arxiv_id": "2606.15468"
+    },
+    {
+      "title": "flash pd-ssm: memory-optimized structured sparse state-space models",
+      "arxiv_id": "2605.19150"
+    },
+    {
+      "title": "large-scale graph building in dynamic environments: low latency and high quality",
+      "arxiv_id": "2507.10139"
+    },
+    {
+      "title": "don't read everything: a curvature-conditioned query for linear attention",
+      "arxiv_id": "2606.01294"
+    },
+    {
+      "title": "cm-evs: sparse panoramic rgb-d-pose data for complete scene coverage",
+      "arxiv_id": "2605.15597"
+    },
+    {
+      "title": "refusalguard: geometry-preserving fine-tuning for safety in llms",
+      "arxiv_id": "2605.01913"
+    },
+    {
+      "title": "communication-efficient serving for video diffusion models with latent paralleli",
+      "arxiv_id": "2512.07350"
+    },
+    {
+      "title": "asynchronous collective tree exploration: a distributed algorithm, and a new low",
+      "arxiv_id": "2507.15658"
+    },
+    {
+      "title": "cornfigurator: automated planning for any-to-any multimodal model serving",
+      "arxiv_id": "2512.14098"
+    },
+    {
+      "title": "srfed: mitigating poisoning attacks in privacy-preserving federated learning wit",
+      "arxiv_id": "2602.16480"
+    },
+    {
+      "title": "the impact of vocabulary overlaps on knowledge transfer in multilingual machine ",
+      "arxiv_id": "2605.04196"
+    },
+    {
+      "title": "pyginkgo: a sparse linear algebra operator framework for python",
+      "arxiv_id": "2510.08230"
+    },
+    {
+      "title": "taming asynchronous cpu-gpu coupling for frequency-aware latency estimation on m",
+      "arxiv_id": "2604.15357"
+    },
+    {
+      "title": "optimizing split learning latency in tinyml-based iot systems",
+      "arxiv_id": "2507.16594"
+    },
+    {
+      "title": "probabilistic computers for mimo detection: from sparsification to 2d parallel t",
+      "arxiv_id": "2601.09037"
+    },
+    {
+      "title": "anysimlite: a lightweight few-shot similarity encoder for on-device speech-adjac",
+      "arxiv_id": "2606.26452"
+    },
+    {
+      "title": "labo: llm-accelerated bayesian optimization through broad exploration and select",
+      "arxiv_id": "2605.22054"
+    },
+    {
+      "title": "latency-aware deep learning benchmark for real-time cyber-physical attack and fa",
+      "arxiv_id": "2605.17256"
+    },
+    {
+      "title": "nalar: an agent serving framework",
+      "arxiv_id": "2601.05109"
+    },
+    {
+      "title": "convmemory v2: a recall-preserving top-10 evidence reranker for conversational m",
+      "arxiv_id": "2606.10842"
+    },
+    {
+      "title": "towards understanding the robustness of sparse autoencoders",
+      "arxiv_id": "2604.18756"
+    },
+    {
+      "title": "privacy-preserving chunk scheduling in a bittorrent implementation of federated ",
+      "arxiv_id": "2605.10499"
+    },
+    {
+      "title": "a theory of time-sensitive language generation: sparse hallucination beats mode ",
+      "arxiv_id": "2605.11302"
+    },
+    {
+      "title": "latency-quality routing for functionally equivalent tools in llm agents",
+      "arxiv_id": "2605.14241"
+    },
+    {
+      "title": "firma: fibonacci ring model aggregation for privacy-preserving federated learnin",
+      "arxiv_id": "2605.22898"
+    },
+    {
+      "title": "structure-aware graph multi-task learning for dynamic sparse od demand predictio",
+      "arxiv_id": "2606.21022"
+    },
+    {
+      "title": "accelerating hierarchical sparse predictive coding with hybrid amortized inferen",
+      "arxiv_id": "2606.27802"
+    },
+    {
+      "title": "a memory efficient unified algorithm for online learning of linear dynamical sys",
+      "arxiv_id": "2607.02050"
+    },
+    {
+      "title": "flint: compiler enabled cluster-free design space exploration for distributed ml",
+      "arxiv_id": "2604.17550"
+    },
+    {
+      "title": "at the edge of understanding: sparse autoencoders trace the limits of transforme",
+      "arxiv_id": "2606.26396"
+    },
+    {
+      "title": "head count: privacy-preserving face-based crowd monitoring",
+      "arxiv_id": "2604.14250"
+    },
+    {
+      "title": "two-dimensional sparse parallelism for large scale deep learning recommendation ",
+      "arxiv_id": "2508.03854"
+    },
+    {
+      "title": "areon: latency-friendly and resilient multi-proposer consensus",
+      "arxiv_id": "2511.23025"
+    },
+    {
+      "title": "a hybrid edge-cloud architecture for low-latency entitlement verification in res",
+      "arxiv_id": "2606.10536"
+    },
+    {
+      "title": "feature-preserving latent-enkf for data assimilation of flows with shocks",
+      "arxiv_id": "2606.12559"
+    },
+    {
+      "title": "stickyinvoc: rethinking task models for high-throughput workflows in the llm era",
+      "arxiv_id": "2606.22175"
+    },
+    {
+      "title": "on-device continual learning with dual-stage buffer and dynamic loss for point-o",
+      "arxiv_id": "2605.19201"
+    },
+    {
+      "title": "pact: preserving anchored cores in task-vectors for model merging",
+      "arxiv_id": "2606.18627"
+    },
+    {
+      "title": "transition-based digital twin modelling for alzheimer's disease under sparse lon",
+      "arxiv_id": "2606.09671"
+    },
+    {
+      "title": "on the challenges and opportunities of learned sparse retrieval for code",
+      "arxiv_id": "2603.22008"
+    },
+    {
+      "title": "exploration of energy and throughput tradeoffs for dataflow networks",
+      "arxiv_id": "2603.29367"
+    },
+    {
+      "title": "locality does not imply reachability: boundary repair in block-sparse causal att",
+      "arxiv_id": "2606.02680"
+    },
+    {
+      "title": "maam: anchor-preserving compression and contextual calibration for chinese discr",
+      "arxiv_id": "2606.09114"
+    },
+    {
+      "title": "sage: shaping anchors for guided exploration in rlvr of llms",
+      "arxiv_id": "2605.18864"
+    },
+    {
+      "title": "exploration on highly dynamic graphs",
+      "arxiv_id": "2601.13047"
+    },
+    {
+      "title": "echo: prune to act, trace to learn with selective turn memory in agentic rl",
+      "arxiv_id": "2606.31650"
+    },
+    {
+      "title": "privfusion: a privacy-preserving multi-agent framework for harmonizing distribut",
+      "arxiv_id": "2605.24249"
+    },
+    {
+      "title": "hybrid edge-hpc systems for low-latency data-driven inference",
+      "arxiv_id": "2605.20532"
+    },
+    {
+      "title": "efficient rag with intent-aware retrieval and semantics-preserving chunking",
+      "arxiv_id": "2606.01240"
+    },
+    {
+      "title": "topology-preserving neural operator learning via hodge decomposition",
+      "arxiv_id": "2605.13834"
+    },
+    {
+      "title": "tmrl: diffusion timestep-modulated pretraining enables exploration for efficient",
+      "arxiv_id": "2605.12236"
+    },
+    {
+      "title": "optimizing high-throughput distributed data pipelines for reproducible deep lear",
+      "arxiv_id": "2604.21275"
+    },
+    {
+      "title": "dual-flow reinforcement learning with state-aware exploration",
+      "arxiv_id": "2606.29820"
+    },
+    {
+      "title": "managing multi instance gpus for high throughput and energy savings",
+      "arxiv_id": "2508.18556"
+    },
+    {
+      "title": "lpds: evaluating llm robustness through logic-preserving difficulty scaling",
+      "arxiv_id": "2605.15393"
+    },
+    {
+      "title": "output composability of qlora peft modules for plug-and-play attribute-controlle",
+      "arxiv_id": "2605.12345"
+    },
+    {
+      "title": "human adults and llms as scientists: who benefits from active exploration?",
+      "arxiv_id": "2606.06464"
+    },
+    {
+      "title": "fora: from weight-space to function-space protection in capability-preserving fi",
+      "arxiv_id": "2606.31092"
+    },
+    {
+      "title": "residualized temporal sparse autoencoders for interpreting diffusion models",
+      "arxiv_id": "2605.27813"
+    },
+    {
+      "title": "operational memory architecture for kubernetes:preserving causal context across ",
+      "arxiv_id": "2605.18755"
+    },
+    {
+      "title": "cloud native system for llm inference serving",
+      "arxiv_id": "2507.18007"
+    },
+    {
+      "title": "an exploratory study of blood glucose estimation from photoplethysmography signa",
+      "arxiv_id": "2606.15927"
+    },
+    {
+      "title": "the african language tax: quantifying the cost, latency, and context penalty of ",
+      "arxiv_id": "2606.24460"
+    },
+    {
+      "title": "sparse mamba decoder for quantum error correction: efficient defect-centric proc",
+      "arxiv_id": "2605.17156"
+    },
+    {
+      "title": "fairgfl: privacy-preserving fairness-aware federated learning with overlapping s",
+      "arxiv_id": "2512.23235"
+    },
+    {
+      "title": "when llm reward design fails: diagnostic-driven refinement for sparse structured",
+      "arxiv_id": "2605.28918"
+    },
+    {
+      "title": "bringing computation to the data: a moea-driven approach for optimising data pro",
+      "arxiv_id": "2601.01980"
+    },
+    {
+      "title": "effective dimensionality as an operator invariant for physics-preserving constra",
+      "arxiv_id": "2606.06171"
+    },
+    {
+      "title": "cellular sheaf neural operators for structure-preserving surrogate modeling of c",
+      "arxiv_id": "2606.00937"
+    },
+    {
+      "title": "efficiently executing high-throughput lightweight llm inference applications on ",
+      "arxiv_id": "2510.14024"
+    },
+    {
+      "title": "anchorroute: human motion synthesis with interval-routed sparse contro",
+      "arxiv_id": "2605.14716"
+    },
+    {
+      "title": "rapnet: accelerating algebraic multigrid with learned sparse corrections",
+      "arxiv_id": "2605.26854"
+    },
+    {
+      "title": "posme: proof of sequential memory execution via latency-bound pointer chasing wi",
+      "arxiv_id": "2604.15751"
+    },
+    {
+      "title": "fermi-dirac machines as quantizations of neurons",
+      "arxiv_id": "2605.24386"
+    },
+    {
+      "title": "sword: a secure low-latency offline-first authentication and data sharing scheme",
+      "arxiv_id": "2601.12875"
+    },
+    {
+      "title": "structure-preserving neural surrogates with tractable uncertainty quantification",
+      "arxiv_id": "2606.11650"
+    },
+    {
+      "title": "set-preserving calibration from conformal p-values to e-values",
+      "arxiv_id": "2606.03600"
+    },
+    {
+      "title": "cross-lingual exploration for parametric knowledge",
+      "arxiv_id": "2606.24579"
+    },
+    {
+      "title": "overcoming latency-bound limitations of distributed graph algorithms using the h",
+      "arxiv_id": "2603.04583"
+    },
+    {
+      "title": "self-commitment latency: a reward-free probe for prompted implicit hacking",
+      "arxiv_id": "2606.05625"
+    },
+    {
+      "title": "an exploratory study into using machine-learning for fast step-by-step emulation",
+      "arxiv_id": "2606.00892"
+    },
+    {
+      "title": "hfipay: privacy-preserving, cross-chain cryptocurrency payments to human-friendl",
+      "arxiv_id": "2603.26970"
+    },
+    {
+      "title": "spira: exploiting voxel data structural properties for efficient sparse convolut",
+      "arxiv_id": "2511.20834"
+    },
+    {
+      "title": "sequential sparse gaussian process quantile regression",
+      "arxiv_id": "2606.31284"
+    },
+    {
+      "title": "semi-synchronous exploration in dynamic graphs",
+      "arxiv_id": "2605.14375"
+    },
+    {
+      "title": "rethinking rl for llm reasoning: it's sparse policy selection, not capability le",
+      "arxiv_id": "2605.06241"
+    },
+    {
+      "title": "reliable microservice tail latency prediction via decoupled dual-stream learning",
+      "arxiv_id": "2508.01635"
+    },
+    {
+      "title": "energy-efficient multimodal inference serving with tri-serve",
+      "arxiv_id": "2606.29629"
+    },
+    {
+      "title": "how low can you go? active learning for sparse model discovery in the ultra-low-",
+      "arxiv_id": "2606.12182"
+    },
+    {
+      "title": "accelerating privacy-preserving federated learning in large-scale leo satellite ",
+      "arxiv_id": "2509.12222"
+    },
+    {
+      "title": "embedding-perturbed exploration preference optimization for flow models",
+      "arxiv_id": "2605.15803"
+    },
+    {
+      "title": "data-driven sparse identification of governing pdes via knockoff filters and mul",
+      "arxiv_id": "2605.26631"
+    },
+    {
+      "title": "bridging the gap between sparse matrix reordering and factorization: a deep lear",
+      "arxiv_id": "2605.17339"
+    },
+    {
+      "title": "the spike, the sparse and the sink: anatomy of massive activations and attention",
+      "arxiv_id": "2603.05498"
+    },
+    {
+      "title": "exploration hacking: can llms learn to resist rl training?",
+      "arxiv_id": "2604.28182"
+    },
+    {
+      "title": "vfuse: virulent feature understanding with sparse autoencoders",
+      "arxiv_id": "2606.10080"
+    },
+    {
+      "title": "prism: processing-in-memory sparse mttkrp for tensor decomposition acceleration",
+      "arxiv_id": "2605.29728"
+    }
+  ]
+}

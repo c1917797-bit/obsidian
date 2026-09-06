@@ -1,0 +1,1303 @@
+{
+  "total_papers": 27784,
+  "filtered_count": 57,
+  "date": "2026-06-26",
+  "papers": [
+    {
+      "paper_id": "7960fd44a5f082a2",
+      "title": "SVDQuant: Absorbing Outliers by Low-Rank Component for 4-Bit Diffusion Models",
+      "url": "https://openreview.net/pdf?id=vWR3KuiQur",
+      "venue": "",
+      "year": "",
+      "score": 7,
+      "matched_objects": [
+        "参数_权重INT"
+      ],
+      "matched_methods": [
+        "方法_量化",
+        "方法_低秩"
+      ],
+      "problems": [
+        "Latency",
+        "Throughput",
+        "Memory",
+        "Scalability",
+        "Agent-Capability"
+      ],
+      "techs": [
+        "Quantization"
+      ]
+    },
+    {
+      "paper_id": "7ee83cc89b318feb",
+      "title": "MUSTAFAR: Promoting Unstructured Sparsity for KV Cache Pruning in LLM Inference",
+      "url": "",
+      "venue": "",
+      "year": "",
+      "score": 7,
+      "matched_objects": [
+        "状态_KVCache"
+      ],
+      "matched_methods": [
+        "方法_剪枝",
+        "方法_稀疏"
+      ],
+      "problems": [
+        "Throughput",
+        "Memory",
+        "Accuracy",
+        "Agent-Capability"
+      ],
+      "techs": [
+        "KV Cache",
+        "PD Separation",
+        "Attention"
+      ]
+    },
+    {
+      "paper_id": "5e5744f878e4bd3e",
+      "title": "FPSAttention: Training-Aware FP8 and Sparsity Co-Design for Fast Video Diffusion",
+      "url": "",
+      "venue": "",
+      "year": "",
+      "score": 7,
+      "matched_objects": [
+        "参数_权重INT"
+      ],
+      "matched_methods": [
+        "方法_量化",
+        "方法_稀疏"
+      ],
+      "problems": [
+        "Accuracy"
+      ],
+      "techs": [
+        "Quantization",
+        "Attention",
+        "FlashAttention"
+      ]
+    },
+    {
+      "paper_id": "c2ce013d088fa8ea",
+      "title": "Preserving Large Activations: The Key to KV Cache Pruning",
+      "url": "",
+      "venue": "",
+      "year": "",
+      "score": 4.5,
+      "matched_objects": [
+        "状态_KVCache"
+      ],
+      "matched_methods": [
+        "方法_剪枝"
+      ],
+      "problems": [
+        "Memory",
+        "Accuracy"
+      ],
+      "techs": [
+        "KV Cache",
+        "Attention"
+      ]
+    },
+    {
+      "paper_id": "0435fa1807996876",
+      "title": "MoESD: Unveil Speculative Decoding's Potential for Accelerating Sparse MoE",
+      "url": "",
+      "venue": "",
+      "year": "",
+      "score": 4.5,
+      "matched_objects": [
+        "通信_MoE"
+      ],
+      "matched_methods": [
+        "方法_稀疏"
+      ],
+      "problems": [
+        "Accuracy"
+      ],
+      "techs": [
+        "Speculative Decoding",
+        "MoE"
+      ]
+    },
+    {
+      "paper_id": "b31fe40259ac9b68",
+      "title": "LLM Compression with Convex Optimization—Part 1: Weight Quantization",
+      "url": "",
+      "venue": "",
+      "year": "",
+      "score": 4,
+      "matched_objects": [
+        "参数_权重"
+      ],
+      "matched_methods": [
+        "方法_量化"
+      ],
+      "problems": [
+        "Scalability",
+        "Cost"
+      ],
+      "techs": [
+        "Quantization"
+      ]
+    },
+    {
+      "paper_id": "e9ebd4fd8eda91ac",
+      "title": "Distribution-Aware Diffusion Model Quantization via Distortion Minimization",
+      "url": "",
+      "venue": "",
+      "year": "",
+      "score": 4,
+      "matched_objects": [
+        "参数_权重"
+      ],
+      "matched_methods": [
+        "方法_量化"
+      ],
+      "problems": [
+        "Memory",
+        "Cost",
+        "Accuracy",
+        "Agent-Capability"
+      ],
+      "techs": [
+        "Quantization"
+      ]
+    },
+    {
+      "paper_id": "d0b2127c9a6424be",
+      "title": "CDQuant: Accurate Post-training Weight Quantization of LLMs using Greedy Coordinate Descent",
+      "url": "",
+      "venue": "",
+      "year": "",
+      "score": 4,
+      "matched_objects": [
+        "参数_权重"
+      ],
+      "matched_methods": [
+        "方法_量化"
+      ],
+      "problems": [
+        "Scalability",
+        "Accuracy"
+      ],
+      "techs": [
+        "Quantization"
+      ]
+    },
+    {
+      "paper_id": "5c28c375caf84ee5",
+      "title": "SOLOS: Sparse Optimization For Long Sequence In Context Compression Enhanced LLMs",
+      "url": "",
+      "venue": "",
+      "year": "",
+      "score": 4,
+      "matched_objects": [
+        "状态_注意力状态"
+      ],
+      "matched_methods": [
+        "方法_稀疏"
+      ],
+      "problems": [
+        "Cost",
+        "Accuracy"
+      ],
+      "techs": [
+        "Attention"
+      ]
+    },
+    {
+      "paper_id": "c50929a6270eb7dc",
+      "title": "Scaling FP8 training to trillion-token LLMs",
+      "url": "https://openreview.net/pdf?id=E1EHO0imOb",
+      "venue": "",
+      "year": "",
+      "score": 4,
+      "matched_objects": [
+        "参数_权重INT"
+      ],
+      "matched_methods": [
+        "方法_量化"
+      ],
+      "problems": [
+        "Throughput"
+      ],
+      "techs": [
+        "Quantization"
+      ]
+    },
+    {
+      "paper_id": "8a3ae1819b14fe78",
+      "title": "KV-Dict: Sparse KV Cache Compression with Universal Dictionaries",
+      "url": "",
+      "venue": "",
+      "year": "",
+      "score": 4,
+      "matched_objects": [
+        "状态_KVCache"
+      ],
+      "matched_methods": [
+        "方法_稀疏"
+      ],
+      "problems": [
+        "Memory",
+        "Cost",
+        "Accuracy",
+        "Agent-Capability"
+      ],
+      "techs": [
+        "KV Cache",
+        "Quantization",
+        "Attention"
+      ]
+    },
+    {
+      "paper_id": "9ca5177be77abed6",
+      "title": "VL-Cache: Sparsity and Modality-Aware KV Cache Compression for Vision-Language Model Inference Acceleration",
+      "url": "https://openreview.net/pdf?id=HMrcv7Q4Ub",
+      "venue": "",
+      "year": "",
+      "score": 4,
+      "matched_objects": [
+        "状态_KVCache"
+      ],
+      "matched_methods": [
+        "方法_稀疏"
+      ],
+      "problems": [
+        "Latency",
+        "Memory",
+        "Accuracy",
+        "Agent-Capability"
+      ],
+      "techs": [
+        "KV Cache",
+        "PD Separation",
+        "Attention"
+      ]
+    },
+    {
+      "paper_id": "f93f36bf7a61092e",
+      "title": "Moirai-MoE: Empowering Time Series Foundation Models with Sparse Mixture of Experts",
+      "url": "",
+      "venue": "",
+      "year": "",
+      "score": 4,
+      "matched_objects": [
+        "通信_MoE"
+      ],
+      "matched_methods": [
+        "方法_稀疏"
+      ],
+      "problems": [
+        "Accuracy"
+      ],
+      "techs": [
+        "MoE",
+        "Attention"
+      ]
+    },
+    {
+      "paper_id": "8980d665d70d4144",
+      "title": "LeanQuant: Accurate and Scalable Large Language Model Quantization with Loss-error-aware Grid",
+      "url": "https://openreview.net/pdf?id=ISqx8giekS",
+      "venue": "",
+      "year": "",
+      "score": 4,
+      "matched_objects": [
+        "参数_权重"
+      ],
+      "matched_methods": [
+        "方法_量化"
+      ],
+      "problems": [
+        "Latency",
+        "Throughput",
+        "Memory",
+        "Scalability",
+        "Cost",
+        "Agent-Capability"
+      ],
+      "techs": [
+        "Quantization"
+      ]
+    },
+    {
+      "paper_id": "b9fb3660acdd5d07",
+      "title": "Rate/Distortion Constrained Model Quantization for Efficient Storage and Inference",
+      "url": "",
+      "venue": "",
+      "year": "",
+      "score": 4,
+      "matched_objects": [
+        "参数_权重"
+      ],
+      "matched_methods": [
+        "方法_量化"
+      ],
+      "problems": [
+        "Cost",
+        "Accuracy"
+      ],
+      "techs": [
+        "Quantization"
+      ]
+    },
+    {
+      "paper_id": "7b239fe1b80fe013",
+      "title": "LogQuant: Log-Distributed 2-Bit Quantization of KV Cache with Superior Accuracy Preservation",
+      "url": "",
+      "venue": "",
+      "year": "",
+      "score": 4,
+      "matched_objects": [
+        "状态_KVCache"
+      ],
+      "matched_methods": [
+        "方法_量化"
+      ],
+      "problems": [
+        "Throughput",
+        "Memory",
+        "Scalability",
+        "Accuracy",
+        "Agent-Capability"
+      ],
+      "techs": [
+        "KV Cache",
+        "Quantization",
+        "Attention"
+      ]
+    },
+    {
+      "paper_id": "4f66a54da53b52b7",
+      "title": "On the Effectiveness of Discrete Representations in Sparse Mixture of Experts",
+      "url": "",
+      "venue": "",
+      "year": "",
+      "score": 4,
+      "matched_objects": [
+        "通信_MoE"
+      ],
+      "matched_methods": [
+        "方法_稀疏"
+      ],
+      "problems": [
+        "Cost",
+        "Accuracy"
+      ],
+      "techs": [
+        "MoE",
+        "Quantization"
+      ]
+    },
+    {
+      "paper_id": "60b315a094c5acda",
+      "title": "BCQ: Block Clustered Quantization for 4-bit (W4A4) LLM inference",
+      "url": "",
+      "venue": "",
+      "year": "",
+      "score": 4,
+      "matched_objects": [
+        "参数_权重INT"
+      ],
+      "matched_methods": [
+        "方法_量化"
+      ],
+      "problems": [
+        "Cost",
+        "Accuracy"
+      ],
+      "techs": [
+        "Quantization"
+      ]
+    },
+    {
+      "paper_id": "ff2b0c46eb1b673d",
+      "title": "Rotated Runtime Smooth: Training-Free Activation Smoother for accurate INT4 inference",
+      "url": "https://openreview.net/pdf?id=WG7GzGx3G9",
+      "venue": "",
+      "year": "",
+      "score": 4,
+      "matched_objects": [
+        "参数_权重INT"
+      ],
+      "matched_methods": [
+        "方法_量化"
+      ],
+      "problems": [
+        "Latency",
+        "Memory",
+        "Scalability",
+        "Cost",
+        "Accuracy",
+        "Agent-Capability"
+      ],
+      "techs": [
+        "Quantization"
+      ]
+    },
+    {
+      "paper_id": "c70c70c50e6fe81e",
+      "title": "COAT: Compressing Optimizer states and Activations for Memory-Efficient FP8 Training",
+      "url": "https://openreview.net/pdf?id=XfKSDgqIRj",
+      "venue": "",
+      "year": "",
+      "score": 4,
+      "matched_objects": [
+        "参数_权重INT"
+      ],
+      "matched_methods": [
+        "方法_量化"
+      ],
+      "problems": [
+        "Memory",
+        "Scalability",
+        "Accuracy",
+        "Agent-Capability"
+      ],
+      "techs": [
+        "Quantization",
+        "Attention"
+      ]
+    },
+    {
+      "paper_id": "4e578b2723a644d8",
+      "title": "BLIMEY: Towards Better Routing Methods in Sparse Mixture of Experts",
+      "url": "",
+      "venue": "",
+      "year": "",
+      "score": 4,
+      "matched_objects": [
+        "通信_MoE"
+      ],
+      "matched_methods": [
+        "方法_稀疏"
+      ],
+      "problems": [
+        "Cost",
+        "Accuracy"
+      ],
+      "techs": [
+        "MoE"
+      ]
+    },
+    {
+      "paper_id": "173b7fd3f1181b3a",
+      "title": "SinkQ: Accurate 2-bit KV Cache Quantization with Dynamic Sink Tracking",
+      "url": "",
+      "venue": "",
+      "year": "",
+      "score": 4,
+      "matched_objects": [
+        "状态_KVCache"
+      ],
+      "matched_methods": [
+        "方法_量化"
+      ],
+      "problems": [
+        "Throughput",
+        "Memory",
+        "Scalability",
+        "Cost",
+        "Accuracy",
+        "Agent-Capability"
+      ],
+      "techs": [
+        "KV Cache",
+        "Quantization",
+        "Attention"
+      ]
+    },
+    {
+      "paper_id": "fdac96f6d86387a9",
+      "title": "ZipVL: Efficient Large Vision-Language Models with Dynamic Token Sparsification and KV Cache Compression",
+      "url": "",
+      "venue": "",
+      "year": "",
+      "score": 4,
+      "matched_objects": [
+        "状态_KVCache"
+      ],
+      "matched_methods": [
+        "方法_稀疏"
+      ],
+      "problems": [
+        "Memory",
+        "Accuracy",
+        "Agent-Capability"
+      ],
+      "techs": [
+        "KV Cache",
+        "Quantization",
+        "PD Separation",
+        "Attention"
+      ]
+    },
+    {
+      "paper_id": "1f02da84c3a87e1d",
+      "title": "Drop-Upcycling: Training Sparse Mixture of Experts with Partial Re-initialization",
+      "url": "https://openreview.net/pdf?id=gx1wHnf5Vp",
+      "venue": "",
+      "year": "",
+      "score": 4,
+      "matched_objects": [
+        "通信_MoE"
+      ],
+      "matched_methods": [
+        "方法_稀疏"
+      ],
+      "problems": [
+        "Scalability",
+        "Cost",
+        "Accuracy"
+      ],
+      "techs": [
+        "MoE"
+      ]
+    },
+    {
+      "paper_id": "90b395bc95a43889",
+      "title": "Smoothness Bridges Sparsity and Stability in MoEs",
+      "url": "",
+      "venue": "",
+      "year": "",
+      "score": 4,
+      "matched_objects": [
+        "通信_MoE"
+      ],
+      "matched_methods": [
+        "方法_稀疏"
+      ],
+      "problems": [
+        "Scalability",
+        "Cost"
+      ],
+      "techs": [
+        "MoE"
+      ]
+    },
+    {
+      "paper_id": "bf04015e7f0e9f1b",
+      "title": "MoE-Pruner: Pruning Mixture-of-Experts Large Language Model using the Hints from Its Router",
+      "url": "",
+      "venue": "",
+      "year": "",
+      "score": 4,
+      "matched_objects": [
+        "通信_MoE"
+      ],
+      "matched_methods": [
+        "方法_剪枝"
+      ],
+      "problems": [
+        "Memory",
+        "Accuracy",
+        "Agent-Capability"
+      ],
+      "techs": [
+        "MoE"
+      ]
+    },
+    {
+      "paper_id": "105f7143756bf82a",
+      "title": "Sparse MoE as a New Retriever: Addressing Missing Modality Problem in Incomplete Multimodal Data",
+      "url": "",
+      "venue": "",
+      "year": "",
+      "score": 4,
+      "matched_objects": [
+        "通信_MoE"
+      ],
+      "matched_methods": [
+        "方法_稀疏"
+      ],
+      "problems": [
+        "Cost",
+        "Accuracy"
+      ],
+      "techs": [
+        "MoE",
+        "Attention"
+      ]
+    },
+    {
+      "paper_id": "c56de6f2feab4e63",
+      "title": "QRazor: Reliable and Effortless 4-bit LLM Quantization by Significant Data Razoring",
+      "url": "",
+      "venue": "",
+      "year": "",
+      "score": 4,
+      "matched_objects": [
+        "参数_权重INT"
+      ],
+      "matched_methods": [
+        "方法_量化"
+      ],
+      "problems": [
+        "Memory",
+        "Scalability",
+        "Accuracy",
+        "Agent-Capability"
+      ],
+      "techs": [
+        "KV Cache",
+        "Quantization",
+        "Attention"
+      ]
+    },
+    {
+      "paper_id": "ea39d532aad93b92",
+      "title": "CASAK-V: Dynamic Sparse Attention and Adaptive KV-Cache Compression for Memory-Efficient Long-Context LLM Inference",
+      "url": "",
+      "venue": "",
+      "year": "",
+      "score": 4,
+      "matched_objects": [
+        "状态_KVCache"
+      ],
+      "matched_methods": [
+        "方法_稀疏"
+      ],
+      "problems": [
+        "Memory",
+        "Accuracy",
+        "Agent-Capability"
+      ],
+      "techs": [
+        "PD Separation",
+        "Attention"
+      ]
+    },
+    {
+      "paper_id": "9be7e35fa7fd2ba3",
+      "title": "De-biasing Diffusion: Data-Free FP8 Quantization of Text-to-Image Models with Billions of Parameters",
+      "url": "",
+      "venue": "",
+      "year": "",
+      "score": 4,
+      "matched_objects": [
+        "参数_权重INT"
+      ],
+      "matched_methods": [
+        "方法_量化"
+      ],
+      "problems": [
+        "Memory",
+        "Cost",
+        "Agent-Capability"
+      ],
+      "techs": [
+        "Quantization"
+      ]
+    },
+    {
+      "paper_id": "fdfd13c22df36c35",
+      "title": "KV-Distill: Nearly Lossless Context Compression for Transformers",
+      "url": "",
+      "venue": "",
+      "year": "",
+      "score": 4,
+      "matched_objects": [
+        "状态_注意力状态"
+      ],
+      "matched_methods": [
+        "方法_蒸馏"
+      ],
+      "problems": [
+        "Memory",
+        "Scalability",
+        "Accuracy",
+        "Agent-Capability"
+      ],
+      "techs": [
+        "KV Cache",
+        "Attention"
+      ]
+    },
+    {
+      "paper_id": "b3530529082f4a32",
+      "title": "To FP8 and Back Again: Quantifying Reduced Precision Effects on LLM Training Stability",
+      "url": "",
+      "venue": "",
+      "year": "",
+      "score": 4,
+      "matched_objects": [
+        "参数_权重INT"
+      ],
+      "matched_methods": [
+        "方法_量化"
+      ],
+      "problems": [
+        "Cost",
+        "Accuracy"
+      ],
+      "techs": [
+        "Quantization"
+      ]
+    },
+    {
+      "paper_id": "97c23af3828b7a5f",
+      "title": "OSTQuant: Refining Large Language Model Quantization with Orthogonal and Scaling Transformations for Better Distribution Fitting",
+      "url": "https://openreview.net/pdf?id=rAcgDBdKnP",
+      "venue": "",
+      "year": "",
+      "score": 4,
+      "matched_objects": [
+        "参数_权重"
+      ],
+      "matched_methods": [
+        "方法_量化"
+      ],
+      "problems": [
+        "Accuracy"
+      ],
+      "techs": [
+        "Quantization"
+      ]
+    },
+    {
+      "paper_id": "feacac8cee92a3db",
+      "title": "Q-GaLore: Quantized GaLore with INT4 Projection and Layer-Adaptive Low-Rank Gradients",
+      "url": "",
+      "venue": "",
+      "year": "",
+      "score": 4,
+      "matched_objects": [
+        "参数_权重INT"
+      ],
+      "matched_methods": [
+        "方法_量化"
+      ],
+      "problems": [
+        "Memory",
+        "Cost",
+        "Accuracy",
+        "Agent-Capability"
+      ],
+      "techs": [
+        "Quantization"
+      ]
+    },
+    {
+      "paper_id": "4bbd5d5d6032f430",
+      "title": "LLaVA-MoD: Making LLaVA Tiny via MoE-Knowledge Distillation",
+      "url": "https://openreview.net/pdf?id=uWtLOy35WD",
+      "venue": "",
+      "year": "",
+      "score": 4,
+      "matched_objects": [
+        "通信_MoE"
+      ],
+      "matched_methods": [
+        "方法_蒸馏"
+      ],
+      "problems": [
+        "Scalability",
+        "Cost",
+        "Accuracy"
+      ],
+      "techs": [
+        "MoE"
+      ]
+    },
+    {
+      "paper_id": "40bdaed17210c0b2",
+      "title": "StructMoE: Augmenting MoEs with Hierarchically Routed Low Rank Experts",
+      "url": "",
+      "venue": "",
+      "year": "",
+      "score": 4,
+      "matched_objects": [
+        "通信_MoE"
+      ],
+      "matched_methods": [
+        "方法_低秩"
+      ],
+      "problems": [
+        "Memory",
+        "Scalability",
+        "Accuracy",
+        "Agent-Capability"
+      ],
+      "techs": [
+        "MoE",
+        "Attention"
+      ]
+    },
+    {
+      "paper_id": "4bae9f8fa116aa54",
+      "title": "QJL: 1-Bit Quantized JL Transform for KV Cache Quantization with Zero Overhead",
+      "url": "",
+      "venue": "",
+      "year": "",
+      "score": 4,
+      "matched_objects": [
+        "状态_KVCache"
+      ],
+      "matched_methods": [
+        "方法_量化"
+      ],
+      "problems": [
+        "Memory",
+        "Scalability",
+        "Accuracy",
+        "Agent-Capability"
+      ],
+      "techs": [
+        "KV Cache",
+        "Quantization"
+      ]
+    },
+    {
+      "paper_id": "8ea5a555ccaf0d90",
+      "title": "ALTER: All-in-One Layer Pruning and Temporal Expert Routing for Efficient Diffusion Generation",
+      "url": "",
+      "venue": "",
+      "year": "",
+      "score": 4,
+      "matched_objects": [
+        "通信_MoE"
+      ],
+      "matched_methods": [
+        "方法_剪枝"
+      ],
+      "problems": [],
+      "techs": []
+    },
+    {
+      "paper_id": "62eec0c5d28f2a8e",
+      "title": "Towards Fully FP8 GEMM LLM Training at Scale",
+      "url": "",
+      "venue": "",
+      "year": "",
+      "score": 4,
+      "matched_objects": [
+        "参数_权重INT"
+      ],
+      "matched_methods": [
+        "方法_量化"
+      ],
+      "problems": [
+        "Throughput",
+        "Scalability",
+        "Accuracy"
+      ],
+      "techs": [
+        "Quantization",
+        "Attention"
+      ]
+    },
+    {
+      "paper_id": "16306b207785a83d",
+      "title": "NSNQuant: A Double Normalization Approach for Calibration-Free Low-Bit Vector Quantization of KV Cache",
+      "url": "",
+      "venue": "",
+      "year": "",
+      "score": 4,
+      "matched_objects": [
+        "状态_KVCache"
+      ],
+      "matched_methods": [
+        "方法_量化"
+      ],
+      "problems": [
+        "Throughput",
+        "Memory",
+        "Agent-Capability"
+      ],
+      "techs": [
+        "KV Cache",
+        "Quantization"
+      ]
+    },
+    {
+      "paper_id": "2769a3df7b5b499b",
+      "title": "MoORE: SVD-based Model MoE-ization for Conflict- and Oblivion-Resistant Multi-Task Adaptation",
+      "url": "",
+      "venue": "",
+      "year": "",
+      "score": 4,
+      "matched_objects": [
+        "通信_MoE"
+      ],
+      "matched_methods": [
+        "方法_低秩"
+      ],
+      "problems": [
+        "Throughput",
+        "Scalability"
+      ],
+      "techs": [
+        "MoE"
+      ]
+    },
+    {
+      "paper_id": "d94972c23e840563",
+      "title": "MoE-CAP: Benchmarking Cost, Accuracy and Performance of Sparse Mixture-of-Experts Systems",
+      "url": "",
+      "venue": "",
+      "year": "",
+      "score": 4,
+      "matched_objects": [
+        "通信_MoE"
+      ],
+      "matched_methods": [
+        "方法_稀疏"
+      ],
+      "problems": [
+        "Throughput",
+        "Memory",
+        "Cost",
+        "Accuracy",
+        "Agent-Capability"
+      ],
+      "techs": [
+        "MoE"
+      ]
+    },
+    {
+      "paper_id": "bca63f19c9454f6f",
+      "title": "FP4 All the Way: Fully Quantized Training of Large Language Models",
+      "url": "",
+      "venue": "",
+      "year": "",
+      "score": 4,
+      "matched_objects": [
+        "参数_权重INT"
+      ],
+      "matched_methods": [
+        "方法_量化"
+      ],
+      "problems": [
+        "Throughput",
+        "Scalability",
+        "Accuracy"
+      ],
+      "techs": [
+        "Quantization"
+      ]
+    },
+    {
+      "paper_id": "3e6c69b8f9334f9d",
+      "title": "VETA-DiT: Variance-Equalized and Temporally Adaptive Quantization for Efficient 4-bit Diffusion Transformers",
+      "url": "",
+      "venue": "",
+      "year": "",
+      "score": 4,
+      "matched_objects": [
+        "参数_权重INT"
+      ],
+      "matched_methods": [
+        "方法_量化"
+      ],
+      "problems": [
+        "Throughput",
+        "Memory",
+        "Scalability",
+        "Accuracy",
+        "Agent-Capability"
+      ],
+      "techs": [
+        "Quantization",
+        "Attention"
+      ]
+    },
+    {
+      "paper_id": "64e942a32f24eaa0",
+      "title": "SALS: Sparse Attention in Latent Space for KV Cache Compression",
+      "url": "",
+      "venue": "",
+      "year": "",
+      "score": 4,
+      "matched_objects": [
+        "状态_KVCache"
+      ],
+      "matched_methods": [
+        "方法_稀疏"
+      ],
+      "problems": [
+        "Throughput",
+        "Memory",
+        "Scalability",
+        "Accuracy",
+        "Agent-Capability"
+      ],
+      "techs": [
+        "KV Cache",
+        "Attention",
+        "FlashAttention"
+      ]
+    },
+    {
+      "paper_id": "94784070a58020f3",
+      "title": "KIVI: A Tuning-Free Asymmetric 2bit Quantization for KV Cache",
+      "url": "https://openreview.net/pdf?id=L057s2Rq8O",
+      "venue": "",
+      "year": "",
+      "score": 4,
+      "matched_objects": [
+        "状态_KVCache"
+      ],
+      "matched_methods": [
+        "方法_量化"
+      ],
+      "problems": [
+        "Throughput",
+        "Memory",
+        "Cost",
+        "Agent-Capability"
+      ],
+      "techs": [
+        "KV Cache",
+        "Quantization",
+        "Attention"
+      ]
+    },
+    {
+      "paper_id": "ba29c974364cbcad",
+      "title": "$\\texttt{MoE-RBench}$: Towards Building Reliable Language Models with Sparse Mixture-of-Experts",
+      "url": "https://openreview.net/pdf?id=LyJ85kgHFe",
+      "venue": "",
+      "year": "",
+      "score": 4,
+      "matched_objects": [
+        "通信_MoE"
+      ],
+      "matched_methods": [
+        "方法_稀疏"
+      ],
+      "problems": [
+        "Throughput",
+        "Reliability"
+      ],
+      "techs": [
+        "MoE"
+      ]
+    },
+    {
+      "paper_id": "49fe3afbc48058b2",
+      "title": "Jetfire: Efficient and Accurate Transformer Pretraining with INT8 Data Flow and Per-Block Quantization",
+      "url": "https://openreview.net/pdf?id=ltzTHGFF5i",
+      "venue": "",
+      "year": "",
+      "score": 4,
+      "matched_objects": [
+        "参数_权重INT"
+      ],
+      "matched_methods": [
+        "方法_量化"
+      ],
+      "problems": [
+        "Memory",
+        "Accuracy",
+        "Agent-Capability"
+      ],
+      "techs": [
+        "Quantization",
+        "Attention"
+      ]
+    },
+    {
+      "paper_id": "7168524b724b0963",
+      "title": "A2Q+: Improving Accumulator-Aware Weight Quantization",
+      "url": "https://openreview.net/pdf?id=mbx2pLK5Eq",
+      "venue": "",
+      "year": "",
+      "score": 4,
+      "matched_objects": [
+        "参数_权重"
+      ],
+      "matched_methods": [
+        "方法_量化"
+      ],
+      "problems": [
+        "Cost",
+        "Accuracy"
+      ],
+      "techs": [
+        "Quantization"
+      ]
+    },
+    {
+      "paper_id": "e0543130a2701e3c",
+      "title": "Retraining-Free Model Quantization via One-Shot Weight-Coupling Learning",
+      "url": "https://openaccess.thecvf.com/content/CVPR2024/papers/Tang_Retraining-Free_Model_Quantization_via_One-Shot_Weight-Coupling_Learning_CVPR_2024_paper.pdf",
+      "venue": "",
+      "year": "",
+      "score": 4,
+      "matched_objects": [
+        "参数_权重"
+      ],
+      "matched_methods": [
+        "方法_量化"
+      ],
+      "problems": [
+        "Cost",
+        "Accuracy"
+      ],
+      "techs": [
+        "Quantization"
+      ]
+    },
+    {
+      "paper_id": "0a5ab40eaafcacd6",
+      "title": "LLMC: Benchmarking Large Language Model Quantization with a Versatile Compression Toolkit",
+      "url": "https://aclanthology.org/2024.emnlp-industry.12.pdf",
+      "venue": "",
+      "year": "",
+      "score": 4,
+      "matched_objects": [
+        "参数_权重"
+      ],
+      "matched_methods": [
+        "方法_量化"
+      ],
+      "problems": [
+        "Throughput",
+        "Memory",
+        "Accuracy",
+        "Agent-Capability"
+      ],
+      "techs": [
+        "Quantization"
+      ]
+    },
+    {
+      "paper_id": "3672e540bdc60c0b",
+      "title": "MoE-I2: Compressing Mixture of Experts Models through Inter-Expert Pruning and Intra-Expert Low-Rank Decomposition",
+      "url": "https://aclanthology.org/2024.findings-emnlp.612.pdf",
+      "venue": "",
+      "year": "",
+      "score": 4,
+      "matched_objects": [
+        "通信_MoE"
+      ],
+      "matched_methods": [
+        "方法_剪枝"
+      ],
+      "problems": [
+        "Cost",
+        "Accuracy"
+      ],
+      "techs": [
+        "MoE"
+      ]
+    },
+    {
+      "paper_id": "cc5653edd04d99cf",
+      "title": "Prefixing Attention Sinks can Mitigate Activation Outliers for Large Language Model Quantization",
+      "url": "https://aclanthology.org/2024.emnlp-main.134.pdf",
+      "venue": "",
+      "year": "",
+      "score": 4,
+      "matched_objects": [
+        "参数_权重"
+      ],
+      "matched_methods": [
+        "方法_量化"
+      ],
+      "problems": [
+        "Memory",
+        "Accuracy"
+      ],
+      "techs": [
+        "Quantization",
+        "Attention"
+      ]
+    },
+    {
+      "paper_id": "b262ad87889339ee",
+      "title": "BitDistiller: Unleashing the Potential of Sub-4-Bit LLMs via Self-Distillation",
+      "url": "https://aclanthology.org/2024.acl-long.7.pdf",
+      "venue": "",
+      "year": "",
+      "score": 4,
+      "matched_objects": [
+        "参数_权重INT"
+      ],
+      "matched_methods": [
+        "方法_蒸馏"
+      ],
+      "problems": [
+        "Throughput",
+        "Memory",
+        "Cost",
+        "Accuracy",
+        "Agent-Capability"
+      ],
+      "techs": [
+        "Quantization"
+      ]
+    },
+    {
+      "paper_id": "c500cd28524aa9de",
+      "title": "IntactKV: Improving Large Language Model Quantization by Keeping Pivot Tokens Intact",
+      "url": "https://aclanthology.org/2024.findings-acl.460.pdf",
+      "venue": "",
+      "year": "",
+      "score": 4,
+      "matched_objects": [
+        "参数_权重"
+      ],
+      "matched_methods": [
+        "方法_量化"
+      ],
+      "problems": [
+        "Throughput",
+        "Memory",
+        "Cost",
+        "Accuracy"
+      ],
+      "techs": [
+        "KV Cache",
+        "Quantization",
+        "Attention"
+      ]
+    },
+    {
+      "paper_id": "db6080fa3d912a35",
+      "title": "Unlocking Data-free Low-bit Quantization with Matrix Decomposition for KV Cache Compression",
+      "url": "https://aclanthology.org/2024.acl-long.133.pdf",
+      "venue": "",
+      "year": "",
+      "score": 4,
+      "matched_objects": [
+        "状态_KVCache"
+      ],
+      "matched_methods": [
+        "方法_量化"
+      ],
+      "problems": [
+        "Memory",
+        "Agent-Capability"
+      ],
+      "techs": [
+        "KV Cache",
+        "Quantization"
+      ]
+    },
+    {
+      "paper_id": "508c7134a7d825f4",
+      "title": "XMoE: Sparse Models with Fine-grained and Adaptive Expert Selection",
+      "url": "https://aclanthology.org/2024.findings-acl.694.pdf",
+      "venue": "",
+      "year": "",
+      "score": 4,
+      "matched_objects": [
+        "通信_MoE"
+      ],
+      "matched_methods": [
+        "方法_稀疏"
+      ],
+      "problems": [
+        "Throughput",
+        "Accuracy"
+      ],
+      "techs": [
+        "MoE",
+        "Attention"
+      ]
+    }
+  ]
+}

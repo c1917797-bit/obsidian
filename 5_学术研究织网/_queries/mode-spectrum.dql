@@ -1,0 +1,49 @@
+# Mode Spectrum Distribution Query
+# ARS 25种模式分布统计
+
+```dataview
+TABLE project_name, ars_mode, stage, created
+FROM "5_学术研究织网/研究项目"
+WHERE type = "material-passport"
+SORT ars_mode ASC, project_name ASC
+```
+
+## 模式使用统计
+
+```dataview
+TABLE WITHOUT ID
+  ars_mode AS "ARS Mode",
+  length(rows) AS "Project Count"
+FROM "5_学术研究织网/研究项目"
+WHERE type = "material-passport"
+GROUP BY ars_mode
+SORT "Project Count" DESC
+```
+
+## 模式-阶段矩阵
+
+```dataview
+TABLE WITHOUT ID
+  ars_mode AS "Mode",
+  filter(rows.stage, (s) => s = "1-RESEARCH") AS "Research",
+  filter(rows.stage, (s) => s = "2-WRITE") AS "Write",
+  filter(rows.stage, (s) => s = "3-REVIEW") AS "Review",
+  filter(rows.stage, (s) => s = "4-REVISE") AS "Revise",
+  filter(rows.stage, (s) => s = "5-FINALIZE") AS "Finalize"
+FROM "5_学术研究织网/研究项目"
+WHERE type = "material-passport"
+GROUP BY ars_mode
+```
+
+## 推荐下一模式
+
+```dataview
+TABLE WITHOUT ID
+  "Current Mode" AS "Current Mode",
+  "Next Mode" AS "Recommended Next",
+  "Trigger" AS "When to Use"
+FROM ""
+WHERE contains(rows.ars_mode, "deep-research full")
+FLATTEN ["academic-paper plan", "academic-paper full"] AS next_mode
+GROUP BY next_mode
+```
