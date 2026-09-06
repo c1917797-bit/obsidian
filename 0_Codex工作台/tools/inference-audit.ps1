@@ -18,8 +18,28 @@ function FieldVal($content, $name){
     return ""
 }
 
+function HasUnverifiedText($content) {
+    $patterns = @(
+        '待核验',
+        '待补充',
+        '待确认',
+        '待核对',
+        '待补齐',
+        '待验证',
+        'TODO'
+    )
+    foreach($p in $patterns){
+        if($content -match $p){ return $true }
+    }
+    return $false
+}
+
 if(-not (Test-Path -LiteralPath $radarRoot)){
-    Write-Output "TOTAL=0"; Write-Output "BAD=0"; Write-Output "STALE=0"; Write-Output "DUPLICATE=0"; exit 0
+    Write-Output "TOTAL=0"
+    Write-Output "BAD=0"
+    Write-Output "STALE=0"
+    Write-Output "DUPLICATE=0"
+    exit 0
 }
 
 $allFiles = Get-ChildItem -LiteralPath $radarRoot -File -Filter '*.md' -Recurse |
@@ -47,7 +67,13 @@ foreach($f in $files){
     $evidence = 0
     [void][int]::TryParse((FieldVal $content 'evidence_score'), [ref]$evidence)
     if($evidence -eq 0){ $issues += 'evidence_zero' }
-    if($missing.Count -gt 0){ $issues += 'missing_fields' }
+
+    if(HasUnverifiedText $content){ $issues += 'unverified_placeholder' }
+
+    $status = FieldVal $content 'status'
+    if(-not ($status -in @('candidate','monitor','ignore','deep_read','replicate','insight'))){
+        $issues += 'invalid_status'
+    }
 
     $ageDays = $null
     $ds = FieldVal $content 'discovered'
@@ -56,9 +82,10 @@ foreach($f in $files){
         catch {}
     }
 
-    $status = FieldVal $content 'status'
     $title = [regex]::Match($content, '(?m)^#\s+(.+)$')
     $titleText = if($title.Success){ $title.Groups[1].Value.Trim() } else { $f.Name }
+
+    if($missing.Count -gt 0){ $issues += 'missing_fields' }
 
     $rows += [pscustomobject]@{
         Path = $f.FullName
@@ -66,6 +93,7 @@ foreach($f in $files){
         Status = $status
         AgeDays = $ageDays
         Issues = $issues
+        Missing = ($missing -join ',')
     }
 
     if($titleBuckets.ContainsKey($titleText)){
@@ -87,25 +115,26 @@ if($Command -eq 'scan'){
 
 $out = @()
 $out += '# AI Inference Quality Issue Report'
-$out += "- Generated: $(Get-Date -Format 'yyyy-MM-dd HH:mm:ss')"
-$out += "- Total cards: $($rows.Count)"
-$out += "- Bad cards: $($bad.Count)"
-$out += "- Candidate older than $MaxAgeDays days: $($stale.Count)"
-$out += "- Duplicate titles: $($dups.Count)"
+$out+= "- Generated: $(Get-Date -Format 'yyyy-MM-dd HH:mm:ss')"
+$out+= "- Total cards: $($rows.Count)"
+$out+= "- Bad cards: $($bad.Count)"
+$out+= "- Candidate older than $MaxAgeDays days: $($stale.Count)"
+$out+= "- Duplicate titles: $($dups.Count)"
 $out += ''
-$out += '## Bad cards'
+$out+= '## Bad cards'
 foreach($r in ($bad | Sort-Object Path)){
     $out += "- $($r.Title) | $($r.Path)"
     foreach($i in $r.Issues){ $out += "  - $i" }
+    if($r.Missing){ $out += "  - missing: $($r.Missing)" }
 }
-$out += ''
-$out += '## Duplicate titles'
+$out+= ''
+$out+= '## Duplicate titles'
 foreach($d in $dups){
     $out += "- $($d.Key)"
     foreach($p in $d.Value){$out += "  - $p"}
 }
-$out += ''
-$out += "## Candidate cards older than $MaxAgeDays days"
+$out+= ''
+$out+= "## Candidate cards older than $MaxAgeDays days"
 foreach($r in ($stale | Sort-Object AgeDays -Descending)){
     $out += "- $($r.Title) ($($r.AgeDays)d)"
 }
@@ -113,3 +142,4 @@ foreach($r in ($stale | Sort-Object AgeDays -Descending)){
 New-Item -ItemType Directory -Force -Path (Split-Path $reportPath -Parent) | Out-Null
 [IO.File]::WriteAllText($reportPath, ($out -join "`r`n"), [Text.UTF8Encoding]::new($true))
 Write-Output "REPORT_WRITTEN=$reportPath"
+
