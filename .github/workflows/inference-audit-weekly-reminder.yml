@@ -1,0 +1,44 @@
+name: inference-audit-weekly-reminder
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 5 * * 1'
+
+jobs:
+  weekly-reminder:
+    runs-on: windows-latest
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Generate weekly verify digest
+        id: digest
+        shell: pwsh
+        run: |
+          $out = pwsh .\0_Codex工作台\tools\inference-radar.ps1 digest -Window week -Status verify -MinOverall 2 -Limit 20
+          $out | Write-Output
+          $fileLine = $out | Select-String '^REPORT_WRITTEN=' | Select-Object -First 1
+          if (-not $fileLine) {
+            throw 'digest did not return report path'
+          }
+          $path = $fileLine.ToString() -replace '^REPORT_WRITTEN=', ''
+          "path=$path" | Out-File -FilePath $env:GITHUB_OUTPUT -Encoding UTF8 -Append
+
+          $text = Get-Content -Path $path -ErrorAction Stop
+          if ($text.Count -eq 0) {
+            throw 'digest file is empty'
+          }
+          $top = ($text | Select-Object -First 30)
+          "### Weekly inference reminder" | Out-File -FilePath "$env:GITHUB_STEP_SUMMARY" -Encoding UTF8 -Append
+          "Generated: $((Get-Date).ToString('yyyy-MM-dd HH:mm:ss'))" | Out-File -FilePath "$env:GITHUB_STEP_SUMMARY" -Encoding UTF8 -Append
+          $top | ForEach-Object { "- $_" | Out-File -FilePath "$env:GITHUB_STEP_SUMMARY" -Encoding UTF8 -Append }
+
+      - name: Save weekly reminder artifact
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: inference-weekly-reminder
+          path: ${{ steps.digest.outputs.path }}
