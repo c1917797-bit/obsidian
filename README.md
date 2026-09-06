@@ -76,3 +76,11 @@ robocopy "C:\Users\Huawei\Documents\code\Obsidian\3_AI情报日历\Inbox\Inferen
 自动提交工作流会在周末（UTC 时间的周六/周日）额外执行归档：
 - 复制 `问题清单.md` 到 `3_AI情报日历/Inbox/InferenceRadar/问题清单_归档/问题清单_周报_YYYY-MM-DD.md`
 - 与日报同步一起提交，便于周报回溯和比对历史节奏。
+## 每周周报提醒（仅通知）
+
+新增 `inference-audit-weekly-reminder.yml`（不推送、不提交）：
+
+- 触发：每周一 UTC 05:00 + `workflow_dispatch`
+- 行为：按 `digest -Window week -Status verify -MinOverall 2` 生成“可复核高优先”周报
+- 输出：上传为 GitHub Artifact `inference-weekly-reminder`
+- 你可在 Actions 页面直接查看 Step Summary，确认本周是否有高优先待验证项。
