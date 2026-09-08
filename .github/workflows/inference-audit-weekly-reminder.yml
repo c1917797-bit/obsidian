@@ -18,6 +18,18 @@ jobs:
         id: digest
         shell: pwsh
         run: |
+          $now = (Get-Date).ToUniversalTime()
+          $dayOfWeek = [int]$now.DayOfWeek
+          if ($dayOfWeek -eq 0) {
+            $daysSinceMonday = 6
+          }
+          else {
+            $daysSinceMonday = $dayOfWeek - 1
+          }
+          $weekStart = $now.Date.AddDays(-($daysSinceMonday + 7))
+          $weekEnd = $weekStart.AddDays(6)
+          $artifactName = ('inference-weekly-reminder-' + $weekStart.ToString('yyyyMMdd') + '-' + $weekEnd.ToString('yyyyMMdd'))
+
           $out = pwsh .\0_Codex工作台\tools\inference-radar.ps1 digest -Window week -Status verify -MinOverall 2 -Limit 20
           $out | Write-Output
           $fileLine = $out | Select-String '^REPORT_WRITTEN=' | Select-Object -First 1
@@ -26,19 +38,54 @@ jobs:
           }
           $path = $fileLine.ToString() -replace '^REPORT_WRITTEN=', ''
           "path=$path" | Out-File -FilePath $env:GITHUB_OUTPUT -Encoding UTF8 -Append
+          "week_start=$($weekStart.ToString('yyyy-MM-dd'))" | Out-File -FilePath $env:GITHUB_OUTPUT -Encoding UTF8 -Append
+          "week_end=$($weekEnd.ToString('yyyy-MM-dd'))" | Out-File -FilePath $env:GITHUB_OUTPUT -Encoding UTF8 -Append
+          "artifact_name=$artifactName" | Out-File -FilePath $env:GITHUB_OUTPUT -Encoding UTF8 -Append
 
           $text = Get-Content -Path $path -ErrorAction Stop
           if ($text.Count -eq 0) {
             throw 'digest file is empty'
           }
-          $top = ($text | Select-Object -First 30)
-          "### Weekly inference reminder" | Out-File -FilePath "$env:GITHUB_STEP_SUMMARY" -Encoding UTF8 -Append
-          "Generated: $((Get-Date).ToString('yyyy-MM-dd HH:mm:ss'))" | Out-File -FilePath "$env:GITHUB_STEP_SUMMARY" -Encoding UTF8 -Append
-          $top | ForEach-Object { "- $_" | Out-File -FilePath "$env:GITHUB_STEP_SUMMARY" -Encoding UTF8 -Append }
+          $allLines = $text | Where-Object { $_.Trim() -ne '' }
+          $top = $allLines | Select-Object -First 30
+          $alerts = $allLines | Where-Object { $_ -match '^\s*[-*]\s+' } | Select-Object -First 12
+          if (-not $alerts) {
+            $alerts = $allLines | Select-Object -First 12
+          }
+
+          $summary = "$env:GITHUB_STEP_SUMMARY"
+          "### Weekly inference reminder" | Out-File -FilePath $summary -Encoding UTF8 -Append
+          "- Generated (UTC): $($now.ToString('yyyy-MM-dd HH:mm:ss'))" | Out-File -FilePath $summary -Encoding UTF8 -Append
+          "- Window: $($weekStart.ToString('yyyy-MM-dd')) ~ $($weekEnd.ToString('yyyy-MM-dd'))" | Out-File -FilePath $summary -Encoding UTF8 -Append
+          "- Source report: $path" | Out-File -FilePath $summary -Encoding UTF8 -Append
+
+          "`n## High-priority alert cards (top $($alerts.Count))" | Out-File -FilePath $summary -Encoding UTF8 -Append
+          $index = 1
+          foreach ($line in $alerts) {
+            $clean = $line -replace '^\s*[-*]\s+', ''
+            "### Alert #$index" | Out-File -FilePath $summary -Encoding UTF8 -Append
+            "> $clean" | Out-File -FilePath $summary -Encoding UTF8 -Append
+            "> - Report period: $($weekStart.ToString('yyyy-MM-dd')) to $($weekEnd.ToString('yyyy-MM-dd')) UTC" | Out-File -FilePath $summary -Encoding UTF8 -Append
+            "> - Source path: `$path`" | Out-File -FilePath $summary -Encoding UTF8 -Append
+            "" | Out-File -FilePath $summary -Encoding UTF8 -Append
+            $index++
+          }
+
+          "`n## Report preview (first 30 non-empty lines)" | Out-File -FilePath $summary -Encoding UTF8 -Append
+          $top | ForEach-Object { "- $_" | Out-File -FilePath $summary -Encoding UTF8 -Append }
+
+      - name: Weekly reminder failure notice
+        if: failure()
+        shell: pwsh
+        run: |
+          "### Weekly inference reminder (failed)" | Out-File -FilePath "$env:GITHUB_STEP_SUMMARY" -Encoding UTF8 -Append
+          "- Workflow failed to generate report on $((Get-Date).ToUniversalTime().ToString('yyyy-MM-dd HH:mm:ss')) UTC." | Out-File -FilePath "$env:GITHUB_STEP_SUMMARY" -Encoding UTF8 -Append
+          "- Please check checkout, powershell path, and script exit status in action logs." | Out-File -FilePath "$env:GITHUB_STEP_SUMMARY" -Encoding UTF8 -Append
 
       - name: Save weekly reminder artifact
         uses: actions/upload-artifact@v4
-        if: always()
+        if: steps.digest.outputs.path != ''
         with:
-          name: inference-weekly-reminder
+          name: ${{ steps.digest.outputs.artifact_name }}
           path: ${{ steps.digest.outputs.path }}
+

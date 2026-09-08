@@ -81,6 +81,10 @@ robocopy "C:\Users\Huawei\Documents\code\Obsidian\3_AI情报日历\Inbox\Inferen
 新增 `inference-audit-weekly-reminder.yml`（不推送、不提交）：
 
 - 触发：每周一 UTC 05:00 + `workflow_dispatch`
-- 行为：按 `digest -Window week -Status verify -MinOverall 2` 生成“可复核高优先”周报
-- 输出：上传为 GitHub Artifact `inference-weekly-reminder`
-- 你可在 Actions 页面直接查看 Step Summary，确认本周是否有高优先待验证项。
+- 行为：按 `digest -Window week -Status verify -MinOverall 2` 生成“可复核高优先”周报，
+  用“卡片”结构展示高优先项（支持快速扫描与复核）。
+- 周期：按上周 `Monday ~ Sunday (UTC)` 自动计算，并在 Step Summary 中显示窗口。
+- 输出：
+  - 上传为 GitHub Artifact（文件名包含周起止日期：`inference-weekly-reminder-YYYYMMDD-YYYYMMDD`）
+  - Step Summary 提供高优先事项卡片 + 前 30 行原文预览。
+- 失败兜底：若日报生成失败，会在 Step Summary 打印失败告警，避免静默漏报。
