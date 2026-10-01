@@ -1,6 +1,6 @@
-param(
+﻿param(
     [Parameter(Position=0,Mandatory=$true)]
-    [ValidateSet('status','new','validate','rank','digest')]
+    [ValidateSet('status','new','validate','rank','digest','shortlist')]
     [string]$Command,
     [string]$Title,
     [string]$Source,
@@ -10,13 +10,16 @@ param(
     [ValidateRange(1,200)][int]$Limit=20,
     [ValidateSet('today','week')][string]$Window='today',
     [string]$Status='',
-    [double]$MinOverall=0
+[double]$MinOverall=0,
+[double]$MinComposite=0,
+[double]$MinCitation=0
 )
 $ErrorActionPreference='Stop'
 $vaultRoot=(Resolve-Path (Join-Path $PSScriptRoot '..\..')).Path
 $radarRoot=Join-Path $vaultRoot '3_AI情报日历\Inbox\InferenceRadar'
 $templatePath=Join-Path $vaultRoot '0_Codex工作台\Templates\AI推理信号卡模板.md'
 $reportDate=(Get-Date)
+$shortlistDbPath=Join-Path $vaultRoot '4_AI情报洞察\inference_compression_v9.json'
 
 function Field($content,$name){
     $m=[regex]::Match($content,'(?m)^'+[regex]::Escape($name)+':\s*"?([^"\r\n]*)"?\s*$')
@@ -133,6 +136,124 @@ function Render-Digest([string]$outPath,[string]$mode,[string]$statusFilter,[dou
     Write-Output $outPath
 }
 
+function Load-ShortlistDb{
+    param([string]$path=$shortlistDbPath)
+    if(-not $path){
+        throw 'shortlist db path is empty'
+    }
+    if(-not (Test-Path -LiteralPath $path)){throw "shortlist db not found: $path"}
+    $raw=Get-Content -LiteralPath $path -Raw
+    if([string]::IsNullOrWhiteSpace($raw)){throw "shortlist db is empty: $path"}
+    try {
+        $json=ConvertFrom-Json -InputObject $raw
+    } catch {
+        throw "failed to parse db as json: $path"
+    }
+    if(-not $json.papers){throw "no papers field in db: $path"}
+    return $json.papers
+}
+
+function Score-ShortlistPaper{
+    param($paper,[string[]]$preferCells=@())
+    $composite=[double]$paper.composite_score
+    $quality=[double]$paper.quality_score
+    $cit=[double]$paper.citation_score
+    $rel=[double]$paper.relevance_score
+    if([double]::IsNaN($composite)){ $composite=0}
+    if([double]::IsNaN($quality)){ $quality=0}
+    if([double]::IsNaN($cit)){ $cit=0}
+    if([double]::IsNaN($rel)){ $rel=0}
+
+    $base = [Math]::Max(0,($composite*0.45 + $quality*0.2 + $cit*0.25 + $rel*0.1))
+    $title=($paper.title + ' ' + $paper.abstract)
+
+    $tf = if($title -match 'training[- ]?free|post[- ]?training|posttraining|inference[- ]?time|无需训练|无训练|免训练|without training'){2.5}else{0.0}
+    $ascend = if($title -match 'ascend|昇腾|cann|npu|npu(\\s*?)|atc|acl|mindspore'){1.5}else{0.0}
+    $infer = if($title -match 'inference|推理|kv|attention|kv cache|attention') {1.0}else{0.0}
+
+    $cellBoost=0.0
+    if(-not [string]::IsNullOrWhiteSpace($paper.primary_cell)){
+        if($preferCells -and $preferCells -contains $paper.primary_cell){$cellBoost += 2.0}
+        if($paper.primary_cell -like '*量化*' -or $paper.primary_cell -like '*稀疏*' -or $paper.primary_cell -like '*剪枝*'){ $cellBoost += 0.7}
+    }
+    if($paper.cells -is [System.Collections.IEnumerable]){
+        foreach($c in $paper.cells){
+            if($preferCells -and $preferCells -contains $c){$cellBoost += 1.0}
+        }
+    }
+
+    [pscustomobject]@{
+        Paper=$paper
+        Score=[Math]::Round($base + $tf + $ascend + $infer + $cellBoost, 3)
+        Composite=$composite
+        Citation=$cit
+        Venue=$paper.venue
+        Title=$paper.title
+        Site=$paper.site
+        PrimaryCell=$paper.primary_cell
+        Cells=$paper.cells
+        Abstract=$paper.abstract
+    }
+}
+
+function New-Shortlist{
+    param(
+        [string]$mode='today',
+        [string]$topicFilter='',
+        [int]$topCount=10,
+        [double]$minComposite=0,
+        [double]$minCitation=0,
+        [string]$path=$shortlistDbPath
+    )
+    $papers=Load-ShortlistDb -path $path
+    $preferCells=@()
+    if($topicFilter){
+        $preferCells += switch($topicFilter){
+            'compression' {'参数x量化';'激活x量化';'KVx量化'}
+            'memory' {'KVx剪枝';'KVx蒸馏';'KVx稀疏化'}
+            'serving' {'参数x剪枝';'参数x稀疏化';'参数x量化'}
+            'kernel' {'通信x低秩';'通信x稀疏化';'通信x量化'}
+            'distributed' {'通信x低秩';'通信x稀疏化'}
+            'hardware-economics' {'参数x量化';'激活x稀疏化'}
+            default {}
+        }
+    }
+    $scored=@()
+    foreach($p in $papers){
+        $record=Score-ShortlistPaper -paper $p -preferCells $preferCells
+        if($record.Composite -lt $minComposite){continue}
+        if($record.Citation -lt $minCitation){continue}
+        if($topicFilter -and $topicFilter -ne 'other'){
+            $hit = $false
+            foreach($c in $preferCells){
+                if(-not [string]::IsNullOrWhiteSpace($record.PrimaryCell) -and $record.PrimaryCell -eq $c){$hit=$true; break}
+                if($record.Cells -is [System.Collections.IEnumerable]){
+                    foreach($cell in $record.Cells){
+                        if($cell -eq $c){$hit=$true; break}
+                    }
+                }
+                if($hit){break}
+            }
+            if(-not $hit){
+                $topicToken = switch($topicFilter){
+                    'compression' { '量化|稀疏|剪枝|蒸馏|低秩' }
+                    'serving' { '推理|latency|throughput|serving|decode|kv|kv cache|beam|prefill' }
+                    'memory' { 'kv|cache|memory|kv cache|kv cache' }
+                    'kernel' { '算子|kernel|cann|compiler|npu' }
+                    'distributed' { '通信|parallel|pipeline|tensor|数据并行|专家' }
+                    'hardware-economics' { 'latency|吞吐|功耗|功率|cost|energy|ascend|昇腾|npu' }
+                }
+                if($record.Title -match $topicToken -or $record.Abstract -match $topicToken){
+                    $hit=$true
+                }
+            }
+            if(-not $hit){continue}
+        }
+        $scored += $record
+    }
+    return $scored | Sort-Object -Property @{Expression='Score';Descending=$true},@{Expression='Composite';Descending=$true} | Select-Object -First $topCount
+}
+
 switch($Command){
 'status'{
   $cards=@(Cards)
@@ -178,6 +299,32 @@ switch($Command){
   $file=Join-Path $radarRoot ("AI推理简报_"+$reportDate.ToString('yyyy-MM-dd')+".md")
   Render-Digest -outPath $file -mode $Window -statusFilter $Status -overallFloor $MinOverall
   "REPORT_WRITTEN=$file"
+}
+'shortlist'{
+  $outPath=Join-Path $radarRoot ("AI推理筛选_"+$reportDate.ToString('yyyy-MM-dd')+".md")
+  $limitByWindow = if($Window -eq 'week'){3}else{$Limit}
+  $result=New-Shortlist -mode $Window -topicFilter $Topic -topCount $limitByWindow -minComposite $MinComposite -minCitation $MinCitation -path $shortlistDbPath
+  $lines=@()
+  $lines += "# AI推理筛选清单 ($(Get-Date -Format 'yyyy-MM-dd'))"
+  $lines += ""
+  $lines += "窗口: $Window / Topic: $Topic / minComposite: $MinComposite / minCitation: $MinCitation / 生成: $(Get-Date -Format 'yyyy-MM-dd HH:mm:ss')"
+  $lines += ""
+  if($result.Count -eq 0){
+    $lines += "未命中。请降低阈值或扩大窗口再试。"
+  } else {
+    $idx=1
+    foreach($r in $result){
+      $lines += "## $idx. $($r.Title)"
+      $lines += "- 来源: $($r.Venue) "
+      $lines += "- 链接: $($r.Site)"
+      $lines += "- 核心指标: score=$($r.Score) composite=$($r.Composite) citation=$($r.Citation) cell=$($r.PrimaryCell)"
+      if($r.Site){$lines += "- 证据入口: $($r.Site)"}
+      $lines += ""
+      $idx++
+    }
+  }
+  [IO.File]::WriteAllText($outPath,($lines -join "`r`n"),[Text.UTF8Encoding]::new($true))
+  "SHORTLIST_WRITTEN=$outPath"
 }
 }
 

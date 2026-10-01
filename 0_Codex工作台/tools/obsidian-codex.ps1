@@ -1,4 +1,4 @@
-param(
+﻿param(
  [Parameter(Position=0,Mandatory=$true)][ValidateSet('status','search','recent','new','validate')][string]$Command,
  [string]$Query,[string]$Title,[string]$Source='',[string]$Path,
  [ValidateRange(1,200)][int]$Limit=30

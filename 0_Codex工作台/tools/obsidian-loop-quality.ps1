@@ -1,4 +1,4 @@
-param(
+﻿param(
   [Parameter(Position=0, Mandatory=$true)]
   [ValidateSet('status','quality','report')]
   [string]$Command,
@@ -14,7 +14,7 @@ $scriptDir = Split-Path -Parent $MyInvocation.MyCommand.Path
 $vaultRoot = (Resolve-Path (Join-Path $scriptDir '..\..')).Path
 $workbenchRoot = (Resolve-Path (Join-Path $scriptDir '..')).Path
 $workbenchName = Split-Path $workbenchRoot -Leaf
-$guardRoot = Join-Path $workbenchRoot 'quality-guardian'
+  $guardRoot = Join-Path $workbenchRoot '质量看守'
 $statePath = Join-Path $guardRoot 'quality-gate-state.json'
 
 function Get-Notes {
@@ -78,6 +78,11 @@ function Score-Issue {
       $problems += [pscustomobject]@{ code='P0'; text='Possible secret/credential pattern detected' }
       break
     }
+  }
+
+  # 禁止 0 证据报告进入洞察：推理信号卡 evidence_score=0 即拦截
+  if($Content -match '(?m)^evidence_score:\s*0\s*$'){
+    $problems += [pscustomobject]@{ code='P1'; text='0-evidence report (evidence_score=0) — blocked from insight promotion' }
   }
 
   return $problems

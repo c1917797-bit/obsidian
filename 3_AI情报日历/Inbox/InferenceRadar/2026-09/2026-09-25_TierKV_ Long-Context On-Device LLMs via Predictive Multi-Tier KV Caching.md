@@ -1,30 +1,31 @@
 ﻿---
 type: inference-signal
-date: {{date}}
-discovered: {{timestamp}}
-source_published: ""
-source_type: unknown
-primary_source: "{{source}}"
-topic: {{topic}}
+date: 2026-09-25
+discovered: 2026-09-25T10:57:26
+source_published: "2026-09-18"
+source_type: arxiv-preprint
+primary_source: "https://arxiv.org/abs/2609.21172"
+topic: compression
 status: candidate
-evidence_score: 0
-relevance_score: 0
-impact_score: 0
-novelty_score: 0
-urgency_score: 0
-reproducibility_score: 0
-overall_score: 0
-confidence: low
+evidence_score: 2
+relevance_score: 4
+impact_score: 2
+novelty_score: 2
+urgency_score: 2
+reproducibility_score: 3
+overall_score: 2.5
+confidence: medium
 decision: verify
 tags: [AI推理, radar]
 ---
-# {{title}}
+# TierKV: Long-Context On-Device LLMs via Predictive Multi-Tier KV Caching
 
 ## 事件
-只写可核验描述。
+
+- Auto-detected by arXiv monitor. Published=2026-09-18. Topic: predictive multi-tier KV caching for on-device long-context LLMs.
 
 ## 一手证据
-- 原始来源：{{source}}
+- 原始来源：https://arxiv.org/abs/2609.21172
 - 原文定位：
 - 版本 / commit / arXiv ID：
 

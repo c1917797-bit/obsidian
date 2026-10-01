@@ -1,4 +1,4 @@
-param(
+﻿param(
     [ValidateSet("scan","report")][string]$Command = "scan",
     [int]$MaxAgeDays = 30
 )

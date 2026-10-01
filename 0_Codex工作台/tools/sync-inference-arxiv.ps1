@@ -1,4 +1,4 @@
-param(
+﻿param(
  [Parameter(Position=0,Mandatory=$true)]
  [ValidateSet('baseline','sync','status')]
  [string]$Command,
@@ -33,7 +33,7 @@ function Get-State {
  if(Test-Path -LiteralPath $statePath){
   try {
    $raw=Get-Content -Raw -LiteralPath $statePath -Encoding UTF8
-   $obj=ConvertFrom-Json -InputObject $raw -Depth 20
+   $obj=ConvertFrom-Json -InputObject $raw
    return $obj
   } catch {
    Write-Warning ('State load failed, reset state: '+$_.Exception.Message)
